@@ -3,6 +3,7 @@ import yfinance as yf
 import json
 import os
 import time
+from tqdm import tqdm
 import concurrent.futures
 
 NASDAQ_URL = "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqtraded.txt"
@@ -74,13 +75,13 @@ def main():
     print(f"Total tickers found: {len(tickers)}")
 
     results = {}
+
     with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
         futures = {executor.submit(fetch_info, sym, etf): sym for sym, etf in tickers}
-        for i, future in enumerate(concurrent.futures.as_completed(futures), start=1):
+
+        for future in tqdm(concurrent.futures.as_completed(futures), total=len(futures), desc="Processing tickers"):
             sym = futures[future]
             results[sym] = future.result()
-            if i % 100 == 0:
-                print(f"Processed {i}/{len(tickers)} tickers")
 
     print(f"Saving results to {OUTPUT_FILE}...")
     with open(OUTPUT_FILE, "w") as f:
