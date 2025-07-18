@@ -3,6 +3,7 @@ import yfinance as yf
 import json
 import os
 import time
+from tqdm import tqdm
 import concurrent.futures
 
 NASDAQ_URL = "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqtraded.txt"
