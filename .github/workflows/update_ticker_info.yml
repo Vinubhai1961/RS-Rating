@@ -1,15 +1,14 @@
 name: Update NASDAQ Ticker Info
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-  workflow_dispatch:  # Allows manual triggering
+  schedule:
+    - cron: '0 0 * * *'  # Run daily at midnight
+  workflow_dispatch:  # Allow manual trigger
 
 jobs:
-  run-script:
+  update-ticker-info:
     runs-on: ubuntu-latest
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -17,53 +16,22 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.12'
-
-    - name: Cache pip dependencies
-      uses: actions/cache@v4
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
+        python-version: '3.x'
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        pip install requests pandas tqdm yfinance
 
-    - name: Verify script exists
-      run: ls -l scripts/fetch_ticker_info.py
+    - name: Run fetch_ticker_info.py
+      run: python scripts/fetch_ticker_info.py
 
-    - name: Run script with debug output
+    - name: Commit and push changes
       run: |
-        python --version
-        pip list | grep -E "requests|yfinance|tqdm"
-        python scripts/fetch_ticker_info.py
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add data/ticker_info.json
+        git commit -m "Update ticker_info.json [$(date +'%Y-%m-%d %H:%M:%S')]" || echo "No changes to commit"
+        git push
       env:
-        PYTHONPATH: .
-
-    - name: Check for errors
-      run: |
-        if [ -s log/error.log ]; then
-          echo "Errors found in log/error.log:"
-          cat log/error.log
-        else
-          echo "No errors logged."
-        fi
-
-    - name: Upload logs
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: error-logs
-        path: log/error.log
-        retention-days: 7
-
-    - name: Upload output
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: ticker-info
-        path: data/ticker_info.json
-        retention-days: 7
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
