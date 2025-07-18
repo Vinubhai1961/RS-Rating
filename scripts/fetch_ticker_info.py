@@ -1,121 +1,83 @@
-import requests
-import yfinance as yf
 import json
-import os
-import time
+import yfinance as yf
+import pandas as pd
 from tqdm import tqdm
-import concurrent.futures
+from concurrent.futures import ThreadPoolExecutor
+import logging
+import os
+from datetime import datetime
+import re
 
-NASDAQ_URL = "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqtraded.txt"
-OUTPUT_DIR = "data"
-OUTPUT_FILE = os.path.join(OUTPUT_DIR, "ticker_info.json")
-LOG_DIR = "log"
-LOG_FILE = os.path.join(LOG_DIR, "error.log")
+# Setup logging
+os.makedirs('log', exist_ok=True)
+logging.basicConfig(filename='log/error.log', level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
-os.makedirs(OUTPUT_DIR, exist_ok=True)
-os.makedirs(LOG_DIR, exist_ok=True)
-
-
-def log_error(message):
-    with open(LOG_FILE, "a") as log:
-        log.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} - {message}\n")
-
-
-def get_nasdaq_tickers():
-    response = requests.get(NASDAQ_URL)
-    lines = response.text.splitlines()
-
-    tickers = []
-    for line in lines[1:]:
-        parts = line.split("|")
-        if len(parts) > 6 and parts[0] == "Y":  # Active symbol
-            symbol = parts[1].strip()
-            etf_flag = parts[5].strip()
-            if symbol:
-                tickers.append((symbol, etf_flag))
-    return tickers
-
-
-def fetch_metadata(symbol, etf_flag):
-    """Fetch sector and industry for non-ETF tickers."""
+def fetch_ticker_info(symbol, is_etf):
+    """Fetch ticker info using yfinance, incorporating ETF status from NASDAQ data."""
     try:
         ticker = yf.Ticker(symbol)
-        info = ticker.fast_info  # Faster than get_info()
-        sector = "N/A"
-        industry = "N/A"
-
-        if etf_flag == "N":  # Only for non-ETFs
-            # Use Ticker.info as fallback (still slow, but less frequent)
-            try:
-                details = ticker.get_info()
-                sector = details.get("sector", "N/A")
-                industry = details.get("industry", "N/A")
-            except Exception:
-                pass
-
+        info = ticker.info
+        price = info.get('regularMarketPrice', info.get('previousClose', info.get('lastPrice')))
+        
+        if price is None:
+            raise ValueError("Price data not available")
+        
         return {
-            "Sector": sector,
-            "Industry": industry,
-            "ETF": etf_flag
+            "Sector": info.get('sector', 'N/A'),
+            "Industry": info.get('industry', 'N/A'),
+            "ETF": is_etf,  # Use NASDAQ file's ETF status
+            "Price": round(float(price), 2)
         }
     except Exception as e:
-        log_error(f"Metadata failed for {symbol}: {e}")
-        return {"Sector": "Error", "Industry": "Error", "ETF": etf_flag}
+        logging.error(f"Error fetching data for {symbol}: {str(e)}")
+        return None
 
-
-def fetch_prices(symbols):
-    """Fetch latest prices in bulk."""
-    try:
-        data = yf.download(tickers=symbols, period="1d", group_by='ticker', threads=True)
-        prices = {}
-
-        if isinstance(data.columns, pd.MultiIndex):
-            for symbol in symbols:
-                try:
-                    prices[symbol] = round(data[symbol]['Close'].iloc[-1], 2)
-                except:
-                    prices[symbol] = "N/A"
-        else:
-            # Single ticker fallback
-            try:
-                prices[symbols[0]] = round(data['Close'].iloc[-1], 2)
-            except:
-                prices[symbols[0]] = "N/A"
-
-        return prices
-    except Exception as e:
-        log_error(f"Price fetch failed for {symbols}: {e}")
-        return {s: "N/A" for s in symbols}
-
+def process_batch(batch):
+    """Process a batch of (symbol, is_etf) tuples."""
+    results = {}
+    for symbol, is_etf in batch:
+        try:
+            info = fetch_ticker_info(symbol, is_etf)
+            if info:
+                results[symbol] = info
+        except Exception as e:
+            logging.error(f"Error processing {symbol}: {str(e)}")
+    return results
 
 def main():
-    print("Fetching NASDAQ tickers...")
-    tickers = get_nasdaq_tickers()
-    print(f"Total tickers found: {len(tickers)}")
+    url = "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqtraded.txt"
+    try:
+        # Download and read the data
+        df = pd.read_csv(url, sep='|', skipfooter=1, engine='python')
+        
+        # Filter valid symbols: non-test issues and NASDAQ Symbol without special characters
+        valid_tickers = df[
+            (df['Test Issue'] == 'N') & 
+            (~df['NASDAQ Symbol'].str.contains(r'[\+\-=/]', na=False, regex=True))
+        ][['Symbol', 'ETF']].copy()
+        valid_tickers['ETF'] = valid_tickers['ETF'].apply(lambda x: 'Y' if x == 'Y' else 'N')
+        symbols = [(row['Symbol'], row['ETF']) for _, row in valid_tickers.iterrows()]
+        
+        # Batch processing with threading
+        batch_size = 100
+        batches = [symbols[i:i + batch_size] for i in range(0, len(symbols), batch_size)]
+        results = {}
+        
+        with ThreadPoolExecutor(max_workers=5) as executor:
+            # Process batches with progress bar
+            for batch_result in tqdm(executor.map(process_batch, batches), total=len(batches), desc="Processing batches"):
+                results.update(batch_result)
+        
+        # Save to JSON
+        os.makedirs('data', exist_ok=True)
+        with open('data/ticker_info.json', 'w') as f:
+            json.dump(results, f, indent=2)
+        
+        logging.info(f"Successfully processed {len(results)} symbols")
+        
+    except Exception as e:
+        logging.error(f"Main process error: {str(e)}")
 
-    results = {}
-
-    # Step 1: Fetch metadata concurrently
-    print("Fetching metadata...")
-    with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
-        futures = {executor.submit(fetch_metadata, sym, etf): sym for sym, etf in tickers}
-        for future in tqdm(concurrent.futures.as_completed(futures), total=len(futures), desc="Metadata"):
-            sym = futures[future]
-            results[sym] = future.result()
-
-    # Step 2: Fetch prices in batches
-    print("Fetching prices in bulk...")
-    symbols = [sym for sym, _ in tickers]
-    batch_size = 200
-    for i in tqdm(range(0, len(symbols), batch_size), desc="Price batches"):
-        batch = symbols[i:i + batch_size]
-        prices = fetch_prices(batch)
-        for sym, price in prices.items():
-            if sym in results:
-                results[sym]["Price"] = price
-
-    print(f"Saving results to {OUTPUT_FILE}...")
-    with open(OUTPUT_FILE, "w") as f:
-        json.dump(results, f, indent=4)
-
-    print("Done!")
+if __name__ == "__main__":
+    main()
