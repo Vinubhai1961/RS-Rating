@@ -1,4 +1,4 @@
-name: Update NASDAQ Ticker Info
+name: Update Ticker Info
 
 on:
   schedule:
@@ -26,12 +26,20 @@ jobs:
     - name: Run fetch_ticker_info.py
       run: python scripts/fetch_ticker_info.py
 
+    - name: Cleanup old logs (older than 7 days)
+      run: |
+        find log -name 'error.log.*' -mtime +7 -exec rm -f {} \;
+        # Move current error.log to a dated backup if it exists
+        if [ -f log/error.log ]; then
+          mv log/error.log log/error.log.$(date +%Y%m%d)
+        fi
+
     - name: Commit and push changes
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add data/ticker_info.json
-        git commit -m "Update ticker_info.json [$(date +'%Y-%m-%d %H:%M:%S')]" || echo "No changes to commit"
+        git add data/ticker_info.json log/error.log*
+        git commit -m "Update ticker_info.json and manage error.log [$(date +'%Y-%m-%d %H:%M:%S')]" || echo "No changes to commit"
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
