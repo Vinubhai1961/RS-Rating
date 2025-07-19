@@ -37,8 +37,7 @@ jobs:
         run: |
           ls -l scripts/update_stocks.py || { echo "update_stocks.py not found in scripts/"; exit 1; }
           ls -l scripts/user_agents.py || { echo "user_agents.py not found in scripts/"; exit 1; }
-          pip show requests pandas yfinance tqdm || { echo "Dependencies missing"; exit 1; }
-
+        
       # Run the update_stocks.py script and capture logs
       - name: Run update_stocks.py
         run: |
