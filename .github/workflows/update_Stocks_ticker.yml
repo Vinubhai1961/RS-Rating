@@ -18,26 +18,33 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.9'  # Use a stable Python version
+          python-version: '3.9'  # Matches the environment (3.9.23)
 
       # Install dependencies
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests pandas yfinance tqdm
+          pip install requests pandas yfinance tqdm || { echo "Dependency installation failed"; exit 1; }
 
-      # Create data and logs directories if they don't exist
+      # Create data and logs directories
       - name: Create directories
         run: |
           mkdir -p data
           mkdir -p logs
 
+      # Verify script and dependencies exist
+      - name: Verify files
+        run: |
+          ls -l scripts/update_stocks.py || { echo "update_stocks.py not found in scripts/"; exit 1; }
+          ls -l scripts/user_agents.py || { echo "user_agents.py not found in scripts/"; exit 1; }
+          pip show requests pandas yfinance tqdm || { echo "Dependencies missing"; exit 1; }
+
       # Run the update_stocks.py script and capture logs
       - name: Run update_stocks.py
         run: |
-          python update_stocks.py 
-          
-      # Commit and push changes to data folder
+          python scripts/update_stocks.py > logs/update_stocks_$(date +%Y%m%d_%H%M%S).log 2>&1
+
+      # Commit and push changes to data and logs folders
       - name: Commit output files
         run: |
           git config --local user.email "action@github.com"
