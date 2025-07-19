@@ -104,8 +104,13 @@ def process_nasdaq_file():
     logging.info(f"Saved {len(failed_symbols)} failed symbols")
 
 if __name__ == "__main__":
+    start_time = time.time()
+    logging.info(f"Script started at {time.strftime('%Y-%m-%d %H:%M:%S')}")
     try:
         process_nasdaq_file()
     except Exception as e:
         logging.error(f"Error processing NASDAQ data: {e}")
         raise
+    finally:
+        end_time = time.time()
+        logging.info(f"Script finished at {time.strftime('%Y-%m-%d %H:%M:%S')}, took {end_time - start_time:.2f} seconds")
