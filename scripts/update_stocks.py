@@ -17,7 +17,7 @@ logging.basicConfig(
 )
 
 # Constants
-INITIAL_DELAY = 2  # Increased delay to avoid rate-limiting
+INITIAL_DELAY = 0.5  # Increased delay to avoid rate-limiting
 RETRY_ATTEMPTS = 3
 MAX_WORKERS = 5  # Reduced to avoid overwhelming the API
 
@@ -81,6 +81,7 @@ def process_nasdaq_file():
     
     failed_symbols = []
     
+    print("Starting symbol processing...", flush=True)  # Debug check for stdout
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         results = list(tqdm(
             executor.map(
