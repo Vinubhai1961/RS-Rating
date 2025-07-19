@@ -14,14 +14,13 @@ os.makedirs('log', exist_ok=True)
 logging.basicConfig(filename='log/error.log', level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
-def fetch_ticker_info(symbol, is_etf):
-    """Fetch ticker info with retry for rate limits."""
+def fetch_ticker_info(symbol, is_etf, tickers_object):
+    """Fetch ticker info using yf.Tickers object."""
     max_retries = 3
     retry_delay = 5  # Initial delay in seconds
     for attempt in range(max_retries):
         try:
-            ticker = yf.Ticker(symbol)
-            info = ticker.info
+            info = tickers_object.tickers[symbol].info
             price = info.get('regularMarketPrice', info.get('previousClose', info.get('lastPrice')))
             
             if price is None:
@@ -42,40 +41,50 @@ def fetch_ticker_info(symbol, is_etf):
             logging.error(f"Error fetching data for {symbol}: {str(e)}")
         return None
 
-def fetch_price_with_download(symbols):
-    """Fetch price data using yf.download with rate limit handling."""
+def fetch_prices_with_download(symbols):
+    """Fetch prices for multiple symbols using yf.download."""
     max_retries = 3
     retry_delay = 10  # Adjusted delay for download
     for attempt in range(max_retries):
         try:
             data = yf.download(symbols, period="1d", threads=True)
-            if data.empty or data['Close'].isna().all():
+            if data.empty or data['Close'].isna().all().any():
                 raise ValueError("No price data available")
-            return data['Close'].iloc[-1]  # Return latest closing price
+            return data['Close'].iloc[-1]  # Return latest closing prices as Series
         except HTTPError as e:
             if attempt < max_retries - 1 and "429" in str(e):
                 time.sleep(retry_delay * (2 ** attempt))
                 continue
-            logging.error(f"HTTP Error fetching price for {symbols}: {str(e)}")
+            logging.error(f"HTTP Error fetching prices for {symbols}: {str(e)}")
         except Exception as e:
-            logging.error(f"Error fetching price for {symbols}: {str(e)}")
+            logging.error(f"Error fetching prices for {symbols}: {str(e)}")
     return None
 
 def process_batch(batch):
-    """Process a batch of (symbol, is_etf) tuples using both methods."""
+    """Process a batch of (symbol, is_etf) tuples."""
     results = {}
-    for symbol, is_etf in batch:
-        try:
-            # Fetch additional info using fetch_ticker_info
-            info = fetch_ticker_info(symbol, is_etf)
+    symbols = [symbol for symbol, _ in batch]
+    is_etf_list = dict(batch)  # Map symbol to is_etf for lookup
+    
+    # Create yf.Tickers object for the batch
+    try:
+        tickers = yf.Tickers(' '.join(symbols))
+        
+        # Fetch initial info
+        for symbol in symbols:
+            info = fetch_ticker_info(symbol, is_etf_list[symbol], tickers)
             if info:
-                # Fetch price using yf.download
-                price = fetch_price_with_download(symbol)
-                if price is not None:
-                    info["Price"] = round(float(price), 2)
                 results[symbol] = info
-        except Exception as e:
-            logging.error(f"Error processing {symbol}: {str(e)}")
+        
+        # Fetch prices with yf.download
+        prices = fetch_prices_with_download(symbols)
+        if prices is not None:
+            for symbol in symbols:
+                if symbol in results and prices.get(symbol, None) is not None:
+                    results[symbol]["Price"] = round(float(prices[symbol]), 2)
+    except Exception as e:
+        logging.error(f"Error processing batch {symbols}: {str(e)}")
+    
     return results
 
 def main():
@@ -93,14 +102,14 @@ def main():
         valid_tickers['ETF'] = valid_tickers['ETF'].apply(lambda x: 'Y' if x == 'Y' else 'N')
         symbols = [(row['Symbol'], row['ETF']) for _, row in valid_tickers.iterrows()]
         
-        batch_size = 50  # Reduced batch size to minimize rate limit issues
+        batch_size = 20  # Further reduced to minimize rate limit issues
         batches = [symbols[i:i + batch_size] for i in range(0, len(symbols), batch_size)]
         results = {}
         
-        with ThreadPoolExecutor(max_workers=2) as executor:  # Further reduced workers
+        with ThreadPoolExecutor(max_workers=1) as executor:  # Single worker to control rate
             for batch_result in tqdm(executor.map(process_batch, batches), total=len(batches), desc="Processing batches"):
                 results.update(batch_result)
-                time.sleep(15)  # Increased delay between batches
+                time.sleep(20)  # Increased delay between batches
         
         os.makedirs('data', exist_ok=True)
         with open('data/ticker_info.json', 'w') as f:
