@@ -100,7 +100,7 @@ def process_nasdaq_file():
     
     # Save failed symbols
     with open(os.path.join('data', 'failed_symbols.json'), 'w') as f:
-        json.dump(failed_symbols, f)
+        json.dump(failed_symbols, f, indent=2)
     logging.info(f"Saved {len(failed_symbols)} failed symbols")
 
 if __name__ == "__main__":
