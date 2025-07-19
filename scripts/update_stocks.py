@@ -2,11 +2,9 @@ import os
 import json
 import time
 import logging
-import sys
-from concurrent.futures import ThreadPoolExecutor
 import pandas as pd
 import yfinance as yf
-from tqdm import tqdm
+from concurrent.futures import ThreadPoolExecutor
 
 # Configure logging to write to a file
 logging.basicConfig(
@@ -17,9 +15,9 @@ logging.basicConfig(
 )
 
 # Constants
-INITIAL_DELAY = 2  # Increased delay to avoid rate-limiting
-RETRY_ATTEMPTS = 3
-MAX_WORKERS = 5  # Reduced to avoid overwhelming the API
+INITIAL_DELAY = 0.5  # Delay between requests to avoid rate-limiting
+MAX_WORKERS = 5  # Limited workers to reduce API load
+BATCH_SIZE = 100  # Process symbols in batches to manage memory and rate limits
 
 def fetch_nasdaq_data(url, max_attempts=7, delay=5):
     for attempt in range(1, max_attempts + 1):
@@ -35,28 +33,23 @@ def fetch_nasdaq_data(url, max_attempts=7, delay=5):
                 raise Exception("Max attempts reached. Could not fetch NASDAQ data.")
     return None
 
-def process_symbol(symbol, etf_status, delay):
-    for attempt in range(RETRY_ATTEMPTS):
-        try:
-            time.sleep(delay * (2 ** attempt))  # Exponential backoff
-            ticker = yf.Ticker(symbol)
-            info = ticker.info
-            return {
-                symbol: {
-                    'Sector': info.get('sector', 'N/A'),
-                    'Industry': info.get('industry', 'N/A'),
-                    'Type': 'ETF' if etf_status.get(symbol) == 'Y' else 'Stock',
-                    'Price': info.get('regularMarketPrice', None)
-                }
+def process_symbol(symbol, etf_status):
+    try:
+        time.sleep(INITIAL_DELAY)  # Simple delay to avoid rate-limiting
+        ticker = yf.Tickers(symbol).tickers[symbol]
+        info = ticker.info
+        return {
+            symbol: {
+                'Sector': info.get('sector', 'N/A'),
+                'Industry': info.get('industry', 'N/A'),
+                'Type': 'ETF' if etf_status.get(symbol) == 'Y' else 'Stock',
+                'Price': info.get('currentPrice', None),
+                'MarketCap': info.get('marketCap', None)
             }
-        except Exception as e:
-            if "Too Many Requests" in str(e):
-                if attempt < RETRY_ATTEMPTS - 1:
-                    logging.warning(f"Rate limit for {symbol}, retrying after delay (attempt {attempt + 1}/{RETRY_ATTEMPTS})")
-                    continue
-            logging.error(f"Failed to process {symbol}: {e}")
-            return None
-    return None
+        }
+    except Exception as e:
+        logging.error(f"Failed to process {symbol}: {e}")
+        return None
 
 def process_nasdaq_file():
     start_time = time.time()
@@ -80,34 +73,33 @@ def process_nasdaq_file():
         logging.info("No existing ticker_info.json found, starting fresh")
     
     failed_symbols = []
+    total_symbols = len(symbols)
+    processed_count = 0
     
-    print("Starting symbol processing...", flush=True)  # Debug check for stdout
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-        results = list(tqdm(
-            executor.map(
-                lambda s: process_symbol(s, etf_status, INITIAL_DELAY),
-                symbols
-            ),
-            total=len(symbols),
-            file=sys.stdout,  # Ensure progress bar writes to stdout
-            ascii=True,  # Use ASCII characters for compatibility
-            desc="Processing symbols"
-        ))
-    
-    for result in results:
-        if result:
-            ticker_info.update(result)
-        else:
-            failed_symbol = list(result.keys())[0] if result else None
-            if failed_symbol:
-                failed_symbols.append(failed_symbol)
+    for i in range(0, len(symbols), BATCH_SIZE):
+        batch_symbols = symbols[i:i + BATCH_SIZE]
+        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+            results = list(executor.map(
+                lambda s: process_symbol(s, etf_status),
+                batch_symbols
+            ))
+        
+        for result in results:
+            processed_count += 1
+            if result:
+                ticker_info.update(result)
+            else:
+                failed_symbol = next(iter(result.keys())) if result else None
+                if failed_symbol:
+                    failed_symbols.append(failed_symbol)
+            logging.info(f"Progress: {processed_count}/{total_symbols} ({(processed_count/total_symbols)*100:.1f}%)")
     
     with open(os.path.join('data', 'ticker_info.json'), 'w') as f:
         json.dump(ticker_info, f, indent=2)
     logging.info(f"Saved {len(ticker_info)} symbols to data/ticker_info.json")
     
     with open(os.path.join('data', 'failed_symbols.json'), 'w') as f:
-        json.dump(failed_symbols, f, indent=2)  # Pretty-print with indentation
+        json.dump(failed_symbols, f, indent=2)
     logging.info(f"Saved {len(failed_symbols)} failed symbols")
     
     end_time = time.time()
