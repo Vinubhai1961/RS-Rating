@@ -1,116 +1,116 @@
 import os
-import requests
-import pandas as pd
-import logging
-import yfinance as yf
-from concurrent.futures import ThreadPoolExecutor
-from tqdm import tqdm
 import json
 import time
-from user_agents import get_random_user_agent
+import logging
+import sys
+from concurrent.futures import ThreadPoolExecutor
+import pandas as pd
+import yfinance as yf
+from tqdm import tqdm
 
-# Set up logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+# Configure logging to write to a file
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    filename='update_stocks.log',
+    filemode='w'
+)
 
-# Configuration
-MAX_WORKERS = 10
-NASDAQ_URL = 'https://www.nasdaqtrader.com/dynamic/symdir/nasdaqtraded.txt'
-RETRY_ATTEMPTS = 7
-INITIAL_DELAY = 2  # Delay in seconds for rate-limiting
+# Constants
+INITIAL_DELAY = 2  # Increased delay to avoid rate-limiting
+RETRY_ATTEMPTS = 3
+MAX_WORKERS = 5  # Reduced to avoid overwhelming the API
 
-def fetch_nasdaq_data():
-    attempt = 1
-    while attempt <= RETRY_ATTEMPTS:
-        logging.info(f"Fetching data from {NASDAQ_URL} (attempt {attempt}/{RETRY_ATTEMPTS})")
+def fetch_nasdaq_data(url, max_attempts=7, delay=5):
+    for attempt in range(1, max_attempts + 1):
         try:
-            headers = {'User-Agent': get_random_user_agent()}
-            response = requests.get(NASDAQ_URL, headers=headers)
-            response.raise_for_status()
-            df = pd.read_csv(NASDAQ_URL, sep='|', skipfooter=1, engine='python')
-            logging.info(f"Retrieved {len(df)} symbols from NASDAQ")
+            logging.info(f"Fetching data from {url} (attempt {attempt}/{max_attempts})")
+            df = pd.read_csv(url, sep='|')
             return df
         except Exception as e:
-            logging.error(f"Attempt {attempt} failed: {e}")
-            attempt += 1
-            if attempt > RETRY_ATTEMPTS:
-                raise Exception(f"Failed to fetch NASDAQ data after {RETRY_ATTEMPTS} attempts")
+            logging.error(f"Failed to fetch data: {e}")
+            if attempt < max_attempts:
+                time.sleep(delay)
+            else:
+                raise Exception("Max attempts reached. Could not fetch NASDAQ data.")
     return None
 
 def process_symbol(symbol, etf_status, delay):
-    try:
-        time.sleep(delay)  # Rate-limiting delay
-        ticker = yf.Ticker(symbol)
-        info = ticker.info
-        return {
-            symbol: {
-                'Sector': info.get('sector', 'N/A'),
-                'Industry': info.get('industry', 'N/A'),
-                'Type': 'ETF' if etf_status.get(symbol) == 'Y' else 'Stock',
-                'Price': info.get('regularMarketPrice', None)
+    for attempt in range(RETRY_ATTEMPTS):
+        try:
+            time.sleep(delay * (2 ** attempt))  # Exponential backoff
+            ticker = yf.Ticker(symbol)
+            info = ticker.info
+            return {
+                symbol: {
+                    'Sector': info.get('sector', 'N/A'),
+                    'Industry': info.get('industry', 'N/A'),
+                    'Type': 'ETF' if etf_status.get(symbol) == 'Y' else 'Stock',
+                    'Price': info.get('regularMarketPrice', None)
+                }
             }
-        }
-    except Exception as e:
-        logging.error(f"Failed to process {symbol}: {e}")
-        return None
+        except Exception as e:
+            if "Too Many Requests" in str(e):
+                if attempt < RETRY_ATTEMPTS - 1:
+                    logging.warning(f"Rate limit for {symbol}, retrying after delay (attempt {attempt + 1}/{RETRY_ATTEMPTS})")
+                    continue
+            logging.error(f"Failed to process {symbol}: {e}")
+            return None
+    return None
 
 def process_nasdaq_file():
-    df = fetch_nasdaq_data()
-    if df is None:
-        raise Exception("Failed to fetch NASDAQ data")
+    start_time = time.time()
+    logging.info(f"Script started at {time.strftime('%Y-%m-%d %H:%M:%S')}")
     
-    existing_data = {}
-    ticker_info_path = os.path.join('data', 'ticker_info.json')
-    if os.path.exists(ticker_info_path):
-        with open(ticker_info_path, 'r') as f:
-            existing_data = json.load(f)
-        logging.info(f"Loaded existing data with {len(existing_data)} entries")
+    url = "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqtraded.txt"
+    df = fetch_nasdaq_data(url)
+    symbols = df[df['Test Issue'] == 'N']['Symbol'].tolist()
+    logging.info(f"Retrieved {len(symbols)} symbols from NASDAQ")
     
-    # Create dictionary mapping symbols to ETF status
     etf_status = dict(zip(df['Symbol'], df['ETF']))
-    symbols = df['Symbol'].tolist()
+    
+    os.makedirs('data', exist_ok=True)
+    
+    ticker_info = {}
+    try:
+        with open(os.path.join('data', 'ticker_info.json'), 'r') as f:
+            ticker_info = json.load(f)
+        logging.info(f"Loaded existing data with {len(ticker_info)} entries")
+    except FileNotFoundError:
+        logging.info("No existing ticker_info.json found, starting fresh")
+    
     failed_symbols = []
     
-    # Process symbols in parallel
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         results = list(tqdm(
             executor.map(
                 lambda s: process_symbol(s, etf_status, INITIAL_DELAY),
                 symbols
             ),
-            total=len(symbols)
+            total=len(symbols),
+            file=sys.stdout,  # Ensure progress bar writes to stdout
+            ascii=True,  # Use ASCII characters for compatibility
+            desc="Processing symbols"
         ))
     
-    # Collect results
-    new_data = {}
     for result in results:
         if result:
-            new_data.update(result)
+            ticker_info.update(result)
         else:
-            # Track failed symbols
-            failed_index = results.index(result)
-            failed_symbols.append(symbols[failed_index])
+            failed_symbol = list(result.keys())[0] if result else None
+            if failed_symbol:
+                failed_symbols.append(failed_symbol)
     
-    # Merge with existing data
-    new_data.update(existing_data)
+    with open(os.path.join('data', 'ticker_info.json'), 'w') as f:
+        json.dump(ticker_info, f, indent=2)
+    logging.info(f"Saved {len(ticker_info)} symbols to data/ticker_info.json")
     
-    # Save results
-    with open(ticker_info_path, 'w') as f:
-        json.dump(new_data, f, indent=2)
-    logging.info(f"Saved {len(new_data)} symbols to {ticker_info_path}")
-    
-    # Save failed symbols
     with open(os.path.join('data', 'failed_symbols.json'), 'w') as f:
-        json.dump(failed_symbols, f, indent=2)
+        json.dump(failed_symbols, f, indent=2)  # Pretty-print with indentation
     logging.info(f"Saved {len(failed_symbols)} failed symbols")
+    
+    end_time = time.time()
+    logging.info(f"Script finished at {time.strftime('%Y-%m-%d %H:%M:%S')}, took {end_time - start_time:.2f} seconds")
 
 if __name__ == "__main__":
-    start_time = time.time()
-    logging.info(f"Script started at {time.strftime('%Y-%m-%d %H:%M:%S')}")
-    try:
-        process_nasdaq_file()
-    except Exception as e:
-        logging.error(f"Error processing NASDAQ data: {e}")
-        raise
-    finally:
-        end_time = time.time()
-        logging.info(f"Script finished at {time.strftime('%Y-%m-%d %H:%M:%S')}, took {end_time - start_time:.2f} seconds")
+    process_nasdaq_file()
