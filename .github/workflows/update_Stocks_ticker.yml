@@ -35,8 +35,8 @@ jobs:
       # Run the update_stocks.py script and capture logs
       - name: Run update_stocks.py
         run: |
-          python update_stocks.py > logs/update_stocks_$(date +%Y%m%d_%H%M%S).log 2>&1
-
+          python update_stocks.py 
+          
       # Commit and push changes to data folder
       - name: Commit output files
         run: |
