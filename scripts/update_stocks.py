@@ -16,7 +16,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 MAX_WORKERS = 10
 NASDAQ_URL = 'https://www.nasdaqtrader.com/dynamic/symdir/nasdaqtraded.txt'
 RETRY_ATTEMPTS = 7
-INITIAL_DELAY = 0.1  # Delay in seconds for rate-limiting
+INITIAL_DELAY = 2  # Delay in seconds for rate-limiting
 
 def fetch_nasdaq_data():
     attempt = 1
