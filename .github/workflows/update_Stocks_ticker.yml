@@ -42,7 +42,7 @@ jobs:
       # Run the update_stocks.py script and capture logs
       - name: Run update_stocks.py
         run: |
-          python update_stocks.py  # Let the script handle its own logging
+          python scripts/update_stocks.py  # Let the script handle its own logging
           mv update_stocks.log logs/update_stocks_$(date +%Y%m%d_%H%M%S).log 2>/dev/null || true
 
       # Commit and push changes to data and logs folders
