@@ -1,0 +1,79 @@
+name: NASDAQ Traded Analysis
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 6 * * *' # Daily at 06:00 UTC (02:00 AM EDT)
+  workflow_dispatch:
+
+jobs:
+  analyze-and-commit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required for committing to the repository
+
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }} # Use GITHUB_TOKEN for authentication
+
+      # Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas requests matplotlib
+
+      # Run the NASDAQ analysis script
+      - name: Run NASDAQ analysis
+        run: |
+          python scripts/NASDAQ.py
+        env:
+          PYTHONPATH: . # Ensure scripts directory is accessible
+
+      # Move output files to root level (if saved in scripts/)
+      - name: Move output files to root
+        run: |
+          mv scripts/analysis_output.txt analysis_output.txt || true
+          mv scripts/security_types.csv security_types.csv || true
+          mv scripts/security_types_pie.png security_types_pie.png || true
+          mv scripts/exchange_counts_bar.png exchange_counts_bar.png || true
+
+      # Stage and commit output files
+      - name: Commit output files
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add analysis_output.txt security_types.csv *.png
+          git commit -m "Update NASDAQ analysis outputs for $(date +%Y-%m-%d)" || echo "No changes to commit"
+          git push
+        continue-on-error: true # Continue if no changes to commit
+
+      # Upload artifacts (for debugging or manual download)
+      - name: Upload analysis output
+        uses: actions/upload-artifact@v4
+        with:
+          name: analysis-output
+          path: analysis_output.txt
+          retention-days: 7
+          if-no-files-found: warn # Warn if file is missing
+
+      - name: Upload visualization artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: visualization-files
+          path: |
+            security_types_pie.png
+            exchange_counts_bar.png
+          if-no-files-found: ignore # Ignore if PNGs are not generated
+          retention-days: 7
