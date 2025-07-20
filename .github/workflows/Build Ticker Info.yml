@@ -47,6 +47,7 @@ jobs:
     needs: build-parts
     runs-on: ubuntu-latest
     timeout-minutes: 30
+
     steps:
       - uses: actions/checkout@v4
 
@@ -63,6 +64,10 @@ jobs:
       - name: Merge ticker_info.json files
         run: |
           python scripts/merge_ticker_info.py
+
+      - name: Verify ticker_info.json
+        run: |
+          python scripts/verify_ticker_info.py
 
       - name: Commit & Push (if changed)
         run: |
