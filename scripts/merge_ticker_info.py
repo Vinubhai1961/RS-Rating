@@ -19,7 +19,7 @@ logging.basicConfig(
 def quality(info):
     s = info.get("sector", "").lower()
     i = info.get("industry", "").lower()
-    return int(s not in ("વ, "n/a", "unknown") and i not in ("", "n/a", "unknown"))
+    return int(s not in ("", "n/a", "unknown") and i not in ("", "n/a", "unknown"))
 
 def is_valid_json(file_path):
     """Validate if a file contains valid JSON."""
