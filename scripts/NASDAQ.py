@@ -30,7 +30,16 @@ EXCHANGE_NAMES = {
     "P": "NYSE Arca",
     "Z": "BATS",
     "V": "IEX",
-    "": "Other"  # Handle any missing or blank exchange codes
+    "": "Other"
+}
+
+# Simple sector inference based on Security Name keywords
+SECTOR_KEYWORDS = {
+    "Technology": ["Technology", "Tech", "Software", "Semiconductor", "Internet"],
+    "Financial": ["Bank", "Financial", "Insurance", "Capital"],
+    "Healthcare": ["Health", "Pharma", "Biotech", "Medical"],
+    "Energy": ["Energy", "Oil", "Gas"],
+    "Consumer": ["Consumer", "Retail", "Goods"]
 }
 
 # Function to download and load the nasdaqtraded.txt file
@@ -45,7 +54,7 @@ def load_nasdaq_data(url="https://www.nasdaqtrader.com/dynamic/symdir/nasdaqtrad
         df["Test Issue"] = df["Test Issue"].fillna("N")
         df["NextShares"] = df["NextShares"].fillna("N")
         df["Financial Status"] = df["Financial Status"].fillna("N")
-        df["Listing Exchange"] = df["Listing Exchange"].fillna("")  # Handle NaN in exchange
+        df["Listing Exchange"] = df["Listing Exchange"].fillna("")
         return df
     except requests.exceptions.RequestException as e:
         print(f"Error downloading file: {e}")
@@ -72,6 +81,16 @@ def categorize_security(row):
     else:
         return "Other"
 
+# Function to infer sector from Security Name
+def infer_sector(row):
+    security_name = row["Security Name"]
+    if not isinstance(security_name, str):
+        return "Unknown"
+    for sector, keywords in SECTOR_KEYWORDS.items():
+        if any(keyword in security_name for keyword in keywords):
+            return sector
+    return "Unknown"
+
 # Function to perform all analyses
 def analyze_nasdaq_data(df):
     results = {}
@@ -82,11 +101,9 @@ def analyze_nasdaq_data(df):
     df["Security Type"] = df.apply(categorize_security, axis=1)
     results["security_types"] = df["Security Type"].value_counts()
     
-    # Map exchange codes to full names
     df["Exchange Name"] = df["Listing Exchange"].map(EXCHANGE_NAMES).fillna("Other")
     results["exchange_counts"] = df["Exchange Name"].value_counts()
     
-    # Pivot table for exchange vs. security type
     results["exchange_security_types"] = df.pivot_table(
         index="Exchange Name",
         columns="Security Type",
@@ -102,13 +119,15 @@ def analyze_nasdaq_data(df):
         (df["Listing Exchange"] == "N") & (df["Financial Status"] != "N")
     ][["Symbol", "Security Name", "Financial Status"]]
     
-    results["lot_sizes"] = df["Round Lot Size"].value_counts()
+    # Total number of warrant stocks
+    results["warrant_count"] = len(df[df["Security Type"] == "Warrant"])
     
-    results["test_issues"] = len(df[df["Test Issue"] == "Y"])
-    results["nextshares"] = len(df[df["NextShares"] == "Y"])
+    # Infer sectors and get top 5
+    df["Sector"] = df.apply(infer_sector, axis=1)
+    results["sector_counts"] = df["Sector"].value_counts().head(5)
     
-    # List warrant stocks
-    results["warrant_stocks"] = df[df["Security Type"] == "Warrant"][["Symbol", "Security Name"]]
+    # Top 5 securities by round lot size
+    results["top_lot_sizes"] = df[["Symbol", "Security Name", "Round Lot Size"]].nlargest(5, "Round Lot Size")
     
     return results, df
 
@@ -159,53 +178,65 @@ def print_and_save_results(results, df, output_file="analysis_output.txt"):
         else:
             write_output("No distressed securities found.")
         
-        write_output("\n8. Round Lot Size Distribution (Top 5):")
-        write_output(results['lot_sizes'].head().to_string())
-        write_output("   - Shows common trading unit sizes (e.g., 100 shares), affecting liquidity and trading practices.")
+        write_output(f"\n8. Number of Warrant Stocks: {results['warrant_count']}")
+        write_output("   - Counts securities categorized as warrants (e.g., rights to buy stock at a specific price).")
         
-        write_output(f"\n9. Number of Test Issues: {results['test_issues']}")
-        write_output("   - Counts test securities used for system testing, not actual trading.")
+        write_output("\n9. Top 5 Sectors:")
+        write_output(results['sector_counts'].to_string())
+        write_output("   - Inferred from Security Name keywords, showing the most common industries.")
         
-        write_output(f"\n10. Number of NextShares Funds: {results['nextshares']}")
-        write_output("   - Counts NextShares funds, a type of actively managed ETF with unique trading mechanics.")
-        
-        write_output("\n11. Warrant Stocks:")
-        if not results['warrant_stocks'].empty:
-            write_output(results['warrant_stocks'].to_string())
-            write_output("   - Lists securities categorized as warrants (e.g., rights to buy stock at a specific price).")
-        else:
-            write_output("No warrant stocks found.")
+        write_output("\n10. Top 5 Securities by Round Lot Size:")
+        write_output(results['top_lot_sizes'].to_string())
+        write_output("   - Lists securities with the largest round lot sizes, indicating higher trading units.")
 
 # Function to visualize data
 def visualize_data(results):
     try:
-        # Pie chart for security types
-        plt.figure(figsize=(8, 6))
-        results["security_types"].plot(
-            kind="pie",
+        # Create a figure with two subplots
+        fig = plt.figure(figsize=(16, 6))
+        
+        # Pie chart for security types with counts
+        ax1 = fig.add_subplot(121)
+        security_types = results["security_types"]
+        labels = [f"{idx}: {val}" for idx, val in zip(security_types.index, security_types.values)]
+        ax1.pie(
+            security_types,
+            labels=labels,
             autopct="%1.1f%%",
-            colors=["#36A2EB", "#FF6384", "#FFCE56", "#4BC0C0", "#9966FF"],
-            title="Distribution of Security Types"
+            colors=["#36A2EB", "#FF6384", "#FFCE56", "#4BC0C0", "#9966FF", "#FF9F40"],
+            startangle=90
         )
-        plt.ylabel("")
-        plt.savefig("security_types_pie.png")
-        print("Saved security types pie chart as 'security_types_pie.png'")
-        plt.close()
-
+        ax1.set_title("Distribution of Security Types")
+        
         # Stacked bar chart for exchange vs. security types
-        plt.figure(figsize=(12, 6))
-        results["exchange_security_types"].plot(
+        ax2 = fig.add_subplot(122)
+        exchange_security_types = results["exchange_security_types"]
+        exchange_security_types.plot(
             kind="bar",
             stacked=True,
-            color=["#36A2EB", "#FF6384", "#FFCE56", "#4BC0C0", "#9966FF", "#FF9F40"],
-            title="Securities by Exchange and Type"
+            ax=ax2,
+            color=["#36A2EB", "#FF6384", "#FFCE56", "#4BC0C0", "#9966FF", "#FF9F40"]
         )
-        plt.xlabel("Exchange")
-        plt.ylabel("Number of Securities")
-        plt.legend(title="Security Type")
+        ax2.set_title("Securities by Exchange and Type")
+        ax2.set_xlabel("Exchange")
+        ax2.set_ylabel("Number of Securities")
+        ax2.legend(title="Security Type")
+        
+        # Annotate the exchange with the most ETFs
+        max_etf_exchange = exchange_security_types["ETF"].idxmax()
+        max_etf_count = exchange_security_types["ETF"].max()
+        ax2.annotate(
+            f"Most ETFs: {max_etf_exchange} ({max_etf_count})",
+            xy=(exchange_security_types.index.get_loc(max_etf_exchange), exchange_security_types.loc[max_etf_exchange].sum()),
+            xytext=(0, 10),
+            textcoords="offset points",
+            ha="center",
+            bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="black", lw=1)
+        )
+        
         plt.tight_layout()
-        plt.savefig("exchange_counts_bar.png")
-        print("Saved exchange counts bar chart as 'exchange_counts_bar.png'")
+        plt.savefig("nasdaq_analysis.png")
+        print("Saved combined analysis chart as 'nasdaq_analysis.png'")
         plt.close()
     except ImportError:
         print("\nMatplotlib not installed. Skipping visualizations. Install with: pip install matplotlib")
@@ -213,7 +244,7 @@ def visualize_data(results):
 # Chart.js visualization for security types
 def create_chartjs_security_types(results, output_file="analysis_output.txt"):
     security_types = results["security_types"]
-    labels = security_types.index.tolist()
+    labels = [f"{idx}: {val}" for idx, val in zip(security_types.index, security_types.values)]
     data = security_types.values.tolist()
     
     chart_config = {
