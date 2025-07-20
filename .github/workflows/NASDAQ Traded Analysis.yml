@@ -20,6 +20,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }} # Use GITHUB_TOKEN for authentication
+          fetch-depth: 0 # Fetch all history to avoid shallow clone issues
 
       # Set up Python
       - name: Set up Python
@@ -46,6 +47,11 @@ jobs:
       - name: Merge ticker info
         run: |
           python scripts/merge_ticker_info.py artifacts
+
+      # Pull latest changes before moving files
+      - name: Pull latest changes
+        run: |
+          git pull --rebase origin main
 
       # Move output files to root level
       - name: Move output files to root
