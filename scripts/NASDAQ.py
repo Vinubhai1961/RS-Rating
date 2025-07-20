@@ -195,18 +195,21 @@ def visualize_data(results):
         # Create a figure with two subplots
         fig = plt.figure(figsize=(16, 6))
         
-        # Pie chart for security types with counts
+        # Pie chart for security types with improved labeling
         ax1 = fig.add_subplot(121)
         security_types = results["security_types"]
-        labels = [f"{idx}: {val}" for idx, val in zip(security_types.index, security_types.values)]
+        labels = security_types.index
+        sizes = security_types.values
         ax1.pie(
-            security_types,
+            sizes,
             labels=labels,
-            autopct="%1.1f%%",
+            autopct=lambda pct: f"{pct:.1f}%\n({int(pct * sum(sizes) / 100):d})",
             colors=["#36A2EB", "#FF6384", "#FFCE56", "#4BC0C0", "#9966FF", "#FF9F40"],
-            startangle=90
+            startangle=90,
+            textprops={"fontsize": 10}
         )
         ax1.set_title("Distribution of Security Types")
+        ax1.legend(labels, loc="center left", bbox_to_anchor=(1, 0.5), title="Security Types")
         
         # Stacked bar chart for exchange vs. security types
         ax2 = fig.add_subplot(122)
