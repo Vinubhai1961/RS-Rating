@@ -1,4 +1,4 @@
-Analysis of nasdaqtraded.txt (as of 2025-07-20 18:13:49):
+Analysis of nasdaqtraded.txt (as of 2025-07-20 18:17:08):
 
 1. Total Securities: 11578
    - Represents the total number of securities listed across all exchanges in the file.
@@ -7,14 +7,13 @@ Analysis of nasdaqtraded.txt (as of 2025-07-20 18:13:49):
    - Counts securities marked as ETFs (ETF = Y), which track indices, commodities, or asset baskets.
 
 3. Security Type Breakdown:
-Security Type
 ETF                4346
 Common Stock       4154
 Other              2054
 Preferred Stock     450
 Warrant             380
-Unit                194
-   - Categorizes securities based on ETF status and keywords in Security Name (e.g., Common Stock, Preferred Stock).
+Other               194
+   - Categorizes securities based on ETF status and keywords in Security Name (e.g., Common Stock, Preferred Stock). Top 5 types shown, others in 'Other'.
 
 4. Securities by Exchange:
 Exchange Name
@@ -77,7 +76,7 @@ Chart.js Pie Chart for Security Types:
       "Other: 2054",
       "Preferred Stock: 450",
       "Warrant: 380",
-      "Unit: 194"
+      "Other: 194"
     ],
     "datasets": [
       {
