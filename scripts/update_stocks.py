@@ -13,17 +13,19 @@ from yahooquery import Ticker
 import logging
 from tqdm import tqdm
 from typing import List, Dict, Any
+from datetime import datetime
 
 # -------------------- Configurable Defaults --------------------
 OUTPUT_PATH = "data/ticker_info.json"
 UNRESOLVED_LIST_PATH = "data/unresolved_tickers.txt"
+PARTITION_SUMMARY_PATH = "data/partition_summary.json"
 NASDAQ_URL  = "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqtraded.txt"
 BATCH_SIZE  = 200
 BATCH_DELAY_RANGE = (2, 5)  # randomized delay between batches
 RETRY_SUBPASS = True
 MAX_BATCH_RETRIES = 3
 SYMBOL_REGEX = re.compile(r"^[A-Z]{1,5}$")
-GOOD_VALUES = {"unknown", "n/a", ""}  # considered *not* good
+GOOD_VALUES = {"unknown", "n/a", ""}  # treated as not good
 LOG_PATH = "logs/build_ticker_info.log"
 LOG_MAX_BYTES = 2_000_000
 # ---------------------------------------------------------------
@@ -121,14 +123,14 @@ def process_batch(batch, existing):
         try:
             yq = Ticker([yahoo_symbol(s) for s in batch], asynchronous=True, validate=True)
             mods = yq.get_modules(["summaryProfile", "quoteType"])
-            break  # success
+            break
         except Exception as e:
             wait = (2 ** attempt) + random.uniform(0, 2)
             logging.warning(f"Batch error (attempt {attempt+1}): {e}. Retrying in {wait:.1f}s.")
             time.sleep(wait)
     else:
         logging.error(f"Batch failed after {MAX_BATCH_RETRIES} attempts.")
-        return 0, batch  # consider all unresolved
+        return 0, batch  # treat all as unresolved
 
     failed = set(mods.get("failed") or [])
     updated = 0
@@ -154,9 +156,14 @@ def process_batch(batch, existing):
 
     return updated, unresolved
 
+def write_partition_summary(summary: Dict[str, Any]):
+    with open(PARTITION_SUMMARY_PATH, "w") as f:
+        json.dump(summary, f, indent=2, sort_keys=True)
+
 def main(part_index=None, part_total=None, max_batches=None,
          force_refresh=False, verbose=False):
 
+    start_time = time.time()
     ensure_dirs()
     setup_logging(verbose)
 
@@ -182,13 +189,15 @@ def main(part_index=None, part_total=None, max_batches=None,
         logging.info("Limiting to first %d batches (test mode).", max_batches)
 
     all_unresolved = []
+    updated_total = 0
 
     for idx, batch in enumerate(tqdm(batches, desc="Processing Batches"), 1):
         updated, unresolved = process_batch(batch, existing)
+        updated_total += updated
         all_unresolved.extend(unresolved)
         save(existing)
-        logging.info("  Batch %d/%d - Updated: %d | Unresolved: %d",
-                     idx, len(batches), updated, len(unresolved))
+        logging.info("  Batch %d/%d - Updated: %d | Unresolved: %d | Updated total: %d",
+                     idx, len(batches), updated, len(unresolved), updated_total)
         if idx < len(batches):
             delay = random.uniform(*BATCH_DELAY_RANGE)
             logging.debug(f"Sleeping {delay:.2f}s before next batch...")
@@ -203,19 +212,35 @@ def main(part_index=None, part_total=None, max_batches=None,
             for batch in tqdm(list(partition(unresolved_unique, BATCH_SIZE)),
                               desc="Retry Batches"):
                 updated, retry_unres = process_batch(batch, existing)
+                updated_total += updated
                 save(existing)
-                logging.info("  Retry batch updated: %d | still unresolved: %d",
-                             updated, len(retry_unres))
+                logging.info("  Retry batch updated: %d | still unresolved: %d | Updated total: %d",
+                             updated, len(retry_unres), updated_total)
                 time.sleep(random.uniform(2, 4))
 
-    # Save unresolved list
     unresolved_final = sorted(sym for sym, v in existing.items() if is_incomplete(v))
     with open(UNRESOLVED_LIST_PATH, "w") as f:
         f.write("\n".join(unresolved_final))
 
     save(existing)
-    logging.info("Done. Total entries: %d | Unresolved: %d",
-                 len(existing), len(unresolved_final))
+
+    elapsed = time.time() - start_time
+    summary = {
+        "timestamp_utc": datetime.utcnow().isoformat(timespec="seconds"),
+        "partition_index": part_index,
+        "partition_total": part_total,
+        "symbols_in_slice": len(symbols_slice),
+        "symbols_needing_update": len(todo),
+        "batches_run": len(batches),
+        "total_updated": updated_total,
+        "unresolved_after_run": len(unresolved_final),
+        "entries_in_file": len(existing),
+        "elapsed_seconds": round(elapsed, 2)
+    }
+    write_partition_summary(summary)
+
+    logging.info("Done. Total entries: %d | Unresolved: %d | Updated this run: %d | Elapsed: %.1fs",
+                 len(existing), len(unresolved_final), updated_total, elapsed)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Build / update ticker_info.json from NASDAQ master list.")
