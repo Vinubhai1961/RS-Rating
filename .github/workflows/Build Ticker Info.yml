@@ -55,26 +55,14 @@ jobs:
         with:
           path: artifacts
 
-      - name: Merge JSON files
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Merge ticker_info.json files
         run: |
-          mkdir -p data
-          python - <<'PYCODE' import json, glob, os merged = {}
-          
-          def quality(info):
-          s = info.get("sector","").lower()
-          i = info.get("industry","").lower()
-          return int(s not in ("","n/a","unknown") and i not in ("","n/a","unknown"))
-
-          for p in glob.glob("artifacts/**/ticker_info.json", recursive=True):
-          with open(p) as f:
-          part_data = json.load(f)
-          for sym, rec in part_data.items():
-          if sym not in merged or quality(rec["info"]) > quality(merged[sym]["info"]):
-            merged[sym] = rec
-
-          with open("data/ticker_info.json","w") as f:
-          json.dump(merged,f,indent=2,sort_keys=True)
-          print("Merged entries:", len(merged)) PYCODE
+          python scripts/merge_ticker_info.py
 
       - name: Commit & Push (if changed)
         run: |
