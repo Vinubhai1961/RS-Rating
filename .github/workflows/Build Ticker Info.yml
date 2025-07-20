@@ -59,7 +59,7 @@ jobs:
         with:
           path: artifacts
           pattern: ticker-info-part-*
-          merge-multiple: true
+          merge-multiple: false
 
       - name: List downloaded artifacts
         run: |
