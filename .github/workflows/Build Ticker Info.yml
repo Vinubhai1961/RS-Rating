@@ -99,37 +99,24 @@ jobs:
           python scripts/merge_ticker_info.py artifacts
         working-directory: .
 
-      - name: Debug post-merge logs
+      - name: Debug post-merge data directory
         run: |
-          ls -la logs/ || echo "logs directory not found"
-          cat logs/merge_ticker_info.log || echo "merge_ticker_info.log not found"
+          ls -la data/ || echo "data directory not found"
 
       - name: Stage merged files
         run: |
           git config user.name "github-actions"
           git config user.email "actions@users.noreply.github.com"
           git add data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt logs/merge_ticker_info.log
-          git commit -m "Initial merge of ticker info partitions" || echo "No changes to commit"
 
-      - name: Pull latest changes
-        run: |
-          git pull --rebase origin main
-
-      - name: Commit & Push (if changed)
+      - name: Commit & Push (force commit if merge succeeded)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if [[ -n "$(git status --porcelain data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt logs/merge_ticker_info.log)" ]]; then
-            git add data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt logs/merge_ticker_info.log
-            # Use EDT time consistently (adjusting from UTC to EDT, which is UTC-4)
-            edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
-            git commit -m "Update ticker info and logs (auto) [${edt_time}]"
-            git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
-            echo "Changes committed and pushed."
-          else
-            echo "No changes to data/ticker_info.json, data/partition_summary.json, data/unresolved_tickers.txt, or logs."
-          fi
-        working-directory: .
+          # Use EDT time consistently (adjusting from UTC to EDT, which is UTC-4)
+          edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
+          git commit -m "Update ticker info and logs (auto) [${edt_time}]" || echo "No changes to commit"
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git || echo "Push failed, possibly no changes"
 
       - name: Upload logs
         uses: actions/upload-artifact@v4
