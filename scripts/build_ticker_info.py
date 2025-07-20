@@ -16,7 +16,7 @@ from typing import List, Dict, Any
 from datetime import datetime
 
 # -------------------- Configurable Defaults --------------------
-OUTPUT_PATH = "data/ticker_info.json"
+BASE_OUTPUT_PATH = "data/ticker_info"
 UNRESOLVED_LIST_PATH = "data/unresolved_tickers.txt"
 PARTITION_SUMMARY_PATH = "data/partition_summary.json"
 NASDAQ_URL = "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqtraded.txt"
@@ -31,7 +31,7 @@ LOG_MAX_BYTES = 2_000_000
 # ---------------------------------------------------------------
 
 def ensure_dirs():
-    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
+    os.makedirs(os.path.dirname(BASE_OUTPUT_PATH), exist_ok=True)
     os.makedirs("logs", exist_ok=True)
 
 def rotate_log_if_needed():
@@ -52,18 +52,33 @@ def setup_logging(verbose: bool):
         ]
     )
 
-def load_existing() -> Dict[str, Any]:
-    if os.path.exists(OUTPUT_PATH):
-        with open(OUTPUT_PATH, "r") as f:
-            try:
-                return json.load(f)
-            except json.JSONDecodeError:
-                logging.warning("Existing JSON corrupt; starting fresh.")
-                return {}
-    return {}
+def load_existing(part_index: int = None) -> Dict[str, Any]:
+    if part_index is not None:
+        file_path = f"{BASE_OUTPUT_PATH}_part_{part_index}.json"
+        if os.path.exists(file_path):
+            with open(file_path, "r") as f:
+                try:
+                    return json.load(f)
+                except json.JSONDecodeError:
+                    logging.warning(f"Existing JSON corrupt for partition {part_index}; starting fresh.")
+                    return {}
+        return {}
+    else:
+        if os.path.exists(BASE_OUTPUT_PATH + ".json"):
+            with open(BASE_OUTPUT_PATH + ".json", "r") as f:
+                try:
+                    return json.load(f)
+                except json.JSONDecodeError:
+                    logging.warning("Existing JSON corrupt; starting fresh.")
+                    return {}
+        return {}
 
-def save(data: Dict[str, Any]):
-    with open(OUTPUT_PATH, "w") as f:
+def save(data: Dict[str, Any], part_index: int = None):
+    if part_index is not None:
+        file_path = f"{BASE_OUTPUT_PATH}_part_{part_index}.json"
+    else:
+        file_path = BASE_OUTPUT_PATH + ".json"
+    with open(file_path, "w") as f:
         json.dump(data, f, indent=2, sort_keys=True)
 
 def fetch_nasdaq_symbols() -> List[Dict[str, str]]:
@@ -164,7 +179,7 @@ def main(part_index=None, part_total=None, max_batches=None,
     ensure_dirs()
     setup_logging(verbose)
 
-    existing = load_existing()
+    existing = load_existing(part_index)
     nasdaq_data = fetch_nasdaq_symbols()
     nasdaq_data_map = {rec["Symbol"]: rec for rec in nasdaq_data}
     all_symbols = [rec["Symbol"] for rec in nasdaq_data]
@@ -194,7 +209,7 @@ def main(part_index=None, part_total=None, max_batches=None,
         updated, unresolved = process_batch(batch, existing, nasdaq_data_map)
         updated_total += updated
         all_unresolved.extend(unresolved)
-        save(existing)
+        save(existing, part_index)  # Save to partition-specific file
         logging.info("  Batch %d/%d - Updated: %d | Unresolved: %d | Updated total: %d",
                      idx, len(batches), updated, len(unresolved), updated_total)
         if idx < len(batches):
@@ -211,7 +226,7 @@ def main(part_index=None, part_total=None, max_batches=None,
                               desc="Retry Batches"):
                 updated, retry_unres = process_batch(batch, existing, nasdaq_data_map)
                 updated_total += updated
-                save(existing)
+                save(existing, part_index)  # Save to partition-specific file
                 logging.info("  Retry batch updated: %d | still unresolved: %d | Updated total: %d",
                              updated, len(retry_unres), updated_total)
                 time.sleep(random.uniform(2, 4))
@@ -220,7 +235,7 @@ def main(part_index=None, part_total=None, max_batches=None,
     with open(UNRESOLVED_LIST_PATH, "w") as f:
         f.write("\n".join(unresolved_final))
 
-    save(existing)
+    save(existing, part_index)  # Final save for the partition
 
     elapsed = time.time() - start_time
     summary = {
