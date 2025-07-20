@@ -40,7 +40,6 @@ jobs:
         with:
           name: ticker-info-part-${{ matrix.part_index }}
           path: |
-            data/ticker_info.json
             data/partition_summary.json
             data/unresolved_tickers.txt
             logs/build_ticker_info.log
@@ -53,6 +52,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch full history to avoid shallow clone issues
 
       - name: Download partition artifacts
         uses: actions/download-artifact@v4
@@ -83,6 +84,7 @@ jobs:
 
       - name: Merge ticker_info.json files
         run: |
+          mkdir -p data logs  # Ensure directories exist
           python scripts/merge_ticker_info.py artifacts
         working-directory: .
 
@@ -90,6 +92,33 @@ jobs:
         run: |
           ls -la logs/ || echo "logs directory not found"
           cat logs/merge_ticker_info.log || echo "merge_ticker_info.log not found"
+
+      - name: Stage merged files
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt logs/merge_ticker_info.log
+          git commit -m "Initial merge of ticker info partitions" || echo "No changes to commit"
+
+      - name: Pull latest changes
+        run: |
+          git pull --rebase origin main
+
+      - name: Commit & Push (if changed)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [[ -n "$(git status --porcelain data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt logs/merge_ticker_info.log)" ]]; then
+            git add data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt logs/merge_ticker_info.log
+            # Use EDT time consistently (adjusting from UTC to EDT, which is UTC-4)
+            edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
+            git commit -m "Update ticker info and logs (auto) [${edt_time}]"
+            git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+            echo "Changes committed and pushed."
+          else
+            echo "No changes to data/ticker_info.json, data/partition_summary.json, data/unresolved_tickers.txt, or logs."
+          fi
+        working-directory: .
 
       - name: Upload logs
         uses: actions/upload-artifact@v4
@@ -102,22 +131,4 @@ jobs:
         run: |
           python scripts/verify_ticker_info.py
         continue-on-error: true
-        working-directory: .
-
-      - name: Commit & Push (if changed)
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if [[ -n "$(git status --porcelain data/ticker_info.json)" ]] || [[ -f "logs/merge_ticker_info.log" ]]; then
-            git config user.name "github-actions"
-            git config user.email "actions@users.noreply.github.com"
-            git add data/ticker_info.json logs/merge_ticker_info.log
-            # Use EDT time consistently
-            edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
-            git commit -m "Update ticker_info.json and logs (auto) [${edt_time}]"
-            git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
-            echo "Changes committed and pushed."
-          else
-            echo "No changes to data/ticker_info.json or logs."
-          fi
         working-directory: .
