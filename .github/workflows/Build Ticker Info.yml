@@ -40,6 +40,7 @@ jobs:
         with:
           name: ticker-info-part-${{ matrix.part_index }}
           path: |
+            data/ticker_info_part_${{ matrix.part_index }}.json
             data/partition_summary.json
             data/unresolved_tickers.txt
             logs/build_ticker_info.log
@@ -85,10 +86,13 @@ jobs:
       - name: Prepare files for merge
         run: |
           mkdir -p data logs  # Ensure directories exist
-          # Copy all ticker_info.json files to artifacts root
-          find artifacts -type f -name "ticker_info.json" -exec cp {} artifacts/ \;
+          # Copy all ticker_info_part_*.json files to artifacts root
+          find artifacts -type f -name "ticker_info_part_*.json" -exec cp {} artifacts/ \; || true
+          # Copy all partition_summary.json and unresolved_tickers.txt files
+          find artifacts -type f -name "partition_summary.json" -exec cp {} artifacts/ \; || true
+          find artifacts -type f -name "unresolved_tickers.txt" -exec cp {} artifacts/ \; || true
           # Verify copied files
-          ls -l artifacts/ | grep ticker_info.json || echo "No ticker_info.json files copied"
+          ls -l artifacts/ | grep -E "ticker_info_part_|partition_summary.json|unresolved_tickers.txt" || echo "No expected files copied"
 
       - name: Merge ticker_info.json files
         run: |
