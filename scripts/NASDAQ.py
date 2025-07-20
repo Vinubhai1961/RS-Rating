@@ -99,7 +99,14 @@ def analyze_nasdaq_data(df):
     results["etf_count"] = len(df[df["ETF"] == "Y"])
     
     df["Security Type"] = df.apply(categorize_security, axis=1)
-    results["security_types"] = df["Security Type"].value_counts()
+    security_types = df["Security Type"].value_counts()
+    # Limit to top 5 security types, combine rest into "Other"
+    top_5_types = security_types.nlargest(5)
+    other_count = security_types.iloc[5:].sum()
+    if other_count > 0:
+        results["security_types"] = pd.concat([top_5_types, pd.Series({"Other": other_count})])
+    else:
+        results["security_types"] = top_5_types
     
     df["Exchange Name"] = df["Listing Exchange"].map(EXCHANGE_NAMES).fillna("Other")
     results["exchange_counts"] = df["Exchange Name"].value_counts()
@@ -157,7 +164,7 @@ def print_and_save_results(results, df, output_file="analysis_output.txt"):
         
         write_output("\n3. Security Type Breakdown:")
         write_output(results['security_types'].to_string())
-        write_output("   - Categorizes securities based on ETF status and keywords in Security Name (e.g., Common Stock, Preferred Stock).")
+        write_output("   - Categorizes securities based on ETF status and keywords in Security Name (e.g., Common Stock, Preferred Stock). Top 5 types shown, others in 'Other'.")
         
         write_output("\n4. Securities by Exchange:")
         write_output(results['exchange_counts'].to_string())
@@ -193,23 +200,24 @@ def print_and_save_results(results, df, output_file="analysis_output.txt"):
 def visualize_data(results):
     try:
         # Create a figure with two subplots
-        fig = plt.figure(figsize=(16, 6))
+        fig = plt.figure(figsize=(18, 6))
         
-        # Pie chart for security types with improved labeling
+        # Donut chart for security types with limited types
         ax1 = fig.add_subplot(121)
         security_types = results["security_types"]
         labels = security_types.index
         sizes = security_types.values
         ax1.pie(
             sizes,
-            labels=labels,
-            autopct=lambda pct: f"{pct:.1f}%\n({int(pct * sum(sizes) / 100):d})",
+            labels=None,  # Remove labels from pie to avoid overlap
+            autopct=lambda pct: f"{pct:.1f}%\n({int(pct * sum(sizes) / 100):d})" if pct > 5 else "",
             colors=["#36A2EB", "#FF6384", "#FFCE56", "#4BC0C0", "#9966FF", "#FF9F40"],
             startangle=90,
+            wedgeprops={"width": 0.3},  # Donut chart
             textprops={"fontsize": 10}
         )
-        ax1.set_title("Distribution of Security Types")
-        ax1.legend(labels, loc="center left", bbox_to_anchor=(1, 0.5), title="Security Types")
+        ax1.set_title("Distribution of Security Types (Top 5 + Other)")
+        ax1.legend(labels, loc="center left", bbox_to_anchor=(1, 0.5), title="Security Types", fontsize=10)
         
         # Stacked bar chart for exchange vs. security types
         ax2 = fig.add_subplot(122)
