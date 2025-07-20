@@ -2,6 +2,7 @@
 import json
 import glob
 import os
+import sys
 import logging
 
 OUTPUT_FILE = "data/ticker_info.json"
@@ -34,19 +35,21 @@ def is_valid_json(file_path):
         logging.error(f"Error reading {file_path}: {e}")
         return False
 
-def merge_ticker_info():
+def merge_ticker_info(source_dir="artifacts"):
     os.makedirs("logs", exist_ok=True)
     os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
     
-    merged = {}
-    files = glob.glob("artifacts/**/ticker_info.json", recursive=True)
+    # Use the provided source directory and look for ticker_info.json in any subdirectory
+    search_pattern = os.path.join(source_dir, "**", "ticker_info.json")
+    files = glob.glob(search_pattern, recursive=True)
     
     if not files:
-        logging.warning("No ticker_info.json parts found!")
+        logging.warning(f"No ticker_info.json parts found in {source_dir}!")
         return
 
     logging.info(f"Found {len(files)} ticker_info.json files to merge.")
     
+    merged = {}
     for file_path in files:
         logging.info(f"Processing {file_path}...")
         if not is_valid_json(file_path):
@@ -75,4 +78,6 @@ def merge_ticker_info():
     logging.info(f"Total entries: {len(merged)}")
 
 if __name__ == "__main__":
-    merge_ticker_info()
+    # Accept source directory as command-line argument, default to "artifacts"
+    source_dir = sys.argv[1] if len(sys.argv) > 1 else "artifacts"
+    merge_ticker_info(source_dir)
