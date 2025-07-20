@@ -45,16 +45,14 @@ jobs:
       - name: Move output files to root
         run: |
           mv scripts/analysis_output.txt analysis_output.txt || true
-          mv scripts/security_types.csv security_types.csv || true
-          mv scripts/security_types_pie.png security_types_pie.png || true
-          mv scripts/exchange_counts_bar.png exchange_counts_bar.png || true
+          mv scripts/nasdaq_analysis.png nasdaq_analysis.png || true
 
       # Stage and commit output files
       - name: Commit output files
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add analysis_output.txt security_types.csv *.png
+          git add analysis_output.txt nasdaq_analysis.png
           git commit -m "Update NASDAQ analysis outputs for $(date +%Y-%m-%d)" || echo "No changes to commit"
           git push
         continue-on-error: true # Continue if no changes to commit
@@ -68,12 +66,10 @@ jobs:
           retention-days: 7
           if-no-files-found: warn # Warn if file is missing
 
-      - name: Upload visualization artifacts
+      - name: Upload visualization artifact
         uses: actions/upload-artifact@v4
         with:
-          name: visualization-files
-          path: |
-            security_types_pie.png
-            exchange_counts_bar.png
-          if-no-files-found: ignore # Ignore if PNGs are not generated
+          name: visualization-file
+          path: nasdaq_analysis.png
+          if-no-files-found: ignore # Ignore if PNG is not generated
           retention-days: 7
