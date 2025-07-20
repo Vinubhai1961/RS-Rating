@@ -32,18 +32,27 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pandas requests matplotlib
+          pip install pandas requests matplotlib yahooquery
 
-      # Run the NASDAQ analysis script
-      - name: Run NASDAQ analysis
+      # Run the NASDAQ analysis script for all partitions
+      - name: Run NASDAQ analysis (multiple partitions)
         run: |
-          python scripts/NASDAQ.py
-        env:
-          PYTHONPATH: . # Ensure scripts directory is accessible
+          python scripts/build_ticker_info.py --part-total 12
+          for i in {0..11}; do
+            python scripts/build_ticker_info.py --part-index $i --part-total 12
+          done
 
-      # Move output files to root level (if saved in scripts/)
+      # Merge ticker info files
+      - name: Merge ticker info
+        run: |
+          python scripts/merge_ticker_info.py artifacts
+
+      # Move output files to root level
       - name: Move output files to root
         run: |
+          mv data/ticker_info.json ticker_info.json || true
+          mv data/unresolved_tickers.txt unresolved_tickers.txt || true
+          mv data/partition_summary.json partition_summary.json || true
           mv scripts/analysis_output.txt analysis_output.txt || true
           mv scripts/nasdaq_analysis.png nasdaq_analysis.png || true
 
@@ -52,24 +61,40 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add analysis_output.txt nasdaq_analysis.png
+          git add ticker_info.json unresolved_tickers.txt partition_summary.json analysis_output.txt nasdaq_analysis.png
           git commit -m "Update NASDAQ analysis outputs for $(date +%Y-%m-%d)" || echo "No changes to commit"
           git push
         continue-on-error: true # Continue if no changes to commit
 
-      # Upload artifacts (for debugging or manual download)
+      # Upload artifacts
       - name: Upload analysis output
         uses: actions/upload-artifact@v4
         with:
           name: analysis-output
           path: analysis_output.txt
           retention-days: 7
-          if-no-files-found: warn # Warn if file is missing
+          if-no-files-found: warn
 
       - name: Upload visualization artifact
         uses: actions/upload-artifact@v4
         with:
           name: visualization-file
           path: nasdaq_analysis.png
-          if-no-files-found: ignore # Ignore if PNG is not generated
+          if-no-files-found: ignore
           retention-days: 7
+
+      - name: Upload ticker info
+        uses: actions/upload-artifact@v4
+        with:
+          name: ticker-info
+          path: ticker_info.json
+          retention-days: 7
+          if-no-files-found: warn
+
+      - name: Upload unresolved tickers
+        uses: actions/upload-artifact@v4
+        with:
+          name: unresolved-tickers
+          path: unresolved_tickers.txt
+          retention-days: 7
+          if-no-files-found: warn
