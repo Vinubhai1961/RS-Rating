@@ -26,7 +26,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run NASDAQ Traded Analysis Script
-        run: python scripts/nasdaq_traded_analysis.py
+        run: python scripts/NASDAQ.py
 
       - name: List contents of scripts directory
         run: ls -l scripts/ || echo "scripts directory missing"
