@@ -1,129 +1,216 @@
-import os
+#!/usr/bin/env python3
 import json
+import os
+import re
 import time
-import logging
+import math
+import argparse
+import requests
+from io import StringIO
 import pandas as pd
-import yfinance as yf
-from concurrent.futures import ThreadPoolExecutor
+from yahooquery import Ticker
+import logging
 from tqdm import tqdm
+from typing import List, Dict, Any
 
-# Configure logging to write to a file with error handling
-log_file = 'update_stocks.log'
-try:
+# -------------------- Configurable Defaults --------------------
+OUTPUT_PATH = "data/ticker_info.json"
+UNRESOLVED_LIST_PATH = "data/unresolved_tickers.txt"
+NASDAQ_URL  = "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqtraded.txt"
+BATCH_SIZE  = 200
+BATCH_DELAY = 3          # seconds between batches
+RETRY_SUBPASS = True     # second attempt for unresolved symbols in same run
+SYMBOL_REGEX = re.compile(r"^[A-Z]{1,5}$")
+GOOD_VALUES = {"unknown", "n/a", ""}  # considered *not* good
+LOG_PATH = "logs/build_ticker_info.log"
+LOG_MAX_BYTES = 2_000_000  # rudimentary rotation trigger
+# ---------------------------------------------------------------
+
+def ensure_dirs():
+    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
+    os.makedirs("logs", exist_ok=True)
+
+def rotate_log_if_needed():
+    if os.path.exists(LOG_PATH) and os.path.getsize(LOG_PATH) > LOG_MAX_BYTES:
+        base, ext = os.path.splitext(LOG_PATH)
+        rotated = f"{base}-{int(time.time())}{ext or '.log'}"
+        os.replace(LOG_PATH, rotated)
+
+def setup_logging(verbose: bool):
+    rotate_log_if_needed()
+    level = logging.DEBUG if verbose else logging.INFO
     logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s - %(levelname)s - %(message)s',
-        filename=log_file,
-        filemode='w'
+        level=level,
+        format="%(asctime)s [%(levelname)s] %(message)s",
+        handlers=[
+            logging.FileHandler(LOG_PATH, encoding="utf-8"),
+            logging.StreamHandler()
+        ]
     )
-    logging.info("Logging initialized successfully")
-except PermissionError:
-    print("Warning: Could not create log file due to permission issues. Logging to console instead.")
-    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# Constants
-INITIAL_DELAY = 0.5
-MAX_WORKERS = 5
-BATCH_SIZE = 100
+def load_existing() -> Dict[str, Any]:
+    if os.path.exists(OUTPUT_PATH):
+        with open(OUTPUT_PATH, "r") as f:
+            try:
+                return json.load(f)
+            except json.JSONDecodeError:
+                logging.warning("Existing JSON corrupt; starting fresh.")
+                return {}
+    return {}
 
-def fetch_nasdaq_data(url, max_attempts=7, delay=5):
-    for attempt in range(1, max_attempts + 1):
-        try:
-            logging.info(f"Fetching data from {url} (attempt {attempt}/{max_attempts})")
-            df = pd.read_csv(url, sep='|')
-            return df
-        except Exception as e:
-            logging.error(f"Failed to fetch data: {e}")
-            if attempt < max_attempts:
-                time.sleep(delay)
-            else:
-                raise Exception("Max attempts reached. Could not fetch NASDAQ data.")
-    return None
+def save(data: Dict[str, Any]):
+    with open(OUTPUT_PATH, "w") as f:
+        json.dump(data, f, indent=2, sort_keys=True)
 
-def process_symbol(symbol, etf_status):
-    try:
-        time.sleep(INITIAL_DELAY)
-        ticker = yf.Tickers(symbol).tickers[symbol]
-        info = ticker.info
-        return {
-            symbol: {
-                'Sector': info.get('sector', 'N/A'),
-                'Industry': info.get('industry', 'N/A'),
-                'Type': 'ETF' if etf_status.get(symbol) == 'Y' else 'Stock',
-                'Price': info.get('currentPrice', None),
-                'MarketCap': info.get('marketCap', None)
-            }
-        }
-    except Exception as e:
-        logging.error(f"Failed to process {symbol}: {e}")
-        return None
+def fetch_nasdaq_symbols() -> List[str]:
+    logging.info("Fetching NASDAQ symbol master list ...")
+    resp = requests.get(NASDAQ_URL, timeout=60)
+    resp.raise_for_status()
+    df = pd.read_csv(StringIO(resp.text), sep='|')
+    keep = (
+        (df['Test Issue'] == 'N') &
+        (df['ETF'] == 'N') &
+        (df['Symbol'].str.fullmatch(SYMBOL_REGEX.pattern))
+    )
+    symbols = sorted(df.loc[keep, 'Symbol'].unique().tolist())
+    logging.info("Retrieved %d eligible symbols.", len(symbols))
+    return symbols
 
-def process_nasdaq_file():
-    start_time = time.time()
-    logging.info(f"Script started at {time.strftime('%Y-%m-%d %H:%M:%S')}")
-    
-    url = "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqtraded.txt"
-    df = fetch_nasdaq_data(url)
-    if df is None:
-        logging.error("Failed to retrieve NASDAQ data, exiting.")
-        return
-    symbols = df[df['Test Issue'] == 'N']['Symbol'].tolist()
-    logging.info(f"Retrieved {len(symbols)} symbols from NASDAQ")
-    
-    etf_status = dict(zip(df['Symbol'], df['ETF']))
-    
-    data_dir = 'data'
-    os.makedirs(data_dir, exist_ok=True)
-    
-    ticker_info = {}
-    try:
-        with open(os.path.join(data_dir, 'ticker_info.json'), 'r') as f:
-            ticker_info = json.load(f)
-        logging.info(f"Loaded existing data with {len(ticker_info)} entries")
-    except FileNotFoundError:
-        logging.info("No existing ticker_info.json found, starting fresh")
-    
-    failed_symbols = []
-    total_symbols = len(symbols)
-    processed_count = 0
-    
-    with tqdm(total=total_symbols, desc="Processing Symbols", unit="symbol") as pbar:
-        for i in range(0, len(symbols), BATCH_SIZE):
-            batch_symbols = symbols[i:i + BATCH_SIZE]
-            with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-                results = list(executor.map(
-                    lambda s: process_symbol(s, etf_status),
-                    batch_symbols
-                ))
-            
-            for result in results:
-                processed_count += 1
-                if result:
-                    ticker_info.update(result)
-                else:
-                    failed_symbol = next(iter(result.keys())) if result else None
-                    if failed_symbol:
-                        failed_symbols.append(failed_symbol)
-                pbar.update(1)  # Update progress bar for each processed symbol
-            
-            logging.info(f"Progress: {processed_count}/{total_symbols} ({(processed_count/total_symbols)*100:.1f}%)")
-    
-    try:
-        with open(os.path.join(data_dir, 'ticker_info.json'), 'w') as f:
-            json.dump(ticker_info, f, indent=2)
-        logging.info(f"Saved {len(ticker_info)} symbols to data/ticker_info.json")
-    except Exception as e:
-        logging.error(f"Failed to save ticker_info.json: {e}")
-    
-    try:
-        with open(os.path.join(data_dir, 'failed_symbols.json'), 'w') as f:
-            json.dump(failed_symbols, f, indent=2)
-        logging.info(f"Saved {len(failed_symbols)} failed symbols")
-    except Exception as e:
-        logging.error(f"Failed to save failed_symbols.json: {e}")
-    
-    end_time = time.time()
-    logging.info(f"Script finished at {time.strftime('%Y-%m-%d %H:%M:%S')}, took {end_time - start_time:.2f} seconds")
+def is_incomplete(info_dict: Dict[str, Any]) -> bool:
+    info = info_dict.get("info", {})
+    sector = str(info.get("sector", "")).strip().lower()
+    industry = str(info.get("industry", "")).strip().lower()
+    return (sector in GOOD_VALUES) or (industry in GOOD_VALUES)
+
+def needs_update(symbol: str, existing: Dict[str, Any], force_refresh: bool) -> bool:
+    if symbol not in existing:
+        return True
+    if force_refresh:
+        return True
+    return is_incomplete(existing[symbol])
+
+def yahoo_symbol(symbol: str) -> str:
+    return symbol.replace(".", "-")
+
+def extract_info(mods: Dict[str, Any], symbol: str):
+    entry = mods.get(symbol) or mods.get(yahoo_symbol(symbol))
+    if not isinstance(entry, dict):
+        return None, None
+    prof = entry.get("summaryProfile") or {}
+    qt = entry.get("quoteType") or {}
+    industry = prof.get("industry")
+    sector = prof.get("sector")
+    return sector, industry
+
+def partition(lst: List[str], size: int):
+    for i in range(0, len(lst), size):
+        yield lst[i:i+size]
+
+def quality(sector: str, industry: str) -> int:
+    if not sector or not industry:
+        return 0
+    st = sector.lower()
+    it = industry.lower()
+    if st in GOOD_VALUES or it in GOOD_VALUES:
+        return 0
+    return 1
+
+def process_batch(batch, existing):
+    yq = Ticker([yahoo_symbol(s) for s in batch], asynchronous=True, validate=True)
+    mods = yq.get_modules(["summaryProfile", "quoteType"])
+    failed = set(mods.get("failed") or [])
+    updated = 0
+    unresolved = []
+
+    for symbol in tqdm(batch, desc="Symbols", leave=False):
+        if symbol in failed:
+            if symbol not in existing:
+                existing[symbol] = {"info": {"industry": "n/a", "sector": "n/a"}}
+            unresolved.append(symbol)
+            continue
+
+        sector, industry = extract_info(mods, symbol)
+        if sector and industry and quality(sector, industry):
+            prev = existing.get(symbol)
+            if (not prev) or (prev["info"]["sector"] != sector) or (prev["info"]["industry"] != industry):
+                existing[symbol] = {"info": {"industry": industry, "sector": sector}}
+                updated += 1
+        else:
+            if symbol not in existing:
+                existing[symbol] = {"info": {"industry": "n/a", "sector": "n/a"}}
+            unresolved.append(symbol)
+
+    return updated, unresolved
+
+def main(part_index=None, part_total=None, max_batches=None,
+         force_refresh=False, verbose=False):
+
+    ensure_dirs()
+    setup_logging(verbose)
+
+    existing = load_existing()
+    all_symbols = fetch_nasdaq_symbols()
+
+    if part_index is not None and part_total is not None:
+        per_part = math.ceil(len(all_symbols) / part_total)
+        start = part_index * per_part
+        end = min(start + per_part, len(all_symbols))
+        symbols_slice = all_symbols[start:end]
+        logging.info("Partition %d/%d: %d symbols",
+                     part_index+1, part_total, len(symbols_slice))
+    else:
+        symbols_slice = all_symbols
+
+    todo = [s for s in symbols_slice if needs_update(s, existing, force_refresh)]
+    logging.info("Symbols needing update in this slice: %d", len(todo))
+
+    batches = list(partition(todo, BATCH_SIZE))
+    if max_batches:
+        batches = batches[:max_batches]
+        logging.info("Limiting to first %d batches (test mode).", max_batches)
+
+    all_unresolved = []
+
+    for idx, batch in enumerate(tqdm(batches, desc="Processing Batches"), 1):
+        updated, unresolved = process_batch(batch, existing)
+        all_unresolved.extend(unresolved)
+        save(existing)
+        logging.info("  Batch %d/%d - Updated: %d | Unresolved: %d",
+                     idx, len(batches), updated, len(unresolved))
+        if idx < len(batches):
+            time.sleep(BATCH_DELAY)
+
+    # Retry unresolved if enabled
+    if RETRY_SUBPASS and all_unresolved:
+        unresolved_unique = sorted(set(sym for sym in all_unresolved
+                                       if is_incomplete(existing.get(sym, {}))))
+        if unresolved_unique:
+            logging.info("Retry sub-pass for %d unresolved symbols ...", len(unresolved_unique))
+            for batch in tqdm(list(partition(unresolved_unique, BATCH_SIZE)),
+                              desc="Retry Batches"):
+                updated, retry_unres = process_batch(batch, existing)
+                save(existing)
+                logging.info("  Retry batch updated: %d | still unresolved: %d",
+                             updated, len(retry_unres))
+                time.sleep(2)
+
+    # Save unresolved list
+    unresolved_final = sorted(sym for sym, v in existing.items() if is_incomplete(v))
+    with open(UNRESOLVED_LIST_PATH, "w") as f:
+        f.write("\n".join(unresolved_final))
+
+    save(existing)
+    logging.info("Done. Total entries: %d | Unresolved: %d",
+                 len(existing), len(unresolved_final))
 
 if __name__ == "__main__":
-    process_nasdaq_file()
+    parser = argparse.ArgumentParser(description="Build / update ticker_info.json from NASDAQ master list.")
+    parser.add_argument("--part-index", type=int, default=None, help="Zero-based partition index for matrix")
+    parser.add_argument("--part-total", type=int, default=None, help="Total partitions for matrix")
+    parser.add_argument("--max-batches", type=int, default=None, help="Limit number of batches (testing)")
+    parser.add_argument("--force-refresh", action="store_true", help="Refresh all symbols even if already populated")
+    parser.add_argument("--verbose", action="store_true", help="Verbose logging (DEBUG level)")
+    args = parser.parse_args()
+
+    main(args.part_index, args.part_total, args.max_batches,
+         force_refresh=args.force_refresh, verbose=args.verbose)
