@@ -4,6 +4,7 @@ import glob
 import os
 import sys
 import logging
+from datetime import datetime
 
 OUTPUT_FILE = "data/ticker_info.json"
 
@@ -38,6 +39,10 @@ def is_valid_json(file_path):
 def merge_ticker_info(source_dir="artifacts"):
     os.makedirs("logs", exist_ok=True)
     os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
+    
+    # Log the start time of the merge process
+    start_time = datetime.now().strftime("%I:%M %p %Z on %A, %B %d, %Y")
+    logging.info(f"Starting merge process at {start_time}")
     
     # Use the provided source directory and look for ticker_info.json in any subdirectory
     search_pattern = os.path.join(source_dir, "**", "ticker_info.json")
