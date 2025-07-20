@@ -19,8 +19,8 @@ from datetime import datetime
 OUTPUT_PATH = "data/ticker_info.json"
 UNRESOLVED_LIST_PATH = "data/unresolved_tickers.txt"
 PARTITION_SUMMARY_PATH = "data/partition_summary.json"
-NASDAQ_URL  = "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqtraded.txt"
-BATCH_SIZE  = 200
+NASDAQ_URL = "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqtraded.txt"
+BATCH_SIZE = 200
 BATCH_DELAY_RANGE = (2, 5)  # randomized delay between batches
 RETRY_SUBPASS = True
 MAX_BATCH_RETRIES = 3
@@ -66,19 +66,15 @@ def save(data: Dict[str, Any]):
     with open(OUTPUT_PATH, "w") as f:
         json.dump(data, f, indent=2, sort_keys=True)
 
-def fetch_nasdaq_symbols() -> List[str]:
+def fetch_nasdaq_symbols() -> List[Dict[str, str]]:
     logging.info("Fetching NASDAQ symbol master list ...")
     resp = requests.get(NASDAQ_URL, timeout=60)
     resp.raise_for_status()
     df = pd.read_csv(StringIO(resp.text), sep='|')
-    keep = (
-        (df['Test Issue'] == 'N') &
-        (df['ETF'] == 'N') &
-        (df['Symbol'].str.fullmatch(SYMBOL_REGEX.pattern))
-    )
-    symbols = sorted(df.loc[keep, 'Symbol'].unique().tolist())
-    logging.info("Retrieved %d eligible symbols.", len(symbols))
-    return symbols
+    keep = (df['Test Issue'] == 'N') & (df['Symbol'].str.fullmatch(SYMBOL_REGEX.pattern))
+    symbols_data = df.loc[keep].to_dict(orient="records")
+    logging.info("Retrieved %d eligible symbols.", len(symbols_data))
+    return symbols_data
 
 def is_incomplete(info_dict: Dict[str, Any]) -> bool:
     info = info_dict.get("info", {})
@@ -99,11 +95,11 @@ def yahoo_symbol(symbol: str) -> str:
 def extract_info(mods: Dict[str, Any], symbol: str):
     entry = mods.get(symbol) or mods.get(yahoo_symbol(symbol))
     if not isinstance(entry, dict):
-        return None, None
+        return None, None, None
     prof = entry.get("summaryProfile") or {}
     industry = prof.get("industry")
     sector = prof.get("sector")
-    return sector, industry
+    return sector, industry, None  # Type will come from NASDAQ data
 
 def partition(lst: List[str], size: int):
     for i in range(0, len(lst), size):
@@ -118,7 +114,7 @@ def quality(sector: str, industry: str) -> int:
         return 0
     return 1
 
-def process_batch(batch, existing):
+def process_batch(batch, existing, nasdaq_data_map):
     for attempt in range(MAX_BATCH_RETRIES):
         try:
             yq = Ticker([yahoo_symbol(s) for s in batch], asynchronous=True, validate=True)
@@ -139,19 +135,20 @@ def process_batch(batch, existing):
     for symbol in tqdm(batch, desc="Symbols", leave=False):
         if symbol in failed:
             if symbol not in existing:
-                existing[symbol] = {"info": {"industry": "n/a", "sector": "n/a"}}
+                existing[symbol] = {"info": {"industry": "n/a", "sector": "n/a", "type": nasdaq_data_map[symbol].get("Security Type", "Other")}}
             unresolved.append(symbol)
             continue
 
-        sector, industry = extract_info(mods, symbol)
+        sector, industry, _ = extract_info(mods, symbol)
+        sec_type = nasdaq_data_map[symbol].get("Security Type", "Other")
         if sector and industry and quality(sector, industry):
             prev = existing.get(symbol)
             if (not prev) or (prev["info"]["sector"] != sector) or (prev["info"]["industry"] != industry):
-                existing[symbol] = {"info": {"industry": industry, "sector": sector}}
+                existing[symbol] = {"info": {"industry": industry, "sector": sector, "type": sec_type}}
                 updated += 1
         else:
             if symbol not in existing:
-                existing[symbol] = {"info": {"industry": "n/a", "sector": "n/a"}}
+                existing[symbol] = {"info": {"industry": "n/a", "sector": "n/a", "type": sec_type}}
             unresolved.append(symbol)
 
     return updated, unresolved
@@ -168,7 +165,9 @@ def main(part_index=None, part_total=None, max_batches=None,
     setup_logging(verbose)
 
     existing = load_existing()
-    all_symbols = fetch_nasdaq_symbols()
+    nasdaq_data = fetch_nasdaq_symbols()
+    nasdaq_data_map = {rec["Symbol"]: rec for rec in nasdaq_data}
+    all_symbols = [rec["Symbol"] for rec in nasdaq_data]
 
     if part_index is not None and part_total is not None:
         per_part = math.ceil(len(all_symbols) / part_total)
@@ -192,7 +191,7 @@ def main(part_index=None, part_total=None, max_batches=None,
     updated_total = 0
 
     for idx, batch in enumerate(tqdm(batches, desc="Processing Batches"), 1):
-        updated, unresolved = process_batch(batch, existing)
+        updated, unresolved = process_batch(batch, existing, nasdaq_data_map)
         updated_total += updated
         all_unresolved.extend(unresolved)
         save(existing)
@@ -203,7 +202,6 @@ def main(part_index=None, part_total=None, max_batches=None,
             logging.debug(f"Sleeping {delay:.2f}s before next batch...")
             time.sleep(delay)
 
-    # Retry unresolved if enabled
     if RETRY_SUBPASS and all_unresolved:
         unresolved_unique = sorted(set(sym for sym in all_unresolved
                                        if is_incomplete(existing.get(sym, {}))))
@@ -211,7 +209,7 @@ def main(part_index=None, part_total=None, max_batches=None,
             logging.info("Retry sub-pass for %d unresolved symbols ...", len(unresolved_unique))
             for batch in tqdm(list(partition(unresolved_unique, BATCH_SIZE)),
                               desc="Retry Batches"):
-                updated, retry_unres = process_batch(batch, existing)
+                updated, retry_unres = process_batch(batch, existing, nasdaq_data_map)
                 updated_total += updated
                 save(existing)
                 logging.info("  Retry batch updated: %d | still unresolved: %d | Updated total: %d",
