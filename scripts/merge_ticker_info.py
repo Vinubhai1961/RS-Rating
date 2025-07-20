@@ -71,6 +71,9 @@ def merge_ticker_info(source_dir="artifacts"):
         for sym, rec in part_data.items():
             if sym not in merged or quality(rec["info"]) > quality(merged.get(sym, {}).get("info", {})):
                 merged[sym] = rec
+            elif quality(rec["info"]) == quality(merged.get(sym, {}).get("info", {})):
+                # Preserve existing type if quality is equal
+                merged[sym]["info"]["type"] = rec["info"].get("type", merged[sym]["info"].get("type", "Other"))
 
     if not merged:
         logging.warning("No valid data to merge!")
@@ -83,6 +86,5 @@ def merge_ticker_info(source_dir="artifacts"):
     logging.info(f"Total entries: {len(merged)}")
 
 if __name__ == "__main__":
-    # Accept source directory as command-line argument, default to "artifacts"
     source_dir = sys.argv[1] if len(sys.argv) > 1 else "artifacts"
     merge_ticker_info(source_dir)
