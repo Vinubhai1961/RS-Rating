@@ -22,6 +22,17 @@ COLUMN_DESCRIPTIONS = {
     "NextShares": "Indicates if the security is a NextShares fund (a type of exchange-traded managed fund): Y (Yes), N (No)."
 }
 
+# Mapping of exchange codes to full names
+EXCHANGE_NAMES = {
+    "N": "NASDAQ",
+    "Y": "NYSE",
+    "A": "NYSE American",
+    "P": "NYSE Arca",
+    "Z": "BATS",
+    "V": "IEX",
+    "": "Other"  # Handle any missing or blank exchange codes
+}
+
 # Function to download and load the nasdaqtraded.txt file
 def load_nasdaq_data(url="https://www.nasdaqtrader.com/dynamic/symdir/nasdaqtraded.txt"):
     try:
@@ -34,6 +45,7 @@ def load_nasdaq_data(url="https://www.nasdaqtrader.com/dynamic/symdir/nasdaqtrad
         df["Test Issue"] = df["Test Issue"].fillna("N")
         df["NextShares"] = df["NextShares"].fillna("N")
         df["Financial Status"] = df["Financial Status"].fillna("N")
+        df["Listing Exchange"] = df["Listing Exchange"].fillna("")  # Handle NaN in exchange
         return df
     except requests.exceptions.RequestException as e:
         print(f"Error downloading file: {e}")
@@ -70,7 +82,18 @@ def analyze_nasdaq_data(df):
     df["Security Type"] = df.apply(categorize_security, axis=1)
     results["security_types"] = df["Security Type"].value_counts()
     
-    results["exchange_counts"] = df["Listing Exchange"].value_counts()
+    # Map exchange codes to full names
+    df["Exchange Name"] = df["Listing Exchange"].map(EXCHANGE_NAMES).fillna("Other")
+    results["exchange_counts"] = df["Exchange Name"].value_counts()
+    
+    # Pivot table for exchange vs. security type
+    results["exchange_security_types"] = df.pivot_table(
+        index="Exchange Name",
+        columns="Security Type",
+        values="Symbol",
+        aggfunc="count",
+        fill_value=0
+    )
     
     nasdaq_securities = df[df["Listing Exchange"] == "N"]
     results["market_categories"] = nasdaq_securities["Market Category"].value_counts()
@@ -84,6 +107,9 @@ def analyze_nasdaq_data(df):
     results["test_issues"] = len(df[df["Test Issue"] == "Y"])
     results["nextshares"] = len(df[df["NextShares"] == "Y"])
     
+    # List warrant stocks
+    results["warrant_stocks"] = df[df["Security Type"] == "Warrant"][["Symbol", "Security Name"]]
+    
     return results, df
 
 # Function to print column descriptions
@@ -91,10 +117,12 @@ def print_column_descriptions():
     print("\nColumn Descriptions for nasdaqtraded.txt:")
     for column, description in COLUMN_DESCRIPTIONS.items():
         print(f"- {column}: {description}")
+    print("\nExchange Code Mappings:")
+    for code, name in EXCHANGE_NAMES.items():
+        print(f"- {code}: {name}")
 
 # Function to print and save results
 def print_and_save_results(results, df, output_file="analysis_output.txt"):
-    # Capture output to both console and file
     with open(output_file, "w") as f:
         def write_output(text):
             print(text)
@@ -114,36 +142,44 @@ def print_and_save_results(results, df, output_file="analysis_output.txt"):
         
         write_output("\n4. Securities by Exchange:")
         write_output(results['exchange_counts'].to_string())
-        write_output("   - Shows the distribution of securities across exchanges (e.g., N = NASDAQ, Y = NYSE).")
+        write_output("   - Shows the distribution of securities across exchanges (e.g., NASDAQ, NYSE).")
         
-        write_output("\n5. NASDAQ Market Categories:")
+        write_output("\n5. Exchange vs. Security Type Breakdown:")
+        write_output(results['exchange_security_types'].to_string())
+        write_output("   - Shows the count of each security type per exchange (e.g., ETFs on NASDAQ).")
+        
+        write_output("\n6. NASDAQ Market Categories:")
         write_output(results['market_categories'].to_string())
         write_output("   - For NASDAQ-listed securities, indicates market tiers: Q (Global Select, large-cap), G (Global, mid-cap), S (Capital, small-cap).")
         
-        write_output("\n6. NASDAQ Securities with Financial Issues:")
+        write_output("\n7. NASDAQ Securities with Financial Issues:")
         if not results['distressed_securities'].empty:
             write_output(results['distressed_securities'].to_string())
             write_output("   - Lists NASDAQ securities with non-normal financial status (e.g., D = Deficient, Q = Bankrupt), indicating compliance issues.")
         else:
             write_output("No distressed securities found.")
         
-        write_output("\n7. Round Lot Size Distribution (Top 5):")
+        write_output("\n8. Round Lot Size Distribution (Top 5):")
         write_output(results['lot_sizes'].head().to_string())
         write_output("   - Shows common trading unit sizes (e.g., 100 shares), affecting liquidity and trading practices.")
         
-        write_output(f"\n8. Number of Test Issues: {results['test_issues']}")
+        write_output(f"\n9. Number of Test Issues: {results['test_issues']}")
         write_output("   - Counts test securities used for system testing, not actual trading.")
         
-        write_output(f"\n9. Number of NextShares Funds: {results['nextshares']}")
+        write_output(f"\n10. Number of NextShares Funds: {results['nextshares']}")
         write_output("   - Counts NextShares funds, a type of actively managed ETF with unique trading mechanics.")
-    
-    # Save security types to CSV
-    results["security_types"].to_csv("security_types.csv")
-    print(f"\nSaved security types to 'security_types.csv'")
+        
+        write_output("\n11. Warrant Stocks:")
+        if not results['warrant_stocks'].empty:
+            write_output(results['warrant_stocks'].to_string())
+            write_output("   - Lists securities categorized as warrants (e.g., rights to buy stock at a specific price).")
+        else:
+            write_output("No warrant stocks found.")
 
-# Function to visualize data (using matplotlib)
+# Function to visualize data
 def visualize_data(results):
     try:
+        # Pie chart for security types
         plt.figure(figsize=(8, 6))
         results["security_types"].plot(
             kind="pie",
@@ -156,14 +192,18 @@ def visualize_data(results):
         print("Saved security types pie chart as 'security_types_pie.png'")
         plt.close()
 
-        plt.figure(figsize=(10, 6))
-        results["exchange_counts"].plot(
+        # Stacked bar chart for exchange vs. security types
+        plt.figure(figsize=(12, 6))
+        results["exchange_security_types"].plot(
             kind="bar",
-            color="#36A2EB",
-            title="Securities by Exchange"
+            stacked=True,
+            color=["#36A2EB", "#FF6384", "#FFCE56", "#4BC0C0", "#9966FF", "#FF9F40"],
+            title="Securities by Exchange and Type"
         )
         plt.xlabel("Exchange")
         plt.ylabel("Number of Securities")
+        plt.legend(title="Security Type")
+        plt.tight_layout()
         plt.savefig("exchange_counts_bar.png")
         print("Saved exchange counts bar chart as 'exchange_counts_bar.png'")
         plt.close()
