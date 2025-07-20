@@ -82,9 +82,16 @@ jobs:
           pwd
           ls -la
 
-      - name: Merge ticker_info.json files
+      - name: Prepare files for merge
         run: |
           mkdir -p data logs  # Ensure directories exist
+          # Copy all ticker_info.json files to artifacts root
+          find artifacts -type f -name "ticker_info.json" -exec cp {} artifacts/ \;
+          # Verify copied files
+          ls -l artifacts/ | grep ticker_info.json || echo "No ticker_info.json files copied"
+
+      - name: Merge ticker_info.json files
+        run: |
           python scripts/merge_ticker_info.py artifacts
         working-directory: .
 
