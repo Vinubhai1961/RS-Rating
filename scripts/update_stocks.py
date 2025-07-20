@@ -6,6 +6,7 @@ import time
 import math
 import argparse
 import requests
+import random
 from io import StringIO
 import pandas as pd
 from yahooquery import Ticker
@@ -18,12 +19,13 @@ OUTPUT_PATH = "data/ticker_info.json"
 UNRESOLVED_LIST_PATH = "data/unresolved_tickers.txt"
 NASDAQ_URL  = "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqtraded.txt"
 BATCH_SIZE  = 200
-BATCH_DELAY = 3          # seconds between batches
-RETRY_SUBPASS = True     # second attempt for unresolved symbols in same run
+BATCH_DELAY_RANGE = (2, 5)  # randomized delay between batches
+RETRY_SUBPASS = True
+MAX_BATCH_RETRIES = 3
 SYMBOL_REGEX = re.compile(r"^[A-Z]{1,5}$")
 GOOD_VALUES = {"unknown", "n/a", ""}  # considered *not* good
 LOG_PATH = "logs/build_ticker_info.log"
-LOG_MAX_BYTES = 2_000_000  # rudimentary rotation trigger
+LOG_MAX_BYTES = 2_000_000
 # ---------------------------------------------------------------
 
 def ensure_dirs():
@@ -97,7 +99,6 @@ def extract_info(mods: Dict[str, Any], symbol: str):
     if not isinstance(entry, dict):
         return None, None
     prof = entry.get("summaryProfile") or {}
-    qt = entry.get("quoteType") or {}
     industry = prof.get("industry")
     sector = prof.get("sector")
     return sector, industry
@@ -116,8 +117,19 @@ def quality(sector: str, industry: str) -> int:
     return 1
 
 def process_batch(batch, existing):
-    yq = Ticker([yahoo_symbol(s) for s in batch], asynchronous=True, validate=True)
-    mods = yq.get_modules(["summaryProfile", "quoteType"])
+    for attempt in range(MAX_BATCH_RETRIES):
+        try:
+            yq = Ticker([yahoo_symbol(s) for s in batch], asynchronous=True, validate=True)
+            mods = yq.get_modules(["summaryProfile", "quoteType"])
+            break  # success
+        except Exception as e:
+            wait = (2 ** attempt) + random.uniform(0, 2)
+            logging.warning(f"Batch error (attempt {attempt+1}): {e}. Retrying in {wait:.1f}s.")
+            time.sleep(wait)
+    else:
+        logging.error(f"Batch failed after {MAX_BATCH_RETRIES} attempts.")
+        return 0, batch  # consider all unresolved
+
     failed = set(mods.get("failed") or [])
     updated = 0
     unresolved = []
@@ -178,7 +190,9 @@ def main(part_index=None, part_total=None, max_batches=None,
         logging.info("  Batch %d/%d - Updated: %d | Unresolved: %d",
                      idx, len(batches), updated, len(unresolved))
         if idx < len(batches):
-            time.sleep(BATCH_DELAY)
+            delay = random.uniform(*BATCH_DELAY_RANGE)
+            logging.debug(f"Sleeping {delay:.2f}s before next batch...")
+            time.sleep(delay)
 
     # Retry unresolved if enabled
     if RETRY_SUBPASS and all_unresolved:
@@ -192,7 +206,7 @@ def main(part_index=None, part_total=None, max_batches=None,
                 save(existing)
                 logging.info("  Retry batch updated: %d | still unresolved: %d",
                              updated, len(retry_unres))
-                time.sleep(2)
+                time.sleep(random.uniform(2, 4))
 
     # Save unresolved list
     unresolved_final = sorted(sym for sym, v in existing.items() if is_incomplete(v))
@@ -205,11 +219,11 @@ def main(part_index=None, part_total=None, max_batches=None,
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Build / update ticker_info.json from NASDAQ master list.")
-    parser.add_argument("--part-index", type=int, default=None, help="Zero-based partition index for matrix")
-    parser.add_argument("--part-total", type=int, default=None, help="Total partitions for matrix")
-    parser.add_argument("--max-batches", type=int, default=None, help="Limit number of batches (testing)")
-    parser.add_argument("--force-refresh", action="store_true", help="Refresh all symbols even if already populated")
-    parser.add_argument("--verbose", action="store_true", help="Verbose logging (DEBUG level)")
+    parser.add_argument("--part-index", type=int, default=None)
+    parser.add_argument("--part-total", type=int, default=None)
+    parser.add_argument("--max-batches", type=int, default=None)
+    parser.add_argument("--force-refresh", action="store_true")
+    parser.add_argument("--verbose", action="store_true")
     args = parser.parse_args()
 
     main(args.part_index, args.part_total, args.max_batches,
