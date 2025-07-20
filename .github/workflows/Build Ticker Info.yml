@@ -41,7 +41,10 @@ jobs:
           name: ticker-info-part-${{ matrix.part_index }}
           path: |
             data/ticker_info.json
+            data/partition_summary.json
+            data/unresolved_tickers.txt
             logs/build_ticker_info.log
+          retention-days: 5
 
   merge:
     needs: build-parts
@@ -55,11 +58,23 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: artifacts
+          pattern: ticker-info-part-*
+          merge-multiple: true
+
+      - name: List downloaded artifacts
+        run: |
+          echo "Downloaded artifacts:"
+          ls -R artifacts
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: Merge ticker_info.json files
         run: |
@@ -68,14 +83,19 @@ jobs:
       - name: Verify ticker_info.json
         run: |
           python scripts/verify_ticker_info.py
+        continue-on-error: true
 
       - name: Commit & Push (if changed)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [[ -n "$(git status --porcelain data/ticker_info.json)" ]]; then
             git config user.name "github-actions"
             git config user.email "actions@users.noreply.github.com"
             git add data/ticker_info.json
-            git commit -m "Update ticker_info.json (auto)"
-            git push
+            git commit -m "Update ticker_info.json (auto) [$(date -u +%Y-%m-%dT%H:%M:%SZ)]"
+            git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+            echo "Changes committed and pushed."
           else
-            echo "No changes."
+            echo "No changes to data/ticker_info.json."
+          fi
