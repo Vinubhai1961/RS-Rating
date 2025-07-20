@@ -1,0 +1,91 @@
+Analysis of nasdaqtraded.txt (as of 2025-07-20 09:08:00):
+
+1. Total Securities: 11578
+   - Represents the total number of securities listed across all exchanges in the file.
+
+2. Number of ETFs: 4346
+   - Counts securities marked as ETFs (ETF = Y), which track indices, commodities, or asset baskets.
+
+3. Security Type Breakdown:
+Security Type
+ETF                4346
+Common Stock       4154
+Other              2054
+Preferred Stock     450
+Warrant             380
+Unit                194
+   - Categorizes securities based on ETF status and keywords in Security Name (e.g., Common Stock, Preferred Stock).
+
+4. Securities by Exchange:
+Listing Exchange
+Q    4970
+N    2891
+P    2394
+Z    1006
+A     312
+V       3
+M       1
+   - Shows the distribution of securities across exchanges (e.g., N = NASDAQ, Y = NYSE).
+
+5. NASDAQ Market Categories:
+Market Category
+    2891
+   - For NASDAQ-listed securities, indicates market tiers: Q (Global Select, large-cap), G (Global, mid-cap), S (Capital, small-cap).
+
+6. NASDAQ Securities with Financial Issues:
+No distressed securities found.
+
+7. Round Lot Size Distribution (Top 5):
+Round Lot Size
+100.0    11568
+10.0         7
+1.0          2
+   - Shows common trading unit sizes (e.g., 100 shares), affecting liquidity and trading practices.
+
+8. Number of Test Issues: 33
+   - Counts test securities used for system testing, not actual trading.
+
+9. Number of NextShares Funds: 0
+   - Counts NextShares funds, a type of actively managed ETF with unique trading mechanics.
+
+Chart.js Pie Chart for Security Types:
+```chartjs
+{
+  "type": "pie",
+  "data": {
+    "labels": [
+      "ETF",
+      "Common Stock",
+      "Other",
+      "Preferred Stock",
+      "Warrant",
+      "Unit"
+    ],
+    "datasets": [
+      {
+        "data": [
+          4346,
+          4154,
+          2054,
+          450,
+          380,
+          194
+        ],
+        "backgroundColor": [
+          "#36A2EB",
+          "#FF6384",
+          "#FFCE56",
+          "#4BC0C0",
+          "#9966FF"
+        ]
+      }
+    ]
+  },
+  "options": {
+    "title": {
+      "display": true,
+      "text": "Distribution of Security Types"
+    }
+  }
+}
+```
