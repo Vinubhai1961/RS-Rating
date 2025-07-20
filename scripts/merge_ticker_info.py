@@ -47,12 +47,12 @@ def merge_ticker_info(source_dir="artifacts"):
     start_time = datetime.now().strftime("%I:%M %p %Z on %A, %B %d, %Y")
     logging.info(f"Starting merge process at {start_time}")
     
-    # Look for ticker_info.json files
-    search_pattern = os.path.join(source_dir, "**", "ticker_info.json")
+    # Look for ticker_info_part_*.json files
+    search_pattern = os.path.join(source_dir, "**", "ticker_info_part_*.json")
     ticker_files = glob.glob(search_pattern, recursive=True)
     
     if not ticker_files:
-        logging.warning(f"No ticker_info.json parts found in {source_dir}!")
+        logging.warning(f"No ticker_info_part_*.json parts found in {source_dir}!")
         # Fallback: Check for partition_summary.json to copy as ticker_info.json
         summary_pattern = os.path.join(source_dir, "**", "partition_summary.json")
         summary_files = glob.glob(summary_pattern, recursive=True)
@@ -72,9 +72,8 @@ def merge_ticker_info(source_dir="artifacts"):
         else:
             logging.error("No valid JSON files found to create ticker_info.json!")
             return
-
     else:
-        logging.info(f"Found {len(ticker_files)} ticker_info.json files to merge.")
+        logging.info(f"Found {len(ticker_files)} ticker_info_part_*.json files to merge.")
         merged = {}
         for file_path in ticker_files:
             logging.info(f"Processing {file_path}...")
