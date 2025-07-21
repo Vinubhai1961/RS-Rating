@@ -9,6 +9,8 @@ from yahooquery import Ticker
 from datetime import datetime
 import random
 import time
+import requests
+import pandas as pd
 from typing import Dict, Any
 
 # Define GOOD_VALUES to match build_ticker_info.py
@@ -21,6 +23,7 @@ LOG_PATH = "logs/retry_tickers.log"
 BATCH_SIZE = 200
 MAX_BATCH_RETRIES = 3
 BATCH_DELAY_RANGE = (2, 5)
+NASDAQ_URL = "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqtraded.txt"
 
 logging.basicConfig(
     level=logging.INFO,
@@ -59,7 +62,7 @@ def fetch_ticker_data(symbols: list) -> Dict[str, Any]:
         logging.warning(f"Failed to fetch batch data: {e}")
         return {}
 
-def process_batch(batch, existing, nasdaq_data_map=None):
+def process_batch(batch, existing, nasdaq_data):
     for attempt in range(MAX_BATCH_RETRIES):
         mods = fetch_ticker_data(batch)
         if mods:
@@ -86,12 +89,9 @@ def process_batch(batch, existing, nasdaq_data_map=None):
                 "info": {
                     "industry": prof.get("industry", ""),
                     "sector": prof.get("sector", ""),
-                    "type": "Other"  # Default, will be overridden if nasdaq_data_map is provided
+                    "type": nasdaq_data.get(symbol, {}).get("ETF", "N") == "Y" and "ETF" or "Stock"
                 }
             }
-            if nasdaq_data_map:
-                etf_flag = nasdaq_data_map.get(symbol, {}).get("ETF", "N")
-                data["info"]["type"] = "ETF" if etf_flag == "Y" else "Stock"
             if not existing.get(symbol) or is_incomplete(existing[symbol]) and data["info"]["sector"] not in GOOD_VALUES and data["info"]["industry"] not in GOOD_VALUES:
                 existing[symbol] = data
                 updated += 1
@@ -107,6 +107,16 @@ def is_incomplete(info_dict: Dict[str, Any]) -> bool:
     industry = str(info.get("industry", "")).strip().lower()
     return sector in GOOD_VALUES or industry in GOOD_VALUES
 
+def fetch_nasdaq_symbols() -> List[Dict[str, str]]:
+    logging.info("Fetching NASDAQ symbol master list ...")
+    resp = requests.get(NASDAQ_URL, timeout=60)
+    resp.raise_for_status()
+    df = pd.read_csv(StringIO(resp.text), sep='|')
+    keep = (df['Test Issue'] == 'N') & (df['Symbol'].str.fullmatch(r"^[A-Z]{1,5}$"))
+    symbols_data = df.loc[keep].to_dict(orient="records")
+    logging.info("Retrieved %d eligible symbols.", len(symbols_data))
+    return symbols_data
+
 def retry_unresolved_tickers(source_dir="artifacts"):
     ensure_dirs()
     start_time = datetime.now().strftime("%I:%M %p EDT on %A, %B %d, %Y")
@@ -119,18 +129,7 @@ def retry_unresolved_tickers(source_dir="artifacts"):
 
     logging.info(f"Retrying {len(unresolved)} unresolved tickers.")
     existing = {}
-    nasdaq_data = {}
-    if os.path.exists("data/partition_summary.json"):
-        with open("data/partition_summary.json", "r") as f:
-            try:
-                summary = json.load(f)
-                nasdaq_data = {rec["Symbol"]: rec for rec in fetch_nasdaq_symbols()}  # Re-fetch or load from summary if available
-            except json.JSONDecodeError:
-                logging.warning("partition_summary.json corrupt; refetching NASDAQ data.")
-                nasdaq_data = {rec["Symbol"]: rec for rec in fetch_nasdaq_symbols()}
-    else:
-        nasdaq_data = {rec["Symbol"]: rec for rec in fetch_nasdaq_symbols()}
-
+    nasdaq_data = {rec["Symbol"]: rec for rec in fetch_nasdaq_symbols()}
     if os.path.exists(TICKER_INFO_FILE):
         with open(TICKER_INFO_FILE, "r", encoding="utf-8") as f:
             try:
@@ -175,13 +174,3 @@ if __name__ == "__main__":
     import sys
     source_dir = sys.argv[1] if len(sys.argv) > 1 else "artifacts"
     retry_unresolved_tickers(source_dir)
-
-def fetch_nasdaq_symbols() -> List[Dict[str, str]]:  # Moved here for reuse
-    logging.info("Fetching NASDAQ symbol master list ...")
-    resp = requests.get(NASDAQ_URL, timeout=60)
-    resp.raise_for_status()
-    df = pd.read_csv(StringIO(resp.text), sep='|')
-    keep = (df['Test Issue'] == 'N') & (df['Symbol'].str.fullmatch(SYMBOL_REGEX.pattern))
-    symbols_data = df.loc[keep].to_dict(orient="records")
-    logging.info("Retrieved %d eligible symbols.", len(symbols_data))
-    return symbols_data
