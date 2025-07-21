@@ -43,32 +43,24 @@ def merge_ticker_info(source_dir="artifacts"):
     os.makedirs("logs", exist_ok=True)
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     
-    # Log the start time of the merge process
-    start_time = datetime.now().strftime("%I:%M %p %Z on %A, %B %d, %Y")
+    start_time = datetime.now().strftime("%I:%M %p EDT on %A, %B %d, %Y")
     logging.info(f"Starting merge process at {start_time}")
     
-    # Look for ticker_info_part_*.json files
     search_pattern = os.path.join(source_dir, "**", "ticker_info_part_*.json")
     ticker_files = glob.glob(search_pattern, recursive=True)
     
     if not ticker_files:
         logging.warning(f"No ticker_info_part_*.json parts found in {source_dir}!")
-        # Fallback: Check for partition_summary.json to copy as ticker_info.json
         summary_pattern = os.path.join(source_dir, "**", "partition_summary.json")
         summary_files = glob.glob(summary_pattern, recursive=True)
         if summary_files:
             src_summary = summary_files[0]
             logging.info(f"Using {src_summary} as fallback for {TICKER_INFO_FILE}")
             if is_valid_json(src_summary):
-                try:
-                    with open(src_summary, "r", encoding="utf-8") as f_in, \
-                         open(TICKER_INFO_FILE, "w", encoding="utf-8") as f_out:
-                        data = json.load(f_in)
-                        json.dump(data, f_out, indent=2, sort_keys=True)
-                except Exception as e:
-                    logging.error(f"Failed to copy {src_summary}: {e}")
-            else:
-                logging.warning(f"Skipping {src_summary} due to invalid JSON.")
+                with open(src_summary, "r", encoding="utf-8") as f_in, \
+                     open(TICKER_INFO_FILE, "w", encoding="utf-8") as f_out:
+                    data = json.load(f_in)
+                    json.dump(data, f_out, indent=2, sort_keys=True)
         else:
             logging.error("No valid JSON files found to create ticker_info.json!")
             return
@@ -103,7 +95,6 @@ def merge_ticker_info(source_dir="artifacts"):
         logging.info(f"Merged {len(ticker_files)} files into {TICKER_INFO_FILE}")
         logging.info(f"Total entries: {len(merged)}")
 
-    # Copy the first unresolved_tickers.txt and partition_summary.json
     tickers_pattern = os.path.join(source_dir, "**", "unresolved_tickers.txt")
     tickers_files = glob.glob(tickers_pattern, recursive=True)
     if tickers_files:
