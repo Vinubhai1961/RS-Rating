@@ -9,7 +9,10 @@ from yahooquery import Ticker
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[logging.FileHandler("logs/retry_unresolved_tickers.log"), logging.StreamHandler()]
+    handlers=[
+        logging.FileHandler("logs/retry_unresolved_tickers.log"),
+        logging.StreamHandler()
+    ]
 )
 
 def load_unresolved_tickers() -> list[str]:
@@ -22,11 +25,9 @@ def load_unresolved_tickers() -> list[str]:
 
 def fetch_nasdaq_symbols():
     url = "https://www.nasdaq.com/market-activity/stocks/screener"
-    # Simplified: In practice, use a proper scraper or API call
-    # For this example, assume a placeholder
+    # Placeholder logic
     logging.info("Fetching NASDAQ symbol master list ...")
-    # Placeholder: Replace with actual logic to fetch 11,051 symbols
-    return ["AAPL", "MSFT"]  # Example; update with real data
+    return ["AAPL", "MSFT"]  # Replace with real fetching logic if needed
 
 def retry_tickers(unresolved_tickers):
     yq = Ticker(unresolved_tickers)
@@ -51,17 +52,11 @@ def main():
     nasdaq_symbols = fetch_nasdaq_symbols()
     logging.info(f"Retrieved {len(nasdaq_symbols)} eligible symbols.")
 
-    # Retry logic (simplified; adjust based on your needs)
     resolved_tickers = retry_tickers(unresolved_tickers)
     logging.info(f"Resolved {len(resolved_tickers)} tickers.")
 
-    # Update unresolved_tickers.txt (optional, depending on merge step)
     with open(os.path.join("data", "unresolved_tickers.txt"), "w", encoding="utf-8") as f:
         f.write("\n".join(ticker for ticker in unresolved_tickers if ticker not in resolved_tickers))
 
 if __name__ == "__main__":
-    import sys
-    if len(sys.argv) != 2:
-        print("Usage: python retry_unresolved_tickers.py <unresolved_file>")
-        sys.exit(1)
-    main(sys.argv[1])
+    main()
