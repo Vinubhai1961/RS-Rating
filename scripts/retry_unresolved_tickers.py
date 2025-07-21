@@ -37,11 +37,11 @@ def retry_tickers(unresolved_tickers):
             eligible_tickers.append(ticker)
     return eligible_tickers
 
-def main(artifacts_dir):
+def main():
     start_time = datetime.now().strftime("%I:%M %p EDT on %A, %B %d, %Y")
     logging.info(f"Starting retry process at {start_time}")
 
-    unresolved_tickers = load_unresolved_tickers(artifacts_dir)
+    unresolved_tickers = load_unresolved_tickers()
     logging.info(f"Retrying {len(unresolved_tickers)} unresolved tickers.")
 
     if not unresolved_tickers:
@@ -62,6 +62,6 @@ def main(artifacts_dir):
 if __name__ == "__main__":
     import sys
     if len(sys.argv) != 2:
-        print("Usage: python retry_unresolved_tickers.py <artifacts_dir>")
+        print("Usage: python retry_unresolved_tickers.py <unresolved_file>")
         sys.exit(1)
     main(sys.argv[1])
