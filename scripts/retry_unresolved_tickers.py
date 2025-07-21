@@ -8,6 +8,7 @@ import logging
 from yahooquery import Ticker
 from datetime import datetime
 import random
+import time  # Added to enable time.sleep()
 from typing import Dict, Any
 
 # Define GOOD_VALUES to match build_ticker_info.py
@@ -65,7 +66,7 @@ def process_batch(batch, existing):
             break
         wait = (2 ** attempt) + random.uniform(0, 2)
         logging.warning(f"Batch error (attempt {attempt+1}). Retrying in {wait:.1f}s.")
-        time.sleep(wait)
+        time.sleep(wait)  # Using imported time module
     else:
         logging.error(f"Batch failed after {MAX_BATCH_RETRIES} attempts.")
         return 0, batch
@@ -134,7 +135,7 @@ def retry_unresolved_tickers(source_dir="artifacts"):
         if idx < len(batches):
             delay = random.uniform(*BATCH_DELAY_RANGE)
             logging.debug(f"Sleeping {delay:.1f}s before next batch...")
-            time.sleep(delay)
+            time.sleep(delay)  # Using imported time module
 
     if newly_resolved:
         existing.update(newly_resolved)
