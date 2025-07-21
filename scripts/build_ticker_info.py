@@ -5,7 +5,6 @@ import json
 import os
 import re
 import time
-import math
 import argparse
 import requests
 import random
@@ -17,21 +16,18 @@ from tqdm import tqdm
 from typing import List, Dict, Any
 from datetime import datetime
 
-# -------------------- Configurable Defaults --------------------
 BASE_OUTPUT_PATH = "data/ticker_info"
 UNRESOLVED_LIST_PATH = "data/unresolved_tickers.txt"
 PARTITION_SUMMARY_PATH = "data/partition_summary.json"
 NASDAQ_URL = "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqtraded.txt"
 BATCH_SIZE = 200
-BATCH_DELAY_RANGE = (2, 5)  # randomized delay between batches
+BATCH_DELAY_RANGE = (2, 5)
 RETRY_SUBPASS = True
 MAX_BATCH_RETRIES = 3
 SYMBOL_REGEX = re.compile(r"^[A-Z]{1,5}$")
-GOOD_VALUES = {"unknown", "n/a", ""}  # treated as not good
+GOOD_VALUES = {"unknown", "n/a", ""}
 LOG_PATH = "logs/build_ticker_info.log"
 LOG_MAX_BYTES = 2_000_000
-PRICE_THRESHOLD = 5.0  # New: Filter out tickers below $5
-# ---------------------------------------------------------------
 
 def ensure_dirs():
     os.makedirs(os.path.dirname(BASE_OUTPUT_PATH), exist_ok=True)
@@ -84,13 +80,14 @@ def save(data: Dict[str, Any], part_index: int = None):
     with open(file_path, "w") as f:
         json.dump(data, f, indent=2, sort_keys=True)
 
-def fetch_nasdaq_symbols() -> List[Dict[str, str]]:
-    logging.info("Fetching NASDAQ symbol master list ...")
+def fetch_nasdaq_symbols(limit=6000) -> List[Dict[str, str]]:
+    logging.info("Fetching NASDAQ symbol master list (limited to ~6,000)...")
     resp = requests.get(NASDAQ_URL, timeout=60)
     resp.raise_for_status()
     df = pd.read_csv(StringIO(resp.text), sep='|')
     keep = (df['Test Issue'] == 'N') & (df['Symbol'].str.fullmatch(SYMBOL_REGEX.pattern))
     symbols_data = df.loc[keep].to_dict(orient="records")
+    symbols_data = symbols_data[:min(limit, len(symbols_data))]
     logging.info("Retrieved %d eligible symbols.", len(symbols_data))
     return symbols_data
 
@@ -98,8 +95,7 @@ def is_incomplete(info_dict: Dict[str, Any]) -> bool:
     info = info_dict.get("info", {})
     sector = str(info.get("sector", "")).strip().lower()
     industry = str(info.get("industry", "")).strip().lower()
-    price = info.get("Price")
-    return (sector in GOOD_VALUES) or (industry in GOOD_VALUES) or (price is None or price < PRICE_THRESHOLD)
+    return (sector in GOOD_VALUES) or (industry in GOOD_VALUES)
 
 def needs_update(symbol: str, existing: Dict[str, Any], force_refresh: bool) -> bool:
     if symbol not in existing:
@@ -114,18 +110,9 @@ def yahoo_symbol(symbol: str) -> str:
 def extract_info(mods: Dict[str, Any], symbol: str) -> tuple:
     entry = mods.get(symbol) or mods.get(yahoo_symbol(symbol))
     if not isinstance(entry, dict):
-        return None, None, None, None
+        return None, None, None
     prof = entry.get("summaryProfile") or {}
-    industry = prof.get("industry")
-    sector = prof.get("sector")
-    # Fetch price from history
-    try:
-        hist = Ticker(symbol).history(period="1d")
-        price = hist['close'].iloc[-1] if not hist.empty else None
-    except Exception as e:
-        logging.warning(f"Failed to fetch price for {symbol}: {e}")
-        price = None
-    return sector, industry, price, None  # Type will come from NASDAQ data
+    return prof.get("sector"), prof.get("industry"), None
 
 def partition(lst: List[str], size: int):
     for i in range(0, len(lst), size):
@@ -152,7 +139,7 @@ def process_batch(batch, existing, nasdaq_data_map):
             time.sleep(wait)
     else:
         logging.error(f"Batch failed after {MAX_BATCH_RETRIES} attempts.")
-        return 0, batch  # treat all as unresolved
+        return 0, batch
 
     failed = set(mods.get("failed") or [])
     updated = 0
@@ -165,16 +152,16 @@ def process_batch(batch, existing, nasdaq_data_map):
             unresolved.append(symbol)
             continue
 
-        sector, industry, price, _ = extract_info(mods, symbol)
+        sector, industry, _ = extract_info(mods, symbol)
         sec_type = nasdaq_data_map[symbol].get("Security Type", "Other")
-        if sector and industry and quality(sector, industry) and price is not None and price >= PRICE_THRESHOLD:
+        if sector and industry and quality(sector, industry):
             prev = existing.get(symbol)
             if (not prev) or (prev["info"]["sector"] != sector) or (prev["info"]["industry"] != industry):
-                existing[symbol] = {"info": {"industry": industry, "sector": sector, "type": sec_type, "Price": price}}
+                existing[symbol] = {"info": {"industry": industry, "sector": sector, "type": sec_type}}
                 updated += 1
         else:
             if symbol not in existing:
-                existing[symbol] = {"info": {"industry": "n/a", "sector": "n/a", "type": sec_type, "Price": price if price is not None else 0}}
+                existing[symbol] = {"info": {"industry": "n/a", "sector": "n/a", "type": sec_type}}
             unresolved.append(symbol)
 
     return updated, unresolved
@@ -183,9 +170,7 @@ def write_partition_summary(summary: Dict[str, Any]):
     with open(PARTITION_SUMMARY_PATH, "w") as f:
         json.dump(summary, f, indent=2, sort_keys=True)
 
-def main(part_index=None, part_total=None, max_batches=None,
-         force_refresh=False, verbose=False):
-
+def main(part_index=None, part_total=None, verbose=False, force_refresh=False):
     start_time = time.time()
     ensure_dirs()
     setup_logging(verbose)
@@ -196,12 +181,12 @@ def main(part_index=None, part_total=None, max_batches=None,
     all_symbols = [rec["Symbol"] for rec in nasdaq_data]
 
     if part_index is not None and part_total is not None:
-        per_part = math.ceil(len(all_symbols) / part_total)
+        per_part = len(all_symbols) // part_total
         start = part_index * per_part
-        end = min(start + per_part, len(all_symbols))
+        end = start + per_part if part_index < part_total - 1 else len(all_symbols)
         symbols_slice = all_symbols[start:end]
         logging.info("Partition %d/%d: %d symbols",
-                     part_index+1, part_total, len(symbols_slice))
+                     part_index + 1, part_total, len(symbols_slice))
     else:
         symbols_slice = all_symbols
 
@@ -209,10 +194,6 @@ def main(part_index=None, part_total=None, max_batches=None,
     logging.info("Symbols needing update in this slice: %d", len(todo))
 
     batches = list(partition(todo, BATCH_SIZE))
-    if max_batches:
-        batches = batches[:max_batches]
-        logging.info("Limiting to first %d batches (test mode).", max_batches)
-
     all_unresolved = []
     updated_total = 0
 
@@ -220,7 +201,7 @@ def main(part_index=None, part_total=None, max_batches=None,
         updated, unresolved = process_batch(batch, existing, nasdaq_data_map)
         updated_total += updated
         all_unresolved.extend(unresolved)
-        save(existing, part_index)  # Save to partition-specific file
+        save(existing, part_index)
         logging.info("  Batch %d/%d - Updated: %d | Unresolved: %d | Updated total: %d",
                      idx, len(batches), updated, len(unresolved), updated_total)
         if idx < len(batches):
@@ -237,7 +218,7 @@ def main(part_index=None, part_total=None, max_batches=None,
                               desc="Retry Batches"):
                 updated, retry_unres = process_batch(batch, existing, nasdaq_data_map)
                 updated_total += updated
-                save(existing, part_index)  # Save to partition-specific file
+                save(existing, part_index)
                 logging.info("  Retry batch updated: %d | still unresolved: %d | Updated total: %d",
                              updated, len(retry_unres), updated_total)
                 time.sleep(random.uniform(2, 4))
@@ -246,7 +227,7 @@ def main(part_index=None, part_total=None, max_batches=None,
     with open(UNRESOLVED_LIST_PATH, "w") as f:
         f.write("\n".join(unresolved_final))
 
-    save(existing, part_index)  # Final save for the partition
+    save(existing, part_index)
 
     elapsed = time.time() - start_time
     summary = {
@@ -270,10 +251,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Build / update ticker_info.json from NASDAQ master list.")
     parser.add_argument("--part-index", type=int, default=None)
     parser.add_argument("--part-total", type=int, default=None)
-    parser.add_argument("--max-batches", type=int, default=None)
     parser.add_argument("--force-refresh", action="store_true")
     parser.add_argument("--verbose", action="store_true")
     args = parser.parse_args()
 
-    main(args.part_index, args.part_total, args.max_batches,
-         force_refresh=args.force_refresh, verbose=args.verbose)
+    main(part_index=args.part_index, part_total=args.part_total, verbose=args.verbose, force_refresh=args.force_refresh)
