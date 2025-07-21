@@ -6,14 +6,14 @@ on:
     - cron: "15 5 * * *"  # daily at 05:15 UTC
 
 jobs:
-  build-parts:
+  build-ticker-info:
     strategy:
       fail-fast: false
       matrix:
-        part_index: [0, 1]   # 2 partitions
+        part_index: [0, 1]  # Two partitions
         part_total: [2]
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 60  # Reduced to 60 minutes
 
     steps:
       - uses: actions/checkout@v4
@@ -28,12 +28,13 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run builder (partition ${{ matrix.part_index }})
+      - name: Run ticker info builder (partition ${{ matrix.part_index }})
         run: |
           python scripts/build_ticker_info.py \
             --part-index ${{ matrix.part_index }} \
             --part-total ${{ matrix.part_total }} \
             --verbose
+        working-directory: .
 
       - name: Upload partition artifact
         uses: actions/upload-artifact@v4
@@ -46,15 +47,13 @@ jobs:
             logs/build_ticker_info.log
           retention-days: 5
 
-  merge:
-    needs: build-parts
+  merge-ticker-info:
+    needs: build-ticker-info
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Fetch full history to avoid shallow clone issues
 
       - name: Download partition artifacts
         uses: actions/download-artifact@v4
@@ -62,11 +61,6 @@ jobs:
           path: artifacts
           pattern: ticker-info-part-*
           merge-multiple: false
-
-      - name: List downloaded artifacts
-        run: |
-          echo "Downloaded artifacts:"
-          ls -R artifacts
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -78,20 +72,12 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Debug working directory
-        run: |
-          pwd
-          ls -la
-
       - name: Prepare files for merge
         run: |
-          mkdir -p data logs  # Ensure directories exist
-          # Copy all ticker_info_part_*.json files to artifacts root
+          mkdir -p data logs
           find artifacts -type f -name "ticker_info_part_*.json" -exec cp {} artifacts/ \; || true
-          # Copy all partition_summary.json and unresolved_tickers.txt files
           find artifacts -type f -name "partition_summary.json" -exec cp {} artifacts/ \; || true
           find artifacts -type f -name "unresolved_tickers.txt" -exec cp {} artifacts/ \; || true
-          # Verify copied files
           ls -l artifacts/ | grep -E "ticker_info_part_|partition_summary.json|unresolved_tickers.txt" || echo "No expected files copied"
 
       - name: Retry unresolved tickers
@@ -104,34 +90,75 @@ jobs:
           python scripts/merge_ticker_info.py artifacts
         working-directory: .
 
-      - name: Debug post-merge data directory
-        run: |
-          ls -la data/ || echo "data directory not found"
+      - name: Upload merged artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ticker-info
+          path: |
+            data/ticker_info.json
+            data/unresolved_tickers.txt
+            logs/merge_ticker_info.log
+          retention-days: 5
 
-      - name: Stage merged files
+  build-ticker-price:
+    needs: merge-ticker-info
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download ticker info artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ticker-info
+          path: data
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run ticker price builder (part 1)
+        run: |
+          python scripts/build_ticker_price.py \
+            --part-index 0 \
+            --part-total 2 \
+            --verbose
+        working-directory: .
+
+      - name: Run ticker price builder (part 2)
+        run: |
+          python scripts/build_ticker_price.py \
+            --part-index 1 \
+            --part-total 2 \
+            --verbose
+        working-directory: .
+
+      - name: Merge ticker price files
+        run: |
+          python scripts/merge_ticker_price.py
+        working-directory: .
+
+      - name: Upload price artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ticker-price
+          path: |
+            data/ticker_price.json
+            logs/build_ticker_price.log
+          retention-days: 5
+
+      - name: Stage and commit
         run: |
           git config user.name "github-actions"
           git config user.email "actions@users.noreply.github.com"
-          git add data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt logs/merge_ticker_info.log
-
-      - name: Commit & Push (force commit if merge succeeded)
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          # Use EDT time consistently (adjusting from UTC to EDT, which is UTC-4)
+          git add data/ticker_info.json data/ticker_price.json logs/
           edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
-          git commit -m "Update ticker info and logs (auto) [${edt_time}]" || echo "No changes to commit"
-          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git || echo "Push failed, possibly no changes"
-
-      - name: Upload logs
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: logs
-          path: logs/
-
-      - name: Verify ticker_info.json
-        run: |
-          python scripts/verify_ticker_info.py
-        continue-on-error: true
-        working-directory: .
+          git commit -m "Update ticker info and price (auto) [${edt_time}]" || echo "No changes to commit"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git || echo "Push failed, possibly no changes"
