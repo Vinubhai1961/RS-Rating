@@ -95,12 +95,13 @@ def retry_unresolved_tickers(source_dir="artifacts"):
         logging.info(f"Added {len(newly_resolved)} newly resolved tickers to {TICKER_INFO_FILE}")
 
     remaining_unresolved = [s for s in unresolved if s not in newly_resolved]
-    with open(UNRESOLVED_TICKERS_FILE, "w", encoding="utf-8") as f:
+    with open(UNRESOLVED_LIST_PATH, "w", encoding="utf-8") as f:
         f.write("\n".join(remaining_unresolved))
     logging.info(f"Updated {UNRESOLVED_TICKERS_FILE} with {len(remaining_unresolved)} remaining unresolved tickers.")
 
     logging.info("Retry process completed.")
 
 if __name__ == "__main__":
+    import sys
     source_dir = sys.argv[1] if len(sys.argv) > 1 else "artifacts"
     retry_unresolved_tickers(source_dir)
