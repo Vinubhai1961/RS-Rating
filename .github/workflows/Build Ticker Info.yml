@@ -26,6 +26,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
+          pip install --upgrade cython  # Ensure latest Cython
           pip install -r requirements.txt
 
       - name: Run ticker info builder (partition ${{ matrix.part_index }}, Phase 1)
@@ -70,6 +71,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
+          pip install --upgrade cython
           pip install -r requirements.txt
 
       - name: Prepare files for merge
@@ -99,7 +101,7 @@ jobs:
             data/unresolved_tickers.txt
             logs/merge_ticker_info.log
           retention-days: 5
-          
+
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions"
@@ -136,6 +138,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
+          pip install --upgrade cython
           pip install -r requirements.txt
 
       - name: Run ticker price builder (partition ${{ matrix.part_index }}, Phase 2)
@@ -178,6 +181,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
+          pip install --upgrade cython
           pip install -r requirements.txt
 
       - name: Merge ticker price files
