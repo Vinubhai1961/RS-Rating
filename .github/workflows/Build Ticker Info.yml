@@ -125,10 +125,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        part_index: [0, 1]  # Two partitions for Phase 2
-        part_total: [2]
+        part_index: [0, 1, 2]  # Two partitions for Phase 2
+        part_total: [3]
     runs-on: ubuntu-latest
-    timeout-minutes: 90  # Increased to 90 minutes for safety
+    timeout-minutes: 180  # Increased to 90 minutes for safety
 
     steps:
       - uses: actions/checkout@v4
