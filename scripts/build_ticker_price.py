@@ -8,15 +8,16 @@ import logging
 from yahooquery import Ticker
 from tqdm import tqdm
 from datetime import datetime
-import time  # Added to enable time.time() and time.sleep()
+import time
+import random
 
 OUTPUT_DIR = "data"
 TICKER_INFO_FILE = os.path.join(OUTPUT_DIR, "ticker_info.json")
 TICKER_PRICE_PART_FILE = os.path.join(OUTPUT_DIR, f"ticker_price_part_%d.json")
 LOG_PATH = "logs/build_ticker_price.log"
-BATCH_SIZE = 150
-BATCH_DELAY_RANGE = (2, 5)
-MAX_BATCH_RETRIES = 3
+BATCH_SIZE = 100  # Reduced from 150 to lower request load
+BATCH_DELAY_RANGE = (5, 10)  # Increased from (2, 5) for better spacing
+MAX_BATCH_RETRIES = 5  # Increased from 3 for more retry attempts
 PRICE_THRESHOLD = 5.0
 
 logging.basicConfig(
@@ -90,9 +91,13 @@ def process_batch(batch, ticker_info):
                     }
             return len(prices), [s for s in batch if s not in prices]
         except Exception as e:
-            wait = (2 ** attempt) + random.uniform(0, 2)
-            logging.warning(f"Batch error (attempt {attempt+1}): {e}. Retrying in {wait:.1f}s.")
-            time.sleep(wait)
+            if "429" in str(e) or "crumb" in str(e).lower():  # Handle 429 or crumb errors
+                wait = (2 ** attempt) * random.uniform(5, 10)  # Exponential backoff
+                logging.warning(f"Batch error (attempt {attempt+1}/{MAX_BATCH_RETRIES}): {e}. Retrying in {wait:.1f}s.")
+                time.sleep(wait)
+            else:
+                logging.error(f"Unexpected error in batch: {e}. Aborting batch.")
+                return 0, batch
     else:
         logging.error(f"Batch failed after {MAX_BATCH_RETRIES} attempts.")
         return 0, batch
@@ -125,10 +130,10 @@ def main(part_index=None, part_total=None, verbose=False):
     for idx, batch in enumerate(tqdm(batches, desc="Processing Price Batches"), 1):
         updated, _ = process_batch(batch, ticker_info)
         all_prices.update({k: v for k, v in all_prices.items() if v.get("info", {}).get("Price", 0) >= PRICE_THRESHOLD})
-        logging.info("  Batch %d/%d - Fetched prices for %d tickers", idx, len(batches), updated)
+        logging.info(f"Batch {idx}/{len(batches)} - Fetched prices for {updated} tickers")
         if idx < len(batches):
             delay = random.uniform(*BATCH_DELAY_RANGE)
-            logging.debug(f"Sleeping {delay:.2f}s before next batch...")
+            logging.debug(f"Sleeping {delay:.1f}s before next batch...")
             time.sleep(delay)
 
     output_file = TICKER_PRICE_PART_FILE % part_index
