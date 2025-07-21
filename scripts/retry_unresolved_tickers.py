@@ -11,7 +11,8 @@ import random
 import time
 import requests
 import pandas as pd
-from typing import Dict, Any
+from io import StringIO
+from typing import Dict, Any, List  # Added List to the import
 
 # Define GOOD_VALUES to match build_ticker_info.py
 GOOD_VALUES = {"unknown", "n/a", ""}
@@ -21,7 +22,7 @@ TICKER_INFO_FILE = os.path.join(OUTPUT_DIR, "ticker_info.json")
 UNRESOLVED_TICKERS_FILE = os.path.join(OUTPUT_DIR, "unresolved_tickers.txt")
 LOG_PATH = "logs/retry_tickers.log"
 BATCH_SIZE = 200
-MAX_BATCH_RETRIES = 1
+MAX_BATCH_RETRIES = 3
 BATCH_DELAY_RANGE = (2, 5)
 NASDAQ_URL = "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqtraded.txt"
 
