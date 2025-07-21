@@ -91,9 +91,9 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
-          git add data/ticker_info.json
+          git add data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt
           edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
-          git commit -m "Commit merged ticker_info.json [${edt_time}]" || echo "No changes to commit"
+          git commit -m "Commit merged ticker_info.json, partition_summary.json, unresolved_tickers.txt [${edt_time}]" || echo "No changes to commit"
           git push
 
       - name: Retry unresolved tickers
@@ -115,9 +115,9 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
-          git add data/unresolved_tickers.txt logs/*
+          git add data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt logs/*
           edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
-          git commit -m "Commit Phase 1 final outputs: unresolved_tickers.txt and logs [${edt_time}]" || echo "No changes to commit"
+          git commit -m "Commit Phase 1 final outputs:ticker_info.json, unresolved_tickers.txt, partition_summary.json and logs [${edt_time}]" || echo "No changes to commit"
           git push
 
   build-ticker-price:
