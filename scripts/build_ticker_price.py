@@ -15,7 +15,7 @@ TICKER_PRICE_PART_FILE = os.path.join(OUTPUT_DIR, f"ticker_price_part_%d.json")
 LOG_PATH = "logs/build_ticker_price.log"
 BATCH_SIZE = 150
 BATCH_DELAY_RANGE = (2, 5)  # Randomized delay between batches
-MAX_BATCH_RETRIES = 3
+MAX_BATCH_RETRIES = 1
 PRICE_THRESHOLD = 5.0
 
 logging.basicConfig(
