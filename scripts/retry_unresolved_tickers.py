@@ -8,7 +8,7 @@ import logging
 from yahooquery import Ticker
 from datetime import datetime
 import random
-import time  # Added to enable time.sleep()
+import time
 from typing import Dict, Any
 
 # Define GOOD_VALUES to match build_ticker_info.py
@@ -59,14 +59,14 @@ def fetch_ticker_data(symbols: list) -> Dict[str, Any]:
         logging.warning(f"Failed to fetch batch data: {e}")
         return {}
 
-def process_batch(batch, existing):
+def process_batch(batch, existing, nasdaq_data_map=None):
     for attempt in range(MAX_BATCH_RETRIES):
         mods = fetch_ticker_data(batch)
         if mods:
             break
         wait = (2 ** attempt) + random.uniform(0, 2)
         logging.warning(f"Batch error (attempt {attempt+1}). Retrying in {wait:.1f}s.")
-        time.sleep(wait)  # Using imported time module
+        time.sleep(wait)
     else:
         logging.error(f"Batch failed after {MAX_BATCH_RETRIES} attempts.")
         return 0, batch
@@ -86,16 +86,19 @@ def process_batch(batch, existing):
                 "info": {
                     "industry": prof.get("industry", ""),
                     "sector": prof.get("sector", ""),
-                    "type": "Other"
+                    "type": "Other"  # Default, will be overridden if nasdaq_data_map is provided
                 }
             }
+            if nasdaq_data_map:
+                etf_flag = nasdaq_data_map.get(symbol, {}).get("ETF", "N")
+                data["info"]["type"] = "ETF" if etf_flag == "Y" else "Stock"
             if not existing.get(symbol) or is_incomplete(existing[symbol]) and data["info"]["sector"] not in GOOD_VALUES and data["info"]["industry"] not in GOOD_VALUES:
                 existing[symbol] = data
                 updated += 1
             else:
                 unresolved.append(symbol)
         else:
-            unresolved.append(symbol)  # Handle case where entry is not a dict
+            unresolved.append(symbol)
     return updated, unresolved
 
 def is_incomplete(info_dict: Dict[str, Any]) -> bool:
@@ -116,6 +119,18 @@ def retry_unresolved_tickers(source_dir="artifacts"):
 
     logging.info(f"Retrying {len(unresolved)} unresolved tickers.")
     existing = {}
+    nasdaq_data = {}
+    if os.path.exists("data/partition_summary.json"):
+        with open("data/partition_summary.json", "r") as f:
+            try:
+                summary = json.load(f)
+                nasdaq_data = {rec["Symbol"]: rec for rec in fetch_nasdaq_symbols()}  # Re-fetch or load from summary if available
+            except json.JSONDecodeError:
+                logging.warning("partition_summary.json corrupt; refetching NASDAQ data.")
+                nasdaq_data = {rec["Symbol"]: rec for rec in fetch_nasdaq_symbols()}
+    else:
+        nasdaq_data = {rec["Symbol"]: rec for rec in fetch_nasdaq_symbols()}
+
     if os.path.exists(TICKER_INFO_FILE):
         with open(TICKER_INFO_FILE, "r", encoding="utf-8") as f:
             try:
@@ -128,14 +143,14 @@ def retry_unresolved_tickers(source_dir="artifacts"):
     remaining_unresolved = []
 
     for idx, batch in enumerate(batches, 1):
-        updated, unresolved_batch = process_batch(batch, existing)
+        updated, unresolved_batch = process_batch(batch, existing, nasdaq_data)
         newly_resolved.update({s: existing[s] for s in batch if s not in unresolved_batch})
         remaining_unresolved.extend(unresolved_batch)
         logging.info(f"Batch {idx}/{len(batches)} - Updated: {updated} | Unresolved: {len(unresolved_batch)}")
         if idx < len(batches):
             delay = random.uniform(*BATCH_DELAY_RANGE)
             logging.debug(f"Sleeping {delay:.1f}s before next batch...")
-            time.sleep(delay)  # Using imported time module
+            time.sleep(delay)
 
     if newly_resolved:
         existing.update(newly_resolved)
@@ -143,10 +158,12 @@ def retry_unresolved_tickers(source_dir="artifacts"):
             json.dump(existing, f, indent=2)
         logging.info(f"Added {len(newly_resolved)} newly resolved tickers to {TICKER_INFO_FILE}")
 
-    # Update remaining unresolved tickers with "n/a" values
+    # Update remaining unresolved tickers with "n/a" values and correct type
     for symbol in remaining_unresolved:
         if symbol not in existing or is_incomplete(existing[symbol]):
-            existing[symbol] = {"info": {"industry": "n/a", "sector": "n/a", "type": "Other"}}
+            etf_flag = nasdaq_data.get(symbol, {}).get("ETF", "N")
+            type_value = "ETF" if etf_flag == "Y" else "Stock"
+            existing[symbol] = {"info": {"industry": "n/a", "sector": "n/a", "type": type_value}}
 
     with open(UNRESOLVED_TICKERS_FILE, "w", encoding="utf-8") as f:
         f.write("\n".join(remaining_unresolved))
@@ -158,3 +175,13 @@ if __name__ == "__main__":
     import sys
     source_dir = sys.argv[1] if len(sys.argv) > 1 else "artifacts"
     retry_unresolved_tickers(source_dir)
+
+def fetch_nasdaq_symbols() -> List[Dict[str, str]]:  # Moved here for reuse
+    logging.info("Fetching NASDAQ symbol master list ...")
+    resp = requests.get(NASDAQ_URL, timeout=60)
+    resp.raise_for_status()
+    df = pd.read_csv(StringIO(resp.text), sep='|')
+    keep = (df['Test Issue'] == 'N') & (df['Symbol'].str.fullmatch(SYMBOL_REGEX.pattern))
+    symbols_data = df.loc[keep].to_dict(orient="records")
+    logging.info("Retrieved %d eligible symbols.", len(symbols_data))
+    return symbols_data
