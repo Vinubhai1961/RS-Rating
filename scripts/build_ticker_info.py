@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
-#!/usr/bin/env python3
-import warnings
-warnings.filterwarnings("ignore", category=FutureWarning)
 import json
 import os
 import re
