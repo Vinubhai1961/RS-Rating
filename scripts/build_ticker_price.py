@@ -14,8 +14,8 @@ TICKER_INFO_FILE = os.path.join(OUTPUT_DIR, "ticker_info.json")
 TICKER_PRICE_PART_FILE = os.path.join(OUTPUT_DIR, f"ticker_price_part_%d.json")
 LOG_PATH = "logs/build_ticker_price.log"
 BATCH_SIZE = 150
-BATCH_DELAY_RANGE = (2, 5)  # Randomized delay between batches
-MAX_BATCH_RETRIES = 1
+BATCH_DELAY_RANGE = (2, 5)
+MAX_BATCH_RETRIES = 3
 PRICE_THRESHOLD = 5.0
 
 logging.basicConfig(
@@ -71,14 +71,22 @@ def fetch_price_history(symbol: str) -> float:
         logging.warning(f"Failed to fetch price history for {symbol}: {e}")
         return None
 
-def process_batch(batch, existing):
+def process_batch(batch, ticker_info):
     for attempt in range(MAX_BATCH_RETRIES):
         try:
             prices = {}
             for symbol in batch:
                 price = fetch_price_history(symbol)
                 if price is not None and price >= PRICE_THRESHOLD:
-                    prices[symbol] = {"info": {"Price": price}}
+                    info = ticker_info.get(symbol, {}).get("info", {})
+                    prices[symbol] = {
+                        "info": {
+                            "industry": info.get("industry", "n/a"),
+                            "sector": info.get("sector", "n/a"),
+                            "type": info.get("type", "Unknown"),  # Will be Stock/ETF from ticker_info
+                            "Price": price
+                        }
+                    }
             return len(prices), [s for s in batch if s not in prices]
         except Exception as e:
             wait = (2 ** attempt) + random.uniform(0, 2)
@@ -114,7 +122,7 @@ def main(part_index=None, part_total=None, verbose=False):
     all_prices = {}
 
     for idx, batch in enumerate(tqdm(batches, desc="Processing Price Batches"), 1):
-        updated, _ = process_batch(batch, all_prices)
+        updated, _ = process_batch(batch, ticker_info)
         all_prices.update({k: v for k, v in all_prices.items() if v.get("info", {}).get("Price", 0) >= PRICE_THRESHOLD})
         logging.info("  Batch %d/%d - Fetched prices for %d tickers", idx, len(batches), updated)
         if idx < len(batches):
