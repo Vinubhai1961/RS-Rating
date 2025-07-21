@@ -1,73 +1,204 @@
 name: Build Ticker Info
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
+  schedule:
+    - cron: "15 9 * * *"  # Adjusted to 05:15 AM EDT (09:15 UTC) for daily run
 
 jobs:
   build-ticker-info:
+    strategy:
+      fail-fast: false
+      matrix:
+        part_index: [0, 1]  # Two partitions for Phase 1
+        part_total: [2]
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    timeout-minutes: 90  # Increased to 90 minutes for safety
 
-      - name: Set up Python
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: "3.11"
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
+          pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run build_ticker_info.py (Phase 1)
+      - name: Run ticker info builder (partition ${{ matrix.part_index }}, Phase 1)
         run: |
-          python scripts/build_ticker_info.py --part-index 0 --part-total 2
-          python scripts/build_ticker_info.py --part-index 1 --part-total 2
+          python scripts/build_ticker_info.py \
+            --part-index ${{ matrix.part_index }} \
+            --part-total ${{ matrix.part_total }} \
+            --verbose
+        working-directory: .
 
-      - name: Run retry_unresolved_tickers.py
-        run: python scripts/retry_unresolved_tickers.py artifacts
+      - name: Upload partition artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ticker-info-part-${{ matrix.part_index }}
+          path: |
+            data/ticker_info_part_${{ matrix.part_index }}.json
+            data/partition_summary.json
+            data/unresolved_tickers.txt
+            logs/build_ticker_info.log
+          retention-days: 5
 
-      - name: Run merge_ticker_info.py
-        run: python scripts/merge_ticker_info.py
+  merge-ticker-info:
+    needs: build-ticker-info
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
 
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download partition artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          pattern: ticker-info-part-*
+          merge-multiple: false
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Prepare files for merge
+        run: |
+          mkdir -p data logs
+          find artifacts -type f -name "ticker_info_part_*.json" -exec cp {} data/ \; || true
+          find artifacts -type f -name "partition_summary.json" -exec cp {} data/ \; || true
+          find artifacts -type f -name "unresolved_tickers.txt" -exec cp {} data/ \; || true
+          ls -l data/ | grep -E "ticker_info_part_|partition_summary.json|unresolved_tickers.txt" || echo "No expected files copied"
+
+      - name: Retry unresolved tickers
+        run: |
+          python scripts/retry_unresolved_tickers.py artifacts
+        working-directory: .
+
+      - name: Merge ticker_info.json files
+        run: |
+          python scripts/merge_ticker_info.py artifacts
+        working-directory: .
+
+      - name: Upload merged artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ticker-info
+          path: |
+            data/ticker_info.json
+            data/unresolved_tickers.txt
+            logs/merge_ticker_info.log
+          retention-days: 5
+          
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
           git add data/ticker_info.json data/ticker_info_part_*.json data/unresolved_tickers.txt logs/*
-          git commit -m "Commit Phase 1 outputs: ticker_info.json, partitions, unresolved_tickers.txt, and logs" || echo "No changes to commit"
+          edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
+          git commit -m "Commit Phase 1 outputs: ticker_info.json, partitions, unresolved_tickers.txt, and logs [${edt_time}]" || echo "No changes to commit"
           git push
 
   build-ticker-price:
+    needs: merge-ticker-info
+    strategy:
+      fail-fast: false
+      matrix:
+        part_index: [0, 1]  # Two partitions for Phase 2
+        part_total: [2]
     runs-on: ubuntu-latest
-    needs: build-ticker-info
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    timeout-minutes: 90  # Increased to 90 minutes for safety
 
-      - name: Set up Python
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download ticker info artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ticker-info
+          path: data
+
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: "3.11"
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
+          pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run build_ticker_price.py (Phase 2)
+      - name: Run ticker price builder (partition ${{ matrix.part_index }}, Phase 2)
         run: |
-          python scripts/build_ticker_price.py --part-index 0 --part-total 2
-          python scripts/build_ticker_price.py --part-index 1 --part-total 2
+          python scripts/build_ticker_price.py \
+            --part-index ${{ matrix.part_index }} \
+            --part-total ${{ matrix.part_total }} \
+            --verbose
+        working-directory: .
 
-      - name: Commit and push price data
+      - name: Upload price artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ticker-price-part-${{ matrix.part_index }}
+          path: |
+            data/ticker_price_part_${{ matrix.part_index }}.json
+            logs/build_ticker_price.log
+          retention-days: 5
+
+  merge-ticker-price:
+    needs: build-ticker-price
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download price artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          pattern: ticker-price-part-*
+          merge-multiple: false
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "actions@github.com"
-          git add data/ticker_price_part_*.json logs/build_ticker_price.log
-          git commit -m "Commit Phase 2 outputs: ticker_price_part_X.json and logs" || echo "No changes to commit"
-          git push
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Merge ticker price files
+        run: |
+          python scripts/merge_ticker_price.py artifacts
+        working-directory: .
+
+      - name: Upload final price artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ticker-price
+          path: |
+            data/ticker_price.json
+            logs/build_ticker_price.log
+          retention-days: 5
+
+      - name: Stage and commit
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/ticker_info.json data/ticker_price.json logs/
+          edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
+          git commit -m "Update ticker info and price (auto) [${edt_time}]" || echo "No changes to commit"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git || echo "Push failed, possibly no changes"
