@@ -28,6 +28,7 @@ SYMBOL_REGEX = re.compile(r"^[A-Z]{1,5}$")
 GOOD_VALUES = {"unknown", "n/a", ""}  # treated as not good
 LOG_PATH = "logs/build_ticker_info.log"
 LOG_MAX_BYTES = 2_000_000
+PRICE_THRESHOLD = 5.0  # New: Filter out tickers below $5
 # ---------------------------------------------------------------
 
 def ensure_dirs():
@@ -95,7 +96,8 @@ def is_incomplete(info_dict: Dict[str, Any]) -> bool:
     info = info_dict.get("info", {})
     sector = str(info.get("sector", "")).strip().lower()
     industry = str(info.get("industry", "")).strip().lower()
-    return (sector in GOOD_VALUES) or (industry in GOOD_VALUES)
+    price = info.get("Price")
+    return (sector in GOOD_VALUES) or (industry in GOOD_VALUES) or (price is None or price < PRICE_THRESHOLD)
 
 def needs_update(symbol: str, existing: Dict[str, Any], force_refresh: bool) -> bool:
     if symbol not in existing:
@@ -107,18 +109,25 @@ def needs_update(symbol: str, existing: Dict[str, Any], force_refresh: bool) -> 
 def yahoo_symbol(symbol: str) -> str:
     return symbol.replace(".", "-")
 
-def extract_info(mods: Dict[str, Any], symbol: str):
+def extract_info(mods: Dict[str, Any], symbol: str) -> tuple:
     entry = mods.get(symbol) or mods.get(yahoo_symbol(symbol))
     if not isinstance(entry, dict):
-        return None, None, None
+        return None, None, None, None
     prof = entry.get("summaryProfile") or {}
     industry = prof.get("industry")
     sector = prof.get("sector")
-    return sector, industry, None  # Type will come from NASDAQ data
+    # Fetch price from history
+    try:
+        hist = Ticker(symbol).history(period="1d")
+        price = hist['close'].iloc[-1] if not hist.empty else None
+    except Exception as e:
+        logging.warning(f"Failed to fetch price for {symbol}: {e}")
+        price = None
+    return sector, industry, price, None  # Type will come from NASDAQ data
 
 def partition(lst: List[str], size: int):
     for i in range(0, len(lst), size):
-        yield lst[i:i+size]
+        yield lst[i:i + size]
 
 def quality(sector: str, industry: str) -> int:
     if not sector or not industry:
@@ -154,16 +163,16 @@ def process_batch(batch, existing, nasdaq_data_map):
             unresolved.append(symbol)
             continue
 
-        sector, industry, _ = extract_info(mods, symbol)
+        sector, industry, price, _ = extract_info(mods, symbol)
         sec_type = nasdaq_data_map[symbol].get("Security Type", "Other")
-        if sector and industry and quality(sector, industry):
+        if sector and industry and quality(sector, industry) and price is not None and price >= PRICE_THRESHOLD:
             prev = existing.get(symbol)
             if (not prev) or (prev["info"]["sector"] != sector) or (prev["info"]["industry"] != industry):
-                existing[symbol] = {"info": {"industry": industry, "sector": sector, "type": sec_type}}
+                existing[symbol] = {"info": {"industry": industry, "sector": sector, "type": sec_type, "Price": price}}
                 updated += 1
         else:
             if symbol not in existing:
-                existing[symbol] = {"info": {"industry": "n/a", "sector": "n/a", "type": sec_type}}
+                existing[symbol] = {"info": {"industry": "n/a", "sector": "n/a", "type": sec_type, "Price": price if price is not None else 0}}
             unresolved.append(symbol)
 
     return updated, unresolved
