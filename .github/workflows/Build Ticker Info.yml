@@ -94,6 +94,11 @@ jobs:
           # Verify copied files
           ls -l artifacts/ | grep -E "ticker_info_part_|partition_summary.json|unresolved_tickers.txt" || echo "No expected files copied"
 
+      - name: Retry unresolved tickers
+        run: |
+          python scripts/retry_unresolved_tickers.py artifacts
+        working-directory: .
+
       - name: Merge ticker_info.json files
         run: |
           python scripts/merge_ticker_info.py artifacts
