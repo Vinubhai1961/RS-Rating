@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning)
 import json
 import os
 import glob
@@ -11,9 +13,7 @@ TICKER_INFO_FILE = os.path.join(OUTPUT_DIR, "ticker_info.json")
 UNRESOLVED_TICKERS_FILE = os.path.join(OUTPUT_DIR, "unresolved_tickers.txt")
 LOG_PATH = "logs/retry_tickers.log"
 BATCH_SIZE = 200
-PRICE_THRESHOLD = 5.0
 
-# Setup logging
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -23,8 +23,11 @@ logging.basicConfig(
     ]
 )
 
+def ensure_dirs():
+    os.makedirs("logs", exist_ok=True)
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+
 def load_unresolved_tickers(source_dir="artifacts"):
-    """Load unresolved tickers from all partition files."""
     unresolved = set()
     pattern = os.path.join(source_dir, "**", "unresolved_tickers.txt")
     files = glob.glob(pattern, recursive=True)
@@ -40,7 +43,6 @@ def yahoo_symbol(symbol: str) -> str:
     return symbol.replace(".", "-")
 
 def fetch_ticker_data(symbol: str) -> Dict[str, Any]:
-    """Fetch data for a single ticker including price."""
     try:
         yq = Ticker(yahoo_symbol(symbol), asynchronous=True, validate=True)
         mods = yq.get_modules(["summaryProfile", "quoteType"])
@@ -48,16 +50,11 @@ def fetch_ticker_data(symbol: str) -> Dict[str, Any]:
         if not isinstance(entry, dict):
             return None
         prof = entry.get("summaryProfile") or {}
-        hist = yq.history(period="1d")
-        price = hist['close'].iloc[-1] if not hist.empty else None
-        if price is None or price < PRICE_THRESHOLD:
-            return None
         return {
             "info": {
                 "industry": prof.get("industry", "n/a"),
                 "sector": prof.get("sector", "n/a"),
-                "type": "Other",  # Default type, can be refined
-                "Price": price
+                "type": "Other"
             }
         }
     except Exception as e:
@@ -65,9 +62,7 @@ def fetch_ticker_data(symbol: str) -> Dict[str, Any]:
         return None
 
 def retry_unresolved_tickers(source_dir="artifacts"):
-    os.makedirs("logs", exist_ok=True)
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
-
+    ensure_dirs()
     start_time = datetime.now().strftime("%I:%M %p EDT on %A, %B %d, %Y")
     logging.info(f"Starting retry process at {start_time}")
 
@@ -99,7 +94,6 @@ def retry_unresolved_tickers(source_dir="artifacts"):
             json.dump(existing, f, indent=2)
         logging.info(f"Added {len(newly_resolved)} newly resolved tickers to {TICKER_INFO_FILE}")
 
-    # Update unresolved_tickers.txt with remaining unresolved
     remaining_unresolved = [s for s in unresolved if s not in newly_resolved]
     with open(UNRESOLVED_TICKERS_FILE, "w", encoding="utf-8") as f:
         f.write("\n".join(remaining_unresolved))
