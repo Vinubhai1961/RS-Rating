@@ -12,16 +12,12 @@ logging.basicConfig(
     handlers=[logging.FileHandler("logs/retry_unresolved_tickers.log"), logging.StreamHandler()]
 )
 
-def load_unresolved_tickers(artifacts_dir):
-    unresolved_file = os.path.join(artifacts_dir, "unresolved_tickers.txt")
+def load_unresolved_tickers() -> list[str]:
+    unresolved_file = os.path.join("data", "unresolved_tickers.txt")
     if os.path.exists(unresolved_file):
         with open(unresolved_file, "r", encoding="utf-8") as f:
             return [line.strip() for line in f if line.strip()]
-    logging.warning(f"{unresolved_file} not found, falling back to data/unresolved_tickers.txt")
-    fallback_file = os.path.join("data", "unresolved_tickers.txt")
-    if os.path.exists(fallback_file):
-        with open(fallback_file, "r", encoding="utf-8") as f:
-            return [line.strip() for line in f if line.strip()]
+    logging.warning(f"{unresolved_file} not found.")
     return []
 
 def fetch_nasdaq_symbols():
