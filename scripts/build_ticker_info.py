@@ -21,11 +21,11 @@ UNRESOLVED_LIST_PATH = "data/unresolved_tickers.txt"
 PARTITION_SUMMARY_PATH = "data/partition_summary.json"
 NASDAQ_URL = "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqtraded.txt"
 BATCH_SIZE = 200
-BATCH_DELAY_RANGE = (2, 5)  # randomized delay between batches
+BATCH_DELAY_RANGE = (2, 5)
 RETRY_SUBPASS = True
 MAX_BATCH_RETRIES = 3
 SYMBOL_REGEX = re.compile(r"^[A-Z]{1,5}$")
-GOOD_VALUES = {"unknown", "n/a", ""}  # treated as not good
+GOOD_VALUES = {"unknown", "n/a", ""}
 LOG_PATH = "logs/build_ticker_info.log"
 LOG_MAX_BYTES = 2_000_000
 # ---------------------------------------------------------------
@@ -95,7 +95,7 @@ def is_incomplete(info_dict: Dict[str, Any]) -> bool:
     info = info_dict.get("info", {})
     sector = str(info.get("sector", "")).strip().lower()
     industry = str(info.get("industry", "")).strip().lower()
-    return (sector in GOOD_VALUES) or (industry in GOOD_VALUES)
+    return sector in GOOD_VALUES or industry in GOOD_VALUES
 
 def needs_update(symbol: str, existing: Dict[str, Any], force_refresh: bool) -> bool:
     if symbol not in existing:
@@ -107,14 +107,16 @@ def needs_update(symbol: str, existing: Dict[str, Any], force_refresh: bool) -> 
 def yahoo_symbol(symbol: str) -> str:
     return symbol.replace(".", "-")
 
-def extract_info(mods: Dict[str, Any], symbol: str):
+def extract_info(mods: Dict[str, Any], symbol: str, nasdaq_data_map: Dict[str, Dict[str, str]]):
     entry = mods.get(symbol) or mods.get(yahoo_symbol(symbol))
     if not isinstance(entry, dict):
         return None, None, None
     prof = entry.get("summaryProfile") or {}
     industry = prof.get("industry")
     sector = prof.get("sector")
-    return sector, industry, None  # Type will come from NASDAQ data
+    etf_flag = nasdaq_data_map.get(symbol, {}).get("ETF", "N")
+    type_value = "ETF" if etf_flag == "Y" else "Stock"
+    return sector, industry, type_value
 
 def partition(lst: List[str], size: int):
     for i in range(0, len(lst), size):
@@ -141,7 +143,7 @@ def process_batch(batch, existing, nasdaq_data_map):
             time.sleep(wait)
     else:
         logging.error(f"Batch failed after {MAX_BATCH_RETRIES} attempts.")
-        return 0, batch  # treat all as unresolved
+        return 0, batch
 
     failed = set(mods.get("failed") or [])
     updated = 0
@@ -150,20 +152,19 @@ def process_batch(batch, existing, nasdaq_data_map):
     for symbol in tqdm(batch, desc="Symbols", leave=False):
         if symbol in failed:
             if symbol not in existing:
-                existing[symbol] = {"info": {"industry": "n/a", "sector": "n/a", "type": nasdaq_data_map[symbol].get("Security Type", "Other")}}
+                existing[symbol] = {"info": {"industry": "n/a", "sector": "n/a", "type": nasdaq_data_map[symbol].get("ETF", "N") == "Y" and "ETF" or "Stock"}}
             unresolved.append(symbol)
             continue
 
-        sector, industry, _ = extract_info(mods, symbol)
-        sec_type = nasdaq_data_map[symbol].get("Security Type", "Other")
+        sector, industry, type_value = extract_info(mods, symbol, nasdaq_data_map)
         if sector and industry and quality(sector, industry):
             prev = existing.get(symbol)
             if (not prev) or (prev["info"]["sector"] != sector) or (prev["info"]["industry"] != industry):
-                existing[symbol] = {"info": {"industry": industry, "sector": sector, "type": sec_type}}
+                existing[symbol] = {"info": {"industry": industry, "sector": sector, "type": type_value}}
                 updated += 1
         else:
             if symbol not in existing:
-                existing[symbol] = {"info": {"industry": "n/a", "sector": "n/a", "type": sec_type}}
+                existing[symbol] = {"info": {"industry": "n/a", "sector": "n/a", "type": type_value or (nasdaq_data_map[symbol].get("ETF", "N") == "Y" and "ETF" or "Stock")}}
             unresolved.append(symbol)
 
     return updated, unresolved
@@ -209,7 +210,7 @@ def main(part_index=None, part_total=None, max_batches=None,
         updated, unresolved = process_batch(batch, existing, nasdaq_data_map)
         updated_total += updated
         all_unresolved.extend(unresolved)
-        save(existing, part_index)  # Save to partition-specific file
+        save(existing, part_index)
         logging.info("  Batch %d/%d - Updated: %d | Unresolved: %d | Updated total: %d",
                      idx, len(batches), updated, len(unresolved), updated_total)
         if idx < len(batches):
@@ -226,7 +227,7 @@ def main(part_index=None, part_total=None, max_batches=None,
                               desc="Retry Batches"):
                 updated, retry_unres = process_batch(batch, existing, nasdaq_data_map)
                 updated_total += updated
-                save(existing, part_index)  # Save to partition-specific file
+                save(existing, part_index)
                 logging.info("  Retry batch updated: %d | still unresolved: %d | Updated total: %d",
                              updated, len(retry_unres), updated_total)
                 time.sleep(random.uniform(2, 4))
@@ -235,7 +236,7 @@ def main(part_index=None, part_total=None, max_batches=None,
     with open(UNRESOLVED_LIST_PATH, "w") as f:
         f.write("\n".join(unresolved_final))
 
-    save(existing, part_index)  # Final save for the partition
+    save(existing, part_index)
 
     elapsed = time.time() - start_time
     summary = {
