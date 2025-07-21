@@ -1,0 +1,42 @@
+2025-07-21 13:58:45,146 [INFO] Starting retry process at 01:58 PM EDT on Monday, July 21, 2025
+2025-07-21 13:58:45,148 [INFO] Retrying 4738 unresolved tickers.
+2025-07-21 13:58:45,148 [INFO] Fetching NASDAQ symbol master list ...
+2025-07-21 13:58:45,537 [INFO] Retrieved 11051 eligible symbols.
+2025-07-21 13:58:55,616 [WARNING] Failed to fetch batch data: HTTPSConnectionPool(host='query2.finance.yahoo.com', port=443): Max retries exceeded with url: /v1/test/getcrumb (Caused by ResponseError('too many 429 error responses'))
+2025-07-21 13:58:55,616 [WARNING] Batch error (attempt 1). Retrying in 2.3s.
+2025-07-21 13:59:01,902 [INFO] Batch 1/24 - Updated: 0 | Unresolved: 200
+2025-07-21 13:59:11,764 [WARNING] Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='query2.finance.yahoo.com', port=443): Read timed out. (read timeout=5)")': /v1/test/getcrumb
+2025-07-21 13:59:14,825 [INFO] Batch 2/24 - Updated: 0 | Unresolved: 200
+2025-07-21 13:59:23,471 [INFO] Batch 3/24 - Updated: 0 | Unresolved: 200
+2025-07-21 13:59:33,787 [INFO] Batch 4/24 - Updated: 0 | Unresolved: 200
+2025-07-21 13:59:40,223 [INFO] Batch 5/24 - Updated: 0 | Unresolved: 200
+2025-07-21 13:59:48,453 [INFO] Batch 6/24 - Updated: 1 | Unresolved: 199
+2025-07-21 13:59:54,434 [INFO] Batch 7/24 - Updated: 1 | Unresolved: 199
+2025-07-21 14:00:08,384 [WARNING] Failed to fetch batch data: HTTPSConnectionPool(host='query2.finance.yahoo.com', port=443): Max retries exceeded with url: /v1/test/getcrumb (Caused by ResponseError('too many 429 error responses'))
+2025-07-21 14:00:08,384 [WARNING] Batch error (attempt 1). Retrying in 1.3s.
+2025-07-21 14:00:14,844 [INFO] Batch 8/24 - Updated: 0 | Unresolved: 200
+2025-07-21 14:00:21,950 [INFO] Batch 9/24 - Updated: 0 | Unresolved: 200
+2025-07-21 14:00:28,432 [INFO] Batch 10/24 - Updated: 0 | Unresolved: 200
+2025-07-21 14:00:40,746 [WARNING] Failed to fetch batch data: HTTPSConnectionPool(host='query2.finance.yahoo.com', port=443): Max retries exceeded with url: /v1/test/getcrumb (Caused by ResponseError('too many 429 error responses'))
+2025-07-21 14:00:40,746 [WARNING] Batch error (attempt 1). Retrying in 3.0s.
+2025-07-21 14:00:48,012 [INFO] Batch 11/24 - Updated: 1 | Unresolved: 199
+2025-07-21 14:00:55,671 [INFO] Batch 12/24 - Updated: 0 | Unresolved: 200
+2025-07-21 14:01:04,290 [INFO] Batch 13/24 - Updated: 0 | Unresolved: 200
+2025-07-21 14:01:12,206 [INFO] Batch 14/24 - Updated: 1 | Unresolved: 199
+2025-07-21 14:01:24,908 [WARNING] Failed to fetch batch data: HTTPSConnectionPool(host='query2.finance.yahoo.com', port=443): Max retries exceeded with url: /v1/test/getcrumb (Caused by ResponseError('too many 429 error responses'))
+2025-07-21 14:01:24,908 [WARNING] Batch error (attempt 1). Retrying in 1.5s.
+2025-07-21 14:01:36,396 [WARNING] Failed to fetch batch data: HTTPSConnectionPool(host='query2.finance.yahoo.com', port=443): Max retries exceeded with url: /v1/test/getcrumb (Caused by ResponseError('too many 429 error responses'))
+2025-07-21 14:01:36,396 [WARNING] Batch error (attempt 2). Retrying in 2.3s.
+2025-07-21 14:01:42,462 [INFO] Batch 15/24 - Updated: 0 | Unresolved: 200
+2025-07-21 14:01:49,205 [INFO] Batch 16/24 - Updated: 1 | Unresolved: 199
+2025-07-21 14:01:57,449 [INFO] Batch 17/24 - Updated: 0 | Unresolved: 200
+2025-07-21 14:02:06,312 [INFO] Batch 18/24 - Updated: 0 | Unresolved: 200
+2025-07-21 14:02:13,715 [INFO] Batch 19/24 - Updated: 0 | Unresolved: 200
+2025-07-21 14:02:21,820 [INFO] Batch 20/24 - Updated: 0 | Unresolved: 200
+2025-07-21 14:02:30,475 [INFO] Batch 21/24 - Updated: 1 | Unresolved: 199
+2025-07-21 14:02:36,569 [INFO] Batch 22/24 - Updated: 0 | Unresolved: 200
+2025-07-21 14:02:45,103 [INFO] Batch 23/24 - Updated: 0 | Unresolved: 200
+2025-07-21 14:02:53,179 [INFO] Batch 24/24 - Updated: 0 | Unresolved: 138
+2025-07-21 14:02:53,239 [INFO] Added 6 newly resolved tickers to data/ticker_info.json
+2025-07-21 14:02:53,245 [INFO] Updated data/unresolved_tickers.txt with 4732 remaining unresolved tickers.
+2025-07-21 14:02:53,246 [INFO] Retry process completed.
