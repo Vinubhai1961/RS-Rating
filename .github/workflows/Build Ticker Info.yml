@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        part_index: [0, 1]  # Two partitions
+        part_index: [0, 1]  # Two partitions for Phase 1
         part_total: [2]
     runs-on: ubuntu-latest
     timeout-minutes: 60  # Reduced to 60 minutes
@@ -28,7 +28,7 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run ticker info builder (partition ${{ matrix.part_index }})
+      - name: Run ticker info builder (partition ${{ matrix.part_index }}, Phase 1)
         run: |
           python scripts/build_ticker_info.py \
             --part-index ${{ matrix.part_index }} \
@@ -75,10 +75,10 @@ jobs:
       - name: Prepare files for merge
         run: |
           mkdir -p data logs
-          find artifacts -type f -name "ticker_info_part_*.json" -exec cp {} artifacts/ \; || true
-          find artifacts -type f -name "partition_summary.json" -exec cp {} artifacts/ \; || true
-          find artifacts -type f -name "unresolved_tickers.txt" -exec cp {} artifacts/ \; || true
-          ls -l artifacts/ | grep -E "ticker_info_part_|partition_summary.json|unresolved_tickers.txt" || echo "No expected files copied"
+          find artifacts -type f -name "ticker_info_part_*.json" -exec cp {} data/ \; || true
+          find artifacts -type f -name "partition_summary.json" -exec cp {} data/ \; || true
+          find artifacts -type f -name "unresolved_tickers.txt" -exec cp {} data/ \; || true
+          ls -l data/ | grep -E "ticker_info_part_|partition_summary.json|unresolved_tickers.txt" || echo "No expected files copied"
 
       - name: Retry unresolved tickers
         run: |
@@ -102,6 +102,11 @@ jobs:
 
   build-ticker-price:
     needs: merge-ticker-info
+    strategy:
+      fail-fast: false
+      matrix:
+        part_index: [0, 1]  # Two partitions for Phase 2
+        part_total: [2]
     runs-on: ubuntu-latest
     timeout-minutes: 60
 
@@ -124,28 +129,54 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run ticker price builder (part 1)
+      - name: Run ticker price builder (partition ${{ matrix.part_index }}, Phase 2)
         run: |
           python scripts/build_ticker_price.py \
-            --part-index 0 \
-            --part-total 2 \
+            --part-index ${{ matrix.part_index }} \
+            --part-total ${{ matrix.part_total }} \
             --verbose
-        working-directory: .
-
-      - name: Run ticker price builder (part 2)
-        run: |
-          python scripts/build_ticker_price.py \
-            --part-index 1 \
-            --part-total 2 \
-            --verbose
-        working-directory: .
-
-      - name: Merge ticker price files
-        run: |
-          python scripts/merge_ticker_price.py
         working-directory: .
 
       - name: Upload price artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ticker-price-part-${{ matrix.part_index }}
+          path: |
+            data/ticker_price_part_${{ matrix.part_index }}.json
+            logs/build_ticker_price.log
+          retention-days: 5
+
+  merge-ticker-price:
+    needs: build-ticker-price
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download price artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          pattern: ticker-price-part-*
+          merge-multiple: false
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Merge ticker price files
+        run: |
+          python scripts/merge_ticker_price.py artifacts
+        working-directory: .
+
+      - name: Upload final price artifact
         uses: actions/upload-artifact@v4
         with:
           name: ticker-price
