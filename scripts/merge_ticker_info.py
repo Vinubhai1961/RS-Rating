@@ -15,7 +15,7 @@ TICKER_INFO_FILE = os.path.join(OUTPUT_DIR, "ticker_info.json")
 UNRESOLVED_TICKERS_FILE = os.path.join(OUTPUT_DIR, "unresolved_tickers.txt")
 LOG_PATH = "logs/retry_tickers.log"
 BATCH_SIZE = 200
-MAX_BATCH_RETRIES = 3
+MAX_BATCH_RETRIES = 1
 BATCH_DELAY_RANGE = (2, 5)
 
 logging.basicConfig(
