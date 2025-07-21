@@ -8,6 +8,7 @@ import logging
 from yahooquery import Ticker
 from tqdm import tqdm
 from datetime import datetime
+import time  # Added to enable time.time() and time.sleep()
 
 OUTPUT_DIR = "data"
 TICKER_INFO_FILE = os.path.join(OUTPUT_DIR, "ticker_info.json")
@@ -15,7 +16,7 @@ TICKER_PRICE_PART_FILE = os.path.join(OUTPUT_DIR, f"ticker_price_part_%d.json")
 LOG_PATH = "logs/build_ticker_price.log"
 BATCH_SIZE = 150
 BATCH_DELAY_RANGE = (2, 5)
-MAX_BATCH_RETRIES = 1
+MAX_BATCH_RETRIES = 3
 PRICE_THRESHOLD = 5.0
 
 logging.basicConfig(
@@ -83,7 +84,7 @@ def process_batch(batch, ticker_info):
                         "info": {
                             "industry": info.get("industry", "n/a"),
                             "sector": info.get("sector", "n/a"),
-                            "type": info.get("type", "Unknown"),  # Will be Stock/ETF from ticker_info
+                            "type": info.get("type", "Unknown"),
                             "Price": price
                         }
                     }
