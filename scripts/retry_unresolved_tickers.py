@@ -8,7 +8,10 @@ import logging
 from yahooquery import Ticker
 from datetime import datetime
 import random
-from typing import Dict, Any  # Explicitly included to define Dict
+from typing import Dict, Any
+
+# Define GOOD_VALUES to match build_ticker_info.py
+GOOD_VALUES = {"unknown", "n/a", ""}
 
 OUTPUT_DIR = "data"
 TICKER_INFO_FILE = os.path.join(OUTPUT_DIR, "ticker_info.json")
@@ -80,8 +83,8 @@ def process_batch(batch, existing):
             prof = entry.get("summaryProfile", {})
             data = {
                 "info": {
-                    "industry": prof.get("industry", "n/a"),
-                    "sector": prof.get("sector", "n/a"),
+                    "industry": prof.get("industry", ""),
+                    "sector": prof.get("sector", ""),
                     "type": "Other"
                 }
             }
@@ -90,6 +93,8 @@ def process_batch(batch, existing):
                 updated += 1
             else:
                 unresolved.append(symbol)
+        else:
+            unresolved.append(symbol)  # Handle case where entry is not a dict
     return updated, unresolved
 
 def is_incomplete(info_dict: Dict[str, Any]) -> bool:
@@ -137,7 +142,11 @@ def retry_unresolved_tickers(source_dir="artifacts"):
             json.dump(existing, f, indent=2)
         logging.info(f"Added {len(newly_resolved)} newly resolved tickers to {TICKER_INFO_FILE}")
 
-    remaining_unresolved = [s for s in unresolved if s not in newly_resolved]
+    # Update remaining unresolved tickers with "n/a" values
+    for symbol in remaining_unresolved:
+        if symbol not in existing or is_incomplete(existing[symbol]):
+            existing[symbol] = {"info": {"industry": "n/a", "sector": "n/a", "type": "Other"}}
+
     with open(UNRESOLVED_TICKERS_FILE, "w", encoding="utf-8") as f:
         f.write("\n".join(remaining_unresolved))
     logging.info(f"Updated {UNRESOLVED_TICKERS_FILE} with {len(remaining_unresolved)} remaining unresolved tickers.")
