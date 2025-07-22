@@ -15,3 +15,6 @@ log/*.log
 
 # System files
 .DS_Store
+
+# Adding tmp/ to .gitignore to prevent committing temporary historical data.
+tmp/
