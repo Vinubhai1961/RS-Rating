@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import warnings
-warnings.filterwarnings("ignore", category=FutureWarning)
+warnings.filterWarnings("ignore", category=FutureWarning)
 import json
 import os
 import argparse
@@ -65,34 +65,43 @@ def partition_tickers(tickers, part_index, part_total):
 def yahoo_symbol(symbol: str) -> str:
     return symbol.replace(".", "-")
 
-def fetch_price_history(symbol: str) -> float:
-    try:
-        yq = Ticker(yahoo_symbol(symbol))
-        hist = yq.history(period="1d")
-        return hist['close'].iloc[-1] if not hist.empty else None
-    except Exception as e:
-        logging.warning(f"Failed to fetch price history for {symbol}: {e}")
-        return None
-
 def process_batch(batch, ticker_info):
     start_time = time.time()
     total_wait = 0
     for attempt in range(MAX_BATCH_RETRIES):
         try:
             prices = {}
+            # Convert all symbols to Yahoo format
+            yahoo_symbols = [yahoo_symbol(symbol) for symbol in batch]
+            # Fetch history for all tickers in one API call
+            yq = Ticker(yahoo_symbols)
+            hist = yq.history(period="1d")
+            
             for symbol in batch:
-                price = fetch_price_history(symbol)
-                if price is not None and price >= PRICE_THRESHOLD:
-                    info = ticker_info.get(symbol, {}).get("info", {})
-                    prices[symbol] = {
-                        "info": {
-                            "industry": info.get("industry", "n/a"),
-                            "sector": info.get("sector", "n/a"),
-                            "type": info.get("type", "Unknown"),
-                            "Price": price
+                yahoo_sym = yahoo_symbol(symbol)
+                try:
+                    # Extract the latest closing price for the symbol
+                    if yahoo_sym in hist.index.get_level_values(0):
+                        price = hist.loc[yahoo_sym]['close'].iloc[-1] if not hist.loc[yahoo_sym].empty else None
+                    else:
+                        price = None
+                    if price is not None and price >= PRICE_THRESHOLD:
+                        info = ticker_info.get(symbol, {}).get("info", {})
+                        prices[symbol] = {
+                            "info": {
+                                "industry": info.get("industry", "n/a"),
+                                "sector": info.get("sector", "n/a"),
+                                "type": info.get("type", "Unknown"),
+                                "Price": price
+                            }
                         }
-                    }
-            return len(prices), [s for s in batch if s not in prices], prices
+                    else:
+                        logging.debug(f"Skipping {symbol}: Price {price} below threshold or no data")
+                except Exception as e:
+                    logging.debug(f"Failed to process {symbol}: {e}")
+            
+            failed_tickers = [s for s in batch if s not in prices]
+            return len(prices), failed_tickers, prices
         except Exception as e:
             if "429" in str(e) or "curl" in str(e).lower():
                 wait = min((2 ** attempt) * random.uniform(5, 10), MAX_RETRY_TIMEOUT - total_wait)
@@ -133,9 +142,11 @@ def main(part_index=None, part_total=None, verbose=False):
     all_prices = {}
 
     for idx, batch in enumerate(tqdm(batches, desc="Processing Price Batches"), 1):
-        updated, _, prices = process_batch(batch, ticker_info)
-        all_prices.update(prices)  # Update with the batch's prices directly
+        updated, failed_tickers, prices = process_batch(batch, ticker_info)
+        all_prices.update(prices)
         logging.info(f"Batch {idx}/{len(batches)} - Fetched prices for {updated} tickers")
+        if failed_tickers:
+            logging.debug(f"Batch {idx}: Failed tickers: {failed_tickers}")
         if idx < len(batches):
             delay = random.uniform(*BATCH_DELAY_RANGE)
             logging.debug(f"Sleeping {delay:.1f}s before next batch...")
