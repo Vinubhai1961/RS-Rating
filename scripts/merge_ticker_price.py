@@ -17,13 +17,20 @@ def merge_price_files(artifacts_dir, expected_parts=None):
     output_file = os.path.join("data", "ticker_price.json")
     merged_data = {}
 
-    # Find all ticker_price_part_*.json files in the artifacts directory
+    # Validate input directory
+    if not os.path.exists(artifacts_dir):
+        logging.error(f"Input directory {artifacts_dir} does not exist")
+        return
+
+    logging.info(f"Searching for ticker_price_part_*.json files in {artifacts_dir}")
+
+    # Find all ticker_price_part_*.json files
     part_files = [f for f in os.listdir(artifacts_dir) if f.startswith("ticker_price_part_") and f.endswith(".json")]
     if not part_files:
         logging.error(f"No ticker_price_part_*.json files found in {artifacts_dir}")
         return
 
-    logging.info(f"Found {len(part_files)} part files to merge")
+    logging.info(f"Found {len(part_files)} part files to merge: {part_files}")
     if expected_parts is not None and len(part_files) < expected_parts:
         logging.warning(f"Expected {expected_parts} part files, but found only {len(part_files)}")
 
@@ -55,10 +62,6 @@ def main(artifacts_dir, expected_parts=None):
     start_time = time.time()
     start_time_str = datetime.now().strftime("%I:%M %p EDT on %A, %B %d, %Y")
     logging.info(f"Starting price merge process at {start_time_str}")
-
-    if not os.path.exists(artifacts_dir):
-        logging.error(f"Artifacts directory {artifacts_dir} not found")
-        return
 
     merge_price_files(artifacts_dir, expected_parts)
 
