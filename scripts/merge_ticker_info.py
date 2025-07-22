@@ -17,7 +17,7 @@ logging.basicConfig(
 )
 
 def ensure_dirs():
-    os.makedirs("logs", exist Natural
+    os.makedirs("logs", exist_ok=True)
 
 def merge_ticker_info(artifacts_dir):
     output_file = os.path.join("data", "ticker_info.json")
