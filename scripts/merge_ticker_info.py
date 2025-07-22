@@ -3,64 +3,78 @@ import json
 import os
 import glob
 import logging
+import time
 from datetime import datetime
 
-OUTPUT_DIR = "data"
-TICKER_INFO_FILE = os.path.join(OUTPUT_DIR, "ticker_info.json")
-LOG_PATH = "logs/merge_ticker_info.log"
-
+# Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
     handlers=[
-        logging.FileHandler(LOG_PATH, encoding="utf-8"),
+        logging.FileHandler("logs/merge_ticker_info.log", encoding="utf-8"),
         logging.StreamHandler()
     ]
 )
 
 def ensure_dirs():
-    os.makedirs("logs", exist_ok=True)
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    os.makedirs("logs", exist Natural
 
-def load_part_files():
-    pattern = os.path.join(OUTPUT_DIR, "ticker_info_part_*.json")
-    part_files = glob.glob(pattern)
-    if not part_files:
-        logging.error("No ticker_info_part_*.json files found!")
-        return {}
+def merge_ticker_info(artifacts_dir):
+    output_file = os.path.join("data", "ticker_info.json")
     merged_data = {}
+
+    # Validate input directory
+    if not os.path.exists(artifacts_dir):
+        logging.error(f"Input directory {artifacts_dir} does not exist")
+        return
+
+    logging.info(f"Searching for ticker_info_part_*.json files in {artifacts_dir}")
+
+    # Find all ticker_info_part_*.json files
+    pattern = os.path.join(artifacts_dir, "ticker_info_part_*.json")
+    part_files = sorted(glob.glob(pattern))
+    if not part_files:
+        logging.error(f"No ticker_info_part_*.json files found in {artifacts_dir}")
+        return
+
+    logging.info(f"Found {len(part_files)} part files to merge: {part_files}")
+
+    # Merge data from each part file
     for file_path in part_files:
         try:
             with open(file_path, "r", encoding="utf-8") as f:
                 part_data = json.load(f)
-                merged_data.update(part_data)
                 logging.info(f"Loaded {len(part_data)} entries from {file_path}")
+                # Merge data, updating with the latest values for any duplicate keys
+                merged_data.update(part_data)
         except json.JSONDecodeError as e:
-            logging.error(f"Invalid JSON in {file_path}: {e}")
+            logging.error(f"Failed to parse {file_path}: {e}")
         except Exception as e:
             logging.error(f"Error reading {file_path}: {e}")
-    return merged_data
 
-def save_merged_data(merged_data):
-    try:
-        with open(TICKER_INFO_FILE, "w", encoding="utf-8") as f:
-            json.dump(merged_data, f, indent=2)
-        logging.info(f"Saved {len(merged_data)} entries to {TICKER_INFO_FILE}")
-    except Exception as e:
-        logging.error(f"Error saving {TICKER_INFO_FILE}: {e}")
-
-def main():
-    start_time = datetime.now().strftime("%I:%M %p EDT on %A, %B %d, %Y")
-    ensure_dirs()
-    logging.info(f"Starting merge process at {start_time}")
-
-    merged_data = load_part_files()
     if not merged_data:
-        logging.error("No data to merge. Process aborted.")
+        logging.error("No valid data merged from part files. Skipping output file creation.")
         return
 
-    save_merged_data(merged_data)
-    logging.info("Merge process completed.")
+    # Write the merged data to the output file with sorted keys
+    os.makedirs("data", exist_ok=True)
+    with open(output_file, "w", encoding="utf-8") as f:
+        json.dump(merged_data, f, indent=2, sort_keys=True)
+    logging.info(f"Merged data saved to {output_file} with {len(merged_data)} entries")
+
+def main(artifacts_dir="data"):
+    start_time = time.time()
+    start_time_str = datetime.now().strftime("%I:%M %p EDT on %A, %B %d, %Y")
+    logging.info(f"Starting merge process at {start_time_str}")
+
+    merge_ticker_info(artifacts_dir)
+
+    elapsed_time = time.time() - start_time
+    logging.info(f"Merge process completed. Elapsed time: {elapsed_time:.1f}s")
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="Merge ticker info partition files into a single JSON file.")
+    parser.add_argument("artifacts_dir", nargs="?", default="data", help="Directory containing ticker info partition files")
+    args = parser.parse_args()
+
+    main(args.artifacts_dir)
