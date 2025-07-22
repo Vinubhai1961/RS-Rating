@@ -3,6 +3,7 @@ import os
 import json
 import argparse
 import logging
+import time
 from datetime import datetime
 
 # Configure logging
@@ -12,23 +13,37 @@ logging.basicConfig(
     handlers=[logging.FileHandler("logs/merge_ticker_price.log"), logging.StreamHandler()]
 )
 
-def merge_price_files(artifacts_dir):
+def merge_price_files(artifacts_dir, expected_parts=None):
     output_file = os.path.join("data", "ticker_price.json")
     merged_data = {}
 
     # Find all ticker_price_part_*.json files in the artifacts directory
-    for filename in os.listdir(artifacts_dir):
-        if filename.startswith("ticker_price_part_") and filename.endswith(".json"):
-            file_path = os.path.join(artifacts_dir, filename)
-            try:
-                with open(file_path, "r", encoding="utf-8") as f:
-                    part_data = json.load(f)
-                    # Merge data, updating with the latest values for any duplicate keys
-                    merged_data.update(part_data)
-            except json.JSONDecodeError as e:
-                logging.error(f"Failed to parse {filename}: {e}")
-            except Exception as e:
-                logging.error(f"Error reading {filename}: {e}")
+    part_files = [f for f in os.listdir(artifacts_dir) if f.startswith("ticker_price_part_") and f.endswith(".json")]
+    if not part_files:
+        logging.error(f"No ticker_price_part_*.json files found in {artifacts_dir}")
+        return
+
+    logging.info(f"Found {len(part_files)} part files to merge")
+    if expected_parts is not None and len(part_files) < expected_parts:
+        logging.warning(f"Expected {expected_parts} part files, but found only {len(part_files)}")
+
+    # Merge data from each part file
+    for filename in part_files:
+        file_path = os.path.join(artifacts_dir, filename)
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                part_data = json.load(f)
+                logging.info(f"Loaded {len(part_data)} tickers from {filename}")
+                # Merge data, updating with the latest values for any duplicate keys
+                merged_data.update(part_data)
+        except json.JSONDecodeError as e:
+            logging.error(f"Failed to parse {filename}: {e}")
+        except Exception as e:
+            logging.error(f"Error reading {filename}: {e}")
+
+    if not merged_data:
+        logging.error("No valid data merged from part files. Skipping output file creation.")
+        return
 
     # Write the merged data to the output file
     os.makedirs("data", exist_ok=True)
@@ -36,22 +51,24 @@ def merge_price_files(artifacts_dir):
         json.dump(merged_data, f, indent=2)
     logging.info(f"Merged data saved to {output_file} with {len(merged_data)} entries")
 
-def main(artifacts_dir):
-    start_time = datetime.now().strftime("%I:%M %p EDT on %A, %B %d, %Y")
-    logging.info(f"Starting price merge process at {start_time}")
+def main(artifacts_dir, expected_parts=None):
+    start_time = time.time()
+    start_time_str = datetime.now().strftime("%I:%M %p EDT on %A, %B %d, %Y")
+    logging.info(f"Starting price merge process at {start_time_str}")
 
     if not os.path.exists(artifacts_dir):
         logging.error(f"Artifacts directory {artifacts_dir} not found")
         return
 
-    merge_price_files(artifacts_dir)
+    merge_price_files(artifacts_dir, expected_parts)
 
-    elapsed_time = datetime.now() - datetime.strptime(start_time, "%I:%M %p EDT on %A, %B %d, %Y")
-    logging.info(f"Price merge completed. Elapsed time: {elapsed_time.total_seconds():.1f}s")
+    elapsed_time = time.time() - start_time
+    logging.info(f"Price merge completed. Elapsed time: {elapsed_time:.1f}s")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Merge ticker price partition files into a single JSON file.")
     parser.add_argument("artifacts_dir", help="Directory containing ticker price partition files")
+    parser.add_argument("--part-total", type=int, default=None, help="Expected number of part files (optional)")
     args = parser.parse_args()
 
-    main(args.artifacts_dir)
+    main(args.artifacts_dir, args.part_total)
