@@ -15,9 +15,9 @@ OUTPUT_DIR = "data"
 TICKER_INFO_FILE = os.path.join(OUTPUT_DIR, "ticker_info.json")
 TICKER_PRICE_PART_FILE = os.path.join(OUTPUT_DIR, f"ticker_price_part_%d.json")
 LOG_PATH = "logs/build_ticker_price.log"
-BATCH_SIZE = 250  # Adjusted to 250 for better load balancing
+BATCH_SIZE = 250  # Adjusted for better load balancing
 BATCH_DELAY_RANGE = (15, 20)  # Increased for spacing
-MAX_BATCH_RETRIES = 3  # Restored to 3 for resilience
+MAX_BATCH_RETRIES = 3  # For resilience
 MAX_RETRY_TIMEOUT = 120  # Cap total retry time
 PRICE_THRESHOLD = 5.0
 
@@ -134,7 +134,7 @@ def main(part_index=None, part_total=None, verbose=False):
 
     for idx, batch in enumerate(tqdm(batches, desc="Processing Price Batches"), 1):
         updated, _ = process_batch(batch, ticker_info)
-        all_prices.update({k: v for k, v in all_prices.items() if v.get("info", {}).get("Price", 0) >= PRICE_THRESHOLD})
+        all_prices.update(prices)  # Update with the batch's prices directly
         logging.info(f"Batch {idx}/{len(batches)} - Fetched prices for {updated} tickers")
         if idx < len(batches):
             delay = random.uniform(*BATCH_DELAY_RANGE)
