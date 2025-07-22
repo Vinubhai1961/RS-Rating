@@ -92,7 +92,7 @@ def process_batch(batch, ticker_info):
                             "Price": price
                         }
                     }
-            return len(prices), [s for s in batch if s not in prices]
+            return len(prices), [s for s in batch if s not in prices], prices
         except Exception as e:
             if "429" in str(e) or "curl" in str(e).lower():
                 wait = min((2 ** attempt) * random.uniform(5, 10), MAX_RETRY_TIMEOUT - total_wait)
@@ -105,7 +105,7 @@ def process_batch(batch, ticker_info):
             else:
                 logging.error(f"Unexpected error in batch: {e}. Aborting batch.")
                 break
-    return 0, batch
+    return 0, batch, {}
 
 def main(part_index=None, part_total=None, verbose=False):
     start_time = time.time()
@@ -133,7 +133,7 @@ def main(part_index=None, part_total=None, verbose=False):
     all_prices = {}
 
     for idx, batch in enumerate(tqdm(batches, desc="Processing Price Batches"), 1):
-        updated, _ = process_batch(batch, ticker_info)
+        updated, _, prices = process_batch(batch, ticker_info)
         all_prices.update(prices)  # Update with the batch's prices directly
         logging.info(f"Batch {idx}/{len(batches)} - Fetched prices for {updated} tickers")
         if idx < len(batches):
