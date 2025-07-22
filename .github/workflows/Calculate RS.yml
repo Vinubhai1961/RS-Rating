@@ -1,0 +1,39 @@
+name: Calculate RS
+
+on:
+  schedule:
+    - cron: "15 9 * * *"  # 05:15 AM EDT (09:15 UTC)
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  calculate-rs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install yahooquery pandas numpy
+
+      - name: Calculate RS and generate CSVs
+        run: |
+          mkdir -p tmp
+          python scripts/calculate_rs.py data/ticker_price.json --min-percentile 85 --reference-ticker SPY --output-dir data --log-file logs/failed_tickers.log
+          rm -rf tmp/*
+
+      - name: Commit outputs
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/rs_stocks.csv data/rs_industries.csv data/RSRATING.csv logs/failed_tickers.log
+          edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
+          git commit -m "Generate RS CSVs [${edt_time}]" || echo "No changes to commit"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git || echo "Push failed"
