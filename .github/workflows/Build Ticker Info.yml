@@ -10,8 +10,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        part_index: [0, 1, 2]  # Three partitions for Phase 1
-        part_total: [3]
+        part_index: [0, 1, 2, 3]  # Three partitions for Phase 1
+        part_total: [4]
     runs-on: ubuntu-latest
     timeout-minutes: 180  # Increased to 180 minutes for safety
 
@@ -125,8 +125,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        part_index: [0, 1, 2]  # Two partitions for Phase 2
-        part_total: [3]
+        part_index: [0, 1, 2, 3]  # Two partitions for Phase 2
+        part_total: [4]
     runs-on: ubuntu-latest
     timeout-minutes: 180  # Increased to 90 minutes for safety
 
