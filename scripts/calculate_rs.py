@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning)
 import json
 import os
 import argparse
