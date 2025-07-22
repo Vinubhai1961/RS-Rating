@@ -1,4 +1,3 @@
-("logs/merge_ticker_info.log", encoding="utf-8")
 #!/usr/bin/env python3
 import os
 import json
@@ -11,11 +10,11 @@ from datetime import datetime
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[logging.FileHandler("logs/merge_ticker_price.log"), logging.StreamHandler()]
+    handlers=[logging.FileHandler("logs/merge_ticker_info.log"), logging.StreamHandler()]
 )
 
 def merge_price_files(artifacts_dir, expected_parts=None):
-    output_file = os.path.join("data", "ticker_price.json")
+    output_file = os.path.join("data", "ticker_info.json")
     merged_data = {}
 
     # Validate input directory
@@ -23,12 +22,12 @@ def merge_price_files(artifacts_dir, expected_parts=None):
         logging.error(f"Input directory {artifacts_dir} does not exist")
         return
 
-    logging.info(f"Searching for ticker_price_part_*.json files in {artifacts_dir}")
+    logging.info(f"Searching for ticker_info_part_*.json files in {artifacts_dir}")
 
-    # Find all ticker_price_part_*.json files
-    part_files = sorted([f for f in os.listdir(artifacts_dir) if f.startswith("ticker_price_part_") and f.endswith(".json")])
+    # Find all ticker_info_part_*.json files
+    part_files = sorted([f for f in os.listdir(artifacts_dir) if f.startswith("ticker_info_part_") and f.endswith(".json")])
     if not part_files:
-        logging.error(f"No ticker_price_part_*.json files found in {artifacts_dir}")
+        logging.error(f"No ticker_info_part_*.json files found in {artifacts_dir}")
         return
 
     logging.info(f"Found {len(part_files)} part files to merge: {part_files}")
@@ -62,16 +61,16 @@ def merge_price_files(artifacts_dir, expected_parts=None):
 def main(artifacts_dir, expected_parts=None):
     start_time = time.time()
     start_time_str = datetime.now().strftime("%I:%M %p EDT on %A, %B %d, %Y")
-    logging.info(f"Starting price merge process at {start_time_str}")
+    logging.info(f"Starting ticker info merge process at {start_time_str}")
 
     merge_price_files(artifacts_dir, expected_parts)
 
     elapsed_time = time.time() - start_time
-    logging.info(f"Price merge completed. Elapsed time: {elapsed_time:.1f}s")
+    logging.info(f"Ticker info merge completed. Elapsed time: {elapsed_time:.1f}s")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Merge ticker price partition files into a single JSON file.")
-    parser.add_argument("artifacts_dir", help="Directory containing ticker price partition files")
+    parser = argparse.ArgumentParser(description="Merge ticker info partition files into a single JSON file.")
+    parser.add_argument("artifacts_dir", help="Directory containing ticker info partition files")
     parser.add_argument("--part-total", type=int, default=None, help="Expected number of part files (optional)")
     args = parser.parse_args()
 
