@@ -15,9 +15,10 @@ OUTPUT_DIR = "data"
 TICKER_INFO_FILE = os.path.join(OUTPUT_DIR, "ticker_info.json")
 TICKER_PRICE_PART_FILE = os.path.join(OUTPUT_DIR, f"ticker_price_part_%d.json")
 LOG_PATH = "logs/build_ticker_price.log"
-BATCH_SIZE = 500  # Reduced from 150 to lower request load
-BATCH_DELAY_RANGE = (2, 6)  # Increased from (2, 5) for better spacing
-MAX_BATCH_RETRIES = 2  # Increased from 3 for more retry attempts
+BATCH_SIZE = 250  # Adjusted to 250 for better load balancing
+BATCH_DELAY_RANGE = (15, 20)  # Increased for spacing
+MAX_BATCH_RETRIES = 3  # Restored to 3 for resilience
+MAX_RETRY_TIMEOUT = 120  # Cap total retry time
 PRICE_THRESHOLD = 5.0
 
 logging.basicConfig(
@@ -74,6 +75,8 @@ def fetch_price_history(symbol: str) -> float:
         return None
 
 def process_batch(batch, ticker_info):
+    start_time = time.time()
+    total_wait = 0
     for attempt in range(MAX_BATCH_RETRIES):
         try:
             prices = {}
@@ -91,16 +94,18 @@ def process_batch(batch, ticker_info):
                     }
             return len(prices), [s for s in batch if s not in prices]
         except Exception as e:
-            if "429" in str(e) or "crumb" in str(e).lower():  # Handle 429 or crumb errors
-                wait = (2 ** attempt) * random.uniform(5, 10)  # Exponential backoff
+            if "429" in str(e) or "curl" in str(e).lower():
+                wait = min((2 ** attempt) * random.uniform(5, 10), MAX_RETRY_TIMEOUT - total_wait)
+                total_wait += wait
+                if total_wait >= MAX_RETRY_TIMEOUT:
+                    logging.warning(f"Max retry timeout reached for batch after {total_wait:.1f}s. Skipping.")
+                    break
                 logging.warning(f"Batch error (attempt {attempt+1}/{MAX_BATCH_RETRIES}): {e}. Retrying in {wait:.1f}s.")
                 time.sleep(wait)
             else:
                 logging.error(f"Unexpected error in batch: {e}. Aborting batch.")
-                return 0, batch
-    else:
-        logging.error(f"Batch failed after {MAX_BATCH_RETRIES} attempts.")
-        return 0, batch
+                break
+    return 0, batch
 
 def main(part_index=None, part_total=None, verbose=False):
     start_time = time.time()
