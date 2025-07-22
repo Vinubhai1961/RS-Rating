@@ -4,12 +4,13 @@ import os
 import glob
 import logging
 import time
+import argparse
 from datetime import datetime
 
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(message)s",
+    format="%(asctime)s [%levelname]s] %(message)s",
     handlers=[
         logging.FileHandler("logs/merge_ticker_info.log", encoding="utf-8"),
         logging.StreamHandler()
@@ -18,6 +19,7 @@ logging.basicConfig(
 
 def ensure_dirs():
     os.makedirs("logs", exist_ok=True)
+    os.makedirs("data", exist_ok=True)
 
 def merge_ticker_info(artifacts_dir):
     output_file = os.path.join("data", "ticker_info.json")
