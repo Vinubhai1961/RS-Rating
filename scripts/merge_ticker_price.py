@@ -25,7 +25,7 @@ def merge_price_files(artifacts_dir, expected_parts=None):
     logging.info(f"Searching for ticker_price_part_*.json files in {artifacts_dir}")
 
     # Find all ticker_price_part_*.json files
-    part_files = [f for f in os.listdir(artifacts_dir) if f.startswith("ticker_price_part_") and f.endswith(".json")]
+    part_files = sorted([f for f in os.listdir(artifacts_dir) if f.startswith("ticker_price_part_") and f.endswith(".json")])
     if not part_files:
         logging.error(f"No ticker_price_part_*.json files found in {artifacts_dir}")
         return
@@ -52,10 +52,10 @@ def merge_price_files(artifacts_dir, expected_parts=None):
         logging.error("No valid data merged from part files. Skipping output file creation.")
         return
 
-    # Write the merged data to the output file
+    # Write the merged data to the output file with sorted keys
     os.makedirs("data", exist_ok=True)
     with open(output_file, "w", encoding="utf-8") as f:
-        json.dump(merged_data, f, indent=2)
+        json.dump(merged_data, f, indent=2, sort_keys=True)
     logging.info(f"Merged data saved to {output_file} with {len(merged_data)} entries")
 
 def main(artifacts_dir, expected_parts=None):
