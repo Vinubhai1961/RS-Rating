@@ -16,8 +16,8 @@ TICKER_INFO_FILE = os.path.join(OUTPUT_DIR, "ticker_info.json")
 TICKER_PRICE_PART_FILE = os.path.join(OUTPUT_DIR, f"ticker_price_part_%d.json")
 LOG_PATH = "logs/build_ticker_price.log"
 BATCH_SIZE = 500  # Reduced from 150 to lower request load
-BATCH_DELAY_RANGE = (5, 10)  # Increased from (2, 5) for better spacing
-MAX_BATCH_RETRIES = 5  # Increased from 3 for more retry attempts
+BATCH_DELAY_RANGE = (2, 6)  # Increased from (2, 5) for better spacing
+MAX_BATCH_RETRIES = 2  # Increased from 3 for more retry attempts
 PRICE_THRESHOLD = 5.0
 
 logging.basicConfig(
