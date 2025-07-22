@@ -3,17 +3,17 @@ name: Build Ticker Info
 on:
   workflow_dispatch:
   schedule:
-    - cron: "15 9 * * *"  # Adjusted to 05:15 AM EDT (09:15 UTC) for daily run
+    - cron: "15 9 * * *"  # 05:15 AM EDT (09:15 UTC) daily
 
 jobs:
   build-ticker-info:
     strategy:
       fail-fast: false
       matrix:
-        part_index: [0, 1, 2, 3]  # Three partitions for Phase 1
+        part_index: [0, 1, 2, 3]  # Four partitions for Phase 1
         part_total: [4]
     runs-on: ubuntu-latest
-    timeout-minutes: 180  # Increased to 180 minutes for safety
+    timeout-minutes: 180  # Allow up to 180 minutes for safety
 
     steps:
       - uses: actions/checkout@v4
@@ -27,7 +27,7 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install --upgrade cython
-          pip install -r requirements.txt
+          pip install yahooquery pandas requests tqdm
 
       - name: Run ticker info builder (partition ${{ matrix.part_index }}, Phase 1)
         run: |
@@ -72,7 +72,7 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install --upgrade cython
-          pip install -r requirements.txt
+          pip install yahooquery pandas requests tqdm
 
       - name: Prepare files for merge
         run: |
@@ -84,7 +84,7 @@ jobs:
 
       - name: Merge ticker_info.json files
         run: |
-          python scripts/merge_ticker_info.py artifacts
+          python scripts/merge_ticker_info.py data
         working-directory: .
 
       - name: Commit merged ticker_info.json
@@ -94,11 +94,11 @@ jobs:
           git add data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt
           edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
           git commit -m "Commit merged ticker_info.json, partition_summary.json, unresolved_tickers.txt [${edt_time}]" || echo "No changes to commit"
-          git push
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git || echo "Push failed, possibly no changes"
 
       - name: Retry unresolved tickers
         run: |
-          python scripts/retry_unresolved_tickers.py artifacts
+          python scripts/retry_unresolved_tickers.py data
         working-directory: .
 
       - name: Upload merged artifact
@@ -117,18 +117,18 @@ jobs:
           git config --global user.email "actions@github.com"
           git add data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt logs/*
           edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
-          git commit -m "Commit Phase 1 final outputs:ticker_info.json, unresolved_tickers.txt, partition_summary.json and logs [${edt_time}]" || echo "No changes to commit"
-          git push
+          git commit -m "Commit Phase 1 final outputs: ticker_info.json, unresolved_tickers.txt, partition_summary.json and logs [${edt_time}]" || echo "No changes to commit"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git || echo "Push failed, possibly no changes"
 
   build-ticker-price:
     needs: merge-ticker-info
     strategy:
       fail-fast: false
       matrix:
-        part_index: [0, 1, 2, 3]  # Two partitions for Phase 2
+        part_index: [0, 1, 2, 3]  # Four partitions for Phase 2
         part_total: [4]
     runs-on: ubuntu-latest
-    timeout-minutes: 180  # Increased to 90 minutes for safety
+    timeout-minutes: 180  # Allow up to 180 minutes for safety
 
     steps:
       - uses: actions/checkout@v4
@@ -148,7 +148,7 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install --upgrade cython
-          pip install -r requirements.txt
+          pip install yahooquery pandas requests tqdm
 
       - name: Run ticker price builder (partition ${{ matrix.part_index }}, Phase 2)
         run: |
@@ -191,11 +191,18 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install --upgrade cython
-          pip install -r requirements.txt
+          pip install yahooquery pandas requests tqdm
+
+      - name: Prepare files for merge
+        run: |
+          mkdir -p data logs
+          find artifacts -type f -name "ticker_price_part_*.json" -exec cp {} data/ \; || true
+          ls -l data/ | grep -E "ticker_price_part_" || echo "No ticker_price_part_*.json files copied"
+        working-directory: .
 
       - name: Merge ticker price files
         run: |
-          python scripts/merge_ticker_price.py artifacts
+          python scripts/merge_ticker_price.py data --part-total 4
         working-directory: .
 
       - name: Upload final price artifact
@@ -205,13 +212,14 @@ jobs:
           path: |
             data/ticker_price.json
             logs/build_ticker_price.log
+            logs/merge_ticker_price.log
           retention-days: 5
 
       - name: Stage and commit
         run: |
           git config user.name "github-actions"
           git config user.email "actions@users.noreply.github.com"
-          git add data/ticker_info.json data/ticker_price.json logs/
+          git add data/ticker_info.json data/ticker_price.json logs/ data/partition_summary.json data/unresolved_tickers.txt
           edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
           git commit -m "Update ticker info and price (auto) [${edt_time}]" || echo "No changes to commit"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git || echo "Push failed, possibly no changes"
