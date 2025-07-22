@@ -71,6 +71,7 @@ def process_batch(batch, ticker_info):
     for attempt in range(MAX_BATCH_RETRIES):
         try:
             prices = {}
+            failure_reasons = {"below_threshold": 0, "no_data": 0, "error": 0}
             # Convert all symbols to Yahoo format
             yahoo_symbols = [yahoo_symbol(symbol) for symbol in batch]
             # Fetch history for all tickers in one API call
@@ -97,10 +98,13 @@ def process_batch(batch, ticker_info):
                         }
                     else:
                         logging.debug(f"Skipping {symbol}: Price {price} below threshold or no data")
+                        failure_reasons["below_threshold" if price is not None else "no_data"] += 1
                 except Exception as e:
                     logging.debug(f"Failed to process {symbol}: {e}")
+                    failure_reasons["error"] += 1
             
             failed_tickers = [s for s in batch if s not in prices]
+            logging.info(f"Batch failure reasons: {failure_reasons}")
             return len(prices), failed_tickers, prices
         except Exception as e:
             if "429" in str(e) or "curl" in str(e).lower():
