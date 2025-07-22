@@ -5,12 +5,12 @@ import glob
 import logging
 import time
 import argparse
-from datetime import datetime
+from datetime import datetime, timezone
 
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s [%levelname]s] %(message)s",
+    format="%(asctime)s [%(levelname)s] %(message)s",
     handlers=[
         logging.FileHandler("logs/merge_ticker_info.log", encoding="utf-8"),
         logging.StreamHandler()
@@ -18,12 +18,15 @@ logging.basicConfig(
 )
 
 def ensure_dirs():
+    """Ensure required directories exist."""
     os.makedirs("logs", exist_ok=True)
     os.makedirs("data", exist_ok=True)
 
 def merge_ticker_info(artifacts_dir):
+    """Merge ticker info from partition files into a single JSON file."""
     output_file = os.path.join("data", "ticker_info.json")
-    merged_data = {}
+    all_data = []
+    expected_total = 6383  # Sum of updated symbols: 1742 + 1386 + 1683 + 1523
 
     # Validate input directory
     if not os.path.exists(artifacts_dir):
@@ -46,29 +49,53 @@ def merge_ticker_info(artifacts_dir):
         try:
             with open(file_path, "r", encoding="utf-8") as f:
                 part_data = json.load(f)
+                if not isinstance(part_data, list):
+                    logging.error(f"Expected list in {file_path}, got {type(part_data)}")
+                    continue
                 logging.info(f"Loaded {len(part_data)} entries from {file_path}")
-                # Merge data, updating with the latest values for any duplicate keys
-                merged_data.update(part_data)
+                all_data.extend(part_data)
         except json.JSONDecodeError as e:
             logging.error(f"Failed to parse {file_path}: {e}")
         except Exception as e:
             logging.error(f"Error reading {file_path}: {e}")
 
-    if not merged_data:
+    if not all_data:
         logging.error("No valid data merged from part files. Skipping output file creation.")
         return
 
-    # Write the merged data to the output file with sorted keys
-    os.makedirs("data", exist_ok=True)
-    with open(output_file, "w", encoding="utf-8") as f:
-        json.dump(merged_data, f, indent=2, sort_keys=True)
-    logging.info(f"Merged data saved to {output_file} with {len(merged_data)} entries")
+    # Deduplicate by symbol
+    unique_data = {}
+    for item in all_data:
+        if not isinstance(item, dict) or "symbol" not in item:
+            logging.warning(f"Skipping invalid entry: {item}")
+            continue
+        symbol = item["symbol"]
+        unique_data[symbol] = item  # Keep the last entry for each symbol
+
+    logging.info(f"Total unique symbols after deduplication: {len(unique_data)}")
+
+    # Verify expected total
+    if len(unique_data) != expected_total:
+        logging.warning(
+            f"Expected {expected_total} symbols, but merged {len(unique_data)}. "
+            f"Possible duplicates or missing data in partition files."
+        )
+
+    # Write merged data to output file
+    try:
+        with open(output_file, "w", encoding="utf-8") as f:
+            json.dump(list(unique_data.values()), f, indent=2, sort_keys=True)
+        logging.info(f"Merged {len(unique_data)} symbols into {output_file}")
+    except Exception as e:
+        logging.error(f"Error writing to {output_file}: {e}")
 
 def main(artifacts_dir="data"):
+    """Main function to execute the merge process."""
     start_time = time.time()
-    start_time_str = datetime.now().strftime("%I:%M %p EDT on %A, %B %d, %Y")
+    start_time_str = datetime.now(timezone.utc).strftime("%I:%M %p UTC on %A, %B %d, %Y")
     logging.info(f"Starting merge process at {start_time_str}")
 
+    ensure_dirs()
     merge_ticker_info(artifacts_dir)
 
     elapsed_time = time.time() - start_time
