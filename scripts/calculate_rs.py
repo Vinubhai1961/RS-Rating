@@ -9,6 +9,8 @@ from datetime import datetime, timedelta
 import pandas as pd
 import numpy as np
 from yahooquery import Ticker
+import sys
+import time
 
 def quarters_perf(closes: pd.Series, n: int) -> float:
     """Calculate performance for the last n quarters (n*63 days)."""
@@ -81,6 +83,9 @@ def main(input_file, min_percentile, reference_ticker, output_dir, log_file):
     logging.basicConfig(filename=log_file, level=logging.INFO, format="%(asctime)s - %(message)s")
     
     # Load ticker_price.json
+    if not os.path.exists(input_file):
+        logging.error(f"Input file {input_file} not found")
+        sys.exit(1)
     with open(input_file, "r") as f:
         data = json.load(f)
     
@@ -101,7 +106,15 @@ def main(input_file, min_percentile, reference_ticker, output_dir, log_file):
     os.makedirs("tmp", exist_ok=True)
     history_file = "tmp/ticker_history.json"
     tickers = list(data.keys())
+    if reference_ticker not in tickers:
+        logging.error(f"Reference ticker {reference_ticker} not found in {input_file}")
+        sys.exit(1)
     history = fetch_historical_data(tickers, history_file, log_file)
+    
+    # Validate reference ticker data
+    if reference_ticker not in history or len(history[reference_ticker]) < 20:
+        logging.error(f"Reference ticker {reference_ticker} has insufficient data ({len(history.get(reference_ticker, []))} days)")
+        sys.exit(1)
     
     # Calculate RS
     rs_results = []
@@ -127,6 +140,20 @@ def main(input_file, min_percentile, reference_ticker, output_dir, log_file):
     df_stocks = pd.DataFrame(rs_results, columns=["Ticker", "Relative Strength", "1 Month Ago", "3 Months Ago", "6 Months Ago"])
     df_stocks = df_stocks.merge(metadata_df, on="Ticker")
     df_stocks = df_stocks.dropna(subset=["Relative Strength"])
+    if df_stocks.empty:
+        logging.warning("No tickers with valid RS data after filtering")
+        # Still generate empty CSVs to avoid workflow failure
+        df_stocks.to_csv(os.path.join(output_dir, "rs_stocks.csv"), index=False)
+        pd.DataFrame(columns=["Rank", "Industry", "Sector", "Relative Strength", "Percentile", 
+                              "1 Month Ago", "3 Months Ago", "6 Months Ago", "Tickers", "Price"]).to_csv(
+            os.path.join(output_dir, "rs_industries.csv"), index=False
+        )
+        pd.DataFrame(columns=["symbol", "rsrating", "time"]).to_csv(
+            os.path.join(output_dir, "RSRATING.csv"), index=False
+        )
+        os.remove(history_file)
+        os.rmdir("tmp")
+        return
     
     # Compute percentiles
     for col in ["Relative Strength", "1 Month Ago", "3 Months Ago", "6 Months Ago"]:
