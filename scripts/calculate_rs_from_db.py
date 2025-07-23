@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 import os
+import sys
 import json
 import argparse
 import logging
-from datetime import datetime, timedelta
+from datetime import datetime
 import pandas as pd
 import numpy as np
 import arcticdb as adb
@@ -53,17 +54,18 @@ def main(arctic_db_path, min_percentile, reference_ticker, output_dir, log_file,
     logging.basicConfig(filename=log_file, level=logging.INFO, format="%(asctime)s - %(message)s")
     os.makedirs(output_dir, exist_ok=True)
     
-    # Load ArcticDB
     result = load_arctic_db(arctic_db_path)
     if not result:
-        return
+        print("❌ Failed to load ArcticDB. See logs.")
+        sys.exit(1)
+
     lib, tickers = result
     
     if reference_ticker not in tickers:
         logging.error(f"Reference ticker {reference_ticker} not found")
-        return
+        print(f"❌ Reference ticker {reference_ticker} not found in ArcticDB.")
+        sys.exit(1)
 
-    # Load metadata if provided
     metadata_df = pd.DataFrame()
     if metadata_file and os.path.exists(metadata_file):
         with open(metadata_file, "r") as f:
@@ -76,13 +78,15 @@ def main(arctic_db_path, min_percentile, reference_ticker, output_dir, log_file,
         metadata_df = pd.DataFrame(metadata)
 
     logging.info(f"Starting RS calculation for {len(tickers)} tickers")
+    print(f"🔍 Processing {len(tickers)} tickers...")
 
     rs_results = []
     ref_data = lib.read(reference_ticker).data
     ref_closes = pd.Series(ref_data["close"].values, index=pd.to_datetime(ref_data["datetime"], unit='s'))
     if len(ref_closes) < 20:
         logging.error(f"Reference ticker {reference_ticker} has insufficient data ({len(ref_closes)} days)")
-        return
+        print("❌ Not enough reference ticker data.")
+        sys.exit(1)
 
     for ticker in tqdm(tickers, desc="Calculating RS"):
         if ticker == reference_ticker:
@@ -105,7 +109,8 @@ def main(arctic_db_path, min_percentile, reference_ticker, output_dir, log_file,
     df_stocks = df_stocks.merge(metadata_df, on="Ticker", how="left").dropna(subset=["Relative Strength"])
     if df_stocks.empty:
         logging.warning("No tickers with valid RS data after filtering")
-        return
+        print("⚠️ No RS results calculated. Check if ArcticDB has data.")
+        sys.exit(1)
 
     for col in ["Relative Strength", "1 Month Ago", "3 Months Ago", "6 Months Ago"]:
         df_stocks[f"{col} Percentile"] = pd.qcut(df_stocks[col], 100, labels=False, duplicates="drop")
@@ -143,6 +148,12 @@ def main(arctic_db_path, min_percentile, reference_ticker, output_dir, log_file,
     df_rating.to_csv(os.path.join(output_dir, "RSRATING.csv"), index=False)
 
     logging.info("✅ RS calculation completed successfully.")
+    print(f"\n✅ RS calculation completed. {len(df_stocks)} tickers written.")
+    print(f"📄 Output files:")
+    print(f" - rs_stocks.csv")
+    print(f" - rs_industries.csv")
+    print(f" - RSRATING.csv")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Calculate RS from ArcticDB")
