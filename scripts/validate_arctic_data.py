@@ -9,23 +9,36 @@ def validate_arctic_data(arctic_lib, log_file):
     logging.basicConfig(filename=log_file, level=logging.INFO, format="%(asctime)s - %(message)s")
     
     # Access ArcticDB
-    arctic = adb.Arctic("lmdb://tmp/arctic_db")
-    if not arctic.has_library("prices"):
-        logging.error("ArcticDB library 'prices' not found for validation")
+    try:
+        arctic = adb.Arctic("lmdb://tmp/arctic_db")
+        if not arctic.has_library("prices"):
+            logging.error("ArcticDB library 'prices' not found for validation")
+            return
+        lib = arctic.get_library("prices")
+    except Exception as e:
+        logging.error(f"Failed to access ArcticDB: {str(e)}")
         return
-    
-    lib = arctic.get_library("prices")
     
     # Get all symbols and count data points
     ticker_counts = []
+    valid_tickers = 0
+    expected_tickers = 8900  # Approximate total tickers
     for symbol in lib.list_symbols():
         try:
             data = lib.read(symbol).data
             count = len(data)
+            if count >= 2:  # Minimum for RS calculation
+                valid_tickers += 1
             latest_date = datetime.fromtimestamp(data["datetime"].max()).strftime("%Y-%m-%d")
             ticker_counts.append((symbol, count, latest_date))
         except Exception as e:
             logging.info(f"Validation failed for {symbol}: {str(e)}")
+    
+    # Log total and valid tickers
+    logging.info(f"Total tickers in ArcticDB: {len(ticker_counts)}")
+    logging.info(f"Valid tickers (≥2 data points): {valid_tickers}")
+    if valid_tickers < expected_tickers * 0.5:
+        logging.warning(f"Only {valid_tickers}/{expected_tickers} tickers have sufficient data (<50%)")
     
     # Sort by data point count (descending) and select top 10
     ticker_counts.sort(key=lambda x: x[1], reverse=True)
