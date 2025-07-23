@@ -45,7 +45,7 @@ def relative_strength(closes: pd.Series, closes_ref: pd.Series) -> float:
 def fetch_historical_data(tickers, output_file, log_file):
     """Fetch 2 years of historical data with retries."""
     max_retries = 3
-    batch_size = 100
+    batch_size = 200
     history = {}
     failed_tickers = []
     
