@@ -232,7 +232,7 @@ jobs:
       - name: Merge ArcticDB data
         run: |
           rm -rf tmp/arctic_db
-          mkdir -p tmp/arctic_db
+          mkdir -p tmp/arctic_db/prices
           for dir in tmp/arctic_db-*; do
             if [ -d "$dir/prices" ]; then
               cp -r "$dir/prices"/* tmp/arctic_db/prices/
@@ -296,7 +296,7 @@ jobs:
       - name: Merge ArcticDB data
         run: |
           rm -rf tmp/arctic_db
-          mkdir -p tmp/arctic_db
+          mkdir -p tmp/arctic_db/prices
           for dir in tmp/arctic_db-*; do
             if [ -d "$dir/prices" ]; then
               cp -r "$dir/prices"/* tmp/arctic_db/prices/
