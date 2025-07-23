@@ -1,3 +1,4 @@
+Calculate RS.yml
 name: Calculate RS
 
 on:
@@ -33,22 +34,22 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install yahooquery pandas numpy tqdm arcticdb
-      - name: Verify calculate_rs_from_db.py checksum
+      - name: Verify calculate_rs.py checksum
         run: |
-          echo "Expected SHA256: $(sha256sum scripts/calculate_rs_from_db.py)"
-          if [ ! -f scripts/calculate_rs_from_db.py ]; then
-            echo "Error: scripts/calculate_rs_from_db.py not found"
+          echo "Expected SHA256: $(sha256sum scripts/calculate_rs.py)"
+          if [ ! -f scripts/calculate_rs.py ]; then
+            echo "Error: scripts/calculate_rs.py not found"
             exit 1
           fi
-      - name: Verify calculate_rs_from_db.py arguments
+      - name: Verify calculate_rs.py arguments
         run: |
-          python scripts/calculate_rs_from_db.py -h
+          python scripts/calculate_rs.py -h
       - name: Fetch data for partition 0
         run: |
           mkdir -p tmp/arctic_db
           mkdir -p logs
           rm -f logs/failed_tickers.log
-          python scripts/calculate_rs_from_db.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 0 --total-partitions 4
+          python scripts/calculate_rs.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 0 --total-partitions 4
       - name: Upload ArcticDB data
         uses: actions/upload-artifact@v4
         with:
@@ -88,22 +89,22 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install yahooquery pandas numpy tqdm arcticdb
-      - name: Verify calculate_rs_from_db.py checksum
+      - name: Verify calculate_rs.py checksum
         run: |
-          echo "Expected SHA256: $(sha256sum scripts/calculate_rs_from_db.py)"
-          if [ ! -f scripts/calculate_rs_from_db.py ]; then
-            echo "Error: scripts/calculate_rs_from_db.py not found"
+          echo "Expected SHA256: $(sha256sum scripts/calculate_rs.py)"
+          if [ ! -f scripts/calculate_rs.py ]; then
+            echo "Error: scripts/calculate_rs.py not found"
             exit 1
           fi
-      - name: Verify calculate_rs_from_db.py arguments
+      - name: Verify calculate_rs.py arguments
         run: |
-          python scripts/calculate_rs_from_db.py -h
+          python scripts/calculate_rs.py -h
       - name: Fetch data for partition 1
         run: |
           mkdir -p tmp/arctic_db
           mkdir -p logs
           rm -f logs/failed_tickers.log
-          python scripts/calculate_rs_from_db.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 1 --total-partitions 4
+          python scripts/calculate_rs.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 1 --total-partitions 4
       - name: Upload ArcticDB data
         uses: actions/upload-artifact@v4
         with:
@@ -144,22 +145,22 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install yahooquery pandas numpy tqdm arcticdb
-      - name: Verify calculate_rs_from_db.py checksum
+      - name: Verify calculate_rs.py checksum
         run: |
-          echo "Expected SHA256: $(sha256sum scripts/calculate_rs_from_db.py)"
-          if [ ! -f scripts/calculate_rs_from_db.py ]; then
-            echo "Error: scripts/calculate_rs_from_db.py not found"
+          echo "Expected SHA256: $(sha256sum scripts/calculate_rs.py)"
+          if [ ! -f scripts/calculate_rs.py ]; then
+            echo "Error: scripts/calculate_rs.py not found"
             exit 1
           fi
-      - name: Verify calculate_rs_from_db.py arguments
+      - name: Verify calculate_rs.py arguments
         run: |
-          python scripts/calculate_rs_from_db.py -h
+          python scripts/calculate_rs.py -h
       - name: Fetch data for partition 2
         run: |
           mkdir -p tmp/arctic_db
           mkdir -p logs
           rm -f logs/failed_tickers.log
-          python scripts/calculate_rs_from_db.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 2 --total-partitions 4
+          python scripts/calculate_rs.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 2 --total-partitions 4
       - name: Upload ArcticDB data
         uses: actions/upload-artifact@v4
         with:
@@ -200,22 +201,22 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install yahooquery pandas numpy tqdm arcticdb
-      - name: Verify calculate_rs_from_db.py checksum
+      - name: Verify calculate_rs.py checksum
         run: |
-          echo "Expected SHA256: $(sha256sum scripts/calculate_rs_from_db.py)"
-          if [ ! -f scripts/calculate_rs_from_db.py ]; then
-            echo "Error: scripts/calculate_rs_from_db.py not found"
+          echo "Expected SHA256: $(sha256sum scripts/calculate_rs.py)"
+          if [ ! -f scripts/calculate_rs.py ]; then
+            echo "Error: scripts/calculate_rs.py not found"
             exit 1
           fi
-      - name: Verify calculate_rs_from_db.py arguments
+      - name: Verify calculate_rs.py arguments
         run: |
-          python scripts/calculate_rs_from_db.py -h
+          python scripts/calculate_rs.py -h
       - name: Fetch data for partition 3
         run: |
           mkdir -p tmp/arctic_db
           mkdir -p logs
           rm -f logs/failed_tickers.log
-          python scripts/calculate_rs_from_db.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 3 --total-partitions 4
+          python scripts/calculate_rs.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 3 --total-partitions 4
       - name: Upload ArcticDB data
         uses: actions/upload-artifact@v4
         with:
