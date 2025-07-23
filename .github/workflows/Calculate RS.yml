@@ -6,66 +6,81 @@ on:
     - cron: '0 12 * * 1-5'  # Every weekday at 12:00 UTC
 
 jobs:
-  fetch-rs-0:
+  fetch-rs:
+    strategy:
+      matrix:
+        partition: [0, 1, 2, 3]
     runs-on: ubuntu-latest
+    name: fetch-rs-${{ matrix.partition }}
     steps:
-      - name: 🔁 Simulated Fetch RS Partition 0
-        run: echo "Fetching RS data for partition 0..."
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v4
 
-  fetch-rs-1:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🔁 Simulated Fetch RS Partition 1
-        run: echo "Fetching RS data for partition 1..."
+      - name: 🔍 Verify ticker_price.json
+        run: |
+          if [ ! -f data/ticker_price.json ]; then
+            echo "Error: data/ticker_price.json not found"
+            exit 1
+          fi
 
-  fetch-rs-2:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🔁 Simulated Fetch RS Partition 2
-        run: echo "Fetching RS data for partition 2..."
+      - name: 📅 Cache Python dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
-  fetch-rs-3:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🔁 Simulated Fetch RS Partition 3
-        run: echo "Fetching RS data for partition 3..."
+      - name: 🔬 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: 📦 Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install yahooquery pandas numpy tqdm arcticdb
+
+      - name: 🔢 Verify calculate_rs.py checksum
+        run: |
+          if [ ! -f scripts/calculate_rs.py ]; then
+            echo "Error: scripts/calculate_rs.py not found"
+            exit 1
+          fi
+          echo "SHA256: $(sha256sum scripts/calculate_rs.py)"
+
+      - name: 🔎 Verify calculate_rs.py arguments
+        run: |
+          python scripts/calculate_rs.py -h
+
+      - name: ⏳ Simulate partitioned fetch
+        run: echo "Simulating RS fetch for partition ${{ matrix.partition }}"
 
   validate-arctic-data:
     needs:
-      - fetch-rs-0
-      - fetch-rs-1
-      - fetch-rs-2
-      - fetch-rs-3
+      - fetch-rs
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
 
-      - name: ⬇️ Download all ArcticDB partitions
+      - name: ⬇️ Download ArcticDB partitions
         uses: actions/download-artifact@v4
         with:
           path: tmp
           pattern: arctic-db-*
 
-      - name: 🧩 Merge ArcticDB partitions into tmp/arctic_db
+      - name: 🧹 Merge ArcticDB artifacts
         run: |
           rm -rf tmp/arctic_db
           mkdir -p tmp/arctic_db/prices
-          echo "🔍 Searching for tmp/arctic_db-* directories to merge..."
-
           for dir in tmp/arctic_db-*; do
             if [ -d "$dir/prices" ]; then
-              echo "✅ Merging $dir/prices into tmp/arctic_db/prices"
               cp -r "$dir/prices/." tmp/arctic_db/prices/
-            else
-              echo "⚠️ Skipping $dir — no prices/ folder found"
             fi
           done
 
-          echo "📁 Final merged contents:"
-          ls -la tmp/arctic_db/prices
-
-      - name: 🧹 Remove lock file
+      - name: 🧼 Remove lock file
         run: |
           find tmp/arctic_db -name "lock.mdb" -exec rm -f {} \;
 
@@ -74,12 +89,10 @@ jobs:
         with:
           name: arctic-db-merged
           path: tmp/arctic_db
-          retention-days: 5
 
   calculate-rs:
     needs: validate-arctic-data
     runs-on: ubuntu-latest
-    timeout-minutes: 60
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
@@ -90,31 +103,19 @@ jobs:
           name: arctic-db-merged
           path: tmp/arctic_db
 
-      - name: ⬇️ Download failed tickers logs
-        uses: actions/download-artifact@v4
-        with:
-          path: logs
-          pattern: failed-tickers-*
-
-      - name: 🐍 Set up Python
+      - name: 📆 Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: 📦 Install Python dependencies
+      - name: 📦 Install dependencies
         run: |
           pip install --upgrade pip
           pip install pandas numpy tqdm arcticdb
 
-      - name: 🗂️ Prepare logs and merge failed_tickers
+      - name: 📊 Run RS calculation
         run: |
-          mkdir -p logs
-          touch logs/failed_tickers.log
-          cat logs/failed-tickers-*/failed_tickers.log >> logs/failed_tickers.log 2>/dev/null || echo "No logs to merge"
-
-      - name: 🧠 Calculate RS and generate CSVs
-        run: |
-          mkdir -p data
+          mkdir -p logs data
           python scripts/calculate_rs_from_db.py \
             --arctic-db-path lmdb://tmp/arctic_db \
             --min-percentile 85 \
@@ -123,40 +124,18 @@ jobs:
             --log-file logs/failed_tickers.log \
             --metadata-file data/ticker_price.json
 
-      - name: 🧪 Show RS result summary
-        run: |
-          echo "📄 Preview: rs_stocks.csv"
-          head -n 10 data/rs_stocks.csv || echo "❌ rs_stocks.csv not found"
-
-          echo -e "\n🧾 Recent failed tickers:"
-          tail -n 10 logs/failed_tickers.log || echo "No failures logged"
-
-      - name: 📦 Upload output CSVs and logs
-        uses: actions/upload-artifact@v4
-        with:
-          name: rs-results
-          path: |
-            data/rs_stocks.csv
-            data/rs_industries.csv
-            data/RSRATING.csv
-            logs/failed_tickers.log
-          retention-days: 7
-
-      - name: 🗃️ Archive rs_stocks.csv
+      - name: 📃 Archive rs_stocks.csv
         run: |
           mkdir -p archive
           current_date=$(date -u -d "4 hours ago" +"%m%d%Y")
           cp data/rs_stocks.csv archive/rs_stocks_${current_date}.csv
           find archive -type f -name "rs_stocks_*.csv" -mtime +90 -delete
 
-      - name: 📤 Commit and push updates
-        run: |
-          git config user.name "github-actions"
-          git config user.email "actions@users.noreply.github.com"
-          git add data/*.csv logs/failed_tickers.log archive/rs_stocks_*.csv
-          edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
-          git commit -m "📊 RS update for ${current_date} [${edt_time}]" || echo "Nothing to commit"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git || echo "Push failed"
-
-      - name: 🧼 Clean up temp folders
-        run: rm -rf tmp/*
+      - name: 📅 Upload outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: rs-results
+          path: |
+            data/*.csv
+            logs/failed_tickers.log
+            archive/*.csv
