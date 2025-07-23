@@ -33,6 +33,13 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install yahooquery pandas numpy tqdm arcticdb
+      - name: Verify calculate_rs.py checksum
+        run: |
+          echo "Expected SHA256: $(sha256sum scripts/calculate_rs.py)"
+          if [ ! -f scripts/calculate_rs.py ]; then
+            echo "Error: scripts/calculate_rs.py not found"
+            exit 1
+          fi
       - name: Verify calculate_rs.py arguments
         run: |
           python scripts/calculate_rs.py -h
@@ -80,6 +87,13 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install yahooquery pandas numpy tqdm arcticdb
+      - name: Verify calculate_rs.py checksum
+        run: |
+          echo "Expected SHA256: $(sha256sum scripts/calculate_rs.py)"
+          if [ ! -f scripts/calculate_rs.py ]; then
+            echo "Error: scripts/calculate_rs.py not found"
+            exit 1
+          fi
       - name: Verify calculate_rs.py arguments
         run: |
           python scripts/calculate_rs.py -h
@@ -126,6 +140,13 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install yahooquery pandas numpy tqdm arcticdb
+      - name: Verify calculate_rs.py checksum
+        run: |
+          echo "Expected SHA256: $(sha256sum scripts/calculate_rs.py)"
+          if [ ! -f scripts/calculate_rs.py ]; then
+            echo "Error: scripts/calculate_rs.py not found"
+            exit 1
+          fi
       - name: Verify calculate_rs.py arguments
         run: |
           python scripts/calculate_rs.py -h
@@ -172,6 +193,13 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install yahooquery pandas numpy tqdm arcticdb
+      - name: Verify calculate_rs.py checksum
+        run: |
+          echo "Expected SHA256: $(sha256sum scripts/calculate_rs.py)"
+          if [ ! -f scripts/calculate_rs.py ]; then
+            echo "Error: scripts/calculate_rs.py not found"
+            exit 1
+          fi
       - name: Verify calculate_rs.py arguments
         run: |
           python scripts/calculate_rs.py -h
