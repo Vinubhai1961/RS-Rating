@@ -38,17 +38,17 @@ jobs:
           mkdir -p tmp/arctic_db
           mkdir -p logs
           rm -f logs/failed_tickers.log
-          python scripts/calculate_rs.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 0 --total-partitions 4 2>&1 | tee logs/calculate_rs_0.log
+          python scripts/calculate_rs.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 0 --total-partitions 4
       - name: Upload ArcticDB data
         uses: actions/upload-artifact@v4
         with:
           name: arctic-db-0
           path: tmp/arctic_db/
-      - name: Upload logs
+      - name: Upload log
         uses: actions/upload-artifact@v4
         with:
-          name: calculate-rs-logs-0
-          path: logs/
+          name: failed-tickers-0
+          path: logs/failed_tickers.log
 
   fetch-rs-1:
     runs-on: ubuntu-latest
@@ -81,17 +81,17 @@ jobs:
         run: |
           mkdir -p tmp/arctic_db
           mkdir -p logs
-          python scripts/calculate_rs.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 1 --total-partitions 4 2>&1 | tee logs/calculate_rs_1.log
+          python scripts/calculate_rs.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 1 --total-partitions 4
       - name: Upload ArcticDB data
         uses: actions/upload-artifact@v4
         with:
           name: arctic-db-1
           path: tmp/arctic_db/
-      - name: Upload logs
+      - name: Upload log
         uses: actions/upload-artifact@v4
         with:
-          name: calculate-rs-logs-1
-          path: logs/
+          name: failed-tickers-1
+          path: logs/failed_tickers.log
 
   fetch-rs-2:
     runs-on: ubuntu-latest
@@ -124,17 +124,17 @@ jobs:
         run: |
           mkdir -p tmp/arctic_db
           mkdir -p logs
-          python scripts/calculate_rs.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 2 --total-partitions 4 2>&1 | tee logs/calculate_rs_2.log
+          python scripts/calculate_rs.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 2 --total-partitions 4
       - name: Upload ArcticDB data
         uses: actions/upload-artifact@v4
         with:
           name: arctic-db-2
           path: tmp/arctic_db/
-      - name: Upload logs
+      - name: Upload log
         uses: actions/upload-artifact@v4
         with:
-          name: calculate-rs-logs-2
-          path: logs/
+          name: failed-tickers-2
+          path: logs/failed_tickers.log
 
   fetch-rs-3:
     runs-on: ubuntu-latest
@@ -167,17 +167,17 @@ jobs:
         run: |
           mkdir -p tmp/arctic_db
           mkdir -p logs
-          python scripts/calculate_rs.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 3 --total-partitions 4 2>&1 | tee logs/calculate_rs_3.log
+          python scripts/calculate_rs.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 3 --total-partitions 4
       - name: Upload ArcticDB data
         uses: actions/upload-artifact@v4
         with:
           name: arctic-db-3
           path: tmp/arctic_db/
-      - name: Upload logs
+      - name: Upload log
         uses: actions/upload-artifact@v4
         with:
-          name: calculate-rs-logs-3
-          path: logs/
+          name: failed-tickers-3
+          path: logs/failed_tickers.log
 
   calculate-rs:
     needs: [fetch-rs-0, fetch-rs-1, fetch-rs-2, fetch-rs-3]
@@ -213,8 +213,8 @@ jobs:
         run: |
           mkdir -p logs
           rm -f logs/failed_tickers.log
-          cat logs/calculate-rs-logs-*/failed_tickers.log > logs/failed_tickers.log
-          python scripts/calculate_rs_from_db.py data/ticker_price.json --min-percentile 85 --reference-ticker SPY --output-dir data --log-file logs/failed_tickers.log 2>&1 | tee logs/calculate_rs_final.log
+          cat logs/failed-tickers-*/failed_tickers.log >> logs/failed_tickers.log
+          python scripts/calculate_rs_from_db.py data/ticker_price.json --min-percentile 85 --reference-ticker SPY --output-dir data --log-file logs/failed_tickers.log
       - name: Archive rs_stocks.csv
         run: |
           mkdir -p archive
@@ -225,7 +225,7 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "actions@users.noreply.github.com"
-          git add data/rs_stocks.csv data/rs_industries.csv data/RSRATING.csv logs/failed_tickers.log archive/rs_stocks_*.csv logs/calculate_rs_*.log
+          git add data/rs_stocks.csv data/rs_industries.csv data/RSRATING.csv logs/failed_tickers.log archive/rs_stocks_*.csv
           edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
           git commit -m "Generate RS CSVs and archive rs_stocks_${current_date}.csv [${edt_time}]" || echo "No changes to commit"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git || echo "Push failed"
