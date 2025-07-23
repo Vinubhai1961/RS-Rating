@@ -14,9 +14,8 @@ import time
 from tqdm.auto import tqdm
 import arcticdb as adb
 
-def validate_arctic_data(arctic_lib, log_file):
+def validate_arctic_data(arctic, log_file):
     """Validate ArcticDB data by logging top 10 tickers by data point count."""
-    arctic = adb.Arctic(arctic_lib)
     if not arctic.has_library("prices"):
         logging.error("ArcticDB library 'prices' not found for validation")
         return
@@ -83,7 +82,7 @@ def fetch_historical_data(tickers, arctic, log_file):
             for ticker, error in failed_tickers:
                 f.write(f"{ticker}: {error}\n")
     
-    validate_arctic_data(arctic_lib, log_file)
+    validate_arctic_data(arctic, log_file)
 
 def main(input_file, log_file, partition, total_partitions):
     """Fetch historical data for a partition and store in ArcticDB."""
