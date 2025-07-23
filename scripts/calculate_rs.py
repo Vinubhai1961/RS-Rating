@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
+#!/usr/bin/env python3
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning)
 import json
 import os
 import argparse
@@ -12,6 +15,34 @@ import sys
 import time
 from tqdm.auto import tqdm
 import arcticdb as adb
+
+def validate_arctic_data(arctic_lib, log_file):
+    """Validate ArcticDB data by logging top 10 tickers by data point count."""
+    arctic = adb.Arctic("lmdb://tmp/arctic_db")
+    if not arctic.has_library("prices"):
+        logging.error("ArcticDB library 'prices' not found for validation")
+        return
+    lib = arctic.get_library("prices")
+    
+    # Get all symbols and count data points
+    ticker_counts = []
+    for symbol in lib.list_symbols():
+        try:
+            data = lib.read(symbol).data
+            count = len(data)
+            latest_date = datetime.fromtimestamp(data["datetime"].max()).strftime("%Y-%m-%d")
+            ticker_counts.append((symbol, count, latest_date))
+        except Exception as e:
+            logging.info(f"Validation failed for {symbol}: {str(e)}")
+    
+    # Sort by data point count (descending) and select top 10
+    ticker_counts.sort(key=lambda x: x[1], reverse=True)
+    top_10 = ticker_counts[:10]
+    
+    # Log top 10 tickers
+    logging.info("Top 10 tickers by data point count:")
+    for ticker, count, latest_date in top_10:
+        logging.info(f"Ticker: {ticker}, Data Points: {count}, Latest Date: {latest_date}")
 
 def fetch_historical_data(tickers, arctic_lib, log_file):
     """Fetch 2 years of historical data and store in ArcticDB."""
@@ -60,6 +91,9 @@ def fetch_historical_data(tickers, arctic_lib, log_file):
         with open(log_file, "a") as f:
             for ticker, error in failed_tickers:
                 f.write(f"{ticker}: {error}\n")
+    
+    # Validate data after fetching
+    validate_arctic_data(arctic_lib, log_file)
 
 def main(input_file, log_file, partition, total_partitions):
     """Fetch historical data for a partition and store in ArcticDB."""
