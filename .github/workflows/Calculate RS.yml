@@ -3,7 +3,7 @@ name: Calculate RS
 on:
   schedule:
     - cron: "15 9 * * *"  # 05:15 AM EDT (09:15 UTC)
-  workflow_dispatch:  # Allow manual trigger
+  workflow_dispatch:
 
 jobs:
   calculate-rs:
@@ -12,6 +12,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Verify ticker_price.json
+        run: |
+          if [ ! -f data/ticker_price.json ]; then
+            echo "Error: data/ticker_price.json not found"
+            exit 1
+          fi
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -26,14 +33,24 @@ jobs:
       - name: Calculate RS and generate CSVs
         run: |
           mkdir -p tmp
+          mkdir -p logs
+          rm -f logs/failed_tickers.log  # Overwrite log file
           python scripts/calculate_rs.py data/ticker_price.json --min-percentile 85 --reference-ticker SPY --output-dir data --log-file logs/failed_tickers.log
           rm -rf tmp/*
+
+      - name: Archive rs_stocks.csv
+        run: |
+          mkdir -p archive
+          current_date=$(date -u -d "4 hours ago" +"%m%d%Y")
+          cp data/rs_stocks.csv archive/rs_stocks_${current_date}.csv
+          # Delete files older than 90 days
+          find archive -type f -name "rs_stocks_*.csv" -mtime +90 -delete
 
       - name: Commit outputs
         run: |
           git config user.name "github-actions"
           git config user.email "actions@users.noreply.github.com"
-          git add data/rs_stocks.csv data/rs_industries.csv data/RSRATING.csv logs/failed_tickers.log
+          git add data/rs_stocks.csv data/rs_industries.csv data/RSRATING.csv logs/failed_tickers.log archive/rs_stocks_*.csv
           edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
-          git commit -m "Generate RS CSVs [${edt_time}]" || echo "No changes to commit"
+          git commit -m "Generate RS CSVs and archive rs_stocks_${current_date}.csv [${edt_time}]" || echo "No changes to commit"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git || echo "Push failed"
