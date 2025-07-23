@@ -305,40 +305,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Download ArcticDB data
-        uses: actions/download-artifact@v4
-        with:
-          name: arctic-db-0
-          path: tmp/arctic_db-0
-      - name: Download ArcticDB data
-        uses: actions/download-artifact@v4
-        with:
-          name: arctic-db-1
-          path: tmp/arctic_db-1
-      - name: Download ArcticDB data
-        uses: actions/download-artifact@v4
-        with:
-          name: arctic-db-2
-          path: tmp/arctic_db-2
-      - name: Download ArcticDB data
-        uses: actions/download-artifact@v4
-        with:
-          name: arctic-db-3
-          path: tmp/arctic_db-3
-      - name: Merge ArcticDB data
-        run: |
-          rm -rf tmp/arctic_db
-          mkdir -p tmp/arctic_db/prices
-          for dir in tmp/arctic_db-*; do
-            if [ -d "$dir/prices" ]; then
-              cp -r "$dir/prices"/* tmp/arctic_db/prices/
-            fi
-          done
-      - name: Remove lock file
-        run: |
-          find tmp/arctic_db -name "lock.mdb" -exec rm -f {} \;
+      
       - name: Download logs
         uses: actions/download-artifact@v4
         with:
