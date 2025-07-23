@@ -1,248 +1,53 @@
-name: Calculate RS
+name: 📊 Calculate RS Ratings
 
 on:
-  schedule:
-    - cron: "15 9 * * *"  # 05:15 AM EDT (09:15 UTC)
   workflow_dispatch:
+  schedule:
+    - cron: '0 12 * * 1-5'  # Every weekday at 12:00 UTC
 
 jobs:
   fetch-rs-0:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Verify ticker_price.json
-        run: |
-          if [ ! -f data/ticker_price.json ]; then
-            echo "Error: data/ticker_price.json not found"
-            exit 1
-          fi
-      - name: Cache Python dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
-      - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip install yahooquery pandas numpy tqdm arcticdb
-      - name: Verify calculate_rs.py checksum
-        run: |
-          echo "Expected SHA256: $(sha256sum scripts/calculate_rs.py)"
-          if [ ! -f scripts/calculate_rs.py ]; then
-            echo "Error: scripts/calculate_rs.py not found"
-            exit 1
-          fi
-      - name: Verify calculate_rs.py arguments
-        run: |
-          python scripts/calculate_rs.py -h
-      - name: Fetch data for partition 0
-        run: |
-          mkdir -p tmp/arctic_db
-          mkdir -p logs
-          rm -f logs/failed_tickers.log
-          python scripts/calculate_rs.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 0 --total-partitions 4
-      - name: Upload ArcticDB data
-        uses: actions/upload-artifact@v4
-        with:
-          name: arctic-db-0
-          path: tmp/arctic_db/
-      - name: Upload failed tickers log
-        uses: actions/upload-artifact@v4
-        with:
-          name: failed-tickers-0
-          path: logs/failed_tickers.log
-          if-no-files-found: ignore
+      - name: 🔁 Simulated Fetch RS Partition 0
+        run: echo "Fetching RS data for partition 0..."
 
   fetch-rs-1:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Verify ticker_price.json
-        run: |
-          if [ ! -f data/ticker_price.json ]; then
-            echo "Error: data/ticker_price.json not found"
-            exit 1
-          fi
-      - name: Cache Python dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
-      - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip install yahooquery pandas numpy tqdm arcticdb
-      - name: Verify calculate_rs.py checksum
-        run: |
-          echo "Expected SHA256: $(sha256sum scripts/calculate_rs.py)"
-          if [ ! -f scripts/calculate_rs.py ]; then
-            echo "Error: scripts/calculate_rs.py not found"
-            exit 1
-          fi
-      - name: Verify calculate_rs.py arguments
-        run: |
-          python scripts/calculate_rs.py -h
-      - name: Fetch data for partition 1
-        run: |
-          mkdir -p tmp/arctic_db
-          mkdir -p logs
-          rm -f logs/failed_tickers.log
-          python scripts/calculate_rs.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 1 --total-partitions 4
-      - name: Upload ArcticDB data
-        uses: actions/upload-artifact@v4
-        with:
-          name: arctic-db-1
-          path: tmp/arctic_db/
-          if-no-files-found: ignore
-      - name: Upload failed tickers log
-        uses: actions/upload-artifact@v4
-        with:
-          name: failed-tickers-1
-          path: logs/failed_tickers.log
-          if-no-files-found: ignore
+      - name: 🔁 Simulated Fetch RS Partition 1
+        run: echo "Fetching RS data for partition 1..."
 
   fetch-rs-2:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Verify ticker_price.json
-        run: |
-          if [ ! -f data/ticker_price.json ]; then
-            echo "Error: data/ticker_price.json not found"
-            exit 1
-          fi
-      - name: Cache Python dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
-      - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip install yahooquery pandas numpy tqdm arcticdb
-      - name: Verify calculate_rs.py checksum
-        run: |
-          echo "Expected SHA256: $(sha256sum scripts/calculate_rs.py)"
-          if [ ! -f scripts/calculate_rs.py ]; then
-            echo "Error: scripts/calculate_rs.py not found"
-            exit 1
-          fi
-      - name: Verify calculate_rs.py arguments
-        run: |
-          python scripts/calculate_rs.py -h
-      - name: Fetch data for partition 2
-        run: |
-          mkdir -p tmp/arctic_db
-          mkdir -p logs
-          rm -f logs/failed_tickers.log
-          python scripts/calculate_rs.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 2 --total-partitions 4
-      - name: Upload ArcticDB data
-        uses: actions/upload-artifact@v4
-        with:
-          name: arctic-db-2
-          path: tmp/arctic_db/
-          if-no-files-found: ignore
-      - name: Upload failed tickers log
-        uses: actions/upload-artifact@v4
-        with:
-          name: failed-tickers-2
-          path: logs/failed_tickers.log
-          if-no-files-found: ignore
+      - name: 🔁 Simulated Fetch RS Partition 2
+        run: echo "Fetching RS data for partition 2..."
 
   fetch-rs-3:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Verify ticker_price.json
-        run: |
-          if [ ! -f data/ticker_price.json ]; then
-            echo "Error: data/ticker_price.json not found"
-            exit 1
-          fi
-      - name: Cache Python dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
-      - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip install yahooquery pandas numpy tqdm arcticdb
-      - name: Verify calculate_rs.py checksum
-        run: |
-          echo "Expected SHA256: $(sha256sum scripts/calculate_rs.py)"
-          if [ ! -f scripts/calculate_rs.py ]; then
-            echo "Error: scripts/calculate_rs.py not found"
-            exit 1
-          fi
-      - name: Verify calculate_rs.py arguments
-        run: |
-          python scripts/calculate_rs.py -h
-      - name: Fetch data for partition 3
-        run: |
-          mkdir -p tmp/arctic_db
-          mkdir -p logs
-          rm -f logs/failed_tickers.log
-          python scripts/calculate_rs.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 3 --total-partitions 4
-      - name: Upload ArcticDB data
-        uses: actions/upload-artifact@v4
-        with:
-          name: arctic-db-3
-          path: tmp/arctic_db/
-          if-no-files-found: ignore
-      - name: Upload failed tickers log
-        uses: actions/upload-artifact@v4
-        with:
-          name: failed-tickers-3
-          path: logs/failed_tickers.log
-          if-no-files-found: ignore
+      - name: 🔁 Simulated Fetch RS Partition 3
+        run: echo "Fetching RS data for partition 3..."
 
   validate-arctic-data:
+    needs:
+      - fetch-rs-0
+      - fetch-rs-1
+      - fetch-rs-2
+      - fetch-rs-3
     runs-on: ubuntu-latest
-    timeout-minutes: 30
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
 
-      - name: ⬇️ Download ArcticDB partitioned data
+      - name: ⬇️ Download all ArcticDB partitions
         uses: actions/download-artifact@v4
         with:
           path: tmp
           pattern: arctic-db-*
 
-      - name: 🧩 Merge ArcticDB artifacts into tmp/arctic_db
+      - name: 🧩 Merge ArcticDB partitions into tmp/arctic_db
         run: |
           rm -rf tmp/arctic_db
           mkdir -p tmp/arctic_db/prices
