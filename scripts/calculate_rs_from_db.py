@@ -71,12 +71,14 @@ def main(input_file, min_percentile, reference_ticker, output_dir, log_file):
     lib = arctic.get_library("prices")
     
     tickers = list(data.keys())
-    logging.info(f"Calculating RS for {len(tickers)} tickers")
-    logging.info(f"Estimated RS calculation time: ~{(len(tickers) * 0.01) // 60} minutes {int((len(tickers) * 0.01) % 60)} seconds")
-    
     if reference_ticker not in tickers:
         logging.error(f"Reference ticker {reference_ticker} not found in {input_file}")
         return
+    
+    # Estimate calculation time
+    est_time_per_ticker = 0.01  # ~10ms per ticker (conservative)
+    est_total_time = len(tickers) * est_time_per_ticker / 60  # Minutes
+    logging.info(f"Starting RS calculation for {len(tickers)} tickers, estimated time: {est_total_time:.2f} minutes")
     
     # Calculate RS
     rs_results = []
@@ -89,7 +91,7 @@ def main(input_file, min_percentile, reference_ticker, output_dir, log_file):
         logging.error(f"Reference ticker {reference_ticker} has insufficient data ({len(ref_closes)} days)")
         return
     
-    for ticker in tqdm(tickers, desc="Calculating RS"):
+    for ticker in tqdm(tickers, desc=f"Calculating RS (~{est_time_per_ticker*1000:.2f}ms/ticker)"):
         if ticker == reference_ticker:
             continue
         try:
