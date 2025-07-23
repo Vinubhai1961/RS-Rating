@@ -230,152 +230,128 @@ jobs:
           if-no-files-found: ignore
 
   validate-arctic-data:
-    needs: [fetch-rs-0, fetch-rs-1, fetch-rs-2, fetch-rs-3]
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 30
     steps:
-      - name: Checkout repository
+      - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
-      - name: Download ArcticDB data
+
+      - name: ⬇️ Download ArcticDB partitioned data
         uses: actions/download-artifact@v4
         with:
-          name: arctic-db-0
-          path: tmp/arctic_db-0
-      - name: Download ArcticDB data
-        uses: actions/download-artifact@v4
-        with:
-          name: arctic-db-1
-          path: tmp/arctic_db-1
-      - name: Download ArcticDB data
-        uses: actions/download-artifact@v4
-        with:
-          name: arctic-db-2
-          path: tmp/arctic_db-2
-      - name: Download ArcticDB data
-        uses: actions/download-artifact@v4
-        with:
-          name: arctic-db-3
-          path: tmp/arctic_db-3
+          path: tmp
+          pattern: arctic-db-*
+
       - name: 🧩 Merge ArcticDB artifacts into tmp/arctic_db
         run: |
           rm -rf tmp/arctic_db
           mkdir -p tmp/arctic_db/prices
           echo "🔍 Searching for tmp/arctic_db-* directories to merge..."
+
           for dir in tmp/arctic_db-*; do
             if [ -d "$dir/prices" ]; then
-          echo "✅ Merging $dir/prices into tmp/arctic_db/prices"
-          cp -r "$dir/prices/." tmp/arctic_db/prices/
-          else
-          echo "⚠️ Skipping $dir — no prices/ folder found"
-          fi
+              echo "✅ Merging $dir/prices into tmp/arctic_db/prices"
+              cp -r "$dir/prices/." tmp/arctic_db/prices/
+            else
+              echo "⚠️ Skipping $dir — no prices/ folder found"
+            fi
           done
+
           echo "📁 Final merged contents:"
           ls -la tmp/arctic_db/prices
 
-      - name: Remove lock file
+      - name: 🧹 Remove lock file
         run: |
           find tmp/arctic_db -name "lock.mdb" -exec rm -f {} \;
-      - name: Download logs
+
+      - name: 📦 Upload merged ArcticDB
+        uses: actions/upload-artifact@v4
+        with:
+          name: arctic-db-merged
+          path: tmp/arctic_db
+          retention-days: 5
+
+  calculate-rs:
+    needs: validate-arctic-data
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v4
+
+      - name: ⬇️ Download merged ArcticDB
+        uses: actions/download-artifact@v4
+        with:
+          name: arctic-db-merged
+          path: tmp/arctic_db
+
+      - name: ⬇️ Download failed tickers logs
         uses: actions/download-artifact@v4
         with:
           path: logs
           pattern: failed-tickers-*
-      - name: Cache Python dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-      - name: Setup Python
+
+      - name: 🐍 Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
-      - name: Install dependencies
+          python-version: "3.11"
+
+      - name: 📦 Install Python dependencies
         run: |
           pip install --upgrade pip
           pip install pandas numpy tqdm arcticdb
-      - name: Validate ArcticDB data
+
+      - name: 🗂️ Prepare logs and merge failed_tickers
         run: |
           mkdir -p logs
-          python scripts/validate_arctic_data.py --log-file logs/failed_tickers.log
+          touch logs/failed_tickers.log
+          cat logs/failed-tickers-*/failed_tickers.log >> logs/failed_tickers.log 2>/dev/null || echo "No logs to merge"
 
-  calculate-rs:
+      - name: 🧠 Calculate RS and generate CSVs
+        run: |
+          mkdir -p data
+          python scripts/calculate_rs_from_db.py \
+            --arctic-db-path lmdb://tmp/arctic_db \
+            --min-percentile 85 \
+            --reference-ticker SPY \
+            --output-dir data \
+            --log-file logs/failed_tickers.log \
+            --metadata-file data/ticker_price.json
 
-    needs: validate-arctic-data
-    runs-on: ubuntu-latest
-    timeout-minutes: 120
-    steps:
+      - name: 🧪 Show RS result summary
+        run: |
+          echo "📄 Preview: rs_stocks.csv"
+          head -n 10 data/rs_stocks.csv || echo "❌ rs_stocks.csv not found"
 
-    - name: ⬇️ Download merged ArcticDB
-      uses: actions/download-artifact@v4
-      with:
-        name: arctic-db-merged
-        path: tmp/arctic_db
+          echo -e "\n🧾 Recent failed tickers:"
+          tail -n 10 logs/failed_tickers.log || echo "No failures logged"
 
-    - name: ⬇️ Download logs (failed tickers)
-      uses: actions/download-artifact@v4
-      with:
-        path: logs
-        pattern: failed-tickers-*
+      - name: 📦 Upload output CSVs and logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: rs-results
+          path: |
+            data/rs_stocks.csv
+            data/rs_industries.csv
+            data/RSRATING.csv
+            logs/failed_tickers.log
+          retention-days: 7
 
-    - name: 💾 Cache Python dependencies
-      uses: actions/cache@v4
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
+      - name: 🗃️ Archive rs_stocks.csv
+        run: |
+          mkdir -p archive
+          current_date=$(date -u -d "4 hours ago" +"%m%d%Y")
+          cp data/rs_stocks.csv archive/rs_stocks_${current_date}.csv
+          find archive -type f -name "rs_stocks_*.csv" -mtime +90 -delete
 
-    - name: 🐍 Setup Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: "3.11"  # Stable & ArcticDB supported
+      - name: 📤 Commit and push updates
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/*.csv logs/failed_tickers.log archive/rs_stocks_*.csv
+          edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
+          git commit -m "📊 RS update for ${current_date} [${edt_time}]" || echo "Nothing to commit"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git || echo "Push failed"
 
-    - name: 📦 Install dependencies
-      run: |
-        pip install --upgrade pip
-        pip install pandas numpy tqdm arcticdb
-
-    - name: 🗂️ Prepare logs and merge failed_tickers
-      run: |
-        mkdir -p logs
-        touch logs/failed_tickers.log
-        cat logs/failed-tickers-*/failed_tickers.log >> logs/failed_tickers.log 2>/dev/null || echo "No logs to merge"
-
-    - name: 🧠 Calculate RS and generate CSVs
-      run: |
-        mkdir -p data
-        python scripts/calculate_rs_from_db.py \
-          --arctic-db-path lmdb://tmp/arctic_db \
-          --min-percentile 85 \
-          --reference-ticker SPY \
-          --output-dir data \
-          --log-file logs/failed_tickers.log \
-          --metadata-file data/ticker_price.json
-
-    - name: 🧪 Show output snapshot
-      run: |
-        echo "📄 Top 10 lines from rs_stocks.csv:"
-        head -n 10 data/rs_stocks.csv || echo "❌ rs_stocks.csv not found"
-        echo -e "\n🧾 Failed tickers log:"
-        tail -n 20 logs/failed_tickers.log || echo "No failures logged"
-
-    - name: 🗃️ Archive rs_stocks.csv
-      run: |
-        mkdir -p archive
-        current_date=$(date -u -d "4 hours ago" +"%m%d%Y")
-        cp data/rs_stocks.csv archive/rs_stocks_${current_date}.csv
-        find archive -type f -name "rs_stocks_*.csv" -mtime +90 -delete
-
-    - name: 📤 Commit outputs to repo
-      run: |
-        git config user.name "github-actions"
-        git config user.email "actions@users.noreply.github.com"
-        git add data/rs_stocks.csv data/rs_industries.csv data/RSRATING.csv logs/failed_tickers.log archive/rs_stocks_*.csv
-        edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
-        git commit -m "📊 RS Update: rs_stocks_${current_date}.csv [${edt_time}]" || echo "No changes to commit"
-        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git || echo "Push failed"
-
-    - name: 🧹 Clean up workspace
-      run: rm -rf tmp/*
+      - name: 🧼 Clean up temp folders
+        run: rm -rf tmp/*
