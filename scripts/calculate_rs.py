@@ -16,7 +16,7 @@ import arcticdb as adb
 
 def validate_arctic_data(arctic_lib, log_file):
     """Validate ArcticDB data by logging top 10 tickers by data point count."""
-    arctic = adb.Arctic("lmdb://tmp/arctic_db")
+    arctic = adb.Arctic(arctic_lib)
     if not arctic.has_library("prices"):
         logging.error("ArcticDB library 'prices' not found for validation")
         return
@@ -39,15 +39,12 @@ def validate_arctic_data(arctic_lib, log_file):
     for ticker, count, latest_date in top_10:
         logging.info(f"Ticker: {ticker}, Data Points: {count}, Latest Date: {latest_date}")
 
-def fetch_historical_data(tickers, arctic_lib, log_file):
+def fetch_historical_data(tickers, arctic, log_file):
     """Fetch 2 years of historical data and store in ArcticDB."""
     max_retries = 3
     batch_size = 200
     failed_tickers = []
     
-    arctic = adb.Arctic("lmdb://tmp/arctic_db")
-    if not arctic.has_library("prices"):
-        arctic.create_library("prices")
     lib = arctic.get_library("prices", create_if_missing=True)
     
     total_batches = (len(tickers) + batch_size - 1) // batch_size
@@ -77,7 +74,7 @@ def fetch_historical_data(tickers, arctic_lib, log_file):
                     logging.error(error_msg)
                     failed_tickers.extend((t, error_msg) for t in batch)
                 else:
-                    time.sleep(10)  # Increased delay for rate limits
+                    time.sleep(10)
         batch_time = time.time() - batch_start_time
         logging.info(f"Completed batch {i//batch_size + 1}/{total_batches} ({len(batch)} tickers) in {batch_time:.2f} seconds")
 
@@ -107,7 +104,8 @@ def main(input_file, log_file, partition, total_partitions):
         partition_tickers.append("SPY")
     
     os.makedirs("tmp/arctic_db", exist_ok=True)
-    fetch_historical_data(partition_tickers, "tmp/arctic_db/prices", log_file)
+    arctic = adb.Arctic("lmdb://tmp/arctic_db")
+    fetch_historical_data(partition_tickers, arctic, log_file)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Fetch historical data for a partition and store in ArcticDB")
