@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install yahooquery pandas numpy
+          pip install yahooquery pandas numpy tqdm
 
       - name: Calculate RS and generate CSVs
         run: |
