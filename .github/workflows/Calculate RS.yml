@@ -52,7 +52,7 @@ jobs:
       - name: Upload ArcticDB data
         uses: actions/upload-artifact@v4
         with:
-          name: arctic-db
+          name: arctic-db-0
           path: tmp/arctic_db/
 
   fetch-rs-1:
@@ -100,9 +100,9 @@ jobs:
       - name: Upload ArcticDB data
         uses: actions/upload-artifact@v4
         with:
-          name: arctic-db
+          name: arctic-db-1
           path: tmp/arctic_db/
-          if-no-files-found: ignore  # Avoid failure if no new data
+          if-no-files-found: ignore
 
   fetch-rs-2:
     runs-on: ubuntu-latest
@@ -149,9 +149,9 @@ jobs:
       - name: Upload ArcticDB data
         uses: actions/upload-artifact@v4
         with:
-          name: arctic-db
+          name: arctic-db-2
           path: tmp/arctic_db/
-          if-no-files-found: ignore  # Avoid failure if no new data
+          if-no-files-found: ignore
 
   fetch-rs-3:
     runs-on: ubuntu-latest
@@ -198,9 +198,9 @@ jobs:
       - name: Upload ArcticDB data
         uses: actions/upload-artifact@v4
         with:
-          name: arctic-db
+          name: arctic-db-3
           path: tmp/arctic_db/
-          if-no-files-found: ignore  # Avoid failure if no new data
+          if-no-files-found: ignore
 
   validate-arctic-data:
     needs: [fetch-rs-0, fetch-rs-1, fetch-rs-2, fetch-rs-3]
@@ -212,8 +212,32 @@ jobs:
       - name: Download ArcticDB data
         uses: actions/download-artifact@v4
         with:
-          name: arctic-db
-          path: tmp/arctic_db
+          name: arctic-db-0
+          path: tmp/arctic_db-0
+      - name: Download ArcticDB data
+        uses: actions/download-artifact@v4
+        with:
+          name: arctic-db-1
+          path: tmp/arctic_db-1
+      - name: Download ArcticDB data
+        uses: actions/download-artifact@v4
+        with:
+          name: arctic-db-2
+          path: tmp/arctic_db-2
+      - name: Download ArcticDB data
+        uses: actions/download-artifact@v4
+        with:
+          name: arctic-db-3
+          path: tmp/arctic_db-3
+      - name: Merge ArcticDB data
+        run: |
+          rm -rf tmp/arctic_db
+          mkdir -p tmp/arctic_db
+          for dir in tmp/arctic_db-*; do
+            if [ -d "$dir/prices" ]; then
+              cp -r "$dir/prices"/* tmp/arctic_db/prices/
+            fi
+          done
       - name: Remove lock file
         run: |
           find tmp/arctic_db -name "lock.mdb" -exec rm -f {} \;
@@ -252,8 +276,32 @@ jobs:
       - name: Download ArcticDB data
         uses: actions/download-artifact@v4
         with:
-          name: arctic-db
-          path: tmp/arctic_db
+          name: arctic-db-0
+          path: tmp/arctic_db-0
+      - name: Download ArcticDB data
+        uses: actions/download-artifact@v4
+        with:
+          name: arctic-db-1
+          path: tmp/arctic_db-1
+      - name: Download ArcticDB data
+        uses: actions/download-artifact@v4
+        with:
+          name: arctic-db-2
+          path: tmp/arctic_db-2
+      - name: Download ArcticDB data
+        uses: actions/download-artifact@v4
+        with:
+          name: arctic-db-3
+          path: tmp/arctic_db-3
+      - name: Merge ArcticDB data
+        run: |
+          rm -rf tmp/arctic_db
+          mkdir -p tmp/arctic_db
+          for dir in tmp/arctic_db-*; do
+            if [ -d "$dir/prices" ]; then
+              cp -r "$dir/prices"/* tmp/arctic_db/prices/
+            fi
+          done
       - name: Remove lock file
         run: |
           find tmp/arctic_db -name "lock.mdb" -exec rm -f {} \;
