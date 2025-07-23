@@ -75,6 +75,17 @@ jobs:
           name: failed-tickers-${{ matrix.partition }}
           path: logs/failed_tickers.log
           if-no-files-found: ignore
+          
+      - name: 📝 Commit failed tickers log
+        if: always()
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add logs/failed_tickers.log
+          git commit -m "Add failed_tickers.log for partition ${{ matrix.partition }} on $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   validate-arctic-data:
     needs:
