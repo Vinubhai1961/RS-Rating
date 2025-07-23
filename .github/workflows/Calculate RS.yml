@@ -117,6 +117,24 @@ jobs:
             exit 1
           fi
 
+      - name: 🔮 Verify merged ArcticDB (Top 10 symbols)
+        run: |
+          pip install arcticdb pandas
+          python -c "
+import arcticdb as adb
+try:
+    arctic = adb.Arctic('lmdb://tmp/arctic_db')
+    if not arctic.has_library('prices'):
+        raise ValueError('Library \"prices\" not found.')
+    lib = arctic.get_library('prices')
+    symbols = lib.list_symbols()
+    print(f'✅ Found {len(symbols)} symbols')
+    print('🔟 Sample symbols:', symbols[:10])
+except Exception as e:
+    print(f'❌ ArcticDB error: {e}')
+    exit(1)
+"
+
       - name: 🧼 Remove lock file
         run: |
           find tmp/arctic_db -name "lock.mdb" -exec rm -f {} \;
@@ -149,6 +167,20 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install pandas numpy tqdm arcticdb
+
+      - name: 🔮 Verify ArcticDB before RS calculation
+        run: |
+          python -c "
+import arcticdb as adb
+try:
+    arctic = adb.Arctic('lmdb://tmp/arctic_db')
+    if not arctic.has_library('prices'):
+        raise ValueError('Library \"prices\" not found')
+    print('✅ ArcticDB loaded successfully')
+except Exception as e:
+    print(f'❌ Failed to load ArcticDB: {e}')
+    exit(1)
+"
 
       - name: 📊 Run RS calculation
         run: |
