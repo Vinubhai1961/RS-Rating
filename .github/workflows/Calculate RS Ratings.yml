@@ -120,8 +120,7 @@ jobs:
       - name: 🔮 Verify merged ArcticDB (Top 10 symbols)
         run: |
           pip install arcticdb pandas
-          python -c "
-import arcticdb as adb
+          python -c "import arcticdb as adb
 try:
     arctic = adb.Arctic('lmdb://tmp/arctic_db')
     if not arctic.has_library('prices'):
@@ -170,8 +169,7 @@ except Exception as e:
 
       - name: 🔮 Verify ArcticDB before RS calculation
         run: |
-          python -c "
-import arcticdb as adb
+          python -c "import arcticdb as adb
 try:
     arctic = adb.Arctic('lmdb://tmp/arctic_db')
     if not arctic.has_library('prices'):
