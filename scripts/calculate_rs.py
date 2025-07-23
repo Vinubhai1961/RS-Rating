@@ -5,6 +5,7 @@ import json
 import os
 import argparse
 import logging
+import traceback
 from datetime import datetime
 import pandas as pd
 from yahooquery import Ticker
@@ -72,9 +73,11 @@ def fetch_historical_data(tickers, arctic_lib, log_file):
                 break
             except Exception as e:
                 if attempt == max_retries - 1:
-                    failed_tickers.extend((t, str(e)) for t in batch)
+                    error_msg = f"Batch {i//batch_size + 1} failed after {max_retries} attempts: {str(e)}\n{traceback.format_exc()}"
+                    logging.error(error_msg)
+                    failed_tickers.extend((t, error_msg) for t in batch)
                 else:
-                    time.sleep(5)
+                    time.sleep(10)  # Increased delay for rate limits
         batch_time = time.time() - batch_start_time
         logging.info(f"Completed batch {i//batch_size + 1}/{total_batches} ({len(batch)} tickers) in {batch_time:.2f} seconds")
 
