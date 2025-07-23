@@ -256,15 +256,22 @@ jobs:
         with:
           name: arctic-db-3
           path: tmp/arctic_db-3
-      - name: Merge ArcticDB data
+      - name: 🧩 Merge ArcticDB artifacts into tmp/arctic_db
         run: |
           rm -rf tmp/arctic_db
           mkdir -p tmp/arctic_db/prices
+          echo "🔍 Searching for tmp/arctic_db-* directories to merge..."
           for dir in tmp/arctic_db-*; do
             if [ -d "$dir/prices" ]; then
-              cp -r "$dir/prices"/* tmp/arctic_db/prices/
-            fi
+          echo "✅ Merging $dir/prices into tmp/arctic_db/prices"
+          cp -r "$dir/prices/." tmp/arctic_db/prices/
+          else
+          echo "⚠️ Skipping $dir — no prices/ folder found"
+          fi
           done
+          echo "📁 Final merged contents:"
+          ls -la tmp/arctic_db/prices
+
       - name: Remove lock file
         run: |
           find tmp/arctic_db -name "lock.mdb" -exec rm -f {} \;
