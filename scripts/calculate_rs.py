@@ -11,6 +11,7 @@ import numpy as np
 from yahooquery import Ticker
 import sys
 import time
+from tqdm.auto import tqdm
 
 def quarters_perf(closes: pd.Series, n: int) -> float:
     """Calculate performance for the last n quarters (n*63 days)."""
@@ -47,8 +48,12 @@ def fetch_historical_data(tickers, output_file, log_file):
     batch_size = 100
     history = {}
     failed_tickers = []
+    
+    # Calculate total batches for progress bar
+    total_batches = (len(tickers) + batch_size - 1) // batch_size
+    logging.info(f"Processing {len(tickers)} tickers in {total_batches} batches of {batch_size}")
 
-    for i in range(0, len(tickers), batch_size):
+    for i in tqdm(range(0, len(tickers), batch_size), total=total_batches, desc="Processing batches"):
         batch = tickers[i:i + batch_size]
         for attempt in range(max_retries):
             try:
@@ -142,7 +147,6 @@ def main(input_file, min_percentile, reference_ticker, output_dir, log_file):
     df_stocks = df_stocks.dropna(subset=["Relative Strength"])
     if df_stocks.empty:
         logging.warning("No tickers with valid RS data after filtering")
-        # Still generate empty CSVs to avoid workflow failure
         df_stocks.to_csv(os.path.join(output_dir, "rs_stocks.csv"), index=False)
         pd.DataFrame(columns=["Rank", "Industry", "Sector", "Relative Strength", "Percentile", 
                               "1 Month Ago", "3 Months Ago", "6 Months Ago", "Tickers", "Price"]).to_csv(
