@@ -179,8 +179,48 @@ jobs:
           name: failed-tickers-3
           path: logs/failed_tickers.log
 
-  calculate-rs:
+  validate-arctic-data:
     needs: [fetch-rs-0, fetch-rs-1, fetch-rs-2, fetch-rs-3]
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Download ArcticDB data
+        uses: actions/download-artifact@v4
+        with:
+          path: tmp
+      - name: Download logs
+        uses: actions/download-artifact@v4
+        with:
+          path: logs
+      - name: Cache Python dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install pandas numpy tqdm arcticdb
+      - name: Validate ArcticDB data
+        run: |
+          mkdir -p logs
+          python scripts/validate_arctic_data.py --log-file logs/failed_tickers.log
+      - name: Upload log
+        uses: actions/upload-artifact@v4
+        with:
+          name: failed-tickers-global
+          path: logs/failed_tickers.log
+
+  calculate-rs:
+    needs: validate-arctic-data
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
@@ -212,7 +252,6 @@ jobs:
       - name: Calculate RS and generate CSVs
         run: |
           mkdir -p logs
-          rm -f logs/failed_tickers.log
           cat logs/failed-tickers-*/failed_tickers.log >> logs/failed_tickers.log
           python scripts/calculate_rs_from_db.py data/ticker_price.json --min-percentile 85 --reference-ticker SPY --output-dir data --log-file logs/failed_tickers.log
       - name: Archive rs_stocks.csv
