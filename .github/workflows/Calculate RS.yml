@@ -54,6 +54,12 @@ jobs:
         with:
           name: arctic-db-0
           path: tmp/arctic_db/
+      - name: Upload failed tickers log
+        uses: actions/upload-artifact@v4
+        with:
+          name: failed-tickers-0
+          path: logs/failed_tickers.log
+          if-no-files-found: ignore
 
   fetch-rs-1:
     runs-on: ubuntu-latest
@@ -96,12 +102,19 @@ jobs:
         run: |
           mkdir -p tmp/arctic_db
           mkdir -p logs
+          rm -f logs/failed_tickers.log
           python scripts/calculate_rs.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 1 --total-partitions 4
       - name: Upload ArcticDB data
         uses: actions/upload-artifact@v4
         with:
           name: arctic-db-1
           path: tmp/arctic_db/
+          if-no-files-found: ignore
+      - name: Upload failed tickers log
+        uses: actions/upload-artifact@v4
+        with:
+          name: failed-tickers-1
+          path: logs/failed_tickers.log
           if-no-files-found: ignore
 
   fetch-rs-2:
@@ -145,12 +158,19 @@ jobs:
         run: |
           mkdir -p tmp/arctic_db
           mkdir -p logs
+          rm -f logs/failed_tickers.log
           python scripts/calculate_rs.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 2 --total-partitions 4
       - name: Upload ArcticDB data
         uses: actions/upload-artifact@v4
         with:
           name: arctic-db-2
           path: tmp/arctic_db/
+          if-no-files-found: ignore
+      - name: Upload failed tickers log
+        uses: actions/upload-artifact@v4
+        with:
+          name: failed-tickers-2
+          path: logs/failed_tickers.log
           if-no-files-found: ignore
 
   fetch-rs-3:
@@ -194,12 +214,19 @@ jobs:
         run: |
           mkdir -p tmp/arctic_db
           mkdir -p logs
+          rm -f logs/failed_tickers.log
           python scripts/calculate_rs.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 3 --total-partitions 4
       - name: Upload ArcticDB data
         uses: actions/upload-artifact@v4
         with:
           name: arctic-db-3
           path: tmp/arctic_db/
+          if-no-files-found: ignore
+      - name: Upload failed tickers log
+        uses: actions/upload-artifact@v4
+        with:
+          name: failed-tickers-3
+          path: logs/failed_tickers.log
           if-no-files-found: ignore
 
   validate-arctic-data:
@@ -325,10 +352,14 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install pandas numpy tqdm arcticdb
+      - name: Prepare failed tickers log
+        run: |
+          mkdir -p logs
+          touch logs/failed_tickers.log  # Create empty log if none
+          cat logs/failed-tickers-*/failed_tickers.log >> logs/failed_tickers.log 2>/dev/null || echo "No additional logs found" >> logs/failed_tickers.log
       - name: Calculate RS and generate CSVs
         run: |
           mkdir -p logs
-          cat logs/failed-tickers-*/failed_tickers.log >> logs/failed_tickers.log
           python scripts/calculate_rs_from_db.py data/ticker_price.json --min-percentile 85 --reference-ticker SPY --output-dir data --log-file logs/failed_tickers.log
       - name: Archive rs_stocks.csv
         run: |
