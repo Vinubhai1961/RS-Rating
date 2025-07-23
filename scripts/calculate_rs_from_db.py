@@ -71,6 +71,9 @@ def main(input_file, min_percentile, reference_ticker, output_dir, log_file):
     lib = arctic.get_library("prices")
     
     tickers = list(data.keys())
+    logging.info(f"Calculating RS for {len(tickers)} tickers")
+    logging.info(f"Estimated RS calculation time: ~{(len(tickers) * 0.01) // 60} minutes {int((len(tickers) * 0.01) % 60)} seconds")
+    
     if reference_ticker not in tickers:
         logging.error(f"Reference ticker {reference_ticker} not found in {input_file}")
         return
