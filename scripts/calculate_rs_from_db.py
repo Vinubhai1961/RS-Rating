@@ -1,4 +1,6 @@
+#!/usr/bin/env python3
 import os
+import json
 import argparse
 import logging
 from datetime import datetime, timedelta
@@ -13,7 +15,7 @@ def quarters_perf(closes: pd.Series, n: int) -> float:
         return np.nan
     available_data = closes[-min(len(closes), days):]
     pct_change = available_data.pct_change().dropna()
-    return (pct_change + 1).cumprod()[-1] - 1 if not pct_change.empty else np.nan
+    return (pct_change + 1).cumprod().iloc[-1] - 1 if not pct_change.empty else np.nan
 
 def strength(closes: pd.Series) -> float:
     perfs = [quarters_perf(closes, i) for i in range(1, 5)]
@@ -60,7 +62,7 @@ def main(arctic_db_path, min_percentile, reference_ticker, output_dir, log_file,
     if reference_ticker not in tickers:
         logging.error(f"Reference ticker {reference_ticker} not found")
         return
-    
+
     # Load metadata if provided
     metadata_df = pd.DataFrame()
     if metadata_file and os.path.exists(metadata_file):
@@ -72,19 +74,17 @@ def main(arctic_db_path, min_percentile, reference_ticker, output_dir, log_file,
             for t in data
         ]
         metadata_df = pd.DataFrame(metadata)
-    
-    est_time_per_ticker = 0.01
-    est_total_time = len(tickers) * est_time_per_ticker / 60
-    logging.info(f"Starting RS calculation for {len(tickers)} tickers, estimated time: {est_total_time:.2f} minutes")
-    
+
+    logging.info(f"Starting RS calculation for {len(tickers)} tickers")
+
     rs_results = []
     ref_data = lib.read(reference_ticker).data
     ref_closes = pd.Series(ref_data["close"].values, index=pd.to_datetime(ref_data["datetime"], unit='s'))
     if len(ref_closes) < 20:
         logging.error(f"Reference ticker {reference_ticker} has insufficient data ({len(ref_closes)} days)")
         return
-    
-    for ticker in tqdm(tickers, desc=f"Calculating RS (~{est_time_per_ticker*1000:.2f}ms/ticker)"):
+
+    for ticker in tqdm(tickers, desc="Calculating RS"):
         if ticker == reference_ticker:
             continue
         try:
@@ -100,37 +100,25 @@ def main(arctic_db_path, min_percentile, reference_ticker, output_dir, log_file,
             rs_results.append((ticker, rs, rs_1m, rs_3m, rs_6m))
         except Exception as e:
             logging.info(f"{ticker}: Failed to process ({str(e)})")
-    
+
     df_stocks = pd.DataFrame(rs_results, columns=["Ticker", "Relative Strength", "1 Month Ago", "3 Months Ago", "6 Months Ago"])
     df_stocks = df_stocks.merge(metadata_df, on="Ticker", how="left").dropna(subset=["Relative Strength"])
     if df_stocks.empty:
         logging.warning("No tickers with valid RS data after filtering")
-        df_stocks.to_csv(os.path.join(output_dir, "rs_stocks.csv"), index=False)
-        pd.DataFrame(columns=["Rank", "Industry", "Sector", "Relative Strength", "Percentile", 
-                              "1 Month Ago", "3 Months Ago", "6 Months Ago", "Tickers", "Price"]).to_csv(
-            os.path.join(output_dir, "rs_industries.csv"), index=False
-        )
-        pd.DataFrame(columns=["symbol", "rsrating", "time"]).to_csv(
-            os.path.join(output_dir, "RSRATING.csv"), index=False
-        )
         return
-    
+
     for col in ["Relative Strength", "1 Month Ago", "3 Months Ago", "6 Months Ago"]:
         df_stocks[f"{col} Percentile"] = pd.qcut(df_stocks[col], 100, labels=False, duplicates="drop")
+
     df_stocks = df_stocks[df_stocks["Relative Strength Percentile"] >= min_percentile]
-    
     df_stocks = df_stocks.sort_values("Relative Strength", ascending=False).reset_index(drop=True)
     df_stocks["Rank"] = df_stocks.index + 1
-    df_stocks = df_stocks[["Rank", "Ticker", "Price", "Sector", "Industry", "Relative Strength", 
-                           "Relative Strength Percentile", "1 Month Ago Percentile", 
-                           "3 Months Ago Percentile", "6 Months Ago Percentile"]]
-    df_stocks.columns = ["Rank", "Ticker", "Price", "Sector", "Industry", "Relative Strength", 
-                         "Percentile", "1 Month Ago", "3 Months Ago", "6 Months Ago"]
-    df_stocks.to_csv(os.path.join(output_dir, "rs_stocks.csv"), index=False)
-    
+
     df_stocks.loc[df_stocks["Type"] == "ETF", "Industry"] = "ETF"
-    df_stocks.loc[df_stocks["Type"] == "ETF", "Sector"] = "ETF"]
-    
+    df_stocks.loc[df_stocks["Type"] == "ETF", "Sector"] = "ETF"
+
+    df_stocks.to_csv(os.path.join(output_dir, "rs_stocks.csv"), index=False)
+
     df_industries = df_stocks.groupby("Industry").agg({
         "Relative Strength": "mean",
         "1 Month Ago": "mean",
@@ -138,44 +126,33 @@ def main(arctic_db_path, min_percentile, reference_ticker, output_dir, log_file,
         "6 Months Ago": "mean",
         "Price": "mean",
         "Sector": "first",
-        "Ticker": lambda x: ",".join(x.sort_values(by=df_stocks.loc[x.index, "Relative Strength"], ascending=False))
+        "Ticker": lambda x: ",".join(x)
     }).reset_index()
-    df_industries = df_industries[df_industries["Ticker"].str.split(",").str.len() > 1]
-    
+
     for col in ["Relative Strength", "1 Month Ago", "3 Months Ago", "6 Months Ago"]:
         df_industries[f"{col} Percentile"] = pd.qcut(df_industries[col], 100, labels=False, duplicates="drop")
+
     df_industries = df_industries.sort_values("Relative Strength", ascending=False).reset_index(drop=True)
     df_industries["Rank"] = df_industries.index + 1
-    df_industries = df_industries[["Rank", "Industry", "Sector", "Relative Strength", 
-                                  "Relative Strength Percentile", "1 Month Ago Percentile", 
-                                  "3 Months Ago Percentile", "6 Months Ago Percentile", "Tickers", "Price"]]
-    df_industries.columns = ["Rank", "Industry", "Sector", "Relative Strength", 
-                            "Percentile", "1 Month Ago", "3 Months Ago", "6 Months Ago", "Tickers", "Price"]
     df_industries.to_csv(os.path.join(output_dir, "rs_industries.csv"), index=False)
-    
+
     latest_date = datetime.fromtimestamp(ref_data["datetime"].max()).strftime("%Y-%m-%d")
-    dates = [
-        latest_date,
-        (datetime.fromtimestamp(ref_data["datetime"].max()) - timedelta(days=20)).strftime("%Y-%m-%d"),
-        (datetime.fromtimestamp(ref_data["datetime"].max()) - timedelta(days=60)).strftime("%Y-%m-%d"),
-        (datetime.fromtimestamp(ref_data["datetime"].max()) - timedelta(days=120)).strftime("%Y-%m-%d")
-    ]
-    rsrating_rows = []
-    for _, row in df_stocks.iterrows():
-        for period, date in zip(["Percentile", "1 Month Ago", "3 Months Ago", "6 Months Ago"], dates):
-            if not pd.isna(row[period]):
-                rsrating_rows.append((row["Ticker"], row[period], date))
-    pd.DataFrame(rsrating_rows, columns=["symbol", "rsrating", "time"]).to_csv(
-        os.path.join(output_dir, "RSRATING.csv"), index=False
-    )
+    df_rating = df_stocks[["Ticker", "Relative Strength"]].copy()
+    df_rating.columns = ["symbol", "rsrating"]
+    df_rating["time"] = latest_date
+    df_rating.to_csv(os.path.join(output_dir, "RSRATING.csv"), index=False)
+
+    logging.info("✅ RS calculation completed successfully.")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Calculate Relative Strength from ArcticDB and generate CSVs")
-    parser.add_argument("--arctic-db-path", default="lmdb://tmp/arctic_db", help="Path to ArcticDB root")
-    parser.add_argument("--min-percentile", type=int, default=85, help="Minimum percentile for filtering")
-    parser.add_argument("--reference-ticker", default="SPY", help="Reference ticker for RS")
-    parser.add_argument("--output-dir", default="data", help="Output directory for CSVs")
-    parser.add_argument("--log-file", default="logs/failed_tickers.log", help="Log file for errors")
-    parser.add_argument("--metadata-file", default=None, help="Optional metadata JSON file")
+    parser = argparse.ArgumentParser(description="Calculate RS from ArcticDB")
+    parser.add_argument("--arctic-db-path", default="tmp/arctic_db", help="Path to ArcticDB root (no scheme)")
+    parser.add_argument("--min-percentile", type=int, default=85, help="Minimum RS percentile")
+    parser.add_argument("--reference-ticker", default="SPY", help="Reference ticker symbol")
+    parser.add_argument("--output-dir", default="output", help="Directory to save results")
+    parser.add_argument("--log-file", default="logs/failed_tickers.log", help="Log file path")
+    parser.add_argument("--metadata-file", default=None, help="Optional ticker metadata JSON file")
     args = parser.parse_args()
+
+    os.makedirs(os.path.dirname(args.log_file), exist_ok=True)
     main(args.arctic_db_path, args.min_percentile, args.reference_ticker, args.output_dir, args.log_file, args.metadata_file)
