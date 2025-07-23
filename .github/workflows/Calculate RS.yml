@@ -52,13 +52,8 @@ jobs:
       - name: Upload ArcticDB data
         uses: actions/upload-artifact@v4
         with:
-          name: arctic-db-0
+          name: arctic-db
           path: tmp/arctic_db/
-      - name: Upload log
-        uses: actions/upload-artifact@v4
-        with:
-          name: failed-tickers-0
-          path: logs/failed_tickers.log
 
   fetch-rs-1:
     runs-on: ubuntu-latest
@@ -105,13 +100,9 @@ jobs:
       - name: Upload ArcticDB data
         uses: actions/upload-artifact@v4
         with:
-          name: arctic-db-1
+          name: arctic-db
           path: tmp/arctic_db/
-      - name: Upload log
-        uses: actions/upload-artifact@v4
-        with:
-          name: failed-tickers-1
-          path: logs/failed_tickers.log
+          if-no-files-found: ignore  # Avoid failure if no new data
 
   fetch-rs-2:
     runs-on: ubuntu-latest
@@ -158,13 +149,9 @@ jobs:
       - name: Upload ArcticDB data
         uses: actions/upload-artifact@v4
         with:
-          name: arctic-db-2
+          name: arctic-db
           path: tmp/arctic_db/
-      - name: Upload log
-        uses: actions/upload-artifact@v4
-        with:
-          name: failed-tickers-2
-          path: logs/failed_tickers.log
+          if-no-files-found: ignore  # Avoid failure if no new data
 
   fetch-rs-3:
     runs-on: ubuntu-latest
@@ -211,13 +198,9 @@ jobs:
       - name: Upload ArcticDB data
         uses: actions/upload-artifact@v4
         with:
-          name: arctic-db-3
+          name: arctic-db
           path: tmp/arctic_db/
-      - name: Upload log
-        uses: actions/upload-artifact@v4
-        with:
-          name: failed-tickers-3
-          path: logs/failed_tickers.log
+          if-no-files-found: ignore  # Avoid failure if no new data
 
   validate-arctic-data:
     needs: [fetch-rs-0, fetch-rs-1, fetch-rs-2, fetch-rs-3]
@@ -229,11 +212,16 @@ jobs:
       - name: Download ArcticDB data
         uses: actions/download-artifact@v4
         with:
-          path: tmp
+          name: arctic-db
+          path: tmp/arctic_db
+      - name: Remove lock file
+        run: |
+          find tmp/arctic_db -name "lock.mdb" -exec rm -f {} \;
       - name: Download logs
         uses: actions/download-artifact@v4
         with:
           path: logs
+          pattern: failed-tickers-*
       - name: Cache Python dependencies
         uses: actions/cache@v4
         with:
@@ -253,11 +241,6 @@ jobs:
         run: |
           mkdir -p logs
           python scripts/validate_arctic_data.py --log-file logs/failed_tickers.log
-      - name: Upload log
-        uses: actions/upload-artifact@v4
-        with:
-          name: failed-tickers-global
-          path: logs/failed_tickers.log
 
   calculate-rs:
     needs: validate-arctic-data
@@ -269,11 +252,16 @@ jobs:
       - name: Download ArcticDB data
         uses: actions/download-artifact@v4
         with:
-          path: tmp
+          name: arctic-db
+          path: tmp/arctic_db
+      - name: Remove lock file
+        run: |
+          find tmp/arctic_db -name "lock.mdb" -exec rm -f {} \;
       - name: Download logs
         uses: actions/download-artifact@v4
         with:
           path: logs
+          pattern: failed-tickers-*
       - name: Cache Python dependencies
         uses: actions/cache@v4
         with:
