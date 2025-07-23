@@ -33,6 +33,9 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install yahooquery pandas numpy tqdm arcticdb
+      - name: Verify calculate_rs.py arguments
+        run: |
+          python scripts/calculate_rs.py -h
       - name: Fetch data for partition 0
         run: |
           mkdir -p tmp/arctic_db
@@ -77,6 +80,9 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install yahooquery pandas numpy tqdm arcticdb
+      - name: Verify calculate_rs.py arguments
+        run: |
+          python scripts/calculate_rs.py -h
       - name: Fetch data for partition 1
         run: |
           mkdir -p tmp/arctic_db
@@ -120,6 +126,9 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install yahooquery pandas numpy tqdm arcticdb
+      - name: Verify calculate_rs.py arguments
+        run: |
+          python scripts/calculate_rs.py -h
       - name: Fetch data for partition 2
         run: |
           mkdir -p tmp/arctic_db
@@ -163,6 +172,9 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install yahooquery pandas numpy tqdm arcticdb
+      - name: Verify calculate_rs.py arguments
+        run: |
+          python scripts/calculate_rs.py -h
       - name: Fetch data for partition 3
         run: |
           mkdir -p tmp/arctic_db
