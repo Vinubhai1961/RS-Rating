@@ -53,8 +53,28 @@ jobs:
         run: |
           python scripts/calculate_rs.py -h
 
-      - name: ⏳ Simulate partitioned fetch
-        run: echo "Simulating RS fetch for partition ${{ matrix.partition }}"
+      - name: ▶️ Fetch data for partition ${{ matrix.partition }}
+        run: |
+          mkdir -p tmp/arctic_db
+          mkdir -p logs
+          rm -f logs/failed_tickers.log
+          python scripts/calculate_rs.py data/ticker_price.json \
+            --log-file logs/failed_tickers.log \
+            --partition ${{ matrix.partition }} \
+            --total-partitions 4
+
+      - name: 📦 Upload ArcticDB data
+        uses: actions/upload-artifact@v4
+        with:
+          name: arctic-db-${{ matrix.partition }}
+          path: tmp/arctic_db/
+
+      - name: 📊 Upload failed tickers log
+        uses: actions/upload-artifact@v4
+        with:
+          name: failed-tickers-${{ matrix.partition }}
+          path: logs/failed_tickers.log
+          if-no-files-found: ignore
 
   validate-arctic-data:
     needs:
