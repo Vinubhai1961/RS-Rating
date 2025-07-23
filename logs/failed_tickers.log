@@ -193,3 +193,80 @@
 2025-07-23 07:17:17,573 - Ticker: SNSR, Data Points: 501, Latest Date: 2025-07-22
 2025-07-23 07:17:17,573 - Ticker: SPAB, Data Points: 501, Latest Date: 2025-07-22
 2025-07-23 07:21:55,053 - ArcticDB library 'prices' not found
+2025-07-23 09:18:13,616 - Partition 0/4: 2203 tickers
+2025-07-23 09:18:13,624 - Starting fetch for 2203 tickers in 12 batches of 200, estimated time: 4.23 minutes
+2025-07-23 09:18:30,271 - ✅ Completed batch 1/12 - 200 success, 0 skipped, in 16.64s
+2025-07-23 09:18:46,364 - ✅ Completed batch 2/12 - 200 success, 0 skipped, in 16.09s
+2025-07-23 09:19:01,654 - ✅ Completed batch 3/12 - 200 success, 0 skipped, in 15.29s
+2025-07-23 09:19:18,238 - ✅ Completed batch 4/12 - 200 success, 0 skipped, in 16.58s
+2025-07-23 09:19:34,694 - ✅ Completed batch 5/12 - 200 success, 0 skipped, in 16.46s
+2025-07-23 09:19:51,309 - ✅ Completed batch 6/12 - 200 success, 0 skipped, in 16.61s
+2025-07-23 09:20:07,362 - ✅ Completed batch 7/12 - 200 success, 0 skipped, in 16.05s
+2025-07-23 09:20:25,093 - ✅ Completed batch 8/12 - 200 success, 0 skipped, in 17.73s
+2025-07-23 09:20:41,805 - ✅ Completed batch 9/12 - 200 success, 0 skipped, in 16.71s
+2025-07-23 09:20:58,185 - ✅ Completed batch 10/12 - 200 success, 0 skipped, in 16.38s
+2025-07-23 09:21:14,514 - ✅ Completed batch 11/12 - 200 success, 0 skipped, in 16.33s
+2025-07-23 09:21:15,466 - ✅ Completed batch 12/12 - 3 success, 0 skipped, in 0.95s
+2025-07-23 09:21:15,467 - 
+=== Fetch Summary ===
+2025-07-23 09:21:15,467 - Successful: 2203
+2025-07-23 09:21:15,467 - Skipped (no/empty data): 0
+2025-07-23 09:21:15,467 - Failed after retries: 0
+2025-07-23 09:18:08,745 - Partition 1/4: 2203 tickers
+2025-07-23 09:18:08,751 - Starting fetch for 2203 tickers in 12 batches of 200, estimated time: 4.23 minutes
+2025-07-23 09:18:24,384 - ✅ Completed batch 1/12 - 200 success, 0 skipped, in 15.63s
+2025-07-23 09:18:41,083 - ✅ Completed batch 2/12 - 200 success, 0 skipped, in 16.70s
+2025-07-23 09:18:56,248 - ✅ Completed batch 3/12 - 200 success, 0 skipped, in 15.16s
+2025-07-23 09:19:12,087 - ✅ Completed batch 4/12 - 200 success, 0 skipped, in 15.84s
+2025-07-23 09:19:28,047 - ✅ Completed batch 5/12 - 200 success, 0 skipped, in 15.96s
+2025-07-23 09:19:43,119 - ✅ Completed batch 6/12 - 200 success, 0 skipped, in 15.07s
+2025-07-23 09:19:58,187 - ✅ Completed batch 7/12 - 200 success, 0 skipped, in 15.07s
+2025-07-23 09:20:14,388 - ✅ Completed batch 8/12 - 200 success, 0 skipped, in 16.20s
+2025-07-23 09:20:33,154 - ✅ Completed batch 9/12 - 200 success, 0 skipped, in 18.77s
+2025-07-23 09:20:48,314 - ✅ Completed batch 10/12 - 200 success, 0 skipped, in 15.16s
+2025-07-23 09:21:07,376 - ✅ Completed batch 11/12 - 200 success, 0 skipped, in 19.06s
+2025-07-23 09:21:08,083 - ✅ Completed batch 12/12 - 3 success, 0 skipped, in 0.71s
+2025-07-23 09:21:08,083 - 
+=== Fetch Summary ===
+2025-07-23 09:21:08,083 - Successful: 2203
+2025-07-23 09:21:08,083 - Skipped (no/empty data): 0
+2025-07-23 09:21:08,084 - Failed after retries: 0
+2025-07-23 09:18:08,635 - Partition 2/4: 2203 tickers
+2025-07-23 09:18:08,641 - Starting fetch for 2203 tickers in 12 batches of 200, estimated time: 4.23 minutes
+2025-07-23 09:18:22,943 - ✅ Completed batch 1/12 - 200 success, 0 skipped, in 14.29s
+2025-07-23 09:18:36,980 - ✅ Completed batch 2/12 - 200 success, 0 skipped, in 14.04s
+2025-07-23 09:18:51,838 - ✅ Completed batch 3/12 - 200 success, 0 skipped, in 14.86s
+2025-07-23 09:19:06,410 - ✅ Completed batch 4/12 - 200 success, 0 skipped, in 14.57s
+2025-07-23 09:19:21,376 - ✅ Completed batch 5/12 - 200 success, 0 skipped, in 14.97s
+2025-07-23 09:19:36,889 - ✅ Completed batch 6/12 - 200 success, 0 skipped, in 15.51s
+2025-07-23 09:19:51,933 - ✅ Completed batch 7/12 - 200 success, 0 skipped, in 15.04s
+2025-07-23 09:20:07,233 - ✅ Completed batch 8/12 - 200 success, 0 skipped, in 15.30s
+2025-07-23 09:20:22,590 - ✅ Completed batch 9/12 - 200 success, 0 skipped, in 15.36s
+2025-07-23 09:20:37,097 - ✅ Completed batch 10/12 - 200 success, 0 skipped, in 14.51s
+2025-07-23 09:20:50,622 - ✅ Completed batch 11/12 - 200 success, 0 skipped, in 13.52s
+2025-07-23 09:20:52,350 - ✅ Completed batch 12/12 - 3 success, 0 skipped, in 1.73s
+2025-07-23 09:20:52,350 - 
+=== Fetch Summary ===
+2025-07-23 09:20:52,350 - Successful: 2203
+2025-07-23 09:20:52,351 - Skipped (no/empty data): 0
+2025-07-23 09:20:52,351 - Failed after retries: 0
+2025-07-23 09:18:13,042 - Partition 3/4: 2205 tickers
+2025-07-23 09:18:13,049 - Starting fetch for 2205 tickers in 12 batches of 200, estimated time: 4.23 minutes
+2025-07-23 09:18:29,890 - ✅ Completed batch 1/12 - 200 success, 0 skipped, in 16.83s
+2025-07-23 09:18:46,411 - ✅ Completed batch 2/12 - 200 success, 0 skipped, in 16.52s
+2025-07-23 09:19:03,974 - ✅ Completed batch 3/12 - 200 success, 0 skipped, in 17.56s
+2025-07-23 09:19:20,832 - ✅ Completed batch 4/12 - 200 success, 0 skipped, in 16.86s
+2025-07-23 09:19:38,022 - ✅ Completed batch 5/12 - 200 success, 0 skipped, in 17.19s
+2025-07-23 09:19:54,628 - ✅ Completed batch 6/12 - 200 success, 0 skipped, in 16.61s
+2025-07-23 09:20:11,771 - ✅ Completed batch 7/12 - 200 success, 0 skipped, in 17.14s
+2025-07-23 09:20:29,372 - ✅ Completed batch 8/12 - 200 success, 0 skipped, in 17.60s
+2025-07-23 09:20:47,581 - ✅ Completed batch 9/12 - 200 success, 0 skipped, in 18.21s
+2025-07-23 09:21:05,341 - ✅ Completed batch 10/12 - 200 success, 0 skipped, in 17.76s
+2025-07-23 09:21:21,421 - ✅ Completed batch 11/12 - 200 success, 0 skipped, in 16.08s
+2025-07-23 09:21:22,491 - ✅ Completed batch 12/12 - 5 success, 0 skipped, in 1.07s
+2025-07-23 09:21:22,491 - 
+=== Fetch Summary ===
+2025-07-23 09:21:22,491 - Successful: 2205
+2025-07-23 09:21:22,491 - Skipped (no/empty data): 0
+2025-07-23 09:21:22,491 - Failed after retries: 0
+2025-07-23 09:22:19,275 - No 'prices' library found in lmdb://tmp/arctic_db
