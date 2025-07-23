@@ -24,10 +24,12 @@ def validate_arctic_data(arctic_lib, log_file):
         arctic = adb.Arctic(arctic_dir)
         if not arctic.has_library("prices"):
             logging.warning(f"ArcticDB library 'prices' not found at {arctic_dir}")
+            print(f"ArcticDB library 'prices' not found at {arctic_dir}")
             return
         lib = arctic.get_library("prices")
     except Exception as e:
         logging.warning(f"Failed to access ArcticDB at {arctic_dir}: {str(e)}")
+        print(f"Failed to access ArcticDB at {arctic_dir}: {str(e)}")
         return
     
     # Get all symbols and count data points
@@ -45,24 +47,33 @@ def validate_arctic_data(arctic_lib, log_file):
         except Exception as e:
             logging.info(f"Validation failed for {symbol}: {str(e)}")
     
-    # Log total and valid tickers
-    logging.info(f"Total tickers in ArcticDB: {len(ticker_counts)}")
+    # Log and print total and valid tickers
+    total_tickers = len(ticker_counts)
+    logging.info(f"Total tickers in ArcticDB: {total_tickers}")
     logging.info(f"Valid tickers (≥2 data points): {valid_tickers}")
+    print(f"Total tickers in ArcticDB: {total_tickers}")
+    print(f"Valid tickers (≥2 data points): {valid_tickers}")
     if valid_tickers < expected_tickers * 0.5:
         logging.warning(f"Only {valid_tickers}/{expected_tickers} tickers have sufficient data (<50%)")
+        print(f"Warning: Only {valid_tickers}/{expected_tickers} tickers have sufficient data (<50%)")
     
     # Sort by data point count (descending) and select top 10
     ticker_counts.sort(key=lambda x: x[1], reverse=True)
     top_10 = ticker_counts[:10]
     
-    # Log top 10 tickers
+    # Log and print top 10 tickers
     logging.info("Global validation - Top 10 tickers by data point count:")
+    print("Global validation - Top 10 tickers by data point count:")
     for ticker, count, latest_date in top_10:
         logging.info(f"Ticker: {ticker}, Data Points: {count}, Latest Date: {latest_date}")
+        print(f"Ticker: {ticker}, Data Points: {count}, Latest Date: {latest_date}")
 
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="Validate ArcticDB data")
     parser.add_argument("--log-file", default="logs/failed_tickers.log", help="Log file for validation output")
     args = parser.parse_args()
+    os.makedirs(os.path.dirname(args.log_file), exist_ok=True)
+    with open(args.log_file, 'a') as f:  # Ensure log file exists
+        f.write(f"Validation started at {datetime.now()}\n")
     validate_arctic_data("tmp/arctic_db/prices", args.log_file)
