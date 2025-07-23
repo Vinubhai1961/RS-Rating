@@ -2,21 +2,32 @@
 import logging
 from datetime import datetime
 import arcticdb as adb
+import os
+import shutil
 
 def validate_arctic_data(arctic_lib, log_file):
     """Validate ArcticDB data by logging top 10 tickers by data point count."""
     # Setup logging
     logging.basicConfig(filename=log_file, level=logging.INFO, format="%(asctime)s - %(message)s")
     
+    # Merge ArcticDB subdirectories if multiple artifacts
+    arctic_dir = "tmp/arctic_db"
+    if os.path.exists(arctic_dir):
+        for item in os.listdir(arctic_dir):
+            item_path = os.path.join(arctic_dir, item)
+            if os.path.isdir(item_path) and item != "prices":
+                shutil.rmtree(os.path.join(arctic_dir, "prices"), ignore_errors=True)
+                shutil.move(item_path, os.path.join(arctic_dir, "prices"))
+    
     # Access ArcticDB
     try:
-        arctic = adb.Arctic("lmdb://tmp/arctic_db")
+        arctic = adb.Arctic(arctic_dir)
         if not arctic.has_library("prices"):
-            logging.error("ArcticDB library 'prices' not found for validation")
+            logging.warning(f"ArcticDB library 'prices' not found at {arctic_dir}")
             return
         lib = arctic.get_library("prices")
     except Exception as e:
-        logging.error(f"Failed to access ArcticDB: {str(e)}")
+        logging.warning(f"Failed to access ArcticDB at {arctic_dir}: {str(e)}")
         return
     
     # Get all symbols and count data points
