@@ -288,24 +288,25 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install pandas numpy tqdm arcticdb
-
+          
       - name: 🔮 Verify ArcticDB before RS calculation
         run: |
           python <<EOF
           import arcticdb as adb
           import sys
-        try:
-          arctic = adb.Arctic("lmdb://tmp/arctic_db")
-        if not arctic.has_library("prices"):
-          print("❌ Library 'prices' not found in ArcticDB")
-          sys.exit(1)
-          print("✅ ArcticDB loaded successfully")
-          sys.exit(0)
-        except Exception as e:
-          print(f"❌ Failed to load ArcticDB: {e}")
-          sys.exit(1)
-        EOF
 
+          try:
+              arctic = adb.Arctic("lmdb://tmp/arctic_db")
+              if not arctic.has_library("prices"):
+                  print("❌ Library 'prices' not found in ArcticDB")
+                  sys.exit(1)
+              print("✅ ArcticDB loaded successfully")
+              sys.exit(0)
+          except Exception as e:
+              print(f"❌ Failed to load ArcticDB: {e}")
+              sys.exit(1)
+          EOF
+          
       - name: 📃 Run RS calculation
         run: |
           mkdir -p logs data
@@ -336,7 +337,7 @@ jobs:
               echo "❌ RS calculation script failed"
               exit 1
             }
-
+ 
 
       - name: 🗓️ Upload outputs
         uses: actions/upload-artifact@v4
