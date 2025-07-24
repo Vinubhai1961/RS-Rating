@@ -224,18 +224,23 @@ jobs:
         run: |
           python scripts/merge_arcticdb.py --source-root tmp --dest-path tmp/arctic_db
 
-      - name: 🔮 Verify merged ArcticDB (Top 10 symbols)
+      - name: 🔮 Verify merged ArcticDB (Top 10 A–Z symbols)
         run: |
           python <<EOF
           import arcticdb as adb
           try:
             arctic = adb.Arctic("lmdb://tmp/arctic_db")
             if not arctic.has_library("prices"):
-              raise ValueError("Library 'prices' not found.")
+            raise ValueError("Library 'prices' not found.")
             lib = arctic.get_library("prices")
-            symbols = lib.list_symbols()
+            symbols = sorted(lib.list_symbols())  # ✅ sort alphabetically A–Z
             print(f"✅ Found {len(symbols)} symbols")
-            print("🕟 Sample symbols:", symbols[:10])
+            print("🕟 Top 10 A–Z symbols:")
+            for sym in symbols[:10]:
+            print(f"  - {sym}")
+            print("\n🕙 Top 10 Z–A symbols:")
+            for sym in reversed(symbols[-10:]):
+            print(f"  - {sym}")
           except Exception as e:
             print(f"❌ ArcticDB error: {e}")
             exit(1)
