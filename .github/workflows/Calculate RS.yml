@@ -263,6 +263,11 @@ jobs:
   calculate-rs:
     needs: validate-arctic-data
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ github.workspace }}
+
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
