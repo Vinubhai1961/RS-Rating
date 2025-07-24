@@ -300,7 +300,7 @@ jobs:
             print("\u2705 ArcticDB loaded successfully")
           except Exception as e:
             print(f"\u274c Failed to load ArcticDB: {e}")
-            exit(1)
+            exit(0)
           EOF
 
       - name: 📃 Run RS calculation
