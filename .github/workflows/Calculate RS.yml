@@ -231,21 +231,21 @@ jobs:
           try:
             arctic = adb.Arctic("lmdb://tmp/arctic_db")
             if not arctic.has_library("prices"):
-            raise ValueError("Library 'prices' not found.")
+                raise ValueError("Library 'prices' not found.")
             lib = arctic.get_library("prices")
             symbols = sorted(lib.list_symbols())  # ✅ sort alphabetically A–Z
             print(f"✅ Found {len(symbols)} symbols")
             print("🕟 Top 10 A–Z symbols:")
             for sym in symbols[:10]:
-            print(f"  - {sym}")
+                print(f"  - {sym}")
             print("\n🕙 Top 10 Z–A symbols:")
             for sym in reversed(symbols[-10:]):
-            print(f"  - {sym}")
+                print(f"  - {sym}")
           except Exception as e:
             print(f"❌ ArcticDB error: {e}")
             exit(1)
           EOF
-
+          
       - name: 🫼 Remove lock file
         run: |
           find tmp/arctic_db -name "lock.mdb" -exec rm -f {} \;
