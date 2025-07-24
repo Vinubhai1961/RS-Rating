@@ -2,7 +2,8 @@ name: 📊 Calculate RS Ratings
 
 on:
   schedule:
-    - cron: "2 9 * * *"  # 09:02 AM EDT (09:15 UTC)
+    - cron: "44 13 * * *"  # 09:44 AM EDT (13:44 UTC)
+    
   workflow_dispatch:
 
 jobs:
