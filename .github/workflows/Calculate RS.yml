@@ -300,8 +300,13 @@ jobs:
       - name: 🚀 Run RS Rating Calculation
         run: |
           mkdir -p logs data
-          # Copy metadata file if it exists from fetch-rs artifacts
-          cp data/ticker_price.json data/ticker_price.json 2>/dev/null || echo "No ticker_price.json found, proceeding without metadata"
+          # Check if metadata file exists
+          if [ -f data/ticker_price.json ]; then
+            echo "✅ Metadata file found: data/ticker_price.json"
+            cat data/ticker_price.json > metadata_debug.json  # Debug output
+          else
+            echo "⚠️ No metadata file found at data/ticker_price.json"
+          fi
           python scripts/calculate_rs_from_db.py \
             --arctic-db-path lmdb://tmp/arctic_db \
             --min-percentile 85 \
