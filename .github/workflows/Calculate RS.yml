@@ -293,19 +293,23 @@ jobs:
         run: |
           python <<EOF
           import arcticdb as adb
-          try:
-            arctic = adb.Arctic("lmdb://tmp/arctic_db")
-            if not arctic.has_library("prices"):
-              raise ValueError("Library 'prices' not found")
-            print("\u2705 ArcticDB loaded successfully")
-          except Exception as e:
-            print(f"\u274c Failed to load ArcticDB: {e}")
-            exit(0)
-          EOF
+          import sys
+        try:
+          arctic = adb.Arctic("lmdb://tmp/arctic_db")
+        if not arctic.has_library("prices"):
+          print("❌ Library 'prices' not found in ArcticDB")
+          sys.exit(1)
+          print("✅ ArcticDB loaded successfully")
+          sys.exit(0)
+        except Exception as e:
+          print(f"❌ Failed to load ArcticDB: {e}")
+          sys.exit(1)
+        EOF
 
       - name: 📃 Run RS calculation
         run: |
           mkdir -p logs data
+      
           # Check if metadata file exists
           if [ -f data/ticker_price.json ]; then
             echo "✅ Metadata file found: data/ticker_price.json"
@@ -313,19 +317,26 @@ jobs:
           else
             echo "⚠️ No metadata file found at data/ticker_price.json"
           fi
-          # Ensure ArcticDB path is correct
+      
+          # Ensure ArcticDB 'prices' directory exists
           if [ ! -d tmp/arctic_db/prices ]; then
-            echo "❌ ArcticDB prices directory not found at tmp/arctic_db/prices"
+            echo "❌ ArcticDB 'prices' directory not found at tmp/arctic_db/prices"
             ls -la tmp/arctic_db
             exit 1
           fi
+      
+          echo "🧪 Running RS Calculation..."
           python scripts/calculate_rs_from_db.py \
             --arctic-db-path lmdb://tmp/arctic_db/prices \
             --min-percentile 85 \
             --reference-ticker SPY \
             --output-dir data \
             --log-file logs/failed_tickers.log \
-            --metadata-file data/ticker_price.json
+            --metadata-file data/ticker_price.json || {
+              echo "❌ RS calculation script failed"
+              exit 1
+            }
+
 
       - name: 🗓️ Upload outputs
         uses: actions/upload-artifact@v4
