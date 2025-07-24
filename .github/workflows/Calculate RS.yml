@@ -297,16 +297,14 @@ jobs:
             exit(1)
           EOF
 
-      - name: 📃 Run RS calculation
+      - name: 🚀 Run RS Rating Calculation
         run: |
-          mkdir -p logs data
-          python scripts/calculate_rs_from_db.py \
-            --arctic-db-path tmp/arctic_db \  # 👈 No lmdb:// here
+          python calculate_rs_from_db.py \
+            --arctic-db-path tmp/arctic_db \
             --min-percentile 85 \
             --reference-ticker SPY \
-            --output-dir data \
-            --log-file logs/RSCalculation_failed_tickers.log \
-            --metadata-file data/ticker_price.json
+            --output-dir output \
+            --log-file logs/failed_tickers.log
 
       - name: 🗓️ Upload outputs
         uses: actions/upload-artifact@v4
