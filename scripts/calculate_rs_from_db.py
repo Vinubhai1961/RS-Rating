@@ -38,16 +38,19 @@ def relative_strength(closes: pd.Series, closes_ref: pd.Series) -> float:
 
 def load_arctic_db(data_dir):
     try:
+        # Debug: Check if directory exists
+        if not os.path.exists(data_dir):
+            raise Exception(f"ArcticDB directory {data_dir} does not exist")
         arctic = adb.Arctic(f"lmdb://{data_dir}")
         if not arctic.has_library("prices"):
-            logging.error(f"No 'prices' library found in {data_dir}")
-            return None
+            raise Exception(f"No 'prices' library found in {data_dir}")
         lib = arctic.get_library("prices")
         symbols = lib.list_symbols()
-        logging.info(f"Found {len(symbols)} symbols")
+        logging.info(f"Found {len(symbols)} symbols in {data_dir}")
         return lib, symbols
     except Exception as e:
-        logging.error(f"Database error: {str(e)}")
+        logging.error(f"Database error in {data_dir}: {str(e)}")
+        print(f"❌ ArcticDB error in {data_dir}: {str(e)}")
         return None
 
 def main(arctic_db_path, min_percentile, reference_ticker, output_dir, log_file, metadata_file=None):
@@ -173,7 +176,7 @@ def main(arctic_db_path, min_percentile, reference_ticker, output_dir, log_file,
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Calculate RS from ArcticDB")
-    parser.add_argument("--arctic-db-path", default="tmp/arctic_db", help="Path to ArcticDB root (no scheme)")
+    parser.add_argument("--arctic-db-path", default="tmp/arctic_db/prices", help="Path to ArcticDB root (no scheme)")
     parser.add_argument("--min-percentile", type=int, default=85, help="Minimum RS percentile")
     parser.add_argument("--reference-ticker", default="SPY", help="Reference ticker symbol")
     parser.add_argument("--output-dir", default="output", help="Directory to save results")
