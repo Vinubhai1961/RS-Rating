@@ -322,22 +322,7 @@ jobs:
             echo "⚠️ No metadata file found at data/ticker_price.json"
           fi
       
-          # Verify ArcticDB path using Python
-          python <<EOF
-          import arcticdb as adb
-          import sys
-      
-          try:
-          arctic = adb.Arctic("lmdb://tmp/arctic_db/prices")
-          # Optionally check if any libraries exist
-      
-          print("✅ ArcticDB at tmp/arctic_db/prices is accessible")
-           
-          except Exception as e:
-          print(f"❌ Failed to load ArcticDB: {e}")
-          sys.exit(1)
-          EOF
-      
+
           echo "🧪 Running RS Calculation..."
           python scripts/calculate_rs_from_db.py \
             --arctic-db-path tmp/arctic_db/prices \
