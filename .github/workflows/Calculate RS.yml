@@ -201,10 +201,11 @@ jobs:
           name: arctic-db-3
           path: tmp/arctic_db/
           if-no-files-found: ignore
-     
+  
   validate-arctic-data:
     needs: [fetch-rs-0, fetch-rs-1, fetch-rs-2, fetch-rs-3]
     runs-on: ubuntu-latest
+
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
@@ -215,36 +216,16 @@ jobs:
           path: tmp
           pattern: arctic-db-*
 
-      - name: 🪩 Merge ArcticDB artifacts
+      - name: 📦 Install Python dependencies
         run: |
-          echo "Checking downloaded folders:"
-          find tmp -type d
+          pip install arcticdb pandas
 
-          rm -rf tmp/arctic_db
-          mkdir -p tmp/arctic_db/prices
-
-          echo "Merging ArcticDB partitions..."
-          for dir in tmp/arctic-db-*; do
-            echo "Inspecting $dir"
-            if [ -d "$dir/prices" ]; then
-              echo "✅ Merging $dir/prices into tmp/arctic_db/prices"
-              cp -r "$dir/prices/." tmp/arctic_db/prices/
-            else
-              echo "⚠️ $dir has no prices/ directory"
-            fi
-          done
-
-          echo "Final merged contents:"
-          ls -la tmp/arctic_db/prices
-
-          if [ -z "$(ls -A tmp/arctic_db/prices 2>/dev/null)" ]; then
-            echo "❌ No data found in tmp/arctic_db/prices after merge"
-            exit 1
-          fi
+      - name: 🔀 Merge ArcticDB partitions using Python
+        run: |
+          python scripts/merge_arcticdb.py --source-root tmp --dest-path tmp/arctic_db
 
       - name: 🔮 Verify merged ArcticDB (Top 10 symbols)
         run: |
-          pip install arcticdb pandas
           python <<EOF
           import arcticdb as adb
           try:
@@ -264,12 +245,13 @@ jobs:
         run: |
           find tmp/arctic_db -name "lock.mdb" -exec rm -f {} \;
 
-      - name: 📦 Upload merged ArcticDB
+      - name: 📤 Upload merged ArcticDB
         uses: actions/upload-artifact@v4
         with:
           name: arctic-db-merged
           path: tmp/arctic_db
-
+   
+  
   calculate-rs:
     needs: validate-arctic-data
     runs-on: ubuntu-latest
