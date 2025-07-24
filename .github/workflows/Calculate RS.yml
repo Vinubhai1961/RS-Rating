@@ -321,8 +321,7 @@ jobs:
           else
             echo "⚠️ No metadata file found at data/ticker_price.json"
           fi
-      
-
+          
           echo "🧪 Running RS Calculation..."
           python scripts/calculate_rs_from_db.py \
             --arctic-db-path tmp/arctic_db/prices \
@@ -330,10 +329,7 @@ jobs:
             --reference-ticker SPY \
             --output-dir data \
             --log-file logs/failed_tickers.log \
-            --metadata-file data/ticker_price.json || {
-              echo "❌ RS calculation script failed"
-              exit 1
-            }
+            --metadata-file data/ticker_price.json
 
       - name: 🗓️ Upload outputs
         uses: actions/upload-artifact@v4
