@@ -96,26 +96,22 @@ jobs:
           find tmp -type d
 
           rm -rf tmp/arctic_db
-          mkdir -p tmp/arctic_db/prices
+          mkdir -p tmp/arctic_db
 
           echo "Merging ArcticDB partitions..."
           for dir in tmp/arctic-db-*; do
-            echo "Inspecting $dir"
-            if [ -d "$dir/prices" ]; then
-              echo "✅ Merging $dir/prices into tmp/arctic_db/prices"
-              cp -r "$dir/prices/." tmp/arctic_db/prices/
-            else
-              echo "⚠️ $dir has no prices/ directory"
-            fi
+             echo "✅ Merging $dir into tmp/arctic_db"
+             cp -r $dir/* tmp/arctic_db/
           done
 
           echo "Final merged contents:"
-          ls -la tmp/arctic_db/prices
+          ls -la tmp/arctic_db
 
-          if [ -z "$(ls -A tmp/arctic_db/prices 2>/dev/null)" ]; then
-            echo "❌ No data found in tmp/arctic_db/prices after merge"
-            exit 1
+          if [ -z "$(ls -A tmp/arctic_db 2>/dev/null)" ]; then
+             echo "❌ No data found in tmp/arctic_db after merge"
+          exit 1
           fi
+
 
       - name: 🔮 Verify merged ArcticDB (Top 10 symbols)
         run: |
