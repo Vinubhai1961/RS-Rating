@@ -255,6 +255,15 @@ jobs:
         with:
           name: arctic-db-merged
           path: tmp/arctic_db
+      - name: 🫼 Remove lock file
+        run: |
+          find tmp/arctic_db -name "lock.mdb" -exec rm -f {} \;
+
+      - name: 📤 Upload merged ArcticDB
+        uses: actions/upload-artifact@v4
+        with:
+          name: arctic-db-merged
+          path: tmp/arctic_db
    
   
   calculate-rs:
