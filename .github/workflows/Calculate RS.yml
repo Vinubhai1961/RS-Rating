@@ -299,13 +299,16 @@ jobs:
 
       - name: 🚀 Run RS Rating Calculation
         run: |
+          mkdir -p logs data
+          # Copy metadata file if it exists from fetch-rs artifacts
+          cp data/ticker_price.json data/ticker_price.json 2>/dev/null || echo "No ticker_price.json found, proceeding without metadata"
           python scripts/calculate_rs_from_db.py \
-            --arctic-db-path tmp/arctic_db \
-            --metadata-file RS-Rating/data/ticker_price.json \
+            --arctic-db-path lmdb://tmp/arctic_db \
             --min-percentile 85 \
             --reference-ticker SPY \
-            --output-dir output \
-            --log-file logs/failed_tickers.log
+            --output-dir data \
+            --log-file logs/failed_tickers.log \
+            --metadata-file data/ticker_price.json
 
       - name: 🗓️ Upload outputs
         uses: actions/upload-artifact@v4
