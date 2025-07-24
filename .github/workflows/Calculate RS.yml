@@ -1,212 +1,85 @@
 name: 📊 Calculate RS Ratings
 
 on:
-  schedule:
-    - cron: "44 13 * * *"  # 09:44 AM EDT (13:44 UTC)
-    
   workflow_dispatch:
+  schedule:
+    - cron: '0 12 * * 1-5'  # Every weekday at 12:00 UTC
 
 jobs:
-  fetch-rs-0:
+  fetch-rs:
+    strategy:
+      matrix:
+        partition: [0, 1, 2, 3]
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    name: fetch-rs-${{ matrix.partition }}
     steps:
-      - name: Checkout repository
+      - name: ⬇️ Checkout repository
         uses: actions/checkout@v4
-      - name: Verify ticker_price.json
+
+      - name: 🔍 Verify ticker_price.json
         run: |
           if [ ! -f data/ticker_price.json ]; then
             echo "Error: data/ticker_price.json not found"
             exit 1
           fi
-      - name: Cache Python dependencies
+
+      - name: 🗕️ Cache Python dependencies
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
-      - name: Setup Python
+
+      - name: 🔬 Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.13"
-      - name: Install dependencies
+
+      - name: 📦 Install dependencies
         run: |
           pip install --upgrade pip
           pip install yahooquery pandas numpy tqdm arcticdb
-      - name: Verify calculate_rs.py checksum
+
+      - name: 🔢 Verify calculate_rs.py checksum
         run: |
-          echo "Expected SHA256: $(sha256sum scripts/calculate_rs.py)"
           if [ ! -f scripts/calculate_rs.py ]; then
             echo "Error: scripts/calculate_rs.py not found"
             exit 1
           fi
-      - name: Verify calculate_rs.py arguments
+          echo "SHA256: $(sha256sum scripts/calculate_rs.py)"
+
+      - name: 🔎 Verify calculate_rs.py arguments
         run: |
           python scripts/calculate_rs.py -h
-      - name: Fetch data for partition 0
+
+      - name: ▶️ Fetch data for partition ${{ matrix.partition }}
         run: |
           mkdir -p tmp/arctic_db
           mkdir -p logs
           rm -f logs/failed_tickers.log
-          python scripts/calculate_rs.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 0 --total-partitions 4
-      - name: Upload ArcticDB data
+          python scripts/calculate_rs.py data/ticker_price.json \
+            --log-file logs/failed_tickers.log \
+            --partition ${{ matrix.partition }} \
+            --total-partitions 4
+
+      - name: 📦 Upload ArcticDB data
         uses: actions/upload-artifact@v4
         with:
-          name: arctic-db-0
+          name: arctic-db-${{ matrix.partition }}
           path: tmp/arctic_db/
 
-  fetch-rs-1:
-    runs-on: ubuntu-latest
-    timeout-minutes: 120
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Verify ticker_price.json
-        run: |
-          if [ ! -f data/ticker_price.json ]; then
-            echo "Error: data/ticker_price.json not found"
-            exit 1
-          fi
-      - name: Cache Python dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
-      - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip install yahooquery pandas numpy tqdm arcticdb
-      - name: Verify calculate_rs.py checksum
-        run: |
-          echo "Expected SHA256: $(sha256sum scripts/calculate_rs.py)"
-          if [ ! -f scripts/calculate_rs.py ]; then
-            echo "Error: scripts/calculate_rs.py not found"
-            exit 1
-          fi
-      - name: Verify calculate_rs.py arguments
-        run: |
-          python scripts/calculate_rs.py -h
-      - name: Fetch data for partition 1
-        run: |
-          mkdir -p tmp/arctic_db
-          mkdir -p logs
-          python scripts/calculate_rs.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 1 --total-partitions 4
-      - name: Upload ArcticDB data
+      - name: 📊 Upload failed tickers log
         uses: actions/upload-artifact@v4
         with:
-          name: arctic-db-1
-          path: tmp/arctic_db/
+          name: failed-tickers-${{ matrix.partition }}
+          path: logs/failed_tickers.log
           if-no-files-found: ignore
 
-  fetch-rs-2:
-    runs-on: ubuntu-latest
-    timeout-minutes: 120
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Verify ticker_price.json
-        run: |
-          if [ ! -f data/ticker_price.json ]; then
-            echo "Error: data/ticker_price.json not found"
-            exit 1
-          fi
-      - name: Cache Python dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
-      - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip install yahooquery pandas numpy tqdm arcticdb
-      - name: Verify calculate_rs.py checksum
-        run: |
-          echo "Expected SHA256: $(sha256sum scripts/calculate_rs.py)"
-          if [ ! -f scripts/calculate_rs.py ]; then
-            echo "Error: scripts/calculate_rs.py not found"
-            exit 1
-          fi
-      - name: Verify calculate_rs.py arguments
-        run: |
-          python scripts/calculate_rs.py -h
-      - name: Fetch data for partition 2
-        run: |
-          mkdir -p tmp/arctic_db
-          mkdir -p logs
-          python scripts/calculate_rs.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 2 --total-partitions 4
-      - name: Upload ArcticDB data
-        uses: actions/upload-artifact@v4
-        with:
-          name: arctic-db-2
-          path: tmp/arctic_db/
-          if-no-files-found: ignore
-
-  fetch-rs-3:
-    runs-on: ubuntu-latest
-    timeout-minutes: 120
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Verify ticker_price.json
-        run: |
-          if [ ! -f data/ticker_price.json ]; then
-            echo "Error: data/ticker_price.json not found"
-            exit 1
-          fi
-      - name: Cache Python dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
-      - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip install yahooquery pandas numpy tqdm arcticdb
-      - name: Verify calculate_rs.py checksum
-        run: |
-          echo "Expected SHA256: $(sha256sum scripts/calculate_rs.py)"
-          if [ ! -f scripts/calculate_rs.py ]; then
-            echo "Error: scripts/calculate_rs.py not found"
-            exit 1
-          fi
-      - name: Verify calculate_rs.py arguments
-        run: |
-          python scripts/calculate_rs.py -h
-      - name: Fetch data for partition 3
-        run: |
-          mkdir -p tmp/arctic_db
-          mkdir -p logs
-          python scripts/calculate_rs.py data/ticker_price.json --log-file logs/failed_tickers.log --partition 3 --total-partitions 4
-      - name: Upload ArcticDB data
-        uses: actions/upload-artifact@v4
-        with:
-          name: arctic-db-3
-          path: tmp/arctic_db/
-          if-no-files-found: ignore
-  
   validate-arctic-data:
-    needs: [fetch-rs-0, fetch-rs-1, fetch-rs-2, fetch-rs-3]
+    needs:
+      - fetch-rs
     runs-on: ubuntu-latest
-
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
@@ -217,58 +90,64 @@ jobs:
           path: tmp
           pattern: arctic-db-*
 
-      - name: 📦 Install Python dependencies
+      - name: 🪩 Merge ArcticDB artifacts
+        run: |
+          echo "Checking downloaded folders:"
+          find tmp -type d
+
+          rm -rf tmp/arctic_db
+          mkdir -p tmp/arctic_db/prices
+
+          echo "Merging ArcticDB partitions..."
+          for dir in tmp/arctic-db-*; do
+            echo "Inspecting $dir"
+            if [ -d "$dir/prices" ]; then
+              echo "✅ Merging $dir/prices into tmp/arctic_db/prices"
+              cp -r "$dir/prices/." tmp/arctic_db/prices/
+            else
+              echo "⚠️ $dir has no prices/ directory"
+            fi
+          done
+
+          echo "Final merged contents:"
+          ls -la tmp/arctic_db/prices
+
+          if [ -z "$(ls -A tmp/arctic_db/prices 2>/dev/null)" ]; then
+            echo "❌ No data found in tmp/arctic_db/prices after merge"
+            exit 1
+          fi
+
+      - name: 🔮 Verify merged ArcticDB (Top 10 symbols)
         run: |
           pip install arcticdb pandas
-
-      - name: 🔀 Merge ArcticDB partitions using Python
-        run: |
-          python scripts/merge_arcticdb.py --source-root tmp --dest-path tmp/arctic_db
-
-      - name: 🔮 Verify merged ArcticDB (Top 10 A–Z symbols)
-        run: |
           python <<EOF
           import arcticdb as adb
           try:
             arctic = adb.Arctic("lmdb://tmp/arctic_db")
             if not arctic.has_library("prices"):
-                raise ValueError("Library 'prices' not found.")
+              raise ValueError("Library 'prices' not found.")
             lib = arctic.get_library("prices")
-            symbols = sorted(lib.list_symbols())  # ✅ sort alphabetically A–Z
+            symbols = lib.list_symbols()
             print(f"✅ Found {len(symbols)} symbols")
-            print("🕟 Top 10 A–Z symbols:")
-            for sym in symbols[:10]:
-                print(f"  - {sym}")
-            print("\n🕙 Top 10 Z–A symbols:")
-            for sym in reversed(symbols[-10:]):
-                print(f"  - {sym}")
+            print("🕟 Sample symbols:", symbols[:10])
           except Exception as e:
             print(f"❌ ArcticDB error: {e}")
             exit(1)
           EOF
-          
+
       - name: 🫼 Remove lock file
         run: |
           find tmp/arctic_db -name "lock.mdb" -exec rm -f {} \;
 
-      - name: 📤 Upload merged ArcticDB
+      - name: 📦 Upload merged ArcticDB
         uses: actions/upload-artifact@v4
         with:
           name: arctic-db-merged
           path: tmp/arctic_db
-      - name: 🫼 Remove lock file
-        run: |
-          find tmp/arctic_db -name "lock.mdb" -exec rm -f {} \;
-    
- 
+
   calculate-rs:
     needs: validate-arctic-data
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: ${{ github.workspace }}
-
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
@@ -288,7 +167,7 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install pandas numpy tqdm arcticdb
-           
+
       - name: 🔮 Verify ArcticDB before RS calculation
         run: |
           python <<EOF
@@ -301,29 +180,25 @@ jobs:
           except Exception as e:
             print(f"\u274c Failed to load ArcticDB: {e}")
             exit(0)
-          EOF        
+          EOF
 
-          
       - name: 📃 Run RS calculation
         run: |
           mkdir -p logs data
-      
-          # Check if metadata file exists
-          if [ -f data/ticker_price.json ]; then
-            echo "✅ Metadata file found: data/ticker_price.json"
-            cat data/ticker_price.json > metadata_debug.json  # Debug output
-          else
-            echo "⚠️ No metadata file found at data/ticker_price.json"
-          fi
-          
-          echo "🧪 Running RS Calculation..."
           python scripts/calculate_rs_from_db.py \
-            --arctic-db-path tmp/arctic_db/prices \
+            --arctic-db-path tmp/arctic_db \
             --min-percentile 85 \
             --reference-ticker SPY \
             --output-dir data \
             --log-file logs/failed_tickers.log \
             --metadata-file data/ticker_price.json
+
+      - name: 📃 Archive rs_stocks.csv
+        run: |
+          mkdir -p archive
+          current_date=$(date -u -d "4 hours ago" +"%m%d%Y")
+          cp data/rs_stocks.csv archive/rs_stocks_${current_date}.csv
+          find archive -type f -name "rs_stocks_*.csv" -mtime +90 -delete
 
       - name: 🗓️ Upload outputs
         uses: actions/upload-artifact@v4
@@ -333,20 +208,3 @@ jobs:
             data/*.csv
             logs/failed_tickers.log
             archive/*.csv
-            
-      - name: Archive rs_stocks.csv
-        run: |
-          mkdir -p archive
-          current_date=$(date -u -d "4 hours ago" +"%m%d%Y")
-          cp data/rs_stocks.csv archive/rs_stocks_${current_date}.csv
-          # Delete files older than 90 days
-          find archive -type f -name "rs_stocks_*.csv" -mtime +90 -delete
-
-      - name: Commit outputs
-        run: |
-          git config user.name "github-actions"
-          git config user.email "actions@users.noreply.github.com"
-          git add data/rs_stocks.csv data/rs_industries.csv data/RSRATING.csv logs/failed_tickers.log archive/rs_stocks_*.csv
-          edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
-          git commit -m "Generate RS CSVs and archive rs_stocks_${current_date}.csv [${edt_time}]" || echo "No changes to commit"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git || echo "Push failed"
