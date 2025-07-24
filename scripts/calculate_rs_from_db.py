@@ -68,14 +68,23 @@ def main(arctic_db_path, min_percentile, reference_ticker, output_dir, log_file,
 
     metadata_df = pd.DataFrame()
     if metadata_file and os.path.exists(metadata_file):
-        with open(metadata_file, "r") as f:
-            data = json.load(f)
-        metadata = [
-            {"Ticker": t, "Price": data[t]["info"]["Price"], "Sector": data[t]["info"]["sector"],
-             "Industry": data[t]["info"]["industry"], "Type": data[t]["info"]["type"]}
-            for t in data
-        ]
-        metadata_df = pd.DataFrame(metadata)
+        try:
+            with open(metadata_file, "r") as f:
+                data = json.load(f)
+            metadata = [
+                {"Ticker": t, "Price": data[t].get("info", {}).get("Price"),
+                 "Sector": data[t].get("info", {}).get("sector"),
+                 "Industry": data[t].get("info", {}).get("industry"),
+                 "Type": data[t].get("info", {}).get("type")}
+                for t in data
+            ]
+            metadata_df = pd.DataFrame(metadata)
+            if "Ticker" not in metadata_df.columns:
+                logging.warning(f"Metadata file {metadata_file} lacks 'Ticker' column. Proceeding without metadata.")
+                metadata_df = pd.DataFrame()
+        except (json.JSONDecodeError, KeyError) as e:
+            logging.error(f"Invalid metadata file {metadata_file}: {str(e)}. Proceeding without metadata.")
+            metadata_df = pd.DataFrame()
 
     logging.info(f"Starting RS calculation for {len(tickers)} tickers")
     print(f"🔍 Processing {len(tickers)} tickers...")
@@ -106,13 +115,10 @@ def main(arctic_db_path, min_percentile, reference_ticker, output_dir, log_file,
             logging.info(f"{ticker}: Failed to process ({str(e)})")
 
     df_stocks = pd.DataFrame(rs_results, columns=["Ticker", "Relative Strength", "1 Month Ago", "3 Months Ago", "6 Months Ago"])
-
-    print("\n📊 DEBUGGING METADATA_DF:")
-    print("metadata_df shape:", metadata_df.shape)
-    print("metadata_df columns:", metadata_df.columns.tolist())
-    print("First few rows:")
-    print(metadata_df.head(3))
-    df_stocks = df_stocks.merge(metadata_df, on="Ticker", how="left").dropna(subset=["Relative Strength"])
+    if not metadata_df.empty:
+        df_stocks = df_stocks.merge(metadata_df, on="Ticker", how="left", suffixes=('', '_meta')).dropna(subset=["Relative Strength"])
+    else:
+        df_stocks = df_stocks.dropna(subset=["Relative Strength"])
     if df_stocks.empty:
         logging.warning("No tickers with valid RS data after filtering")
         print("⚠️ No RS results calculated. Check if ArcticDB has data.")
@@ -159,7 +165,6 @@ def main(arctic_db_path, min_percentile, reference_ticker, output_dir, log_file,
     print(f" - rs_stocks.csv")
     print(f" - rs_industries.csv")
     print(f" - RSRATING.csv")
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Calculate RS from ArcticDB")
