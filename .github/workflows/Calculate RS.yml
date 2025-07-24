@@ -299,7 +299,7 @@ jobs:
 
       - name: 🚀 Run RS Rating Calculation
         run: |
-          python calculate_rs_from_db.py \
+          python scripts/calculate_rs_from_db.py \
             --arctic-db-path tmp/arctic_db \
             --min-percentile 85 \
             --reference-ticker SPY \
