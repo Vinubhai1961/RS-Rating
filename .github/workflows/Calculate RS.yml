@@ -303,7 +303,7 @@ jobs:
             exit(1)
           EOF
 
-      - name: 🚀 Run RS Rating Calculation
+      - name: 📃 Run RS calculation
         run: |
           mkdir -p logs data
           # Check if metadata file exists
@@ -313,8 +313,14 @@ jobs:
           else
             echo "⚠️ No metadata file found at data/ticker_price.json"
           fi
+          # Ensure ArcticDB path is correct
+          if [ ! -d tmp/arctic_db/prices ]; then
+            echo "❌ ArcticDB prices directory not found at tmp/arctic_db/prices"
+            ls -la tmp/arctic_db
+            exit 1
+          fi
           python scripts/calculate_rs_from_db.py \
-            --arctic-db-path lmdb://tmp/arctic_db \
+            --arctic-db-path lmdb://tmp/arctic_db/prices \
             --min-percentile 85 \
             --reference-ticker SPY \
             --output-dir data \
