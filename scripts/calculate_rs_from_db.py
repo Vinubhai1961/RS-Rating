@@ -51,11 +51,14 @@ def load_arctic_db(data_dir):
         return None
 
 def main(arctic_db_path, min_percentile, reference_ticker, output_dir, log_file, metadata_file=None):
+    # Ensure log directory exists and configure logging immediately
+    os.makedirs(os.path.dirname(log_file), exist_ok=True)
     logging.basicConfig(filename=log_file, level=logging.INFO, format="%(asctime)s - %(message)s")
-    os.makedirs(output_dir, exist_ok=True)
-    
+    logging.info("Starting RS calculation process")
+
     result = load_arctic_db(arctic_db_path)
     if not result:
+        logging.error("Failed to load ArcticDB. Exiting.")
         print("❌ Failed to load ArcticDB. See logs.")
         sys.exit(1)
 
@@ -79,8 +82,8 @@ def main(arctic_db_path, min_percentile, reference_ticker, output_dir, log_file,
                 for t in data
             ]
             metadata_df = pd.DataFrame(metadata)
-            if "Ticker" not in metadata_df.columns:
-                logging.warning(f"Metadata file {metadata_file} lacks 'Ticker' column. Proceeding without metadata.")
+            if "Ticker" not in metadata_df.columns or metadata_df.empty:
+                logging.warning(f"Metadata file {metadata_file} invalid or lacks 'Ticker' column. Proceeding without metadata.")
                 metadata_df = pd.DataFrame()
         except (json.JSONDecodeError, KeyError) as e:
             logging.error(f"Invalid metadata file {metadata_file}: {str(e)}. Proceeding without metadata.")
@@ -115,10 +118,12 @@ def main(arctic_db_path, min_percentile, reference_ticker, output_dir, log_file,
             logging.info(f"{ticker}: Failed to process ({str(e)})")
 
     df_stocks = pd.DataFrame(rs_results, columns=["Ticker", "Relative Strength", "1 Month Ago", "3 Months Ago", "6 Months Ago"])
-    if not metadata_df.empty:
+    if not metadata_df.empty and "Ticker" in metadata_df.columns:
         df_stocks = df_stocks.merge(metadata_df, on="Ticker", how="left", suffixes=('', '_meta')).dropna(subset=["Relative Strength"])
     else:
         df_stocks = df_stocks.dropna(subset=["Relative Strength"])
+        if not metadata_df.empty:
+            logging.warning("Metadata file lacks 'Ticker' column. Skipping merge.")
     if df_stocks.empty:
         logging.warning("No tickers with valid RS data after filtering")
         print("⚠️ No RS results calculated. Check if ArcticDB has data.")
