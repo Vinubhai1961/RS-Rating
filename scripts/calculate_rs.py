@@ -43,8 +43,8 @@ def fetch_historical_data(tickers, arctic, log_file):
                             batch_skipped += 1
                             break
                         df = df[["date", "close"]].rename(columns={"date": "datetime"})
-                        # Force timezone-naive conversion
-                        df["datetime"] = pd.to_datetime(df["datetime"], utc=True).dt.tz_convert(None)
+                        # Corrected timezone handling
+                        df["datetime"] = pd.to_datetime(df["datetime"], utc=True).dt.tz_localize(None)
                         df["datetime"] = df["datetime"].astype(int) // 10**9  # Convert to Unix timestamp
                         lib.write(ticker, df)
                         success_tickers.append(ticker)
@@ -86,7 +86,7 @@ def fetch_historical_data(tickers, arctic, log_file):
     logging.info(f"Skipped (no/empty data): {total_skipped}")
     logging.info(f"Failed after retries: {total_failed}")
     print(f"\n✅ Fetch complete! Success: {total_success}, Skipped: {total_skipped}, Failed: {total_failed}")
-    
+
 def load_ticker_list(file_path, partition=None, total_partitions=None):
     """Load tickers from JSON and optionally split into partitions."""
     with open(file_path, "r") as f:
