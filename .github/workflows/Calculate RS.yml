@@ -296,16 +296,19 @@ jobs:
           import sys
 
           try:
-              arctic = adb.Arctic("lmdb://tmp/arctic_db")
-              if not arctic.has_library("prices"):
-                  print("❌ Library 'prices' not found in ArcticDB")
-                  sys.exit(1)
-              print("✅ ArcticDB loaded successfully")
-              sys.exit(0)
-          except Exception as e:
-              print(f"❌ Failed to load ArcticDB: {e}")
-              sys.exit(1)
-          EOF
+            arctic = adb.Arctic("lmdb://tmp/arctic_db")
+            if not arctic.has_library("prices"):
+            
+            print("❌ Library 'prices' not found in ArcticDB")
+            sys.exit(1)
+            
+            print("✅ ArcticDB loaded successfully")
+            sys.exit(0)
+            
+            except Exception as e:
+            print(f"❌ Failed to load ArcticDB: {e}")
+            sys.exit(1)
+            EOF
           
       - name: 📃 Run RS calculation
         run: |
