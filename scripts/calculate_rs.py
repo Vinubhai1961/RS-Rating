@@ -32,37 +32,36 @@ def fetch_historical_data(tickers, arctic, log_file):
         batch_success = 0
         batch_skipped = 0
 
-        for attempt in range(max_retries):
-            try:
-                data = Ticker(batch).history(period="2y")
-                for ticker in batch:
+        for ticker in batch:
+            for attempt in range(max_retries):
+                try:
+                    data = Ticker(ticker).history(period="2y")
                     if ticker in data.index.get_level_values(0):
                         df = data.loc[ticker].reset_index()
                         if df.empty:
                             skipped_tickers.append((ticker, "Empty DataFrame"))
                             batch_skipped += 1
-                            continue
+                            break
                         df = df[["date", "close"]].rename(columns={"date": "datetime"})
-                        # Ensure datetime is timezone-naive
-                        df["datetime"] = pd.to_datetime(df["datetime"])
-                        if df["datetime"].dt.tz is not None:
-                            df["datetime"] = df["datetime"].dt.tz_convert(None)  # Convert to naive
+                        # Force timezone-naive conversion
+                        df["datetime"] = pd.to_datetime(df["datetime"], utc=True).dt.tz_convert(None)
                         df["datetime"] = df["datetime"].astype(int) // 10**9  # Convert to Unix timestamp
                         lib.write(ticker, df)
                         success_tickers.append(ticker)
                         batch_success += 1
+                        break  # Success, move to next ticker
                     else:
                         skipped_tickers.append((ticker, f"No data in YahooQuery index (attempt {attempt+1})"))
                         batch_skipped += 1
-                break  # Success, break retry loop
-            except Exception as e:
-                if attempt == max_retries - 1:
-                    error_msg = f"Batch {i//batch_size + 1} failed after {max_retries} attempts: {str(e)}"
-                    logging.error(error_msg)
-                    failed_tickers.extend((t, error_msg) for t in batch)
-                else:
-                    logging.warning(f"Retrying batch {i//batch_size + 1} (attempt {attempt+2}/{max_retries}) after error: {str(e)}")
-                    time.sleep(10)
+                        break
+                except Exception as e:
+                    if attempt == max_retries - 1:
+                        error_msg = f"Ticker {ticker} failed after {max_retries} attempts: {str(e)}"
+                        logging.error(error_msg)
+                        failed_tickers.append((ticker, error_msg))
+                    else:
+                        logging.warning(f"Retrying ticker {ticker} (attempt {attempt+2}/{max_retries}) after error: {str(e)}")
+                        time.sleep(2)
 
         batch_time = time.time() - batch_start_time
         logging.info(f"✅ Completed batch {i//batch_size + 1}/{total_batches} - {batch_success} success, {batch_skipped} skipped, in {batch_time:.2f}s")
