@@ -106,6 +106,12 @@ def main(arctic_db_path, min_percentile, reference_ticker, output_dir, log_file,
             logging.info(f"{ticker}: Failed to process ({str(e)})")
 
     df_stocks = pd.DataFrame(rs_results, columns=["Ticker", "Relative Strength", "1 Month Ago", "3 Months Ago", "6 Months Ago"])
+
+    print("\n📊 DEBUGGING METADATA_DF:")
+    print("metadata_df shape:", metadata_df.shape)
+    print("metadata_df columns:", metadata_df.columns.tolist())
+    print("First few rows:")
+    print(metadata_df.head(3))
     df_stocks = df_stocks.merge(metadata_df, on="Ticker", how="left").dropna(subset=["Relative Strength"])
     if df_stocks.empty:
         logging.warning("No tickers with valid RS data after filtering")
