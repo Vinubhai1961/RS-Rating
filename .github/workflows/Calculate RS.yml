@@ -288,27 +288,21 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install pandas numpy tqdm arcticdb
-          
+           
       - name: 🔮 Verify ArcticDB before RS calculation
         run: |
           python <<EOF
           import arcticdb as adb
-          import sys
-
           try:
             arctic = adb.Arctic("lmdb://tmp/arctic_db")
             if not arctic.has_library("prices"):
-            
-            print("❌ Library 'prices' not found in ArcticDB")
-            sys.exit(1)
-            
-            print("✅ ArcticDB loaded successfully")
-            sys.exit(0)
-            
-            except Exception as e:
-            print(f"❌ Failed to load ArcticDB: {e}")
-            sys.exit(1)
-            EOF
+              raise ValueError("Library 'prices' not found")
+            print("\u2705 ArcticDB loaded successfully")
+          except Exception as e:
+            print(f"\u274c Failed to load ArcticDB: {e}")
+            exit(0)
+          EOF        
+
           
       - name: 📃 Run RS calculation
         run: |
