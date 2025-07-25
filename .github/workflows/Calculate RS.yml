@@ -163,7 +163,13 @@ jobs:
               print(f"❌ ArcticDB error: {e}")
               exit(1)
           EOF
-
+          
+      - name: 📦 Upload merged ArcticDB
+        uses: actions/upload-artifact@v4
+        with:
+          name: arctic-db-merged
+          path: tmp/arctic_db
+          
       - name: 🫼 Remove lock file
         run: |
           find tmp/arctic_db -name "lock.mdb" -exec rm -f {} \;
@@ -173,6 +179,8 @@ jobs:
         with:
           path: tmp/arctic_db
           key: arcticdb-merged-${{ github.run_id }}
+      
+
 
 
   calculate-rs:
