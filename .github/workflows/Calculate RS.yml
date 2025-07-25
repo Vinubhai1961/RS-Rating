@@ -242,24 +242,25 @@ jobs:
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
       
-          echo "🔍 Git status before commit:"
+          echo "🔍 Checking repo status..."
           git status
       
-          echo "➕ Staging CSV result files..."
+          echo "➕ Staging result files..."
           git add archive/*.csv RS_Logs/*.csv
       
-          echo "📋 Diff of staged changes:"
-          git diff --cached
-      
-          # Only commit if there are staged changes
           if git diff --cached --quiet; then
             echo "⚠️ No changes to commit."
           else
             commit_date=$(date -u -d '4 hours ago' +'%m%d%Y')
             git commit -m "Add RS results for ${commit_date}"
-            git push
-            echo "✅ Changes committed and pushed."
+      
+            echo "🔄 Pulling latest from remote with rebase..."
+            git pull --rebase origin main
+      
+            echo "🚀 Pushing changes..."
+            git push origin main
           fi
+
 
       - name: 🗓️ Upload outputs
         uses: actions/upload-artifact@v4
