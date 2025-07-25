@@ -173,16 +173,7 @@ jobs:
       - name: 🫼 Remove lock file
         run: |
           find tmp/arctic_db -name "lock.mdb" -exec rm -f {} \;
-
-      - name: 💾 Cache merged ArcticDB # 🆕
-        uses: actions/cache@v4
-        with:
-          path: tmp/arctic_db
-          key: arcticdb-merged-${{ github.run_id }}
-      
-
-
-
+   
   calculate-rs:
     needs: validate-arctic-data
     runs-on: ubuntu-latest
