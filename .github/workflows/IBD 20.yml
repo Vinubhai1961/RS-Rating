@@ -1,0 +1,54 @@
+name: Filter Top RS Stocks
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 21 * * 1-5"  # 5:00 PM EDT (21:00 UTC) Monday through Friday
+
+jobs:
+  filter-top-rs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas
+
+      - name: ⬇️ Download RS Results Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: rs-results
+          path: rs_results
+
+      - name: 📊 Run Filter Top RS Script
+        run: |
+          CURRENT_DATE=$(date +%m%d%Y)
+          python scripts/filter_top_rs.py --input rs_results/archive/rs_stocks_${CURRENT_DATE}.csv --output IBD-20/top_rs_stocks_${CURRENT_DATE}.csv
+
+      - name: 📝 Commit Output to Repository
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+        run: |
+          CURRENT_DATE=$(date +%m%d%Y)
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add IBD-20/top_rs_stocks_${CURRENT_DATE}.csv
+          git commit -m "Add top RS stocks for ${CURRENT_DATE}" || echo "No changes to commit"
+          git push
+
+      - name: 📤 Upload Top RS Stocks Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: top-rs-stocks
+          path: IBD-20/top_rs_stocks_*.csv
+          retention-days: 7
