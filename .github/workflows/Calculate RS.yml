@@ -75,7 +75,7 @@ jobs:
           name: failed-tickers-${{ matrix.partition }}
           path: logs/failed_tickers.log
           if-no-files-found: ignore
-
+          
   validate-arctic-data:
     needs:
       - fetch-rs
@@ -84,12 +84,19 @@ jobs:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
 
+      - name: 🗃️ Restore cached merged ArcticDB # 🆕
+        uses: actions/cache@v4
+        with:
+          path: tmp/arctic_db
+          key: arcticdb-merged-${{ github.run_id }}
+          restore-keys: arcticdb-merged-
+
       - name: ⬇️ Download ArcticDB partitions
         uses: actions/download-artifact@v4
         with:
           path: tmp
           pattern: arctic-db-*
-          
+
       - name: 🧪 Install ArcticDB
         run: |
           pip install arcticdb
@@ -121,34 +128,52 @@ jobs:
           else
              echo "✅ ArcticDB merge completed successfully"
           fi
-
+            
       - name: 🔮 Verify merged ArcticDB (Top 10 symbols)
         run: |
           pip install arcticdb pandas
           python <<EOF
           import arcticdb as adb
+          import time
+
+          start = time.time()
           try:
-            arctic = adb.Arctic("lmdb://tmp/arctic_db")
-            if not arctic.has_library("prices"):
-              raise ValueError("Library 'prices' not found.")
-            lib = arctic.get_library("prices")
-            symbols = lib.list_symbols()
-            print(f"✅ Found {len(symbols)} symbols")
-            print("🕟 Sample symbols:", symbols[:10])
+              arctic = adb.Arctic("lmdb://tmp/arctic_db")
+              if not arctic.has_library("prices"):
+                  raise ValueError("Library 'prices' not found.")
+
+              lib = arctic.get_library("prices")
+      
+              print("🔎 Fetching symbols (this may take a few seconds)...")
+              symbols = lib.list_symbols()
+              elapsed = time.time() - start
+      
+              if not symbols:
+                  raise ValueError("❌ No symbols found in 'prices' library.")
+      
+              print(f"✅ Found {len(symbols)} symbols in {elapsed:.2f} seconds")
+              print("🕟 Sample symbols:", symbols[:10])
+      
+              # (Optional) Print min/max datetime for the first symbol
+              sample = symbols[0]
+              df = lib.read(sample).data
+              print(f"📅 {sample} datetime range: {df['datetime'].min()} to {df['datetime'].max()}")
+      
           except Exception as e:
-            print(f"❌ ArcticDB error: {e}")
-            exit(1)
+              print(f"❌ ArcticDB error: {e}")
+              exit(1)
           EOF
 
       - name: 🫼 Remove lock file
         run: |
           find tmp/arctic_db -name "lock.mdb" -exec rm -f {} \;
 
-      - name: 📦 Upload merged ArcticDB
-        uses: actions/upload-artifact@v4
+      - name: 💾 Cache merged ArcticDB # 🆕
+        uses: actions/cache@v4
         with:
-          name: arctic-db-merged
           path: tmp/arctic_db
+          key: arcticdb-merged-${{ github.run_id }}
+
 
   calculate-rs:
     needs: validate-arctic-data
