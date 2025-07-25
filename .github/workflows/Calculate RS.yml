@@ -183,7 +183,6 @@ jobs:
           mkdir -p logs data
           python scripts/calculate_rs_from_db.py \
             --arctic-db-path tmp/arctic_db \
-            --min-percentile 85 \
             --reference-ticker SPY \
             --output-dir data \
             --log-file logs/failed_tickers.log \
@@ -195,6 +194,16 @@ jobs:
           current_date=$(date -u -d "4 hours ago" +"%m%d%Y")
           cp data/rs_stocks.csv archive/rs_stocks_${current_date}.csv
           find archive -type f -name "rs_stocks_*.csv" -mtime +90 -delete
+
+      - name: 📤 Commit output files to Git
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add data/*.csv
+          git commit -m "Update RS calculation results for $(date -u -d '4 hours ago' +'%m%d%Y')"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 🗓️ Upload outputs
         uses: actions/upload-artifact@v4
