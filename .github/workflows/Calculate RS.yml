@@ -217,7 +217,7 @@ jobs:
           python scripts/calculate_rs_from_db.py \
             --arctic-db-path tmp/arctic_db \
             --reference-ticker SPY \
-            --output-dir data \
+            --output-dir RS_Data \
             --log-file logs/failed_tickers.log \
             --metadata-file data/ticker_price.json
             
@@ -229,12 +229,12 @@ jobs:
       
           # Copy result CSVs to archive and logs
           for file in rs_stocks rs_industries RSRATING; do
-            if [ -f "data/${file}.csv" ]; then
-              cp data/${file}.csv archive/${file}_${current_date}.csv
-              cp data/${file}.csv RS_Logs/${file}_${current_date}.csv
+            if [ -f "RS_Data/${file}.csv" ]; then
+              cp RS_Data/${file}.csv archive/${file}_${current_date}.csv
+              cp RS_Data/${file}.csv RS_Logs/${file}_${current_date}.csv
               echo "✅ Archived and logged ${file}.csv"
             else
-              echo "❌ data/${file}.csv not found!"
+              echo "❌ RS_Data/${file}.csv not found!"
               exit 1
             fi
           done
@@ -254,7 +254,7 @@ jobs:
         with:
           name: rs-results
           path: |
-            data/*.csv
+            RS_Data/*.csv
             logs/failed_tickers.log
             archive/*.csv
             
@@ -276,13 +276,7 @@ jobs:
           git status | grep "modified:" > logs/git_modified_files.log || true
           echo "📝 Modified files saved to logs/git_modified_files.log"
           cat logs/git_modified_files.log
-      
-          echo "📦 Copying result CSVs from data/ to RS_Data/..."
-          cp data/*.csv RS_Data/
-      
-          echo "🧹 Discarding local modifications in data/ to prevent rebase conflicts..."
-          git restore data/*.csv
-      
+        
           echo "➕ Staging all relevant result files..."
           git add archive/*.csv RS_Logs/*.csv RS_Data/*.csv logs/*.log
       
