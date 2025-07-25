@@ -106,7 +106,7 @@ jobs:
           mkdir -p tmp/arctic_db
 
           echo "🚀 Running ArcticDB merge script..."
-          python3 merge_arcticdb.py --source-root tmp --dest-path tmp/arctic_db
+          python3 scripts/merge_arcticdb.py --source-root tmp --dest-path tmp/arctic_db
 
           echo "📂 Listing merged DB contents:"
           ls -la tmp/arctic_db
