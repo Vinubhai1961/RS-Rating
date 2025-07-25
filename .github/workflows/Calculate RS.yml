@@ -90,28 +90,33 @@ jobs:
           path: tmp
           pattern: arctic-db-*
 
-      - name: 🪩 Merge ArcticDB artifacts
+      - name: 🪩 Merge ArcticDB partitions into one DB
         run: |
-          echo "Checking downloaded folders:"
-          find tmp -type d
+          echo "🔍 Checking for ArcticDB partition folders..."
+          if ls tmp/arctic-db-* 1> /dev/null 2>&1; then
+             echo "✅ ArcticDB partitions found:"
+             find tmp -type d -name "arctic-db-*"
+          else
+             echo "❌ No ArcticDB partition folders (tmp/arctic-db-*) found"
+             exit 1
+          fi
 
+          echo "🧹 Cleaning any previous merged DB at tmp/arctic_db..."
           rm -rf tmp/arctic_db
           mkdir -p tmp/arctic_db
 
-          echo "Merging ArcticDB partitions..."
-          for dir in tmp/arctic-db-*; do
-             echo "✅ Merging $dir into tmp/arctic_db"
-             cp -r $dir/* tmp/arctic_db/
-          done
+          echo "🚀 Running ArcticDB merge script..."
+          python3 merge_arcticdb.py --source-root tmp --dest-path tmp/arctic_db
 
-          echo "Final merged contents:"
+          echo "📂 Listing merged DB contents:"
           ls -la tmp/arctic_db
 
           if [ -z "$(ls -A tmp/arctic_db 2>/dev/null)" ]; then
-             echo "❌ No data found in tmp/arctic_db after merge"
-          exit 1
+             echo "❌ Merge failed: tmp/arctic_db is empty"
+             exit 1
+          else
+             echo "✅ ArcticDB merge completed successfully"
           fi
-
 
       - name: 🔮 Verify merged ArcticDB (Top 10 symbols)
         run: |
