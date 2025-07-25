@@ -89,6 +89,10 @@ jobs:
         with:
           path: tmp
           pattern: arctic-db-*
+          
+      - name: 🧪 Install ArcticDB
+        run: |
+          pip install arcticdb
 
       - name: 🪩 Merge ArcticDB partitions into one DB
         run: |
