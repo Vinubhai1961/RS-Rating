@@ -133,15 +133,15 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
     for col in ["Relative Strength", "1 Month Ago", "3 Months Ago", "6 Months Ago"]:
         df_stocks[f"{col} Percentile"] = pd.qcut(df_stocks[col], 100, labels=False, duplicates="drop")
 
-    # Removed the min_percentile filter to include all tickers with valid RS
     df_stocks = df_stocks.sort_values("Relative Strength", ascending=False).reset_index(drop=True)
     df_stocks["Rank"] = df_stocks.index + 1
 
     df_stocks.loc[df_stocks["Type"] == "ETF", "Industry"] = "ETF"
     df_stocks.loc[df_stocks["Type"] == "ETF", "Sector"] = "ETF"
 
-    df_stocks[["Rank", "Ticker", "Price", "Sector", "Industry", "Relative Strength Percentile", 
-               "1 Month Ago", "3 Months Ago", "6 Months Ago"]].to_csv(
+    # Save rs_stocks.csv with percentile values
+    df_stocks[["Rank", "Ticker", "Price", "Sector", "Industry", "Relative Strength Percentile",
+               "1 Month Ago Percentile", "3 Months Ago Percentile", "6 Months Ago Percentile"]].to_csv(
         os.path.join(output_dir, "rs_stocks.csv"), index=False)
 
     df_industries = df_stocks.groupby("Industry").agg({
