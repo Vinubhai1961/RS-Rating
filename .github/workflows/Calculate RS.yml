@@ -235,33 +235,6 @@ jobs:
           find archive -type f -name "*.csv" -mtime +90 -delete
           find RS_Logs -type f -name "*.csv" -mtime +90 -delete
 
-      - name: 📤 Commit and Push Results
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email "action@github.com"
-      
-          echo "🔍 Checking repo status..."
-          git status
-      
-          echo "➕ Staging result files..."
-          git add archive/*.csv RS_Logs/*.csv
-      
-          if git diff --cached --quiet; then
-            echo "⚠️ No changes to commit."
-          else
-            commit_date=$(date -u -d '4 hours ago' +'%m%d%Y')
-            git commit -m "Add RS results for ${commit_date}"
-      
-            echo "🔄 Pulling latest from remote with rebase..."
-            git pull --rebase origin main
-      
-            echo "🚀 Pushing changes..."
-            git push origin main
-          fi
-
-
       - name: 🗓️ Upload outputs
         uses: actions/upload-artifact@v4
         with:
@@ -270,3 +243,32 @@ jobs:
             data/*.csv
             logs/failed_tickers.log
             archive/*.csv
+            
+      - name: 📤 Commit and Push RS Results
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+      
+          # 🔐 Set authenticated remote using GITHUB_TOKEN
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
+      
+          echo "📌 Repo status before commit:"
+          git status
+      
+          echo "➕ Staging CSV files..."
+          git add archive/*.csv RS_Logs/*.csv
+      
+          if git diff --cached --quiet; then
+            echo "⚠️ No changes to commit. Skipping commit & push."
+          else
+            commit_date=$(date -u -d '4 hours ago' +'%m%d%Y')
+            git commit -m "Add RS results for ${commit_date}"
+      
+            echo "🔄 Pulling latest changes from origin/main (rebase)..."
+            git pull --rebase origin main
+      
+            echo "🚀 Pushing committed results to GitHub..."
+            git push origin main
+          fi
