@@ -38,7 +38,6 @@ def relative_strength(closes: pd.Series, closes_ref: pd.Series) -> float:
 
 def load_arctic_db(data_dir):
     try:
-        # Debug: Check if directory exists
         if not os.path.exists(data_dir):
             raise Exception(f"ArcticDB directory {data_dir} does not exist")
         arctic = adb.Arctic(f"lmdb://{data_dir}")
@@ -53,8 +52,7 @@ def load_arctic_db(data_dir):
         print(f"❌ ArcticDB error in {data_dir}: {str(e)}")
         return None
 
-def main(arctic_db_path, min_percentile, reference_ticker, output_dir, log_file, metadata_file=None):
-    # Ensure log directory exists and configure logging immediately
+def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=None):
     os.makedirs(os.path.dirname(log_file), exist_ok=True)
     logging.basicConfig(filename=log_file, level=logging.INFO, format="%(asctime)s - %(message)s")
     logging.info("Starting RS calculation process")
@@ -135,21 +133,22 @@ def main(arctic_db_path, min_percentile, reference_ticker, output_dir, log_file,
     for col in ["Relative Strength", "1 Month Ago", "3 Months Ago", "6 Months Ago"]:
         df_stocks[f"{col} Percentile"] = pd.qcut(df_stocks[col], 100, labels=False, duplicates="drop")
 
-    df_stocks = df_stocks[df_stocks["Relative Strength Percentile"] >= min_percentile]
+    # Removed the min_percentile filter to include all tickers with valid RS
     df_stocks = df_stocks.sort_values("Relative Strength", ascending=False).reset_index(drop=True)
     df_stocks["Rank"] = df_stocks.index + 1
 
     df_stocks.loc[df_stocks["Type"] == "ETF", "Industry"] = "ETF"
     df_stocks.loc[df_stocks["Type"] == "ETF", "Sector"] = "ETF"
 
-    df_stocks.to_csv(os.path.join(output_dir, "rs_stocks.csv"), index=False)
+    df_stocks[["Rank", "Ticker", "Price", "Sector", "Industry", "Relative Strength Percentile", 
+               "1 Month Ago", "3 Months Ago", "6 Months Ago"]].to_csv(
+        os.path.join(output_dir, "rs_stocks.csv"), index=False)
 
     df_industries = df_stocks.groupby("Industry").agg({
         "Relative Strength": "mean",
         "1 Month Ago": "mean",
         "3 Months Ago": "mean",
         "6 Months Ago": "mean",
-        "Price": "mean",
         "Sector": "first",
         "Ticker": lambda x: ",".join(x)
     }).reset_index()
@@ -159,7 +158,9 @@ def main(arctic_db_path, min_percentile, reference_ticker, output_dir, log_file,
 
     df_industries = df_industries.sort_values("Relative Strength", ascending=False).reset_index(drop=True)
     df_industries["Rank"] = df_industries.index + 1
-    df_industries.to_csv(os.path.join(output_dir, "rs_industries.csv"), index=False)
+    df_industries[["Rank", "Industry", "Sector", "Relative Strength", "Relative Strength Percentile",
+                   "1 Month Ago", "3 Months Ago", "6 Months Ago", "Ticker"]].to_csv(
+        os.path.join(output_dir, "rs_industries.csv"), index=False)
 
     latest_date = datetime.fromtimestamp(ref_data["datetime"].max()).strftime("%Y-%m-%d")
     df_rating = df_stocks[["Ticker", "Relative Strength"]].copy()
@@ -177,7 +178,6 @@ def main(arctic_db_path, min_percentile, reference_ticker, output_dir, log_file,
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Calculate RS from ArcticDB")
     parser.add_argument("--arctic-db-path", default="tmp/arctic_db/prices", help="Path to ArcticDB root (no scheme)")
-    parser.add_argument("--min-percentile", type=int, default=85, help="Minimum RS percentile")
     parser.add_argument("--reference-ticker", default="SPY", help="Reference ticker symbol")
     parser.add_argument("--output-dir", default="output", help="Directory to save results")
     parser.add_argument("--log-file", default="logs/failed_tickers.log", help="Log file path")
@@ -185,4 +185,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     os.makedirs(os.path.dirname(args.log_file), exist_ok=True)
-    main(args.arctic_db_path, args.min_percentile, args.reference_ticker, args.output_dir, args.log_file, args.metadata_file)
+    main(args.arctic_db_path, args.reference_ticker, args.output_dir, args.log_file, args.metadata_file)
