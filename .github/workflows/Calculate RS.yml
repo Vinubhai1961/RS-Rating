@@ -213,12 +213,12 @@ jobs:
 
       - name: 📃 Run RS calculation
         run: |
-          mkdir -p logs data
+          mkdir -p RS_Logs RS_Data 
           python scripts/calculate_rs_from_db.py \
             --arctic-db-path tmp/arctic_db \
             --reference-ticker SPY \
             --output-dir RS_Data \
-            --log-file logs/failed_tickers.log \
+            --log-file RS_Logs/failed_tickers.log \
             --metadata-file data/ticker_price.json
             
       - name: 📃 Archive and Log RS Results
@@ -255,7 +255,7 @@ jobs:
           name: rs-results
           path: |
             RS_Data/*.csv
-            logs/failed_tickers.log
+            RS_Logs/failed_tickers.log
             archive/*.csv
             
       - name: 📤 Commit and Push RS Results
@@ -272,13 +272,13 @@ jobs:
           git status
       
           # 📥 Save list of modified files
-          mkdir -p logs RS_Data
-          git status | grep "modified:" > logs/git_modified_files.log || true
-          echo "📝 Modified files saved to logs/git_modified_files.log"
-          cat logs/git_modified_files.log
+          mkdir -p RS_Logs RS_Data
+          git status | grep "modified:" > RS_Logs/git_modified_files.log || true
+          echo "📝 Modified files saved to RS_Logs/git_modified_files.log"
+          cat RS_Logs/git_modified_files.log
         
           echo "➕ Staging all relevant result files..."
-          git add archive/*.csv RS_Logs/*.csv RS_Data/*.csv logs/*.log
+          git add archive/*.csv RS_Logs/*.csv RS_Data/*.csv
       
           # ✅ Skip commit if nothing is staged
           if git diff --cached --quiet; then
