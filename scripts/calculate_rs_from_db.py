@@ -76,17 +76,20 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
             with open(metadata_file, "r") as f:
                 data = json.load(f)
             metadata = [
-                {"Ticker": t, "Price": data[t].get("info", {}).get("Price"),
-                 "Sector": data[t].get("info", {}).get("sector"),
-                 "Industry": data[t].get("info", {}).get("industry"),
-                 "Type": data[t].get("info", {}).get("type")}
+                {
+                    "Ticker": t,
+                    "Price": round(float(data[t].get("info", {}).get("Price", np.nan)), 2),
+                    "Sector": data[t].get("info", {}).get("sector"),
+                    "Industry": data[t].get("info", {}).get("industry"),
+                    "Type": data[t].get("info", {}).get("type")
+                }
                 for t in data
             ]
             metadata_df = pd.DataFrame(metadata)
             if "Ticker" not in metadata_df.columns or metadata_df.empty:
                 logging.warning(f"Metadata file {metadata_file} invalid or lacks 'Ticker' column. Proceeding without metadata.")
                 metadata_df = pd.DataFrame()
-        except (json.JSONDecodeError, KeyError) as e:
+        except (json.JSONDecodeError, KeyError, ValueError) as e:
             logging.error(f"Invalid metadata file {metadata_file}: {str(e)}. Proceeding without metadata.")
             metadata_df = pd.DataFrame()
 
@@ -145,10 +148,10 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
         os.path.join(output_dir, "rs_stocks.csv"), index=False)
 
     df_industries = df_stocks.groupby("Industry").agg({
-        "Relative Strength": "mean",
-        "1 Month Ago": "mean",
-        "3 Months Ago": "mean",
-        "6 Months Ago": "mean",
+        "Relative Strength": lambda x: round(x.mean(), 2),
+        "1 Month Ago": lambda x: round(x.mean(), 2),
+        "3 Months Ago": lambda x: round(x.mean(), 2),
+        "6 Months Ago": lambda x: round(x.mean(), 2),
         "Sector": "first",
         "Ticker": lambda x: ",".join(x)
     }).reset_index()
