@@ -265,20 +265,23 @@ jobs:
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
       
-          # 🔐 Use token to authenticate for pull/push
+          # 🔐 Authenticate using GitHub token
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
       
           echo "📌 Repo status before commit:"
           git status
       
-          # 📥 Save modified file paths (for reference/debugging)
+          # 📥 Save list of modified files
           mkdir -p logs RS_Data
-          git status | grep "modified:" > logs/git_modified_files.log
+          git status | grep "modified:" > logs/git_modified_files.log || true
           echo "📝 Modified files saved to logs/git_modified_files.log"
           cat logs/git_modified_files.log
       
           echo "📦 Copying result CSVs from data/ to RS_Data/..."
           cp data/*.csv RS_Data/
+      
+          echo "🧹 Discarding local modifications in data/ to prevent rebase conflicts..."
+          git restore data/*.csv
       
           echo "➕ Staging all relevant result files..."
           git add archive/*.csv RS_Logs/*.csv RS_Data/*.csv logs/*.log
@@ -296,3 +299,4 @@ jobs:
             echo "🚀 Pushing committed results to GitHub..."
             git push origin main
           fi
+
