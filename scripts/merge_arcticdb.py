@@ -19,6 +19,10 @@ def merge_arcticdb(source_root, dest_path):
     dest_lib = arctic.get_library("prices")
 
     total_merged = 0
+    all_symbols = set()
+    duplicate_symbols = set()
+    failed_symbols = []
+
     print(f"🔀 Starting merge into: {dest_path}")
     print(f"📦 Found {len(src_dirs)} source shards")
 
@@ -34,26 +38,48 @@ def merge_arcticdb(source_root, dest_path):
 
             src_lib = src_arctic.get_library("prices")
             symbols = src_lib.list_symbols()
-            print(f"🔍 {src}: {len(symbols)} symbols found")
+            print(f"🔍 {src}: {len(symbols)} symbols found - Sample: {symbols[:5] if symbols else []}")
 
             for symbol in symbols:
                 try:
+                    if symbol in all_symbols:
+                        duplicate_symbols.add(symbol)
+                    all_symbols.add(symbol)
                     df = src_lib.read(symbol).data
+                    if not {"close", "datetime"}.issubset(df.columns):
+                        print(f"  ❌ {symbol}: Missing required columns {set(['close', 'datetime']) - set(df.columns)}")
+                        failed_symbols.append((src, symbol, "Missing required columns"))
+                        continue
                     dest_lib.write(symbol, df)
                     print(f"  ✅ {symbol}")
                     total_merged += 1
                     shard_merged += 1
                 except Exception as sym_err:
                     print(f"  ❌ Failed to merge {symbol}: {sym_err}")
+                    failed_symbols.append((src, symbol, str(sym_err)))
 
         except Exception as e:
             print(f"❌ Error processing {src}: {e}")
+            failed_symbols.append((src, "N/A", str(e)))
 
         print(f"✅ Done with {src}: {shard_merged} symbols merged\n")
 
+    # Log duplicates and failures
+    if duplicate_symbols:
+        print(f"⚠️ Found {len(duplicate_symbols)} duplicate symbols across shards: {list(duplicate_symbols)[:10]}")
+    if failed_symbols:
+        print(f"⚠️ {len(failed_symbols)} symbols failed to merge. Writing to {os.path.join(dest_path, 'merge_failed_symbols.log')}")
+        with open(os.path.join(dest_path, "merge_failed_symbols.log"), "w") as f:
+            f.write("Source,Symbol,Error\n")
+            for src, symbol, err in failed_symbols:
+                f.write(f"{src},{symbol},{err}\n")
+
     print("🧾 Merge summary:")
     print(f"  - Source partitions: {len(src_dirs)}")
+    print(f"  - Total unique symbols found: {len(all_symbols)}")
     print(f"  - Total symbols merged: {total_merged}")
+    print(f"  - Duplicate symbols: {len(duplicate_symbols)}")
+    print(f"  - Failed symbols: {len(failed_symbols)}")
     print(f"  - Merged ArcticDB location: {dest_path}")
 
 if __name__ == "__main__":
