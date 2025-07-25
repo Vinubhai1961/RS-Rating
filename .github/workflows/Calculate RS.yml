@@ -192,23 +192,29 @@ jobs:
             --output-dir data \
             --log-file logs/failed_tickers.log \
             --metadata-file data/ticker_price.json
-
-      - name: 📃 Archive rs_stocks.csv
+            
+      - name: 📃 Archive and Log RS Results
         run: |
-          mkdir -p archive
+          mkdir -p archive RS_Logs
           current_date=$(date -u -d "4 hours ago" +"%m%d%Y")
           cp data/rs_stocks.csv archive/rs_stocks_${current_date}.csv
-          find archive -type f -name "rs_stocks_*.csv" -mtime +90 -delete
+          cp data/rs_industries.csv archive/rs_industries_${current_date}.csv
+          cp data/RSRATING.csv archive/RSRATING_${current_date}.csv
+          cp data/rs_stocks.csv RS_Logs/rs_stocks_${current_date}.csv
+          cp data/rs_industries.csv RS_Logs/rs_industries_${current_date}.csv
+          cp data/RSRATING.csv RS_Logs/RSRATING_${current_date}.csv
+          find archive -type f -name "*.csv" -mtime +90 -delete
+          find RS_Logs -type f -name "*.csv" -mtime +90 -delete
 
-      - name: 📤 Commit output files to Git
+      - name: 📤 Commit and Push Results
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
-          git add data/*.csv
-          git commit -m "Update RS calculation results for $(date -u -d '4 hours ago' +'%m%d%Y')"
+          git add archive/*.csv RS_Logs/*.csv
+          git commit -m "Add RS results for $(date -u -d '4 hours ago' +'%m%d%Y')"
           git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
 
       - name: 🗓️ Upload outputs
         uses: actions/upload-artifact@v4
