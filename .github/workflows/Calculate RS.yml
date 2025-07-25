@@ -226,15 +226,30 @@ jobs:
         run: |
           mkdir -p archive RS_Logs
           current_date=$(date -u -d "4 hours ago" +"%m%d%Y")
-          cp data/rs_stocks.csv archive/rs_stocks_${current_date}.csv
-          cp data/rs_industries.csv archive/rs_industries_${current_date}.csv
-          cp data/RSRATING.csv archive/RSRATING_${current_date}.csv
-          cp data/rs_stocks.csv RS_Logs/rs_stocks_${current_date}.csv
-          cp data/rs_industries.csv RS_Logs/rs_industries_${current_date}.csv
-          cp data/RSRATING.csv RS_Logs/RSRATING_${current_date}.csv
-          find archive -type f -name "*.csv" -mtime +90 -delete
-          find RS_Logs -type f -name "*.csv" -mtime +90 -delete
-
+          echo "📅 Archiving results for: ${current_date}"
+      
+          # Copy result CSVs to archive and logs
+          for file in rs_stocks rs_industries RSRATING; do
+            if [ -f "data/${file}.csv" ]; then
+              cp data/${file}.csv archive/${file}_${current_date}.csv
+              cp data/${file}.csv RS_Logs/${file}_${current_date}.csv
+              echo "✅ Archived and logged ${file}.csv"
+            else
+              echo "❌ data/${file}.csv not found!"
+              exit 1
+            fi
+          done
+      
+          echo "🧹 Cleaning CSV files older than 90 days..."
+          find archive -type f -name "*.csv" -mtime +90 -print -delete
+          find RS_Logs -type f -name "*.csv" -mtime +90 -print -delete
+      
+          echo "📦 Final archived files:"
+          ls -l archive | tail -n 10
+      
+          echo "🗂 Final log files:"
+          ls -l RS_Logs | tail -n 10
+      
       - name: 🗓️ Upload outputs
         uses: actions/upload-artifact@v4
         with:
