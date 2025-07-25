@@ -147,22 +147,32 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
                "1 Month Ago Percentile", "3 Months Ago Percentile", "6 Months Ago Percentile"]].to_csv(
         os.path.join(output_dir, "rs_stocks.csv"), index=False)
 
+    # Aggregate by industry, using percentile values directly
     df_industries = df_stocks.groupby("Industry").agg({
-        "Relative Strength": lambda x: round(x.mean(), 2),
-        "1 Month Ago": lambda x: round(x.mean(), 2),
-        "3 Months Ago": lambda x: round(x.mean(), 2),
-        "6 Months Ago": lambda x: round(x.mean(), 2),
+        "Relative Strength Percentile": "mean",
+        "1 Month Ago Percentile": "mean",
+        "3 Months Ago Percentile": "mean",
+        "6 Months Ago Percentile": "mean",
         "Sector": "first",
         "Ticker": lambda x: ",".join(x)
     }).reset_index()
 
-    for col in ["Relative Strength", "1 Month Ago", "3 Months Ago", "6 Months Ago"]:
-        df_industries[f"{col} Percentile"] = pd.qcut(df_industries[col], 100, labels=False, duplicates="drop")
+    # Round percentile means to nearest integer (0–99)
+    for col in ["Relative Strength Percentile", "1 Month Ago Percentile", "3 Months Ago Percentile", "6 Months Ago Percentile"]:
+        df_industries[col] = df_industries[col].round().astype(int)
 
-    df_industries = df_industries.sort_values("Relative Strength", ascending=False).reset_index(drop=True)
+    df_industries = df_industries.sort_values("Relative Strength Percentile", ascending=False).reset_index(drop=True)
     df_industries["Rank"] = df_industries.index + 1
-    df_industries[["Rank", "Industry", "Sector", "Relative Strength", "Relative Strength Percentile",
-                   "1 Month Ago", "3 Months Ago", "6 Months Ago", "Ticker"]].to_csv(
+
+    # Rename columns to remove "Percentile" suffix for rs_industries.csv
+    df_industries = df_industries.rename(columns={
+        "Relative Strength Percentile": "Relative Strength",
+        "1 Month Ago Percentile": "1 Month Ago",
+        "3 Months Ago Percentile": "3 Months Ago",
+        "6 Months Ago Percentile": "6 Months Ago"
+    })
+
+    df_industries[["Rank", "Industry", "Sector", "Relative Strength", "1 Month Ago", "3 Months Ago", "6 Months Ago", "Ticker"]].to_csv(
         os.path.join(output_dir, "rs_industries.csv"), index=False)
 
     latest_date = datetime.fromtimestamp(ref_data["datetime"].max()).strftime("%Y-%m-%d")
