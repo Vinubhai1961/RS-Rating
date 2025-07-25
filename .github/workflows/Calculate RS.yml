@@ -271,8 +271,17 @@ jobs:
           echo "📌 Repo status before commit:"
           git status
       
+          # 📥 Save modified file paths (for reference/debugging)
+          mkdir -p logs RS_Data
+          git status | grep "modified:" > logs/git_modified_files.log
+          echo "📝 Modified files saved to logs/git_modified_files.log"
+          cat logs/git_modified_files.log
+      
+          echo "📦 Copying result CSVs from data/ to RS_Data/..."
+          cp data/*.csv RS_Data/
+      
           echo "➕ Staging all relevant result files..."
-          git add archive/*.csv RS_Logs/*.csv data/*.csv logs/*.log
+          git add archive/*.csv RS_Logs/*.csv RS_Data/*.csv logs/*.log
       
           # ✅ Skip commit if nothing is staged
           if git diff --cached --quiet; then
