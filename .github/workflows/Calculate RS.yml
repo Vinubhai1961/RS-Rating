@@ -265,15 +265,16 @@ jobs:
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
       
-          # 🔐 Set authenticated remote using GITHUB_TOKEN
+          # 🔐 Use token to authenticate for pull/push
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
       
           echo "📌 Repo status before commit:"
           git status
       
-          echo "➕ Staging CSV files..."
-          git add archive/*.csv RS_Logs/*.csv
+          echo "➕ Staging all relevant result files..."
+          git add archive/*.csv RS_Logs/*.csv data/*.csv logs/*.log
       
+          # ✅ Skip commit if nothing is staged
           if git diff --cached --quiet; then
             echo "⚠️ No changes to commit. Skipping commit & push."
           else
