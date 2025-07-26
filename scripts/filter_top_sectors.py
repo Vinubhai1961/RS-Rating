@@ -1,3 +1,22 @@
+"""
+Title: Sector RS Report Generator
+Author: Dipen Patel
+Last Updated: 2025-07-26
+
+Description:
+This script filters top-performing industry sectors based on Relative Strength (RS) over time.
+It reads the most recent `rs_industries_*.csv` file from the archive directory and identifies:
+
+Section                  | Criteria
+-------------------------|--------------------------------------------------------------
+🔹 Leading Sectors        | RS > 80 across all periods
+🔸 Top Moving Sectors     | RS ≥ 75 + strictly improving (6M < 3M < 1M < Now)
+🔹 Breakout Sectors       | RS ≥ 80 now, with weak 3M or 6M history (< 40)
+🕵️ Watchlist (NEW)        | Strictly improving trend, but RS < 75 (momentum still developing)
+
+The results are saved to: `IBD-20/rs_top_sectors_opportunities_<DATE>.csv`
+"""
+
 import pandas as pd
 import os
 import glob
@@ -36,66 +55,66 @@ def generate_sector_report(source_file: str, output_file: str):
 
     print("\n📊 Preview of RS Values:\n", df_clean[["Industry"] + required_cols].head(10))
 
-    # 🔍 Individual condition debugging
+    # Debug: How many meet each condition
     print("\n🔍 Individual Condition Counts:")
-    print("🔹 RS > 95 now:", (df_clean['Relative Strength'] > 95).sum())
-    print("🔹 1M > 95:", (df_clean['1 Month Ago'] > 95).sum())
-    print("🔹 3M > 95:", (df_clean['3 Months Ago'] > 95).sum())
-    print("🔹 6M > 95:", (df_clean['6 Months Ago'] > 95).sum())
-
-    # 🔸 Print strictly improving RS sectors regardless of RS level
-    improving_mask = (
+    print("🔹 RS > 80 now:", (df_clean['Relative Strength'] > 80).sum())
+    print("🔸 Strictly Improving RS:", (
         (df_clean['Relative Strength'] > df_clean['1 Month Ago']) &
         (df_clean['1 Month Ago'] > df_clean['3 Months Ago']) &
         (df_clean['3 Months Ago'] > df_clean['6 Months Ago'])
-    )
-    improving_candidates = df_clean[improving_mask]
-    print("🔸 Strictly Improving RS:", len(improving_candidates))
-    if not improving_candidates.empty:
-        print("\n📈 Improving Trend Candidates:")
-        print(improving_candidates[['Industry', 'Relative Strength', '1 Month Ago', '3 Months Ago', '6 Months Ago']])
-
-    print("🔹 Breakout Candidates:", (
-        (df_clean['Relative Strength'] >= 90) &
-        ((df_clean['3 Months Ago'] < 50) | (df_clean['6 Months Ago'] < 50))
+    ).sum())
+    print("🔹 Breakout Candidates (RS ≥ 80 and weak past):", (
+        (df_clean['Relative Strength'] >= 80) &
+        ((df_clean['3 Months Ago'] < 40) | (df_clean['6 Months Ago'] < 40))
     ).sum())
 
-    # 🔹 Section 1: Leading Sectors (RS > 90 all periods)
+    # 🔹 Section 1: Leading Sectors
     leading_df = df_clean[
-        (df_clean['Relative Strength'] > 90) &
-        (df_clean['1 Month Ago'] > 90) &
-        (df_clean['3 Months Ago'] > 90) &
-        (df_clean['6 Months Ago'] > 90)
+        (df_clean['Relative Strength'] > 80) &
+        (df_clean['1 Month Ago'] > 80) &
+        (df_clean['3 Months Ago'] > 80) &
+        (df_clean['6 Months Ago'] > 80)
     ]
     leading_df = leading_df.sort_values(by='Relative Strength', ascending=False)
-    leading_df = add_section_label(leading_df, "🔹 RS > 90: Leading Sectors")
+    leading_df = add_section_label(leading_df, "🔹 RS > 80: Leading Sectors")
 
-    # 🔸 Section 2: Top Moving Sectors (RS improving and ≥ 85)
+    # 🔸 Section 2: Top Moving Sectors
     improving_df = df_clean[
-        (df_clean['Relative Strength'] >= 85) &
+        (df_clean['Relative Strength'] >= 75) &
         (df_clean['Relative Strength'] > df_clean['1 Month Ago']) &
         (df_clean['1 Month Ago'] > df_clean['3 Months Ago']) &
         (df_clean['3 Months Ago'] > df_clean['6 Months Ago'])
     ]
     improving_df = improving_df.sort_values(by='Relative Strength', ascending=False)
-    improving_df = add_section_label(improving_df, "🔸 RS ≥ 85: Top Moving Sectors")
+    improving_df = add_section_label(improving_df, "🔸 RS ≥ 75: Top Moving Sectors")
 
     # 🔹 Section 3: Breakout Sectors
     breakout_df = df_clean[
-        (df_clean['Relative Strength'] >= 90) &
-        ((df_clean['3 Months Ago'] < 50) | (df_clean['6 Months Ago'] < 50))
+        (df_clean['Relative Strength'] >= 80) &
+        ((df_clean['3 Months Ago'] < 40) | (df_clean['6 Months Ago'] < 40))
     ]
     breakout_df = breakout_df.sort_values(by='Relative Strength', ascending=False)
-    breakout_df = add_section_label(breakout_df, "🔹 RS ≥ 90: Breakout Sectors")
+    breakout_df = add_section_label(breakout_df, "🔹 RS ≥ 80: Breakout Sectors")
 
-    # Summary count
+    # 🕵️ Watchlist: Improving but RS < 75
+    watchlist_df = df_clean[
+        (df_clean['Relative Strength'] < 75) &
+        (df_clean['Relative Strength'] > df_clean['1 Month Ago']) &
+        (df_clean['1 Month Ago'] > df_clean['3 Months Ago']) &
+        (df_clean['3 Months Ago'] > df_clean['6 Months Ago'])
+    ]
+    watchlist_df = watchlist_df.sort_values(by='Relative Strength', ascending=False)
+    watchlist_df = add_section_label(watchlist_df, "🕵️ Improving Watchlist (RS < 75)")
+
+    # Summary
     print(f"\n📌 Matched Counts:")
     print(f"🔹 Leading Sectors: {len(leading_df)}")
     print(f"🔸 Top Moving Sectors: {len(improving_df)}")
     print(f"🔹 Breakout Sectors: {len(breakout_df)}")
+    print(f"🕵️ Watchlist: {len(watchlist_df)}")
 
-    # Combine & export
-    combined_df = pd.concat([leading_df, improving_df, breakout_df], ignore_index=True)
+    # Combine all
+    combined_df = pd.concat([leading_df, improving_df, breakout_df, watchlist_df], ignore_index=True)
     final_columns = ['Section', 'Industry', 'Relative Strength',
                      '1 Month Ago', '3 Months Ago', '6 Months Ago']
     combined_df = combined_df[final_columns]
@@ -108,6 +127,7 @@ def generate_sector_report(source_file: str, output_file: str):
         combined_df.to_csv(output_file, index=False)
         print(f"✅ Sector RS report saved to {output_file}")
 
+# Main execution
 if __name__ == "__main__":
     latest_csv = find_latest_industry_file()
     date_str = extract_date_from_filename(latest_csv)
