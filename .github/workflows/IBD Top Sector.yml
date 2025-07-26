@@ -1,0 +1,38 @@
+name: 📈 Filter Top RS Sector Opportunities
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 21 * * 1-5'  # Runs every weekday at 5:30 PM UTC (1:30 PM diverted)
+
+jobs:
+  filter_top_rs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: 📦 Install Dependencies
+        run: pip install pandas
+
+      - name: 🧮 Run RS Opportunity Filter
+        run: python scripts/filter_top_sectors.py
+        
+      - name: 📤 Commit & Push Results
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+      
+          if ls IBD-20/rs_opportunities_*.csv 1> /dev/null 2>&1; then
+            git add IBD-20/rs_opportunities_*.csv
+            git commit -m "📈 Add RS Opportunities Report"
+            git push
+          else
+            echo "⚠️ No RS opportunity file found. Skipping commit."
+          fi
