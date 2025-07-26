@@ -23,24 +23,49 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas
 
+      - name: ⬇️ Download RS Results Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: rs-results
+          path: rs_results
 
+      - name: 📅 Set Current Date (EDT)
+        run: |
+          # Calculate current date in EDT (UTC-4)
+          CURRENT_DATE=$(TZ="America/New_York" date +%m%d%Y)
+          echo "CURRENT_DATE=$CURRENT_DATE" >> $GITHUB_ENV
+          # Calculate previous day’s date in EDT
+          PREV_DATE=$(TZ="America/New_York" date --date="yesterday" +%m%d%Y)
+          echo "PREV_DATE=$PREV_DATE" >> $GITHUB_ENV
 
       - name: 📊 Run Filter Top RS Script
         run: |
-          CURRENT_DATE=$(date +%m%d%Y)
-          python scripts/filter_top_rs.py --input rs_results/archive/rs_stocks_${CURRENT_DATE}.csv --output IBD-20/top_rs_stocks_${CURRENT_DATE}.csv
+          INPUT_FILE="rs_results/archive/rs_stocks_${CURRENT_DATE}.csv"
+          OUTPUT_FILE="IBD-20/top_rs_stocks_${CURRENT_DATE}.csv"
+          # Try current date’s file
+          if [ -f "$INPUT_FILE" ]; then
+            python scripts/filter_top_rs.py --input "$INPUT_FILE" --output "$OUTPUT_FILE"
+          else
+            # Fallback to previous day’s file
+            INPUT_FILE="rs_results/archive/rs_stocks_${PREV_DATE}.csv"
+            OUTPUT_FILE="IBD-20/top_rs_stocks_${CURRENT_DATE}.csv"
+            if [ -f "$INPUT_FILE" ]; then
+              python scripts/filter_top_rs.py --input "$INPUT_FILE" --output "$OUTPUT_FILE"
+            else
+              echo "Error: Neither rs_stocks_${CURRENT_DATE}.csv nor rs_stocks_${PREV_DATE}.csv found"
+              exit 1
+            fi
+          fi
 
       - name: 📝 Commit Output to Repository
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
         run: |
-          CURRENT_DATE=$(date +%m%d%Y)
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
           git add IBD-20/top_rs_stocks_${CURRENT_DATE}.csv
           git commit -m "Add top RS stocks for ${CURRENT_DATE}" || echo "No changes to commit"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 📤 Upload Top RS Stocks Artifact
         uses: actions/upload-artifact@v4
