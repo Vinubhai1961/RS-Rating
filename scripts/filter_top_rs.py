@@ -31,10 +31,22 @@ def generate_opportunity_report(source_file: str, output_file: str):
         'Relative Strength Percentile',
         '1 Month Ago Percentile',
         '3 Months Ago Percentile',
-        '6 Months Ago Percentile'
+        '6 Months Ago Percentile',
+        'Price'
     ])
 
-    # 🔸 Section 1: Improving RS ≥ 85
+    # 🔹 Section 1: Leading Stocks (RS > 95 for all 4 and Price > 20)
+    leading_df = df_clean[
+        (df_clean['Price'] > 20) &
+        (df_clean['Relative Strength Percentile'] > 95) &
+        (df_clean['1 Month Ago Percentile'] > 95) &
+        (df_clean['3 Months Ago Percentile'] > 95) &
+        (df_clean['6 Months Ago Percentile'] > 95)
+    ]
+    leading_df = leading_df.sort_values(by=['Relative Strength Percentile', 'Rank'], ascending=[False, True])
+    leading_df = add_section_label(leading_df, "🔹 RS > 95: Leading Stocks")
+
+    # 🔸 Section 2: Improving RS ≥ 85
     improving_df = df_clean[
         (df_clean['Relative Strength Percentile'] >= 85) &
         (df_clean['Relative Strength Percentile'] > df_clean['1 Month Ago Percentile']) &
@@ -44,7 +56,7 @@ def generate_opportunity_report(source_file: str, output_file: str):
     improving_df = improving_df.sort_values(by=['Relative Strength Percentile', 'Rank'], ascending=[False, True])
     improving_df = add_section_label(improving_df, "🔸 RS ≥ 85: Top Movers")
 
-    # 🔹 Section 2: Breakout Candidates
+    # 🔹 Section 3: Breakout Candidates
     breakout_df = df_clean[
         (df_clean['Relative Strength Percentile'] >= 90) &
         ((df_clean['3 Months Ago Percentile'] < 50) | (df_clean['6 Months Ago Percentile'] < 50))
@@ -52,8 +64,8 @@ def generate_opportunity_report(source_file: str, output_file: str):
     breakout_df = breakout_df.sort_values(by=['Relative Strength Percentile', 'Rank'], ascending=[False, True])
     breakout_df = add_section_label(breakout_df, "🔹 Breakout: New Leader")
 
-    # Combine both sections
-    combined_df = pd.concat([improving_df, breakout_df], ignore_index=True)
+    # Combine all sections
+    combined_df = pd.concat([leading_df, improving_df, breakout_df], ignore_index=True)
 
     # Output selected columns only
     final_columns = ['Section', 'Ticker', 'Price', 'Relative Strength Percentile',
