@@ -23,8 +23,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas
 
-
-
       - name: 📅 Set Current Date (EDT)
         run: |
           # Calculate current date in EDT (UTC-4)
@@ -36,19 +34,19 @@ jobs:
 
       - name: 📊 Run Filter Top RS Script
         run: |
-          INPUT_FILE="rs_results/archive/rs_stocks_${CURRENT_DATE}.csv"
+          INPUT_FILE="archive/rs_stocks_${CURRENT_DATE}.csv"
           OUTPUT_FILE="IBD-20/top_rs_stocks_${CURRENT_DATE}.csv"
           # Try current date’s file
           if [ -f "$INPUT_FILE" ]; then
             python scripts/filter_top_rs.py --input "$INPUT_FILE" --output "$OUTPUT_FILE"
           else
             # Fallback to previous day’s file
-            INPUT_FILE="rs_results/archive/rs_stocks_${PREV_DATE}.csv"
+            INPUT_FILE="archive/rs_stocks_${PREV_DATE}.csv"
             OUTPUT_FILE="IBD-20/top_rs_stocks_${CURRENT_DATE}.csv"
             if [ -f "$INPUT_FILE" ]; then
               python scripts/filter_top_rs.py --input "$INPUT_FILE" --output "$OUTPUT_FILE"
             else
-              echo "Error: Neither rs_stocks_${CURRENT_DATE}.csv nor rs_stocks_${PREV_DATE}.csv found"
+              echo "Error: Neither rs_stocks_${CURRENT_DATE}.csv nor rs_stocks_${PREV_DATE}.csv found in archive/"
               exit 1
             fi
           fi
