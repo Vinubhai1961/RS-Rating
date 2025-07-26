@@ -16,22 +16,22 @@ jobs:
       - name: 🐍 Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.13'
+          python-version: '3.10'
 
       - name: 📦 Install Dependencies
         run: pip install pandas
 
       - name: 🧮 Run RS Opportunity Filter
         run: python scripts/filter_top_rs.py
-
+        
       - name: 📤 Commit & Push Results
         run: |
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
-
-          if [ -f "IBD-20/rs_opportunities_07252025.csv" ]; then
-            git add IBD-20/rs_opportunities_07252025.csv
-            git commit -m "📈 Add RS Opportunities Report for 2025-07-25"
+      
+          if ls IBD-20/rs_opportunities_*.csv 1> /dev/null 2>&1; then
+            git add IBD-20/rs_opportunities_*.csv
+            git commit -m "📈 Add RS Opportunities Report"
             git push
           else
-            echo "⚠️ Report file not found. Nothing to commit."
+            echo "⚠️ No RS opportunity file found. Skipping commit."
