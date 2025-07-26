@@ -23,11 +23,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas
 
-      - name: ⬇️ Download RS Results Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: rs-results
-          path: rs_results
+
 
       - name: 📊 Run Filter Top RS Script
         run: |
