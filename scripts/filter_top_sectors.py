@@ -27,46 +27,47 @@ def extract_date_from_filename(filepath):
 def generate_sector_report(source_file: str, output_file: str):
     df = pd.read_csv(source_file)
 
-    df_clean = df.dropna(subset=[
-        'Relative Strength Percentile',
-        '1 Month Ago Percentile',
-        '3 Months Ago Percentile',
-        '6 Months Ago Percentile'
-    ])
+    # Make sure required columns exist
+    required_cols = ['Relative Strength', '1 Month Ago', '3 Months Ago', '6 Months Ago']
+    missing_cols = [col for col in required_cols if col not in df.columns]
+    if missing_cols:
+        raise ValueError(f"❌ Missing required columns: {missing_cols}")
+
+    df_clean = df.dropna(subset=required_cols)
 
     # 🔹 Section 1: Leading Sectors (RS > 95 across all)
     leading_df = df_clean[
-        (df_clean['Relative Strength Percentile'] > 95) &
-        (df_clean['1 Month Ago Percentile'] > 95) &
-        (df_clean['3 Months Ago Percentile'] > 95) &
-        (df_clean['6 Months Ago Percentile'] > 95)
+        (df_clean['Relative Strength'] > 95) &
+        (df_clean['1 Month Ago'] > 95) &
+        (df_clean['3 Months Ago'] > 95) &
+        (df_clean['6 Months Ago'] > 95)
     ]
-    leading_df = leading_df.sort_values(by='Relative Strength Percentile', ascending=False)
+    leading_df = leading_df.sort_values(by='Relative Strength', ascending=False)
     leading_df = add_section_label(leading_df, "🔹 RS > 95: Leading Sectors")
 
     # 🔸 Section 2: Top Moving Sectors (RS improving trend)
     improving_df = df_clean[
-        (df_clean['Relative Strength Percentile'] >= 85) &
-        (df_clean['Relative Strength Percentile'] > df_clean['1 Month Ago Percentile']) &
-        (df_clean['1 Month Ago Percentile'] > df_clean['3 Months Ago Percentile']) &
-        (df_clean['3 Months Ago Percentile'] > df_clean['6 Months Ago Percentile'])
+        (df_clean['Relative Strength'] >= 85) &
+        (df_clean['Relative Strength'] > df_clean['1 Month Ago']) &
+        (df_clean['1 Month Ago'] > df_clean['3 Months Ago']) &
+        (df_clean['3 Months Ago'] > df_clean['6 Months Ago'])
     ]
-    improving_df = improving_df.sort_values(by='Relative Strength Percentile', ascending=False)
+    improving_df = improving_df.sort_values(by='Relative Strength', ascending=False)
     improving_df = add_section_label(improving_df, "🔸 RS ≥ 85: Top Moving Sectors")
 
     # 🔹 Section 3: Breakout Sectors
     breakout_df = df_clean[
-        (df_clean['Relative Strength Percentile'] >= 90) &
-        ((df_clean['3 Months Ago Percentile'] < 50) | (df_clean['6 Months Ago Percentile'] < 50))
+        (df_clean['Relative Strength'] >= 90) &
+        ((df_clean['3 Months Ago'] < 50) | (df_clean['6 Months Ago'] < 50))
     ]
-    breakout_df = breakout_df.sort_values(by='Relative Strength Percentile', ascending=False)
+    breakout_df = breakout_df.sort_values(by='Relative Strength', ascending=False)
     breakout_df = add_section_label(breakout_df, "🔹 RS ≥ 90: Breakout Sectors")
 
     # Combine and export
     combined_df = pd.concat([leading_df, improving_df, breakout_df], ignore_index=True)
 
-    final_columns = ['Section', 'Industry', 'Relative Strength Percentile',
-                     '1 Month Ago Percentile', '3 Months Ago Percentile', '6 Months Ago Percentile']
+    final_columns = ['Section', 'Industry', 'Relative Strength',
+                     '1 Month Ago', '3 Months Ago', '6 Months Ago']
     combined_df = combined_df[final_columns]
 
     ensure_dir(output_file)
