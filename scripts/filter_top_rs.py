@@ -34,6 +34,7 @@ def extract_date_from_filename(filepath):
 def generate_opportunity_report(stock_file: str, industry_file: str, output_file: str):
     # ========== STOCK SECTION ==========
     df = pd.read_csv(stock_file)
+    df = df.drop_duplicates().reset_index(drop=True)  # Remove duplicates and reset index
 
     df_clean = df.dropna(subset=[
         'Relative Strength Percentile',
@@ -50,7 +51,7 @@ def generate_opportunity_report(stock_file: str, industry_file: str, output_file
         (df_clean['1 Month Ago Percentile'] > 95) &
         (df_clean['3 Months Ago Percentile'] > 95) &
         (df_clean['6 Months Ago Percentile'] > 95)
-    ]
+    ].reset_index(drop=True)
     leading_df = leading_df.sort_values(by=['Relative Strength Percentile', 'Rank'], ascending=[False, True])
     leading_df = add_section_label(leading_df, "🔹 RS > 95: Leading Stocks")
 
@@ -60,7 +61,7 @@ def generate_opportunity_report(stock_file: str, industry_file: str, output_file
         (df_clean['Relative Strength Percentile'] > df_clean['1 Month Ago Percentile']) &
         (df_clean['1 Month Ago Percentile'] > df_clean['3 Months Ago Percentile']) &
         (df_clean['3 Months Ago Percentile'] > df_clean['6 Months Ago Percentile'])
-    ]
+    ].reset_index(drop=True)
     improving_df = improving_df.sort_values(by=['Relative Strength Percentile', 'Rank'], ascending=[False, True])
     improving_df = add_section_label(improving_df, "🔸 RS ≥ 85: Top Movers")
 
@@ -68,7 +69,7 @@ def generate_opportunity_report(stock_file: str, industry_file: str, output_file
     breakout_df = df_clean[
         (df_clean['Relative Strength Percentile'] >= 90) &
         ((df_clean['3 Months Ago Percentile'] < 50) | (df_clean['6 Months Ago Percentile'] < 50))
-    ]
+    ].reset_index(drop=True)
     breakout_df = breakout_df.sort_values(by=['Relative Strength Percentile', 'Rank'], ascending=[False, True])
     breakout_df = add_section_label(breakout_df, "🔹 Breakout: New Leader")
 
@@ -77,6 +78,7 @@ def generate_opportunity_report(stock_file: str, industry_file: str, output_file
 
     # ========== INDUSTRY SECTION ==========
     industry = pd.read_csv(industry_file)
+    industry = industry.drop_duplicates().reset_index(drop=True)  # Remove duplicates and reset index
     industry.columns = industry.columns.str.strip()  # remove whitespace
     industry = industry.rename(columns={
         'Relative Strength': 'Relative Strength Percentile',
@@ -98,7 +100,7 @@ def generate_opportunity_report(stock_file: str, industry_file: str, output_file
         (industry_clean['1 Month Ago Percentile'] > 95) &
         (industry_clean['3 Months Ago Percentile'] > 95) &
         (industry_clean['6 Months Ago Percentile'] > 95)
-    ]
+    ].reset_index(drop=True)
     ind_leading = ind_leading.sort_values(by='Relative Strength Percentile', ascending=False)
     ind_leading = add_section_label(ind_leading, "🔹 RS > 95: Leading Sectors")
 
@@ -108,7 +110,7 @@ def generate_opportunity_report(stock_file: str, industry_file: str, output_file
         (industry_clean['Relative Strength Percentile'] > industry_clean['1 Month Ago Percentile']) &
         (industry_clean['1 Month Ago Percentile'] > industry_clean['3 Months Ago Percentile']) &
         (industry_clean['3 Months Ago Percentile'] > industry_clean['6 Months Ago Percentile'])
-    ]
+    ].reset_index(drop=True)
     ind_moving = ind_moving.sort_values(by='Relative Strength Percentile', ascending=False)
     ind_moving = add_section_label(ind_moving, "🔸 RS ≥ 85: Top Moving Sectors")
 
@@ -116,24 +118,24 @@ def generate_opportunity_report(stock_file: str, industry_file: str, output_file
     ind_breakout = industry_clean[
         (industry_clean['Relative Strength Percentile'] >= 90) &
         ((industry_clean['3 Months Ago Percentile'] < 50) | (industry_clean['6 Months Ago Percentile'] < 50))
-    ]
+    ].reset_index(drop=True)
     ind_breakout = ind_breakout.sort_values(by='Relative Strength Percentile', ascending=False)
     ind_breakout = add_section_label(ind_breakout, "🔹 RS ≥ 90: Breakout Sectors")
 
     industry_df = pd.concat([ind_leading, ind_moving, ind_breakout], ignore_index=True)
-    industry_df = industry_df.rename(columns={'Industry': 'Ticker'})  # unify with stock format
-    industry_df['Price'] = ''  # filler
+    industry_df = industry_df.rename(columns={'Industry': 'Ticker'})
+    industry_df['Price'] = ''
     industry_df['Sector'] = industry_df['Sector'].fillna('')
     industry_df['Rank'] = industry_df['Rank'].fillna('')
     industry_df['Type'] = 'Sector'
 
     # Reorder columns
-    all_df = pd.concat([stock_df, industry_df], ignore_index=True)
-
     final_columns = ['Section', 'Type', 'Ticker', 'Price', 'Relative Strength Percentile',
                      '1 Month Ago Percentile', '3 Months Ago Percentile', '6 Months Ago Percentile',
                      'Sector', 'Industry', 'Rank']
-    all_df = all_df[final_columns]
+    stock_df = stock_df[final_columns]
+    industry_df = industry_df[final_columns]
+    all_df = pd.concat([stock_df, industry_df], ignore_index=True)
 
     # Save combined CSV
     ensure_dir(output_file)
