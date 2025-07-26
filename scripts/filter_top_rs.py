@@ -1,5 +1,7 @@
 import pandas as pd
 import os
+import glob
+import re
 
 def ensure_dir(path):
     os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -8,6 +10,19 @@ def add_section_label(df, label):
     df = df.copy()
     df.insert(0, "Section", label)
     return df
+
+def find_latest_rs_file(archive_path="archive"):
+    pattern = os.path.join(archive_path, "rs_stocks_*.csv")
+    files = sorted(glob.glob(pattern), reverse=True)
+    if not files:
+        raise FileNotFoundError("❌ No RS files found in archive/")
+    return files[0]
+
+def extract_date_from_filename(filepath):
+    match = re.search(r'rs_stocks_(\d{8})\.csv', filepath)
+    if not match:
+        raise ValueError(f"❌ Could not extract date from: {filepath}")
+    return match.group(1)
 
 def generate_opportunity_report(source_file: str, output_file: str):
     df = pd.read_csv(source_file)
@@ -51,7 +66,9 @@ def generate_opportunity_report(source_file: str, output_file: str):
     print(f"✅ Combined RS opportunities report saved to {output_file}")
 
 if __name__ == "__main__":
-    date_str = "07252025"  # Replace with dynamic version for automation
-    source = f"archive/rs_stocks_{date_str}.csv"
-    output = f"IBD-20/rs_opportunities_{date_str}.csv"
-    generate_opportunity_report(source, output)
+    # Auto-detect input file and extract date
+    latest_csv = find_latest_rs_file()
+    date_str = extract_date_from_filename(latest_csv)
+    output_path = f"IBD-20/rs_opportunities_{date_str}.csv"
+
+    generate_opportunity_report(latest_csv, output_path)
