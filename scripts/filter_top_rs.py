@@ -77,6 +77,14 @@ def generate_opportunity_report(stock_file: str, industry_file: str, output_file
 
     # ========== INDUSTRY SECTION ==========
     industry = pd.read_csv(industry_file)
+    industry.columns = industry.columns.str.strip()  # remove whitespace
+    industry = industry.rename(columns={
+        'Relative Strength': 'Relative Strength Percentile',
+        '1 Month Ago': '1 Month Ago Percentile',
+        '3 Months Ago': '3 Months Ago Percentile',
+        '6 Months Ago': '6 Months Ago Percentile'
+    })
+
     industry_clean = industry.dropna(subset=[
         'Relative Strength Percentile',
         '1 Month Ago Percentile',
@@ -115,8 +123,8 @@ def generate_opportunity_report(stock_file: str, industry_file: str, output_file
     industry_df = pd.concat([ind_leading, ind_moving, ind_breakout], ignore_index=True)
     industry_df = industry_df.rename(columns={'Industry': 'Ticker'})  # unify with stock format
     industry_df['Price'] = ''  # filler
-    industry_df['Sector'] = ''
-    industry_df['Rank'] = ''
+    industry_df['Sector'] = industry_df['Sector'].fillna('')
+    industry_df['Rank'] = industry_df['Rank'].fillna('')
     industry_df['Type'] = 'Sector'
 
     # Reorder columns
