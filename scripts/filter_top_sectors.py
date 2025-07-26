@@ -27,7 +27,7 @@ def extract_date_from_filename(filepath):
 def generate_sector_report(source_file: str, output_file: str):
     df = pd.read_csv(source_file)
 
-    # Make sure required columns exist
+    # Required columns
     required_cols = ['Relative Strength', '1 Month Ago', '3 Months Ago', '6 Months Ago']
     missing_cols = [col for col in required_cols if col not in df.columns]
     if missing_cols:
@@ -35,15 +35,33 @@ def generate_sector_report(source_file: str, output_file: str):
 
     df_clean = df.dropna(subset=required_cols)
 
-    # 🔹 Section 1: Leading Sectors (RS > 95 across all)
+    print("\n📊 Preview of RS Values:\n", df_clean[["Industry"] + required_cols].head(10))
+
+    # 🔍 Debug individual filters
+    print("\n🔍 Individual Condition Counts:")
+    print("🔹 RS > 95 now:", (df_clean['Relative Strength'] > 95).sum())
+    print("🔹 1M > 95:", (df_clean['1 Month Ago'] > 95).sum())
+    print("🔹 3M > 95:", (df_clean['3 Months Ago'] > 95).sum())
+    print("🔹 6M > 95:", (df_clean['6 Months Ago'] > 95).sum())
+    print("🔸 Strictly Improving RS:", (
+        (df_clean['Relative Strength'] > df_clean['1 Month Ago']) &
+        (df_clean['1 Month Ago'] > df_clean['3 Months Ago']) &
+        (df_clean['3 Months Ago'] > df_clean['6 Months Ago'])
+    ).sum())
+    print("🔹 Breakout Candidates:", (
+        (df_clean['Relative Strength'] >= 90) &
+        ((df_clean['3 Months Ago'] < 50) | (df_clean['6 Months Ago'] < 50))
+    ).sum())
+
+    # 🔹 Section 1: Leading Sectors (slightly relaxed)
     leading_df = df_clean[
-        (df_clean['Relative Strength'] > 95) &
-        (df_clean['1 Month Ago'] > 95) &
-        (df_clean['3 Months Ago'] > 95) &
-        (df_clean['6 Months Ago'] > 95)
+        (df_clean['Relative Strength'] > 90) &
+        (df_clean['1 Month Ago'] > 90) &
+        (df_clean['3 Months Ago'] > 90) &
+        (df_clean['6 Months Ago'] > 90)
     ]
     leading_df = leading_df.sort_values(by='Relative Strength', ascending=False)
-    leading_df = add_section_label(leading_df, "🔹 RS > 95: Leading Sectors")
+    leading_df = add_section_label(leading_df, "🔹 RS > 90: Leading Sectors")
 
     # 🔸 Section 2: Top Moving Sectors (RS improving trend)
     improving_df = df_clean[
@@ -63,14 +81,13 @@ def generate_sector_report(source_file: str, output_file: str):
     breakout_df = breakout_df.sort_values(by='Relative Strength', ascending=False)
     breakout_df = add_section_label(breakout_df, "🔹 RS ≥ 90: Breakout Sectors")
 
-    # Logging counts for debugging
+    print(f"\n📌 Matched Counts:")
     print(f"🔹 Leading Sectors: {len(leading_df)}")
     print(f"🔸 Top Moving Sectors: {len(improving_df)}")
     print(f"🔹 Breakout Sectors: {len(breakout_df)}")
 
     # Combine and export
     combined_df = pd.concat([leading_df, improving_df, breakout_df], ignore_index=True)
-
     final_columns = ['Section', 'Industry', 'Relative Strength',
                      '1 Month Ago', '3 Months Ago', '6 Months Ago']
     combined_df = combined_df[final_columns]
