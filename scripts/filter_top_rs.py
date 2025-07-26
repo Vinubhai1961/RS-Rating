@@ -77,16 +77,19 @@ def generate_opportunity_report(source_file: str, output_file: str):
     combined_df.to_csv(output_file, index=False)
     print(f"✅ Combined RS opportunities report saved to {output_file}")
 
-    # Append labeled ticker summary as CSV footer (comment-style)
-    with open(output_file, "a") as f:
-        f.write("\n# section-1: RS > 95 for all timeframes and Price > 20\n")
-        f.write("# " + ", ".join(leading_df['Ticker'].tolist()) + "\n\n")
+    # Save ticker summary to a separate TXT file
+    summary_path = output_file.replace(".csv", "_summary.txt")
+    with open(summary_path, "w") as f:
+        f.write("section-1: RS > 95 for all timeframes and Price > 20\n")
+        f.write(", ".join(leading_df['Ticker'].tolist()) + "\n\n")
 
-        f.write("# section-2: RS ≥ 85 and improving trend\n")
-        f.write("# " + ", ".join(improving_df['Ticker'].tolist()) + "\n\n")
+        f.write("section-2: RS ≥ 85 and improving trend\n")
+        f.write(", ".join(improving_df['Ticker'].tolist()) + "\n\n")
 
-        f.write("# section-3: RS ≥ 90 with breakout pattern\n")
-        f.write("# " + ", ".join(breakout_df['Ticker'].tolist()) + "\n")
+        f.write("section-3: RS ≥ 90 with breakout pattern\n")
+        f.write(", ".join(breakout_df['Ticker'].tolist()) + "\n")
+
+    print(f"✅ Ticker summary saved to {summary_path}")
 
 if __name__ == "__main__":
     # Auto-detect input file and extract date
