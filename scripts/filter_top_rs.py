@@ -18,7 +18,7 @@ def main():
     current_date = datetime.today().strftime('%m%d%Y')
     
     # Default input and output paths
-    input_file = f"rs_results/RS_Data/rs_stocks.csv"
+    input_file = f"rs_results/archive/rs_stocks_{current_date}.csv"
     output_file = f"IBD-20/top_rs_stocks_{current_date}.csv"
     
     # Override with command-line arguments if provided
