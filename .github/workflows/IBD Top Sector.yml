@@ -29,10 +29,11 @@ jobs:
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
       
-          if ls IBD-20/rs_opportunities_*.csv 1> /dev/null 2>&1; then
-            git add IBD-20/rs_opportunities_*.csv
-            git commit -m "📈 Add RS Opportunities Report"
+          if ls IBD-20/rs_top_sectors_opportunities_*.csv 1> /dev/null 2>&1; then
+            git add IBD-20/rs_top_sectors_opportunities_*.csv
+            git commit -m "📊 Add RS Sector + Opportunity Report"
             git push
           else
-            echo "⚠️ No RS opportunity file found. Skipping commit."
+            echo "⚠️ No RS combined report file found. Skipping commit."
           fi
+
