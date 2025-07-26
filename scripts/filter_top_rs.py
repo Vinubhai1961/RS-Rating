@@ -78,8 +78,9 @@ def generate_opportunity_report(stock_file: str, industry_file: str, output_file
 
     # ========== INDUSTRY SECTION ==========
     industry = pd.read_csv(industry_file)
+    industry = industry.drop(columns=['Ticker'], errors='ignore')  # Drop Ticker column as it's not needed
     industry = industry.drop_duplicates().reset_index(drop=True)  # Remove duplicates and reset index
-    industry.columns = industry.columns.str.strip()  # remove whitespace
+    industry.columns = industry.columns.str.strip()  # Remove whitespace
     industry = industry.rename(columns={
         'Relative Strength': 'Relative Strength Percentile',
         '1 Month Ago': '1 Month Ago Percentile',
@@ -123,7 +124,7 @@ def generate_opportunity_report(stock_file: str, industry_file: str, output_file
     ind_breakout = add_section_label(ind_breakout, "🔹 RS ≥ 90: Breakout Sectors")
 
     industry_df = pd.concat([ind_leading, ind_moving, ind_breakout], ignore_index=True)
-    industry_df = industry_df.rename(columns={'Industry': 'Ticker'})
+    industry_df['Ticker'] = industry_df['Industry']  # Use Industry as Ticker for consistency
     industry_df['Price'] = ''
     industry_df['Sector'] = industry_df['Sector'].fillna('')
     industry_df['Rank'] = industry_df['Rank'].fillna('')
@@ -133,6 +134,8 @@ def generate_opportunity_report(stock_file: str, industry_file: str, output_file
     final_columns = ['Section', 'Type', 'Ticker', 'Price', 'Relative Strength Percentile',
                      '1 Month Ago Percentile', '3 Months Ago Percentile', '6 Months Ago Percentile',
                      'Sector', 'Industry', 'Rank']
+    print("Stock DataFrame columns:", stock_df.columns.tolist())
+    print("Industry DataFrame columns:", industry_df.columns.tolist())
     stock_df = stock_df[final_columns]
     industry_df = industry_df[final_columns]
     all_df = pd.concat([stock_df, industry_df], ignore_index=True)
