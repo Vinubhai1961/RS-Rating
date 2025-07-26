@@ -6,7 +6,7 @@ on:
     - cron: '30 21 * * 1-5'  # Runs every weekday at 5:30 PM UTC (1:30 PM diverted)
 
 jobs:
-  filter_top_rs:
+  filter_top_Sector:
     runs-on: ubuntu-latest
 
     steps:
