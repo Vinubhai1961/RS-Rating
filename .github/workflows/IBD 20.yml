@@ -1,69 +1,37 @@
-name: Filter Top RS Stocks
+name: 📈 Filter Top RS Opportunities
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 21 * * 1-5"  # 5:00 PM EDT (21:00 UTC) Monday through Friday
+    - cron: '30 21 * * 1-5'  # Runs every weekday at 5:30 PM UTC (1:30 PM ET)
 
 jobs:
-  filter-top-rs:
+  filter_top_rs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout Repository
-        uses: actions/checkout@v4
+      - name: 📥 Checkout Repo
+        uses: actions/checkout@v3
 
       - name: 🐍 Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.10'
 
       - name: 📦 Install Dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pandas
+        run: pip install pandas
 
-      - name: 📅 Set Current Date (EDT)
-        run: |
-          # Calculate current date in EDT (UTC-4)
-          CURRENT_DATE=$(TZ="America/New_York" date +%m%d%Y)
-          echo "CURRENT_DATE=$CURRENT_DATE" >> $GITHUB_ENV
-          # Calculate previous day’s date in EDT
-          PREV_DATE=$(TZ="America/New_York" date --date="yesterday" +%m%d%Y)
-          echo "PREV_DATE=$PREV_DATE" >> $GITHUB_ENV
+      - name: 🧮 Run RS Opportunity Filter
+        run: python scripts/filter_top_rs.py
 
-      - name: 📊 Run Filter Top RS Script
+      - name: 📤 Commit & Push Results
         run: |
-          INPUT_FILE="archive/rs_stocks_${CURRENT_DATE}.csv"
-          OUTPUT_FILE="IBD-20/top_rs_stocks_${CURRENT_DATE}.csv"
-          # Try current date’s file
-          if [ -f "$INPUT_FILE" ]; then
-            python scripts/filter_top_rs.py --input "$INPUT_FILE" --output "$OUTPUT_FILE"
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+
+          if [ -f "IBD-20/rs_opportunities_07252025.csv" ]; then
+            git add IBD-20/rs_opportunities_07252025.csv
+            git commit -m "📈 Add RS Opportunities Report for 2025-07-25"
+            git push
           else
-            # Fallback to previous day’s file
-            INPUT_FILE="archive/rs_stocks_${PREV_DATE}.csv"
-            OUTPUT_FILE="IBD-20/top_rs_stocks_${CURRENT_DATE}.csv"
-            if [ -f "$INPUT_FILE" ]; then
-              python scripts/filter_top_rs.py --input "$INPUT_FILE" --output "$OUTPUT_FILE"
-            else
-              echo "Error: Neither rs_stocks_${CURRENT_DATE}.csv nor rs_stocks_${PREV_DATE}.csv found in archive/"
-              exit 1
-            fi
-          fi
-
-      - name: 📝 Commit Output to Repository
-        run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
-          git add IBD-20/top_rs_stocks_${CURRENT_DATE}.csv
-          git commit -m "Add top RS stocks for ${CURRENT_DATE}" || echo "No changes to commit"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: 📤 Upload Top RS Stocks Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: top-rs-stocks
-          path: IBD-20/top_rs_stocks_*.csv
-          retention-days: 7
+            echo "⚠️ Report file not found. Nothing to commit."
