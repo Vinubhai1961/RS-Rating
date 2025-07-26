@@ -1,540 +1,539 @@
-Section,Type,Ticker,Price,Relative Strength Percentile,1 Month Ago Percentile,3 Months Ago Percentile,6 Months Ago Percentile,Sector,Industry,Rank
-🔹 RS > 95: Leading Stocks,Stock,PTIR,26.21,99,99.0,99.0,99.0,ETF,ETF,7
-🔹 RS > 95: Leading Stocks,Stock,SEZL,144.12,99,99.0,99.0,99.0,Financial Services,Credit Services,13
-🔹 RS > 95: Leading Stocks,Stock,RKLX,95.11,99,99.0,97.0,99.0,ETF,ETF,19
-🔹 RS > 95: Leading Stocks,Stock,ALMU,21.5,99,99.0,99.0,98.0,Technology,Semiconductors,21
-🔹 RS > 95: Leading Stocks,Stock,NEON,27.85,99,99.0,99.0,99.0,Technology,Electronic Components,31
-🔹 RS > 95: Leading Stocks,Stock,OKLO,74.63,99,99.0,97.0,99.0,Utilities,Utilities - Regulated Electric,33
-🔹 RS > 95: Leading Stocks,Stock,RKLB,47.26,99,99.0,99.0,99.0,Industrials,Aerospace & Defense,39
-🔹 RS > 95: Leading Stocks,Stock,DAVE,209.82,99,99.0,99.0,99.0,Technology,Software - Application,43
-🔹 RS > 95: Leading Stocks,Stock,AGFY,25.54,99,99.0,99.0,99.0,Industrials,Farm & Heavy Construction Machinery,44
-🔹 RS > 95: Leading Stocks,Stock,ARQQ,38.0,99,99.0,96.0,98.0,Technology,Software - Infrastructure,53
-🔹 RS > 95: Leading Stocks,Stock,SMR,50.47,99,99.0,96.0,99.0,Industrials,Specialty Industrial Machinery,55
-🔹 RS > 95: Leading Stocks,Stock,HOOD,103.1,99,99.0,98.0,99.0,Financial Services,Capital Markets,62
-🔹 RS > 95: Leading Stocks,Stock,PLTR,159.22,99,99.0,99.0,99.0,Technology,Software - Infrastructure,65
-🔹 RS > 95: Leading Stocks,Stock,HSAI,21.04,99,99.0,99.0,99.0,Consumer Cyclical,Auto Parts,78
-🔹 RS > 95: Leading Stocks,Stock,ASTS,55.38,99,99.0,99.0,99.0,Technology,Communication Equipment,81
-🔹 RS > 95: Leading Stocks,Stock,VRNA,105.15,99,99.0,99.0,98.0,Healthcare,Biotechnology,82
-🔹 RS > 95: Leading Stocks,Stock,IONQ,43.48,99,99.0,99.0,99.0,Technology,Computer Hardware,86
-🔹 RS > 95: Leading Stocks,Stock,CLS,166.16,98,98.0,96.0,98.0,Technology,Electronic Components,105
-🔹 RS > 95: Leading Stocks,Stock,GEV,646.87,98,98.0,98.0,97.0,Industrials,Specialty Industrial Machinery,112
-🔹 RS > 95: Leading Stocks,Stock,RBLX,121.5,98,98.0,96.0,96.0,Communication Services,Electronic Gaming & Multimedia,115
-🔹 RS > 95: Leading Stocks,Stock,HIMS,57.31,98,98.0,98.0,99.0,Consumer Defensive,Household & Personal Products,117
-🔹 RS > 95: Leading Stocks,Stock,IONX,67.78,98,99.0,96.0,98.0,ETF,ETF,118
-🔹 RS > 95: Leading Stocks,Stock,APP,365.1,98,98.0,99.0,99.0,Communication Services,Advertising Agencies,133
-🔹 RS > 95: Leading Stocks,Stock,GDS,36.6,98,97.0,98.0,98.0,Technology,Information Technology Services,155
-🔹 RS > 95: Leading Stocks,Stock,TSAT,25.43,98,97.0,97.0,97.0,Technology,Communication Equipment,159
-🔹 RS > 95: Leading Stocks,Stock,AS,37.24,98,98.0,96.0,98.0,Consumer Cyclical,Leisure,164
-🔹 RS > 95: Leading Stocks,Stock,TPR,108.04,98,96.0,96.0,96.0,Consumer Cyclical,Luxury Goods,170
-🔹 RS > 95: Leading Stocks,Stock,SNWV,37.36,97,97.0,97.0,97.0,Healthcare,Medical Devices,189
-🔹 RS > 95: Leading Stocks,Stock,AGX,234.64,97,98.0,98.0,97.0,Industrials,Engineering & Construction,195
-🔹 RS > 95: Leading Stocks,Stock,TLN,347.42,97,97.0,97.0,97.0,Utilities,Utilities - Independent Power Producers,196
-🔹 RS > 95: Leading Stocks,Stock,NNE,38.74,97,96.0,98.0,99.0,Industrials,Specialty Industrial Machinery,209
-🔹 RS > 95: Leading Stocks,Stock,INOD,46.3,97,98.0,99.0,99.0,Technology,Information Technology Services,219
-🔹 RS > 95: Leading Stocks,Stock,SEI,33.31,97,97.0,97.0,99.0,Energy,Oil & Gas Equipment & Services,224
-🔹 RS > 95: Leading Stocks,Stock,GRAL,39.41,97,99.0,99.0,98.0,Healthcare,Diagnostics & Research,229
-🔹 RS > 95: Leading Stocks,Stock,SMU,46.68,97,97.0,98.0,97.0,ETF,ETF,236
-🔹 RS > 95: Leading Stocks,Stock,SRRK,38.63,97,99.0,98.0,98.0,Healthcare,Biotechnology,239
-🔹 RS > 95: Leading Stocks,Stock,SRAD,28.31,97,97.0,98.0,97.0,Technology,Software - Application,254
-🔹 RS > 95: Leading Stocks,Stock,KDEF,41.4,96,98.0,96.0,96.0,ETF,ETF,271
-🔹 RS > 95: Leading Stocks,Stock,FOA,24.21,96,98.0,99.0,99.0,Financial Services,Credit Services,280
-🔹 RS > 95: Leading Stocks,Stock,CVNA,331.61,96,97.0,98.0,98.0,Consumer Cyclical,Auto & Truck Dealerships,284
-🔹 RS > 95: Leading Stocks,Stock,UI,448.45,96,97.0,98.0,98.0,Technology,Communication Equipment,314
-🔹 RS > 95: Leading Stocks,Stock,RBRK,85.79,96,98.0,97.0,97.0,Technology,Software - Infrastructure,326
-🔹 RS > 95: Leading Stocks,Stock,CRS,275.98,96,97.0,96.0,96.0,Industrials,Metal Fabrication,340
-🔸 RS ≥ 85: Top Movers,Stock,MP,62.96,99,98.0,97.0,92.0,Basic Materials,Other Industrial Metals & Mining,52
-🔸 RS ≥ 85: Top Movers,Stock,TZUP,13.63,99,96.0,88.0,3.0,Communication Services,Advertising Agencies,60
-🔸 RS ≥ 85: Top Movers,Stock,PGY,31.84,99,97.0,85.0,4.0,Technology,Software - Infrastructure,75
-🔸 RS ≥ 85: Top Movers,Stock,VHC,20.49,99,95.0,94.0,93.0,Technology,Software - Infrastructure,83
-🔸 RS ≥ 85: Top Movers,Stock,METC,22.68,98,86.0,25.0,4.0,Basic Materials,Coking Coal,127
-🔸 RS ≥ 85: Top Movers,Stock,WLDN,82.0,98,97.0,88.0,75.0,Industrials,Engineering & Construction,128
-🔸 RS ≥ 85: Top Movers,Stock,SBSW,9.4,98,97.0,86.0,6.0,Basic Materials,Other Precious Metals & Mining,132
-🔸 RS ≥ 85: Top Movers,Stock,FORD,9.75,98,95.0,94.0,91.0,Consumer Cyclical,Footwear & Accessories,142
-🔸 RS ≥ 85: Top Movers,Stock,SNES,5.74,98,97.0,4.0,2.0,Basic Materials,Specialty Chemicals,144
-🔸 RS ≥ 85: Top Movers,Stock,OWLT,8.43,98,97.0,24.0,16.0,Healthcare,Medical Devices,165
-🔸 RS ≥ 85: Top Movers,Stock,OPRX,14.06,98,97.0,96.0,2.0,Healthcare,Health Information Services,176
-🔸 RS ≥ 85: Top Movers,Stock,FLYE,5.29,97,96.0,2.0,0.0,Consumer Cyclical,Auto Manufacturers,183
-🔸 RS ≥ 85: Top Movers,Stock,UUUU,9.64,97,89.0,12.0,9.0,Energy,Uranium,194
-🔸 RS ≥ 85: Top Movers,Stock,PARR,31.22,97,96.0,7.0,4.0,Energy,Oil & Gas Refining & Marketing,211
-🔸 RS ≥ 85: Top Movers,Stock,NBTX,6.84,97,89.0,8.0,2.0,Healthcare,Biotechnology,247
-🔸 RS ≥ 85: Top Movers,Stock,SEDG,28.13,97,77.0,7.0,0.0,Technology,Solar,253
-🔸 RS ≥ 85: Top Movers,Stock,INBX,21.4,96,38.0,23.0,17.0,Healthcare,Biotechnology,266
-🔸 RS ≥ 85: Top Movers,Stock,FIVE,138.22,96,94.0,15.0,12.0,Consumer Cyclical,Specialty Retail,282
-🔸 RS ≥ 85: Top Movers,Stock,ESEA,51.67,96,95.0,87.0,6.0,Industrials,Marine Shipping,296
-🔸 RS ≥ 85: Top Movers,Stock,SLDB,6.64,96,24.0,3.0,0.0,Healthcare,Biotechnology,301
-🔸 RS ≥ 85: Top Movers,Stock,CPS,23.6,96,95.0,60.0,56.0,Consumer Cyclical,Auto Parts,310
-🔸 RS ≥ 85: Top Movers,Stock,URGN,18.24,96,63.0,17.0,4.0,Healthcare,Biotechnology,311
-🔸 RS ≥ 85: Top Movers,Stock,KEN,48.63,96,93.0,90.0,85.0,Utilities,Utilities - Independent Power Producers,320
-🔸 RS ≥ 85: Top Movers,Stock,TME,21.41,96,94.0,87.0,55.0,Communication Services,Internet Content & Information,322
-🔸 RS ≥ 85: Top Movers,Stock,BIRD,11.31,95,91.0,2.0,1.0,Consumer Cyclical,Apparel Retail,366
-🔸 RS ≥ 85: Top Movers,Stock,MLCO,8.74,95,82.0,17.0,11.0,Consumer Cyclical,Resorts & Casinos,370
-🔸 RS ≥ 85: Top Movers,Stock,INDV,17.11,95,90.0,42.0,17.0,Healthcare,Drug Manufacturers - Specialty & Generic,380
-🔸 RS ≥ 85: Top Movers,Stock,ASPS,11.6,95,94.0,70.0,0.0,Real Estate,Real Estate Services,421
-🔸 RS ≥ 85: Top Movers,Stock,FENC,8.79,95,93.0,67.0,59.0,Healthcare,Biotechnology,433
-🔸 RS ≥ 85: Top Movers,Stock,ZVRA,11.6,95,92.0,88.0,86.0,Healthcare,Biotechnology,434
-🔸 RS ≥ 85: Top Movers,Stock,IE,11.55,95,92.0,14.0,1.0,Basic Materials,Copper,436
-🔸 RS ≥ 85: Top Movers,Stock,AAMI,39.81,95,93.0,83.0,49.0,Financial Services,Asset Management,437
-🔸 RS ≥ 85: Top Movers,Stock,RILYN,18.9,94,17.0,8.0,4.0,,,445
-🔸 RS ≥ 85: Top Movers,Stock,COUR,12.12,94,86.0,30.0,8.0,Consumer Defensive,Education & Training Services,454
-🔸 RS ≥ 85: Top Movers,Stock,CRSP,65.86,94,71.0,12.0,5.0,Healthcare,Biotechnology,512
-🔸 RS ≥ 85: Top Movers,Stock,GHLD,19.86,94,93.0,43.0,12.0,Financial Services,Mortgage Finance,528
-🔸 RS ≥ 85: Top Movers,Stock,SLVR,32.68,93,92.0,86.0,48.0,ETF,ETF,529
-🔸 RS ≥ 85: Top Movers,Stock,DLTR,113.73,93,90.0,44.0,8.0,Consumer Defensive,Discount Stores,563
-🔸 RS ≥ 85: Top Movers,Stock,RYAAY,61.99,93,90.0,73.0,28.0,Industrials,Airlines,571
-🔸 RS ≥ 85: Top Movers,Stock,MRUS,65.79,93,81.0,43.0,9.0,Healthcare,Biotechnology,584
-🔸 RS ≥ 85: Top Movers,Stock,RILYG,17.09,93,18.0,8.0,3.0,,,598
-🔸 RS ≥ 85: Top Movers,Stock,MTW,13.13,92,91.0,9.0,7.0,Industrials,Farm & Heavy Construction Machinery,632
-🔸 RS ≥ 85: Top Movers,Stock,CX,8.37,92,79.0,39.0,15.0,Basic Materials,Building Materials,639
-🔸 RS ≥ 85: Top Movers,Stock,AMD,165.76,92,80.0,7.0,5.0,Technology,Semiconductors,644
-🔸 RS ≥ 85: Top Movers,Stock,ATRA,11.56,92,40.0,11.0,4.0,Healthcare,Biotechnology,653
-🔸 RS ≥ 85: Top Movers,Stock,TEL,204.21,92,82.0,51.0,38.0,Technology,Electronic Components,666
-🔸 RS ≥ 85: Top Movers,Stock,SHG,50.4,92,90.0,36.0,17.0,Financial Services,Banks - Regional,672
-🔸 RS ≥ 85: Top Movers,Stock,RCMT,26.08,92,91.0,20.0,11.0,Industrials,Conglomerates,681
-🔸 RS ≥ 85: Top Movers,Stock,VNM,16.33,92,75.0,72.0,18.0,ETF,ETF,686
-🔸 RS ≥ 85: Top Movers,Stock,SIMO,74.35,91,90.0,11.0,10.0,Technology,Semiconductors,707
-🔸 RS ≥ 85: Top Movers,Stock,ECNS,35.17,91,87.0,86.0,52.0,ETF,ETF,710
-🔸 RS ≥ 85: Top Movers,Stock,CHN,15.95,91,89.0,83.0,73.0,Financial Services,Asset Management,712
-🔸 RS ≥ 85: Top Movers,Stock,SMCL,20.05,91,82.0,8.0,1.0,ETF,ETF,736
-🔸 RS ≥ 85: Top Movers,Stock,EDC,41.62,91,86.0,36.0,21.0,ETF,ETF,759
-🔸 RS ≥ 85: Top Movers,Stock,GMS,109.54,91,88.0,15.0,14.0,Industrials,Building Products & Equipment,768
-🔸 RS ≥ 85: Top Movers,Stock,GAMR,87.52,91,90.0,84.0,76.0,ETF,ETF,773
-🔸 RS ≥ 85: Top Movers,Stock,ULTA,510.36,91,85.0,58.0,53.0,Consumer Cyclical,Specialty Retail,783
-🔸 RS ≥ 85: Top Movers,Stock,SRI,7.91,91,12.0,1.0,0.0,Consumer Cyclical,Auto Parts,791
-🔸 RS ≥ 85: Top Movers,Stock,HLF,9.73,90,48.0,47.0,2.0,Consumer Defensive,Packaged Foods,798
-🔸 RS ≥ 85: Top Movers,Stock,QXO,21.89,90,89.0,4.0,1.0,Technology,Software - Application,803
-🔸 RS ≥ 85: Top Movers,Stock,BA,230.74,90,85.0,82.0,48.0,Industrials,Aerospace & Defense,804
-🔸 RS ≥ 85: Top Movers,Stock,REMX,54.95,90,32.0,21.0,9.0,ETF,ETF,807
-🔸 RS ≥ 85: Top Movers,Stock,RAPT,12.8,90,3.0,1.0,0.0,Healthcare,Biotechnology,827
-🔸 RS ≥ 85: Top Movers,Stock,EVI,24.96,90,80.0,20.0,8.0,Industrials,Industrial Distribution,836
-🔸 RS ≥ 85: Top Movers,Stock,VNAM,20.17,90,68.0,56.0,19.0,ETF,ETF,840
-🔸 RS ≥ 85: Top Movers,Stock,GRFS,10.07,90,84.0,46.0,9.0,Healthcare,Drug Manufacturers - General,850
-🔸 RS ≥ 85: Top Movers,Stock,CVI,27.31,90,89.0,14.0,6.0,Energy,Oil & Gas Refining & Marketing,861
-🔸 RS ≥ 85: Top Movers,Stock,NUS,8.83,90,55.0,10.0,3.0,Consumer Defensive,Household & Personal Products,873
-🔸 RS ≥ 85: Top Movers,Stock,MUX,11.52,90,80.0,14.0,12.0,Basic Materials,Other Precious Metals & Mining,875
-🔸 RS ≥ 85: Top Movers,Stock,SMCI,52.31,89,87.0,18.0,1.0,Technology,Computer Hardware,887
-🔸 RS ≥ 85: Top Movers,Stock,VC,113.9,89,60.0,16.0,5.0,Consumer Cyclical,Auto Parts,908
-🔸 RS ≥ 85: Top Movers,Stock,DMAT,19.38,89,78.0,40.0,17.0,ETF,ETF,923
-🔸 RS ≥ 85: Top Movers,Stock,RTX,155.19,89,86.0,83.0,82.0,Industrials,Aerospace & Defense,939
-🔸 RS ≥ 85: Top Movers,Stock,LI,29.53,89,86.0,76.0,12.0,Consumer Cyclical,Auto Manufacturers,943
-🔸 RS ≥ 85: Top Movers,Stock,SCHW,97.17,89,87.0,85.0,84.0,Financial Services,Capital Markets,945
-🔸 RS ≥ 85: Top Movers,Stock,AGQ,54.83,89,85.0,83.0,79.0,ETF,ETF,950
-🔸 RS ≥ 85: Top Movers,Stock,TRS,31.38,89,84.0,28.0,16.0,Consumer Cyclical,Packaging & Containers,955
-🔸 RS ≥ 85: Top Movers,Stock,SHLS,5.64,89,62.0,6.0,3.0,Technology,Solar,957
-🔸 RS ≥ 85: Top Movers,Stock,FCA,25.81,89,83.0,80.0,50.0,ETF,ETF,959
-🔸 RS ≥ 85: Top Movers,Stock,SETM,20.42,89,76.0,18.0,10.0,ETF,ETF,963
-🔸 RS ≥ 85: Top Movers,Stock,XME,77.13,89,82.0,33.0,20.0,ETF,ETF,965
-🔸 RS ≥ 85: Top Movers,Stock,MYE,14.96,88,85.0,10.0,5.0,Consumer Cyclical,Packaging & Containers,972
-🔸 RS ≥ 85: Top Movers,Stock,KURE,18.93,88,83.0,82.0,19.0,ETF,ETF,983
-🔸 RS ≥ 85: Top Movers,Stock,PLAY,32.0,88,85.0,3.0,1.0,Communication Services,Entertainment,985
-🔸 RS ≥ 85: Top Movers,Stock,GSL,29.0,88,69.0,32.0,14.0,Industrials,Marine Shipping,989
-🔸 RS ≥ 85: Top Movers,Stock,GOLF,82.08,88,72.0,65.0,48.0,Consumer Cyclical,Leisure,1007
-🔸 RS ≥ 85: Top Movers,Stock,ION,33.74,88,68.0,33.0,12.0,ETF,ETF,1016
-🔸 RS ≥ 85: Top Movers,Stock,WYNN,108.16,88,66.0,31.0,16.0,Consumer Cyclical,Resorts & Casinos,1022
-🔸 RS ≥ 85: Top Movers,Stock,NOAH,12.48,87,84.0,23.0,19.0,Financial Services,Asset Management,1056
-🔸 RS ≥ 85: Top Movers,Stock,REX,53.91,87,85.0,21.0,10.0,Basic Materials,Chemicals,1059
-🔸 RS ≥ 85: Top Movers,Stock,BSY,58.35,87,84.0,24.0,15.0,Technology,Software - Application,1070
-🔸 RS ≥ 85: Top Movers,Stock,HYDR,25.39,87,49.0,10.0,9.0,ETF,ETF,1086
-🔸 RS ≥ 85: Top Movers,Stock,CTEC,8.45,87,45.0,13.0,7.0,ETF,ETF,1111
-🔸 RS ≥ 85: Top Movers,Stock,IDXX,551.41,87,85.0,46.0,10.0,Healthcare,Diagnostics & Research,1114
-🔸 RS ≥ 85: Top Movers,Stock,VERB,8.47,87,43.0,1.0,0.0,Technology,Software - Application,1131
-🔸 RS ≥ 85: Top Movers,Stock,SFST,43.8,87,84.0,81.0,66.0,Financial Services,Banks - Regional,1135
-🔸 RS ≥ 85: Top Movers,Stock,SCHL,25.66,86,16.0,8.0,2.0,Communication Services,Publishing,1150
-🔸 RS ≥ 85: Top Movers,Stock,VOD,11.34,86,84.0,83.0,17.0,Communication Services,Telecom Services,1158
-🔸 RS ≥ 85: Top Movers,Stock,FRNW,17.3,86,75.0,39.0,12.0,ETF,ETF,1162
-🔸 RS ≥ 85: Top Movers,Stock,COPJ,26.49,86,85.0,73.0,9.0,ETF,ETF,1163
-🔸 RS ≥ 85: Top Movers,Stock,PALL,112.15,86,84.0,38.0,25.0,ETF,ETF,1165
-🔸 RS ≥ 85: Top Movers,Stock,TAYD,45.99,86,68.0,10.0,4.0,Industrials,Specialty Industrial Machinery,1169
-🔸 RS ≥ 85: Top Movers,Stock,EET,67.57,86,83.0,55.0,28.0,ETF,ETF,1181
-🔸 RS ≥ 85: Top Movers,Stock,JBGS,19.33,86,73.0,26.0,17.0,Real Estate,REIT - Office,1209
-🔸 RS ≥ 85: Top Movers,Stock,EWH,20.72,86,84.0,79.0,31.0,ETF,ETF,1217
-🔸 RS ≥ 85: Top Movers,Stock,HDSN,8.35,86,85.0,28.0,2.0,Basic Materials,Specialty Chemicals,1222
-🔸 RS ≥ 85: Top Movers,Stock,SIG,84.03,85,73.0,13.0,2.0,Consumer Cyclical,Luxury Goods,1245
-🔸 RS ≥ 85: Top Movers,Stock,DRAI,28.72,85,83.0,38.0,17.0,ETF,ETF,1258
-🔸 RS ≥ 85: Top Movers,Stock,FHTX,6.38,85,28.0,14.0,4.0,Healthcare,Biotechnology,1266
-🔸 RS ≥ 85: Top Movers,Stock,DELL,129.15,85,79.0,16.0,15.0,Technology,Computer Hardware,1307
-🔸 RS ≥ 85: Top Movers,Stock,IPOS,15.78,85,79.0,77.0,44.0,ETF,ETF,1311
-🔹 Breakout: New Leader,Stock,SBDS,16.29,99,3.0,0.0,1.0,,,9
-🔹 Breakout: New Leader,Stock,NEGG,34.03,99,96.0,0.0,1.0,Consumer Cyclical,Internet Retail,10
-🔹 Breakout: New Leader,Stock,SBET,22.86,99,97.0,0.0,1.0,Consumer Cyclical,Gambling,20
-🔹 Breakout: New Leader,Stock,QNTM,22.75,99,99.0,96.0,0.0,Healthcare,Biotechnology,26
-🔹 Breakout: New Leader,Stock,DDC,17.25,99,98.0,0.0,0.0,Consumer Defensive,Packaged Foods,29
-🔹 Breakout: New Leader,Stock,QBTX,110.7,99,99.0,17.0,99.0,ETF,ETF,35
-🔹 Breakout: New Leader,Stock,ZEPP,11.52,99,11.0,31.0,8.0,Technology,Consumer Electronics,36
-🔹 Breakout: New Leader,Stock,MB,14.45,99,98.0,13.0,99.0,Consumer Cyclical,Restaurants,38
-🔹 Breakout: New Leader,Stock,NVTS,9.04,99,99.0,3.0,10.0,Technology,Semiconductors,45
-🔹 Breakout: New Leader,Stock,VIGL,8.06,99,99.0,6.0,3.0,Healthcare,Biotechnology,46
-🔹 Breakout: New Leader,Stock,QSG,9.5,99,99.0,99.0,7.0,Consumer Defensive,Education & Training Services,47
-🔹 Breakout: New Leader,Stock,BTM,5.17,99,99.0,33.0,14.0,Financial Services,Capital Markets,48
-🔹 Breakout: New Leader,Stock,HYPD,8.28,99,99.0,0.0,0.0,Healthcare,Biotechnology,49
-🔹 Breakout: New Leader,Stock,VVPR,5.13,99,98.0,99.0,8.0,Technology,Solar,59
-🔹 Breakout: New Leader,Stock,TZUP,13.63,99,96.0,88.0,3.0,Communication Services,Advertising Agencies,60
-🔹 Breakout: New Leader,Stock,OCG,5.52,99,99.0,99.0,13.0,Consumer Cyclical,Internet Retail,68
-🔹 Breakout: New Leader,Stock,OUST,27.33,99,99.0,14.0,90.0,Technology,Electronic Components,70
-🔹 Breakout: New Leader,Stock,TAOX,8.49,99,96.0,5.0,10.0,Technology,Software - Infrastructure,72
-🔹 Breakout: New Leader,Stock,SGMT,10.63,99,99.0,15.0,10.0,Healthcare,Biotechnology,73
-🔹 Breakout: New Leader,Stock,PAYS,8.2,99,99.0,6.0,2.0,Technology,Software - Infrastructure,74
-🔹 Breakout: New Leader,Stock,PGY,31.84,99,97.0,85.0,4.0,Technology,Software - Infrastructure,75
-🔹 Breakout: New Leader,Stock,AMUU,45.2,99,98.0,41.0,99.0,ETF,ETF,76
-🔹 Breakout: New Leader,Stock,TNGX,6.73,99,97.0,0.0,0.0,Healthcare,Biotechnology,79
-🔹 Breakout: New Leader,Stock,MEIP,6.4,99,62.0,6.0,7.0,Healthcare,Biotechnology,80
-🔹 Breakout: New Leader,Stock,PRPO,14.21,98,98.0,40.0,78.0,Healthcare,Diagnostics & Research,90
-🔹 Breakout: New Leader,Stock,QS,11.31,98,96.0,7.0,11.0,Consumer Cyclical,Auto Parts,92
-🔹 Breakout: New Leader,Stock,SOGP,5.43,98,98.0,53.0,49.0,Communication Services,Internet Content & Information,94
-🔹 Breakout: New Leader,Stock,ONEG,6.07,98,97.0,4.0,4.0,Industrials,Engineering & Construction,96
-🔹 Breakout: New Leader,Stock,LAYS,40.95,98,97.0,18.0,98.0,ETF,ETF,98
-🔹 Breakout: New Leader,Stock,GRPN,32.94,98,99.0,98.0,11.0,Communication Services,Internet Content & Information,101
-🔹 Breakout: New Leader,Stock,CAR,208.25,98,98.0,54.0,12.0,Industrials,Rental & Leasing Services,106
-🔹 Breakout: New Leader,Stock,BKSY,19.91,98,99.0,23.0,97.0,Industrials,Specialty Business Services,108
-🔹 Breakout: New Leader,Stock,SRFM,5.53,98,95.0,26.0,96.0,Industrials,Airlines,110
-🔹 Breakout: New Leader,Stock,PHOE,9.51,98,98.0,13.0,98.0,Industrials,Engineering & Construction,113
-🔹 Breakout: New Leader,Stock,PVLA,38.6,98,93.0,98.0,8.0,Healthcare,Biotechnology,116
-🔹 Breakout: New Leader,Stock,YSG,8.69,98,99.0,87.0,8.0,Consumer Defensive,Household & Personal Products,120
-🔹 Breakout: New Leader,Stock,ORCX,34.29,98,96.0,3.0,98.0,ETF,ETF,121
-🔹 Breakout: New Leader,Stock,ISSC,15.56,98,98.0,22.0,95.0,Industrials,Aerospace & Defense,122
-🔹 Breakout: New Leader,Stock,EYE,25.14,98,98.0,57.0,8.0,Consumer Cyclical,Specialty Retail,123
-🔹 Breakout: New Leader,Stock,METC,22.68,98,86.0,25.0,4.0,Basic Materials,Coking Coal,127
-🔹 Breakout: New Leader,Stock,TNXP,46.25,98,92.0,0.0,91.0,Healthcare,Biotechnology,131
-🔹 Breakout: New Leader,Stock,SBSW,9.4,98,97.0,86.0,6.0,Basic Materials,Other Precious Metals & Mining,132
-🔹 Breakout: New Leader,Stock,DOMO,16.0,98,98.0,37.0,31.0,Technology,Software - Application,138
-🔹 Breakout: New Leader,Stock,AIRS,6.46,98,93.0,1.0,7.0,Healthcare,Medical Care Facilities,139
-🔹 Breakout: New Leader,Stock,IREN,17.73,98,96.0,10.0,95.0,Financial Services,Capital Markets,140
-🔹 Breakout: New Leader,Stock,SORA,6.78,98,97.0,5.0,98.0,Consumer Cyclical,Luxury Goods,143
-🔹 Breakout: New Leader,Stock,SNES,5.74,98,97.0,4.0,2.0,Basic Materials,Specialty Chemicals,144
-🔹 Breakout: New Leader,Stock,OSS,5.44,98,96.0,13.0,95.0,Technology,Computer Hardware,145
-🔹 Breakout: New Leader,Stock,CEP,28.29,98,99.0,99.0,49.0,Financial Services,Shell Companies,147
-🔹 Breakout: New Leader,Stock,RFIL,8.38,98,94.0,45.0,93.0,Industrials,Electrical Equipment & Parts,148
-🔹 Breakout: New Leader,Stock,ETU,30.02,98,5.0,0.0,92.0,ETF,ETF,150
-🔹 Breakout: New Leader,Stock,SPCY,32.95,98,96.0,18.0,98.0,ETF,ETF,151
-🔹 Breakout: New Leader,Stock,LASR,19.42,98,98.0,7.0,12.0,Technology,Semiconductors,152
-🔹 Breakout: New Leader,Stock,VRTL,42.26,98,97.0,11.0,97.0,ETF,ETF,153
-🔹 Breakout: New Leader,Stock,AMDG,21.72,98,91.0,2.0,10.0,ETF,ETF,154
-🔹 Breakout: New Leader,Stock,GOGO,15.7,98,97.0,33.0,62.0,Communication Services,Telecom Services,158
-🔹 Breakout: New Leader,Stock,TARK,65.62,98,97.0,17.0,96.0,ETF,ETF,160
-🔹 Breakout: New Leader,Stock,ARTL,13.97,98,69.0,14.0,15.0,Healthcare,Biotechnology,161
-🔹 Breakout: New Leader,Stock,OWLT,8.43,98,97.0,24.0,16.0,Healthcare,Medical Devices,165
-🔹 Breakout: New Leader,Stock,SYM,51.75,98,96.0,7.0,13.0,Industrials,Specialty Industrial Machinery,169
-🔹 Breakout: New Leader,Stock,AAOI,27.22,98,97.0,23.0,98.0,Technology,Communication Equipment,171
-🔹 Breakout: New Leader,Stock,TPC,48.74,98,98.0,37.0,92.0,Industrials,Engineering & Construction,172
-🔹 Breakout: New Leader,Stock,CONL,55.28,98,98.0,0.0,93.0,ETF,ETF,175
-🔹 Breakout: New Leader,Stock,OPRX,14.06,98,97.0,96.0,2.0,Healthcare,Health Information Services,176
-🔹 Breakout: New Leader,Stock,TIL,30.9,97,85.0,6.0,93.0,Healthcare,Biotechnology,177
-🔹 Breakout: New Leader,Stock,PCT,15.49,97,97.0,18.0,92.0,Industrials,Pollution & Treatment Controls,179
-🔹 Breakout: New Leader,Stock,IDN,5.14,97,98.0,26.0,61.0,Technology,Software - Application,181
-🔹 Breakout: New Leader,Stock,FLYE,5.29,97,96.0,2.0,0.0,Consumer Cyclical,Auto Manufacturers,183
-🔹 Breakout: New Leader,Stock,APPS,5.27,97,99.0,96.0,11.0,Technology,Software - Application,185
-🔹 Breakout: New Leader,Stock,LFMD,10.59,97,99.0,97.0,30.0,Healthcare,Health Information Services,187
-🔹 Breakout: New Leader,Stock,FULC,7.86,97,98.0,11.0,5.0,Healthcare,Biotechnology,193
-🔹 Breakout: New Leader,Stock,UUUU,9.64,97,89.0,12.0,9.0,Energy,Uranium,194
-🔹 Breakout: New Leader,Stock,SUPX,11.79,97,97.0,99.0,7.0,Technology,Software - Infrastructure,198
-🔹 Breakout: New Leader,Stock,AAPG,39.76,97,98.0,96.0,44.0,Healthcare,Biotechnology,199
-🔹 Breakout: New Leader,Stock,EVEX,7.03,97,96.0,23.0,90.0,Industrials,Aerospace & Defense,200
-🔹 Breakout: New Leader,Stock,ELTX,9.81,97,91.0,7.0,97.0,Healthcare,Biotechnology,201
-🔹 Breakout: New Leader,Stock,MIMI,7.94,97,95.0,17.0,92.0,Industrials,Engineering & Construction,203
-🔹 Breakout: New Leader,Stock,AEHR,21.39,97,88.0,5.0,5.0,Technology,Semiconductor Equipment & Materials,204
-🔹 Breakout: New Leader,Stock,ZENA,5.71,97,5.0,1.0,87.0,Technology,Software - Infrastructure,205
-🔹 Breakout: New Leader,Stock,APLD,10.98,97,96.0,25.0,93.0,Technology,Information Technology Services,207
-🔹 Breakout: New Leader,Stock,PARR,31.22,97,96.0,7.0,4.0,Energy,Oil & Gas Refining & Marketing,211
-🔹 Breakout: New Leader,Stock,AVGX,39.22,97,97.0,16.0,92.0,ETF,ETF,214
-🔹 Breakout: New Leader,Stock,VVOS,5.38,97,72.0,22.0,92.0,Healthcare,Medical Devices,217
-🔹 Breakout: New Leader,Stock,ETHT,81.02,97,2.0,0.0,11.0,ETF,ETF,218
-🔹 Breakout: New Leader,Stock,ALAB,121.02,97,95.0,28.0,96.0,Technology,Semiconductors,223
-🔹 Breakout: New Leader,Stock,MASS,7.35,97,98.0,98.0,1.0,Healthcare,Medical Devices,225
-🔹 Breakout: New Leader,Stock,BNR,7.54,97,4.0,2.0,93.0,Healthcare,Diagnostics & Research,226
-🔹 Breakout: New Leader,Stock,ETHU,117.72,97,2.0,0.0,7.0,ETF,ETF,227
-🔹 Breakout: New Leader,Stock,DPRO,6.09,97,9.0,10.0,7.0,Industrials,Aerospace & Defense,231
-🔹 Breakout: New Leader,Stock,URAA,31.85,97,97.0,4.0,5.0,ETF,ETF,237
-🔹 Breakout: New Leader,Stock,AVL,42.6,97,97.0,12.0,87.0,ETF,ETF,241
-🔹 Breakout: New Leader,Stock,ACOG,9.92,97,97.0,23.0,35.0,Healthcare,Biotechnology,243
-🔹 Breakout: New Leader,Stock,COGT,12.04,97,18.0,2.0,83.0,Healthcare,Biotechnology,244
-🔹 Breakout: New Leader,Stock,NBTX,6.84,97,89.0,8.0,2.0,Healthcare,Biotechnology,247
-🔹 Breakout: New Leader,Stock,ALNT,39.49,97,96.0,21.0,72.0,Technology,Electronic Components,249
-🔹 Breakout: New Leader,Stock,SEDG,28.13,97,77.0,7.0,0.0,Technology,Solar,253
-🔹 Breakout: New Leader,Stock,AENT,5.8,97,66.0,28.0,99.0,Communication Services,Entertainment,256
-🔹 Breakout: New Leader,Stock,AMDL,11.4,97,68.0,0.0,1.0,ETF,ETF,257
-🔹 Breakout: New Leader,Stock,KEP,13.89,97,98.0,93.0,14.0,Utilities,Utilities - Regulated Electric,258
-🔹 Breakout: New Leader,Stock,MGNI,23.23,97,96.0,29.0,94.0,Communication Services,Advertising Agencies,259
-🔹 Breakout: New Leader,Stock,CMCL,21.97,96,97.0,94.0,4.0,Basic Materials,Gold,265
-🔹 Breakout: New Leader,Stock,INBX,21.4,96,38.0,23.0,17.0,Healthcare,Biotechnology,266
-🔹 Breakout: New Leader,Stock,VERV,11.13,96,98.0,18.0,66.0,Healthcare,Biotechnology,267
-🔹 Breakout: New Leader,Stock,KFS,14.4,96,97.0,63.0,12.0,Consumer Cyclical,Auto & Truck Dealerships,272
-🔹 Breakout: New Leader,Stock,KALA,7.5,96,15.0,2.0,91.0,Healthcare,Biotechnology,275
-🔹 Breakout: New Leader,Stock,NEUP,8.6,96,89.0,42.0,86.0,Healthcare,Biotechnology,276
-🔹 Breakout: New Leader,Stock,KORU,83.76,96,96.0,9.0,1.0,ETF,ETF,278
-🔹 Breakout: New Leader,Stock,SCPH,5.66,96,79.0,3.0,3.0,Healthcare,Biotechnology,279
-🔹 Breakout: New Leader,Stock,FIVE,138.22,96,94.0,15.0,12.0,Consumer Cyclical,Specialty Retail,282
-🔹 Breakout: New Leader,Stock,ATRO,35.1,96,96.0,94.0,19.0,Industrials,Aerospace & Defense,283
-🔹 Breakout: New Leader,Stock,W,64.14,96,86.0,4.0,49.0,Consumer Cyclical,Internet Retail,286
-🔹 Breakout: New Leader,Stock,STG,11.17,96,11.0,7.0,8.0,Consumer Defensive,Education & Training Services,287
-🔹 Breakout: New Leader,Stock,COIN,388.63,96,98.0,16.0,94.0,Financial Services,Financial Data & Stock Exchanges,289
-🔹 Breakout: New Leader,Stock,NKTR,24.57,96,98.0,6.0,5.0,Healthcare,Biotechnology,290
-🔹 Breakout: New Leader,Stock,ESEA,51.67,96,95.0,87.0,6.0,Industrials,Marine Shipping,296
-🔹 Breakout: New Leader,Stock,STRM,5.3,96,95.0,12.0,90.0,Healthcare,Health Information Services,300
-🔹 Breakout: New Leader,Stock,SLDB,6.64,96,24.0,3.0,0.0,Healthcare,Biotechnology,301
-🔹 Breakout: New Leader,Stock,RIOX,22.41,96,10.0,0.0,8.0,ETF,ETF,303
-🔹 Breakout: New Leader,Stock,AGEN,6.07,96,97.0,4.0,1.0,Healthcare,Biotechnology,305
-🔹 Breakout: New Leader,Stock,SOFX,27.02,96,77.0,2.0,12.0,ETF,ETF,307
-🔹 Breakout: New Leader,Stock,OPXS,12.18,96,96.0,18.0,15.0,Industrials,Aerospace & Defense,308
-🔹 Breakout: New Leader,Stock,URGN,18.24,96,63.0,17.0,4.0,Healthcare,Biotechnology,311
-🔹 Breakout: New Leader,Stock,IHS,6.07,96,94.0,97.0,45.0,Real Estate,Real Estate Services,313
-🔹 Breakout: New Leader,Stock,RRGB,6.89,96,83.0,1.0,10.0,Consumer Cyclical,Restaurants,316
-🔹 Breakout: New Leader,Stock,OCC,5.04,96,22.0,32.0,97.0,Technology,Communication Equipment,317
-🔹 Breakout: New Leader,Stock,NVDG,18.15,96,91.0,3.0,3.0,ETF,ETF,318
-🔹 Breakout: New Leader,Stock,ATI,93.92,96,96.0,27.0,60.0,Industrials,Metal Fabrication,321
-🔹 Breakout: New Leader,Stock,NVDL,84.84,96,91.0,6.0,85.0,ETF,ETF,323
-🔹 Breakout: New Leader,Stock,AIFU,9.11,96,0.0,0.0,0.0,Financial Services,Insurance Brokers,325
-🔹 Breakout: New Leader,Stock,ILPT,5.49,96,88.0,5.0,28.0,Real Estate,REIT - Industrial,328
-🔹 Breakout: New Leader,Stock,ARMU,35.67,96,96.0,8.0,95.0,ETF,ETF,333
-🔹 Breakout: New Leader,Stock,GHM,54.06,96,96.0,22.0,96.0,Industrials,Specialty Industrial Machinery,336
-🔹 Breakout: New Leader,Stock,CCJ,78.44,96,96.0,30.0,47.0,Energy,Uranium,339
-🔹 Breakout: New Leader,Stock,BELFB,113.63,96,89.0,31.0,81.0,Technology,Electronic Components,342
-🔹 Breakout: New Leader,Stock,SIFY,5.55,96,96.0,95.0,6.0,Communication Services,Telecom Services,351
-🔹 Breakout: New Leader,Stock,ORCL,243.81,96,94.0,39.0,86.0,Technology,Software - Infrastructure,352
-🔹 Breakout: New Leader,Stock,GEOS,12.01,95,98.0,4.0,5.0,Energy,Oil & Gas Equipment & Services,355
-🔹 Breakout: New Leader,Stock,AVAV,270.69,95,97.0,19.0,58.0,Industrials,Aerospace & Defense,356
-🔹 Breakout: New Leader,Stock,BYON,10.71,95,66.0,1.0,6.0,Consumer Cyclical,Internet Retail,360
-🔹 Breakout: New Leader,Stock,PONY,14.96,95,90.0,11.0,69.0,Technology,Information Technology Services,365
-🔹 Breakout: New Leader,Stock,BIRD,11.31,95,91.0,2.0,1.0,Consumer Cyclical,Apparel Retail,366
-🔹 Breakout: New Leader,Stock,ORIC,11.44,95,94.0,3.0,56.0,Healthcare,Biotechnology,369
-🔹 Breakout: New Leader,Stock,MLCO,8.74,95,82.0,17.0,11.0,Consumer Cyclical,Resorts & Casinos,370
-🔹 Breakout: New Leader,Stock,ARMN,7.28,95,96.0,96.0,12.0,Basic Materials,Gold,371
-🔹 Breakout: New Leader,Stock,CMP,21.01,95,98.0,80.0,7.0,Basic Materials,Other Industrial Metals & Mining,372
-🔹 Breakout: New Leader,Stock,NVDU,119.41,95,90.0,4.0,45.0,ETF,ETF,373
-🔹 Breakout: New Leader,Stock,WF,54.42,95,95.0,86.0,28.0,Financial Services,Banks - Regional,375
-🔹 Breakout: New Leader,Stock,ALGM,32.86,95,93.0,11.0,24.0,Technology,Semiconductors,377
-🔹 Breakout: New Leader,Stock,USD,83.74,95,92.0,7.0,79.0,ETF,ETF,378
-🔹 Breakout: New Leader,Stock,INDV,17.11,95,90.0,42.0,17.0,Healthcare,Drug Manufacturers - Specialty & Generic,380
-🔹 Breakout: New Leader,Stock,VENU,13.96,95,90.0,11.0,24.0,Consumer Cyclical,Restaurants,387
-🔹 Breakout: New Leader,Stock,TSMX,37.37,95,92.0,4.0,79.0,ETF,ETF,388
-🔹 Breakout: New Leader,Stock,SIF,5.06,95,60.0,10.0,79.0,Industrials,Aerospace & Defense,392
-🔹 Breakout: New Leader,Stock,ENLT,25.23,95,95.0,76.0,24.0,Utilities,Utilities - Renewable,397
-🔹 Breakout: New Leader,Stock,TSMU,31.56,95,91.0,4.0,68.0,ETF,ETF,398
-🔹 Breakout: New Leader,Stock,NVDX,17.48,95,87.0,3.0,57.0,ETF,ETF,400
-🔹 Breakout: New Leader,Stock,TSMG,18.67,95,92.0,3.0,51.0,ETF,ETF,404
-🔹 Breakout: New Leader,Stock,ENVX,14.31,95,75.0,5.0,89.0,Industrials,Electrical Equipment & Parts,408
-🔹 Breakout: New Leader,Stock,STX,152.49,95,95.0,16.0,49.0,Technology,Computer Hardware,409
-🔹 Breakout: New Leader,Stock,WWW,23.59,95,84.0,14.0,97.0,Consumer Cyclical,Footwear & Accessories,412
-🔹 Breakout: New Leader,Stock,AETH,51.12,95,42.0,12.0,13.0,ETF,ETF,416
-🔹 Breakout: New Leader,Stock,ASPS,11.6,95,94.0,70.0,0.0,Real Estate,Real Estate Services,421
-🔹 Breakout: New Leader,Stock,WEBL,30.61,95,93.0,31.0,97.0,ETF,ETF,422
-🔹 Breakout: New Leader,Stock,HIBL,49.9,95,83.0,2.0,71.0,ETF,ETF,428
-🔹 Breakout: New Leader,Stock,SKLZ,8.04,95,92.0,13.0,76.0,Communication Services,Electronic Gaming & Multimedia,430
-🔹 Breakout: New Leader,Stock,GHRS,14.47,95,92.0,34.0,77.0,Healthcare,Biotechnology,435
-🔹 Breakout: New Leader,Stock,IE,11.55,95,92.0,14.0,1.0,Basic Materials,Copper,436
-🔹 Breakout: New Leader,Stock,AAMI,39.81,95,93.0,83.0,49.0,Financial Services,Asset Management,437
-🔹 Breakout: New Leader,Stock,FL,25.19,95,88.0,2.0,6.0,Consumer Cyclical,Apparel Retail,439
-🔹 Breakout: New Leader,Stock,MYRG,200.56,94,95.0,26.0,74.0,Industrials,Engineering & Construction,442
-🔹 Breakout: New Leader,Stock,AIBU,45.51,94,93.0,24.0,90.0,ETF,ETF,444
-🔹 Breakout: New Leader,Stock,RILYN,18.9,94,17.0,8.0,4.0,,,445
-🔹 Breakout: New Leader,Stock,FLYU,58.17,94,75.0,5.0,93.0,ETF,ETF,446
-🔹 Breakout: New Leader,Stock,CIFR,6.42,94,90.0,4.0,91.0,Financial Services,Capital Markets,447
-🔹 Breakout: New Leader,Stock,EZET,28.12,94,20.0,3.0,68.0,ETF,ETF,448
-🔹 Breakout: New Leader,Stock,FETH,36.96,94,20.0,3.0,68.0,ETF,ETF,449
-🔹 Breakout: New Leader,Stock,ETHV,54.35,94,21.0,3.0,68.0,ETF,ETF,450
-🔹 Breakout: New Leader,Stock,ETH,34.92,94,20.0,3.0,69.0,ETF,ETF,451
-🔹 Breakout: New Leader,Stock,ETHA,28.08,94,20.0,3.0,68.0,,,453
-🔹 Breakout: New Leader,Stock,COUR,12.12,94,86.0,30.0,8.0,Consumer Defensive,Education & Training Services,454
-🔹 Breakout: New Leader,Stock,ETHW,26.6,94,20.0,3.0,68.0,ETF,ETF,455
-🔹 Breakout: New Leader,Stock,URA,41.4,94,95.0,20.0,17.0,ETF,ETF,456
-🔹 Breakout: New Leader,Stock,CETH,18.47,94,20.0,3.0,69.0,ETF,ETF,457
-🔹 Breakout: New Leader,Stock,QETH,36.9,94,20.0,3.0,68.0,ETF,ETF,458
-🔹 Breakout: New Leader,Stock,YOSH,7.98,94,95.0,99.0,8.0,Consumer Cyclical,Restaurants,460
-🔹 Breakout: New Leader,Stock,CPXR,32.22,94,83.0,92.0,41.0,ETF,ETF,461
-🔹 Breakout: New Leader,Stock,RIOT,14.14,94,89.0,6.0,80.0,Financial Services,Capital Markets,463
-🔹 Breakout: New Leader,Stock,SLNO,88.64,94,97.0,98.0,27.0,Healthcare,Biotechnology,464
-🔹 Breakout: New Leader,Stock,ECG,71.11,94,94.0,9.0,91.0,Industrials,Engineering & Construction,466
-🔹 Breakout: New Leader,Stock,YALA,7.89,94,94.0,98.0,10.0,Technology,Software - Application,469
-🔹 Breakout: New Leader,Stock,ETHE,30.64,94,19.0,4.0,91.0,ETF,ETF,474
-🔹 Breakout: New Leader,Stock,ACMR,29.67,94,91.0,39.0,60.0,Technology,Semiconductor Equipment & Materials,475
-🔹 Breakout: New Leader,Stock,FBL,43.09,94,94.0,27.0,97.0,ETF,ETF,480
-🔹 Breakout: New Leader,Stock,PHAT,9.26,94,78.0,1.0,1.0,Healthcare,Biotechnology,481
-🔹 Breakout: New Leader,Stock,METCB,15.14,94,11.0,30.0,6.0,Basic Materials,Coking Coal,483
-🔹 Breakout: New Leader,Stock,EVAV,27.64,94,89.0,15.0,82.0,ETF,ETF,484
-🔹 Breakout: New Leader,Stock,FWRD,31.65,94,47.0,1.0,60.0,Industrials,Integrated Freight & Logistics,488
-🔹 Breakout: New Leader,Stock,FBRX,10.51,94,88.0,7.0,98.0,Healthcare,Biotechnology,489
-🔹 Breakout: New Leader,Stock,DY,263.89,94,94.0,44.0,87.0,Industrials,Engineering & Construction,496
-🔹 Breakout: New Leader,Stock,CDE,9.38,94,95.0,29.0,92.0,Basic Materials,Gold,497
-🔹 Breakout: New Leader,Stock,ZIMV,18.74,94,2.0,3.0,9.0,Healthcare,Medical Devices,498
-🔹 Breakout: New Leader,Stock,KZIA,9.74,94,9.0,0.0,0.0,Healthcare,Biotechnology,499
-🔹 Breakout: New Leader,Stock,GOOS,14.47,94,84.0,9.0,43.0,Consumer Cyclical,Apparel Manufacturing,503
-🔹 Breakout: New Leader,Stock,FEDU,14.77,94,30.0,7.0,14.0,Consumer Defensive,Education & Training Services,505
-🔹 Breakout: New Leader,Stock,CUK,26.88,94,91.0,28.0,95.0,Consumer Cyclical,Travel Services,506
-🔹 Breakout: New Leader,Stock,BWMN,37.07,94,85.0,17.0,18.0,Industrials,Engineering & Construction,508
-🔹 Breakout: New Leader,Stock,CRSP,65.86,94,71.0,12.0,5.0,Healthcare,Biotechnology,512
-🔹 Breakout: New Leader,Stock,CCL,29.43,94,91.0,29.0,95.0,Consumer Cyclical,Travel Services,513
-🔹 Breakout: New Leader,Stock,DCO,89.07,94,94.0,29.0,83.0,Industrials,Aerospace & Defense,515
-🔹 Breakout: New Leader,Stock,BULZ,185.68,94,90.0,7.0,90.0,ETF,ETF,516
-🔹 Breakout: New Leader,Stock,METU,42.7,94,93.0,16.0,94.0,ETF,ETF,522
-🔹 Breakout: New Leader,Stock,PBPB,12.58,94,93.0,16.0,93.0,Consumer Cyclical,Restaurants,524
-🔹 Breakout: New Leader,Stock,WDC,69.17,94,93.0,14.0,43.0,Technology,Computer Hardware,527
-🔹 Breakout: New Leader,Stock,GHLD,19.86,94,93.0,43.0,12.0,Financial Services,Mortgage Finance,528
-🔹 Breakout: New Leader,Stock,SLVR,32.68,93,92.0,86.0,48.0,ETF,ETF,529
-🔹 Breakout: New Leader,Stock,CRVO,8.03,93,82.0,99.0,0.0,Healthcare,Biotechnology,537
-🔹 Breakout: New Leader,Stock,LMBO,27.99,93,88.0,5.0,81.0,ETF,ETF,539
-🔹 Breakout: New Leader,Stock,AAP,58.45,93,55.0,5.0,21.0,Consumer Cyclical,Auto Parts,540
-🔹 Breakout: New Leader,Stock,DNA,14.13,93,85.0,2.0,29.0,Healthcare,Biotechnology,541
-🔹 Breakout: New Leader,Stock,TCI,41.2,93,96.0,41.0,8.0,Real Estate,Real Estate Services,542
-🔹 Breakout: New Leader,Stock,KEQU,57.59,93,93.0,7.0,97.0,Consumer Cyclical,"Furnishings, Fixtures & Appliances",543
-🔹 Breakout: New Leader,Stock,MKTW,20.5,93,97.0,22.0,1.0,Financial Services,Financial Data & Stock Exchanges,544
-🔹 Breakout: New Leader,Stock,ACAD,23.0,93,93.0,16.0,60.0,Healthcare,Biotechnology,545
-🔹 Breakout: New Leader,Stock,ARKZ,38.94,93,13.0,2.0,78.0,ETF,ETF,550
-🔹 Breakout: New Leader,Stock,DAPP,18.08,93,94.0,15.0,93.0,ETF,ETF,551
-🔹 Breakout: New Leader,Stock,PSIL,17.16,93,93.0,33.0,28.0,ETF,ETF,557
-🔹 Breakout: New Leader,Stock,DUSL,76.32,93,85.0,15.0,82.0,ETF,ETF,559
-🔹 Breakout: New Leader,Stock,DLTR,113.73,93,90.0,44.0,8.0,Consumer Defensive,Discount Stores,563
-🔹 Breakout: New Leader,Stock,FTCI,5.47,93,93.0,11.0,6.0,Technology,Solar,568
-🔹 Breakout: New Leader,Stock,RYAAY,61.99,93,90.0,73.0,28.0,Industrials,Airlines,571
-🔹 Breakout: New Leader,Stock,CTRN,30.48,93,94.0,34.0,87.0,Consumer Cyclical,Apparel Retail,574
-🔹 Breakout: New Leader,Stock,NLR,119.01,93,94.0,38.0,67.0,ETF,ETF,575
-🔹 Breakout: New Leader,Stock,TECL,102.05,93,84.0,5.0,74.0,ETF,ETF,576
-🔹 Breakout: New Leader,Stock,UEC,8.58,93,88.0,12.0,45.0,Energy,Uranium,577
-🔹 Breakout: New Leader,Stock,MNMD,9.51,93,48.0,16.0,66.0,Healthcare,Biotechnology,578
-🔹 Breakout: New Leader,Stock,EETH,67.68,93,12.0,2.0,76.0,ETF,ETF,580
-🔹 Breakout: New Leader,Stock,SHAK,135.02,93,94.0,15.0,79.0,Consumer Cyclical,Restaurants,581
-🔹 Breakout: New Leader,Stock,OM,17.68,93,95.0,10.0,4.0,Healthcare,Medical Devices,583
-🔹 Breakout: New Leader,Stock,MRUS,65.79,93,81.0,43.0,9.0,Healthcare,Biotechnology,584
-🔹 Breakout: New Leader,Stock,PLTM,13.4,93,95.0,74.0,40.0,ETF,ETF,585
-🔹 Breakout: New Leader,Stock,MSFL,31.76,93,92.0,12.0,12.0,ETF,ETF,590
-🔹 Breakout: New Leader,Stock,LIVE,17.0,93,96.0,18.0,1.0,Consumer Cyclical,Home Improvement Retail,591
-🔹 Breakout: New Leader,Stock,PPLT,126.65,93,95.0,74.0,39.0,ETF,ETF,592
-🔹 Breakout: New Leader,Stock,RZLT,5.98,93,86.0,25.0,97.0,Healthcare,Biotechnology,596
-🔹 Breakout: New Leader,Stock,CECO,33.75,93,82.0,13.0,84.0,Industrials,Pollution & Treatment Controls,597
-🔹 Breakout: New Leader,Stock,RILYG,17.09,93,18.0,8.0,3.0,,,598
-🔹 Breakout: New Leader,Stock,SMTC,51.53,93,81.0,8.0,98.0,Technology,Semiconductors,599
-🔹 Breakout: New Leader,Stock,STCE,57.03,93,91.0,27.0,92.0,ETF,ETF,601
-🔹 Breakout: New Leader,Stock,ARKD,60.58,93,89.0,25.0,91.0,ETF,ETF,602
-🔹 Breakout: New Leader,Stock,ARLO,16.15,93,96.0,14.0,57.0,Industrials,Building Products & Equipment,603
-🔹 Breakout: New Leader,Stock,ALTG,8.09,93,61.0,2.0,8.0,Industrials,Rental & Leasing Services,604
-🔹 Breakout: New Leader,Stock,CBRL,65.75,93,95.0,11.0,85.0,Consumer Cyclical,Restaurants,606
-🔹 Breakout: New Leader,Stock,ALDX,5.29,93,5.0,3.0,87.0,Healthcare,Biotechnology,607
-🔹 Breakout: New Leader,Stock,SSBI,11.72,93,79.0,89.0,10.0,Financial Services,Banks - Regional,608
-🔹 Breakout: New Leader,Stock,ASMB,18.5,93,92.0,14.0,23.0,Healthcare,Biotechnology,615
-🔹 Breakout: New Leader,Stock,VRT,136.29,92,93.0,20.0,93.0,Industrials,Electrical Equipment & Parts,617
-🔹 Breakout: New Leader,Stock,WT,13.73,92,81.0,21.0,57.0,Financial Services,Asset Management,618
-🔹 Breakout: New Leader,Stock,NVDA,174.51,92,91.0,39.0,87.0,Technology,Semiconductors,620
-🔹 Breakout: New Leader,Stock,KPLT,12.22,92,6.0,5.0,7.0,Technology,Software - Infrastructure,623
-🔹 Breakout: New Leader,Stock,DK,22.33,92,85.0,6.0,8.0,Energy,Oil & Gas Refining & Marketing,624
-🔹 Breakout: New Leader,Stock,CG,61.81,92,81.0,11.0,86.0,Financial Services,Asset Management,630
-🔹 Breakout: New Leader,Stock,MTW,13.13,92,91.0,9.0,7.0,Industrials,Farm & Heavy Construction Machinery,632
-🔹 Breakout: New Leader,Stock,COIW,57.74,92,95.0,6.0,92.0,ETF,ETF,638
-🔹 Breakout: New Leader,Stock,CX,8.37,92,79.0,39.0,15.0,Basic Materials,Building Materials,639
-🔹 Breakout: New Leader,Stock,BGLC,5.02,92,8.0,5.0,15.0,Basic Materials,Specialty Chemicals,642
-🔹 Breakout: New Leader,Stock,PXLW,11.6,92,8.0,1.0,9.0,Technology,Semiconductors,643
-🔹 Breakout: New Leader,Stock,AMD,165.76,92,80.0,7.0,5.0,Technology,Semiconductors,644
-🔹 Breakout: New Leader,Stock,EXK,5.72,92,88.0,42.0,91.0,Basic Materials,Silver,647
-🔹 Breakout: New Leader,Stock,MSFX,34.86,92,91.0,10.0,12.0,ETF,ETF,649
-🔹 Breakout: New Leader,Stock,RHLD,43.25,92,17.0,9.0,92.0,Industrials,Specialty Business Services,652
-🔹 Breakout: New Leader,Stock,ATRA,11.56,92,40.0,11.0,4.0,Healthcare,Biotechnology,653
-🔹 Breakout: New Leader,Stock,BNKU,24.65,92,61.0,3.0,92.0,ETF,ETF,657
-🔹 Breakout: New Leader,Stock,TERN,5.87,92,8.0,3.0,3.0,Healthcare,Biotechnology,659
-🔹 Breakout: New Leader,Stock,WGMI,26.25,92,87.0,7.0,89.0,ETF,ETF,660
-🔹 Breakout: New Leader,Stock,BOOT,171.55,92,86.0,8.0,94.0,Consumer Cyclical,Apparel Retail,661
-🔹 Breakout: New Leader,Stock,TEL,204.21,92,82.0,51.0,38.0,Technology,Electronic Components,666
-🔹 Breakout: New Leader,Stock,ZK,29.73,92,81.0,25.0,71.0,Consumer Cyclical,Auto Manufacturers,668
-🔹 Breakout: New Leader,Stock,BELFA,94.15,92,47.0,9.0,22.0,Technology,Electronic Components,670
-🔹 Breakout: New Leader,Stock,BASE,24.31,92,96.0,28.0,13.0,Technology,Software - Infrastructure,671
-🔹 Breakout: New Leader,Stock,SHG,50.4,92,90.0,36.0,17.0,Financial Services,Banks - Regional,672
-🔹 Breakout: New Leader,Stock,DLLL,27.08,92,86.0,3.0,92.0,ETF,ETF,673
-🔹 Breakout: New Leader,Stock,DQ,23.97,92,8.0,5.0,14.0,Technology,Semiconductor Equipment & Materials,674
-🔹 Breakout: New Leader,Stock,WRBY,24.04,92,85.0,18.0,97.0,Healthcare,Medical Instruments & Supplies,676
-🔹 Breakout: New Leader,Stock,SFIX,5.18,92,39.0,41.0,94.0,Consumer Cyclical,Apparel Retail,677
-🔹 Breakout: New Leader,Stock,BITQ,21.09,92,93.0,35.0,94.0,ETF,ETF,680
-🔹 Breakout: New Leader,Stock,RCMT,26.08,92,91.0,20.0,11.0,Industrials,Conglomerates,681
-🔹 Breakout: New Leader,Stock,MSFU,52.32,92,90.0,9.0,9.0,ETF,ETF,684
-🔹 Breakout: New Leader,Stock,BZ,20.05,92,48.0,53.0,17.0,Communication Services,Internet Content & Information,685
-🔹 Breakout: New Leader,Stock,VNM,16.33,92,75.0,72.0,18.0,ETF,ETF,686
-🔹 Breakout: New Leader,Stock,HGV,50.57,92,63.0,14.0,49.0,Consumer Cyclical,Resorts & Casinos,687
-🔹 Breakout: New Leader,Stock,CTOS,5.82,92,83.0,31.0,69.0,Industrials,Rental & Leasing Services,691
-🔹 Breakout: New Leader,Stock,SPRX,32.07,92,91.0,24.0,86.0,ETF,ETF,693
-🔹 Breakout: New Leader,Stock,SN,118.44,92,61.0,28.0,94.0,Consumer Cyclical,"Furnishings, Fixtures & Appliances",694
-🔹 Breakout: New Leader,Stock,FN,307.2,92,93.0,57.0,31.0,Technology,Electronic Components,695
-🔹 Breakout: New Leader,Stock,IVZ,21.38,92,23.0,13.0,81.0,Financial Services,Asset Management,696
-🔹 Breakout: New Leader,Stock,ADNT,22.45,92,82.0,3.0,3.0,Consumer Cyclical,Auto Parts,697
-🔹 Breakout: New Leader,Stock,URAN,40.15,92,93.0,36.0,58.0,ETF,ETF,699
-🔹 Breakout: New Leader,Stock,AMPL,12.72,92,90.0,30.0,88.0,Technology,Software - Application,704
-🔹 Breakout: New Leader,Stock,NTRS,128.05,91,91.0,41.0,87.0,Financial Services,Asset Management,705
-🔹 Breakout: New Leader,Stock,ELF,119.25,91,92.0,1.0,3.0,Consumer Defensive,Household & Personal Products,706
-🔹 Breakout: New Leader,Stock,SIMO,74.35,91,90.0,11.0,10.0,Technology,Semiconductors,707
-🔹 Breakout: New Leader,Stock,TNL,61.82,91,73.0,25.0,84.0,Consumer Cyclical,Travel Services,709
-🔹 Breakout: New Leader,Stock,TQQQ,88.75,91,82.0,12.0,91.0,ETF,ETF,711
-🔹 Breakout: New Leader,Stock,GTES,24.92,91,89.0,41.0,86.0,Industrials,Specialty Industrial Machinery,714
-🔹 Breakout: New Leader,Stock,ARMH,68.4,91,91.0,31.0,92.0,ETF,ETF,715
-🔹 Breakout: New Leader,Stock,TSM,244.64,91,90.0,33.0,92.0,Technology,Semiconductors,716
-🔹 Breakout: New Leader,Stock,EURL,35.77,91,91.0,90.0,33.0,ETF,ETF,717
-🔹 Breakout: New Leader,Stock,BMBL,8.53,91,70.0,1.0,13.0,Communication Services,Internet Content & Information,718
-🔹 Breakout: New Leader,Stock,MEDP,435.59,91,11.0,18.0,51.0,Healthcare,Diagnostics & Research,725
-🔹 Breakout: New Leader,Stock,CMCM,5.99,91,28.0,27.0,89.0,Communication Services,Internet Content & Information,728
-🔹 Breakout: New Leader,Stock,PENG,24.92,91,57.0,27.0,77.0,Technology,Information Technology Services,729
-🔹 Breakout: New Leader,Stock,IBLC,43.62,91,91.0,16.0,87.0,ETF,ETF,730
-🔹 Breakout: New Leader,Stock,CELH,46.6,91,92.0,77.0,1.0,Consumer Defensive,Beverages - Non-Alcoholic,732
-🔹 Breakout: New Leader,Stock,ROK,356.29,91,87.0,25.0,56.0,Industrials,Specialty Industrial Machinery,733
-🔹 Breakout: New Leader,Stock,SMCL,20.05,91,82.0,8.0,1.0,ETF,ETF,736
-🔹 Breakout: New Leader,Stock,AG,8.6,91,92.0,63.0,13.0,Basic Materials,Silver,738
-🔹 Breakout: New Leader,Stock,OIS,5.76,91,73.0,10.0,51.0,Energy,Oil & Gas Equipment & Services,741
-🔹 Breakout: New Leader,Stock,TRMB,84.37,91,85.0,44.0,90.0,Technology,Scientific & Technical Instruments,742
-🔹 Breakout: New Leader,Stock,CHAT,51.01,91,91.0,39.0,82.0,ETF,ETF,744
-🔹 Breakout: New Leader,Stock,PUK,24.96,91,93.0,94.0,16.0,Financial Services,Insurance - Life,746
-🔹 Breakout: New Leader,Stock,HUHU,6.81,91,83.0,94.0,38.0,Industrials,Specialty Industrial Machinery,751
-🔹 Breakout: New Leader,Stock,AARD,13.82,91,87.0,13.0,91.0,Healthcare,Biotechnology,752
-🔹 Breakout: New Leader,Stock,VSAT,14.25,91,91.0,12.0,2.0,Technology,Communication Equipment,753
-🔹 Breakout: New Leader,Stock,EDC,41.62,91,86.0,36.0,21.0,ETF,ETF,759
-🔹 Breakout: New Leader,Stock,WOR,61.93,91,92.0,88.0,11.0,Industrials,Metal Fabrication,760
-🔹 Breakout: New Leader,Stock,BKKT,19.77,91,54.0,6.0,94.0,Technology,Software - Infrastructure,761
-🔹 Breakout: New Leader,Stock,DECO,39.3,91,90.0,21.0,89.0,ETF,ETF,762
-🔹 Breakout: New Leader,Stock,SERV,11.33,91,98.0,12.0,98.0,Industrials,Specialty Industrial Machinery,765
-🔹 Breakout: New Leader,Stock,GMS,109.54,91,88.0,15.0,14.0,Industrials,Building Products & Equipment,768
-🔹 Breakout: New Leader,Stock,GPRE,8.05,91,3.0,0.0,1.0,Basic Materials,Chemicals,769
-🔹 Breakout: New Leader,Stock,KRUS,86.86,91,85.0,9.0,14.0,Consumer Cyclical,Restaurants,771
-🔹 Breakout: New Leader,Stock,PGRE,6.3,91,93.0,26.0,30.0,Real Estate,REIT - Office,774
-🔹 Breakout: New Leader,Stock,CENX,22.52,91,52.0,44.0,86.0,Basic Materials,Aluminum,784
-🔹 Breakout: New Leader,Stock,NG,5.54,91,88.0,95.0,13.0,Basic Materials,Gold,785
-🔹 Breakout: New Leader,Stock,ELAN,14.68,91,81.0,11.0,12.0,Healthcare,Drug Manufacturers - Specialty & Generic,788
-🔹 Breakout: New Leader,Stock,NPKI,9.06,91,90.0,13.0,31.0,Energy,Oil & Gas Equipment & Services,789
-🔹 Breakout: New Leader,Stock,SRI,7.91,91,12.0,1.0,0.0,Consumer Cyclical,Auto Parts,791
-🔹 Breakout: New Leader,Stock,GF,12.15,90,91.0,94.0,31.0,Financial Services,Asset Management,793
-🔹 Breakout: New Leader,Stock,QQQU,47.19,90,84.0,19.0,94.0,ETF,ETF,796
-🔹 Breakout: New Leader,Stock,HLF,9.73,90,48.0,47.0,2.0,Consumer Defensive,Packaged Foods,798
-🔹 Breakout: New Leader,Stock,MQ,5.79,90,92.0,22.0,2.0,Technology,Software - Infrastructure,801
-🔹 Breakout: New Leader,Stock,SPTN,26.58,90,92.0,74.0,9.0,Consumer Defensive,Food Distribution,802
-🔹 Breakout: New Leader,Stock,QXO,21.89,90,89.0,4.0,1.0,Technology,Software - Application,803
-🔹 Breakout: New Leader,Stock,BA,230.74,90,85.0,82.0,48.0,Industrials,Aerospace & Defense,804
-🔹 Breakout: New Leader,Stock,REMX,54.95,90,32.0,21.0,9.0,ETF,ETF,807
-🔹 Breakout: New Leader,Stock,PBW,24.51,90,72.0,13.0,14.0,ETF,ETF,808
-🔹 Breakout: New Leader,Stock,FTDR,58.97,90,94.0,26.0,94.0,Consumer Cyclical,Personal Services,814
-🔹 Breakout: New Leader,Stock,EMR,146.95,90,86.0,24.0,86.0,Industrials,Specialty Industrial Machinery,817
-🔹 Breakout: New Leader,Stock,ACCS,11.93,90,91.0,16.0,13.0,Communication Services,Advertising Agencies,818
-🔹 Breakout: New Leader,Stock,KLG,23.04,90,9.0,60.0,21.0,Consumer Defensive,Packaged Foods,819
-🔹 Breakout: New Leader,Stock,RAPT,12.8,90,3.0,1.0,0.0,Healthcare,Biotechnology,827
-🔹 Breakout: New Leader,Stock,COHN,11.63,90,74.0,38.0,87.0,Financial Services,Capital Markets,833
-🔹 Breakout: New Leader,Stock,EVI,24.96,90,80.0,20.0,8.0,Industrials,Industrial Distribution,836
-🔹 Breakout: New Leader,Stock,SYF,71.57,90,90.0,35.0,93.0,Financial Services,Credit Services,837
-🔹 Breakout: New Leader,Stock,EYPT,10.31,90,95.0,7.0,1.0,Healthcare,Biotechnology,838
-🔹 Breakout: New Leader,Stock,OSK,127.22,90,81.0,16.0,63.0,Industrials,Farm & Heavy Construction Machinery,839
-🔹 Breakout: New Leader,Stock,VNAM,20.17,90,68.0,56.0,19.0,ETF,ETF,840
-🔹 Breakout: New Leader,Stock,AXIL,7.99,90,18.0,85.0,43.0,Technology,Consumer Electronics,842
-🔹 Breakout: New Leader,Stock,ROM,80.51,90,85.0,14.0,74.0,ETF,ETF,843
-🔹 Breakout: New Leader,Stock,UXI,46.44,90,84.0,33.0,82.0,ETF,ETF,844
-🔹 Breakout: New Leader,Stock,ARMG,15.33,90,90.0,1.0,86.0,ETF,ETF,845
-🔹 Breakout: New Leader,Stock,ING,23.71,90,86.0,91.0,48.0,Financial Services,Banks - Diversified,847
-🔹 Breakout: New Leader,Stock,GRFS,10.07,90,84.0,46.0,9.0,Healthcare,Drug Manufacturers - General,850
-🔹 Breakout: New Leader,Stock,ZBIO,16.0,90,17.0,46.0,0.0,Healthcare,Biotechnology,851
-🔹 Breakout: New Leader,Stock,JBTM,134.9,90,66.0,45.0,90.0,Industrials,Specialty Industrial Machinery,856
-🔹 Breakout: New Leader,Stock,TR,39.95,90,67.0,82.0,48.0,Consumer Defensive,Confectioners,857
-🔹 Breakout: New Leader,Stock,NPO,206.14,90,85.0,30.0,86.0,Industrials,Specialty Industrial Machinery,858
-🔹 Breakout: New Leader,Stock,MOMO,8.46,90,92.0,17.0,72.0,Communication Services,Internet Content & Information,859
-🔹 Breakout: New Leader,Stock,AGYS,114.31,90,90.0,11.0,19.0,Technology,Software - Application,860
-🔹 Breakout: New Leader,Stock,CVI,27.31,90,89.0,14.0,6.0,Energy,Oil & Gas Refining & Marketing,861
-🔹 Breakout: New Leader,Stock,SOHU,15.57,90,16.0,15.0,32.0,Communication Services,Electronic Gaming & Multimedia,863
-🔹 Breakout: New Leader,Stock,STEM,13.57,90,8.0,2.0,3.0,Utilities,Utilities - Renewable,864
-🔹 Breakout: New Leader,Stock,JETU,23.6,90,12.0,3.0,93.0,ETF,ETF,865
-🔹 Breakout: New Leader,Stock,VYX,13.88,90,27.0,6.0,13.0,Technology,Information Technology Services,866
-🔹 Breakout: New Leader,Stock,BGSF,6.33,90,67.0,1.0,2.0,Industrials,Staffing & Employment Services,872
-🔹 Breakout: New Leader,Stock,NUS,8.83,90,55.0,10.0,3.0,Consumer Defensive,Household & Personal Products,873
-🔹 Breakout: New Leader,Stock,EVTL,6.39,90,88.0,4.0,5.0,Industrials,Aerospace & Defense,874
-🔹 Breakout: New Leader,Stock,MUX,11.52,90,80.0,14.0,12.0,Basic Materials,Other Precious Metals & Mining,875
-🔹 Breakout: New Leader,Stock,ECVT,8.84,90,86.0,9.0,42.0,Basic Materials,Specialty Chemicals,877
-🔹 Breakout: New Leader,Stock,DDS,498.83,90,56.0,14.0,84.0,Consumer Cyclical,Department Stores,879
+Section,Ticker,Price,Relative Strength Percentile,1 Month Ago Percentile,3 Months Ago Percentile,6 Months Ago Percentile,Sector,Industry
+🔹 RS > 95: Leading Stocks,PTIR,26.21,99,99.0,99.0,99.0,ETF,ETF
+🔹 RS > 95: Leading Stocks,SEZL,144.12,99,99.0,99.0,99.0,Financial Services,Credit Services
+🔹 RS > 95: Leading Stocks,RKLX,95.11,99,99.0,97.0,99.0,ETF,ETF
+🔹 RS > 95: Leading Stocks,ALMU,21.5,99,99.0,99.0,98.0,Technology,Semiconductors
+🔹 RS > 95: Leading Stocks,NEON,27.85,99,99.0,99.0,99.0,Technology,Electronic Components
+🔹 RS > 95: Leading Stocks,OKLO,74.63,99,99.0,97.0,99.0,Utilities,Utilities - Regulated Electric
+🔹 RS > 95: Leading Stocks,RKLB,47.26,99,99.0,99.0,99.0,Industrials,Aerospace & Defense
+🔹 RS > 95: Leading Stocks,DAVE,209.82,99,99.0,99.0,99.0,Technology,Software - Application
+🔹 RS > 95: Leading Stocks,AGFY,25.54,99,99.0,99.0,99.0,Industrials,Farm & Heavy Construction Machinery
+🔹 RS > 95: Leading Stocks,ARQQ,38.0,99,99.0,96.0,98.0,Technology,Software - Infrastructure
+🔹 RS > 95: Leading Stocks,SMR,50.47,99,99.0,96.0,99.0,Industrials,Specialty Industrial Machinery
+🔹 RS > 95: Leading Stocks,HOOD,103.1,99,99.0,98.0,99.0,Financial Services,Capital Markets
+🔹 RS > 95: Leading Stocks,PLTR,159.22,99,99.0,99.0,99.0,Technology,Software - Infrastructure
+🔹 RS > 95: Leading Stocks,HSAI,21.04,99,99.0,99.0,99.0,Consumer Cyclical,Auto Parts
+🔹 RS > 95: Leading Stocks,ASTS,55.38,99,99.0,99.0,99.0,Technology,Communication Equipment
+🔹 RS > 95: Leading Stocks,VRNA,105.15,99,99.0,99.0,98.0,Healthcare,Biotechnology
+🔹 RS > 95: Leading Stocks,IONQ,43.48,99,99.0,99.0,99.0,Technology,Computer Hardware
+🔹 RS > 95: Leading Stocks,CLS,166.16,98,98.0,96.0,98.0,Technology,Electronic Components
+🔹 RS > 95: Leading Stocks,GEV,646.87,98,98.0,98.0,97.0,Industrials,Specialty Industrial Machinery
+🔹 RS > 95: Leading Stocks,RBLX,121.5,98,98.0,96.0,96.0,Communication Services,Electronic Gaming & Multimedia
+🔹 RS > 95: Leading Stocks,HIMS,57.31,98,98.0,98.0,99.0,Consumer Defensive,Household & Personal Products
+🔹 RS > 95: Leading Stocks,IONX,67.78,98,99.0,96.0,98.0,ETF,ETF
+🔹 RS > 95: Leading Stocks,APP,365.1,98,98.0,99.0,99.0,Communication Services,Advertising Agencies
+🔹 RS > 95: Leading Stocks,GDS,36.6,98,97.0,98.0,98.0,Technology,Information Technology Services
+🔹 RS > 95: Leading Stocks,TSAT,25.43,98,97.0,97.0,97.0,Technology,Communication Equipment
+🔹 RS > 95: Leading Stocks,AS,37.24,98,98.0,96.0,98.0,Consumer Cyclical,Leisure
+🔹 RS > 95: Leading Stocks,TPR,108.04,98,96.0,96.0,96.0,Consumer Cyclical,Luxury Goods
+🔹 RS > 95: Leading Stocks,SNWV,37.36,97,97.0,97.0,97.0,Healthcare,Medical Devices
+🔹 RS > 95: Leading Stocks,AGX,234.64,97,98.0,98.0,97.0,Industrials,Engineering & Construction
+🔹 RS > 95: Leading Stocks,TLN,347.42,97,97.0,97.0,97.0,Utilities,Utilities - Independent Power Producers
+🔹 RS > 95: Leading Stocks,NNE,38.74,97,96.0,98.0,99.0,Industrials,Specialty Industrial Machinery
+🔹 RS > 95: Leading Stocks,INOD,46.3,97,98.0,99.0,99.0,Technology,Information Technology Services
+🔹 RS > 95: Leading Stocks,SEI,33.31,97,97.0,97.0,99.0,Energy,Oil & Gas Equipment & Services
+🔹 RS > 95: Leading Stocks,GRAL,39.41,97,99.0,99.0,98.0,Healthcare,Diagnostics & Research
+🔹 RS > 95: Leading Stocks,SMU,46.68,97,97.0,98.0,97.0,ETF,ETF
+🔹 RS > 95: Leading Stocks,SRRK,38.63,97,99.0,98.0,98.0,Healthcare,Biotechnology
+🔹 RS > 95: Leading Stocks,SRAD,28.31,97,97.0,98.0,97.0,Technology,Software - Application
+🔹 RS > 95: Leading Stocks,KDEF,41.4,96,98.0,96.0,96.0,ETF,ETF
+🔹 RS > 95: Leading Stocks,FOA,24.21,96,98.0,99.0,99.0,Financial Services,Credit Services
+🔹 RS > 95: Leading Stocks,CVNA,331.61,96,97.0,98.0,98.0,Consumer Cyclical,Auto & Truck Dealerships
+🔹 RS > 95: Leading Stocks,UI,448.45,96,97.0,98.0,98.0,Technology,Communication Equipment
+🔹 RS > 95: Leading Stocks,RBRK,85.79,96,98.0,97.0,97.0,Technology,Software - Infrastructure
+🔹 RS > 95: Leading Stocks,CRS,275.98,96,97.0,96.0,96.0,Industrials,Metal Fabrication
+🔸 RS ≥ 85: Top Movers,MP,62.96,99,98.0,97.0,92.0,Basic Materials,Other Industrial Metals & Mining
+🔸 RS ≥ 85: Top Movers,TZUP,13.63,99,96.0,88.0,3.0,Communication Services,Advertising Agencies
+🔸 RS ≥ 85: Top Movers,PGY,31.84,99,97.0,85.0,4.0,Technology,Software - Infrastructure
+🔸 RS ≥ 85: Top Movers,VHC,20.49,99,95.0,94.0,93.0,Technology,Software - Infrastructure
+🔸 RS ≥ 85: Top Movers,METC,22.68,98,86.0,25.0,4.0,Basic Materials,Coking Coal
+🔸 RS ≥ 85: Top Movers,WLDN,82.0,98,97.0,88.0,75.0,Industrials,Engineering & Construction
+🔸 RS ≥ 85: Top Movers,SBSW,9.4,98,97.0,86.0,6.0,Basic Materials,Other Precious Metals & Mining
+🔸 RS ≥ 85: Top Movers,FORD,9.75,98,95.0,94.0,91.0,Consumer Cyclical,Footwear & Accessories
+🔸 RS ≥ 85: Top Movers,SNES,5.74,98,97.0,4.0,2.0,Basic Materials,Specialty Chemicals
+🔸 RS ≥ 85: Top Movers,OWLT,8.43,98,97.0,24.0,16.0,Healthcare,Medical Devices
+🔸 RS ≥ 85: Top Movers,OPRX,14.06,98,97.0,96.0,2.0,Healthcare,Health Information Services
+🔸 RS ≥ 85: Top Movers,FLYE,5.29,97,96.0,2.0,0.0,Consumer Cyclical,Auto Manufacturers
+🔸 RS ≥ 85: Top Movers,UUUU,9.64,97,89.0,12.0,9.0,Energy,Uranium
+🔸 RS ≥ 85: Top Movers,PARR,31.22,97,96.0,7.0,4.0,Energy,Oil & Gas Refining & Marketing
+🔸 RS ≥ 85: Top Movers,NBTX,6.84,97,89.0,8.0,2.0,Healthcare,Biotechnology
+🔸 RS ≥ 85: Top Movers,SEDG,28.13,97,77.0,7.0,0.0,Technology,Solar
+🔸 RS ≥ 85: Top Movers,INBX,21.4,96,38.0,23.0,17.0,Healthcare,Biotechnology
+🔸 RS ≥ 85: Top Movers,FIVE,138.22,96,94.0,15.0,12.0,Consumer Cyclical,Specialty Retail
+🔸 RS ≥ 85: Top Movers,ESEA,51.67,96,95.0,87.0,6.0,Industrials,Marine Shipping
+🔸 RS ≥ 85: Top Movers,SLDB,6.64,96,24.0,3.0,0.0,Healthcare,Biotechnology
+🔸 RS ≥ 85: Top Movers,CPS,23.6,96,95.0,60.0,56.0,Consumer Cyclical,Auto Parts
+🔸 RS ≥ 85: Top Movers,URGN,18.24,96,63.0,17.0,4.0,Healthcare,Biotechnology
+🔸 RS ≥ 85: Top Movers,KEN,48.63,96,93.0,90.0,85.0,Utilities,Utilities - Independent Power Producers
+🔸 RS ≥ 85: Top Movers,TME,21.41,96,94.0,87.0,55.0,Communication Services,Internet Content & Information
+🔸 RS ≥ 85: Top Movers,BIRD,11.31,95,91.0,2.0,1.0,Consumer Cyclical,Apparel Retail
+🔸 RS ≥ 85: Top Movers,MLCO,8.74,95,82.0,17.0,11.0,Consumer Cyclical,Resorts & Casinos
+🔸 RS ≥ 85: Top Movers,INDV,17.11,95,90.0,42.0,17.0,Healthcare,Drug Manufacturers - Specialty & Generic
+🔸 RS ≥ 85: Top Movers,ASPS,11.6,95,94.0,70.0,0.0,Real Estate,Real Estate Services
+🔸 RS ≥ 85: Top Movers,FENC,8.79,95,93.0,67.0,59.0,Healthcare,Biotechnology
+🔸 RS ≥ 85: Top Movers,ZVRA,11.6,95,92.0,88.0,86.0,Healthcare,Biotechnology
+🔸 RS ≥ 85: Top Movers,IE,11.55,95,92.0,14.0,1.0,Basic Materials,Copper
+🔸 RS ≥ 85: Top Movers,AAMI,39.81,95,93.0,83.0,49.0,Financial Services,Asset Management
+🔸 RS ≥ 85: Top Movers,RILYN,18.9,94,17.0,8.0,4.0,,
+🔸 RS ≥ 85: Top Movers,COUR,12.12,94,86.0,30.0,8.0,Consumer Defensive,Education & Training Services
+🔸 RS ≥ 85: Top Movers,CRSP,65.86,94,71.0,12.0,5.0,Healthcare,Biotechnology
+🔸 RS ≥ 85: Top Movers,GHLD,19.86,94,93.0,43.0,12.0,Financial Services,Mortgage Finance
+🔸 RS ≥ 85: Top Movers,SLVR,32.68,93,92.0,86.0,48.0,ETF,ETF
+🔸 RS ≥ 85: Top Movers,DLTR,113.73,93,90.0,44.0,8.0,Consumer Defensive,Discount Stores
+🔸 RS ≥ 85: Top Movers,RYAAY,61.99,93,90.0,73.0,28.0,Industrials,Airlines
+🔸 RS ≥ 85: Top Movers,MRUS,65.79,93,81.0,43.0,9.0,Healthcare,Biotechnology
+🔸 RS ≥ 85: Top Movers,RILYG,17.09,93,18.0,8.0,3.0,,
+🔸 RS ≥ 85: Top Movers,MTW,13.13,92,91.0,9.0,7.0,Industrials,Farm & Heavy Construction Machinery
+🔸 RS ≥ 85: Top Movers,CX,8.37,92,79.0,39.0,15.0,Basic Materials,Building Materials
+🔸 RS ≥ 85: Top Movers,AMD,165.76,92,80.0,7.0,5.0,Technology,Semiconductors
+🔸 RS ≥ 85: Top Movers,ATRA,11.56,92,40.0,11.0,4.0,Healthcare,Biotechnology
+🔸 RS ≥ 85: Top Movers,TEL,204.21,92,82.0,51.0,38.0,Technology,Electronic Components
+🔸 RS ≥ 85: Top Movers,SHG,50.4,92,90.0,36.0,17.0,Financial Services,Banks - Regional
+🔸 RS ≥ 85: Top Movers,RCMT,26.08,92,91.0,20.0,11.0,Industrials,Conglomerates
+🔸 RS ≥ 85: Top Movers,VNM,16.33,92,75.0,72.0,18.0,ETF,ETF
+🔸 RS ≥ 85: Top Movers,SIMO,74.35,91,90.0,11.0,10.0,Technology,Semiconductors
+🔸 RS ≥ 85: Top Movers,ECNS,35.17,91,87.0,86.0,52.0,ETF,ETF
+🔸 RS ≥ 85: Top Movers,CHN,15.95,91,89.0,83.0,73.0,Financial Services,Asset Management
+🔸 RS ≥ 85: Top Movers,SMCL,20.05,91,82.0,8.0,1.0,ETF,ETF
+🔸 RS ≥ 85: Top Movers,EDC,41.62,91,86.0,36.0,21.0,ETF,ETF
+🔸 RS ≥ 85: Top Movers,GMS,109.54,91,88.0,15.0,14.0,Industrials,Building Products & Equipment
+🔸 RS ≥ 85: Top Movers,GAMR,87.52,91,90.0,84.0,76.0,ETF,ETF
+🔸 RS ≥ 85: Top Movers,ULTA,510.36,91,85.0,58.0,53.0,Consumer Cyclical,Specialty Retail
+🔸 RS ≥ 85: Top Movers,SRI,7.91,91,12.0,1.0,0.0,Consumer Cyclical,Auto Parts
+🔸 RS ≥ 85: Top Movers,HLF,9.73,90,48.0,47.0,2.0,Consumer Defensive,Packaged Foods
+🔸 RS ≥ 85: Top Movers,QXO,21.89,90,89.0,4.0,1.0,Technology,Software - Application
+🔸 RS ≥ 85: Top Movers,BA,230.74,90,85.0,82.0,48.0,Industrials,Aerospace & Defense
+🔸 RS ≥ 85: Top Movers,REMX,54.95,90,32.0,21.0,9.0,ETF,ETF
+🔸 RS ≥ 85: Top Movers,RAPT,12.8,90,3.0,1.0,0.0,Healthcare,Biotechnology
+🔸 RS ≥ 85: Top Movers,EVI,24.96,90,80.0,20.0,8.0,Industrials,Industrial Distribution
+🔸 RS ≥ 85: Top Movers,VNAM,20.17,90,68.0,56.0,19.0,ETF,ETF
+🔸 RS ≥ 85: Top Movers,GRFS,10.07,90,84.0,46.0,9.0,Healthcare,Drug Manufacturers - General
+🔸 RS ≥ 85: Top Movers,CVI,27.31,90,89.0,14.0,6.0,Energy,Oil & Gas Refining & Marketing
+🔸 RS ≥ 85: Top Movers,NUS,8.83,90,55.0,10.0,3.0,Consumer Defensive,Household & Personal Products
+🔸 RS ≥ 85: Top Movers,MUX,11.52,90,80.0,14.0,12.0,Basic Materials,Other Precious Metals & Mining
+🔸 RS ≥ 85: Top Movers,SMCI,52.31,89,87.0,18.0,1.0,Technology,Computer Hardware
+🔸 RS ≥ 85: Top Movers,VC,113.9,89,60.0,16.0,5.0,Consumer Cyclical,Auto Parts
+🔸 RS ≥ 85: Top Movers,DMAT,19.38,89,78.0,40.0,17.0,ETF,ETF
+🔸 RS ≥ 85: Top Movers,RTX,155.19,89,86.0,83.0,82.0,Industrials,Aerospace & Defense
+🔸 RS ≥ 85: Top Movers,LI,29.53,89,86.0,76.0,12.0,Consumer Cyclical,Auto Manufacturers
+🔸 RS ≥ 85: Top Movers,SCHW,97.17,89,87.0,85.0,84.0,Financial Services,Capital Markets
+🔸 RS ≥ 85: Top Movers,AGQ,54.83,89,85.0,83.0,79.0,ETF,ETF
+🔸 RS ≥ 85: Top Movers,TRS,31.38,89,84.0,28.0,16.0,Consumer Cyclical,Packaging & Containers
+🔸 RS ≥ 85: Top Movers,SHLS,5.64,89,62.0,6.0,3.0,Technology,Solar
+🔸 RS ≥ 85: Top Movers,FCA,25.81,89,83.0,80.0,50.0,ETF,ETF
+🔸 RS ≥ 85: Top Movers,SETM,20.42,89,76.0,18.0,10.0,ETF,ETF
+🔸 RS ≥ 85: Top Movers,XME,77.13,89,82.0,33.0,20.0,ETF,ETF
+🔸 RS ≥ 85: Top Movers,MYE,14.96,88,85.0,10.0,5.0,Consumer Cyclical,Packaging & Containers
+🔸 RS ≥ 85: Top Movers,KURE,18.93,88,83.0,82.0,19.0,ETF,ETF
+🔸 RS ≥ 85: Top Movers,PLAY,32.0,88,85.0,3.0,1.0,Communication Services,Entertainment
+🔸 RS ≥ 85: Top Movers,GSL,29.0,88,69.0,32.0,14.0,Industrials,Marine Shipping
+🔸 RS ≥ 85: Top Movers,GOLF,82.08,88,72.0,65.0,48.0,Consumer Cyclical,Leisure
+🔸 RS ≥ 85: Top Movers,ION,33.74,88,68.0,33.0,12.0,ETF,ETF
+🔸 RS ≥ 85: Top Movers,WYNN,108.16,88,66.0,31.0,16.0,Consumer Cyclical,Resorts & Casinos
+🔸 RS ≥ 85: Top Movers,NOAH,12.48,87,84.0,23.0,19.0,Financial Services,Asset Management
+🔸 RS ≥ 85: Top Movers,REX,53.91,87,85.0,21.0,10.0,Basic Materials,Chemicals
+🔸 RS ≥ 85: Top Movers,BSY,58.35,87,84.0,24.0,15.0,Technology,Software - Application
+🔸 RS ≥ 85: Top Movers,HYDR,25.39,87,49.0,10.0,9.0,ETF,ETF
+🔸 RS ≥ 85: Top Movers,CTEC,8.45,87,45.0,13.0,7.0,ETF,ETF
+🔸 RS ≥ 85: Top Movers,IDXX,551.41,87,85.0,46.0,10.0,Healthcare,Diagnostics & Research
+🔸 RS ≥ 85: Top Movers,VERB,8.47,87,43.0,1.0,0.0,Technology,Software - Application
+🔸 RS ≥ 85: Top Movers,SFST,43.8,87,84.0,81.0,66.0,Financial Services,Banks - Regional
+🔸 RS ≥ 85: Top Movers,SCHL,25.66,86,16.0,8.0,2.0,Communication Services,Publishing
+🔸 RS ≥ 85: Top Movers,VOD,11.34,86,84.0,83.0,17.0,Communication Services,Telecom Services
+🔸 RS ≥ 85: Top Movers,FRNW,17.3,86,75.0,39.0,12.0,ETF,ETF
+🔸 RS ≥ 85: Top Movers,COPJ,26.49,86,85.0,73.0,9.0,ETF,ETF
+🔸 RS ≥ 85: Top Movers,PALL,112.15,86,84.0,38.0,25.0,ETF,ETF
+🔸 RS ≥ 85: Top Movers,TAYD,45.99,86,68.0,10.0,4.0,Industrials,Specialty Industrial Machinery
+🔸 RS ≥ 85: Top Movers,EET,67.57,86,83.0,55.0,28.0,ETF,ETF
+🔸 RS ≥ 85: Top Movers,JBGS,19.33,86,73.0,26.0,17.0,Real Estate,REIT - Office
+🔸 RS ≥ 85: Top Movers,EWH,20.72,86,84.0,79.0,31.0,ETF,ETF
+🔸 RS ≥ 85: Top Movers,HDSN,8.35,86,85.0,28.0,2.0,Basic Materials,Specialty Chemicals
+🔸 RS ≥ 85: Top Movers,SIG,84.03,85,73.0,13.0,2.0,Consumer Cyclical,Luxury Goods
+🔸 RS ≥ 85: Top Movers,DRAI,28.72,85,83.0,38.0,17.0,ETF,ETF
+🔸 RS ≥ 85: Top Movers,FHTX,6.38,85,28.0,14.0,4.0,Healthcare,Biotechnology
+🔸 RS ≥ 85: Top Movers,DELL,129.15,85,79.0,16.0,15.0,Technology,Computer Hardware
+🔸 RS ≥ 85: Top Movers,IPOS,15.78,85,79.0,77.0,44.0,ETF,ETF
+🔹 Breakout: New Leader,SBDS,16.29,99,3.0,0.0,1.0,,
+🔹 Breakout: New Leader,NEGG,34.03,99,96.0,0.0,1.0,Consumer Cyclical,Internet Retail
+🔹 Breakout: New Leader,SBET,22.86,99,97.0,0.0,1.0,Consumer Cyclical,Gambling
+🔹 Breakout: New Leader,QNTM,22.75,99,99.0,96.0,0.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,DDC,17.25,99,98.0,0.0,0.0,Consumer Defensive,Packaged Foods
+🔹 Breakout: New Leader,QBTX,110.7,99,99.0,17.0,99.0,ETF,ETF
+🔹 Breakout: New Leader,ZEPP,11.52,99,11.0,31.0,8.0,Technology,Consumer Electronics
+🔹 Breakout: New Leader,MB,14.45,99,98.0,13.0,99.0,Consumer Cyclical,Restaurants
+🔹 Breakout: New Leader,NVTS,9.04,99,99.0,3.0,10.0,Technology,Semiconductors
+🔹 Breakout: New Leader,VIGL,8.06,99,99.0,6.0,3.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,QSG,9.5,99,99.0,99.0,7.0,Consumer Defensive,Education & Training Services
+🔹 Breakout: New Leader,BTM,5.17,99,99.0,33.0,14.0,Financial Services,Capital Markets
+🔹 Breakout: New Leader,HYPD,8.28,99,99.0,0.0,0.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,VVPR,5.13,99,98.0,99.0,8.0,Technology,Solar
+🔹 Breakout: New Leader,TZUP,13.63,99,96.0,88.0,3.0,Communication Services,Advertising Agencies
+🔹 Breakout: New Leader,OCG,5.52,99,99.0,99.0,13.0,Consumer Cyclical,Internet Retail
+🔹 Breakout: New Leader,OUST,27.33,99,99.0,14.0,90.0,Technology,Electronic Components
+🔹 Breakout: New Leader,TAOX,8.49,99,96.0,5.0,10.0,Technology,Software - Infrastructure
+🔹 Breakout: New Leader,SGMT,10.63,99,99.0,15.0,10.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,PAYS,8.2,99,99.0,6.0,2.0,Technology,Software - Infrastructure
+🔹 Breakout: New Leader,PGY,31.84,99,97.0,85.0,4.0,Technology,Software - Infrastructure
+🔹 Breakout: New Leader,AMUU,45.2,99,98.0,41.0,99.0,ETF,ETF
+🔹 Breakout: New Leader,TNGX,6.73,99,97.0,0.0,0.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,MEIP,6.4,99,62.0,6.0,7.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,PRPO,14.21,98,98.0,40.0,78.0,Healthcare,Diagnostics & Research
+🔹 Breakout: New Leader,QS,11.31,98,96.0,7.0,11.0,Consumer Cyclical,Auto Parts
+🔹 Breakout: New Leader,SOGP,5.43,98,98.0,53.0,49.0,Communication Services,Internet Content & Information
+🔹 Breakout: New Leader,ONEG,6.07,98,97.0,4.0,4.0,Industrials,Engineering & Construction
+🔹 Breakout: New Leader,LAYS,40.95,98,97.0,18.0,98.0,ETF,ETF
+🔹 Breakout: New Leader,GRPN,32.94,98,99.0,98.0,11.0,Communication Services,Internet Content & Information
+🔹 Breakout: New Leader,CAR,208.25,98,98.0,54.0,12.0,Industrials,Rental & Leasing Services
+🔹 Breakout: New Leader,BKSY,19.91,98,99.0,23.0,97.0,Industrials,Specialty Business Services
+🔹 Breakout: New Leader,SRFM,5.53,98,95.0,26.0,96.0,Industrials,Airlines
+🔹 Breakout: New Leader,PHOE,9.51,98,98.0,13.0,98.0,Industrials,Engineering & Construction
+🔹 Breakout: New Leader,PVLA,38.6,98,93.0,98.0,8.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,YSG,8.69,98,99.0,87.0,8.0,Consumer Defensive,Household & Personal Products
+🔹 Breakout: New Leader,ORCX,34.29,98,96.0,3.0,98.0,ETF,ETF
+🔹 Breakout: New Leader,ISSC,15.56,98,98.0,22.0,95.0,Industrials,Aerospace & Defense
+🔹 Breakout: New Leader,EYE,25.14,98,98.0,57.0,8.0,Consumer Cyclical,Specialty Retail
+🔹 Breakout: New Leader,METC,22.68,98,86.0,25.0,4.0,Basic Materials,Coking Coal
+🔹 Breakout: New Leader,TNXP,46.25,98,92.0,0.0,91.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,SBSW,9.4,98,97.0,86.0,6.0,Basic Materials,Other Precious Metals & Mining
+🔹 Breakout: New Leader,DOMO,16.0,98,98.0,37.0,31.0,Technology,Software - Application
+🔹 Breakout: New Leader,AIRS,6.46,98,93.0,1.0,7.0,Healthcare,Medical Care Facilities
+🔹 Breakout: New Leader,IREN,17.73,98,96.0,10.0,95.0,Financial Services,Capital Markets
+🔹 Breakout: New Leader,SORA,6.78,98,97.0,5.0,98.0,Consumer Cyclical,Luxury Goods
+🔹 Breakout: New Leader,SNES,5.74,98,97.0,4.0,2.0,Basic Materials,Specialty Chemicals
+🔹 Breakout: New Leader,OSS,5.44,98,96.0,13.0,95.0,Technology,Computer Hardware
+🔹 Breakout: New Leader,CEP,28.29,98,99.0,99.0,49.0,Financial Services,Shell Companies
+🔹 Breakout: New Leader,RFIL,8.38,98,94.0,45.0,93.0,Industrials,Electrical Equipment & Parts
+🔹 Breakout: New Leader,ETU,30.02,98,5.0,0.0,92.0,ETF,ETF
+🔹 Breakout: New Leader,SPCY,32.95,98,96.0,18.0,98.0,ETF,ETF
+🔹 Breakout: New Leader,LASR,19.42,98,98.0,7.0,12.0,Technology,Semiconductors
+🔹 Breakout: New Leader,VRTL,42.26,98,97.0,11.0,97.0,ETF,ETF
+🔹 Breakout: New Leader,AMDG,21.72,98,91.0,2.0,10.0,ETF,ETF
+🔹 Breakout: New Leader,GOGO,15.7,98,97.0,33.0,62.0,Communication Services,Telecom Services
+🔹 Breakout: New Leader,TARK,65.62,98,97.0,17.0,96.0,ETF,ETF
+🔹 Breakout: New Leader,ARTL,13.97,98,69.0,14.0,15.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,OWLT,8.43,98,97.0,24.0,16.0,Healthcare,Medical Devices
+🔹 Breakout: New Leader,SYM,51.75,98,96.0,7.0,13.0,Industrials,Specialty Industrial Machinery
+🔹 Breakout: New Leader,AAOI,27.22,98,97.0,23.0,98.0,Technology,Communication Equipment
+🔹 Breakout: New Leader,TPC,48.74,98,98.0,37.0,92.0,Industrials,Engineering & Construction
+🔹 Breakout: New Leader,CONL,55.28,98,98.0,0.0,93.0,ETF,ETF
+🔹 Breakout: New Leader,OPRX,14.06,98,97.0,96.0,2.0,Healthcare,Health Information Services
+🔹 Breakout: New Leader,TIL,30.9,97,85.0,6.0,93.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,PCT,15.49,97,97.0,18.0,92.0,Industrials,Pollution & Treatment Controls
+🔹 Breakout: New Leader,IDN,5.14,97,98.0,26.0,61.0,Technology,Software - Application
+🔹 Breakout: New Leader,FLYE,5.29,97,96.0,2.0,0.0,Consumer Cyclical,Auto Manufacturers
+🔹 Breakout: New Leader,APPS,5.27,97,99.0,96.0,11.0,Technology,Software - Application
+🔹 Breakout: New Leader,LFMD,10.59,97,99.0,97.0,30.0,Healthcare,Health Information Services
+🔹 Breakout: New Leader,FULC,7.86,97,98.0,11.0,5.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,UUUU,9.64,97,89.0,12.0,9.0,Energy,Uranium
+🔹 Breakout: New Leader,SUPX,11.79,97,97.0,99.0,7.0,Technology,Software - Infrastructure
+🔹 Breakout: New Leader,AAPG,39.76,97,98.0,96.0,44.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,EVEX,7.03,97,96.0,23.0,90.0,Industrials,Aerospace & Defense
+🔹 Breakout: New Leader,ELTX,9.81,97,91.0,7.0,97.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,MIMI,7.94,97,95.0,17.0,92.0,Industrials,Engineering & Construction
+🔹 Breakout: New Leader,AEHR,21.39,97,88.0,5.0,5.0,Technology,Semiconductor Equipment & Materials
+🔹 Breakout: New Leader,ZENA,5.71,97,5.0,1.0,87.0,Technology,Software - Infrastructure
+🔹 Breakout: New Leader,APLD,10.98,97,96.0,25.0,93.0,Technology,Information Technology Services
+🔹 Breakout: New Leader,PARR,31.22,97,96.0,7.0,4.0,Energy,Oil & Gas Refining & Marketing
+🔹 Breakout: New Leader,AVGX,39.22,97,97.0,16.0,92.0,ETF,ETF
+🔹 Breakout: New Leader,VVOS,5.38,97,72.0,22.0,92.0,Healthcare,Medical Devices
+🔹 Breakout: New Leader,ETHT,81.02,97,2.0,0.0,11.0,ETF,ETF
+🔹 Breakout: New Leader,ALAB,121.02,97,95.0,28.0,96.0,Technology,Semiconductors
+🔹 Breakout: New Leader,MASS,7.35,97,98.0,98.0,1.0,Healthcare,Medical Devices
+🔹 Breakout: New Leader,BNR,7.54,97,4.0,2.0,93.0,Healthcare,Diagnostics & Research
+🔹 Breakout: New Leader,ETHU,117.72,97,2.0,0.0,7.0,ETF,ETF
+🔹 Breakout: New Leader,DPRO,6.09,97,9.0,10.0,7.0,Industrials,Aerospace & Defense
+🔹 Breakout: New Leader,URAA,31.85,97,97.0,4.0,5.0,ETF,ETF
+🔹 Breakout: New Leader,AVL,42.6,97,97.0,12.0,87.0,ETF,ETF
+🔹 Breakout: New Leader,ACOG,9.92,97,97.0,23.0,35.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,COGT,12.04,97,18.0,2.0,83.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,NBTX,6.84,97,89.0,8.0,2.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,ALNT,39.49,97,96.0,21.0,72.0,Technology,Electronic Components
+🔹 Breakout: New Leader,SEDG,28.13,97,77.0,7.0,0.0,Technology,Solar
+🔹 Breakout: New Leader,AENT,5.8,97,66.0,28.0,99.0,Communication Services,Entertainment
+🔹 Breakout: New Leader,AMDL,11.4,97,68.0,0.0,1.0,ETF,ETF
+🔹 Breakout: New Leader,KEP,13.89,97,98.0,93.0,14.0,Utilities,Utilities - Regulated Electric
+🔹 Breakout: New Leader,MGNI,23.23,97,96.0,29.0,94.0,Communication Services,Advertising Agencies
+🔹 Breakout: New Leader,CMCL,21.97,96,97.0,94.0,4.0,Basic Materials,Gold
+🔹 Breakout: New Leader,INBX,21.4,96,38.0,23.0,17.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,VERV,11.13,96,98.0,18.0,66.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,KFS,14.4,96,97.0,63.0,12.0,Consumer Cyclical,Auto & Truck Dealerships
+🔹 Breakout: New Leader,KALA,7.5,96,15.0,2.0,91.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,NEUP,8.6,96,89.0,42.0,86.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,KORU,83.76,96,96.0,9.0,1.0,ETF,ETF
+🔹 Breakout: New Leader,SCPH,5.66,96,79.0,3.0,3.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,FIVE,138.22,96,94.0,15.0,12.0,Consumer Cyclical,Specialty Retail
+🔹 Breakout: New Leader,ATRO,35.1,96,96.0,94.0,19.0,Industrials,Aerospace & Defense
+🔹 Breakout: New Leader,W,64.14,96,86.0,4.0,49.0,Consumer Cyclical,Internet Retail
+🔹 Breakout: New Leader,STG,11.17,96,11.0,7.0,8.0,Consumer Defensive,Education & Training Services
+🔹 Breakout: New Leader,COIN,388.63,96,98.0,16.0,94.0,Financial Services,Financial Data & Stock Exchanges
+🔹 Breakout: New Leader,NKTR,24.57,96,98.0,6.0,5.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,ESEA,51.67,96,95.0,87.0,6.0,Industrials,Marine Shipping
+🔹 Breakout: New Leader,STRM,5.3,96,95.0,12.0,90.0,Healthcare,Health Information Services
+🔹 Breakout: New Leader,SLDB,6.64,96,24.0,3.0,0.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,RIOX,22.41,96,10.0,0.0,8.0,ETF,ETF
+🔹 Breakout: New Leader,AGEN,6.07,96,97.0,4.0,1.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,SOFX,27.02,96,77.0,2.0,12.0,ETF,ETF
+🔹 Breakout: New Leader,OPXS,12.18,96,96.0,18.0,15.0,Industrials,Aerospace & Defense
+🔹 Breakout: New Leader,URGN,18.24,96,63.0,17.0,4.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,IHS,6.07,96,94.0,97.0,45.0,Real Estate,Real Estate Services
+🔹 Breakout: New Leader,RRGB,6.89,96,83.0,1.0,10.0,Consumer Cyclical,Restaurants
+🔹 Breakout: New Leader,OCC,5.04,96,22.0,32.0,97.0,Technology,Communication Equipment
+🔹 Breakout: New Leader,NVDG,18.15,96,91.0,3.0,3.0,ETF,ETF
+🔹 Breakout: New Leader,ATI,93.92,96,96.0,27.0,60.0,Industrials,Metal Fabrication
+🔹 Breakout: New Leader,NVDL,84.84,96,91.0,6.0,85.0,ETF,ETF
+🔹 Breakout: New Leader,AIFU,9.11,96,0.0,0.0,0.0,Financial Services,Insurance Brokers
+🔹 Breakout: New Leader,ILPT,5.49,96,88.0,5.0,28.0,Real Estate,REIT - Industrial
+🔹 Breakout: New Leader,ARMU,35.67,96,96.0,8.0,95.0,ETF,ETF
+🔹 Breakout: New Leader,GHM,54.06,96,96.0,22.0,96.0,Industrials,Specialty Industrial Machinery
+🔹 Breakout: New Leader,CCJ,78.44,96,96.0,30.0,47.0,Energy,Uranium
+🔹 Breakout: New Leader,BELFB,113.63,96,89.0,31.0,81.0,Technology,Electronic Components
+🔹 Breakout: New Leader,SIFY,5.55,96,96.0,95.0,6.0,Communication Services,Telecom Services
+🔹 Breakout: New Leader,ORCL,243.81,96,94.0,39.0,86.0,Technology,Software - Infrastructure
+🔹 Breakout: New Leader,GEOS,12.01,95,98.0,4.0,5.0,Energy,Oil & Gas Equipment & Services
+🔹 Breakout: New Leader,AVAV,270.69,95,97.0,19.0,58.0,Industrials,Aerospace & Defense
+🔹 Breakout: New Leader,BYON,10.71,95,66.0,1.0,6.0,Consumer Cyclical,Internet Retail
+🔹 Breakout: New Leader,PONY,14.96,95,90.0,11.0,69.0,Technology,Information Technology Services
+🔹 Breakout: New Leader,BIRD,11.31,95,91.0,2.0,1.0,Consumer Cyclical,Apparel Retail
+🔹 Breakout: New Leader,ORIC,11.44,95,94.0,3.0,56.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,MLCO,8.74,95,82.0,17.0,11.0,Consumer Cyclical,Resorts & Casinos
+🔹 Breakout: New Leader,ARMN,7.28,95,96.0,96.0,12.0,Basic Materials,Gold
+🔹 Breakout: New Leader,CMP,21.01,95,98.0,80.0,7.0,Basic Materials,Other Industrial Metals & Mining
+🔹 Breakout: New Leader,NVDU,119.41,95,90.0,4.0,45.0,ETF,ETF
+🔹 Breakout: New Leader,WF,54.42,95,95.0,86.0,28.0,Financial Services,Banks - Regional
+🔹 Breakout: New Leader,ALGM,32.86,95,93.0,11.0,24.0,Technology,Semiconductors
+🔹 Breakout: New Leader,USD,83.74,95,92.0,7.0,79.0,ETF,ETF
+🔹 Breakout: New Leader,INDV,17.11,95,90.0,42.0,17.0,Healthcare,Drug Manufacturers - Specialty & Generic
+🔹 Breakout: New Leader,VENU,13.96,95,90.0,11.0,24.0,Consumer Cyclical,Restaurants
+🔹 Breakout: New Leader,TSMX,37.37,95,92.0,4.0,79.0,ETF,ETF
+🔹 Breakout: New Leader,SIF,5.06,95,60.0,10.0,79.0,Industrials,Aerospace & Defense
+🔹 Breakout: New Leader,ENLT,25.23,95,95.0,76.0,24.0,Utilities,Utilities - Renewable
+🔹 Breakout: New Leader,TSMU,31.56,95,91.0,4.0,68.0,ETF,ETF
+🔹 Breakout: New Leader,NVDX,17.48,95,87.0,3.0,57.0,ETF,ETF
+🔹 Breakout: New Leader,TSMG,18.67,95,92.0,3.0,51.0,ETF,ETF
+🔹 Breakout: New Leader,ENVX,14.31,95,75.0,5.0,89.0,Industrials,Electrical Equipment & Parts
+🔹 Breakout: New Leader,STX,152.49,95,95.0,16.0,49.0,Technology,Computer Hardware
+🔹 Breakout: New Leader,WWW,23.59,95,84.0,14.0,97.0,Consumer Cyclical,Footwear & Accessories
+🔹 Breakout: New Leader,AETH,51.12,95,42.0,12.0,13.0,ETF,ETF
+🔹 Breakout: New Leader,ASPS,11.6,95,94.0,70.0,0.0,Real Estate,Real Estate Services
+🔹 Breakout: New Leader,WEBL,30.61,95,93.0,31.0,97.0,ETF,ETF
+🔹 Breakout: New Leader,HIBL,49.9,95,83.0,2.0,71.0,ETF,ETF
+🔹 Breakout: New Leader,SKLZ,8.04,95,92.0,13.0,76.0,Communication Services,Electronic Gaming & Multimedia
+🔹 Breakout: New Leader,GHRS,14.47,95,92.0,34.0,77.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,IE,11.55,95,92.0,14.0,1.0,Basic Materials,Copper
+🔹 Breakout: New Leader,AAMI,39.81,95,93.0,83.0,49.0,Financial Services,Asset Management
+🔹 Breakout: New Leader,FL,25.19,95,88.0,2.0,6.0,Consumer Cyclical,Apparel Retail
+🔹 Breakout: New Leader,MYRG,200.56,94,95.0,26.0,74.0,Industrials,Engineering & Construction
+🔹 Breakout: New Leader,AIBU,45.51,94,93.0,24.0,90.0,ETF,ETF
+🔹 Breakout: New Leader,RILYN,18.9,94,17.0,8.0,4.0,,
+🔹 Breakout: New Leader,FLYU,58.17,94,75.0,5.0,93.0,ETF,ETF
+🔹 Breakout: New Leader,CIFR,6.42,94,90.0,4.0,91.0,Financial Services,Capital Markets
+🔹 Breakout: New Leader,EZET,28.12,94,20.0,3.0,68.0,ETF,ETF
+🔹 Breakout: New Leader,FETH,36.96,94,20.0,3.0,68.0,ETF,ETF
+🔹 Breakout: New Leader,ETHV,54.35,94,21.0,3.0,68.0,ETF,ETF
+🔹 Breakout: New Leader,ETH,34.92,94,20.0,3.0,69.0,ETF,ETF
+🔹 Breakout: New Leader,ETHA,28.08,94,20.0,3.0,68.0,,
+🔹 Breakout: New Leader,COUR,12.12,94,86.0,30.0,8.0,Consumer Defensive,Education & Training Services
+🔹 Breakout: New Leader,ETHW,26.6,94,20.0,3.0,68.0,ETF,ETF
+🔹 Breakout: New Leader,URA,41.4,94,95.0,20.0,17.0,ETF,ETF
+🔹 Breakout: New Leader,CETH,18.47,94,20.0,3.0,69.0,ETF,ETF
+🔹 Breakout: New Leader,QETH,36.9,94,20.0,3.0,68.0,ETF,ETF
+🔹 Breakout: New Leader,YOSH,7.98,94,95.0,99.0,8.0,Consumer Cyclical,Restaurants
+🔹 Breakout: New Leader,CPXR,32.22,94,83.0,92.0,41.0,ETF,ETF
+🔹 Breakout: New Leader,RIOT,14.14,94,89.0,6.0,80.0,Financial Services,Capital Markets
+🔹 Breakout: New Leader,SLNO,88.64,94,97.0,98.0,27.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,ECG,71.11,94,94.0,9.0,91.0,Industrials,Engineering & Construction
+🔹 Breakout: New Leader,YALA,7.89,94,94.0,98.0,10.0,Technology,Software - Application
+🔹 Breakout: New Leader,ETHE,30.64,94,19.0,4.0,91.0,ETF,ETF
+🔹 Breakout: New Leader,ACMR,29.67,94,91.0,39.0,60.0,Technology,Semiconductor Equipment & Materials
+🔹 Breakout: New Leader,FBL,43.09,94,94.0,27.0,97.0,ETF,ETF
+🔹 Breakout: New Leader,PHAT,9.26,94,78.0,1.0,1.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,METCB,15.14,94,11.0,30.0,6.0,Basic Materials,Coking Coal
+🔹 Breakout: New Leader,EVAV,27.64,94,89.0,15.0,82.0,ETF,ETF
+🔹 Breakout: New Leader,FWRD,31.65,94,47.0,1.0,60.0,Industrials,Integrated Freight & Logistics
+🔹 Breakout: New Leader,FBRX,10.51,94,88.0,7.0,98.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,DY,263.89,94,94.0,44.0,87.0,Industrials,Engineering & Construction
+🔹 Breakout: New Leader,CDE,9.38,94,95.0,29.0,92.0,Basic Materials,Gold
+🔹 Breakout: New Leader,ZIMV,18.74,94,2.0,3.0,9.0,Healthcare,Medical Devices
+🔹 Breakout: New Leader,KZIA,9.74,94,9.0,0.0,0.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,GOOS,14.47,94,84.0,9.0,43.0,Consumer Cyclical,Apparel Manufacturing
+🔹 Breakout: New Leader,FEDU,14.77,94,30.0,7.0,14.0,Consumer Defensive,Education & Training Services
+🔹 Breakout: New Leader,CUK,26.88,94,91.0,28.0,95.0,Consumer Cyclical,Travel Services
+🔹 Breakout: New Leader,BWMN,37.07,94,85.0,17.0,18.0,Industrials,Engineering & Construction
+🔹 Breakout: New Leader,CRSP,65.86,94,71.0,12.0,5.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,CCL,29.43,94,91.0,29.0,95.0,Consumer Cyclical,Travel Services
+🔹 Breakout: New Leader,DCO,89.07,94,94.0,29.0,83.0,Industrials,Aerospace & Defense
+🔹 Breakout: New Leader,BULZ,185.68,94,90.0,7.0,90.0,ETF,ETF
+🔹 Breakout: New Leader,METU,42.7,94,93.0,16.0,94.0,ETF,ETF
+🔹 Breakout: New Leader,PBPB,12.58,94,93.0,16.0,93.0,Consumer Cyclical,Restaurants
+🔹 Breakout: New Leader,WDC,69.17,94,93.0,14.0,43.0,Technology,Computer Hardware
+🔹 Breakout: New Leader,GHLD,19.86,94,93.0,43.0,12.0,Financial Services,Mortgage Finance
+🔹 Breakout: New Leader,SLVR,32.68,93,92.0,86.0,48.0,ETF,ETF
+🔹 Breakout: New Leader,CRVO,8.03,93,82.0,99.0,0.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,LMBO,27.99,93,88.0,5.0,81.0,ETF,ETF
+🔹 Breakout: New Leader,AAP,58.45,93,55.0,5.0,21.0,Consumer Cyclical,Auto Parts
+🔹 Breakout: New Leader,DNA,14.13,93,85.0,2.0,29.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,TCI,41.2,93,96.0,41.0,8.0,Real Estate,Real Estate Services
+🔹 Breakout: New Leader,KEQU,57.59,93,93.0,7.0,97.0,Consumer Cyclical,"Furnishings, Fixtures & Appliances"
+🔹 Breakout: New Leader,MKTW,20.5,93,97.0,22.0,1.0,Financial Services,Financial Data & Stock Exchanges
+🔹 Breakout: New Leader,ACAD,23.0,93,93.0,16.0,60.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,ARKZ,38.94,93,13.0,2.0,78.0,ETF,ETF
+🔹 Breakout: New Leader,DAPP,18.08,93,94.0,15.0,93.0,ETF,ETF
+🔹 Breakout: New Leader,PSIL,17.16,93,93.0,33.0,28.0,ETF,ETF
+🔹 Breakout: New Leader,DUSL,76.32,93,85.0,15.0,82.0,ETF,ETF
+🔹 Breakout: New Leader,DLTR,113.73,93,90.0,44.0,8.0,Consumer Defensive,Discount Stores
+🔹 Breakout: New Leader,FTCI,5.47,93,93.0,11.0,6.0,Technology,Solar
+🔹 Breakout: New Leader,RYAAY,61.99,93,90.0,73.0,28.0,Industrials,Airlines
+🔹 Breakout: New Leader,CTRN,30.48,93,94.0,34.0,87.0,Consumer Cyclical,Apparel Retail
+🔹 Breakout: New Leader,NLR,119.01,93,94.0,38.0,67.0,ETF,ETF
+🔹 Breakout: New Leader,TECL,102.05,93,84.0,5.0,74.0,ETF,ETF
+🔹 Breakout: New Leader,UEC,8.58,93,88.0,12.0,45.0,Energy,Uranium
+🔹 Breakout: New Leader,MNMD,9.51,93,48.0,16.0,66.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,EETH,67.68,93,12.0,2.0,76.0,ETF,ETF
+🔹 Breakout: New Leader,SHAK,135.02,93,94.0,15.0,79.0,Consumer Cyclical,Restaurants
+🔹 Breakout: New Leader,OM,17.68,93,95.0,10.0,4.0,Healthcare,Medical Devices
+🔹 Breakout: New Leader,MRUS,65.79,93,81.0,43.0,9.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,PLTM,13.4,93,95.0,74.0,40.0,ETF,ETF
+🔹 Breakout: New Leader,MSFL,31.76,93,92.0,12.0,12.0,ETF,ETF
+🔹 Breakout: New Leader,LIVE,17.0,93,96.0,18.0,1.0,Consumer Cyclical,Home Improvement Retail
+🔹 Breakout: New Leader,PPLT,126.65,93,95.0,74.0,39.0,ETF,ETF
+🔹 Breakout: New Leader,RZLT,5.98,93,86.0,25.0,97.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,CECO,33.75,93,82.0,13.0,84.0,Industrials,Pollution & Treatment Controls
+🔹 Breakout: New Leader,RILYG,17.09,93,18.0,8.0,3.0,,
+🔹 Breakout: New Leader,SMTC,51.53,93,81.0,8.0,98.0,Technology,Semiconductors
+🔹 Breakout: New Leader,STCE,57.03,93,91.0,27.0,92.0,ETF,ETF
+🔹 Breakout: New Leader,ARKD,60.58,93,89.0,25.0,91.0,ETF,ETF
+🔹 Breakout: New Leader,ARLO,16.15,93,96.0,14.0,57.0,Industrials,Building Products & Equipment
+🔹 Breakout: New Leader,ALTG,8.09,93,61.0,2.0,8.0,Industrials,Rental & Leasing Services
+🔹 Breakout: New Leader,CBRL,65.75,93,95.0,11.0,85.0,Consumer Cyclical,Restaurants
+🔹 Breakout: New Leader,ALDX,5.29,93,5.0,3.0,87.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,SSBI,11.72,93,79.0,89.0,10.0,Financial Services,Banks - Regional
+🔹 Breakout: New Leader,ASMB,18.5,93,92.0,14.0,23.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,VRT,136.29,92,93.0,20.0,93.0,Industrials,Electrical Equipment & Parts
+🔹 Breakout: New Leader,WT,13.73,92,81.0,21.0,57.0,Financial Services,Asset Management
+🔹 Breakout: New Leader,NVDA,174.51,92,91.0,39.0,87.0,Technology,Semiconductors
+🔹 Breakout: New Leader,KPLT,12.22,92,6.0,5.0,7.0,Technology,Software - Infrastructure
+🔹 Breakout: New Leader,DK,22.33,92,85.0,6.0,8.0,Energy,Oil & Gas Refining & Marketing
+🔹 Breakout: New Leader,CG,61.81,92,81.0,11.0,86.0,Financial Services,Asset Management
+🔹 Breakout: New Leader,MTW,13.13,92,91.0,9.0,7.0,Industrials,Farm & Heavy Construction Machinery
+🔹 Breakout: New Leader,COIW,57.74,92,95.0,6.0,92.0,ETF,ETF
+🔹 Breakout: New Leader,CX,8.37,92,79.0,39.0,15.0,Basic Materials,Building Materials
+🔹 Breakout: New Leader,BGLC,5.02,92,8.0,5.0,15.0,Basic Materials,Specialty Chemicals
+🔹 Breakout: New Leader,PXLW,11.6,92,8.0,1.0,9.0,Technology,Semiconductors
+🔹 Breakout: New Leader,AMD,165.76,92,80.0,7.0,5.0,Technology,Semiconductors
+🔹 Breakout: New Leader,EXK,5.72,92,88.0,42.0,91.0,Basic Materials,Silver
+🔹 Breakout: New Leader,MSFX,34.86,92,91.0,10.0,12.0,ETF,ETF
+🔹 Breakout: New Leader,RHLD,43.25,92,17.0,9.0,92.0,Industrials,Specialty Business Services
+🔹 Breakout: New Leader,ATRA,11.56,92,40.0,11.0,4.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,BNKU,24.65,92,61.0,3.0,92.0,ETF,ETF
+🔹 Breakout: New Leader,TERN,5.87,92,8.0,3.0,3.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,WGMI,26.25,92,87.0,7.0,89.0,ETF,ETF
+🔹 Breakout: New Leader,BOOT,171.55,92,86.0,8.0,94.0,Consumer Cyclical,Apparel Retail
+🔹 Breakout: New Leader,TEL,204.21,92,82.0,51.0,38.0,Technology,Electronic Components
+🔹 Breakout: New Leader,ZK,29.73,92,81.0,25.0,71.0,Consumer Cyclical,Auto Manufacturers
+🔹 Breakout: New Leader,BELFA,94.15,92,47.0,9.0,22.0,Technology,Electronic Components
+🔹 Breakout: New Leader,BASE,24.31,92,96.0,28.0,13.0,Technology,Software - Infrastructure
+🔹 Breakout: New Leader,SHG,50.4,92,90.0,36.0,17.0,Financial Services,Banks - Regional
+🔹 Breakout: New Leader,DLLL,27.08,92,86.0,3.0,92.0,ETF,ETF
+🔹 Breakout: New Leader,DQ,23.97,92,8.0,5.0,14.0,Technology,Semiconductor Equipment & Materials
+🔹 Breakout: New Leader,WRBY,24.04,92,85.0,18.0,97.0,Healthcare,Medical Instruments & Supplies
+🔹 Breakout: New Leader,SFIX,5.18,92,39.0,41.0,94.0,Consumer Cyclical,Apparel Retail
+🔹 Breakout: New Leader,BITQ,21.09,92,93.0,35.0,94.0,ETF,ETF
+🔹 Breakout: New Leader,RCMT,26.08,92,91.0,20.0,11.0,Industrials,Conglomerates
+🔹 Breakout: New Leader,MSFU,52.32,92,90.0,9.0,9.0,ETF,ETF
+🔹 Breakout: New Leader,BZ,20.05,92,48.0,53.0,17.0,Communication Services,Internet Content & Information
+🔹 Breakout: New Leader,VNM,16.33,92,75.0,72.0,18.0,ETF,ETF
+🔹 Breakout: New Leader,HGV,50.57,92,63.0,14.0,49.0,Consumer Cyclical,Resorts & Casinos
+🔹 Breakout: New Leader,CTOS,5.82,92,83.0,31.0,69.0,Industrials,Rental & Leasing Services
+🔹 Breakout: New Leader,SPRX,32.07,92,91.0,24.0,86.0,ETF,ETF
+🔹 Breakout: New Leader,SN,118.44,92,61.0,28.0,94.0,Consumer Cyclical,"Furnishings, Fixtures & Appliances"
+🔹 Breakout: New Leader,FN,307.2,92,93.0,57.0,31.0,Technology,Electronic Components
+🔹 Breakout: New Leader,IVZ,21.38,92,23.0,13.0,81.0,Financial Services,Asset Management
+🔹 Breakout: New Leader,ADNT,22.45,92,82.0,3.0,3.0,Consumer Cyclical,Auto Parts
+🔹 Breakout: New Leader,URAN,40.15,92,93.0,36.0,58.0,ETF,ETF
+🔹 Breakout: New Leader,AMPL,12.72,92,90.0,30.0,88.0,Technology,Software - Application
+🔹 Breakout: New Leader,NTRS,128.05,91,91.0,41.0,87.0,Financial Services,Asset Management
+🔹 Breakout: New Leader,ELF,119.25,91,92.0,1.0,3.0,Consumer Defensive,Household & Personal Products
+🔹 Breakout: New Leader,SIMO,74.35,91,90.0,11.0,10.0,Technology,Semiconductors
+🔹 Breakout: New Leader,TNL,61.82,91,73.0,25.0,84.0,Consumer Cyclical,Travel Services
+🔹 Breakout: New Leader,TQQQ,88.75,91,82.0,12.0,91.0,ETF,ETF
+🔹 Breakout: New Leader,GTES,24.92,91,89.0,41.0,86.0,Industrials,Specialty Industrial Machinery
+🔹 Breakout: New Leader,ARMH,68.4,91,91.0,31.0,92.0,ETF,ETF
+🔹 Breakout: New Leader,TSM,244.64,91,90.0,33.0,92.0,Technology,Semiconductors
+🔹 Breakout: New Leader,EURL,35.77,91,91.0,90.0,33.0,ETF,ETF
+🔹 Breakout: New Leader,BMBL,8.53,91,70.0,1.0,13.0,Communication Services,Internet Content & Information
+🔹 Breakout: New Leader,MEDP,435.59,91,11.0,18.0,51.0,Healthcare,Diagnostics & Research
+🔹 Breakout: New Leader,CMCM,5.99,91,28.0,27.0,89.0,Communication Services,Internet Content & Information
+🔹 Breakout: New Leader,PENG,24.92,91,57.0,27.0,77.0,Technology,Information Technology Services
+🔹 Breakout: New Leader,IBLC,43.62,91,91.0,16.0,87.0,ETF,ETF
+🔹 Breakout: New Leader,CELH,46.6,91,92.0,77.0,1.0,Consumer Defensive,Beverages - Non-Alcoholic
+🔹 Breakout: New Leader,ROK,356.29,91,87.0,25.0,56.0,Industrials,Specialty Industrial Machinery
+🔹 Breakout: New Leader,SMCL,20.05,91,82.0,8.0,1.0,ETF,ETF
+🔹 Breakout: New Leader,AG,8.6,91,92.0,63.0,13.0,Basic Materials,Silver
+🔹 Breakout: New Leader,OIS,5.76,91,73.0,10.0,51.0,Energy,Oil & Gas Equipment & Services
+🔹 Breakout: New Leader,TRMB,84.37,91,85.0,44.0,90.0,Technology,Scientific & Technical Instruments
+🔹 Breakout: New Leader,CHAT,51.01,91,91.0,39.0,82.0,ETF,ETF
+🔹 Breakout: New Leader,PUK,24.96,91,93.0,94.0,16.0,Financial Services,Insurance - Life
+🔹 Breakout: New Leader,HUHU,6.81,91,83.0,94.0,38.0,Industrials,Specialty Industrial Machinery
+🔹 Breakout: New Leader,AARD,13.82,91,87.0,13.0,91.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,VSAT,14.25,91,91.0,12.0,2.0,Technology,Communication Equipment
+🔹 Breakout: New Leader,EDC,41.62,91,86.0,36.0,21.0,ETF,ETF
+🔹 Breakout: New Leader,WOR,61.93,91,92.0,88.0,11.0,Industrials,Metal Fabrication
+🔹 Breakout: New Leader,BKKT,19.77,91,54.0,6.0,94.0,Technology,Software - Infrastructure
+🔹 Breakout: New Leader,DECO,39.3,91,90.0,21.0,89.0,ETF,ETF
+🔹 Breakout: New Leader,SERV,11.33,91,98.0,12.0,98.0,Industrials,Specialty Industrial Machinery
+🔹 Breakout: New Leader,GMS,109.54,91,88.0,15.0,14.0,Industrials,Building Products & Equipment
+🔹 Breakout: New Leader,GPRE,8.05,91,3.0,0.0,1.0,Basic Materials,Chemicals
+🔹 Breakout: New Leader,KRUS,86.86,91,85.0,9.0,14.0,Consumer Cyclical,Restaurants
+🔹 Breakout: New Leader,PGRE,6.3,91,93.0,26.0,30.0,Real Estate,REIT - Office
+🔹 Breakout: New Leader,CENX,22.52,91,52.0,44.0,86.0,Basic Materials,Aluminum
+🔹 Breakout: New Leader,NG,5.54,91,88.0,95.0,13.0,Basic Materials,Gold
+🔹 Breakout: New Leader,ELAN,14.68,91,81.0,11.0,12.0,Healthcare,Drug Manufacturers - Specialty & Generic
+🔹 Breakout: New Leader,NPKI,9.06,91,90.0,13.0,31.0,Energy,Oil & Gas Equipment & Services
+🔹 Breakout: New Leader,SRI,7.91,91,12.0,1.0,0.0,Consumer Cyclical,Auto Parts
+🔹 Breakout: New Leader,GF,12.15,90,91.0,94.0,31.0,Financial Services,Asset Management
+🔹 Breakout: New Leader,QQQU,47.19,90,84.0,19.0,94.0,ETF,ETF
+🔹 Breakout: New Leader,HLF,9.73,90,48.0,47.0,2.0,Consumer Defensive,Packaged Foods
+🔹 Breakout: New Leader,MQ,5.79,90,92.0,22.0,2.0,Technology,Software - Infrastructure
+🔹 Breakout: New Leader,SPTN,26.58,90,92.0,74.0,9.0,Consumer Defensive,Food Distribution
+🔹 Breakout: New Leader,QXO,21.89,90,89.0,4.0,1.0,Technology,Software - Application
+🔹 Breakout: New Leader,BA,230.74,90,85.0,82.0,48.0,Industrials,Aerospace & Defense
+🔹 Breakout: New Leader,REMX,54.95,90,32.0,21.0,9.0,ETF,ETF
+🔹 Breakout: New Leader,PBW,24.51,90,72.0,13.0,14.0,ETF,ETF
+🔹 Breakout: New Leader,FTDR,58.97,90,94.0,26.0,94.0,Consumer Cyclical,Personal Services
+🔹 Breakout: New Leader,EMR,146.95,90,86.0,24.0,86.0,Industrials,Specialty Industrial Machinery
+🔹 Breakout: New Leader,ACCS,11.93,90,91.0,16.0,13.0,Communication Services,Advertising Agencies
+🔹 Breakout: New Leader,KLG,23.04,90,9.0,60.0,21.0,Consumer Defensive,Packaged Foods
+🔹 Breakout: New Leader,RAPT,12.8,90,3.0,1.0,0.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,COHN,11.63,90,74.0,38.0,87.0,Financial Services,Capital Markets
+🔹 Breakout: New Leader,EVI,24.96,90,80.0,20.0,8.0,Industrials,Industrial Distribution
+🔹 Breakout: New Leader,SYF,71.57,90,90.0,35.0,93.0,Financial Services,Credit Services
+🔹 Breakout: New Leader,EYPT,10.31,90,95.0,7.0,1.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,OSK,127.22,90,81.0,16.0,63.0,Industrials,Farm & Heavy Construction Machinery
+🔹 Breakout: New Leader,VNAM,20.17,90,68.0,56.0,19.0,ETF,ETF
+🔹 Breakout: New Leader,AXIL,7.99,90,18.0,85.0,43.0,Technology,Consumer Electronics
+🔹 Breakout: New Leader,ROM,80.51,90,85.0,14.0,74.0,ETF,ETF
+🔹 Breakout: New Leader,UXI,46.44,90,84.0,33.0,82.0,ETF,ETF
+🔹 Breakout: New Leader,ARMG,15.33,90,90.0,1.0,86.0,ETF,ETF
+🔹 Breakout: New Leader,ING,23.71,90,86.0,91.0,48.0,Financial Services,Banks - Diversified
+🔹 Breakout: New Leader,GRFS,10.07,90,84.0,46.0,9.0,Healthcare,Drug Manufacturers - General
+🔹 Breakout: New Leader,ZBIO,16.0,90,17.0,46.0,0.0,Healthcare,Biotechnology
+🔹 Breakout: New Leader,JBTM,134.9,90,66.0,45.0,90.0,Industrials,Specialty Industrial Machinery
+🔹 Breakout: New Leader,TR,39.95,90,67.0,82.0,48.0,Consumer Defensive,Confectioners
+🔹 Breakout: New Leader,NPO,206.14,90,85.0,30.0,86.0,Industrials,Specialty Industrial Machinery
+🔹 Breakout: New Leader,MOMO,8.46,90,92.0,17.0,72.0,Communication Services,Internet Content & Information
+🔹 Breakout: New Leader,AGYS,114.31,90,90.0,11.0,19.0,Technology,Software - Application
+🔹 Breakout: New Leader,CVI,27.31,90,89.0,14.0,6.0,Energy,Oil & Gas Refining & Marketing
+🔹 Breakout: New Leader,SOHU,15.57,90,16.0,15.0,32.0,Communication Services,Electronic Gaming & Multimedia
+🔹 Breakout: New Leader,STEM,13.57,90,8.0,2.0,3.0,Utilities,Utilities - Renewable
+🔹 Breakout: New Leader,JETU,23.6,90,12.0,3.0,93.0,ETF,ETF
+🔹 Breakout: New Leader,VYX,13.88,90,27.0,6.0,13.0,Technology,Information Technology Services
+🔹 Breakout: New Leader,BGSF,6.33,90,67.0,1.0,2.0,Industrials,Staffing & Employment Services
+🔹 Breakout: New Leader,NUS,8.83,90,55.0,10.0,3.0,Consumer Defensive,Household & Personal Products
+🔹 Breakout: New Leader,EVTL,6.39,90,88.0,4.0,5.0,Industrials,Aerospace & Defense
+🔹 Breakout: New Leader,MUX,11.52,90,80.0,14.0,12.0,Basic Materials,Other Precious Metals & Mining
+🔹 Breakout: New Leader,ECVT,8.84,90,86.0,9.0,42.0,Basic Materials,Specialty Chemicals
+🔹 Breakout: New Leader,DDS,498.83,90,56.0,14.0,84.0,Consumer Cyclical,Department Stores
 
-# === STOCK SUMMARY ===
 # section-1: RS > 95 for all timeframes and Price > 20
 # PTIR, SEZL, RKLX, ALMU, NEON, OKLO, RKLB, DAVE, AGFY, ARQQ, SMR, HOOD, PLTR, HSAI, ASTS, VRNA, IONQ, CLS, GEV, RBLX, HIMS, IONX, APP, GDS, TSAT, AS, TPR, SNWV, AGX, TLN, NNE, INOD, SEI, GRAL, SMU, SRRK, SRAD, KDEF, FOA, CVNA, UI, RBRK, CRS
 
