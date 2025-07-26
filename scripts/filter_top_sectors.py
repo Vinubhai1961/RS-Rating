@@ -63,6 +63,11 @@ def generate_sector_report(source_file: str, output_file: str):
     breakout_df = breakout_df.sort_values(by='Relative Strength', ascending=False)
     breakout_df = add_section_label(breakout_df, "🔹 RS ≥ 90: Breakout Sectors")
 
+    # Logging counts for debugging
+    print(f"🔹 Leading Sectors: {len(leading_df)}")
+    print(f"🔸 Top Moving Sectors: {len(improving_df)}")
+    print(f"🔹 Breakout Sectors: {len(breakout_df)}")
+
     # Combine and export
     combined_df = pd.concat([leading_df, improving_df, breakout_df], ignore_index=True)
 
@@ -71,8 +76,12 @@ def generate_sector_report(source_file: str, output_file: str):
     combined_df = combined_df[final_columns]
 
     ensure_dir(output_file)
-    combined_df.to_csv(output_file, index=False)
-    print(f"✅ Sector RS report saved to {output_file}")
+
+    if combined_df.empty:
+        print("⚠️ No sectors met the filter criteria. No report generated.")
+    else:
+        combined_df.to_csv(output_file, index=False)
+        print(f"✅ Sector RS report saved to {output_file}")
 
 if __name__ == "__main__":
     latest_csv = find_latest_industry_file()
