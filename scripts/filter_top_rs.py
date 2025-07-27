@@ -46,22 +46,28 @@ def generate_opportunity_report(source_file: str, output_file: str):
     leading_df = leading_df.sort_values(by=['Relative Strength Percentile', 'Rank'], ascending=[False, True])
     leading_df = add_section_label(leading_df, "🔹 RS > 90: Leading Stocks")
 
+    # Exclude Section 1 stocks from further filtering
+    df_remaining = df_clean[~df_clean.index.isin(leading_df.index)]
+
     # 🔸 Section 2: Improving RS ≥ 85 and Price > 20
-    improving_df = df_clean[
-        (df_clean['Price'] > 20) &
-        (df_clean['Relative Strength Percentile'] >= 85) &
-        (df_clean['Relative Strength Percentile'] > df_clean['1 Month Ago Percentile']) &
-        (df_clean['1 Month Ago Percentile'] > df_clean['3 Months Ago Percentile']) &
-        (df_clean['3 Months Ago Percentile'] > df_clean['6 Months Ago Percentile'])
+    improving_df = df_remaining[
+        (df_remaining['Price'] > 20) &
+        (df_remaining['Relative Strength Percentile'] >= 85) &
+        (df_remaining['Relative Strength Percentile'] > df_remaining['1 Month Ago Percentile']) &
+        (df_remaining['1 Month Ago Percentile'] > df_remaining['3 Months Ago Percentile']) &
+        (df_remaining['3 Months Ago Percentile'] > df_remaining['6 Months Ago Percentile'])
     ]
     improving_df = improving_df.sort_values(by=['Relative Strength Percentile', 'Rank'], ascending=[False, True])
     improving_df = add_section_label(improving_df, "🔸 RS ≥ 85: Top Movers")
 
-    # 🔹 Section 3: Breakout Candidates and Price > 20
-    breakout_df = df_clean[
-        (df_clean['Price'] > 20) &
-        (df_clean['Relative Strength Percentile'] >= 90) &
-        ((df_clean['3 Months Ago Percentile'] < 50) | (df_clean['6 Months Ago Percentile'] < 50))
+    # Exclude Section 2 stocks from further filtering
+    df_remaining = df_remaining[~df_remaining.index.isin(improving_df.index)]
+
+    # 🔹 Section 3: Breakout: New Leader (Early Detection)
+    breakout_df = df_remaining[
+        (df_remaining['Price'] > 20) &
+        (df_remaining['Relative Strength Percentile'] >= 85) &
+        (df_remaining['Relative Strength Percentile'] - df_remaining['3 Months Ago Percentile'] >= 20)
     ]
     breakout_df = breakout_df.sort_values(by=['Relative Strength Percentile', 'Rank'], ascending=[False, True])
     breakout_df = add_section_label(breakout_df, "🔹 Breakout: New Leader")
@@ -88,7 +94,7 @@ def generate_opportunity_report(source_file: str, output_file: str):
         f.write("section-2: RS ≥ 85, improving trend, and Price > 20\n")
         f.write(", ".join(improving_df['Ticker'].tolist()) + "\n\n")
 
-        f.write("section-3: RS ≥ 90 with breakout pattern and Price > 20\n")
+        f.write("section-3: RS ≥ 85 with >= 20 point improvement over 3 months and Price > 20\n")
         f.write(", ".join(breakout_df['Ticker'].tolist()) + "\n")
 
     print(f"✅ Ticker summary saved to {summary_path}")
