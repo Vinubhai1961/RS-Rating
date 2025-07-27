@@ -63,11 +63,12 @@ def generate_opportunity_report(source_file: str, output_file: str):
     # Exclude Section 2 stocks from further filtering
     df_remaining = df_remaining[~df_remaining.index.isin(improving_df.index)]
 
-    # 🔹 Section 3: Breakout: New Leader (Early Detection)
+    # 🔹 Section 3: Breakout: New Leader (Early Detection with Acceleration)
     breakout_df = df_remaining[
         (df_remaining['Price'] > 20) &
         (df_remaining['Relative Strength Percentile'] >= 85) &
-        (df_remaining['Relative Strength Percentile'] - df_remaining['3 Months Ago Percentile'] >= 20)
+        (df_remaining['Relative Strength Percentile'] - df_remaining['1 Month Ago Percentile'] >= 15) &
+        ((df_remaining['Relative Strength Percentile'] - df_remaining['1 Month Ago Percentile']) > (df_remaining['1 Month Ago Percentile'] - df_remaining['3 Months Ago Percentile']))
     ]
     breakout_df = breakout_df.sort_values(by=['Relative Strength Percentile', 'Rank'], ascending=[False, True])
     breakout_df = add_section_label(breakout_df, "🔹 Breakout: New Leader")
@@ -94,7 +95,7 @@ def generate_opportunity_report(source_file: str, output_file: str):
         f.write("section-2: RS ≥ 85, improving trend, and Price > 20\n")
         f.write(", ".join(improving_df['Ticker'].tolist()) + "\n\n")
 
-        f.write("section-3: RS ≥ 85 with >= 20 point improvement over 3 months and Price > 20\n")
+        f.write("section-3: RS ≥ 85 with >= 15 point 1-month improvement and acceleration, Price > 20\n")
         f.write(", ".join(breakout_df['Ticker'].tolist()) + "\n")
 
     print(f"✅ Ticker summary saved to {summary_path}")
