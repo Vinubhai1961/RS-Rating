@@ -35,19 +35,20 @@ def generate_opportunity_report(source_file: str, output_file: str):
         'Price'
     ])
 
-    # 🔹 Section 1: Leading Stocks (RS > 95 for all 4 and Price > 20)
+    # 🔹 Section 1: Leading Stocks (RS > 90 for all 4 and Price > 20)
     leading_df = df_clean[
         (df_clean['Price'] > 20) &
-        (df_clean['Relative Strength Percentile'] > 95) &
-        (df_clean['1 Month Ago Percentile'] > 95) &
-        (df_clean['3 Months Ago Percentile'] > 95) &
-        (df_clean['6 Months Ago Percentile'] > 95)
+        (df_clean['Relative Strength Percentile'] > 90) &
+        (df_clean['1 Month Ago Percentile'] > 90) &
+        (df_clean['3 Months Ago Percentile'] > 90) &
+        (df_clean['6 Months Ago Percentile'] > 90)
     ]
     leading_df = leading_df.sort_values(by=['Relative Strength Percentile', 'Rank'], ascending=[False, True])
-    leading_df = add_section_label(leading_df, "🔹 RS > 95: Leading Stocks")
+    leading_df = add_section_label(leading_df, "🔹 RS > 90: Leading Stocks")
 
-    # 🔸 Section 2: Improving RS ≥ 85
+    # 🔸 Section 2: Improving RS ≥ 85 and Price > 20
     improving_df = df_clean[
+        (df_clean['Price'] > 20) &
         (df_clean['Relative Strength Percentile'] >= 85) &
         (df_clean['Relative Strength Percentile'] > df_clean['1 Month Ago Percentile']) &
         (df_clean['1 Month Ago Percentile'] > df_clean['3 Months Ago Percentile']) &
@@ -56,8 +57,9 @@ def generate_opportunity_report(source_file: str, output_file: str):
     improving_df = improving_df.sort_values(by=['Relative Strength Percentile', 'Rank'], ascending=[False, True])
     improving_df = add_section_label(improving_df, "🔸 RS ≥ 85: Top Movers")
 
-    # 🔹 Section 3: Breakout Candidates
+    # 🔹 Section 3: Breakout Candidates and Price > 20
     breakout_df = df_clean[
+        (df_clean['Price'] > 20) &
         (df_clean['Relative Strength Percentile'] >= 90) &
         ((df_clean['3 Months Ago Percentile'] < 50) | (df_clean['6 Months Ago Percentile'] < 50))
     ]
@@ -80,13 +82,13 @@ def generate_opportunity_report(source_file: str, output_file: str):
     # Save ticker summary to a separate TXT file
     summary_path = output_file.replace(".csv", "_summary.txt")
     with open(summary_path, "w") as f:
-        f.write("section-1: RS > 95 for all timeframes and Price > 20\n")
+        f.write("section-1: RS > 90 for all timeframes and Price > 20\n")
         f.write(", ".join(leading_df['Ticker'].tolist()) + "\n\n")
 
-        f.write("section-2: RS ≥ 85 and improving trend\n")
+        f.write("section-2: RS ≥ 85, improving trend, and Price > 20\n")
         f.write(", ".join(improving_df['Ticker'].tolist()) + "\n\n")
 
-        f.write("section-3: RS ≥ 90 with breakout pattern\n")
+        f.write("section-3: RS ≥ 90 with breakout pattern and Price > 20\n")
         f.write(", ".join(breakout_df['Ticker'].tolist()) + "\n")
 
     print(f"✅ Ticker summary saved to {summary_path}")
