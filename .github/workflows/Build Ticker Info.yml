@@ -3,7 +3,7 @@ name: Build Ticker Info
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 1 * * 1-5"  # 9:00 PM EDT (01:00 UTC) Monday through Friday
+    - cron: "45 19 * * 1-5"  # 9:00 PM EDT (01:00 UTC) Monday through Friday
 
 jobs:
   build-ticker-info:
