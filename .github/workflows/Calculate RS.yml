@@ -3,7 +3,7 @@ name: 📊 Calculate RS Ratings
 on:
   workflow_dispatch:
   schedule:
-    - cron: '15 12 * * 1-5'  # Every weekday 4:15 PM EST.
+    - cron: '20 16 * * 1-5'  # Every weekday 4:15 PM EST.
 
 jobs:
   fetch-rs:
