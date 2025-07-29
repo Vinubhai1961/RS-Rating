@@ -43,7 +43,7 @@ def generate_opportunity_report(source_file: str, output_file: str):
         (df_clean['3 Months Ago Percentile'] > 90) &
         (df_clean['6 Months Ago Percentile'] > 90)
     ]
-    leading_df = leading_df.sort_values(by=['Relative Strength Percentile', 'Rank'], ascending=[False, True])
+    leading_df = leading_df.sort_values(by=['6 Months Ago Percentile', '3 Months Ago Percentile', '1 Month Ago Percentile'], ascending=[False, False, False])
     leading_df = add_section_label(leading_df, "🔹 RS > 90: Leading Stocks")
 
     # Exclude Section 1 stocks from further filtering
@@ -57,7 +57,7 @@ def generate_opportunity_report(source_file: str, output_file: str):
         (df_remaining['1 Month Ago Percentile'] > df_remaining['3 Months Ago Percentile']) &
         (df_remaining['3 Months Ago Percentile'] > df_remaining['6 Months Ago Percentile'])
     ]
-    improving_df = improving_df.sort_values(by=['Relative Strength Percentile', 'Rank'], ascending=[False, True])
+    improving_df = improving_df.sort_values(by=['6 Months Ago Percentile', '3 Months Ago Percentile', '1 Month Ago Percentile'], ascending=[False, False, False])
     improving_df = add_section_label(improving_df, "🔸 RS ≥ 85: Top Movers")
 
     # Exclude Section 2 stocks from further filtering
@@ -72,7 +72,7 @@ def generate_opportunity_report(source_file: str, output_file: str):
         (df_remaining['6 Months Ago Percentile'].between(50, 99)) &
         (df_remaining['3 Months Ago Percentile'] > df_remaining['6 Months Ago Percentile'])
     ]
-    breakout_df = breakout_df.sort_values(by=['Relative Strength Percentile', 'Rank'], ascending=[False, True])
+    breakout_df = breakout_df.sort_values(by=['6 Months Ago Percentile', '3 Months Ago Percentile', '1 Month Ago Percentile'], ascending=[False, False, False])
     breakout_df = add_section_label(breakout_df, "🔹 Breakout: New Leader")
 
     # Combine all sections
