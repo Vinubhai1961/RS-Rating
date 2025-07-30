@@ -2785,6 +2785,13 @@
       "type": "Stock"
     }
   },
+  "AMBQ": {
+    "info": {
+      "industry": "Semiconductors",
+      "sector": "Technology",
+      "type": "Stock"
+    }
+  },
   "AMBR": {
     "info": {
       "industry": "Software - Infrastructure",
@@ -3538,6 +3545,13 @@
     "info": {
       "industry": "Oil & Gas E&P",
       "sector": "Energy",
+      "type": "Stock"
+    }
+  },
+  "APADU": {
+    "info": {
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -16629,6 +16643,13 @@
       "industry": "Electronic Components",
       "sector": "Technology",
       "type": "Stock"
+    }
+  },
+  "DAK": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
     }
   },
   "DAKT": {
@@ -31557,8 +31578,8 @@
   },
   "HERZ": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -35332,6 +35353,20 @@
     "info": {
       "industry": "Biotechnology",
       "sector": "Healthcare",
+      "type": "Stock"
+    }
+  },
+  "INAC": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
+  "INACR": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -53087,24 +53122,10 @@
       "type": "Stock"
     }
   },
-  "PET": {
-    "info": {
-      "industry": "Software - Application",
-      "sector": "Technology",
-      "type": "Stock"
-    }
-  },
   "PETS": {
     "info": {
       "industry": "Pharmaceutical Retailers",
       "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
-  "PETWW": {
-    "info": {
-      "industry": "Software - Application",
-      "sector": "Technology",
       "type": "Stock"
     }
   },
@@ -65757,6 +65778,13 @@
       "type": "Stock"
     }
   },
+  "STRC": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "STRD": {
     "info": {
       "industry": "Software - Application",
@@ -66914,8 +66942,8 @@
   },
   "TBHC": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Home Improvement Retail",
+      "sector": "Consumer Cyclical",
       "type": "Stock"
     }
   },
@@ -75921,7 +75949,21 @@
       "type": "ETF"
     }
   },
+  "XLBI": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "XLC": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
+  "XLCI": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -75935,7 +75977,21 @@
       "type": "ETF"
     }
   },
+  "XLEI": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "XLF": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
+  "XLFI": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -75956,7 +76012,21 @@
       "type": "ETF"
     }
   },
+  "XLII": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "XLK": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
+  "XLKI": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -75984,6 +76054,20 @@
       "type": "ETF"
     }
   },
+  "XLRI": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
+  "XLSI": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "XLSR": {
     "info": {
       "industry": "n/a",
@@ -75998,6 +76082,13 @@
       "type": "ETF"
     }
   },
+  "XLUI": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "XLV": {
     "info": {
       "industry": "n/a",
@@ -76005,7 +76096,21 @@
       "type": "ETF"
     }
   },
+  "XLVI": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "XLY": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
+  "XLYI": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -76913,6 +77018,13 @@
       "industry": "n/a",
       "sector": "n/a",
       "type": "ETF"
+    }
+  },
+  "YMAT": {
+    "info": {
+      "industry": "Specialty Chemicals",
+      "sector": "Basic Materials",
+      "type": "Stock"
     }
   },
   "YMAX": {
