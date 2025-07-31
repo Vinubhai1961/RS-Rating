@@ -10,15 +10,16 @@ from tqdm import tqdm
 from datetime import datetime
 import time
 import random
+import pandas as pd
 
 OUTPUT_DIR = "data"
 TICKER_INFO_FILE = os.path.join(OUTPUT_DIR, "ticker_info.json")
 TICKER_PRICE_PART_FILE = os.path.join(OUTPUT_DIR, f"ticker_price_part_%d.json")
 LOG_PATH = "logs/build_ticker_price.log"
-BATCH_SIZE = 250  # Adjusted for better load balancing
-BATCH_DELAY_RANGE = (15, 20)  # Increased for spacing
-MAX_BATCH_RETRIES = 3  # For resilience
-MAX_RETRY_TIMEOUT = 120  # Cap total retry time
+BATCH_SIZE = 250
+BATCH_DELAY_RANGE = (15, 20)
+MAX_BATCH_RETRIES = 3
+MAX_RETRY_TIMEOUT = 120
 PRICE_THRESHOLD = 5.0
 
 logging.basicConfig(
@@ -74,24 +75,26 @@ def process_batch(batch, ticker_info):
             failure_reasons = {"below_threshold": 0, "no_data": 0, "error": 0}
             yahoo_symbols = [yahoo_symbol(symbol) for symbol in batch]
             
-            # Attempt batch API call
             try:
                 yq = Ticker(yahoo_symbols)
-                hist = yq.history(period="1d")
+                hist = yq.history(period="5d")  # Use 5d to ensure data availability
                 summary_details = yq.summary_detail
+                logging.debug(f"Batch API response - hist type: {type(hist)}, keys: {list(hist.index.get_level_values(0)) if isinstance(hist, pd.DataFrame) else hist}")
+                logging.debug(f"Batch API response - summary_details: {list(summary_details.keys())}")
             except Exception as e:
                 logging.warning(f"Batch API call failed: {str(e)}. Processing tickers individually.")
                 hist = {}
                 summary_details = {}
-                # Process each ticker individually
                 for symbol in batch:
                     yahoo_sym = yahoo_symbol(symbol)
                     try:
                         yq_single = Ticker(yahoo_sym)
-                        hist_single = yq_single.history(period="1d")
+                        hist_single = yq_single.history(period="5d")
                         summary_single = yq_single.summary_detail
                         hist[yahoo_sym] = hist_single
                         summary_details[yahoo_sym] = summary_single.get(yahoo_sym, {})
+                        logging.debug(f"Individual ticker {symbol} - hist: {hist_single.shape if isinstance(hist_single, pd.DataFrame) else hist_single}")
+                        logging.debug(f"Individual ticker {symbol} - summary_details: {list(summary_single.keys())}")
                     except Exception as e:
                         logging.debug(f"Individual ticker {symbol} failed: {str(e)}")
                         failure_reasons["error"] += 1
@@ -100,12 +103,16 @@ def process_batch(batch, ticker_info):
             for symbol in batch:
                 yahoo_sym = yahoo_symbol(symbol)
                 try:
-                    # Extract the latest closing price
                     price = None
-                    if yahoo_sym in hist and not hist[yahoo_sym].empty:
-                        price = hist[yahoo_sym]['close'].iloc[-1]
+                    if yahoo_sym in hist and isinstance(hist[yahoo_sym], pd.DataFrame) and not hist[yahoo_sym].empty:
+                        if 'close' in hist[yahoo_sym].columns:
+                            price = hist[yahoo_sym]['close'].iloc[-1]
+                        else:
+                            logging.debug(f"No 'close' column for {symbol}: {hist[yahoo_sym].columns}")
+                            failure_reasons["no_data"] += 1
+                            continue
                     else:
-                        logging.debug(f"No price data for {symbol}")
+                        logging.debug(f"No price data for {symbol}: {hist.get(yahoo_sym, 'No history data')}")
                         failure_reasons["no_data"] += 1
                         continue
                     if price >= PRICE_THRESHOLD:
@@ -139,6 +146,8 @@ def process_batch(batch, ticker_info):
             
             failed_tickers = [s for s in batch if s not in prices]
             logging.info(f"Batch failure reasons: {failure_reasons}")
+            if failed_tickers:
+                logging.debug(f"Failed tickers: {failed_tickers[:10]}{'...' if len(failed_tickers) > 10 else ''}")
             return len(prices), failed_tickers, prices
         except Exception as e:
             if "429" in str(e) or "curl" in str(e).lower():
@@ -151,20 +160,20 @@ def process_batch(batch, ticker_info):
                 time.sleep(wait)
             else:
                 logging.error(f"Unexpected error in batch: {str(e)}. Processing tickers individually.")
-                # Fall back to individual ticker processing
                 prices = {}
                 failure_reasons = {"below_threshold": 0, "no_data": 0, "error": 0}
                 for symbol in batch:
                     try:
                         yahoo_sym = yahoo_symbol(symbol)
                         yq = Ticker(yahoo_sym)
-                        hist = yq.history(period="1d")
+                        hist = yq.history(period="5d")
                         details = yq.summary_detail.get(yahoo_sym, {})
-                        if hist.empty:
-                            logging.debug(f"No price data for {symbol}")
+                        if isinstance(hist, pd.DataFrame) and not hist.empty and 'close' in hist.columns:
+                            price = hist['close'].iloc[-1]
+                        else:
+                            logging.debug(f"No valid price data for {symbol}: {hist}")
                             failure_reasons["no_data"] += 1
                             continue
-                        price = hist['close'].iloc[-1]
                         if price >= PRICE_THRESHOLD:
                             info = ticker_info.get(symbol, {}).get("info", {})
                             if not details:
@@ -194,9 +203,11 @@ def process_batch(batch, ticker_info):
                         continue
                 failed_tickers = [s for s in batch if s not in prices]
                 logging.info(f"Batch failure reasons (individual processing): {failure_reasons}")
+                if failed_tickers:
+                    logging.debug(f"Failed tickers: {failed_tickers[:10]}{'...' if len(failed_tickers) > 10 else ''}")
                 return len(prices), failed_tickers, prices
     return 0, batch, {}
-    
+
 def main(part_index=None, part_total=None, verbose=False):
     start_time = time.time()
     ensure_dirs()
@@ -221,17 +232,34 @@ def main(part_index=None, part_total=None, verbose=False):
 
     batches = [part_tickers[i:i + BATCH_SIZE] for i in range(0, len(part_tickers), BATCH_SIZE)]
     all_prices = {}
+    all_failed_tickers = []
 
     for idx, batch in enumerate(tqdm(batches, desc="Processing Price Batches"), 1):
         updated, failed_tickers, prices = process_batch(batch, ticker_info)
         all_prices.update(prices)
+        all_failed_tickers.extend(failed_tickers)
         logging.info(f"Batch {idx}/{len(batches)} - Fetched prices for {updated} tickers")
         if failed_tickers:
-            logging.debug(f"Batch {idx}: Failed tickers: {failed_tickers}")
+            logging.debug(f"Batch {idx}: Failed tickers: {failed_tickers[:10]}{'...' if len(failed_tickers) > 10 else ''}")
         if idx < len(batches):
             delay = random.uniform(*BATCH_DELAY_RANGE)
             logging.debug(f"Sleeping {delay:.1f}s before next batch...")
             time.sleep(delay)
+
+    # Process failed tickers in batches at the end
+    if all_failed_tickers:
+        logging.info(f"Processing {len(all_failed_tickers)} failed tickers in batches...")
+        failed_batches = [all_failed_tickers[i:i + BATCH_SIZE] for i in range(0, len(all_failed_tickers), BATCH_SIZE)]
+        for idx, batch in enumerate(tqdm(failed_batches, desc="Processing Failed Tickers"), 1):
+            updated, newly_failed, prices = process_batch(batch, ticker_info)
+            all_prices.update(prices)
+            logging.info(f"Failed Tickers Batch {idx}/{len(failed_batches)} - Fetched prices for {updated} tickers")
+            if newly_failed:
+                logging.debug(f"Failed Tickers Batch {idx}: Still failed: {newly_failed[:10]}{'...' if len(newly_failed) > 10 else ''}")
+            if idx < len(failed_batches):
+                delay = random.uniform(*BATCH_DELAY_RANGE)
+                logging.debug(f"Sleeping {delay:.1f}s before next failed batch...")
+                time.sleep(delay)
 
     output_file = TICKER_PRICE_PART_FILE % part_index
     with open(output_file, "w", encoding="utf-8") as f:
