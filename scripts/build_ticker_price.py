@@ -74,9 +74,10 @@ def process_batch(batch, ticker_info):
             failure_reasons = {"below_threshold": 0, "no_data": 0, "error": 0}
             # Convert all symbols to Yahoo format
             yahoo_symbols = [yahoo_symbol(symbol) for symbol in batch]
-            # Fetch history for all tickers in one API call
+            # Fetch history and summary details for all tickers in one API call
             yq = Ticker(yahoo_symbols)
             hist = yq.history(period="1d")
+            summary_details = yq.summary_detail
             
             for symbol in batch:
                 yahoo_sym = yahoo_symbol(symbol)
@@ -88,12 +89,20 @@ def process_batch(batch, ticker_info):
                         price = None
                     if price is not None and price >= PRICE_THRESHOLD:
                         info = ticker_info.get(symbol, {}).get("info", {})
+                        # Extract additional attributes from summary_detail
+                        details = summary_details.get(yahoo_sym, {})
                         prices[symbol] = {
                             "info": {
                                 "industry": info.get("industry", "n/a"),
                                 "sector": info.get("sector", "n/a"),
                                 "type": info.get("type", "Unknown"),
-                                "Price": price
+                                "Price": price,
+                                "volume": details.get("volume", None),
+                                "averageVolume": details.get("averageVolume", None),
+                                "averageVolume10days": details.get("averageVolume10days", None),
+                                "marketCap": details.get("marketCap", None),
+                                "fiftyTwoWeekLow": details.get("fiftyTwoWeekLow", None),
+                                "fiftyTwoWeekHigh": details.get("fiftyTwoWeekHigh", None)
                             }
                         }
                     else:
