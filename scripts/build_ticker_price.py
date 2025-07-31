@@ -10,17 +10,18 @@ from tqdm import tqdm
 from datetime import datetime
 import time
 import random
-import pandas as pd
 
 OUTPUT_DIR = "data"
 TICKER_INFO_FILE = os.path.join(OUTPUT_DIR, "ticker_info.json")
-TICKER_PRICE_PART_FILE = os.path.join(OUTPUT_DIR, f"ticker_price_part_%d.json")
+TICKER_PRICE_PART_FILE = os.path.join(OUTPUT_DIR, "ticker_price_part_%d.json")
+UNRESOLVED_PRICE_TICKERS = os.path.join(OUTPUT_DIR, "unresolved_price_tickers.txt")
 LOG_PATH = "logs/build_ticker_price.log"
 BATCH_SIZE = 250
-BATCH_DELAY_RANGE = (15, 20)
+BATCH_DELAY_RANGE = (20, 30)  # Increased for two API calls
 MAX_BATCH_RETRIES = 3
 MAX_RETRY_TIMEOUT = 120
-PRICE_THRESHOLD = 5.0
+RETRY_SUBPASS = True
+PRICE_THRESHOLD = 5.0  # Hardcoded minimum price threshold
 
 logging.basicConfig(
     level=logging.INFO,
@@ -66,70 +67,78 @@ def partition_tickers(tickers, part_index, part_total):
 def yahoo_symbol(symbol: str) -> str:
     return symbol.replace(".", "-")
 
-def process_batch(batch, ticker_info, is_retry_batch=False):
-    prices = {}
-    failure_reasons = {"below_threshold": 0, "no_data": 0, "error": 0}
-    yahoo_symbols = [yahoo_symbol(symbol) for symbol in batch]
-    
-    # Process tickers individually to avoid batch failures
-    for symbol in batch:
-        yahoo_sym = yahoo_symbol(symbol)
-        for attempt in range(MAX_BATCH_RETRIES):
-            try:
-                yq = Ticker(yahoo_sym)
-                summary_details = yq.summary_detail
-                details = summary_details.get(yahoo_sym, {})
-                logging.debug(f"Ticker {symbol} {'(retry)' if is_retry_batch else ''} - summary_details: {list(details.keys()) if details else 'None'}")
-                
-                # Use regularMarketPrice or previousClose for price
-                price = details.get("regularMarketPrice", details.get("previousClose", None))
-                if price is None:
-                    logging.debug(f"No valid price data for {symbol} {'(retry)' if is_retry_batch else ''}: {details}")
-                    failure_reasons["no_data"] += 1
-                    break
-                
-                if price >= PRICE_THRESHOLD:
+def process_batch(batch, ticker_info):
+    start_time = time.time()
+    total_wait = 0
+    for attempt in range(MAX_BATCH_RETRIES):
+        try:
+            prices = {}
+            failure_reasons = {"no_price": 0, "no_summary": 0, "below_threshold": 0, "error": 0}
+            yahoo_symbols = [yahoo_symbol(symbol) for symbol in batch]
+            yq = Ticker(yahoo_symbols)
+            hist = yq.history(period="1d")
+            summary_details = yq.summary_detail
+            
+            for symbol in batch:
+                yahoo_sym = yahoo_symbol(symbol)
+                try:
+                    # Extract price from history
+                    price = None
+                    if yahoo_sym in hist.index.get_level_values(0):
+                        price = hist.loc[yahoo_sym]['close'].iloc[-1] if not hist.loc[yahoo_sym].empty else None
+                    
+                    # Extract summary details
+                    summary = summary_details.get(yahoo_sym, {}) if isinstance(summary_details, dict) else {}
+                    
+                    # Validate both datasets
+                    if price is None:
+                        logging.debug(f"Skipping {symbol}: No price data")
+                        failure_reasons["no_price"] += 1
+                        continue
+                    if not summary or "volume" not in summary:
+                        logging.debug(f"Skipping {symbol}: No summary data")
+                        failure_reasons["no_summary"] += 1
+                        continue
+                    if price < PRICE_THRESHOLD:
+                        logging.debug(f"Skipping {symbol}: Price {price} below threshold {PRICE_THRESHOLD}")
+                        failure_reasons["below_threshold"] += 1
+                        continue
+                    
+                    # Combine data
                     info = ticker_info.get(symbol, {}).get("info", {})
-                    if not details:
-                        logging.debug(f"No summary details for {symbol} {'(retry)' if is_retry_batch else ''}")
-                        failure_reasons["no_data"] += 1
-                        break
                     prices[symbol] = {
                         "info": {
                             "industry": info.get("industry", "n/a"),
                             "sector": info.get("sector", "n/a"),
                             "type": info.get("type", "Unknown"),
                             "Price": price,
-                            "volume": details.get("volume", None),
-                            "averageVolume": details.get("averageVolume", None),
-                            "averageVolume10days": details.get("averageVolume10days", None),
-                            "marketCap": details.get("marketCap", None),
-                            "fiftyTwoWeekLow": details.get("fiftyTwoWeekLow", None),
-                            "fiftyTwoWeekHigh": details.get("fiftyTwoWeekHigh", None)
+                            "volume": summary.get("volume"),
+                            "averageVolume": summary.get("averageVolume"),
+                            "averageVolume10days": summary.get("averageVolume10days"),
+                            "fiftyTwoWeekLow": summary.get("fiftyTwoWeekLow"),
+                            "fiftyTwoWeekHigh": summary.get("fiftyTwoWeekHigh")
                         }
                     }
-                else:
-                    logging.debug(f"Skipping {symbol} {'(retry)' if is_retry_batch else ''}: Price {price} below threshold")
-                    failure_reasons["below_threshold"] += 1
-                break  # Success, move to next ticker
-            except Exception as e:
-                if "429" in str(e) or "curl" in str(e).lower():
-                    wait = min((2 ** attempt) * random.uniform(5, 10), MAX_RETRY_TIMEOUT)
-                    logging.warning(f"Ticker {symbol} {'(retry)' if is_retry_batch else ''} error (attempt {attempt+1}/{MAX_BATCH_RETRIES}): {str(e)}. Retrying in {wait:.1f}s.")
-                    time.sleep(wait)
-                    if attempt == MAX_BATCH_RETRIES - 1:
-                        logging.debug(f"Max retries reached for {symbol} {'(retry)' if is_retry_batch else ''}: {str(e)}")
-                        failure_reasons["error"] += 1
-                else:
-                    logging.debug(f"Ticker {symbol} {'(retry)' if is_retry_batch else ''} failed: {str(e)}")
+                except Exception as e:
+                    logging.debug(f"Failed to process {symbol}: {e}")
                     failure_reasons["error"] += 1
+            
+            failed_tickers = [s for s in batch if s not in prices]
+            logging.info(f"Batch failure reasons: {failure_reasons}")
+            return len(prices), failed_tickers, prices
+        except Exception as e:
+            if "429" in str(e) or "curl" in str(e).lower():
+                wait = min((2 ** attempt) * random.uniform(5, 10), MAX_RETRY_TIMEOUT - total_wait)
+                total_wait += wait
+                if total_wait >= MAX_RETRY_TIMEOUT:
+                    logging.warning(f"Max retry timeout reached for batch after {total_wait:.1f}s. Skipping.")
                     break
-    
-    failed_tickers = [s for s in batch if s not in prices]
-    logging.info(f"Batch failure reasons {'(retry)' if is_retry_batch else ''}: {failure_reasons}")
-    if failed_tickers:
-        logging.debug(f"Failed tickers {'(retry)' if is_retry_batch else ''}: {failed_tickers[:10]}{'...' if len(failed_tickers) > 10 else ''}")
-    return len(prices), failed_tickers, prices
+                logging.warning(f"Batch error (attempt {attempt+1}/{MAX_BATCH_RETRIES}): {e}. Retrying in {wait:.1f}s.")
+                time.sleep(wait)
+            else:
+                logging.error(f"Unexpected error in batch: {e}. Aborting batch.")
+                break
+    return 0, batch, {}
 
 def main(part_index=None, part_total=None, verbose=False):
     start_time = time.time()
@@ -155,39 +164,41 @@ def main(part_index=None, part_total=None, verbose=False):
 
     batches = [part_tickers[i:i + BATCH_SIZE] for i in range(0, len(part_tickers), BATCH_SIZE)]
     all_prices = {}
-    all_failed_tickers = []
+    all_failed = []
 
     for idx, batch in enumerate(tqdm(batches, desc="Processing Price Batches"), 1):
         updated, failed_tickers, prices = process_batch(batch, ticker_info)
         all_prices.update(prices)
-        all_failed_tickers.extend(failed_tickers)
-        logging.info(f"Batch {idx}/{len(batches)} - Fetched prices for {updated} tickers")
+        all_failed.extend(failed_tickers)
+        logging.info(f"Batch {idx}/{len(batches)} - Fetched data for {updated} tickers")
         if failed_tickers:
-            logging.debug(f"Batch {idx}: Failed tickers: {failed_tickers[:10]}{'...' if len(failed_tickers) > 10 else ''}")
+            logging.debug(f"Batch {idx}: Failed tickers: {failed_tickers}")
         if idx < len(batches):
             delay = random.uniform(*BATCH_DELAY_RANGE)
             logging.debug(f"Sleeping {delay:.1f}s before next batch...")
             time.sleep(delay)
 
-    # Process failed tickers in batches at the end
-    if all_failed_tickers:
-        logging.info(f"Processing {len(all_failed_tickers)} failed tickers in batches...")
-        failed_batches = [all_failed_tickers[i:i + BATCH_SIZE] for i in range(0, len(all_failed_tickers), BATCH_SIZE)]
-        for idx, batch in enumerate(tqdm(failed_batches, desc="Processing Failed Tickers"), 1):
-            updated, newly_failed, prices = process_batch(batch, ticker_info, is_retry_batch=True)
+    if RETRY_SUBPASS and all_failed:
+        unresolved_unique = sorted(set(all_failed))
+        logging.info(f"Retry sub-pass for {len(unresolved_unique)} unresolved tickers...")
+        retry_batches = [unresolved_unique[i:i + BATCH_SIZE] for i in range(0, len(unresolved_unique), BATCH_SIZE)]
+        for idx, batch in enumerate(tqdm(retry_batches, desc="Retry Price Batches"), 1):
+            updated, failed_tickers, prices = process_batch(batch, ticker_info)
             all_prices.update(prices)
-            logging.info(f"Failed Tickers Batch {idx}/{len(failed_batches)} - Fetched prices for {updated} tickers")
-            if newly_failed:
-                logging.debug(f"Failed Tickers Batch {idx}: Still failed: {newly_failed[:10]}{'...' if len(newly_failed) > 10 else ''}")
-            if idx < len(failed_batches):
-                delay = random.uniform(*BATCH_DELAY_RANGE)
-                logging.debug(f"Sleeping {delay:.1f}s before next failed batch...")
-                time.sleep(delay)
+            logging.info(f"Retry Batch {idx}/{len(retry_batches)} - Fetched data for {updated} tickers")
+            if failed_tickers:
+                logging.debug(f"Retry Batch {idx}: Failed tickers: {failed_tickers}")
+            time.sleep(random.uniform(5, 10))
+
+    unresolved_final = sorted(set(all_failed))
+    with open(UNRESOLVED_PRICE_TICKERS, "w") as f:
+        f.write("\n".join(unresolved_final))
+    logging.info(f"Saved {len(unresolved_final)} unresolved tickers to {UNRESOLVED_PRICE_TICKERS}")
 
     output_file = TICKER_PRICE_PART_FILE % part_index
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(all_prices, f, indent=2)
-    logging.info(f"Saved {len(all_prices)} prices to {output_file}")
+    logging.info(f"Saved {len(all_prices)} entries to {output_file}")
 
     elapsed = time.time() - start_time
     logging.info("Price build completed. Elapsed: %.1fs", elapsed)
@@ -198,5 +209,4 @@ if __name__ == "__main__":
     parser.add_argument("--part-total", type=int, required=True)
     parser.add_argument("--verbose", action="store_true")
     args = parser.parse_args()
-
     main(part_index=args.part_index, part_total=args.part_total, verbose=args.verbose)
