@@ -72,25 +72,49 @@ def process_batch(batch, ticker_info):
         try:
             prices = {}
             failure_reasons = {"below_threshold": 0, "no_data": 0, "error": 0}
-            # Convert all symbols to Yahoo format
             yahoo_symbols = [yahoo_symbol(symbol) for symbol in batch]
-            # Fetch history and summary details for all tickers in one API call
-            yq = Ticker(yahoo_symbols)
-            hist = yq.history(period="1d")
-            summary_details = yq.summary_detail
+            
+            # Attempt batch API call
+            try:
+                yq = Ticker(yahoo_symbols)
+                hist = yq.history(period="1d")
+                summary_details = yq.summary_detail
+            except Exception as e:
+                logging.warning(f"Batch API call failed: {str(e)}. Processing tickers individually.")
+                hist = {}
+                summary_details = {}
+                # Process each ticker individually
+                for symbol in batch:
+                    yahoo_sym = yahoo_symbol(symbol)
+                    try:
+                        yq_single = Ticker(yahoo_sym)
+                        hist_single = yq_single.history(period="1d")
+                        summary_single = yq_single.summary_detail
+                        hist[yahoo_sym] = hist_single
+                        summary_details[yahoo_sym] = summary_single.get(yahoo_sym, {})
+                    except Exception as e:
+                        logging.debug(f"Individual ticker {symbol} failed: {str(e)}")
+                        failure_reasons["error"] += 1
+                        continue
             
             for symbol in batch:
                 yahoo_sym = yahoo_symbol(symbol)
                 try:
-                    # Extract the latest closing price for the symbol
-                    if yahoo_sym in hist.index.get_level_values(0):
-                        price = hist.loc[yahoo_sym]['close'].iloc[-1] if not hist.loc[yahoo_sym].empty else None
+                    # Extract the latest closing price
+                    price = None
+                    if yahoo_sym in hist and not hist[yahoo_sym].empty:
+                        price = hist[yahoo_sym]['close'].iloc[-1]
                     else:
-                        price = None
-                    if price is not None and price >= PRICE_THRESHOLD:
+                        logging.debug(f"No price data for {symbol}")
+                        failure_reasons["no_data"] += 1
+                        continue
+                    if price >= PRICE_THRESHOLD:
                         info = ticker_info.get(symbol, {}).get("info", {})
-                        # Extract additional attributes from summary_detail
                         details = summary_details.get(yahoo_sym, {})
+                        if not details:
+                            logging.debug(f"No summary details for {symbol}")
+                            failure_reasons["no_data"] += 1
+                            continue
                         prices[symbol] = {
                             "info": {
                                 "industry": info.get("industry", "n/a"),
@@ -106,11 +130,12 @@ def process_batch(batch, ticker_info):
                             }
                         }
                     else:
-                        logging.debug(f"Skipping {symbol}: Price {price} below threshold or no data")
-                        failure_reasons["below_threshold" if price is not None else "no_data"] += 1
+                        logging.debug(f"Skipping {symbol}: Price {price} below threshold")
+                        failure_reasons["below_threshold"] += 1
                 except Exception as e:
-                    logging.debug(f"Failed to process {symbol}: {e}")
+                    logging.debug(f"Failed to process {symbol}: {str(e)}")
                     failure_reasons["error"] += 1
+                    continue
             
             failed_tickers = [s for s in batch if s not in prices]
             logging.info(f"Batch failure reasons: {failure_reasons}")
@@ -122,13 +147,56 @@ def process_batch(batch, ticker_info):
                 if total_wait >= MAX_RETRY_TIMEOUT:
                     logging.warning(f"Max retry timeout reached for batch after {total_wait:.1f}s. Skipping.")
                     break
-                logging.warning(f"Batch error (attempt {attempt+1}/{MAX_BATCH_RETRIES}): {e}. Retrying in {wait:.1f}s.")
+                logging.warning(f"Batch error (attempt {attempt+1}/{MAX_BATCH_RETRIES}): {str(e)}. Retrying in {wait:.1f}s.")
                 time.sleep(wait)
             else:
-                logging.error(f"Unexpected error in batch: {e}. Aborting batch.")
-                break
+                logging.error(f"Unexpected error in batch: {str(e)}. Processing tickers individually.")
+                # Fall back to individual ticker processing
+                prices = {}
+                failure_reasons = {"below_threshold": 0, "no_data": 0, "error": 0}
+                for symbol in batch:
+                    try:
+                        yahoo_sym = yahoo_symbol(symbol)
+                        yq = Ticker(yahoo_sym)
+                        hist = yq.history(period="1d")
+                        details = yq.summary_detail.get(yahoo_sym, {})
+                        if hist.empty:
+                            logging.debug(f"No price data for {symbol}")
+                            failure_reasons["no_data"] += 1
+                            continue
+                        price = hist['close'].iloc[-1]
+                        if price >= PRICE_THRESHOLD:
+                            info = ticker_info.get(symbol, {}).get("info", {})
+                            if not details:
+                                logging.debug(f"No summary details for {symbol}")
+                                failure_reasons["no_data"] += 1
+                                continue
+                            prices[symbol] = {
+                                "info": {
+                                    "industry": info.get("industry", "n/a"),
+                                    "sector": info.get("sector", "n/a"),
+                                    "type": info.get("type", "Unknown"),
+                                    "Price": price,
+                                    "volume": details.get("volume", None),
+                                    "averageVolume": details.get("averageVolume", None),
+                                    "averageVolume10days": details.get("averageVolume10days", None),
+                                    "marketCap": details.get("marketCap", None),
+                                    "fiftyTwoWeekLow": details.get("fiftyTwoWeekLow", None),
+                                    "fiftyTwoWeekHigh": details.get("fiftyTwoWeekHigh", None)
+                                }
+                            }
+                        else:
+                            logging.debug(f"Skipping {symbol}: Price {price} below threshold")
+                            failure_reasons["below_threshold"] += 1
+                    except Exception as e:
+                        logging.debug(f"Individual ticker {symbol} failed: {str(e)}")
+                        failure_reasons["error"] += 1
+                        continue
+                failed_tickers = [s for s in batch if s not in prices]
+                logging.info(f"Batch failure reasons (individual processing): {failure_reasons}")
+                return len(prices), failed_tickers, prices
     return 0, batch, {}
-
+    
 def main(part_index=None, part_total=None, verbose=False):
     start_time = time.time()
     ensure_dirs()
