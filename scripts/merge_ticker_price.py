@@ -6,7 +6,6 @@ import logging
 import time
 from datetime import datetime
 
-# Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -17,14 +16,11 @@ def merge_price_files(artifacts_dir, expected_parts=None):
     output_file = os.path.join("data", "ticker_price.json")
     merged_data = {}
 
-    # Validate input directory
     if not os.path.exists(artifacts_dir):
         logging.error(f"Input directory {artifacts_dir} does not exist")
         return
 
     logging.info(f"Searching for ticker_price_part_*.json files in {artifacts_dir}")
-
-    # Find all ticker_price_part_*.json files
     part_files = sorted([f for f in os.listdir(artifacts_dir) if f.startswith("ticker_price_part_") and f.endswith(".json")])
     if not part_files:
         logging.error(f"No ticker_price_part_*.json files found in {artifacts_dir}")
@@ -34,15 +30,26 @@ def merge_price_files(artifacts_dir, expected_parts=None):
     if expected_parts is not None and len(part_files) < expected_parts:
         logging.warning(f"Expected {expected_parts} part files, but found only {len(part_files)}")
 
-    # Merge data from each part file
     for filename in part_files:
         file_path = os.path.join(artifacts_dir, filename)
         try:
             with open(file_path, "r", encoding="utf-8") as f:
                 part_data = json.load(f)
                 logging.info(f"Loaded {len(part_data)} tickers from {filename}")
-                # Merge data, updating with the latest values for any duplicate keys
-                merged_data.update(part_data)
+                for symbol, data in part_data.items():
+                    if "info" not in data or not isinstance(data["info"], dict):
+                        logging.warning(f"Invalid data for {symbol} in {filename}: missing or invalid 'info'")
+                        continue
+                    info = data["info"]
+                    required_fields = ["Price", "volume", "averageVolume", "averageVolume10days", "fiftyTwoWeekLow", "fiftyTwoWeekHigh"]
+                    missing_fields = [f for f in required_fields if f not in info or info[f] is None]
+                    if missing_fields:
+                        logging.warning(f"Missing fields for {symbol} in {filename}: {missing_fields}")
+                        continue
+                    if info["Price"] <= 0 or info["volume"] < 0:
+                        logging.warning(f"Invalid values for {symbol} in {filename}: Price={info['Price']}, volume={info['volume']}")
+                        continue
+                    merged_data[symbol] = data
         except json.JSONDecodeError as e:
             logging.error(f"Failed to parse {filename}: {e}")
         except Exception as e:
@@ -52,7 +59,6 @@ def merge_price_files(artifacts_dir, expected_parts=None):
         logging.error("No valid data merged from part files. Skipping output file creation.")
         return
 
-    # Write the merged data to the output file with sorted keys
     os.makedirs("data", exist_ok=True)
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(merged_data, f, indent=2, sort_keys=True)
