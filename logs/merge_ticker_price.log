@@ -109,3 +109,46 @@
 2025-07-31 21:42:45,733 [INFO] Merged data saved to data/ticker_price.json with 2067 entries
 2025-07-31 21:42:45,734 [INFO] Price merge completed. Elapsed time: 0.0s
 >>>>>>> Stashed changes
+2025-07-31 23:49:02,256 [INFO] Starting price merge process at 11:49 PM EDT on Thursday, July 31, 2025
+2025-07-31 23:49:02,256 [INFO] Searching for ticker_price_part_*.json files in data
+2025-07-31 23:49:02,257 [INFO] Found 4 part files to merge: ['ticker_price_part_0.json', 'ticker_price_part_1.json', 'ticker_price_part_2.json', 'ticker_price_part_3.json']
+2025-07-31 23:49:02,263 [INFO] Loaded 2147 tickers from ticker_price_part_0.json
+2025-07-31 23:49:02,264 [WARNING] Missing fields for BCARU in ticker_price_part_0.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,264 [WARNING] Missing fields for BILT in ticker_price_part_0.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,264 [WARNING] Missing fields for BLUW in ticker_price_part_0.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,265 [WARNING] Missing fields for BRRWU in ticker_price_part_0.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,265 [WARNING] Missing fields for BULU in ticker_price_part_0.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,265 [WARNING] Missing fields for CMPOW in ticker_price_part_0.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,265 [WARNING] Missing fields for CORZW in ticker_price_part_0.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,265 [WARNING] Missing fields for CORZZ in ticker_price_part_0.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,266 [WARNING] Missing fields for DHCNL in ticker_price_part_0.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,266 [WARNING] Missing fields for DKNX in ticker_price_part_0.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,266 [WARNING] Missing fields for DKUP in ticker_price_part_0.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,273 [INFO] Loaded 2251 tickers from ticker_price_part_1.json
+2025-07-31 23:49:02,274 [WARNING] Missing fields for EMPD in ticker_price_part_1.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,274 [WARNING] Missing fields for FIG in ticker_price_part_1.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,275 [WARNING] Missing fields for GECCZ in ticker_price_part_1.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,282 [INFO] Loaded 2104 tickers from ticker_price_part_2.json
+2025-07-31 23:49:02,282 [WARNING] Missing fields for LCFYW in ticker_price_part_2.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,283 [WARNING] Missing fields for NAKAW in ticker_price_part_2.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,283 [WARNING] Missing fields for NNAVW in ticker_price_part_2.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,283 [WARNING] Missing fields for NVAWW in ticker_price_part_2.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,284 [WARNING] Missing fields for OCSAW in ticker_price_part_2.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,284 [WARNING] Missing fields for RCTR in ticker_price_part_2.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,291 [INFO] Loaded 2196 tickers from ticker_price_part_3.json
+2025-07-31 23:49:02,291 [WARNING] Missing fields for RGTIW in ticker_price_part_3.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,292 [WARNING] Missing fields for SFB in ticker_price_part_3.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,292 [WARNING] Missing fields for SI in ticker_price_part_3.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,293 [WARNING] Missing fields for XLBI in ticker_price_part_3.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,293 [WARNING] Missing fields for XLCI in ticker_price_part_3.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,293 [WARNING] Missing fields for XLEI in ticker_price_part_3.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,293 [WARNING] Missing fields for XLFI in ticker_price_part_3.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,293 [WARNING] Missing fields for XLII in ticker_price_part_3.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,293 [WARNING] Missing fields for XLKI in ticker_price_part_3.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,294 [WARNING] Missing fields for XLRI in ticker_price_part_3.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,294 [WARNING] Missing fields for XLSI in ticker_price_part_3.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,294 [WARNING] Missing fields for XLUI in ticker_price_part_3.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,294 [WARNING] Missing fields for XLVI in ticker_price_part_3.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,294 [WARNING] Missing fields for XLYI in ticker_price_part_3.json: ['averageVolume', 'averageVolume10days']
+2025-07-31 23:49:02,410 [INFO] Merged data saved to data/ticker_price.json with 8664 entries
+2025-07-31 23:49:02,412 [INFO] Price merge completed. Elapsed time: 0.2s
