@@ -88,3 +88,12 @@
 2025-07-31 18:08:45,439 [INFO] Loaded 0 tickers from ticker_price_part_3.json
 2025-07-31 18:08:45,439 [ERROR] No valid data merged from part files. Skipping output file creation.
 2025-07-31 18:08:45,439 [INFO] Price merge completed. Elapsed time: 0.0s
+2025-07-31 21:07:18,674 [INFO] Starting price merge process at 09:07 PM EDT on Thursday, July 31, 2025
+2025-07-31 21:07:18,674 [INFO] Searching for ticker_price_part_*.json files in data
+2025-07-31 21:07:18,674 [INFO] Found 4 part files to merge: ['ticker_price_part_0.json', 'ticker_price_part_1.json', 'ticker_price_part_2.json', 'ticker_price_part_3.json']
+2025-07-31 21:07:18,675 [INFO] Loaded 125 tickers from ticker_price_part_0.json
+2025-07-31 21:07:18,675 [INFO] Loaded 141 tickers from ticker_price_part_1.json
+2025-07-31 21:07:18,682 [INFO] Loaded 2219 tickers from ticker_price_part_2.json
+2025-07-31 21:07:18,689 [INFO] Loaded 2254 tickers from ticker_price_part_3.json
+2025-07-31 21:07:18,754 [INFO] Merged data saved to data/ticker_price.json with 4739 entries
+2025-07-31 21:07:18,755 [INFO] Price merge completed. Elapsed time: 0.1s
