@@ -209,4 +209,5 @@ if __name__ == "__main__":
     parser.add_argument("--part-total", type=int, required=True)
     parser.add_argument("--verbose", action="store_true")
     args = parser.parse_args()
+
     main(part_index=args.part_index, part_total=args.part_total, verbose=args.verbose)
