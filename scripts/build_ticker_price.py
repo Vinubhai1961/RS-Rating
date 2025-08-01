@@ -17,8 +17,8 @@ TICKER_PRICE_PART_FILE = os.path.join(OUTPUT_DIR, "ticker_price_part_%d.json")
 UNRESOLVED_PRICE_TICKERS = os.path.join(OUTPUT_DIR, "unresolved_price_tickers.txt")
 LOG_PATH = "logs/build_ticker_price.log"
 BATCH_SIZE = 250
-BATCH_DELAY_RANGE = (15, 20)  # Increased for two API calls
-MAX_BATCH_RETRIES = 2
+BATCH_DELAY_RANGE = (20, 30)  # Increased for two API calls
+MAX_BATCH_RETRIES = 3
 MAX_RETRY_TIMEOUT = 120
 RETRY_SUBPASS = True
 PRICE_THRESHOLD = 5.0  # Hardcoded minimum price threshold
@@ -73,7 +73,7 @@ def process_batch(batch, ticker_info):
     for attempt in range(MAX_BATCH_RETRIES):
         try:
             prices = {}
-            failure_reasons = {"no_price": 0, "no_summary": 0, "below_threshold": 0, "error": 0}
+            failure_reasons = {"no_price": 0, "below_threshold": 0, "error": 0}
             yahoo_symbols = [yahoo_symbol(symbol) for symbol in batch]
             yq = Ticker(yahoo_symbols)
             hist = yq.history(period="1d")
@@ -87,48 +87,52 @@ def process_batch(batch, ticker_info):
                     if yahoo_sym in hist.index.get_level_values(0):
                         price = hist.loc[yahoo_sym]['close'].iloc[-1] if not hist.loc[yahoo_sym].empty else None
                     
-                    # Extract summary details
-                    summary = summary_details.get(yahoo_sym, {}) if isinstance(summary_details, dict) else {}
-                    
-                    # Validate both datasets
+                    # Validate price
                     if price is None or not isinstance(price, (int, float)):
                         logging.debug(f"Skipping {symbol}: No or invalid price data")
                         failure_reasons["no_price"] += 1
-                        continue
-                    if not summary or any(key not in summary for key in ["volume", "averageVolume", "averageVolume10days", "fiftyTwoWeekLow", "fiftyTwoWeekHigh", "marketCap"]):
-                        logging.debug(f"Skipping {symbol}: Missing summary data")
-                        failure_reasons["no_summary"] += 1
                         continue
                     if price < PRICE_THRESHOLD:
                         logging.debug(f"Skipping {symbol}: Price {price} below threshold {PRICE_THRESHOLD}")
                         failure_reasons["below_threshold"] += 1
                         continue
                     
-                    # Validate numerical fields
-                    if not isinstance(summary["volume"], int) or summary["volume"] < 0:
-                        logging.debug(f"Skipping {symbol}: Invalid volume {summary['volume']}")
-                        failure_reasons["no_summary"] += 1
-                        continue
-                    if not isinstance(summary["averageVolume"], int) or summary["averageVolume"] < 0:
-                        logging.debug(f"Skipping {symbol}: Invalid averageVolume {summary['averageVolume']}")
-                        failure_reasons["no_summary"] += 1
-                        continue
-                    if not isinstance(summary["averageVolume10days"], int) or summary["averageVolume10days"] < 0:
-                        logging.debug(f"Skipping {symbol}: Invalid averageVolume10days {summary['averageVolume10days']}")
-                        failure_reasons["no_summary"] += 1
-                        continue
-                    if not isinstance(summary["fiftyTwoWeekLow"], (int, float)) or summary["fiftyTwoWeekLow"] <= 0:
-                        logging.debug(f"Skipping {symbol}: Invalid fiftyTwoWeekLow {summary['fiftyTwoWeekLow']}")
-                        failure_reasons["no_summary"] += 1
-                        continue
-                    if not isinstance(summary["fiftyTwoWeekHigh"], (int, float)) or summary["fiftyTwoWeekHigh"] <= 0:
-                        logging.debug(f"Skipping {symbol}: Invalid fiftyTwoWeekHigh {summary['fiftyTwoWeekHigh']}")
-                        failure_reasons["no_summary"] += 1
-                        continue
-                    if not isinstance(summary["marketCap"], (int, float)) or summary["marketCap"] < 0:
-                        logging.debug(f"Skipping {symbol}: Invalid marketCap {summary['marketCap']}")
-                        failure_reasons["no_summary"] += 1
-                        continue
+                    # Extract summary details, set to None if missing or invalid
+                    summary = summary_details.get(yahoo_sym, {}) if isinstance(summary_details, dict) else {}
+                    none_fields = []
+                    
+                    volume = summary.get("volume")
+                    if volume is None or not isinstance(volume, int) or volume < 0:
+                        none_fields.append("DVol")
+                        volume = None
+                    
+                    avg_volume = summary.get("averageVolume")
+                    if avg_volume is None or not isinstance(avg_volume, int) or avg_volume < 0:
+                        none_fields.append("AvgVol")
+                        avg_volume = None
+                    
+                    avg_volume_10days = summary.get("averageVolume10days")
+                    if avg_volume_10days is None or not isinstance(avg_volume_10days, int) or avg_volume_10days < 0:
+                        none_fields.append("AvgVol10")
+                        avg_volume_10days = None
+                    
+                    fifty_two_week_low = summary.get("fiftyTwoWeekLow")
+                    if fifty_two_week_low is None or not isinstance(fifty_two_week_low, (int, float)) or fifty_two_week_low <= 0:
+                        none_fields.append("52WKL")
+                        fifty_two_week_low = None
+                    
+                    fifty_two_week_high = summary.get("fiftyTwoWeekHigh")
+                    if fifty_two_week_high is None or not isinstance(fifty_two_week_high, (int, float)) or fifty_two_week_high <= 0:
+                        none_fields.append("52WKH")
+                        fifty_two_week_high = None
+                    
+                    market_cap = summary.get("marketCap")
+                    if market_cap is None or not isinstance(market_cap, (int, float)) or market_cap < 0:
+                        none_fields.append("MCAP")
+                        market_cap = None
+                    
+                    if none_fields:
+                        logging.debug(f"Ticker {symbol}: Setting {none_fields} to None due to missing or invalid summary data")
                     
                     # Combine data with rounded numerical values
                     info = ticker_info.get(symbol, {}).get("info", {})
@@ -138,12 +142,12 @@ def process_batch(batch, ticker_info):
                             "sector": info.get("sector", "n/a"),
                             "type": info.get("type", "Unknown"),
                             "Price": round(price, 2),
-                            "DVol": summary.get("volume"),
-                            "AvgVol": summary.get("averageVolume"),
-                            "AvgVol10": summary.get("averageVolume10days"),
-                            "52WKL": round(summary.get("fiftyTwoWeekLow", 0), 2),
-                            "52WKH": round(summary.get("fiftyTwoWeekHigh", 0), 2),
-                            "MCAP": round(summary.get("marketCap", 0), 2)
+                            "DVol": volume,
+                            "AvgVol": avg_volume,
+                            "AvgVol10": avg_volume_10days,
+                            "52WKL": round(fifty_two_week_low, 2) if fifty_two_week_low is not None else None,
+                            "52WKH": round(fifty_two_week_high, 2) if fifty_two_week_high is not None else None,
+                            "MCAP": round(market_cap, 2) if market_cap is not None else None
                         }
                     }
                 except Exception as e:
