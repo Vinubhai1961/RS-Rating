@@ -41,13 +41,31 @@ def merge_price_files(artifacts_dir, expected_parts=None):
                         logging.warning(f"Invalid data for {symbol} in {filename}: missing or invalid 'info'")
                         continue
                     info = data["info"]
-                    required_fields = ["Price", "volume", "averageVolume", "averageVolume10days", "fiftyTwoWeekLow", "fiftyTwoWeekHigh"]
+                    required_fields = ["Price", "DVol", "AvgVol", "AvgVol10", "52WKL", "52WKH", "MCAP"]
                     missing_fields = [f for f in required_fields if f not in info or info[f] is None]
                     if missing_fields:
                         logging.warning(f"Missing fields for {symbol} in {filename}: {missing_fields}")
                         continue
-                    if info["Price"] <= 0 or info["volume"] < 0:
-                        logging.warning(f"Invalid values for {symbol} in {filename}: Price={info['Price']}, volume={info['volume']}")
+                    if not isinstance(info["Price"], (int, float)) or info["Price"] <= 0:
+                        logging.warning(f"Invalid Price for {symbol} in {filename}: {info['Price']}")
+                        continue
+                    if not isinstance(info["DVol"], int) or info["DVol"] < 0:
+                        logging.warning(f"Invalid DVol for {symbol} in {filename}: {info['DVol']}")
+                        continue
+                    if not isinstance(info["AvgVol"], int) or info["AvgVol"] < 0:
+                        logging.warning(f"Invalid AvgVol for {symbol} in {filename}: {info['AvgVol']}")
+                        continue
+                    if not isinstance(info["AvgVol10"], int) or info["AvgVol10"] < 0:
+                        logging.warning(f"Invalid AvgVol10 for {symbol} in {filename}: {info['AvgVol10']}")
+                        continue
+                    if not isinstance(info["52WKL"], (int, float)) or info["52WKL"] <= 0:
+                        logging.warning(f"Invalid 52WKL for {symbol} in {filename}: {info['52WKL']}")
+                        continue
+                    if not isinstance(info["52WKH"], (int, float)) or info["52WKH"] <= 0:
+                        logging.warning(f"Invalid 52WKH for {symbol} in {filename}: {info['52WKH']}")
+                        continue
+                    if not isinstance(info["MCAP"], (int, float)) or info["MCAP"] < 0:
+                        logging.warning(f"Invalid MCAP for {symbol} in {filename}: {info['MCAP']}")
                         continue
                     merged_data[symbol] = data
         except json.JSONDecodeError as e:
@@ -61,7 +79,7 @@ def merge_price_files(artifacts_dir, expected_parts=None):
 
     os.makedirs("data", exist_ok=True)
     with open(output_file, "w", encoding="utf-8") as f:
-        json.dump(merged_data, f, indent=2, sort_keys=True)
+        json.dump(merged_data, f, indent=None)  # No indentation for compact output
     logging.info(f"Merged data saved to {output_file} with {len(merged_data)} entries")
 
 def main(artifacts_dir, expected_parts=None):
