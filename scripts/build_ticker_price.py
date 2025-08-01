@@ -228,7 +228,7 @@ def main(part_index=None, part_total=None, verbose=False):
 
     output_file = TICKER_PRICE_PART_FILE % part_index
     with open(output_file, "w", encoding="utf-8") as f:
-        json.dump(all_prices, f, indent=None)  # No indentation for compact output
+        json.dump(all_prices, f, indent=2)  # Beautiful JSON with indentation
     logging.info(f"Saved {len(all_prices)} entries to {output_file}")
 
     elapsed = time.time() - start_time
