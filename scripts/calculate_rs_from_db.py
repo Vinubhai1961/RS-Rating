@@ -39,7 +39,7 @@ def relative_strength(closes: pd.Series, closes_ref: pd.Series) -> float:
     rs_ref = strength(closes_ref)
     if np.isnan(rs_stock) or np.isnan(rs_ref):
         return np.nan
-    rs = (1 + rs_stock) / (1 + rs_ref) * 100
+    rs = (1 + rs_stock) / (1 + ref_stock) * 100
     return round(rs, 2) if rs <= 590 else np.nan
 
 def load_arctic_db(data_dir):
@@ -192,20 +192,20 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
         print("⚠️ No RS results calculated. Check if ArcticDB has data.")
         sys.exit(1)
 
-    df_stocks["Rank"] = df_stocks.index + 1
+    # Calculate percentiles (0-99 range) and assign ranks
     for col in ["RS", "1M_RS", "3M_RS", "6M_RS"]:
-        df_stocks[f"{col} Percentile"] = pd.qcut(df_stocks[col], 100, labels=False, duplicates="drop")
-
+        df_stocks[f"{col} Percentile"] = pd.qcut(df_stocks[col].rank(method="min") - 1, 100, labels=False, duplicates="drop")
     df_stocks = df_stocks.sort_values("RS", ascending=False).reset_index(drop=True)
+    df_stocks["Rank"] = df_stocks.index + 1
 
     df_stocks.loc[df_stocks["Type"] == "ETF", "Industry"] = "ETF"
     df_stocks.loc[df_stocks["Type"] == "ETF", "Sector"] = "ETF"
 
-    # Save rs_stocks.csv with new structure
+    # Save rs_stocks.csv with correct order (sorted by RS, not MCAP)
     df_stocks[["Rank", "Ticker", "Price", "Sector", "Industry", "RS", "1M_RS", "3M_RS", "6M_RS", "DVol", "AvgVol", "AvgVol10", "52WKH", "52WKL", "MCAP"]].to_csv(
         os.path.join(output_dir, "rs_stocks.csv"), index=False)
 
-    # Aggregate by industry
+    # Aggregate by industry with Ticker sorted by MCAP
     df_industries = df_stocks.groupby("Industry").agg({
         "RS": "mean",
         "1M_RS": "mean",
@@ -213,8 +213,8 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
         "6M_RS": "mean",
         "Sector": "first",
         "Ticker": lambda x: ",".join(sorted(df_stocks[df_stocks["Industry"] == x.name]["Ticker"],
-                                           key=lambda t: df_stocks[df_stocks["Ticker"] == t]["MCAP"].iloc[0] or 0,
-                                           reverse=True))
+                                          key=lambda t: df_stocks[df_stocks["Ticker"] == t]["MCAP"].iloc[0] or 0,
+                                          reverse=True))
     }).reset_index()
 
     # Round RS means to 2 decimal places
@@ -224,7 +224,7 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
     df_industries = df_industries.sort_values("RS", ascending=False).reset_index(drop=True)
     df_industries["Rank"] = df_industries.index + 1
 
-    # Save rs_industries.csv with new structure
+    # Save rs_industries.csv with Ticker column
     df_industries[["Rank", "Industry", "Sector", "RS", "1M_RS", "3M_RS", "6M_RS", "Ticker"]].to_csv(
         os.path.join(output_dir, "rs_industries.csv"), index=False)
 
