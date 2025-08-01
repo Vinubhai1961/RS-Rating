@@ -266,9 +266,7 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
         "3M_RS Percentile": "mean",
         "6M_RS Percentile": "mean",
         "Sector": "first",
-        "Ticker": lambda x: ",".join(sorted(df_stocks[df_stocks["Industry"] == x.name]["Ticker"],
-                                          key=lambda t: float(df_stocks[df_stocks["Ticker"] == t]["MCAP"].iloc[0] or 0),
-                                          reverse=True))
+        "Ticker": lambda x: ",".join(sorted(x, key=lambda t: float(df_stocks.loc[df_stocks["Ticker"] == t, "MCAP"].iloc[0] or 0), reverse=True))
     }).reset_index()
 
     # Round percentile means to nearest integer (0–99)
