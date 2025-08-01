@@ -59,13 +59,6 @@ def load_arctic_db(data_dir):
         return None
 
 def generate_tradingview_csv(df_stocks, output_dir, ref_data, percentile_values=None, use_trading_days=True):
-    """
-    Generate a TradingView-compatible RSRATING.csv with RS values for specific percentiles.
-    Format: date,0,1000,0,rs_value,0\n
-    Percentiles: Configurable, defaults to [98, 89, 69, 49, 29, 9, 1]
-    Each percentile is repeated for 5 trading days, aligned with the latest data date.
-    Falls back to consecutive days if trading days are unavailable.
-    """
     if percentile_values is None:
         percentile_values = [98, 89, 69, 49, 29, 9, 1]
     
@@ -91,9 +84,9 @@ def generate_tradingview_csv(df_stocks, output_dir, ref_data, percentile_values=
 
     first_rs_values = {}
     for percentile in percentile_values:
-        matching_rows = df_stocks[df_stocks["Relative Strength Percentile"] == percentile]
+        matching_rows = df_stocks[df_stocks["RS Percentile"] == percentile]
         if not matching_rows.empty:
-            first_rs = matching_rows.iloc[0]["Relative Strength"]
+            first_rs = matching_rows.iloc[0]["RS"]
             first_rs_values[percentile] = first_rs
             logging.info(f"Selected RS {first_rs} for percentile {percentile}")
         else:
@@ -137,13 +130,19 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
                 data = json.load(f)
             metadata = [
                 {
-                    "Ticker": t,
-                    "Price": round(float(data[t].get("info", {}).get("Price", np.nan)), 2),
-                    "Sector": data[t].get("info", {}).get("sector"),
-                    "Industry": data[t].get("info", {}).get("industry"),
-                    "Type": data[t].get("info", {}).get("type")
+                    "Ticker": item["ticker"],
+                    "Price": round(float(item["info"].get("Price", np.nan)), 2),
+                    "Sector": item["info"].get("sector"),
+                    "Industry": item["info"].get("industry"),
+                    "Type": item["info"].get("type"),
+                    "DVol": item["info"].get("DVol"),
+                    "AvgVol": item["info"].get("AvgVol"),
+                    "AvgVol10": item["info"].get("AvgVol10"),
+                    "52WKH": item["info"].get("52WKH"),
+                    "52WKL": item["info"].get("52WKL"),
+                    "MCAP": item["info"].get("MCAP")
                 }
-                for t in data
+                for item in data
             ]
             metadata_df = pd.DataFrame(metadata)
             if "Ticker" not in metadata_df.columns or metadata_df.empty:
@@ -181,11 +180,11 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
         except Exception as e:
             logging.info(f"{ticker}: Failed to process ({str(e)})")
 
-    df_stocks = pd.DataFrame(rs_results, columns=["Ticker", "Relative Strength", "1 Month Ago", "3 Months Ago", "6 Months Ago"])
+    df_stocks = pd.DataFrame(rs_results, columns=["Ticker", "RS", "1M_RS", "3M_RS", "6M_RS"])
     if not metadata_df.empty and "Ticker" in metadata_df.columns:
-        df_stocks = df_stocks.merge(metadata_df, on="Ticker", how="left", suffixes=('', '_meta')).dropna(subset=["Relative Strength"])
+        df_stocks = df_stocks.merge(metadata_df, on="Ticker", how="left").dropna(subset=["RS"])
     else:
-        df_stocks = df_stocks.dropna(subset=["Relative Strength"])
+        df_stocks = df_stocks.dropna(subset=["RS"])
         if not metadata_df.empty:
             logging.warning("Metadata file lacks 'Ticker' column. Skipping merge.")
     if df_stocks.empty:
@@ -193,46 +192,40 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
         print("⚠️ No RS results calculated. Check if ArcticDB has data.")
         sys.exit(1)
 
-    for col in ["Relative Strength", "1 Month Ago", "3 Months Ago", "6 Months Ago"]:
+    df_stocks["Rank"] = df_stocks.index + 1
+    for col in ["RS", "1M_RS", "3M_RS", "6M_RS"]:
         df_stocks[f"{col} Percentile"] = pd.qcut(df_stocks[col], 100, labels=False, duplicates="drop")
 
-    df_stocks = df_stocks.sort_values("Relative Strength", ascending=False).reset_index(drop=True)
-    df_stocks["Rank"] = df_stocks.index + 1
+    df_stocks = df_stocks.sort_values("RS", ascending=False).reset_index(drop=True)
 
     df_stocks.loc[df_stocks["Type"] == "ETF", "Industry"] = "ETF"
     df_stocks.loc[df_stocks["Type"] == "ETF", "Sector"] = "ETF"
 
-    # Save rs_stocks.csv with percentile values
-    df_stocks[["Rank", "Ticker", "Price", "Sector", "Industry", "Relative Strength Percentile",
-               "1 Month Ago Percentile", "3 Months Ago Percentile", "6 Months Ago Percentile"]].to_csv(
+    # Save rs_stocks.csv with new structure
+    df_stocks[["Rank", "Ticker", "Price", "Sector", "Industry", "RS", "1M_RS", "3M_RS", "6M_RS", "DVol", "AvgVol", "AvgVol10", "52WKH", "52WKL", "MCAP"]].to_csv(
         os.path.join(output_dir, "rs_stocks.csv"), index=False)
 
-    # Aggregate by industry, using percentile values directly
+    # Aggregate by industry
     df_industries = df_stocks.groupby("Industry").agg({
-        "Relative Strength Percentile": "mean",
-        "1 Month Ago Percentile": "mean",
-        "3 Months Ago Percentile": "mean",
-        "6 Months Ago Percentile": "mean",
+        "RS": "mean",
+        "1M_RS": "mean",
+        "3M_RS": "mean",
+        "6M_RS": "mean",
         "Sector": "first",
-        "Ticker": lambda x: ",".join(x)
+        "Ticker": lambda x: ",".join(sorted(df_stocks[df_stocks["Industry"] == x.name]["Ticker"],
+                                           key=lambda t: df_stocks[df_stocks["Ticker"] == t]["MCAP"].iloc[0] or 0,
+                                           reverse=True))
     }).reset_index()
 
-    # Round percentile means to nearest integer (0–99)
-    for col in ["Relative Strength Percentile", "1 Month Ago Percentile", "3 Months Ago Percentile", "6 Months Ago Percentile"]:
-        df_industries[col] = df_industries[col].round().astype(int)
+    # Round RS means to 2 decimal places
+    for col in ["RS", "1M_RS", "3M_RS", "6M_RS"]:
+        df_industries[col] = df_industries[col].round(2)
 
-    df_industries = df_industries.sort_values("Relative Strength Percentile", ascending=False).reset_index(drop=True)
+    df_industries = df_industries.sort_values("RS", ascending=False).reset_index(drop=True)
     df_industries["Rank"] = df_industries.index + 1
 
-    # Rename columns to remove "Percentile" suffix for rs_industries.csv
-    df_industries = df_industries.rename(columns={
-        "Relative Strength Percentile": "Relative Strength",
-        "1 Month Ago Percentile": "1 Month Ago",
-        "3 Months Ago Percentile": "3 Months Ago",
-        "6 Months Ago Percentile": "6 Months Ago"
-    })
-
-    df_industries[["Rank", "Industry", "Sector", "Relative Strength", "1 Month Ago", "3 Months Ago", "6 Months Ago", "Ticker"]].to_csv(
+    # Save rs_industries.csv with new structure
+    df_industries[["Rank", "Industry", "Sector", "RS", "1M_RS", "3M_RS", "6M_RS", "Ticker"]].to_csv(
         os.path.join(output_dir, "rs_industries.csv"), index=False)
 
     # Generate TradingView-compatible RSRATING.csv
