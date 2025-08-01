@@ -18,9 +18,11 @@ except ImportError:
 
 def quarters_perf(closes: pd.Series, n: int) -> float:
     days = n * 63
-    if len(closes) < 2:
-        return np.nan
     available_data = closes[-min(len(closes), days):]
+    if len(available_data) < 1:
+        return np.nan
+    elif len(available_data) == 1:
+        return 0.0  # For IPOs, use 0% change as baseline
     pct_change = available_data.pct_change().dropna()
     return (pct_change + 1).cumprod().iloc[-1] - 1 if not pct_change.empty else np.nan
 
@@ -38,8 +40,9 @@ def relative_strength(closes: pd.Series, closes_ref: pd.Series) -> float:
     rs_stock = strength(closes)
     rs_ref = strength(closes_ref)
     if np.isnan(rs_stock) or np.isnan(rs_ref):
+        logging.info(f"NaN RS for ticker with {len(closes)} days, ref with {len(closes_ref)} days")
         return np.nan
-    rs = (1 + rs_stock) / (1 + ref_stock) * 100
+    rs = (1 + rs_stock) / (1 + rs_ref) * 100
     return round(rs, 2) if rs <= 590 else np.nan
 
 def load_arctic_db(data_dir):
@@ -84,9 +87,9 @@ def generate_tradingview_csv(df_stocks, output_dir, ref_data, percentile_values=
 
     first_rs_values = {}
     for percentile in percentile_values:
-        matching_rows = df_stocks[df_stocks["RS Percentile"] == percentile]
+        matching_rows = df_stocks[df_stocks["Relative Strength Percentile"] == percentile]
         if not matching_rows.empty:
-            first_rs = matching_rows.iloc[0]["RS"]
+            first_rs = matching_rows.iloc[0]["Relative Strength"]
             first_rs_values[percentile] = first_rs
             logging.info(f"Selected RS {first_rs} for percentile {percentile}")
         else:
@@ -123,6 +126,28 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
         print(f"❌ Reference ticker {reference_ticker} not found in ArcticDB.")
         sys.exit(1)
 
+    # Validate reference ticker data
+    ref_data = lib.read(reference_ticker).data
+    ref_closes = pd.Series(ref_data["close"].values, index=pd.to_datetime(ref_data["datetime"], unit='s'))
+    if len(ref_closes) < 20:
+        logging.error(f"Reference ticker {reference_ticker} has insufficient data ({len(ref_closes)} days)")
+        print(f"❌ Not enough reference ticker data.")
+        sys.exit(1)
+
+    # Pre-check insufficient data tickers
+    insufficient_tickers = []
+    for ticker in tickers:
+        if ticker == reference_ticker:
+            continue
+        try:
+            data = lib.read(ticker).data
+            closes = pd.Series(data["close"].values, index=pd.to_datetime(data["datetime"], unit='s'))
+            if len(closes) < 1:
+                insufficient_tickers.append(ticker)
+        except Exception:
+            insufficient_tickers.append(ticker)
+    logging.info(f"Found {len(insufficient_tickers)} tickers with no data: {insufficient_tickers[:5]}...")
+
     metadata_df = pd.DataFrame()
     if metadata_file and os.path.exists(metadata_file):
         try:
@@ -130,19 +155,13 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
                 data = json.load(f)
             metadata = [
                 {
-                    "Ticker": item["ticker"],
-                    "Price": round(float(item["info"].get("Price", np.nan)), 2),
-                    "Sector": item["info"].get("sector"),
-                    "Industry": item["info"].get("industry"),
-                    "Type": item["info"].get("type"),
-                    "DVol": item["info"].get("DVol"),
-                    "AvgVol": item["info"].get("AvgVol"),
-                    "AvgVol10": item["info"].get("AvgVol10"),
-                    "52WKH": item["info"].get("52WKH"),
-                    "52WKL": item["info"].get("52WKL"),
-                    "MCAP": item["info"].get("MCAP")
+                    "Ticker": t,
+                    "Price": round(float(data[t].get("info", {}).get("Price", np.nan)), 2),
+                    "Sector": data[t].get("info", {}).get("sector"),
+                    "Industry": data[t].get("info", {}).get("industry"),
+                    "Type": data[t].get("info", {}).get("type")
                 }
-                for item in data
+                for t in data
             ]
             metadata_df = pd.DataFrame(metadata)
             if "Ticker" not in metadata_df.columns or metadata_df.empty:
@@ -156,13 +175,7 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
     print(f"🔍 Processing {len(tickers)} tickers...")
 
     rs_results = []
-    ref_data = lib.read(reference_ticker).data
-    ref_closes = pd.Series(ref_data["close"].values, index=pd.to_datetime(ref_data["datetime"], unit='s'))
-    if len(ref_closes) < 20:
-        logging.error(f"Reference ticker {reference_ticker} has insufficient data ({len(ref_closes)} days)")
-        print("❌ Not enough reference ticker data.")
-        sys.exit(1)
-
+    valid_rs_count = 0
     for ticker in tqdm(tickers, desc="Calculating RS"):
         if ticker == reference_ticker:
             continue
@@ -170,68 +183,78 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
             data = lib.read(ticker).data
             closes = pd.Series(data["close"].values, index=pd.to_datetime(data["datetime"], unit='s'))
             if len(closes) < 2:
-                logging.info(f"{ticker}: Skipped, insufficient data ({len(closes)} days)")
+                rs_results.append((ticker, np.nan, np.nan, np.nan, np.nan))
                 continue
             rs = relative_strength(closes, ref_closes)
-            rs_1m = relative_strength(closes[:-20], ref_closes[:-20]) if len(closes) > 20 else rs
-            rs_3m = relative_strength(closes[:-60], ref_closes[:-60]) if len(closes) > 60 else rs
-            rs_6m = relative_strength(closes[:-120], ref_closes[:-120]) if len(closes) > 120 else rs
+            rs_1m = relative_strength(closes[:-20], ref_closes[:-20]) if len(closes) > 20 else np.nan
+            rs_3m = relative_strength(closes[:-60], ref_closes[:-60]) if len(closes) > 60 else np.nan
+            rs_6m = relative_strength(closes[:-120], ref_closes[:-120]) if len(closes) > 120 else np.nan
             rs_results.append((ticker, rs, rs_1m, rs_3m, rs_6m))
+            if not np.isnan(rs):
+                valid_rs_count += 1
         except Exception as e:
             logging.info(f"{ticker}: Failed to process ({str(e)})")
+            rs_results.append((ticker, np.nan, np.nan, np.nan, np.nan))
 
-    df_stocks = pd.DataFrame(rs_results, columns=["Ticker", "RS", "1M_RS", "3M_RS", "6M_RS"])
+    df_stocks = pd.DataFrame(rs_results, columns=["Ticker", "Relative Strength", "1 Month Ago", "3 Months Ago", "6 Months Ago"])
     if not metadata_df.empty and "Ticker" in metadata_df.columns:
-        df_stocks = df_stocks.merge(metadata_df, on="Ticker", how="left").dropna(subset=["RS"])
+        df_stocks = df_stocks.merge(metadata_df, on="Ticker", how="left")
     else:
-        df_stocks = df_stocks.dropna(subset=["RS"])
+        df_stocks = df_stocks
         if not metadata_df.empty:
             logging.warning("Metadata file lacks 'Ticker' column. Skipping merge.")
+
     if df_stocks.empty:
-        logging.warning("No tickers with valid RS data after filtering")
-        print("⚠️ No RS results calculated. Check if ArcticDB has data.")
+        logging.warning("No tickers processed due to errors or empty data")
+        print("⚠️ No RS results calculated. Check if ArcticDB has data or reference ticker.")
         sys.exit(1)
 
-    # Calculate percentiles (0-99 range) and assign ranks
-    for col in ["RS", "1M_RS", "3M_RS", "6M_RS"]:
-        df_stocks[f"{col} Percentile"] = pd.qcut(df_stocks[col].rank(method="min") - 1, 100, labels=False, duplicates="drop")
-    df_stocks = df_stocks.sort_values("RS", ascending=False).reset_index(drop=True)
+    # Calculate percentiles (0-99 range) only for non-NaN values
+    for col in ["Relative Strength", "1 Month Ago", "3 Months Ago", "6 Months Ago"]:
+        valid_values = df_stocks[col].dropna()
+        if not valid_values.empty:
+            df_stocks.loc[valid_values.index, f"{col} Percentile"] = pd.qcut(valid_values.rank(method="min") - 1, 100, labels=False, duplicates="drop")
+        else:
+            df_stocks[f"{col} Percentile"] = np.nan
+
+    df_stocks = df_stocks.sort_values("Relative Strength", ascending=False, na_position="last").reset_index(drop=True)
     df_stocks["Rank"] = df_stocks.index + 1
+
+    # Add IPO flag for tickers with less than 20 days
+    df_stocks["IPO"] = df_stocks["Ticker"].apply(lambda t: "Yes" if len(lib.read(t).data) < 20 else "No")
 
     df_stocks.loc[df_stocks["Type"] == "ETF", "Industry"] = "ETF"
     df_stocks.loc[df_stocks["Type"] == "ETF", "Sector"] = "ETF"
 
-    # Save rs_stocks.csv with correct order (sorted by RS, not MCAP)
-    df_stocks[["Rank", "Ticker", "Price", "Sector", "Industry", "RS", "1M_RS", "3M_RS", "6M_RS", "DVol", "AvgVol", "AvgVol10", "52WKH", "52WKL", "MCAP"]].to_csv(
-        os.path.join(output_dir, "rs_stocks.csv"), index=False)
+    # Save rs_stocks.csv with blanks for NaN and IPO flag
+    df_stocks[["Rank", "Ticker", "Price", "Sector", "Industry", "Relative Strength", "1 Month Ago", "3 Months Ago", "6 Months Ago", "IPO"]].to_csv(
+        os.path.join(output_dir, "rs_stocks.csv"), index=False, na_rep="")
 
-    # Aggregate by industry with Ticker sorted by MCAP
+    # Aggregate by industry with Ticker list
     df_industries = df_stocks.groupby("Industry").agg({
-        "RS": "mean",
-        "1M_RS": "mean",
-        "3M_RS": "mean",
-        "6M_RS": "mean",
+        "Relative Strength": "mean",
+        "1 Month Ago": "mean",
+        "3 Months Ago": "mean",
+        "6 Months Ago": "mean",
         "Sector": "first",
-        "Ticker": lambda x: ",".join(sorted(df_stocks[df_stocks["Industry"] == x.name]["Ticker"],
-                                          key=lambda t: df_stocks[df_stocks["Ticker"] == t]["MCAP"].iloc[0] or 0,
-                                          reverse=True))
+        "Ticker": lambda x: ",".join(x)
     }).reset_index()
 
-    # Round RS means to 2 decimal places
-    for col in ["RS", "1M_RS", "3M_RS", "6M_RS"]:
-        df_industries[col] = df_industries[col].round(2)
+    # Round RS means to 2 decimal places, handle NaN
+    for col in ["Relative Strength", "1 Month Ago", "3 Months Ago", "6 Months Ago"]:
+        df_industries[col] = df_industries[col].round(2).fillna("")
 
-    df_industries = df_industries.sort_values("RS", ascending=False).reset_index(drop=True)
+    df_industries = df_industries.sort_values("Relative Strength", ascending=False, na_position="last").reset_index(drop=True)
     df_industries["Rank"] = df_industries.index + 1
 
     # Save rs_industries.csv with Ticker column
-    df_industries[["Rank", "Industry", "Sector", "RS", "1M_RS", "3M_RS", "6M_RS", "Ticker"]].to_csv(
-        os.path.join(output_dir, "rs_industries.csv"), index=False)
+    df_industries[["Rank", "Industry", "Sector", "Relative Strength", "1 Month Ago", "3 Months Ago", "6 Months Ago", "Ticker"]].to_csv(
+        os.path.join(output_dir, "rs_industries.csv"), index=False, na_rep="")
 
     # Generate TradingView-compatible RSRATING.csv
     generate_tradingview_csv(df_stocks, output_dir, ref_data, percentiles)
 
-    logging.info("✅ RS calculation completed successfully.")
+    logging.info(f"✅ RS calculation completed. {len(df_stocks)} tickers processed, {valid_rs_count} with valid RS.")
     print(f"\n✅ RS calculation completed. {len(df_stocks)} tickers written.")
     print(f"📄 Output files:")
     print(f" - rs_stocks.csv")
