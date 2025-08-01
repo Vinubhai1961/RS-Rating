@@ -116,7 +116,7 @@ def main():
     logging.basicConfig(filename=args.log_file, level=logging.INFO, format="%(asctime)s - %(message)s")
 
     tickers = load_ticker_list(args.input_file, args.partition, args.total_partitions)
-    arctic = adb.Arctic(f"lmdb://{args.arctic_db-path}")
+    arctic = adb.Arctic(f"lmdb://{args.arctic_db_path}")  # Fixed typo: arctic_db-path to arctic_db_path
     fetch_historical_data(tickers, arctic, args.log_file)
 
 if __name__ == "__main__":
