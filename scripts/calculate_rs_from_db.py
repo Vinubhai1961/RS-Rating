@@ -153,16 +153,33 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
         try:
             with open(metadata_file, "r") as f:
                 data = json.load(f)
-            metadata = [
-                {
-                    "Ticker": t,
-                    "Price": round(float(data[t].get("info", {}).get("Price", np.nan)), 2),
-                    "Sector": data[t].get("info", {}).get("sector"),
-                    "Industry": data[t].get("info", {}).get("industry"),
-                    "Type": data[t].get("info", {}).get("type")
-                }
-                for t in data
-            ]
+            logging.info(f"Metadata file structure: {type(data).__name__}")
+            if isinstance(data, dict):
+                # Old logic: data is a dict with tickers as keys
+                metadata = [
+                    {
+                        "Ticker": t,
+                        "Price": round(float(data[t].get("info", {}).get("Price", np.nan)), 2),
+                        "Sector": data[t].get("info", {}).get("sector"),
+                        "Industry": data[t].get("info", {}).get("industry"),
+                        "Type": data[t].get("info", {}).get("type")
+                    }
+                    for t in data
+                ]
+            elif isinstance(data, list):
+                # Newer format: list of ticker objects
+                metadata = [
+                    {
+                        "Ticker": item.get("ticker"),
+                        "Price": round(float(item.get("info", {}).get("Price", np.nan)), 2),
+                        "Sector": item.get("info", {}).get("sector"),
+                        "Industry": item.get("info", {}).get("industry"),
+                        "Type": item.get("info", {}).get("type")
+                    }
+                    for item in data
+                ]
+            else:
+                raise ValueError(f"Unsupported metadata format: {type(data).__name__}")
             metadata_df = pd.DataFrame(metadata)
             if "Ticker" not in metadata_df.columns or metadata_df.empty:
                 logging.warning(f"Metadata file {metadata_file} invalid or lacks 'Ticker' column. Proceeding without metadata.")
