@@ -17,8 +17,8 @@ TICKER_PRICE_PART_FILE = os.path.join(OUTPUT_DIR, "ticker_price_part_%d.json")
 UNRESOLVED_PRICE_TICKERS = os.path.join(OUTPUT_DIR, "unresolved_price_tickers.txt")
 LOG_PATH = "logs/build_ticker_price.log"
 BATCH_SIZE = 250
-BATCH_DELAY_RANGE = (5, 10)  # Increased for two API calls
-MAX_BATCH_RETRIES = 2
+BATCH_DELAY_RANGE = (20, 30)  # Increased for two API calls
+MAX_BATCH_RETRIES = 3
 MAX_RETRY_TIMEOUT = 120
 RETRY_SUBPASS = True
 PRICE_THRESHOLD = 5.0  # Hardcoded minimum price threshold
@@ -72,7 +72,7 @@ def process_batch(batch, ticker_info):
     total_wait = 0
     for attempt in range(MAX_BATCH_RETRIES):
         try:
-            prices = {}
+            prices = []
             failure_reasons = {"no_price": 0, "below_threshold": 0, "error": 0}
             yahoo_symbols = [yahoo_symbol(symbol) for symbol in batch]
             yq = Ticker(yahoo_symbols)
@@ -136,12 +136,13 @@ def process_batch(batch, ticker_info):
                     
                     # Combine data with rounded numerical values
                     info = ticker_info.get(symbol, {}).get("info", {})
-                    prices[symbol] = {
+                    prices.append({
+                        "ticker": symbol,
                         "info": {
+                            "Price": round(price, 2),
                             "industry": info.get("industry", "n/a"),
                             "sector": info.get("sector", "n/a"),
                             "type": info.get("type", "Unknown"),
-                            "Price": round(price, 2),
                             "DVol": volume,
                             "AvgVol": avg_volume,
                             "AvgVol10": avg_volume_10days,
@@ -149,12 +150,12 @@ def process_batch(batch, ticker_info):
                             "52WKH": round(fifty_two_week_high, 2) if fifty_two_week_high is not None else None,
                             "MCAP": round(market_cap, 2) if market_cap is not None else None
                         }
-                    }
+                    })
                 except Exception as e:
                     logging.debug(f"Failed to process {symbol}: {e}")
                     failure_reasons["error"] += 1
             
-            failed_tickers = [s for s in batch if s not in prices]
+            failed_tickers = [s for s in batch if s not in [p["ticker"] for p in prices]]
             logging.info(f"Batch failure reasons: {failure_reasons}")
             return len(prices), failed_tickers, prices
         except Exception as e:
@@ -169,7 +170,7 @@ def process_batch(batch, ticker_info):
             else:
                 logging.error(f"Unexpected error in batch: {e}. Aborting batch.")
                 break
-    return 0, batch, {}
+    return 0, batch, []
 
 def main(part_index=None, part_total=None, verbose=False):
     start_time = time.time()
@@ -194,12 +195,12 @@ def main(part_index=None, part_total=None, verbose=False):
         part_tickers = qualified_tickers
 
     batches = [part_tickers[i:i + BATCH_SIZE] for i in range(0, len(part_tickers), BATCH_SIZE)]
-    all_prices = {}
+    all_prices = []
     all_failed = []
 
     for idx, batch in enumerate(tqdm(batches, desc="Processing Price Batches"), 1):
         updated, failed_tickers, prices = process_batch(batch, ticker_info)
-        all_prices.update(prices)
+        all_prices.extend(prices)
         all_failed.extend(failed_tickers)
         logging.info(f"Batch {idx}/{len(batches)} - Fetched data for {updated} tickers")
         if failed_tickers:
@@ -215,7 +216,7 @@ def main(part_index=None, part_total=None, verbose=False):
         retry_batches = [unresolved_unique[i:i + BATCH_SIZE] for i in range(0, len(unresolved_unique), BATCH_SIZE)]
         for idx, batch in enumerate(tqdm(retry_batches, desc="Retry Price Batches"), 1):
             updated, failed_tickers, prices = process_batch(batch, ticker_info)
-            all_prices.update(prices)
+            all_prices.extend(prices)
             logging.info(f"Retry Batch {idx}/{len(retry_batches)} - Fetched data for {updated} tickers")
             if failed_tickers:
                 logging.debug(f"Retry Batch {idx}: Failed tickers: {failed_tickers}")
