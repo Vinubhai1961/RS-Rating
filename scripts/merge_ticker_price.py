@@ -80,7 +80,7 @@ def merge_price_files(artifacts_dir, expected_parts=None):
 
     os.makedirs("data", exist_ok=True)
     with open(output_file, "w", encoding="utf-8") as f:
-        json.dump(merged_data, f, indent=None)  # No indentation for compact output
+        json.dump(merged_data, f, indent=2)  # Beautiful JSON with indentation
     logging.info(f"Merged data saved to {output_file} with {len(merged_data)} entries")
 
 def main(artifacts_dir, expected_parts=None):
