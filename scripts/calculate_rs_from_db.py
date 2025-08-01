@@ -249,8 +249,10 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
     df_stocks = df_stocks.sort_values("RS", ascending=False, na_position="last").reset_index(drop=True)
     df_stocks["Rank"] = df_stocks.index + 1
 
-    # Add IPO flag for tickers with less than 20 days
-    df_stocks["IPO"] = df_stocks["Ticker"].apply(lambda t: "Yes" if len(lib.read(t).data) < 20 else "No")
+    # Add IPO flag only for "Stock" type with less than 20 days
+    df_stocks["IPO"] = df_stocks.apply(
+        lambda row: "Yes" if row["Type"] == "Stock" and len(lib.read(row["Ticker"]).data) < 20 else "No", axis=1
+    )
 
     df_stocks.loc[df_stocks["Type"] == "ETF", "Industry"] = "ETF"
     df_stocks.loc[df_stocks["Type"] == "ETF", "Sector"] = "ETF"
