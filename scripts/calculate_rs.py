@@ -90,7 +90,7 @@ def fetch_historical_data(tickers, arctic, log_file):
 def load_ticker_list(file_path, partition=None, total_partitions=None):
     with open(file_path, "r") as f:
         data = json.load(f)
-    tickers = list(data.keys())
+    tickers = [item["ticker"] for item in data]  # Extract tickers from array
 
     if partition is not None and total_partitions:
         chunk_size = len(tickers) // total_partitions
@@ -116,7 +116,7 @@ def main():
     logging.basicConfig(filename=args.log_file, level=logging.INFO, format="%(asctime)s - %(message)s")
 
     tickers = load_ticker_list(args.input_file, args.partition, args.total_partitions)
-    arctic = adb.Arctic(f"lmdb://{args.arctic_db_path}")
+    arctic = adb.Arctic(f"lmdb://{args.arctic_db-path}")
     fetch_historical_data(tickers, arctic, args.log_file)
 
 if __name__ == "__main__":
