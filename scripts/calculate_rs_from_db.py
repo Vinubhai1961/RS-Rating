@@ -43,18 +43,7 @@ def relative_strength(closes: pd.Series, closes_ref: pd.Series) -> float:
         logging.info(f"NaN RS for ticker with {len(closes)} days, ref with {len(closes_ref)} days")
         return np.nan
     rs = (1 + rs_stock) / (1 + rs_ref) * 100
-    return rs
-
-def calculate_rs_percentile(rs_values: pd.Series) -> pd.Series:
-    valid_values = rs_values.dropna()
-    if valid_values.empty:
-        return pd.Series(np.nan, index=rs_values.index)
-    # Calculate percentile ranks (0-99) and round to integers
-    ranks = valid_values.rank(method="min") - 1
-    percentiles = (ranks / ranks.max() * 99).round().astype(int)
-    result = pd.Series(np.nan, index=rs_values.index)
-    result.loc[valid_values.index] = percentiles
-    return result
+    return round(rs, 2) if rs <= 590 else np.nan
 
 def load_arctic_db(data_dir):
     try:
@@ -98,9 +87,9 @@ def generate_tradingview_csv(df_stocks, output_dir, ref_data, percentile_values=
 
     first_rs_values = {}
     for percentile in percentile_values:
-        matching_rows = df_stocks[df_stocks["Relative Strength Percentile"] == percentile]
+        matching_rows = df_stocks[df_stocks["RS Percentile"] == percentile]
         if not matching_rows.empty:
-            first_rs = matching_rows.iloc[0]["Relative Strength"]
+            first_rs = matching_rows.iloc[0]["RS"]
             first_rs_values[percentile] = first_rs
             logging.info(f"Selected RS {first_rs} for percentile {percentile}")
         else:
@@ -166,23 +155,37 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
                 data = json.load(f)
             logging.info(f"Metadata file structure: {type(data).__name__}")
             if isinstance(data, dict):
+                # Old logic: data is a dict with tickers as keys
                 metadata = [
                     {
                         "Ticker": t,
                         "Price": round(float(data[t].get("info", {}).get("Price", np.nan)), 2),
+                        "DVol": data[t].get("info", {}).get("DVol"),
                         "Sector": data[t].get("info", {}).get("sector"),
                         "Industry": data[t].get("info", {}).get("industry"),
+                        "AvgVol": data[t].get("info", {}).get("AvgVol"),
+                        "AvgVol10": data[t].get("info", {}).get("AvgVol10"),
+                        "52WKH": data[t].get("info", {}).get("52WKH"),
+                        "52WKL": data[t].get("info", {}).get("52WKL"),
+                        "MCAP": data[t].get("info", {}).get("MCAP"),
                         "Type": data[t].get("info", {}).get("type")
                     }
                     for t in data
                 ]
             elif isinstance(data, list):
+                # Newer format: list of ticker objects
                 metadata = [
                     {
                         "Ticker": item.get("ticker"),
                         "Price": round(float(item.get("info", {}).get("Price", np.nan)), 2),
+                        "DVol": item.get("info", {}).get("DVol"),
                         "Sector": item.get("info", {}).get("sector"),
                         "Industry": item.get("info", {}).get("industry"),
+                        "AvgVol": item.get("info", {}).get("AvgVol"),
+                        "AvgVol10": item.get("info", {}).get("AvgVol10"),
+                        "52WKH": item.get("info", {}).get("52WKH"),
+                        "52WKL": item.get("info", {}).get("52WKL"),
+                        "MCAP": item.get("info", {}).get("MCAP"),
                         "Type": item.get("info", {}).get("type")
                     }
                     for item in data
@@ -202,7 +205,6 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
 
     rs_results = []
     valid_rs_count = 0
-    historical_prices = {}
     for ticker in tqdm(tickers, desc="Calculating RS"):
         if ticker == reference_ticker:
             continue
@@ -211,32 +213,19 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
             closes = pd.Series(data["close"].values, index=pd.to_datetime(data["datetime"], unit='s'))
             if len(closes) < 2:
                 rs_results.append((ticker, np.nan, np.nan, np.nan, np.nan))
-                historical_prices[ticker] = {}
                 continue
             rs = relative_strength(closes, ref_closes)
             rs_1m = relative_strength(closes[:-20], ref_closes[:-20]) if len(closes) > 20 else np.nan
             rs_3m = relative_strength(closes[:-60], ref_closes[:-60]) if len(closes) > 60 else np.nan
             rs_6m = relative_strength(closes[:-120], ref_closes[:-120]) if len(closes) > 120 else np.nan
-            # Store historical prices for CSV
-            historical_prices[ticker] = {
-                'Price_1y': closes.iloc[0] if len(closes) >= 252 else np.nan,
-                'Price_6m': closes.iloc[-126] if len(closes) >= 126 else np.nan,
-                'Price_3m': closes.iloc[-63] if len(closes) >= 63 else np.nan,
-                'Price_1m': closes.iloc[-21] if len(closes) >= 21 else np.nan
-            }
             rs_results.append((ticker, rs, rs_1m, rs_3m, rs_6m))
             if not np.isnan(rs):
                 valid_rs_count += 1
         except Exception as e:
             logging.info(f"{ticker}: Failed to process ({str(e)})")
             rs_results.append((ticker, np.nan, np.nan, np.nan, np.nan))
-            historical_prices[ticker] = {}
 
-    df_stocks = pd.DataFrame(rs_results, columns=["Ticker", "Relative Strength", "1 Month Ago", "3 Months Ago", "6 Months Ago"])
-    # Calculate percentile ranks (0-99) for RS columns
-    for col in ["Relative Strength", "1 Month Ago", "3 Months Ago", "6 Months Ago"]:
-        df_stocks[f"{col} Percentile"] = calculate_rs_percentile(df_stocks[col])
-    
+    df_stocks = pd.DataFrame(rs_results, columns=["Ticker", "RS", "1M_RS", "3M_RS", "6M_RS"])
     if not metadata_df.empty and "Ticker" in metadata_df.columns:
         df_stocks = df_stocks.merge(metadata_df, on="Ticker", how="left")
     else:
@@ -249,7 +238,15 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
         print("⚠️ No RS results calculated. Check if ArcticDB has data or reference ticker.")
         sys.exit(1)
 
-    df_stocks = df_stocks.sort_values("Relative Strength Percentile", ascending=False, na_position="last").reset_index(drop=True)
+    # Calculate percentiles (0-99 range) only for non-NaN values
+    for col in ["RS", "1M_RS", "3M_RS", "6M_RS"]:
+        valid_values = df_stocks[col].dropna()
+        if not valid_values.empty:
+            df_stocks.loc[valid_values.index, f"{col} Percentile"] = pd.qcut(valid_values.rank(method="min") - 1, 100, labels=False, duplicates="drop")
+        else:
+            df_stocks[f"{col} Percentile"] = np.nan
+
+    df_stocks = df_stocks.sort_values("RS", ascending=False, na_position="last").reset_index(drop=True)
     df_stocks["Rank"] = df_stocks.index + 1
 
     # Add IPO flag for tickers with less than 20 days
@@ -258,40 +255,40 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
     df_stocks.loc[df_stocks["Type"] == "ETF", "Industry"] = "ETF"
     df_stocks.loc[df_stocks["Type"] == "ETF", "Sector"] = "ETF"
 
-    # Prepare rs_stocks.csv with historical prices
-    output_df = df_stocks[["Rank", "Ticker", "Price", "Sector", "Industry"]].copy()
-    output_df["Price_1y"] = df_stocks["Ticker"].map(lambda t: round(historical_prices.get(t, {}).get('Price_1y', np.nan), 2))
-    output_df["Price_6m"] = df_stocks["Ticker"].map(lambda t: round(historical_prices.get(t, {}).get('Price_6m', np.nan), 2))
-    output_df["Price_3m"] = df_stocks["Ticker"].map(lambda t: round(historical_prices.get(t, {}).get('Price_3m', np.nan), 2))
-    output_df["Price_1m"] = df_stocks["Ticker"].map(lambda t: round(historical_prices.get(t, {}).get('Price_1m', np.nan), 2))
-    output_df["IPO"] = df_stocks["IPO"]
-    output_df["Relative Strength"] = df_stocks["Relative Strength Percentile"]  # Use percentile (0-99)
+    # Save rs_stocks.csv with percentile values (0-99) and all specified columns
+    df_stocks[["Rank", "Ticker", "Price", "DVol", "Sector", "Industry", "RS Percentile", "1M_RS Percentile", "3M_RS Percentile", "6M_RS Percentile", "AvgVol", "AvgVol10", "52WKH", "52WKL", "MCAP", "IPO"]].to_csv(
+        os.path.join(output_dir, "rs_stocks.csv"), index=False, na_rep="")
 
-    # Save rs_stocks.csv as a single file
-    output_path = os.path.join(output_dir, "rs_stocks.csv")
-    output_df.to_csv(output_path, index=False, float_format='%.2f', na_rep="")
-    logging.info(f"Saved {len(output_df)} rows to {output_path}")
-
-    # Aggregate by industry with Ticker list
+    # Aggregate by industry with Tickers sorted by MCAP
     df_industries = df_stocks.groupby("Industry").agg({
-        "Relative Strength Percentile": "mean",
-        "1 Month Ago Percentile": "mean",
-        "3 Months Ago Percentile": "mean",
-        "6 Months Ago Percentile": "mean",
+        "RS Percentile": "mean",
+        "1M_RS Percentile": "mean",
+        "3M_RS Percentile": "mean",
+        "6M_RS Percentile": "mean",
         "Sector": "first",
-        "Ticker": lambda x: ",".join(x)
+        "Ticker": lambda x: ",".join(sorted(df_stocks[df_stocks["Industry"] == x.name]["Ticker"],
+                                          key=lambda t: float(df_stocks[df_stocks["Ticker"] == t]["MCAP"].iloc[0] or 0),
+                                          reverse=True))
     }).reset_index()
 
-    # Round RS means to 2 decimal places, handle NaN
-    for col in ["Relative Strength Percentile", "1 Month Ago Percentile", "3 Months Ago Percentile", "6 Months Ago Percentile"]:
-        df_industries[col] = df_industries[col].round(2).fillna("")
+    # Round percentile means to nearest integer (0–99)
+    for col in ["RS Percentile", "1M_RS Percentile", "3M_RS Percentile", "6M_RS Percentile"]:
+        df_industries[col] = df_industries[col].round().astype(int).fillna(0)
 
-    df_industries = df_industries.sort_values("Relative Strength Percentile", ascending=False, na_position="last").reset_index(drop=True)
+    df_industries = df_industries.sort_values("RS Percentile", ascending=False, na_position="last").reset_index(drop=True)
     df_industries["Rank"] = df_industries.index + 1
 
-    # Save rs_industries.csv with Ticker column
-    df_industries[["Rank", "Industry", "Sector", "Relative Strength Percentile", "1 Month Ago Percentile", "3 Months Ago Percentile", "6 Months Ago Percentile", "Ticker"]].to_csv(
-        os.path.join(output_dir, "rs_industries.csv"), index=False, float_format='%.2f', na_rep="")
+    # Rename columns to match desired format
+    df_industries = df_industries.rename(columns={
+        "RS Percentile": "RS",
+        "1M_RS Percentile": "1 M_RS",
+        "3M_RS Percentile": "3M_RS",
+        "6M_RS Percentile": "6M_RS"
+    })
+
+    # Save rs_industries.csv with Tickers sorted by MCAP
+    df_industries[["Rank", "Industry", "Sector", "RS", "1 M_RS", "3M_RS", "6M_RS", "Ticker"]].to_csv(
+        os.path.join(output_dir, "rs_industries.csv"), index=False)
 
     # Generate TradingView-compatible RSRATING.csv
     generate_tradingview_csv(df_stocks, output_dir, ref_data, percentiles)
