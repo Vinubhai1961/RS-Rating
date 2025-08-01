@@ -91,12 +91,12 @@ def process_batch(batch, ticker_info):
                     summary = summary_details.get(yahoo_sym, {}) if isinstance(summary_details, dict) else {}
                     
                     # Validate both datasets
-                    if price is None:
-                        logging.debug(f"Skipping {symbol}: No price data")
+                    if price is None or not isinstance(price, (int, float)):
+                        logging.debug(f"Skipping {symbol}: No or invalid price data")
                         failure_reasons["no_price"] += 1
                         continue
-                    if not summary or "volume" not in summary:
-                        logging.debug(f"Skipping {symbol}: No summary data")
+                    if not summary or any(key not in summary for key in ["volume", "averageVolume", "averageVolume10days", "fiftyTwoWeekLow", "fiftyTwoWeekHigh", "marketCap"]):
+                        logging.debug(f"Skipping {symbol}: Missing summary data")
                         failure_reasons["no_summary"] += 1
                         continue
                     if price < PRICE_THRESHOLD:
@@ -104,19 +104,46 @@ def process_batch(batch, ticker_info):
                         failure_reasons["below_threshold"] += 1
                         continue
                     
-                    # Combine data
+                    # Validate numerical fields
+                    if not isinstance(summary["volume"], int) or summary["volume"] < 0:
+                        logging.debug(f"Skipping {symbol}: Invalid volume {summary['volume']}")
+                        failure_reasons["no_summary"] += 1
+                        continue
+                    if not isinstance(summary["averageVolume"], int) or summary["averageVolume"] < 0:
+                        logging.debug(f"Skipping {symbol}: Invalid averageVolume {summary['averageVolume']}")
+                        failure_reasons["no_summary"] += 1
+                        continue
+                    if not isinstance(summary["averageVolume10days"], int) or summary["averageVolume10days"] < 0:
+                        logging.debug(f"Skipping {symbol}: Invalid averageVolume10days {summary['averageVolume10days']}")
+                        failure_reasons["no_summary"] += 1
+                        continue
+                    if not isinstance(summary["fiftyTwoWeekLow"], (int, float)) or summary["fiftyTwoWeekLow"] <= 0:
+                        logging.debug(f"Skipping {symbol}: Invalid fiftyTwoWeekLow {summary['fiftyTwoWeekLow']}")
+                        failure_reasons["no_summary"] += 1
+                        continue
+                    if not isinstance(summary["fiftyTwoWeekHigh"], (int, float)) or summary["fiftyTwoWeekHigh"] <= 0:
+                        logging.debug(f"Skipping {symbol}: Invalid fiftyTwoWeekHigh {summary['fiftyTwoWeekHigh']}")
+                        failure_reasons["no_summary"] += 1
+                        continue
+                    if not isinstance(summary["marketCap"], (int, float)) or summary["marketCap"] < 0:
+                        logging.debug(f"Skipping {symbol}: Invalid marketCap {summary['marketCap']}")
+                        failure_reasons["no_summary"] += 1
+                        continue
+                    
+                    # Combine data with rounded numerical values
                     info = ticker_info.get(symbol, {}).get("info", {})
                     prices[symbol] = {
                         "info": {
                             "industry": info.get("industry", "n/a"),
                             "sector": info.get("sector", "n/a"),
                             "type": info.get("type", "Unknown"),
-                            "Price": price,
-                            "volume": summary.get("volume"),
-                            "averageVolume": summary.get("averageVolume"),
-                            "averageVolume10days": summary.get("averageVolume10days"),
-                            "fiftyTwoWeekLow": summary.get("fiftyTwoWeekLow"),
-                            "fiftyTwoWeekHigh": summary.get("fiftyTwoWeekHigh")
+                            "Price": round(price, 2),
+                            "DVol": summary.get("volume"),
+                            "AvgVol": summary.get("averageVolume"),
+                            "AvgVol10": summary.get("averageVolume10days"),
+                            "52WKL": round(summary.get("fiftyTwoWeekLow", 0), 2),
+                            "52WKH": round(summary.get("fiftyTwoWeekHigh", 0), 2),
+                            "MCAP": round(summary.get("marketCap", 0), 2)
                         }
                     }
                 except Exception as e:
@@ -197,7 +224,7 @@ def main(part_index=None, part_total=None, verbose=False):
 
     output_file = TICKER_PRICE_PART_FILE % part_index
     with open(output_file, "w", encoding="utf-8") as f:
-        json.dump(all_prices, f, indent=2)
+        json.dump(all_prices, f, indent=None)  # No indentation for compact output
     logging.info(f"Saved {len(all_prices)} entries to {output_file}")
 
     elapsed = time.time() - start_time
