@@ -109,12 +109,12 @@ def generate_opportunity_report(source_file: str, output_file: str):
         (df_remaining['3M_RS Percentile'].between(50, 99)) &
         (df_remaining['6M_RS Percentile'].between(50, 99)) &
         (df_remaining['3M_RS Percentile'] > df_remaining['6M_RS Percentile']) &
-        (df_remaining['DVol'] > 2 * df_remaining['AvgVol10']) &
+        (df_remaining['DVol'] > 1.5 * df_remaining['AvgVol10']) &
         (df_remaining['AvgVol10'] > 300000) &
         (df_remaining['RS Percentile'] - df_remaining['3M_RS Percentile'] > 15) &
         (df_remaining['1M_RS Percentile'] - df_remaining['3M_RS Percentile'] > 10) &
         (df_remaining['Price'] >= 0.98 * df_remaining['52WKH']) &
-        (df_remaining['Price'] > 2 * df_remaining['52WKL']) &
+        (df_remaining['Price'] > 1 * df_remaining['52WKL']) &
         (df_remaining['MCAP'] > 1000)
     ]
     breakout_df = breakout_df.copy()
