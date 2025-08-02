@@ -34,10 +34,10 @@ def generate_opportunity_report(source_file: str, output_file: str):
 
     # Clean data by dropping rows with missing values in required fields
     df_clean = df.dropna(subset=[
-        'Ticker', 'Price', 'Relative Strength Percentile',
+        'Ticker', 'Price', 'RS Percentile',
         '1M_RS Percentile', '3M_RS Percentile', '6M_RS Percentile',
         'DVol', 'AvgVol', 'AvgVol10', '52WKH', '52WKL', 'MCAP',
-        'Sector', 'Industry'
+        'Sector', 'Industry', 'IPO'
     ])
 
     # Section 1: Leading Stocks
@@ -48,7 +48,7 @@ def generate_opportunity_report(source_file: str, output_file: str):
     # high-quality investments with strong, sustained performance.
     leading_df = df_clean[
         (df_clean['Price'] > 20) &
-        (df_clean['Relative Strength Percentile'] > 90) &
+        (df_clean['RS Percentile'] > 90) &
         (df_clean['1M_RS Percentile'] > 90) &
         (df_clean['3M_RS Percentile'] > 90) &
         (df_clean['6M_RS Percentile'] > 90) &
@@ -60,7 +60,7 @@ def generate_opportunity_report(source_file: str, output_file: str):
     if len(leading_df) > 5:  # Arbitrary threshold to ensure enough candidates
         leading_df = leading_df[leading_df['DVol'] > 1.5 * leading_df['AvgVol10']]
     leading_df = leading_df.copy()
-    leading_df['Score'] = (0.5 * leading_df['Relative Strength Percentile'] +
+    leading_df['Score'] = (0.5 * leading_df['RS Percentile'] +
                            0.3 * (leading_df['DVol'] / leading_df['AvgVol']) +
                            0.2 * (leading_df['Price'] / leading_df['52WKH']))
     leading_df = leading_df.sort_values(by='Score', ascending=False)
@@ -77,17 +77,17 @@ def generate_opportunity_report(source_file: str, output_file: str):
     # accelerating performance and strong market interest.
     improving_df = df_remaining[
         (df_remaining['Price'] > 20) &
-        (df_remaining['Relative Strength Percentile'] >= 85) &
-        (df_remaining['Relative Strength Percentile'] > df_remaining['1M_RS Percentile']) &
+        (df_remaining['RS Percentile'] >= 85) &
+        (df_remaining['RS Percentile'] > df_remaining['1M_RS Percentile']) &
         (df_remaining['1M_RS Percentile'] > df_remaining['3M_RS Percentile']) &
         (df_remaining['3M_RS Percentile'] > df_remaining['6M_RS Percentile']) &
-        (df_remaining['Relative Strength Percentile'] - df_remaining['6M_RS Percentile'] > 20) &
+        (df_remaining['RS Percentile'] - df_remaining['6M_RS Percentile'] > 20) &
         (df_remaining['DVol'] > 1.5 * df_remaining['AvgVol10']) &
         (df_remaining['Price'] >= 0.95 * df_remaining['52WKH']) &
         (df_remaining['MCAP'] > 1000)
     ]
     improving_df = improving_df.copy()
-    improving_df['Score'] = (0.4 * (improving_df['Relative Strength Percentile'] - improving_df['6M_RS Percentile']) +
+    improving_df['Score'] = (0.4 * (improving_df['RS Percentile'] - improving_df['6M_RS Percentile']) +
                             0.3 * (improving_df['DVol'] / improving_df['AvgVol10']) +
                             0.3 * (improving_df['Price'] / improving_df['52WKH']))
     improving_df = improving_df.sort_values(by='Score', ascending=False)
@@ -104,21 +104,21 @@ def generate_opportunity_report(source_file: str, output_file: str):
     # investors seeking high-growth breakout candidates with strong market confirmation.
     breakout_df = df_remaining[
         (df_remaining['Price'] > 20) &
-        (df_remaining['Relative Strength Percentile'] >= 80) &
+        (df_remaining['RS Percentile'] >= 80) &
         (df_remaining['1M_RS Percentile'].between(50, 99)) &
         (df_remaining['3M_RS Percentile'].between(50, 99)) &
         (df_remaining['6M_RS Percentile'].between(50, 99)) &
         (df_remaining['3M_RS Percentile'] > df_remaining['6M_RS Percentile']) &
         (df_remaining['DVol'] > 2 * df_remaining['AvgVol10']) &
         (df_remaining['AvgVol10'] > 300000) &
-        (df_remaining['Relative Strength Percentile'] - df_remaining['3M_RS Percentile'] > 15) &
+        (df_remaining['RS Percentile'] - df_remaining['3M_RS Percentile'] > 15) &
         (df_remaining['1M_RS Percentile'] - df_remaining['3M_RS Percentile'] > 10) &
         (df_remaining['Price'] >= 0.98 * df_remaining['52WKH']) &
         (df_remaining['Price'] > 2 * df_remaining['52WKL']) &
         (df_remaining['MCAP'] > 1000)
     ]
     breakout_df = breakout_df.copy()
-    breakout_df['Score'] = (0.4 * (breakout_df['Relative Strength Percentile'] - breakout_df['1M_RS Percentile']) +
+    breakout_df['Score'] = (0.4 * (breakout_df['RS Percentile'] - breakout_df['1M_RS Percentile']) +
                            0.3 * (breakout_df['DVol'] / breakout_df['AvgVol10']) +
                            0.3 * (breakout_df['Price'] / breakout_df['52WKH']))
     breakout_df = breakout_df.sort_values(by='Score', ascending=False)
@@ -129,7 +129,7 @@ def generate_opportunity_report(source_file: str, output_file: str):
 
     # Output selected columns, including new fields for transparency
     final_columns = [
-        'Section', 'Ticker', 'Price', 'Relative Strength Percentile',
+        'Section', 'Ticker', 'Price', 'RS Percentile',
         '1M_RS Percentile', '3M_RS Percentile', '6M_RS Percentile',
         'DVol', 'AvgVol10', '52WKH', 'MCAP', 'Sector', 'Industry'
     ]
