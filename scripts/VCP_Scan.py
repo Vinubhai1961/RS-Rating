@@ -36,8 +36,8 @@ filtered_df = df[
     (df["Price"] >= 2 * df["52WKL"]) &
     (df["RS Percentile"] > 85) &
     (
-        (df["DVol"] > 1.5 * df["AvgVol10"]) |
-        (df["DVol"] > df["AvgVol10"])
+        (df["DVol"] > 1.5 * df["AvgVol"]) |
+        (df["DVol"] > df["AvgVol"])
     )
 ]
 
