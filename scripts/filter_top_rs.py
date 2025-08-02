@@ -29,7 +29,7 @@ def extract_date_from_filename(filepath):
     return match.group(1)
 
 def generate_opportunity_report(source_file: str, output_file: str):
-    """Generate an opportunity report based on RS criteria with three sections."""
+    """Generate an opportunity report based on RS criteria with four sections."""
     df = pd.read_csv(source_file)
 
     # Clean data by dropping rows with missing values in required fields
@@ -109,12 +109,12 @@ def generate_opportunity_report(source_file: str, output_file: str):
         (df_remaining['3M_RS Percentile'].between(50, 99)) &
         (df_remaining['6M_RS Percentile'].between(50, 99)) &
         (df_remaining['3M_RS Percentile'] > df_remaining['6M_RS Percentile']) &
-        (df_remaining['DVol'] > 1.5 * df_remaining['AvgVol10']) &
+        (df_remaining['DVol'] > 2 * df_remaining['AvgVol10']) &
         (df_remaining['AvgVol10'] > 300000) &
         (df_remaining['RS Percentile'] - df_remaining['3M_RS Percentile'] > 15) &
         (df_remaining['1M_RS Percentile'] - df_remaining['3M_RS Percentile'] > 10) &
-       # (df_remaining['Price'] >= 0.98 * df_remaining['52WKH']) &
-        (df_remaining['Price'] > 0.7 * df_remaining['52WKL']) &
+        (df_remaining['Price'] >= 0.95 * df_remaining['52WKH']) &
+        (df_remaining['Price'] > 1 * df_remaining['52WKL']) &
         (df_remaining['MCAP'] > 1000)
     ]
     breakout_df = breakout_df.copy()
@@ -124,8 +124,33 @@ def generate_opportunity_report(source_file: str, output_file: str):
     breakout_df = breakout_df.sort_values(by='Score', ascending=False)
     breakout_df = add_section_label(breakout_df, "Breakout: New Leader")
 
+    # Exclude Section 3 stocks
+    df_remaining = df_remaining[~df_remaining.index.isin(breakout_df.index)]
+
+    # Section 4: Emerging Opportunities
+    # Scans for stocks with moderate relative strength and growth potential (RS Percentile ≥ 50),
+    # showing improving trend (1M_RS Percentile > 6M_RS Percentile), sufficient liquidity
+    # (DVol > AvgVol10), mid- to small-cap size (MCAP > 500M), prices in an uptrend
+    # (Price > 0.8 * 52WKH), and established status (IPO > 2 years). Ideal for investors
+    # seeking undervalued or early-stage opportunities for further analysis.
+    emerging_df = df_remaining[
+        (df_remaining['Price'] > 10) &
+        (df_remaining['RS Percentile'] >= 50) &
+        (df_remaining['1M_RS Percentile'] > df_remaining['6M_RS Percentile']) &
+        (df_remaining['DVol'] > df_remaining['AvgVol10']) &
+        (df_remaining['MCAP'] > 500) &
+        (df_remaining['Price'] > 0.8 * df_remaining['52WKH']) &
+        (pd.to_numeric(df_remaining['IPO'], errors='coerce') > 2)  # Assuming IPO is a year
+    ]
+    emerging_df = emerging_df.copy()
+    emerging_df['Score'] = (0.4 * (emerging_df['RS Percentile'] - emerging_df['6M_RS Percentile']) +
+                           0.3 * (emerging_df['DVol'] / emerging_df['AvgVol10']) +
+                           0.3 * (emerging_df['Price'] / emerging_df['52WKH']))
+    emerging_df = emerging_df.sort_values(by='Score', ascending=False)
+    emerging_df = add_section_label(emerging_df, "Emerging Opportunities")
+
     # Combine all sections
-    combined_df = pd.concat([leading_df, improving_df, breakout_df], ignore_index=True)
+    combined_df = pd.concat([leading_df, improving_df, breakout_df, emerging_df], ignore_index=True)
 
     # Output selected columns, including new fields for transparency
     final_columns = [
@@ -153,7 +178,11 @@ def generate_opportunity_report(source_file: str, output_file: str):
 
         f.write("Breakout: New Leader:\n")
         f.write("Scans for emerging leaders with recent RS surges (RS ≥ 80, 1M/3M/6M in 50–99, RS - 3M > 15, 1M - 3M > 10, 3M > 6M), strong volume spikes (DVol > 2 * AvgVol10, AvgVol10 > 300,000), prices at or near 52-week highs (Price >= 0.98 * 52WKH, > 2 * 52WKL), and mid- to large-cap (MCAP > 1,000M). Ideal for high-growth breakout strategies.\n")
-        f.write(", ".join(breakout_df['Ticker'].tolist()) + "\n")
+        f.write(", ".join(breakout_df['Ticker'].tolist()) + "\n\n")
+
+        f.write("Emerging Opportunities:\n")
+        f.write("Scans for stocks with moderate relative strength and growth potential (RS Percentile ≥ 50), showing improving trend (1M_RS Percentile > 6M_RS Percentile), sufficient liquidity (DVol > AvgVol10), mid- to small-cap size (MCAP > 500M), prices in an uptrend (Price > 0.8 * 52WKH), and established status (IPO > 2 years). Ideal for investors seeking undervalued or early-stage opportunities for further analysis.\n")
+        f.write(", ".join(emerging_df['Ticker'].tolist()) + "\n")
 
     print(f"✅ Ticker summary saved to {summary_path}")
 
