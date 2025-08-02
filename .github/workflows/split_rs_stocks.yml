@@ -32,7 +32,7 @@ jobs:
 
       # Run Python script to split rs_stocks.csv
       - name: Split CSV file
-        run: python .github/scripts/split_rs_stocks.py
+        run: python scripts/split_rs_stocks.py
 
       # Commit and push the split files
       - name: Commit split files
