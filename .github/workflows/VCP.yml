@@ -6,10 +6,7 @@ on:
       - 'archive/**.csv'
       - 'scripts/VCP_Scan.py'
       - '.github/workflows/scan.yml'
-
-permissions:
-  contents: write
-
+      
 jobs:
   scan:
     runs-on: ubuntu-latest
