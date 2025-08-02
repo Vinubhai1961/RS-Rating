@@ -1,6 +1,8 @@
 name: Run VCP Stock Scanner
 
+# Controls when the workflow runs
 on:
+  workflow_dispatch: # Manual trigger only
   push:
     paths:
       - 'archive/**.csv'
