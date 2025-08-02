@@ -53,8 +53,8 @@ def generate_opportunity_report(source_file: str, output_file: str):
         (df_clean['3M_RS Percentile'] > 90) &
         (df_clean['6M_RS Percentile'] > 90) &
         (df_clean['MCAP'] > 1000) &
-        (df_clean['Price'] >= 0.9 * df_clean['52WKH']) &
-        (df_clean['Price'] > 1.5 * df_clean['52WKL'])
+        (df_clean['Price'] >= 0.75 * df_clean['52WKH']) &
+        (df_clean['Price'] > 1.0 * df_clean['52WKL'])
     ]
     # Optional volume filter: only apply if sufficient stocks remain
     if len(leading_df) > 5:  # Arbitrary threshold to ensure enough candidates
@@ -83,7 +83,7 @@ def generate_opportunity_report(source_file: str, output_file: str):
         (df_remaining['3M_RS Percentile'] > df_remaining['6M_RS Percentile']) &
         (df_remaining['RS Percentile'] - df_remaining['6M_RS Percentile'] > 20) &
         (df_remaining['DVol'] > 1.5 * df_remaining['AvgVol10']) &
-        (df_remaining['Price'] >= 0.95 * df_remaining['52WKH']) &
+        (df_remaining['Price'] >= 0.75 * df_remaining['52WKH']) &
         (df_remaining['MCAP'] > 1000)
     ]
     improving_df = improving_df.copy()
@@ -113,7 +113,7 @@ def generate_opportunity_report(source_file: str, output_file: str):
         (df_remaining['AvgVol10'] > 300000) &
         (df_remaining['RS Percentile'] - df_remaining['3M_RS Percentile'] > 15) &
         (df_remaining['1M_RS Percentile'] - df_remaining['3M_RS Percentile'] > 10) &
-        (df_remaining['Price'] >= 0.95 * df_remaining['52WKH']) &
+        (df_remaining['Price'] >= 0.75 * df_remaining['52WKH']) &
         (df_remaining['Price'] > 1 * df_remaining['52WKL']) &
         (df_remaining['MCAP'] > 1000)
     ]
@@ -139,7 +139,7 @@ def generate_opportunity_report(source_file: str, output_file: str):
         (df_remaining['1M_RS Percentile'] > df_remaining['6M_RS Percentile']) &
         (df_remaining['DVol'] > df_remaining['AvgVol10']) &
         (df_remaining['MCAP'] > 500) &
-        (df_remaining['Price'] > 0.8 * df_remaining['52WKH']) &
+        (df_remaining['Price'] > 0.75 * df_remaining['52WKH']) &
         (pd.to_numeric(df_remaining['IPO'], errors='coerce') > 2)  # Assuming IPO is a year
     ]
     emerging_df = emerging_df.copy()
