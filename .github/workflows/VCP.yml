@@ -1,0 +1,56 @@
+name: Manual VCP Scan
+
+# Trigger the workflow manually
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to run the scan (e.g., dev, prod)'
+        required: true
+        default: 'dev'
+      date:
+        description: 'Specific date for rs_stocks_YYYYMMDD.csv (e.g., 20250802)'
+        required: false
+
+jobs:
+  vcp-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Check out the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'  # Use the latest 3.x version
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas
+
+      # Run the VCP scan script
+      - name: Execute VCP Scan
+        env:
+          ENVIRONMENT: ${{ github.event.inputs.environment }}
+          DATE: ${{ github.event.inputs.date || format('YYYYMMDD', github.event.inputs.date) }}
+        run: |
+          # Default to latest file if no date provided
+          if [ -z "$DATE" ]; then
+            SOURCE_FILE=$(ls -t archive/rs_stocks_*.csv | head -n 1)
+          else
+            SOURCE_FILE="archive/rs_stocks_${DATE}.csv"
+          fi
+          OUTPUT_FILE="IBD-20/vcp_opportunities_${DATE:-$(date +%Y%m%d)}.csv"
+          python scripts/VCP_Scan.py "$SOURCE_FILE" "$OUTPUT_FILE"
+
+      # Upload the output as an artifact
+      - name: Upload VCP Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: vcp-report
+          path: IBD-20/vcp_opportunities_*.csv
