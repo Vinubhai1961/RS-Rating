@@ -1,7 +1,7 @@
 """
 Title: Sector RS Report Generator
 Author: Dipen Patel
-Last Updated: 2025-07-26
+Last Updated: 2025-08-04
 
 Description:
 This script filters top-performing industry sectors based on Relative Strength (RS) over time.
@@ -45,8 +45,11 @@ def extract_date_from_filename(filepath):
 
 def generate_sector_report(source_file: str, output_file: str):
     df = pd.read_csv(source_file)
-
-    required_cols = ['Relative Strength', '1 Month Ago', '3 Months Ago', '6 Months Ago']
+    
+    # Debug: Print columns
+    print(f"📋 Columns in {source_file}: {df.columns.tolist()}")
+    
+    required_cols = ['RS', '1 M_RS', '3M_RS', '6M_RS']
     missing_cols = [col for col in required_cols if col not in df.columns]
     if missing_cols:
         raise ValueError(f"❌ Missing required columns: {missing_cols}")
@@ -57,53 +60,53 @@ def generate_sector_report(source_file: str, output_file: str):
 
     # Debug: How many meet each condition
     print("\n🔍 Individual Condition Counts:")
-    print("🔹 RS > 80 now:", (df_clean['Relative Strength'] > 80).sum())
+    print("🔹 RS > 80 now:", (df_clean['RS'] > 80).sum())
     print("🔸 Strictly Improving RS:", (
-        (df_clean['Relative Strength'] > df_clean['1 Month Ago']) &
-        (df_clean['1 Month Ago'] > df_clean['3 Months Ago']) &
-        (df_clean['3 Months Ago'] > df_clean['6 Months Ago'])
+        (df_clean['RS'] > df_clean['1 M_RS']) &
+        (df_clean['1 M_RS'] > df_clean['3M_RS']) &
+        (df_clean['3M_RS'] > df_clean['6M_RS'])
     ).sum())
     print("🔹 Breakout Candidates (RS ≥ 80 and weak past):", (
-        (df_clean['Relative Strength'] >= 80) &
-        ((df_clean['3 Months Ago'] < 40) | (df_clean['6 Months Ago'] < 40))
+        (df_clean['RS'] >= 80) &
+        ((df_clean['3M_RS'] < 40) | (df_clean['6M_RS'] < 40))
     ).sum())
 
     # 🔹 Section 1: Leading Sectors
     leading_df = df_clean[
-        (df_clean['Relative Strength'] > 80) &
-        (df_clean['1 Month Ago'] > 80) &
-        (df_clean['3 Months Ago'] > 80) &
-        (df_clean['6 Months Ago'] > 80)
+        (df_clean['RS'] > 80) &
+        (df_clean['1 M_RS'] > 80) &
+        (df_clean['3M_RS'] > 80) &
+        (df_clean['6M_RS'] > 80)
     ]
-    leading_df = leading_df.sort_values(by='Relative Strength', ascending=False)
+    leading_df = leading_df.sort_values(by='RS', ascending=False)
     leading_df = add_section_label(leading_df, "🔹 RS > 80: Leading Sectors")
 
     # 🔸 Section 2: Top Moving Sectors
     improving_df = df_clean[
-        (df_clean['Relative Strength'] >= 75) &
-        (df_clean['Relative Strength'] > df_clean['1 Month Ago']) &
-        (df_clean['1 Month Ago'] > df_clean['3 Months Ago']) &
-        (df_clean['3 Months Ago'] > df_clean['6 Months Ago'])
+        (df_clean['RS'] >= 75) &
+        (df_clean['RS'] > df_clean['1 M_RS']) &
+        (df_clean['1 M_RS'] > df_clean['3M_RS']) &
+        (df_clean['3M_RS'] > df_clean['6M_RS'])
     ]
-    improving_df = improving_df.sort_values(by='Relative Strength', ascending=False)
+    improving_df = improving_df.sort_values(by='RS', ascending=False)
     improving_df = add_section_label(improving_df, "🔸 RS ≥ 75: Top Moving Sectors")
 
     # 🔹 Section 3: Breakout Sectors
     breakout_df = df_clean[
-        (df_clean['Relative Strength'] >= 80) &
-        ((df_clean['3 Months Ago'] < 40) | (df_clean['6 Months Ago'] < 40))
+        (df_clean['RS'] >= 80) &
+        ((df_clean['3M_RS'] < 40) | (df_clean['6M_RS'] < 40))
     ]
-    breakout_df = breakout_df.sort_values(by='Relative Strength', ascending=False)
+    breakout_df = breakout_df.sort_values(by='RS', ascending=False)
     breakout_df = add_section_label(breakout_df, "🔹 RS ≥ 80: Breakout Sectors")
 
     # 🕵️ Watchlist: Improving but RS < 75
     watchlist_df = df_clean[
-        (df_clean['Relative Strength'] < 75) &
-        (df_clean['Relative Strength'] > df_clean['1 Month Ago']) &
-        (df_clean['1 Month Ago'] > df_clean['3 Months Ago']) &
-        (df_clean['3 Months Ago'] > df_clean['6 Months Ago'])
+        (df_clean['RS'] < 75) &
+        (df_clean['RS'] > df_clean['1 M_RS']) &
+        (df_clean['1 M_RS'] > df_clean['3M_RS']) &
+        (df_clean['3M_RS'] > df_clean['6M_RS'])
     ]
-    watchlist_df = watchlist_df.sort_values(by='Relative Strength', ascending=False)
+    watchlist_df = watchlist_df.sort_values(by='RS', ascending=False)
     watchlist_df = add_section_label(watchlist_df, "🕵️ Improving Watchlist (RS < 75)")
 
     # Summary
@@ -115,8 +118,7 @@ def generate_sector_report(source_file: str, output_file: str):
 
     # Combine all
     combined_df = pd.concat([leading_df, improving_df, breakout_df, watchlist_df], ignore_index=True)
-    final_columns = ['Section', 'Industry', 'Relative Strength',
-                     '1 Month Ago', '3 Months Ago', '6 Months Ago']
+    final_columns = ['Section', 'Industry', 'RS', '1 M_RS', '3M_RS', '6M_RS']
     combined_df = combined_df[final_columns]
 
     ensure_dir(output_file)
