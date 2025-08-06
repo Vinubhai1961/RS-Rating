@@ -13,6 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     name: fetch-rs-${{ matrix.partition }}
     steps:
+      - name: Print workflow start time (EDT)
+        run: |
+          echo "Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
       - name: ⬇️ Checkout repository
         uses: actions/checkout@v4
 
@@ -75,12 +79,20 @@ jobs:
           name: failed-tickers-${{ matrix.partition }}
           path: logs/failed_tickers.log
           if-no-files-found: ignore
-          
+
+      - name: Print workflow end time (EDT)
+        run: |
+          echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
   validate-arctic-data:
     needs:
       - fetch-rs
     runs-on: ubuntu-latest
     steps:
+      - name: Print workflow start time (EDT)
+        run: |
+          echo "Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
 
@@ -128,7 +140,7 @@ jobs:
           else
              echo "✅ ArcticDB merge completed successfully"
           fi
-            
+
       - name: 🔮 Verify merged ArcticDB (Top 10 symbols)
         run: |
           pip install arcticdb pandas
@@ -163,21 +175,29 @@ jobs:
               print(f"❌ ArcticDB error: {e}")
               exit(1)
           EOF
-          
+
       - name: 📦 Upload merged ArcticDB
         uses: actions/upload-artifact@v4
         with:
           name: arctic-db-merged
           path: tmp/arctic_db
-          
+
       - name: 🫼 Remove lock file
         run: |
           find tmp/arctic_db -name "lock.mdb" -exec rm -f {} \;
-   
+
+      - name: Print workflow end time (EDT)
+        run: |
+          echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
   calculate-rs:
     needs: validate-arctic-data
     runs-on: ubuntu-latest
     steps:
+      - name: Print workflow start time (EDT)
+        run: |
+          echo "Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
 
@@ -220,13 +240,13 @@ jobs:
             --output-dir RS_Data \
             --log-file RS_Logs/failed_tickers.log \
             --metadata-file data/ticker_price.json
-  
+
       - name: 📃 Archive RS Results
         run: |
           mkdir -p archive
           current_date=$(date -u -d "4 hours ago" +"%m%d%Y")
           echo "📅 Archiving results for: ${current_date}"
-  
+
           # Copy result CSVs to archive only
           for file in rs_stocks rs_industries RSRATING; do
             if [ -f "RS_Data/${file}.csv" ]; then
@@ -237,13 +257,13 @@ jobs:
               exit 1
             fi
           done
-  
+
           echo "🧹 Cleaning CSV files older than 90 days in archive..."
           find archive -type f -name "*.csv" -mtime +90 -print -delete
-  
+
           echo "📦 Final archived files:"
           ls -l archive | tail -n 10
-  
+
       - name: 🗓️ Upload outputs
         uses: actions/upload-artifact@v4
         with:
@@ -252,39 +272,43 @@ jobs:
             RS_Data/*.csv
             RS_Logs/failed_tickers.log
             archive/*.csv
-  
+
       - name: 📤 Commit and Push RS Results
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
-  
+
           # 🔐 Authenticate using GitHub token
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
-  
+
           echo "📌 Repo status before commit:"
           git status
-  
+
           # 📥 Save list of modified files
           mkdir -p RS_Logs
           git status | grep "modified:" > RS_Logs/git_modified_files.log || true
           echo "📝 Modified files saved to RS_Logs/git_modified_files.log"
           cat RS_Logs/git_modified_files.log
-  
+
           echo "➕ Staging all relevant result files..."
           git add archive/*.csv RS_Data/*.csv
-  
+
           # ✅ Skip commit if nothing is staged
           if git diff --cached --quiet; then
             echo "⚠️ No changes to commit. Skipping commit & push."
           else
             commit_date=$(date -u -d '4 hours ago' +'%m%d%Y')
             git commit -m "Add RS results for ${commit_date}"
-  
+
             echo "🔄 Pulling latest changes from origin/main (rebase)..."
             git pull --rebase origin main
-  
+
             echo "🚀 Pushing committed results to GitHub..."
             git push origin main
           fi
+
+      - name: Print workflow end time (EDT)
+        run: |
+          echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
