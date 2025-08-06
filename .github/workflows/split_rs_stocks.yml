@@ -2,14 +2,27 @@ name: Split rs_stocks.csv
 
 # Controls when the workflow runs
 on:
-  workflow_dispatch: # Manual trigger only
+  workflow_dispatch: # Manual trigger
+  workflow_run:
+    workflows: ["📊 Calculate RS Ratings"]
+    types:
+      - completed
+    branches:
+      - main
 
 jobs:
   split-csv:
     name: Split rs_stocks.csv into chunks
     runs-on: ubuntu-latest
+    # Only run if the Calculate RS Ratings workflow completed successfully
+    if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch'
 
     steps:
+      # Print workflow start time
+      - name: Print workflow start time (EDT)
+        run: |
+          echo "Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
       # Check out the repository to access rs_stocks.csv
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -40,7 +53,12 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git add RS_Data/rs_stocks_part*.csv
-          git commit -m "Split rs_stocks.csv into 4000-record chunks ($(date))"
+          git commit -m "Split rs_stocks.csv into 4000-record chunks [$(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')]"
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Print workflow end time
+      - name: Print workflow end time (EDT)
+        run: |
+          echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
