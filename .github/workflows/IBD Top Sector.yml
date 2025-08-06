@@ -3,7 +3,7 @@ name: 📈 Filter Top RS Sector Opportunities
 on:
   workflow_dispatch:
   schedule:
-    - cron: '55 21 * * 1-5'  # Runs every weekday at 5:30 PM UTC (1:30 PM diverted)
+    - cron: '15 21 * * 1-5'  # Runs every weekday at 5:15 PM UTC (1:30 PM diverted)
 
 jobs:
   filter_top_Sector:
