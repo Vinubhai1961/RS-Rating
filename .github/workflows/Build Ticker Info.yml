@@ -16,6 +16,10 @@ jobs:
     timeout-minutes: 180  # Allow up to 180 minutes for safety
 
     steps:
+      - name: Print workflow start time (EDT)
+        run: |
+          echo "Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+      
       - uses: actions/checkout@v4
 
       - name: Setup Python
@@ -47,12 +51,20 @@ jobs:
             logs/build_ticker_info.log
           retention-days: 5
 
+      - name: Print workflow end time (EDT)
+        run: |
+          echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
   merge-ticker-info:
     needs: build-ticker-info
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
     steps:
+      - name: Print workflow start time (EDT)
+        run: |
+          echo "Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
       - uses: actions/checkout@v4
 
       - name: Download partition artifacts
@@ -124,6 +136,10 @@ jobs:
           git commit -m "Commit Phase 1 final outputs: ticker_info.json, unresolved_tickers.txt, partition_summary.json and logs [${edt_time}]" || echo "No changes to commit"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git || echo "Push failed, possibly no changes"
 
+      - name: Print workflow end time (EDT)
+        run: |
+          echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
   build-ticker-price:
     needs: merge-ticker-info
     strategy:
@@ -135,6 +151,10 @@ jobs:
     timeout-minutes: 180  # Allow up to 180 minutes for safety
 
     steps:
+      - name: Print workflow start time (EDT)
+        run: |
+          echo "Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
       - uses: actions/checkout@v4
 
       - name: Download ticker info artifact
@@ -170,12 +190,20 @@ jobs:
             logs/build_ticker_price.log
           retention-days: 5
 
+      - name: Print workflow end time (EDT)
+        run: |
+          echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
   merge-ticker-price:
     needs: build-ticker-price
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
     steps:
+      - name: Print workflow start time (EDT)
+        run: |
+          echo "Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
       - uses: actions/checkout@v4
 
       - name: Download price artifacts
@@ -228,3 +256,7 @@ jobs:
           edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
           git commit -m "Update ticker info and price (auto) [${edt_time}]" || echo "No changes to commit"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git || echo "Push failed, possibly no changes"
+
+      - name: Print workflow end time (EDT)
+        run: |
+          echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
