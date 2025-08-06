@@ -158,7 +158,7 @@ def generate_opportunity_report(source_file: str, output_file: str):
 
     # Output selected columns in the requested order
     final_columns = [
-        'Rank', 'Ticker', 'Price', 'DVol', 'Sector', 'Industry',
+        'Section', 'Rank', 'Ticker', 'Price', 'DVol', 'Sector', 'Industry',
         'RS Percentile', '1M_RS Percentile', '3M_RS Percentile', '6M_RS Percentile',
         'AvgVol', 'AvgVol10', '52WKH', '52WKL', 'MCAP', 'IPO'
     ]
