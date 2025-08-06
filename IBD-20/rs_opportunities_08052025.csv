@@ -1,25 +1,25 @@
-Section,Ticker,Price,RS Percentile,1M_RS Percentile,3M_RS Percentile,6M_RS Percentile,DVol,AvgVol10,52WKH,MCAP,Sector,Industry
-Leading Stocks (RS > 90),XMTR,44.28,98.0,97.0,97.0,95.0,6146754.0,566770.0,47.46,2243964160.0,Industrials,Specialty Industrial Machinery
-Leading Stocks (RS > 90),LMND,47.88,97.0,97.0,95.0,97.0,12801971.0,1972680.0,53.85,3508344576.0,Financial Services,Insurance - Property & Casualty
-Leading Stocks (RS > 90),PLTR,173.27,99.0,99.0,99.0,99.0,127418410.0,52904420.0,176.33,408901582848.0,Technology,Software - Infrastructure
-Leading Stocks (RS > 90),BE,37.52,99.0,95.0,92.0,98.0,11714400.0,14973960.0,39.15,8779604992.0,Industrials,Electrical Equipment & Parts
-Leading Stocks (RS > 90),ACFN,27.45,98.0,92.0,96.0,96.0,35448.0,60220.0,29.95,68579816.0,Technology,Scientific & Technical Instruments
-Leading Stocks (RS > 90),AXON,867.12,97.0,97.0,97.0,97.0,2496443.0,688290.0,885.91,67505983488.0,Industrials,Aerospace & Defense
-Leading Stocks (RS > 90),HIMS,55.51,97.0,98.0,99.0,99.0,103824479.0,39373860.0,72.98,12426033152.0,Consumer Defensive,Household & Personal Products
-Leading Stocks (RS > 90),SRAD,27.84,96.0,97.0,98.0,97.0,6761657.0,1774090.0,30.63,8239303680.0,Technology,Software - Application
-Leading Stocks (RS > 90),ESLT,483.99,97.0,96.0,98.0,94.0,244575.0,107410.0,494.32,22429016064.0,Industrials,Aerospace & Defense
-Leading Stocks (RS > 90),TPB,81.11,95.0,94.0,98.0,97.0,580014.0,399960.0,84.05,1451860608.0,Consumer Defensive,Tobacco
-Leading Stocks (RS > 90),ERJ,57.2,95.0,96.0,97.0,95.0,3251522.0,3220150.0,61.65,10674092032.0,Industrials,Aerospace & Defense
-Leading Stocks (RS > 90),SNEX,96.96,92.0,95.0,96.0,95.0,877018.0,448620.0,100.4,4742953472.0,Financial Services,Capital Markets
-"Top Movers (RS ≥ 85, Improving)",VSAT,21.29,98.0,95.0,6.0,2.0,7670331.0,3500000.0,26.7,2858267904.0,Technology,Communication Equipment
-"Top Movers (RS ≥ 85, Improving)",FRGE,24.17,96.0,90.0,15.0,2.0,201012.0,156740.0,24.9,325700704.0,Financial Services,Capital Markets
-"Top Movers (RS ≥ 85, Improving)",INDV,21.8,97.0,91.0,44.0,5.0,3992554.0,6419780.0,21.94,2719985920.0,Healthcare,Drug Manufacturers - Specialty & Generic
-"Top Movers (RS ≥ 85, Improving)",SYM,63.21,99.0,98.0,14.0,10.0,4540540.0,2190850.0,64.16,37269311488.0,Industrials,Specialty Industrial Machinery
-"Top Movers (RS ≥ 85, Improving)",GIC,34.49,89.0,58.0,28.0,4.0,140526.0,168310.0,35.05,1323337728.0,Industrials,Industrial Distribution
-"Top Movers (RS ≥ 85, Improving)",SEB,3481.94,90.0,52.0,21.0,10.0,3755.0,1870.0,3494.44,3339852544.0,Industrials,Conglomerates
-"Top Movers (RS ≥ 85, Improving)",APPF,313.7,94.0,41.0,35.0,18.0,549342.0,423010.0,326.04,11247086592.0,Technology,Software - Application
-"Top Movers (RS ≥ 85, Improving)",GSL,29.17,89.0,81.0,27.0,15.0,687162.0,320460.0,29.67,1038819520.0,Industrials,Marine Shipping
-"Top Movers (RS ≥ 85, Improving)",IDXX,641.94,93.0,85.0,81.0,21.0,1775783.0,1008680.0,688.12,51626037248.0,Healthcare,Diagnostics & Research
-"Top Movers (RS ≥ 85, Improving)",YOU,31.84,88.0,70.0,67.0,46.0,5241643.0,1442670.0,38.88,4236563200.0,Technology,Software - Application
-"Top Movers (RS ≥ 85, Improving)",WLDN,91.2,98.0,97.0,88.0,70.0,419325.0,346680.0,92.76,1322108160.0,Industrials,Engineering & Construction
-"Top Movers (RS ≥ 85, Improving)",BWXT,181.94,96.0,90.0,74.0,73.0,4408686.0,1113330.0,189.25,16622167040.0,Industrials,Aerospace & Defense
+Rank,Ticker,Price,DVol,Sector,Industry,RS Percentile,1M_RS Percentile,3M_RS Percentile,6M_RS Percentile,AvgVol,AvgVol10,52WKH,52WKL,MCAP,IPO
+1,XMTR,44.28,6146754.0,Industrials,Specialty Industrial Machinery,98.0,97.0,97.0,95.0,669609.0,566770.0,47.46,11.33,2243964160.0,No
+2,LMND,47.88,12801971.0,Financial Services,Insurance - Property & Casualty,97.0,97.0,95.0,97.0,2384364.0,1972680.0,53.85,14.9,3508344576.0,No
+3,PLTR,173.27,127418410.0,Technology,Software - Infrastructure,99.0,99.0,99.0,99.0,78405862.0,52904420.0,176.33,25.57,408901582848.0,No
+4,BE,37.52,11714400.0,Industrials,Electrical Equipment & Parts,99.0,95.0,92.0,98.0,7375380.0,14973960.0,39.15,9.02,8779604992.0,No
+5,ACFN,27.45,35448.0,Technology,Scientific & Technical Instruments,98.0,92.0,96.0,96.0,11751.0,60220.0,29.95,8.1,68579816.0,No
+6,AXON,867.12,2496443.0,Industrials,Aerospace & Defense,97.0,97.0,97.0,97.0,619362.0,688290.0,885.91,286.19,67505983488.0,No
+7,HIMS,55.51,103824479.0,Consumer Defensive,Household & Personal Products,97.0,98.0,99.0,99.0,45439077.0,39373860.0,72.98,13.47,12426033152.0,No
+8,SRAD,27.84,6761657.0,Technology,Software - Application,96.0,97.0,98.0,97.0,1876816.0,1774090.0,30.63,10.38,8239303680.0,No
+9,ESLT,483.99,244575.0,Industrials,Aerospace & Defense,97.0,96.0,98.0,94.0,148206.0,107410.0,494.32,179.22,22429016064.0,No
+10,TPB,81.11,580014.0,Consumer Defensive,Tobacco,95.0,94.0,98.0,97.0,312904.0,399960.0,84.05,34.78,1451860608.0,No
+11,ERJ,57.2,3251522.0,Industrials,Aerospace & Defense,95.0,96.0,97.0,95.0,1846674.0,3220150.0,61.65,26.87,10674092032.0,No
+12,SNEX,96.96,877018.0,Financial Services,Capital Markets,92.0,95.0,96.0,95.0,384706.0,448620.0,100.4,48.83,4742953472.0,No
+1,VSAT,21.29,7670331.0,Technology,Communication Equipment,98.0,95.0,6.0,2.0,3579179.0,3500000.0,26.7,6.69,2858267904.0,No
+2,FRGE,24.17,201012.0,Financial Services,Capital Markets,96.0,90.0,15.0,2.0,116112.0,156740.0,24.9,6.6,325700704.0,No
+3,INDV,21.8,3992554.0,Healthcare,Drug Manufacturers - Specialty & Generic,97.0,91.0,44.0,5.0,2347169.0,6419780.0,21.94,7.33,2719985920.0,No
+4,SYM,63.21,4540540.0,Industrials,Specialty Industrial Machinery,99.0,98.0,14.0,10.0,2141417.0,2190850.0,64.16,16.32,37269311488.0,No
+5,GIC,34.49,140526.0,Industrials,Industrial Distribution,89.0,58.0,28.0,4.0,87908.0,168310.0,35.05,20.79,1323337728.0,No
+6,SEB,3481.94,3755.0,Industrials,Conglomerates,90.0,52.0,21.0,10.0,2191.0,1870.0,3494.44,2365.0,3339852544.0,No
+7,APPF,313.7,549342.0,Technology,Software - Application,94.0,41.0,35.0,18.0,285432.0,423010.0,326.04,189.01,11247086592.0,No
+8,GSL,29.17,687162.0,Industrials,Marine Shipping,89.0,81.0,27.0,15.0,368730.0,320460.0,29.67,17.73,1038819520.0,No
+9,IDXX,641.94,1775783.0,Healthcare,Diagnostics & Research,93.0,85.0,81.0,21.0,592401.0,1008680.0,688.12,356.14,51626037248.0,No
+10,YOU,31.84,5241643.0,Technology,Software - Application,88.0,70.0,67.0,46.0,1679179.0,1442670.0,38.88,21.67,4236563200.0,No
+11,WLDN,91.2,419325.0,Industrials,Engineering & Construction,98.0,97.0,88.0,70.0,262403.0,346680.0,92.76,30.43,1322108160.0,No
+12,BWXT,181.94,4408686.0,Industrials,Aerospace & Defense,96.0,90.0,74.0,73.0,1245408.0,1113330.0,189.25,84.21,16622167040.0,No
