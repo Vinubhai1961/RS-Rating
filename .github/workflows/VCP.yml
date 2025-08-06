@@ -2,37 +2,63 @@ name: Run VCP Stock Scanner
 
 # Controls when the workflow runs
 on:
-  workflow_dispatch: # Manual trigger only
+  workflow_dispatch: # Manual trigger
+  workflow_run:
+    workflows: ["Split rs_stocks.csv"]
+    types:
+      - completed
+    branches:
+      - main
   push:
     paths:
       - 'archive/**.csv'
       - 'scripts/VCP_Scan.py'
       - '.github/workflows/scan.yml'
-      
+
 jobs:
   scan:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
+    # Only run if the Split rs_stocks.csv workflow completed successfully or for push/workflow_dispatch
+    if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' || github.event_name == 'push'
 
+    steps:
+      # Print workflow start time
+      - name: Print workflow start time (EDT)
+        run: |
+          echo "Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
+      # Check out the repository
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      # Set up Python environment
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
+      # Install dependencies
       - name: Install Dependencies
         run: |
           pip install pandas
 
+      # Run the VCP scan script
       - name: Run VCP Scan
         run: |
           python scripts/VCP_Scan.py
 
+      # Commit and push the output files
       - name: Commit and push output
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add IBD-20/vcp_*.csv
-          git commit -m "Add filtered stock scan results" || echo "No changes to commit"
+          git commit -m "Add filtered stock scan results [$(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')]" || echo "No changes to commit"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Print workflow end time
+      - name: Print workflow end time (EDT)
+        run: |
+          echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
