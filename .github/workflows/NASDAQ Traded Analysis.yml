@@ -51,6 +51,4 @@ jobs:
         run: git pull --rebase origin main
 
       - name: Push changes to repository
-        env:
-          PAT: ${{ secrets.PAT }}
-        run: git push https://dpatelj88:${{ secrets.PAT }}@github.com/dpatelj88/RS-Rating HEAD:main
+        run: git push origin HEAD:main
