@@ -1,14 +1,10 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'RS_Data/rs_stocks.csv'
-      - 'index.html'
-      - 'css/**'
-      - 'js/**'
+  workflow_run:
+    workflows: ["Calculate RS Ratings"]
+    types:
+      - completed
 
 jobs:
   deploy:
