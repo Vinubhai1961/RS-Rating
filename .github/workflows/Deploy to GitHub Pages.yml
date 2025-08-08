@@ -5,6 +5,7 @@ on:
     workflows: ["Calculate RS Ratings"]
     types:
       - completed
+  workflow_dispatch:
 
 jobs:
   deploy:
