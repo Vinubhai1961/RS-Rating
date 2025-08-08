@@ -36,6 +36,7 @@ jobs:
         run: |
           mv scripts/analysis_output.txt analysis_output.txt 2>/dev/null || true
           mv scripts/nasdaq_analysis.png nasdaq_analysis.png 2>/dev/null || true
+          mv scripts/warrant.csv warrant.csv 2>/dev/null || true
 
       - name: Configure Git
         run: |
