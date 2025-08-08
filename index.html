@@ -15,32 +15,10 @@
     <main class="row">
       <div class="col">
         <h1>RS Stocks Table</h1>
-        <p>Interactive table displaying stock data from RS_Data/rs_stocks.csv with search, sort, and multiple filters.</p>
-        <div class="filter-row row mb-3">
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="ticker-filter">Filter by Ticker:</label>
-              <select id="ticker-filter" class="form-control custom-select">
-                <option value="">All Tickers</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="sector-filter">Filter by Sector:</label>
-              <select id="sector-filter" class="form-control custom-select">
-                <option value="">All Sectors</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="industry-filter">Filter by Industry:</label>
-              <select id="industry-filter" class="form-control custom-select">
-                <option value="">All Industries</option>
-              </select>
-            </div>
-          </div>
+        <p>Interactive table displaying stock data from RS_Data/rs_stocks.csv with search, sort, and Ticker filter.</p>
+        <div class="form-group mb-3">
+          <label for="ticker-search">Search by Ticker:</label>
+          <input type="text" id="ticker-search" class="form-control" placeholder="Type to filter by Ticker...">
         </div>
         <div id="table-container"></div>
       </div>
@@ -120,38 +98,12 @@
       ]
     });
 
-    // Populate and handle filters
+    // Handle Ticker search bar
     $(document).ready(function() {
       const table = $('#table-container table').DataTable();
-      // Ticker filter
-      table.column(1).data().unique().sort().each(function(value) {
-        if (value) {
-          $('#ticker-filter').append(`<option value="${value}">${value}</option>`);
-        }
-      });
-      $('#ticker-filter').on('change', function() {
+      $('#ticker-search').on('keyup', function() {
         const val = $.fn.dataTable.util.escapeRegex($(this).val());
-        table.column(1).search(val ? '^' + val + '$' : '', true, false).draw();
-      });
-      // Sector filter
-      table.column(4).data().unique().sort().each(function(value) {
-        if (value) {
-          $('#sector-filter').append(`<option value="${value}">${value}</option>`);
-        }
-      });
-      $('#sector-filter').on('change', function() {
-        const val = $.fn.dataTable.util.escapeRegex($(this).val());
-        table.column(4).search(val ? '^' + val + '$' : '', true, false).draw();
-      });
-      // Industry filter
-      table.column(5).data().unique().sort().each(function(value) {
-        if (value) {
-          $('#industry-filter').append(`<option value="${value}">${value}</option>`);
-        }
-      });
-      $('#industry-filter').on('change', function() {
-        const val = $.fn.dataTable.util.escapeRegex($(this).val());
-        table.column(5).search(val ? '^' + val + '$' : '', true, false).draw();
+        table.column(1).search(val ? val : '', false, true).draw();
       });
     });
   </script>
