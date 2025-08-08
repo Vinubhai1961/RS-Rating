@@ -1,5 +1,11 @@
 .table-container {
   margin-top: 20px;
+  width: 100%; /* Ensure full width */
+  padding: 0; /* Remove padding to reach edges */
+}
+.table {
+  width: 100% !important; /* Override DataTables default width */
+  margin: 0; /* Remove any margin */
 }
 .table th, .table td {
   vertical-align: middle;
@@ -11,6 +17,10 @@
   background-color: #f8f9fa;
   font-weight: bold;
 }
+.dataTables_wrapper {
+  width: 100%; /* Ensure DataTables wrapper stretches */
+  padding: 0; /* Remove padding */
+}
 .dataTables_wrapper .dataTables_paginate .paginate_button {
   padding: 5px 10px;
   margin: 0 2px;
@@ -20,16 +30,14 @@
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
   background-color: #e9ecef;
 }
-.filter-row {
-  margin-bottom: 20px;
-}
-.custom-select {
-  padding: 8px;
+#ticker-search {
+  max-width: 400px;
+  padding: 10px;
   border-radius: 4px;
   border: 1px solid #ced4da;
   background-color: #fff;
 }
-.custom-select:focus {
+#ticker-search:focus {
   border-color: #80bdff;
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
@@ -46,4 +54,8 @@ footer {
   margin-top: 30px;
   padding-top: 10px;
   border-top: 1px solid #dee2e6;
+}
+.container-fluid {
+  padding-left: 0; /* Remove left padding */
+  padding-right: 0; /* Remove right padding */
 }
