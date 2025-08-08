@@ -15,12 +15,32 @@
     <main class="row">
       <div class="col">
         <h1>RS Stocks Table</h1>
-        <p>Interactive table displaying stock data from RS_Data/rs_stocks.csv with search, sort, and filter by Ticker.</p>
-        <div class="form-group">
-          <label for="ticker-filter">Filter by Ticker:</label>
-          <select id="ticker-filter" class="form-control" style="width: 200px;">
-            <option value="">All Tickers</option>
-          </select>
+        <p>Interactive table displaying stock data from RS_Data/rs_stocks.csv with search, sort, and multiple filters.</p>
+        <div class="filter-row row mb-3">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="ticker-filter">Filter by Ticker:</label>
+              <select id="ticker-filter" class="form-control custom-select">
+                <option value="">All Tickers</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="sector-filter">Filter by Sector:</label>
+              <select id="sector-filter" class="form-control custom-select">
+                <option value="">All Sectors</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="industry-filter">Filter by Industry:</label>
+              <select id="industry-filter" class="form-control custom-select">
+                <option value="">All Industries</option>
+              </select>
+            </div>
+          </div>
         </div>
         <div id="table-container"></div>
       </div>
@@ -77,32 +97,33 @@
         pageLength: 25,
         ordering: true,
         searching: true,
-        deferRender: true, // Optimize for large dataset
+        deferRender: true,
         columnDefs: [
-          { targets: [0, 3, 10, 11], type: "num" }, // Numeric sorting for Rank, DVol, AvgVol, AvgVol10
-          { targets: [2, 12, 13], type: "num-fmt" }, // Numeric formatting for Price, 52WKH, 52WKL
-          { targets: [6, 7, 8, 9], type: "num-fmt" } // Percentages for RS Percentiles
+          { targets: [0, 3, 10, 11], type: "num" },
+          { targets: [2, 12, 13], type: "num-fmt" },
+          { targets: [6, 7, 8, 9], type: "num-fmt" }
         ]
       },
       custom_formatting: [
-        [2, format_currency], // Price
-        [3, format_large_number], // DVol
-        [6, format_percent], // RS Percentile
-        [7, format_percent], // 1M_RS Percentile
-        [8, format_percent], // 3M_RS Percentile
-        [9, format_percent], // 6M_RS Percentile
-        [10, format_large_number], // AvgVol
-        [11, format_large_number], // AvgVol10
-        [12, format_currency], // 52WKH
-        [13, format_currency], // 52WKL
-        [14, format_large_number], // MCAP
-        [15, format_ipo] // IPO
+        [2, format_currency],
+        [3, format_large_number],
+        [6, format_percent],
+        [7, format_percent],
+        [8, format_percent],
+        [9, format_percent],
+        [10, format_large_number],
+        [11, format_large_number],
+        [12, format_currency],
+        [13, format_currency],
+        [14, format_large_number],
+        [15, format_ipo]
       ]
     });
 
-    // Populate Ticker filter dropdown
+    // Populate and handle filters
     $(document).ready(function() {
       const table = $('#table-container table').DataTable();
+      // Ticker filter
       table.column(1).data().unique().sort().each(function(value) {
         if (value) {
           $('#ticker-filter').append(`<option value="${value}">${value}</option>`);
@@ -111,6 +132,26 @@
       $('#ticker-filter').on('change', function() {
         const val = $.fn.dataTable.util.escapeRegex($(this).val());
         table.column(1).search(val ? '^' + val + '$' : '', true, false).draw();
+      });
+      // Sector filter
+      table.column(4).data().unique().sort().each(function(value) {
+        if (value) {
+          $('#sector-filter').append(`<option value="${value}">${value}</option>`);
+        }
+      });
+      $('#sector-filter').on('change', function() {
+        const val = $.fn.dataTable.util.escapeRegex($(this).val());
+        table.column(4).search(val ? '^' + val + '$' : '', true, false).draw();
+      });
+      // Industry filter
+      table.column(5).data().unique().sort().each(function(value) {
+        if (value) {
+          $('#industry-filter').append(`<option value="${value}">${value}</option>`);
+        }
+      });
+      $('#industry-filter').on('change', function() {
+        const val = $.fn.dataTable.util.escapeRegex($(this).val());
+        table.column(5).search(val ? '^' + val + '$' : '', true, false).draw();
       });
     });
   </script>
