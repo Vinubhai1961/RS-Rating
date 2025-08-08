@@ -196,6 +196,34 @@ def print_and_save_results(results, df, output_file="analysis_output.txt"):
         write_output(results['top_lot_sizes'].to_string())
         write_output("   - Lists securities with the largest round lot sizes, indicating higher trading units.")
 
+# Function to save warrant stocks to CSV
+def save_warrant_stocks(df, output_file="warrant.csv"):
+    # Filter for warrant stocks
+    warrant_df = df[df["Security Type"] == "Warrant"][[
+        "Symbol", "Security Name", "Listing Exchange", "Financial Status", "Test Issue", "Market Category", "Round Lot Size"
+    ]]
+    
+    # Filter out "bad companies" (distressed NASDAQ securities or test issues)
+    bad_companies = warrant_df[
+        ((warrant_df["Listing Exchange"] == "N") & (warrant_df["Financial Status"] != "N")) |
+        (warrant_df["Test Issue"] == "Y")
+    ]
+    filtered_warrants = warrant_df[
+        ~((warrant_df["Listing Exchange"] == "N") & (warrant_df["Financial Status"] != "N")) &
+        (warrant_df["Test Issue"] == "N")
+    ]
+    
+    # Save to warrant.csv
+    filtered_warrants.to_csv(output_file, index=False)
+    print(f"Saved {len(filtered_warrants)} warrant stocks to '{output_file}'")
+    
+    # Log bad companies for reference
+    if not bad_companies.empty:
+        print("\nExcluded bad companies (distressed or test issues):")
+        print(bad_companies[["Symbol", "Security Name", "Financial Status", "Test Issue"]].to_string())
+    else:
+        print("No bad companies (distressed or test issues) found among warrants.")
+
 # Function to visualize data
 def visualize_data(results):
     try:
@@ -293,6 +321,9 @@ def main():
     results, df = analyze_nasdaq_data(df)
     
     print_and_save_results(results, df)
+    
+    # Save warrant stocks to warrant.csv
+    save_warrant_stocks(df)
     
     visualize_data(results)
     create_chartjs_security_types(results)
