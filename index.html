@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>RS Stocks Table</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="container-fluid">
+    <main class="row">
+      <div class="col">
+        <h1>RS Stocks Table</h1>
+        <p>Interactive table displaying stock data from RS_Data/rs_stocks.csv with search, sort, and filter by Ticker.</p>
+        <div class="form-group">
+          <label for="ticker-filter">Filter by Ticker:</label>
+          <select id="ticker-filter" class="form-control" style="width: 200px;">
+            <option value="">All Tickers</option>
+          </select>
+        </div>
+        <div id="table-container"></div>
+      </div>
+    </main>
+    <footer class="row">
+      <div class="col">
+        <hr>
+        <p class="text-right">Created by <a href="https://github.com/Vinubhai1961">Vinubhai1961</a></p>
+      </div>
+    </footer>
+  </div>
+  <!-- JavaScript Dependencies -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  <script src="js/jquery.csv.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="js/csv_to_html_table.js"></script>
+  <script>
+    // Custom formatting functions
+    function format_currency(value) {
+      if (value && !isNaN(value)) {
+        return `$${parseFloat(value).toFixed(2)}`;
+      }
+      return "";
+    }
+    function format_percent(value) {
+      if (value && !isNaN(value)) {
+        return `${parseFloat(value).toFixed(1)}%`;
+      }
+      return "";
+    }
+    function format_large_number(value) {
+      if (value && !isNaN(value)) {
+        const num = parseFloat(value);
+        if (num >= 1e9) return (num / 1e9).toFixed(2) + "B";
+        if (num >= 1e6) return (num / 1e6).toFixed(2) + "M";
+        return num.toLocaleString();
+      }
+      return "";
+    }
+    function format_ipo(value) {
+      return value === "Yes" ? "Yes" : "No";
+    }
+
+    // Initialize table
+    CsvToHtmlTable.init({
+      csv_path: "RS_Data/rs_stocks.csv",
+      element: "table-container",
+      allow_download: true,
+      csv_options: { separator: ",", delimiter: '"' },
+      datatables_options: {
+        paging: true,
+        pageLength: 25,
+        ordering: true,
+        searching: true,
+        deferRender: true, // Optimize for large dataset
+        columnDefs: [
+          { targets: [0, 3, 10, 11], type: "num" }, // Numeric sorting for Rank, DVol, AvgVol, AvgVol10
+          { targets: [2, 12, 13], type: "num-fmt" }, // Numeric formatting for Price, 52WKH, 52WKL
+          { targets: [6, 7, 8, 9], type: "num-fmt" } // Percentages for RS Percentiles
+        ]
+      },
+      custom_formatting: [
+        [2, format_currency], // Price
+        [3, format_large_number], // DVol
+        [6, format_percent], // RS Percentile
+        [7, format_percent], // 1M_RS Percentile
+        [8, format_percent], // 3M_RS Percentile
+        [9, format_percent], // 6M_RS Percentile
+        [10, format_large_number], // AvgVol
+        [11, format_large_number], // AvgVol10
+        [12, format_currency], // 52WKH
+        [13, format_currency], // 52WKL
+        [14, format_large_number], // MCAP
+        [15, format_ipo] // IPO
+      ]
+    });
+
+    // Populate Ticker filter dropdown
+    $(document).ready(function() {
+      const table = $('#table-container table').DataTable();
+      table.column(1).data().unique().sort().each(function(value) {
+        if (value) {
+          $('#ticker-filter').append(`<option value="${value}">${value}</option>`);
+        }
+      });
+      $('#ticker-filter').on('change', function() {
+        const val = $.fn.dataTable.util.escapeRegex($(this).val());
+        table.column(1).search(val ? '^' + val + '$' : '', true, false).draw();
+      });
+    });
+  </script>
+</body>
+</html>
