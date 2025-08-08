@@ -1,0 +1,108 @@
+Analysis of nasdaqtraded.txt (as of 2025-08-08 01:55:49):
+
+1. Total Securities: 11671
+   - Represents the total number of securities listed across all exchanges in the file.
+
+2. Number of ETFs: 4412
+   - Counts securities marked as ETFs (ETF = Y), which track indices, commodities, or asset baskets.
+
+3. Security Type Breakdown:
+ETF                4412
+Common Stock       4149
+Other              2078
+Preferred Stock     451
+Warrant             383
+Other               198
+   - Categorizes securities based on ETF status and keywords in Security Name (e.g., Common Stock, Preferred Stock). Top 5 types shown, others in 'Other'.
+
+4. Securities by Exchange:
+Exchange Name
+Other            5026
+NASDAQ           2893
+NYSE Arca        2414
+BATS             1023
+NYSE American     312
+IEX                 3
+   - Shows the distribution of securities across exchanges (e.g., NASDAQ, NYSE).
+
+5. Exchange vs. Security Type Breakdown:
+Security Type  Common Stock   ETF  Other  Preferred Stock  Unit  Warrant
+Exchange Name                                                           
+BATS                      2  1017      4                0     0        0
+IEX                       0     0      3                0     0        0
+NASDAQ                 1641    58    790              320    52       32
+NYSE American           179     0     98               17     6       12
+NYSE Arca                 1  2395     14                1     3        0
+Other                  2326   942   1167              113   137      339
+   - Shows the count of each security type per exchange (e.g., ETFs on NASDAQ).
+
+6. NASDAQ Market Categories:
+Market Category
+    2893
+   - For NASDAQ-listed securities, indicates market tiers: Q (Global Select, large-cap), G (Global, mid-cap), S (Capital, small-cap).
+
+7. NASDAQ Securities with Financial Issues:
+No distressed securities found.
+
+8. Number of Warrant Stocks: 383
+   - Counts securities categorized as warrants (e.g., rights to buy stock at a specific price).
+
+9. Top 5 Sectors:
+Sector
+Unknown       9961
+Financial      585
+Technology     442
+Healthcare     366
+Energy         275
+   - Inferred from Security Name keywords, showing the most common industries.
+
+10. Top 5 Securities by Round Lot Size:
+  Symbol                                            Security Name  Round Lot Size
+0      A                  Agilent Technologies, Inc. Common Stock           100.0
+1     AA                          Alcoa Corporation Common Stock            100.0
+2    AAA           Alternative Access First Priority CLO Bond ETF           100.0
+3   AAAA  EA Series Trust Amplius Aggressive Asset Allocation ETF           100.0
+4   AAAU                   Goldman Sachs Physical Gold ETF Shares           100.0
+   - Lists securities with the largest round lot sizes, indicating higher trading units.
+
+Chart.js Pie Chart for Security Types:
+```chartjs
+{
+  "type": "pie",
+  "data": {
+    "labels": [
+      "ETF: 4412",
+      "Common Stock: 4149",
+      "Other: 2078",
+      "Preferred Stock: 451",
+      "Warrant: 383",
+      "Other: 198"
+    ],
+    "datasets": [
+      {
+        "data": [
+          4412,
+          4149,
+          2078,
+          451,
+          383,
+          198
+        ],
+        "backgroundColor": [
+          "#36A2EB",
+          "#FF6384",
+          "#FFCE56",
+          "#4BC0C0",
+          "#9966FF"
+        ]
+      }
+    ]
+  },
+  "options": {
+    "title": {
+      "display": true,
+      "text": "Distribution of Security Types"
+    }
+  }
+}
+```

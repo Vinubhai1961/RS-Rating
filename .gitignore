@@ -1,0 +1,20 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environments
+.venv/
+env/
+
+# Logs
+log/*.log
+
+# IDE settings
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+
+# Adding tmp/ to .gitignore to prevent committing temporary historical data.
+tmp/
