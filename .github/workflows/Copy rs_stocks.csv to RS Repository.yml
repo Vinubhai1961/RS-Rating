@@ -1,11 +1,9 @@
 name: Copy rs_stocks.csv to RS Repository
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - RS_Data/rs_stocks.csv
+  schedule:
+    - cron: '0 22 * * *'  # Runs daily at 22:00 UTC (6 PM EDT, 7 PM EST)
+  workflow_dispatch:  # Allows manual triggering for testing
 
 jobs:
   copy-files:
@@ -31,15 +29,23 @@ jobs:
           ref: main
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
 
+      # Create directories if they don't exist
+      - name: Ensure Data and archive directories exist
+        run: mkdir -p Data archive
+
       # Copy rs_stocks.csv to Data directory
       - name: Copy rs_stocks.csv to Data
         run: |
           cp RS_Data/rs_stocks.csv Data/rs_stocks.csv
 
-      # Copy rs_stocks.csv to archive with date suffix
+      # Copy rs_stocks.csv to archive with date suffix if not exists
       - name: Copy rs_stocks.csv to archive with date
         run: |
-          cp RS_Data/rs_stocks.csv archive/rs_stocks_${{ env.DATE }}.csv
+          if [ ! -f archive/rs_stocks_${{ env.DATE }}.csv ]; then
+            cp RS_Data/rs_stocks.csv archive/rs_stocks_${{ env.DATE }}.csv
+          else
+            echo "Archive file rs_stocks_${{ env.DATE }}.csv already exists, skipping copy."
+          fi
 
       # Commit and push changes to RS repository
       - name: Commit and push changes
@@ -47,7 +53,7 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
           git add Data/rs_stocks.csv archive/rs_stocks_${{ env.DATE }}.csv
-          git commit -m "Copy rs_stocks.csv to Data and archive (date: ${{ env.DATE }})"
+          git commit -m "Copy rs_stocks.csv to Data and archive (date: ${{ env.DATE }})" || echo "No changes to commit"
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
