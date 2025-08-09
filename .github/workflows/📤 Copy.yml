@@ -1,14 +1,16 @@
-name: Copy rs_stocks.csv to RS Repository
+name: 📤 Copy rs_stocks.csv to RS Repository
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:  # Manual trigger
+  schedule:           # Auto trigger at 5:40 PM EST (21:40 UTC)
+    - cron: "40 21 * * 1-5"
 
 jobs:
   copy-files:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout RS-Rating repo
+      - name: 📥 Checkout RS-Rating repo
         uses: actions/checkout@v4
         with:
           repository: Vinubhai1961/RS-Rating
@@ -16,7 +18,7 @@ jobs:
           path: rs-rating
           fetch-depth: 0
 
-      - name: Checkout RS repo with PAT
+      - name: 📥 Checkout RS repo with PAT
         uses: actions/checkout@v4
         with:
           repository: Vinubhai1961/RS
@@ -25,30 +27,30 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
 
-      - name: Set DATE environment variable
+      - name: 🗓 Set DATE environment variable
         run: echo "DATE=$(date +%Y%m%d)" >> $GITHUB_ENV
 
-      - name: Ensure Data and archive directories exist
+      - name: 📂 Ensure Data and archive directories exist
         run: |
           mkdir -p rs/Data
           mkdir -p rs/archive
 
-      - name: Copy rs_stocks.csv to Data and archive
+      - name: 📄 Copy rs_stocks.csv to Data and archive
         run: |
           if [ -f rs-rating/RS_Data/rs_stocks.csv ]; then
             cp rs-rating/RS_Data/rs_stocks.csv rs/Data/rs_stocks.csv
             cp rs-rating/RS_Data/rs_stocks.csv rs/archive/rs_stocks_${DATE}.csv
-            echo "Copied rs_stocks.csv to rs/Data/ and rs/archive/"
+            echo "✅ Copied rs_stocks.csv to rs/Data/ and rs/archive/"
           else
-            echo "Error: rs-rating/RS_Data/rs_stocks.csv not found"
+            echo "❌ Error: rs-rating/RS_Data/rs_stocks.csv not found"
             exit 1
           fi
 
-      - name: Commit & Push changes to RS repo
+      - name: 🚀 Commit & Push changes to RS repo
         run: |
           cd rs
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
           git add Data/rs_stocks.csv archive/rs_stocks_${DATE}.csv
-          git commit -m "Update rs_stocks.csv and archive on $DATE" || echo "No changes to commit"
+          git commit -m "📈 Update rs_stocks.csv and archive on $DATE" || echo "ℹ️ No changes to commit"
           git push
