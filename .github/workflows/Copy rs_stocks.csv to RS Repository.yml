@@ -16,13 +16,14 @@ jobs:
           path: rs-rating
           fetch-depth: 0
 
-      - name: Checkout RS repo
+      - name: Checkout RS repo with PAT
         uses: actions/checkout@v4
         with:
           repository: Vinubhai1961/RS
           ref: main
           path: rs
           fetch-depth: 0
+          token: ${{ secrets.RS_REPO_PAT }} # Personal Access Token with contents:write
 
       - name: Set DATE environment variable
         run: echo "DATE=$(date +%Y%m%d)" >> $GITHUB_ENV
