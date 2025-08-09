@@ -15,9 +15,10 @@ jobs:
         with:
           repository: Vinubhai1961/RS-Rating
           ref: main
-          fetch-depth: 0  # Fetch full history to ensure file is available
+          fetch-depth: 0  # Fetch full history
+          clean: true  # Ensure clean checkout
 
-      # Debug: List contents of RS-Rating repository
+      # Debug: List contents and verify file
       - name: Debug directory contents
         run: |
           echo "Current directory: $(pwd)"
@@ -28,8 +29,9 @@ jobs:
           echo "Checking for RS_Data/rs_stocks.csv:"
           ls -l RS_Data/rs_stocks.csv || echo "File RS_Data/rs_stocks.csv not found"
           echo "Checking case variations:"
-          ls -l rs_data/rs_stocks.csv || echo "File rs_data/rs_stocks.csv not found"
-          ls -l RS_DATA/rs_stocks.csv || echo "File RS_DATA/rs_stocks.csv not found"
+          find . -type f -name '*rs_stocks.csv' || echo "No rs_stocks.csv found in any case"
+          echo "Repository commit:"
+          git log -1 --oneline
 
       # Set up date variable for archive file naming
       - name: Set up date variable
@@ -43,6 +45,7 @@ jobs:
           repository: Vinubhai1961/RS
           ref: main
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          fetch-depth: 0  # Fetch full history
 
       # Create directories if they don't exist
       - name: Ensure Data and archive directories exist
