@@ -1,89 +1,52 @@
 name: Copy rs_stocks.csv to RS Repository
 
 on:
-  schedule:
-    - cron: '0 22 * * *'  # Runs daily at 22:00 UTC (6 PM EDT, 7 PM EST)
-  workflow_dispatch:  # Allows manual triggering for testing
+  workflow_dispatch:
 
 jobs:
   copy-files:
     runs-on: ubuntu-latest
+
     steps:
-      # Check out the RS-Rating repository
-      - name: Checkout RS-Rating repository
+      - name: Checkout RS-Rating repo
         uses: actions/checkout@v4
         with:
           repository: Vinubhai1961/RS-Rating
           ref: main
-          fetch-depth: 0  # Fetch full history
-          clean: true  # Ensure clean checkout
+          path: rs-rating
+          fetch-depth: 0
 
-      # Debug: List contents and verify file
-      - name: Debug directory contents
-        run: |
-          echo "Current directory: $(pwd)"
-          echo "Listing all files in RS-Rating repository:"
-          ls -R
-          echo "Checking for RS_Data directory:"
-          ls -ld RS_Data || echo "RS_Data directory not found"
-          echo "Checking for RS_Data/rs_stocks.csv:"
-          ls -l RS_Data/rs_stocks.csv || echo "File RS_Data/rs_stocks.csv not found"
-          echo "Checking case variations:"
-          find . -type f -name '*rs_stocks.csv' || echo "No rs_stocks.csv found in any case"
-          echo "Repository commit:"
-          git log -1 --oneline
-
-      # Set up date variable for archive file naming
-      - name: Set up date variable
-        id: date
-        run: echo "DATE=$(date +%Y%m%d)" >> $GITHUB_ENV
-
-      # Check out the RS repository
-      - name: Checkout RS repository
+      - name: Checkout RS repo
         uses: actions/checkout@v4
         with:
           repository: Vinubhai1961/RS
           ref: main
-          token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          fetch-depth: 0  # Fetch full history
+          path: rs
+          fetch-depth: 0
 
-      # Create directories if they don't exist
+      - name: Set DATE environment variable
+        run: echo "DATE=$(date +%Y%m%d)" >> $GITHUB_ENV
+
       - name: Ensure Data and archive directories exist
-        run: mkdir -p Data archive
-
-      # Copy rs_stocks.csv to Data directory if it exists
-      - name: Copy rs_stocks.csv to Data
         run: |
-          if [ -f RS_Data/rs_stocks.csv ]; then
-            cp RS_Data/rs_stocks.csv Data/rs_stocks.csv
-            echo "Copied RS_Data/rs_stocks.csv to Data/rs_stocks.csv"
+          mkdir -p rs/Data
+          mkdir -p rs/archive
+
+      - name: Copy rs_stocks.csv to RS repo
+        run: |
+          if [ -f rs-rating/RS_Data/rs_stocks.csv ]; then
+            cp rs-rating/RS_Data/rs_stocks.csv rs/Data/rs_stocks.csv
+            echo "Copied rs_stocks.csv to rs/Data/"
           else
-            echo "Error: RS_Data/rs_stocks.csv not found, skipping copy to Data"
+            echo "Error: rs-rating/RS_Data/rs_stocks.csv not found"
             exit 1
           fi
 
-      # Copy rs_stocks.csv to archive with date suffix if not exists
-      - name: Copy rs_stocks.csv to archive with date
+      - name: Commit & Push changes to RS repo
         run: |
-          if [ -f RS_Data/rs_stocks.csv ]; then
-            if [ ! -f archive/rs_stocks_${{ env.DATE }}.csv ]; then
-              cp RS_Data/rs_stocks.csv archive/rs_stocks_${{ env.DATE }}.csv
-              echo "Copied RS_Data/rs_stocks.csv to archive/rs_stocks_${{ env.DATE }}.csv"
-            else
-              echo "Archive file rs_stocks_${{ env.DATE }}.csv already exists, skipping copy"
-            fi
-          else
-            echo "Error: RS_Data/rs_stocks.csv not found, skipping copy to archive"
-            exit 1
-          fi
-
-      # Commit and push changes to RS repository
-      - name: Commit and push changes
-        run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "actions@github.com"
-          git add Data/rs_stocks.csv archive/rs_stocks_${{ env.DATE }}.csv
-          git commit -m "Copy rs_stocks.csv to Data and archive (date: ${{ env.DATE }})" || echo "No changes to commit"
-          git push origin main
-        env:
-          GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+          cd rs
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git add Data/rs_stocks.csv
+          git commit -m "Update rs_stocks.csv on $DATE" || echo "No changes to commit"
+          git push
