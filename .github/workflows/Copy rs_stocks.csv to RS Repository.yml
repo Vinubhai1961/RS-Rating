@@ -16,6 +16,14 @@ jobs:
           repository: Vinubhai1961/RS-Rating
           ref: main
 
+      # Debug: List contents of RS-Rating repository
+      - name: Debug directory contents
+        run: |
+          echo "Listing contents of RS-Rating repository:"
+          ls -R
+          echo "Checking for RS_Data/rs_stocks.csv:"
+          ls -l RS_Data/rs_stocks.csv || echo "File RS_Data/rs_stocks.csv not found"
+
       # Set up date variable for archive file naming
       - name: Set up date variable
         id: date
@@ -33,18 +41,30 @@ jobs:
       - name: Ensure Data and archive directories exist
         run: mkdir -p Data archive
 
-      # Copy rs_stocks.csv to Data directory
+      # Copy rs_stocks.csv to Data directory if it exists
       - name: Copy rs_stocks.csv to Data
         run: |
-          cp RS_Data/rs_stocks.csv Data/rs_stocks.csv
+          if [ -f RS_Data/rs_stocks.csv ]; then
+            cp RS_Data/rs_stocks.csv Data/rs_stocks.csv
+            echo "Copied RS_Data/rs_stocks.csv to Data/rs_stocks.csv"
+          else
+            echo "Error: RS_Data/rs_stocks.csv not found, skipping copy to Data"
+            exit 1
+          fi
 
       # Copy rs_stocks.csv to archive with date suffix if not exists
       - name: Copy rs_stocks.csv to archive with date
         run: |
-          if [ ! -f archive/rs_stocks_${{ env.DATE }}.csv ]; then
-            cp RS_Data/rs_stocks.csv archive/rs_stocks_${{ env.DATE }}.csv
+          if [ -f RS_Data/rs_stocks.csv ]; then
+            if [ ! -f archive/rs_stocks_${{ env.DATE }}.csv ]; then
+              cp RS_Data/rs_stocks.csv archive/rs_stocks_${{ env.DATE }}.csv
+              echo "Copied RS_Data/rs_stocks.csv to archive/rs_stocks_${{ env.DATE }}.csv"
+            else
+              echo "Archive file rs_stocks_${{ env.DATE }}.csv already exists, skipping copy"
+            fi
           else
-            echo "Archive file rs_stocks_${{ env.DATE }}.csv already exists, skipping copy."
+            echo "Error: RS_Data/rs_stocks.csv not found, skipping copy to archive"
+            exit 1
           fi
 
       # Commit and push changes to RS repository
