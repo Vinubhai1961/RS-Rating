@@ -23,7 +23,7 @@ jobs:
           ref: main
           path: rs
           fetch-depth: 0
-          token: ${{ secrets.RS_REPO_PAT }} # Personal Access Token with contents:write
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
 
       - name: Set DATE environment variable
         run: echo "DATE=$(date +%Y%m%d)" >> $GITHUB_ENV
@@ -33,11 +33,12 @@ jobs:
           mkdir -p rs/Data
           mkdir -p rs/archive
 
-      - name: Copy rs_stocks.csv to RS repo
+      - name: Copy rs_stocks.csv to Data and archive
         run: |
           if [ -f rs-rating/RS_Data/rs_stocks.csv ]; then
             cp rs-rating/RS_Data/rs_stocks.csv rs/Data/rs_stocks.csv
-            echo "Copied rs_stocks.csv to rs/Data/"
+            cp rs-rating/RS_Data/rs_stocks.csv rs/archive/rs_stocks_${DATE}.csv
+            echo "Copied rs_stocks.csv to rs/Data/ and rs/archive/"
           else
             echo "Error: rs-rating/RS_Data/rs_stocks.csv not found"
             exit 1
@@ -48,6 +49,6 @@ jobs:
           cd rs
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
-          git add Data/rs_stocks.csv
-          git commit -m "Update rs_stocks.csv on $DATE" || echo "No changes to commit"
+          git add Data/rs_stocks.csv archive/rs_stocks_${DATE}.csv
+          git commit -m "Update rs_stocks.csv and archive on $DATE" || echo "No changes to commit"
           git push
