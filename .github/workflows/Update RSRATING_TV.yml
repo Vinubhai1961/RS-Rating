@@ -56,15 +56,11 @@ jobs:
           # Keep trading days in reverse order (newest to oldest)
           trading_days = trading_days
 
-          # Add 'T' to the oldest trading day (last in the list)
-          if trading_days:
-              trading_days[-1] = trading_days[-1] + 'T'
-
-          # Update the first column with trading days
+          # Update the first column with trading days (no 'T' suffix)
           df.iloc[:num_rows, 0] = trading_days
 
-          # Save file with tab separator to match desired output
-          df.to_csv(output_file, sep='\t', index=False, header=False)
+          # Save file with comma separator to match standard CSV format
+          df.to_csv(output_file, sep=',', index=False, header=False)
           print(f"Saved updated file to {output_file}")
           EOF
 
