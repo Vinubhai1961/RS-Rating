@@ -1,0 +1,54 @@
+name: Update Rsrating_TV.csv
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 22 * * 1-5'  # Runs at 10:00 PM UTC (6:00 PM EST) Mon-Fri
+
+jobs:
+  update-rsrating:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          pip install pandas pandas_market_calendars
+
+      - name: Update Rsrating_TV.csv
+        run: |
+          python << 'EOF'
+          import pandas as pd
+          import datetime as dt
+          import pandas_market_calendars as mcal
+
+          input_file = "RSRATING.csv"
+          output_file = "Rsrating_TV.csv"
+
+          nyse = mcal.get_calendar('NYSE')
+          end_date = dt.date.today()
+          schedule = nyse.schedule(start_date=end_date - pd.Timedelta(days=60), end_date=end_date)
+          trading_days = mcal.date_range(schedule, frequency='1D').strftime('%Y%m%d').tolist()
+
+          last_35_days = trading_days[-35:]
+
+          df = pd.read_csv(input_file)
+          df.iloc[:, 0] = last_35_days[::-1]
+
+          df.to_csv(output_file, index=False)
+          print(f"Saved updated file to {output_file}")
+          EOF
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add Rsrating_TV.csv
+          git commit -m "Auto-update Rsrating_TV.csv with last 35 trading days"
+          git push
