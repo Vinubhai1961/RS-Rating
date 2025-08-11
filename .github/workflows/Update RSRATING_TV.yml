@@ -53,10 +53,10 @@ jobs:
                   trading_days.append(date_str)
               current_date -= dt.timedelta(days=1)
 
-          # Reverse to have oldest date first
-          trading_days = trading_days[::-1]
+          # Keep trading days in reverse order (newest to oldest)
+          trading_days = trading_days
 
-          # Add 'T' to the last trading day
+          # Add 'T' to the oldest trading day (last in the list)
           if trading_days:
               trading_days[-1] = trading_days[-1] + 'T'
 
