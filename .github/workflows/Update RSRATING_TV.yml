@@ -49,14 +49,14 @@ jobs:
           current_date = end_date
           while len(trading_days) < num_rows:
               if current_date.weekday() < 5 and current_date.isoformat() not in nyse_holidays_2025:
-                  date_str = current_date.strftime("%Y%m%d")
+                  date_str = current_date.strftime("%Y%m%d") + 'T'  # Add 'T' to every date
                   trading_days.append(date_str)
               current_date -= dt.timedelta(days=1)
 
           # Keep trading days in reverse order (newest to oldest)
           trading_days = trading_days
 
-          # Update the first column with trading days (no 'T' suffix)
+          # Update the first column with trading days
           df.iloc[:num_rows, 0] = trading_days
 
           # Save file with comma separator to match standard CSV format
