@@ -38,7 +38,7 @@ jobs:
           }
 
           # Read CSV
-          df = pd.read_csv(input_file)
+          df = pd.read_csv(input_file, sep=',', header=None)
 
           # Number of rows to fill
           num_rows = min(len(df), 35)
@@ -49,14 +49,22 @@ jobs:
           current_date = end_date
           while len(trading_days) < num_rows:
               if current_date.weekday() < 5 and current_date.isoformat() not in nyse_holidays_2025:
-                  trading_days.append(current_date.strftime("%Y%m%d"))
+                  date_str = current_date.strftime("%Y%m%d")
+                  trading_days.append(date_str)
               current_date -= dt.timedelta(days=1)
 
-          # Replace first column for num_rows
-          df.iloc[:num_rows, 0] = trading_days[::-1]
+          # Reverse to have oldest date first
+          trading_days = trading_days[::-1]
 
-          # Save file
-          df.to_csv(output_file, index=False)
+          # Add 'T' to the last trading day
+          if trading_days:
+              trading_days[-1] = trading_days[-1] + 'T'
+
+          # Update the first column with trading days
+          df.iloc[:num_rows, 0] = trading_days
+
+          # Save file with tab separator to match desired output
+          df.to_csv(output_file, sep='\t', index=False, header=False)
           print(f"Saved updated file to {output_file}")
           EOF
 
