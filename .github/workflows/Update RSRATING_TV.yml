@@ -1,4 +1,4 @@
-name: Update Rsrating_TV.csv
+name: Update RSRATING_TV.CSV
 
 on:
   workflow_dispatch:
@@ -19,28 +19,51 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install pandas pandas_market_calendars
+          pip install pandas
 
-      - name: Update Rsrating_TV.csv
+      - name: Update RSRATING_TV.csv
         run: |
           python << 'EOF'
           import pandas as pd
           import datetime as dt
-          import pandas_market_calendars as mcal
-      
+
           input_file = "RS_Data/RSRATING.csv"
           output_file = "RS_Data/RSRATING_TV.csv"
-      
-          nyse = mcal.get_calendar('NYSE')
-          end_date = dt.date.today()
-          schedule = nyse.schedule(start_date=end_date - pd.Timedelta(days=60), end_date=end_date)
-          trading_days = mcal.date_range(schedule, frequency='1D').strftime('%Y%m%d').tolist()
-      
-          last_35_days = trading_days[-35:]
-      
+
+          # NYSE holidays 2025
+          nyse_holidays_2025 = {
+              "2025-01-01", "2025-01-20", "2025-02-17", "2025-04-18",
+              "2025-05-26", "2025-06-19", "2025-07-04", "2025-09-01",
+              "2025-11-27", "2025-12-25"
+          }
+
+          # Read CSV
           df = pd.read_csv(input_file)
-          df.iloc[:, 0] = last_35_days[::-1]
-      
+
+          # Number of rows to fill
+          num_rows = min(len(df), 35)
+
+          # Generate trading days backwards from fixed date 2025-08-11
+          end_date = dt.date(2025, 8, 11)
+          trading_days = []
+          current_date = end_date
+          while len(trading_days) < num_rows:
+              if current_date.weekday() < 5 and current_date.isoformat() not in nyse_holidays_2025:
+                  trading_days.append(current_date.strftime("%Y%m%d"))
+              current_date -= dt.timedelta(days=1)
+
+          # Replace first column for num_rows
+          df.iloc[:num_rows, 0] = trading_days[::-1]
+
+          # Save file
           df.to_csv(output_file, index=False)
           print(f"Saved updated file to {output_file}")
           EOF
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add RS_Data/RSRATING_TV.csv
+          git commit -m "Auto-update RSRATING_TV.csv with last 35 trading days"
+          git push
