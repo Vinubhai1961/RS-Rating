@@ -30,44 +30,29 @@ jobs:
           input_file = "RS_Data/RSRATING.csv"
           output_file = "RS_Data/RSRATING_TV.csv"
 
-          # NYSE holidays 2025
-          nyse_holidays_2025 = {
-              "2025-01-01", "2025-01-20", "2025-02-17", "2025-04-18",
-              "2025-05-26", "2025-06-19", "2025-07-04", "2025-09-01",
-              "2025-11-27", "2025-12-25"
-          }
+          # Generate last 35 calendar days ending today, oldest first
+          today = dt.date.today()
+          dates = [(today - dt.timedelta(days=i)).strftime("%Y%m%dT") for i in range(34, -1, -1)]
 
-          # Read CSV
-          df = pd.read_csv(input_file, sep=',', header=None)
+          # Read CSV and replace the first column with new dates
+          df = pd.read_csv(input_file, header=None)
+          if len(df) >= 35:
+              df.iloc[:35, 0] = dates
+          else:
+              df.iloc[:, 0] = dates[:len(df)]
 
-          # Number of rows to fill
-          num_rows = min(len(df), 35)
+          # Save updated CSV
+          df.to_csv(input_file, index=False, header=False)
 
-          # Generate trading days backwards from fixed date 2025-08-11
-          end_date = dt.date(2025, 8, 11)
-          trading_days = []
-          current_date = end_date
-          while len(trading_days) < num_rows:
-              if current_date.weekday() < 5 and current_date.isoformat() not in nyse_holidays_2025:
-                  date_str = current_date.strftime("%Y%m%d") + 'T'  # Add 'T' to every date
-                  trading_days.append(date_str)
-              current_date -= dt.timedelta(days=1)
-
-          # Keep trading days in reverse order (newest to oldest)
-          trading_days = trading_days
-
-          # Update the first column with trading days
-          df.iloc[:num_rows, 0] = trading_days
-
-          # Save file with comma separator to match standard CSV format
-          df.to_csv(output_file, sep=',', index=False, header=False)
-          print(f"Saved updated file to {output_file}")
+          # Process RSRATING_TV output
+          df = pd.read_csv(input_file, header=None)
+          df.to_csv(output_file, index=False, header=False)
           EOF
 
       - name: Commit and push changes
         run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email "action@github.com"
-          git add RS_Data/RSRATING_TV.csv
-          git commit -m "Auto-update RSRATING_TV.csv with last 35 trading days"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add RS_Data/RSRATING.csv RS_Data/RSRATING_TV.csv
+          git commit -m "Update RSRATING files with last 35 calendar days"
           git push
