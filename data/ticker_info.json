@@ -5046,20 +5046,6 @@
       "type": "Stock"
     }
   },
-  "ATNF": {
-    "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
-  "ATNFW": {
-    "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
   "ATNI": {
     "info": {
       "industry": "Telecom Services",
@@ -22686,6 +22672,20 @@
       "type": "ETF"
     }
   },
+  "ETHZ": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
+  "ETHZW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "ETJ": {
     "info": {
       "industry": "Asset Management",
@@ -25255,10 +25255,24 @@
       "type": "Stock"
     }
   },
+  "FIGX": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "FIGXU": {
     "info": {
       "industry": "Shell Companies",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "FIGXW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -28100,13 +28114,6 @@
   "GAUZ": {
     "info": {
       "industry": "Electronic Components",
-      "sector": "Technology",
-      "type": "Stock"
-    }
-  },
-  "GB": {
-    "info": {
-      "industry": "Software - Infrastructure",
       "sector": "Technology",
       "type": "Stock"
     }
@@ -32082,8 +32089,8 @@
   },
   "HIND": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Biotechnology",
+      "sector": "Healthcare",
       "type": "Stock"
     }
   },
@@ -40510,15 +40517,15 @@
   },
   "KYIV": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Telecom Services",
+      "sector": "Communication Services",
       "type": "Stock"
     }
   },
   "KYIVW": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Telecom Services",
+      "sector": "Communication Services",
       "type": "Stock"
     }
   },
@@ -50534,8 +50541,8 @@
   },
   "OBA": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -51967,13 +51974,6 @@
       "type": "Stock"
     }
   },
-  "OTRK": {
-    "info": {
-      "industry": "Health Information Services",
-      "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
   "OTTR": {
     "info": {
       "industry": "Conglomerates",
@@ -52354,8 +52354,8 @@
   },
   "PACH": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -52368,8 +52368,8 @@
   },
   "PACHW": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -64266,13 +64266,6 @@
       "type": "ETF"
     }
   },
-  "SNRE": {
-    "info": {
-      "industry": "Telecom Services",
-      "sector": "Communication Services",
-      "type": "Stock"
-    }
-  },
   "SNSE": {
     "info": {
       "industry": "Biotechnology",
@@ -71688,8 +71681,8 @@
   },
   "USBC": {
     "info": {
-      "industry": "Agricultural Inputs",
-      "sector": "Basic Materials",
+      "industry": "Scientific & Technical Instruments",
+      "sector": "Technology",
       "type": "Stock"
     }
   },
