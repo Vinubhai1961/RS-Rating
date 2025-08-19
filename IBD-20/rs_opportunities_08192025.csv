@@ -1,15 +1,18 @@
 Section,Rank,Ticker,Price,DVol,Sector,Industry,RS Percentile,1M_RS Percentile,3M_RS Percentile,6M_RS Percentile,AvgVol,AvgVol10,52WKH,52WKL,MCAP,IPO
-Leading Stocks (RS > 90),1,CYD,30.91,528662,Consumer Cyclical,Auto Manufacturers,99.0,97.0,96.0,99.0,218475.0,338150.0,32.23,8.61,1159503104.0,No
-Leading Stocks (RS > 90),2,BKTI,64.72,149617,Technology,Communication Equipment,98.0,94.0,98.0,97.0,73322.0,101780.0,67.32,17.67,242855312.0,No
-Leading Stocks (RS > 90),3,VEON,60.44,565289,Communication Services,Telecom Services,96.0,92.0,97.0,97.0,241530.0,185350.0,62.0,25.92,4236819712.0,No
-Leading Stocks (RS > 90),4,TATT,40.09,530933,Industrials,Aerospace & Defense,95.0,93.0,97.0,97.0,228025.0,236650.0,41.0,14.44,517296224.0,No
-Leading Stocks (RS > 90),5,LTM,45.2,1181616,Industrials,Airlines,95.0,94.0,94.0,92.0,724993.0,890050.0,45.35,23.59,13766487040.0,No
-Leading Stocks (RS > 90),6,OPOF,41.67,42982,Financial Services,Banks - Regional,95.0,96.0,98.0,97.0,28559.0,23430.0,42.13,17.02,212633664.0,No
-Leading Stocks (RS > 90),7,CCRD,27.27,211801,Technology,Software - Application,94.0,96.0,97.0,95.0,90908.0,92470.0,31.99,12.12,212482608.0,No
-Leading Stocks (RS > 90),8,ASA,34.7,137509,Financial Services,Asset Management,94.0,92.0,96.0,95.0,84762.0,171180.0,35.6,18.51,656189888.0,No
-"Top Movers (RS ≥ 85, Improving)",1,BLBD,58.47,854485,Industrials,Farm & Heavy Construction Machinery,94.0,57.0,34.0,9.0,503085.0,1103130.0,60.45,30.04,1854753536.0,No
-"Top Movers (RS ≥ 85, Improving)",2,KE,27.32,607245,Industrials,Electrical Equipment & Parts,95.0,74.0,23.0,16.0,167401.0,225000.0,27.91,12.41,666560128.0,No
-"Top Movers (RS ≥ 85, Improving)",3,SPNS,42.69,2270753,Technology,Software - Application,94.0,38.0,24.0,16.0,617982.0,2949460.0,42.76,23.69,2386396416.0,No
-"Top Movers (RS ≥ 85, Improving)",4,ASMB,25.79,93311,Healthcare,Biotechnology,97.0,93.0,38.0,19.0,51146.0,158200.0,26.24,7.75,401136800.0,No
-"Top Movers (RS ≥ 85, Improving)",5,ORA,92.03,817686,Utilities,Utilities - Renewable,90.0,85.0,42.0,18.0,510793.0,573500.0,92.07,61.58,5564575232.0,No
-"Top Movers (RS ≥ 85, Improving)",6,WLDN,109.53,816963,Industrials,Engineering & Construction,99.0,98.0,96.0,37.0,338183.0,652370.0,121.0,30.43,1606268416.0,No
+Leading Stocks (RS > 90),1,PVLA,48.5,252461,Healthcare,Biotechnology,99.0,98.0,95.0,93.0,136854.0,137920.0,50.22,11.17,536201440.0,No
+Leading Stocks (RS > 90),2,PLTR,157.75,131674884,Technology,Software - Infrastructure,99.0,99.0,99.0,99.0,72848877.0,69509980.0,190.0,29.31,374236643328.0,No
+Leading Stocks (RS > 90),3,LTM,45.36,5457248,Industrials,Airlines,95.0,94.0,94.0,92.0,741103.0,997500.0,46.42,23.59,13708654592.0,No
+Leading Stocks (RS > 90),4,AS,35.74,13460568,Consumer Cyclical,Leisure,96.0,98.0,98.0,97.0,4278854.0,3779930.0,40.21,13.16,19820367872.0,No
+Leading Stocks (RS > 90),5,XPEV,20.74,19914798,Consumer Cyclical,Auto Manufacturers,96.0,93.0,98.0,99.0,6989845.0,8122160.0,27.16,6.65,19907059712.0,No
+Leading Stocks (RS > 90),6,VEON,62.72,464881,Communication Services,Telecom Services,96.0,93.0,97.0,97.0,242862.0,216070.0,64.0,25.92,4396646912.0,No
+Leading Stocks (RS > 90),7,ESLT,451.67,250775,Industrials,Aerospace & Defense,96.0,96.0,97.0,95.0,157579.0,160340.0,494.32,188.53,20933234688.0,No
+Leading Stocks (RS > 90),8,STRT,67.97,191808,Consumer Cyclical,Auto Parts,95.0,97.0,95.0,96.0,100759.0,167940.0,83.0,31.57,274553280.0,No
+Leading Stocks (RS > 90),9,TATT,35.88,366254,Industrials,Aerospace & Defense,95.0,93.0,97.0,97.0,234422.0,285040.0,41.0,14.44,462460736.0,No
+"Top Movers (RS ≥ 85, Improving)",1,BWMN,39.94,191212,Industrials,Engineering & Construction,96.0,89.0,73.0,5.0,127041.0,183460.0,40.08,17.9,689079232.0,No
+"Top Movers (RS ≥ 85, Improving)",2,ESEA,61.59,79376,Industrials,Marine Shipping,97.0,96.0,92.0,10.0,40200.0,53730.0,62.5,24.58,431537120.0,No
+"Top Movers (RS ≥ 85, Improving)",3,PHVS,23.26,366464,Healthcare,Biotechnology,90.0,89.0,23.0,4.0,108700.0,86540.0,26.33,11.51,1495606400.0,No
+"Top Movers (RS ≥ 85, Improving)",4,TRS,37.19,1098499,Consumer Cyclical,Packaging & Containers,95.0,87.0,80.0,10.0,432433.0,522790.0,37.49,19.33,1511460992.0,No
+"Top Movers (RS ≥ 85, Improving)",5,ASMB,25.22,186928,Healthcare,Biotechnology,97.0,93.0,38.0,19.0,52548.0,163170.0,26.24,7.75,392423200.0,No
+"Top Movers (RS ≥ 85, Improving)",6,KE,27.18,385590,Industrials,Electrical Equipment & Parts,95.0,74.0,23.0,16.0,175235.0,287350.0,27.91,12.41,662659264.0,No
+"Top Movers (RS ≥ 85, Improving)",7,SPNS,42.64,1695452,Technology,Software - Application,94.0,38.0,24.0,16.0,663098.0,3197520.0,42.76,23.69,2383601664.0,No
+"Top Movers (RS ≥ 85, Improving)",8,ORA,92.79,795081,Utilities,Utilities - Renewable,90.0,85.0,42.0,18.0,519401.0,622990.0,92.9,61.58,5610528768.0,No
