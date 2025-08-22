@@ -944,13 +944,6 @@
       "type": "Stock"
     }
   },
-  "ADD": {
-    "info": {
-      "industry": "Entertainment",
-      "sector": "Communication Services",
-      "type": "Stock"
-    }
-  },
   "ADEA": {
     "info": {
       "industry": "Software - Application",
@@ -11761,8 +11754,8 @@
   },
   "CCCXW": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -11843,7 +11836,21 @@
       "type": "Stock"
     }
   },
+  "CCII": {
+    "info": {
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
   "CCIIU": {
+    "info": {
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "CCIIW": {
     "info": {
       "industry": "Shell Companies",
       "sector": "Financial Services",
@@ -22889,6 +22896,13 @@
       "type": "ETF"
     }
   },
+  "EVAC": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "EVAV": {
     "info": {
       "industry": "n/a",
@@ -32647,13 +32661,6 @@
       "type": "Stock"
     }
   },
-  "HPKEW": {
-    "info": {
-      "industry": "Oil & Gas E&P",
-      "sector": "Energy",
-      "type": "Stock"
-    }
-  },
   "HPP": {
     "info": {
       "industry": "REIT - Office",
@@ -32875,6 +32882,13 @@
     "info": {
       "industry": "Staffing & Employment Services",
       "sector": "Industrials",
+      "type": "Stock"
+    }
+  },
+  "HSONP": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -66296,20 +66310,6 @@
       "type": "Stock"
     }
   },
-  "STRR": {
-    "info": {
-      "industry": "Diagnostics & Research",
-      "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
-  "STRRP": {
-    "info": {
-      "industry": "Diagnostics & Research",
-      "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
   "STRS": {
     "info": {
       "industry": "Real Estate - Diversified",
@@ -73499,10 +73499,24 @@
       "type": "ETF"
     }
   },
+  "VNME": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "VNMEU": {
     "info": {
       "industry": "Shell Companies",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "VNMEW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -78089,6 +78103,13 @@
       "industry": "n/a",
       "sector": "n/a",
       "type": "ETF"
+    }
+  },
+  "ZNB": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
     }
   },
   "ZNOV": {
