@@ -2,8 +2,8 @@ name: 📤 Copy rs_stocks.csv to RS Repository
 
 on:
   workflow_dispatch:  # Manual trigger
-  schedule:           # Auto trigger at 5:40 PM EST (21:40 UTC)
-    - cron: "40 21 * * 1-5"
+  #schedule:           # Auto trigger at 5:40 PM EST (21:40 UTC)
+   # - cron: "40 21 * * 1-5"
 
 jobs:
   copy-files:
