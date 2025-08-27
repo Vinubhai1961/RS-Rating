@@ -98,10 +98,9 @@ def plot_trends(ticker, price_series, rs_series, rs_1m_series, rs_3m_series, rs_
     plt.close()
     print(f"Saved trend plot for {ticker} to {plot_file}")
 
-# Calculate momentum metrics
+# Calculate metrics
 results = []
 stocks_to_plot = []
-plot_limit = 5  # Plot up to 5 stocks for debugging
 for ticker, data in stock_data.items():
     if len(data) < 2:  # Need at least 2 days for trend analysis
         print(f"{ticker}: Skipped, only {len(data)} dates")
@@ -114,6 +113,7 @@ for ticker, data in stock_data.items():
     rs_3m_series = []
     rs_6m_series = []
     sorted_dates = sorted(data.keys())
+    rejection_reasons = []
     
     for date in sorted_dates:
         row = data[date]
@@ -125,9 +125,12 @@ for ticker, data in stock_data.items():
             rs_6m_series.append(float(row['6M_RS Percentile']))
         except (ValueError, TypeError):
             print(f"{ticker}: Skipped, invalid data in {date}")
+            rejection_reasons.append(f"Invalid data in {date}")
             break
     
     if len(price_series) < 2:
+        if rejection_reasons:
+            print(f"{ticker}: Rejected for: {', '.join(rejection_reasons)}")
         continue
     
     # Check RS trends and price increase
@@ -139,11 +142,15 @@ for ticker, data in stock_data.items():
         rs_6m_series[-1] > rs_6m_series[0]
     ]) >= 3
     
+    if not price_increasing:
+        rejection_reasons.append("Price did not increase (end <= start)")
+    if not rs_trends_positive:
+        rejection_reasons.append("Less than 3/4 RS metrics positive (end > start)")
+    
     if price_increasing and rs_trends_positive:
         print(f"{ticker}: Passed trend check (Price increased, at least 3/4 RS trends positive)")
-        # Add to plotting list if under limit
-        if len(stocks_to_plot) < plot_limit:
-            stocks_to_plot.append((ticker, price_series, rs_series, rs_1m_series, rs_3m_series, rs_6m_series, sorted_dates))
+        # Add to plotting list
+        stocks_to_plot.append((ticker, price_series, rs_series, rs_1m_series, rs_3m_series, rs_6m_series, sorted_dates))
         
         # Get data for first and last dates
         first_date = start_date.strftime("%m%d%Y")
@@ -169,7 +176,8 @@ for ticker, data in stock_data.items():
                 avg_vol10 = round(float(last_row['AvgVol10']), 2)
                 mcap = round(float(last_row['MCAP']), 2)
             except (ValueError, TypeError):
-                print(f"{ticker}: Skipped, invalid data for {last_date}")
+                rejection_reasons.append(f"Invalid data for {last_date}")
+                print(f"{ticker}: Rejected for: {', '.join(rejection_reasons)}")
                 continue
             
             # Calculate RS averages across all dates
@@ -180,16 +188,16 @@ for ticker, data in stock_data.items():
             
             # Check individual RS thresholds
             if rs_avg <= 80:
-                print(f"{ticker}: Failed RS Percentile threshold ({rs_avg} <= 80)")
-                continue
+                rejection_reasons.append(f"RS Percentile threshold ({rs_avg} <= 80)")
             if rs_1m_avg <= 75:
-                print(f"{ticker}: Failed 1M_RS Percentile threshold ({rs_1m_avg} <= 75)")
-                continue
+                rejection_reasons.append(f"1M_RS Percentile threshold ({rs_1m_avg} <= 75)")
             if rs_3m_avg <= 70:
-                print(f"{ticker}: Failed 3M_RS Percentile threshold ({rs_3m_avg} <= 70)")
-                continue
+                rejection_reasons.append(f"3M_RS Percentile threshold ({rs_3m_avg} <= 70)")
             if rs_6m_avg <= 70:
-                print(f"{ticker}: Failed 6M_RS Percentile threshold ({rs_6m_avg} <= 70)")
+                rejection_reasons.append(f"6M_RS Percentile threshold ({rs_6m_avg} <= 70)")
+            
+            if rejection_reasons:
+                print(f"{ticker}: Rejected for: {', '.join(rejection_reasons)}")
                 continue
             
             # Calculate CompositeRS
@@ -202,57 +210,58 @@ for ticker, data in stock_data.items():
             volume_ratio = round(d_vol / avg_vol, 2) if avg_vol > 0 else 0.00
             
             # Check 52-week high/low and RS/volume conditions
-            if distance_to_52wkh <= 25:
-                print(f"{ticker}: Passed DistanceTo52WKH filter ({distance_to_52wkh} <= 25)")
-                if distance_from_52wkl >= 100:
-                    print(f"{ticker}: Passed DistanceFrom52WKL filter ({distance_from_52wkl} >= 100)")
-                    if composite_rs >= 80:
-                        print(f"{ticker}: Passed CompositeRS filter ({composite_rs} >= 80)")
-                        if volume_ratio >= 1.5:
-                            print(f"{ticker}: Passed VolumeRatio filter ({volume_ratio} >= 1.5)")
-                            # Calculate momentum score, round to 2 decimals
-                            momentum_score = round(
-                                (0.4 * composite_rs) + 
-                                (0.35 * (100 - distance_to_52wkh)) + 
-                                (0.2 * volume_ratio) + 
-                                (0.05 * price_momentum), 2
-                            )
-                            
-                            # Store results
-                            results.append({
-                                'Rank': 0,
-                                'Ticker': ticker,
-                                'Price': price_end,
-                                'DVol': d_vol,
-                                'Sector': last_row['Sector'],
-                                'Industry': last_row['Industry'],
-                                'RS Percentile': rs,
-                                '1M_RS Percentile': rs_1m,
-                                '3M_RS Percentile': rs_3m,
-                                '6M_RS Percentile': rs_6m,
-                                'AvgVol': avg_vol,
-                                'AvgVol10': avg_vol10,
-                                '52WKH': wkh52,
-                                '52WKL': wkl52,
-                                'MCAP': mcap,
-                                'IPO': last_row['IPO'],
-                                'PriceMomentum': price_momentum,
-                                'DistanceTo52WKH': distance_to_52wkh,
-                                'DistanceFrom52WKL': distance_from_52wkl,
-                                'VolumeRatio': volume_ratio,
-                                'CompositeRS': composite_rs,
-                                'MomentumScore': momentum_score
-                            })
-                        else:
-                            print(f"{ticker}: Failed VolumeRatio filter ({volume_ratio} < 1.5)")
-                    else:
-                        print(f"{ticker}: Failed CompositeRS filter ({composite_rs} < 80)")
-                else:
-                    print(f"{ticker}: Failed DistanceFrom52WKL filter ({distance_from_52wkl} < 100)")
+            if distance_to_52wkh > 25:
+                rejection_reasons.append(f"DistanceTo52WKH filter ({distance_to_52wkh} > 25)")
             else:
-                print(f"{ticker}: Failed DistanceTo52WKH filter ({distance_to_52wkh} > 25)")
+                print(f"{ticker}: Passed DistanceTo52WKH filter ({distance_to_52wkh} <= 25)")
+            
+            if distance_from_52wkl < 100:
+                rejection_reasons.append(f"DistanceFrom52WKL filter ({distance_from_52wkl} < 100)")
+            else:
+                print(f"{ticker}: Passed DistanceFrom52WKL filter ({distance_from_52wkl} >= 100)")
+            
+            if composite_rs < 80:
+                rejection_reasons.append(f"CompositeRS filter ({composite_rs} < 80)")
+            else:
+                print(f"{ticker}: Passed CompositeRS filter ({composite_rs} >= 80)")
+            
+            if volume_ratio < 1.5:
+                rejection_reasons.append(f"VolumeRatio filter ({volume_ratio} < 1.5)")
+            else:
+                print(f"{ticker}: Passed VolumeRatio filter ({volume_ratio} >= 1.5)")
+            
+            if rejection_reasons:
+                print(f"{ticker}: Rejected for: {', '.join(rejection_reasons)}")
+                continue
+            
+            # Store results
+            results.append({
+                'Rank': 0,
+                'Ticker': ticker,
+                'Price': price_end,
+                'DVol': d_vol,
+                'Sector': last_row['Sector'],
+                'Industry': last_row['Industry'],
+                'RS Percentile': rs,
+                '1M_RS Percentile': rs_1m,
+                '3M_RS Percentile': rs_3m,
+                '6M_RS Percentile': rs_6m,
+                'AvgVol': avg_vol,
+                'AvgVol10': avg_vol10,
+                '52WKH': wkh52,
+                '52WKL': wkl52,
+                'MCAP': mcap,
+                'IPO': last_row['IPO'],
+                'PriceMomentum': price_momentum,
+                'DistanceTo52WKH': distance_to_52wkh,
+                'DistanceFrom52WKL': distance_from_52wkl,
+                'VolumeRatio': volume_ratio,
+                'CompositeRS': composite_rs
+            })
+    else:
+        print(f"{ticker}: Rejected for: {', '.join(rejection_reasons)}")
 
-# Plot trends for selected stocks
+# Plot trends for all passing stocks
 for ticker, price_series, rs_series, rs_1m_series, rs_3m_series, rs_6m_series, dates in stocks_to_plot:
     plot_trends(ticker, price_series, rs_series, rs_1m_series, rs_3m_series, rs_6m_series, dates)
 
@@ -262,7 +271,7 @@ output_columns = [
     'RS Percentile', '1M_RS Percentile', '3M_RS Percentile', '6M_RS Percentile',
     'AvgVol', 'AvgVol10', '52WKH', '52WKL', 'MCAP', 'IPO',
     'PriceMomentum', 'DistanceTo52WKH', 'DistanceFrom52WKL', 
-    'VolumeRatio', 'CompositeRS', 'MomentumScore'
+    'VolumeRatio', 'CompositeRS'
 ]
 
 # Handle empty results
@@ -274,7 +283,7 @@ else:
     filtered_df = results_df[
         (results_df['CompositeRS'] >= 80) & 
         (results_df['VolumeRatio'] >= 1.5)
-    ].sort_values(by='MomentumScore', ascending=False)
+    ].sort_values(by='CompositeRS', ascending=False)
     
     # Get top 10 stocks and assign ranks
     top_stocks = filtered_df.head(10).copy()
