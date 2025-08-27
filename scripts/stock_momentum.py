@@ -132,24 +132,17 @@ for ticker, data in stock_data.items():
     if len(date_indices) < 2:
         continue
     
-    # Calculate linear regression slopes
-    def get_slope(x, y):
-        if len(x) < 2:
-            return 0
-        coeffs = np.polyfit(x, y, 1)
-        return round(coeffs[0], 2)  # Slope, rounded to 2 decimals
+    # Check RS trends and price increase
+    price_increasing = price_series[-1] > price_series[0]
+    rs_trends_positive = sum([
+        rs_series[-1] > rs_series[0],
+        rs_1m_series[-1] > rs_1m_series[0],
+        rs_3m_series[-1] > rs_3m_series[0],
+        rs_6m_series[-1] > rs_6m_series[0]
+    ]) >= 3
     
-    price_slope = get_slope(date_indices, price_series)
-    rs_slope = get_slope(date_indices, rs_series)
-    rs_1m_slope = get_slope(date_indices, rs_1m_series)
-    rs_3m_slope = get_slope(date_indices, rs_3m_series)
-    rs_6m_slope = get_slope(date_indices, rs_6m_series)
-    
-    # Check if RS slopes are non-negative and price slope is positive
-    slopes_positive = all(slope >= 0 for slope in [rs_slope, rs_1m_slope, rs_3m_slope, rs_6m_slope]) and price_slope > 0
-    
-    if slopes_positive:
-        print(f"{ticker}: Passed slope check (RS_Slope={rs_slope}, RS1M_Slope={rs_1m_slope}, RS3M_Slope={rs_3m_slope}, RS6M_Slope={rs_6m_slope}, Price_Slope={price_slope})")
+    if price_increasing and rs_trends_positive:
+        print(f"{ticker}: Passed trend check (Price increased, at least 3/4 RS trends positive)")
         # Add to plotting list if under limit
         if len(stocks_to_plot) < plot_limit:
             stocks_to_plot.append((ticker, date_indices, price_series, rs_series, rs_1m_series, rs_3m_series, rs_6m_series, sorted_dates))
@@ -181,15 +174,49 @@ for ticker, data in stock_data.items():
                 print(f"{ticker}: Skipped, invalid data for {last_date}")
                 continue
             
+            # Calculate RS averages across all dates
+            rs_avg = round(np.mean(rs_series), 2)
+            rs_1m_avg = round(np.mean(rs_1m_series), 2)
+            rs_3m_avg = round(np.mean(rs_3m_series), 2)
+            rs_6m_avg = round(np.mean(rs_6m_series), 2)
+            
+            # Check individual RS thresholds
+            if rs_avg <= 80:
+                print(f"{ticker}: Failed RS Percentile threshold ({rs_avg} <= 80)")
+                continue
+            if rs_1m_avg <= 75:
+                print(f"{ticker}: Failed 1M_RS Percentile threshold ({rs_1m_avg} <= 75)")
+                continue
+            if rs_3m_avg <= 70:
+                print(f"{ticker}: Failed 3M_RS Percentile threshold ({rs_3m_avg} <= 70)")
+                continue
+            if rs_6m_avg <= 70:
+                print(f"{ticker}: Failed 6M_RS Percentile threshold ({rs_6m_avg} <= 70)")
+                continue
+            
+            # Calculate CompositeRS
+            composite_rs = round((rs_avg + rs_1m_avg + rs_3m_avg + rs_6m_avg) / 4, 2)
+            
             # Calculate metrics, round to 2 decimals
             price_momentum = round(((price_end - price_start) / price_start) * 100, 2)
             distance_to_52wkh = round(((wkh52 - price_end) / wkh52) * 100, 2)
             distance_from_52wkl = round(((price_end - wkl52) / wkl52) * 100, 2) if wkl52 > 0 else 0.00
             volume_ratio = round(d_vol / avg_vol, 2) if avg_vol > 0 else 0.00
-            composite_rs = round((rs_1m + rs_3m + rs_6m) / 3, 2)
+            
+            # Calculate average RS slope for momentum score
+            def get_slope(x, y):
+                if len(x) < 2:
+                    return 0
+                coeffs = np.polyfit(x, y, 1)
+                return round(coeffs[0], 2)
+            
+            rs_slope = get_slope(date_indices, rs_series)
+            rs_1m_slope = get_slope(date_indices, rs_1m_series)
+            rs_3m_slope = get_slope(date_indices, rs_3m_series)
+            rs_6m_slope = get_slope(date_indices, rs_6m_series)
             avg_rs_slope = round((rs_slope + rs_1m_slope + rs_3m_slope + rs_6m_slope) / 4, 2)
             
-            # Check 52-week high/low conditions
+            # Check 52-week high/low and RS/volume conditions
             if distance_to_52wkh <= 25:
                 print(f"{ticker}: Passed DistanceTo52WKH filter ({distance_to_52wkh} <= 25)")
                 if distance_from_52wkl >= 100:
@@ -234,7 +261,7 @@ for ticker, data in stock_data.items():
                                 'RS1M_Slope': rs_1m_slope,
                                 'RS3M_Slope': rs_3m_slope,
                                 'RS6M_Slope': rs_6m_slope,
-                                'Price_Slope': price_slope,
+                                'Price_Slope': get_slope(date_indices, price_series),
                                 'MomentumScore': momentum_score
                             })
                         else:
