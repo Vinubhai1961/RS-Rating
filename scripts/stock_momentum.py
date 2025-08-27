@@ -66,8 +66,8 @@ for i in range((end_date - start_date).days + 1):
 print(f"Total records processed: {total_records}")
 print(f"Total unique tickers: {len(stock_data)}")
 
-# Function to plot slopes for debugging
-def plot_slopes(ticker, date_indices, price_series, rs_series, rs_1m_series, rs_3m_series, rs_6m_series, dates):
+# Function to plot trends for debugging
+def plot_trends(ticker, price_series, rs_series, rs_1m_series, rs_3m_series, rs_6m_series, dates):
     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
     date_labels = [datetime.strptime(d, "%m%d%Y").strftime("%m-%d") for d in dates]
     
@@ -93,10 +93,10 @@ def plot_slopes(ticker, date_indices, price_series, rs_series, rs_1m_series, rs_
     ax2.tick_params(axis='x', rotation=45)
     
     plt.tight_layout()
-    plot_file = os.path.join(plot_path, f"{ticker}_slopes.png")
+    plot_file = os.path.join(plot_path, f"{ticker}_trends.png")
     plt.savefig(plot_file)
     plt.close()
-    print(f"Saved slope plot for {ticker} to {plot_file}")
+    print(f"Saved trend plot for {ticker} to {plot_file}")
 
 # Calculate momentum metrics
 results = []
@@ -113,7 +113,6 @@ for ticker, data in stock_data.items():
     rs_1m_series = []
     rs_3m_series = []
     rs_6m_series = []
-    date_indices = []
     sorted_dates = sorted(data.keys())
     
     for date in sorted_dates:
@@ -124,12 +123,11 @@ for ticker, data in stock_data.items():
             rs_1m_series.append(float(row['1M_RS Percentile']))
             rs_3m_series.append(float(row['3M_RS Percentile']))
             rs_6m_series.append(float(row['6M_RS Percentile']))
-            date_indices.append((datetime.strptime(date, "%m%d%Y") - start_date).days)
         except (ValueError, TypeError):
             print(f"{ticker}: Skipped, invalid data in {date}")
             break
     
-    if len(date_indices) < 2:
+    if len(price_series) < 2:
         continue
     
     # Check RS trends and price increase
@@ -145,7 +143,7 @@ for ticker, data in stock_data.items():
         print(f"{ticker}: Passed trend check (Price increased, at least 3/4 RS trends positive)")
         # Add to plotting list if under limit
         if len(stocks_to_plot) < plot_limit:
-            stocks_to_plot.append((ticker, date_indices, price_series, rs_series, rs_1m_series, rs_3m_series, rs_6m_series, sorted_dates))
+            stocks_to_plot.append((ticker, price_series, rs_series, rs_1m_series, rs_3m_series, rs_6m_series, sorted_dates))
         
         # Get data for first and last dates
         first_date = start_date.strftime("%m%d%Y")
@@ -203,19 +201,6 @@ for ticker, data in stock_data.items():
             distance_from_52wkl = round(((price_end - wkl52) / wkl52) * 100, 2) if wkl52 > 0 else 0.00
             volume_ratio = round(d_vol / avg_vol, 2) if avg_vol > 0 else 0.00
             
-            # Calculate average RS slope for momentum score
-            def get_slope(x, y):
-                if len(x) < 2:
-                    return 0
-                coeffs = np.polyfit(x, y, 1)
-                return round(coeffs[0], 2)
-            
-            rs_slope = get_slope(date_indices, rs_series)
-            rs_1m_slope = get_slope(date_indices, rs_1m_series)
-            rs_3m_slope = get_slope(date_indices, rs_3m_series)
-            rs_6m_slope = get_slope(date_indices, rs_6m_series)
-            avg_rs_slope = round((rs_slope + rs_1m_slope + rs_3m_slope + rs_6m_slope) / 4, 2)
-            
             # Check 52-week high/low and RS/volume conditions
             if distance_to_52wkh <= 25:
                 print(f"{ticker}: Passed DistanceTo52WKH filter ({distance_to_52wkh} <= 25)")
@@ -227,11 +212,10 @@ for ticker, data in stock_data.items():
                             print(f"{ticker}: Passed VolumeRatio filter ({volume_ratio} >= 1.5)")
                             # Calculate momentum score, round to 2 decimals
                             momentum_score = round(
-                                (0.35 * composite_rs) + 
-                                (0.3 * (100 - distance_to_52wkh)) + 
+                                (0.4 * composite_rs) + 
+                                (0.35 * (100 - distance_to_52wkh)) + 
                                 (0.2 * volume_ratio) + 
-                                (0.05 * price_momentum) + 
-                                (0.1 * avg_rs_slope * 10), 2
+                                (0.05 * price_momentum), 2
                             )
                             
                             # Store results
@@ -257,11 +241,6 @@ for ticker, data in stock_data.items():
                                 'DistanceFrom52WKL': distance_from_52wkl,
                                 'VolumeRatio': volume_ratio,
                                 'CompositeRS': composite_rs,
-                                'RS_Slope': rs_slope,
-                                'RS1M_Slope': rs_1m_slope,
-                                'RS3M_Slope': rs_3m_slope,
-                                'RS6M_Slope': rs_6m_slope,
-                                'Price_Slope': get_slope(date_indices, price_series),
                                 'MomentumScore': momentum_score
                             })
                         else:
@@ -273,9 +252,9 @@ for ticker, data in stock_data.items():
             else:
                 print(f"{ticker}: Failed DistanceTo52WKH filter ({distance_to_52wkh} > 25)")
 
-# Plot slopes for selected stocks
-for ticker, date_indices, price_series, rs_series, rs_1m_series, rs_3m_series, rs_6m_series, dates in stocks_to_plot:
-    plot_slopes(ticker, date_indices, price_series, rs_series, rs_1m_series, rs_3m_series, rs_6m_series, dates)
+# Plot trends for selected stocks
+for ticker, price_series, rs_series, rs_1m_series, rs_3m_series, rs_6m_series, dates in stocks_to_plot:
+    plot_trends(ticker, price_series, rs_series, rs_1m_series, rs_3m_series, rs_6m_series, dates)
 
 # Define output columns
 output_columns = [
@@ -283,8 +262,7 @@ output_columns = [
     'RS Percentile', '1M_RS Percentile', '3M_RS Percentile', '6M_RS Percentile',
     'AvgVol', 'AvgVol10', '52WKH', '52WKL', 'MCAP', 'IPO',
     'PriceMomentum', 'DistanceTo52WKH', 'DistanceFrom52WKL', 
-    'VolumeRatio', 'CompositeRS', 'RS_Slope', 'RS1M_Slope', 
-    'RS3M_Slope', 'RS6M_Slope', 'Price_Slope', 'MomentumScore'
+    'VolumeRatio', 'CompositeRS', 'MomentumScore'
 ]
 
 # Handle empty results
