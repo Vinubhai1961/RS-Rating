@@ -1,38 +1,40 @@
 name: Stock Momentum Analysis
 
 on:
-  workflow_dispatch: # Manual trigger
+  schedule:
+    - cron: '0 22 * * 1-5'  # Runs at 5:00 PM EDT (22:00 UTC) Monday-Friday
+  workflow_dispatch:  # Allows manual trigger
 
 jobs:
   analyze-stocks:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pandas numpy
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pandas numpy matplotlib
 
-      - name: Create IBD-20 folder if it doesn't exist
-        run: mkdir -p IBD-20
+    - name: Create output directory
+      run: mkdir -p IBD-20
 
-      - name: Run stock analysis
-        run: python scripts/stock_momentum.py
+    - name: Run stock momentum script
+      run: python scripts/stock_momentum.py
 
-      - name: Commit results
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add IBD-20/TopStockOpportunities.csv
-          git commit -m "Update IBD-20/TopStockOpportunities.csv with latest momentum analysis"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Commit and push results
+      run: |
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@github.com'
+        git add IBD-20/TopStockOpportunities.csv IBD-20/plots/*
+        git commit -m 'Update stock momentum results and plots' || echo "No changes to commit"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
