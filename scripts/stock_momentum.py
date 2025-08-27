@@ -14,6 +14,13 @@ output_path = "IBD-20"
 # Ensure output directory exists
 os.makedirs(output_path, exist_ok=True)
 
+# Required columns in input CSVs
+required_columns = [
+    'Ticker', 'Price', 'DVol', 'AvgVol', '52WKH', '52WKL', 
+    'RS Percentile', '1M_RS Percentile', '3M_RS Percentile', 
+    '6M_RS Percentile', 'AvgVol10', 'MCAP', 'Sector', 'Industry', 'IPO'
+]
+
 # Initialize data storage
 stock_data = {}
 
@@ -34,6 +41,17 @@ for i in range((end_date - start_date).days + 1):
         record_count = len(df)
         total_records += record_count
         print(f"Read {record_count} records from {file_path}")
+        
+        # Validate record count
+        if record_count < 7000 or record_count > 9000:
+            print(f"Warning: {file_path} has {record_count} records, expected ~8000")
+        
+        # Validate required columns
+        missing_columns = [col for col in required_columns if col not in df.columns]
+        if missing_columns:
+            print(f"Error: {file_path} missing columns: {missing_columns}")
+            continue
+        
         dates.append(file_date)
         for _, row in df.iterrows():
             ticker = row['Ticker']
@@ -62,12 +80,19 @@ for ticker, data in stock_data.items():
     
     for date in sorted(data.keys()):
         row = data[date]
-        price_series.append(float(row['Price']))
-        rs_series.append(float(row['RS Percentile']))
-        rs_1m_series.append(float(row['1M_RS Percentile']))
-        rs_3m_series.append(float(row['3M_RS Percentile']))
-        rs_6m_series.append(float(row['6M_RS Percentile']))
-        date_indices.append((datetime.strptime(date, "%m%d%Y") - start_date).days)
+        try:
+            price_series.append(float(row['Price']))
+            rs_series.append(float(row['RS Percentile']))
+            rs_1m_series.append(float(row['1M_RS Percentile']))
+            rs_3m_series.append(float(row['3M_RS Percentile']))
+            rs_6m_series.append(float(row['6M_RS Percentile']))
+            date_indices.append((datetime.strptime(date, "%m%d%Y") - start_date).days)
+        except (ValueError, TypeError):
+            print(f"{ticker}: Skipped, invalid data in {date}")
+            break
+    
+    if len(date_indices) < 2:
+        continue
     
     # Calculate linear regression slopes
     def get_slope(x, y):
@@ -82,8 +107,8 @@ for ticker, data in stock_data.items():
     rs_3m_slope = get_slope(date_indices, rs_3m_series)
     rs_6m_slope = get_slope(date_indices, rs_6m_series)
     
-    # Check if all slopes are positive
-    slopes_positive = all(slope > 0 for slope in [rs_slope, rs_1m_slope, rs_3m_slope, rs_6m_slope, price_slope])
+    # Check if RS slopes are non-negative and price slope is positive
+    slopes_positive = all(slope >= 0 for slope in [rs_slope, rs_1m_slope, rs_3m_slope, rs_6m_slope]) and price_slope > 0
     
     if slopes_positive:
         print(f"{ticker}: Passed slope check")
@@ -97,18 +122,22 @@ for ticker, data in stock_data.items():
             last_row = data[last_date]
             
             # Extract fields, round numerical values
-            price_start = round(float(first_row['Price']), 2)
-            price_end = round(float(last_row['Price']), 2)
-            d_vol = round(float(last_row['DVol']), 2)
-            avg_vol = round(float(last_row['AvgVol']), 2)
-            wkh52 = round(float(last_row['52WKH']), 2)
-            wkl52 = round(float(last_row['52WKL']), 2)
-            rs = round(float(last_row['RS Percentile']), 2)
-            rs_1m = round(float(last_row['1M_RS Percentile']), 2)
-            rs_3m = round(float(last_row['3M_RS Percentile']), 2)
-            rs_6m = round(float(last_row['6M_RS Percentile']), 2)
-            avg_vol10 = round(float(last_row['AvgVol10']), 2)
-            mcap = round(float(last_row['MCAP']), 2)
+            try:
+                price_start = round(float(first_row['Price']), 2)
+                price_end = round(float(last_row['Price']), 2)
+                d_vol = round(float(last_row['DVol']), 2)
+                avg_vol = round(float(last_row['AvgVol']), 2)
+                wkh52 = round(float(last_row['52WKH']), 2)
+                wkl52 = round(float(last_row['52WKL']), 2)
+                rs = round(float(last_row['RS Percentile']), 2)
+                rs_1m = round(float(last_row['1M_RS Percentile']), 2)
+                rs_3m = round(float(last_row['3M_RS Percentile']), 2)
+                rs_6m = round(float(last_row['6M_RS Percentile']), 2)
+                avg_vol10 = round(float(last_row['AvgVol10']), 2)
+                mcap = round(float(last_row['MCAP']), 2)
+            except (ValueError, TypeError):
+                print(f"{ticker}: Skipped, invalid data for {last_date}")
+                continue
             
             # Calculate metrics, round to 2 decimals
             price_momentum = round(((price_end - price_start) / price_start) * 100, 2)
@@ -163,18 +192,7 @@ for ticker, data in stock_data.items():
                         'MomentumScore': momentum_score
                     })
 
-# Convert results to DataFrame and filter
-results_df = pd.DataFrame(results)
-filtered_df = results_df[
-    (results_df['CompositeRS'] >= 80) & 
-    (results_df['VolumeRatio'] >= 1.5)
-].sort_values(by='MomentumScore', ascending=False)
-
-# Get top 10 stocks and assign ranks
-top_stocks = filtered_df.head(10).copy()
-top_stocks['Rank'] = range(1, len(top_stocks) + 1)
-
-# Reorder columns for output
+# Define output columns
 output_columns = [
     'Rank', 'Ticker', 'Price', 'DVol', 'Sector', 'Industry', 
     'RS Percentile', '1M_RS Percentile', '3M_RS Percentile', '6M_RS Percentile',
@@ -183,12 +201,27 @@ output_columns = [
     'VolumeRatio', 'CompositeRS', 'RS_Slope', 'RS1M_Slope', 
     'RS3M_Slope', 'RS6M_Slope', 'Price_Slope', 'MomentumScore'
 ]
-top_stocks = top_stocks[output_columns]
 
+# Handle empty results
+if not results:
+    print("No stocks passed all filters. Creating empty output CSV.")
+    results_df = pd.DataFrame(columns=output_columns)
+else:
+    results_df = pd.DataFrame(results)
+    filtered_df = results_df[
+        (results_df['CompositeRS'] >= 80) & 
+        (results_df['VolumeRatio'] >= 1.5)
+    ].sort_values(by='MomentumScore', ascending=False)
+    
+    # Get top 10 stocks and assign ranks
+    top_stocks = filtered_df.head(10).copy()
+    top_stocks['Rank'] = range(1, len(top_stocks) + 1)
+    results_df = top_stocks[output_columns]
+    
 # Print results
-print(top_stocks.to_string(index=False))
+print(results_df.to_string(index=False))
 
 # Save output CSV with 2 decimal places for numerical values
 output_file = os.path.join(output_path, 'TopStockOpportunities.csv')
-top_stocks.to_csv(output_file, index=False, float_format='%.2f')
+results_df.to_csv(output_file, index=False, float_format='%.2f')
 print(f"Results saved to {output_file}")
