@@ -1,0 +1,35 @@
+name: 📤 Copy Files to Output Repo
+
+on:
+  workflow_dispatch:  # Manual trigger
+  schedule:
+    # Run Mon–Fri at 6:00PM EST (23:00 UTC)
+    - cron: "0 23 * * 1-5"
+ 
+jobs:
+  copy-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Copy selected files to output repo
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Clone destination repo
+          git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/dhruvisha0518/output.git output-repo
+
+          # Copy only the required files with new names
+          cp RS_Data/RSRATING_TV.csv     output-repo/output/RSRATING.csv
+          cp RS_Data/rs_industries.csv   output-repo/output/rs_industries.csv
+          cp RS_Data/rs_stocks_part1.csv output-repo/output/rs_stocks_part1.csv
+          cp RS_Data/rs_stocks_part2.csv output-repo/output/rs_stocks_part2.csv
+
+          cd output-repo
+          git add .
+          git commit -m "Automated file sync on $(date)"
+          git push origin main
