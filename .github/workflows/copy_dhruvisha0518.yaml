@@ -1,11 +1,11 @@
 name: 📤 Copy Files to Output Repo
 
 on:
-  workflow_dispatch:  # Manual trigger
   schedule:
     # Run Mon–Fri at 6:00PM EST (23:00 UTC)
     - cron: "0 23 * * 1-5"
- 
+  workflow_dispatch:
+
 jobs:
   copy-files:
     runs-on: ubuntu-latest
@@ -23,6 +23,9 @@ jobs:
           # Clone destination repo
           git clone https://x-access-token:${{ secrets.PAT }}@github.com/dhruvisha0518/output.git output-repo
 
+          # Ensure the output folder exists
+          mkdir -p output-repo/output
+
           # Copy only the required files with new names
           cp RS_Data/RSRATING_TV.csv     output-repo/output/RSRATING.csv
           cp RS_Data/rs_industries.csv   output-repo/output/rs_industries.csv
@@ -31,5 +34,5 @@ jobs:
 
           cd output-repo
           git add .
-          git commit -m "Automated file sync on $(date)"
+          git commit -m "Automated file sync on $(date)" || echo "No changes to commit"
           git push origin main
