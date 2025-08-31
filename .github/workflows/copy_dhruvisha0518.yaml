@@ -21,13 +21,13 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
           # Clone destination repo
-          git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/dhruvisha0518/output.git output-repo
+          git clone https://x-access-token:${{ secrets.PAT }}@github.com/dhruvisha0518/output.git output
 
           # Copy only the required files with new names
-          cp RS_Data/RSRATING_TV.csv     output-repo/output/RSRATING.csv
-          cp RS_Data/rs_industries.csv   output-repo/output/rs_industries.csv
-          cp RS_Data/rs_stocks_part1.csv output-repo/output/rs_stocks_part1.csv
-          cp RS_Data/rs_stocks_part2.csv output-repo/output/rs_stocks_part2.csv
+          cp RS_Data/RSRATING_TV.csv     output/RSRATING.csv
+          cp RS_Data/rs_industries.csv   output/rs_industries.csv
+          cp RS_Data/rs_stocks_part1.csv output/rs_stocks_part1.csv
+          cp RS_Data/rs_stocks_part2.csv output/rs_stocks_part2.csv
 
           cd output-repo
           git add .
