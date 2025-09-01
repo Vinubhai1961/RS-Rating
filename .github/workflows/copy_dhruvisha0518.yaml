@@ -3,7 +3,7 @@ name: 📤 Copy Files to Output Repo
 on:
   schedule:
     # Run Mon–Fri at 6:00PM EST (23:00 UTC)
-    - cron: "0 22 * * 1-5"
+    - cron: "10 22 * * 1-5"
   workflow_dispatch:
 
 jobs:
