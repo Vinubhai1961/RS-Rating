@@ -26,11 +26,14 @@ jobs:
           # Ensure the output folder exists
           mkdir -p output-repo/output
 
-          # Copy only the required files with new names
-          cp RS_Data/RSRATING_TV.csv     output-repo/output/RSRATING.csv
-          cp RS_Data/rs_industries.csv   output-repo/output/rs_industries.csv
-          cp RS_Data/rs_stocks_part1.csv output-repo/output/rs_stocks_part1.csv
-          cp RS_Data/rs_stocks_part2.csv output-repo/output/rs_stocks_part2.csv
+          # Copy specific files with new names
+          cp RS_Data/RSRATING_TV.csv   output-repo/output/RSRATING.csv
+          cp RS_Data/rs_industries.csv output-repo/output/rs_industries.csv
+
+          # Copy all rs_stocks_part*.csv files dynamically
+          for f in RS_Data/rs_stocks_part*.csv; do
+            cp "$f" output-repo/output/
+          done
 
           cd output-repo
           git add .
