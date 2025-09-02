@@ -37,12 +37,18 @@ jobs:
       - name: Install pandas
         run: pip install pandas
 
-      # Delete existing split files to ensure overwrite
       - name: Delete existing split files
         run: |
-          rm -f RS_Data/rs_stocks_part*.csv
-          echo "Deleted existing rs_stocks_part*.csv files"
-
+          echo "Looking for old rs_stocks_part*.csv files in RS_Data/"
+          files=$(find RS_Data -maxdepth 1 -type f -name "rs_stocks_part*.csv")
+          if [ -z "$files" ]; then
+            echo "No old split files found."
+          else
+            echo "Deleting the following files:"
+            echo "$files"
+          rm -f $files
+          fi
+          
       # Run Python script to split rs_stocks.csv
       - name: Split CSV file
         run: python scripts/split_rs_stocks.py
