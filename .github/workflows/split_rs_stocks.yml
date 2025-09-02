@@ -37,6 +37,7 @@ jobs:
       - name: Install pandas
         run: pip install pandas
 
+      # Delete existing split files to ensure overwrite
       - name: Delete existing split files
         run: |
           echo "Looking for old rs_stocks_part*.csv files in RS_Data/"
@@ -46,9 +47,9 @@ jobs:
           else
             echo "Deleting the following files:"
             echo "$files"
-          rm -f $files
+            rm -f $files
           fi
-          
+
       # Run Python script to split rs_stocks.csv
       - name: Split CSV file
         run: python scripts/split_rs_stocks.py
@@ -58,9 +59,17 @@ jobs:
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git add RS_Data/rs_stocks_part*.csv
-          git commit -m "Split rs_stocks.csv into 4000-record chunks [$(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')]"
-          git push origin main
+          
+          # Stage additions and deletions
+          git add -A RS_Data/rs_stocks_part*.csv
+          
+          # Commit only if there are staged changes
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Split rs_stocks.csv into 4000-record chunks [$(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')]"
+            git push origin main
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
