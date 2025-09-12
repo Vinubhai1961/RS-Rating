@@ -7720,6 +7720,20 @@
       "type": "Stock"
     }
   },
+  "BGMS": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
+  "BGMSP": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "BGR": {
     "info": {
       "industry": "Asset Management",
@@ -9568,6 +9582,13 @@
       "type": "Stock"
     }
   },
+  "BRCB": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "BRCC": {
     "info": {
       "industry": "Packaged Foods",
@@ -9964,13 +9985,6 @@
     "info": {
       "industry": "Furnishings, Fixtures & Appliances",
       "sector": "Consumer Cyclical",
-      "type": "Stock"
-    }
-  },
-  "BSGM": {
-    "info": {
-      "industry": "Medical Devices",
-      "sector": "Healthcare",
       "type": "Stock"
     }
   },
@@ -16764,20 +16778,6 @@
       "type": "Stock"
     }
   },
-  "CYCC": {
-    "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
-  "CYCCP": {
-    "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
   "CYCN": {
     "info": {
       "industry": "Biotechnology",
@@ -19156,13 +19156,6 @@
       "industry": "n/a",
       "sector": "n/a",
       "type": "ETF"
-    }
-  },
-  "DRRX": {
-    "info": {
-      "industry": "Drug Manufacturers - Specialty & Generic",
-      "sector": "Healthcare",
-      "type": "Stock"
     }
   },
   "DRS": {
@@ -26648,6 +26641,13 @@
       "type": "Stock"
     }
   },
+  "FOFO": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "FOLD": {
     "info": {
       "industry": "Biotechnology",
@@ -28706,6 +28706,13 @@
       "type": "Stock"
     }
   },
+  "GECCG": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "GECCH": {
     "info": {
       "industry": "n/a",
@@ -28795,6 +28802,13 @@
       "industry": "n/a",
       "sector": "n/a",
       "type": "ETF"
+    }
+  },
+  "GEMI": {
+    "info": {
+      "industry": "Capital Markets",
+      "sector": "Financial Services",
+      "type": "Stock"
     }
   },
   "GEN": {
@@ -31458,13 +31472,6 @@
     }
   },
   "HAPS": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
-  "HAPY": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -41684,6 +41691,13 @@
       "type": "ETF"
     }
   },
+  "LGN": {
+    "info": {
+      "industry": "Engineering & Construction",
+      "sector": "Industrials",
+      "type": "Stock"
+    }
+  },
   "LGND": {
     "info": {
       "industry": "Biotechnology",
@@ -51330,13 +51344,6 @@
       "type": "Stock"
     }
   },
-  "OLO": {
-    "info": {
-      "industry": "Software - Application",
-      "sector": "Technology",
-      "type": "Stock"
-    }
-  },
   "OLP": {
     "info": {
       "industry": "REIT - Diversified",
@@ -51491,10 +51498,24 @@
       "type": "Stock"
     }
   },
+  "ONCH": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "ONCHU": {
     "info": {
       "industry": "Shell Companies",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "ONCHW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -52132,6 +52153,13 @@
     "info": {
       "industry": "Asset Management",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "OTGAU": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -53117,8 +53145,8 @@
   },
   "PCAP": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -53131,8 +53159,8 @@
   },
   "PCAPW": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -58118,6 +58146,13 @@
       "industry": "Biotechnology",
       "sector": "Healthcare",
       "type": "Stock"
+    }
+  },
+  "RAUS": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
     }
   },
   "RAVE": {
@@ -63524,13 +63559,6 @@
       "type": "Stock"
     }
   },
-  "SKX": {
-    "info": {
-      "industry": "Footwear & Accessories",
-      "sector": "Consumer Cyclical",
-      "type": "Stock"
-    }
-  },
   "SKY": {
     "info": {
       "industry": "Residential Construction",
@@ -66317,6 +66345,13 @@
       "type": "Stock"
     }
   },
+  "STEX": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "STFS": {
     "info": {
       "industry": "Advertising Agencies",
@@ -66494,8 +66529,8 @@
   },
   "STRC": {
     "info": {
-      "industry": "Software - Infrastructure",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -73415,6 +73450,13 @@
       "type": "ETF"
     }
   },
+  "VIA": {
+    "info": {
+      "industry": "Software - Application",
+      "sector": "Technology",
+      "type": "Stock"
+    }
+  },
   "VIASP": {
     "info": {
       "industry": "Utilities - Regulated Electric",
@@ -75060,6 +75102,13 @@
       "type": "Stock"
     }
   },
+  "WDAF": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "WDAY": {
     "info": {
       "industry": "Software - Application",
@@ -75086,6 +75135,13 @@
       "industry": "Specialty Chemicals",
       "sector": "Basic Materials",
       "type": "Stock"
+    }
+  },
+  "WDGF": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
     }
   },
   "WDH": {
@@ -75230,8 +75286,8 @@
   },
   "WENNW": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -76276,20 +76332,6 @@
       "industry": "n/a",
       "sector": "n/a",
       "type": "ETF"
-    }
-  },
-  "XAGE": {
-    "info": {
-      "industry": "Household & Personal Products",
-      "sector": "Consumer Defensive",
-      "type": "Stock"
-    }
-  },
-  "XAGEW": {
-    "info": {
-      "industry": "Household & Personal Products",
-      "sector": "Consumer Defensive",
-      "type": "Stock"
     }
   },
   "XAIR": {
@@ -77946,8 +77988,8 @@
   },
   "YOUL": {
     "info": {
-      "industry": "Education & Training Services",
-      "sector": "Consumer Defensive",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
