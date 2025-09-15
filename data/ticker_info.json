@@ -64,22 +64,22 @@
   },
   "AACI": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "AACIU": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "AACIW": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -2127,13 +2127,6 @@
       "type": "Stock"
     }
   },
-  "AIRL": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
   "AIRO": {
     "info": {
       "industry": "Aerospace & Defense",
@@ -4175,13 +4168,6 @@
     "info": {
       "industry": "Asset Management",
       "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "ARGD": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -7237,11 +7223,25 @@
       "type": "ETF"
     }
   },
+  "BDVL": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "BDX": {
     "info": {
       "industry": "Medical Instruments & Supplies",
       "sector": "Healthcare",
       "type": "Stock"
+    }
+  },
+  "BDYN": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
     }
   },
   "BE": {
@@ -8420,13 +8420,6 @@
       "type": "ETF"
     }
   },
-  "BKIV": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
   "BKKT": {
     "info": {
       "industry": "Software - Infrastructure",
@@ -8523,13 +8516,6 @@
       "industry": "Oil & Gas E&P",
       "sector": "Energy",
       "type": "Stock"
-    }
-  },
-  "BKWO": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
     }
   },
   "BKYI": {
@@ -25451,13 +25437,6 @@
       "type": "ETF"
     }
   },
-  "FINE": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
   "FINS": {
     "info": {
       "industry": "Asset Management",
@@ -41397,20 +41376,6 @@
       "type": "Stock"
     }
   },
-  "LFAE": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
-  "LFAF": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
   "LFAI": {
     "info": {
       "industry": "n/a",
@@ -41773,20 +41738,6 @@
       "industry": "Auto Manufacturers",
       "sector": "Consumer Cyclical",
       "type": "Stock"
-    }
-  },
-  "LIAB": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
-  "LIAC": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
     }
   },
   "LIAE": {
@@ -45339,6 +45290,13 @@
     }
   },
   "MLACU": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
+  "MLCI": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -53145,8 +53103,8 @@
   },
   "PCAP": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -53159,8 +53117,8 @@
   },
   "PCAPW": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -65442,6 +65400,13 @@
       "type": "Stock"
     }
   },
+  "SPRB": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "SPRC": {
     "info": {
       "industry": "Biotechnology",
@@ -66529,8 +66494,8 @@
   },
   "STRC": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Software - Infrastructure",
+      "sector": "Technology",
       "type": "Stock"
     }
   },
@@ -67316,6 +67281,13 @@
       "industry": "Food Distribution",
       "sector": "Consumer Defensive",
       "type": "Stock"
+    }
+  },
+  "SYZ": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
     }
   },
   "SZK": {
@@ -70683,13 +70655,6 @@
       "industry": "n/a",
       "sector": "n/a",
       "type": "ETF"
-    }
-  },
-  "TURN": {
-    "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
-      "type": "Stock"
     }
   },
   "TUSB": {
@@ -75286,8 +75251,8 @@
   },
   "WENNW": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -77988,8 +77953,8 @@
   },
   "YOUL": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Education & Training Services",
+      "sector": "Consumer Defensive",
       "type": "Stock"
     }
   },
