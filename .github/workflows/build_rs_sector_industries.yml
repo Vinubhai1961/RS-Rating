@@ -1,0 +1,68 @@
+name: Build RS Sector Industries CSV
+
+on:
+  workflow_run:
+    workflows: ["📊 Calculate RS Ratings"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:   # allow manual run
+
+jobs:
+  build:
+    if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Print workflow start time (EDT)
+        run: |
+          echo "Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pandas
+
+      - name: Process RS Stocks
+        run: |
+          python <<EOF
+          import pandas as pd
+
+          # Load daily RS data
+          df = pd.read_csv("RS_Data/rs_stocks.csv")
+
+          # Sort by RS (highest first)
+          df = df.sort_values(by="RS", ascending=False)
+
+          # Assign rank globally
+          df["Rank"] = range(1, len(df) + 1)
+
+          # Group by Industry + Sector, aggregate tickers in RS order
+          grouped = df.groupby(["Industry", "Sector"], as_index=False).agg({
+              "RS": "first",
+              "1M_RS": "first",
+              "3M_RS": "first",
+              "6M_RS": "first",
+              "Ticker": lambda x: ", ".join(x)
+          })
+
+          # Save to RS_Data/RS_Sector_Industries.csv (overwrite)
+          grouped.to_csv("RS_Data/RS_Sector_Industries.csv", index=False)
+          EOF
+
+      - name: Commit results
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add RS_Data/RS_Sector_Industries.csv
+          git commit -m "Update RS_Sector_Industries.csv" || echo "No changes to commit"
+          git push
+
+      - name: Print workflow end time (EDT)
+        run: |
+          echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
