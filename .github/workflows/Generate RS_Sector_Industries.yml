@@ -1,14 +1,15 @@
 name: Generate RS_Sector_Industries
 
 on:
-  push:
-    branches: [ main ]
-    paths:
-      - 'RS_Data/rs_stocks.csv'  # Trigger only if input CSV changes
-  workflow_dispatch:  # Allow manual trigger
+  workflow_run:
+    workflows: ["📊 Calculate RS Ratings"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:   # allow manual run
 
 jobs:
-  generate:
+  build:
+    if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
 
     steps:
@@ -16,6 +17,10 @@ jobs:
       uses: actions/checkout@v4
       with:
         token: ${{ secrets.GITHUB_TOKEN }}  # For pushing changes
+
+    - name: Print workflow start time (EDT)
+      run: |
+        echo "Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -108,6 +113,10 @@ jobs:
 
     - name: Run the generation script
       run: python generate_rs_sector_industries.py
+
+    - name: Print workflow end time (EDT)
+      run: |
+        echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
 
     - name: Commit and push changes
       run: |
