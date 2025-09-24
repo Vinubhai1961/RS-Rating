@@ -30,81 +30,81 @@ jobs:
     - name: Create generation script
       run: |
         cat > generate_rs_sector_industries.py << 'EOF'
-import pandas as pd
-import os
-
-# Input and output paths
-input_file = 'RS_Data/rs_stocks.csv'
-output_file = 'RS_Data/RS_Sector_Industries.csv'
-
-# Load data
-df = pd.read_csv(input_file)
-
-# Rename columns for consistency
-df = df.rename(columns={
-    'RS Percentile': 'RS',
-    '1M_RS Percentile': '1M_RS',
-    '3M_RS Percentile': '3M_RS',
-    '6M_RS Percentile': '6M_RS'
-})
-
-# Fill NaN in percentiles with 0 for aggregation
-for col in ['RS', '1M_RS', '3M_RS', '6M_RS']:
-    df[col] = df[col].fillna(0).astype(float)
-
-# Handle n/a in Sector and Industry
-df['Sector'] = df['Sector'].replace('n/a', 'Unknown')
-df['Industry'] = df['Industry'].replace('n/a', 'Unknown')
-
-# Ensure Industry is string and not NaN
-df['Industry'] = df['Industry'].fillna('Unknown')
-
-# Group by Industry
-df_ind = df.groupby('Industry').agg({
-    'RS': 'mean',
-    '1M_RS': 'mean',
-    '3M_RS': 'mean',
-    '6M_RS': 'mean',
-    'Sector': 'first',
-    'Rank': lambda x: list(x),
-    'Ticker': lambda x: list(x)
-}).reset_index()
-
-# For each industry, sort tickers by Rank ascending (highest rank first)
-for idx, row in df_ind.iterrows():
-    tickers = row['Ticker']
-    ranks = row['Rank']
-    pairs = list(zip(ranks, tickers))
-    sorted_pairs = sorted(pairs, key=lambda p: p[0])  # Ascending rank (1 first)
-    df_ind.at[idx, 'Ticker'] = ','.join([p[1] for p in sorted_pairs])
-
-# Drop the Rank column from agg
-df_ind = df_ind.drop(columns=['Rank'])
-
-# Round means to int
-for col in ['RS', '1M_RS', '3M_RS', '6M_RS']:
-    df_ind[col] = df_ind[col].round().astype(int)
-
-# Sort by RS descending
-df_ind = df_ind.sort_values('RS', ascending=False, na_position='last').reset_index(drop=True)
-
-# Add Rank
-df_ind['Rank'] = df_ind.index + 1
-
-# Rename 1M_RS to '1 M_RS'
-df_ind = df_ind.rename(columns={'1M_RS': '1 M_RS'})
-
-# Reorder columns
-df_ind = df_ind[['Rank', 'Industry', 'Sector', 'RS', '1 M_RS', '3M_RS', '6M_RS', 'Ticker']]
-
-# Ensure output dir exists
-os.makedirs(os.path.dirname(output_file), exist_ok=True)
-
-# Save to CSV
-df_ind.to_csv(output_file, index=False)
-
-print(f"Generated {output_file} with {len(df_ind)} industries.")
-EOF
+        import pandas as pd
+        import os
+        
+        # Input and output paths
+        input_file = 'RS_Data/rs_stocks.csv'
+        output_file = 'RS_Data/RS_Sector_Industries.csv'
+        
+        # Load data
+        df = pd.read_csv(input_file)
+        
+        # Rename columns for consistency
+        df = df.rename(columns={
+            'RS Percentile': 'RS',
+            '1M_RS Percentile': '1M_RS',
+            '3M_RS Percentile': '3M_RS',
+            '6M_RS Percentile': '6M_RS'
+        })
+        
+        # Fill NaN in percentiles with 0 for aggregation
+        for col in ['RS', '1M_RS', '3M_RS', '6M_RS']:
+            df[col] = df[col].fillna(0).astype(float)
+        
+        # Handle n/a in Sector and Industry
+        df['Sector'] = df['Sector'].replace('n/a', 'Unknown')
+        df['Industry'] = df['Industry'].replace('n/a', 'Unknown')
+        
+        # Ensure Industry is string and not NaN
+        df['Industry'] = df['Industry'].fillna('Unknown')
+        
+        # Group by Industry
+        df_ind = df.groupby('Industry').agg({
+            'RS': 'mean',
+            '1M_RS': 'mean',
+            '3M_RS': 'mean',
+            '6M_RS': 'mean',
+            'Sector': 'first',
+            'Rank': lambda x: list(x),
+            'Ticker': lambda x: list(x)
+        }).reset_index()
+        
+        # For each industry, sort tickers by Rank ascending (highest rank first)
+        for idx, row in df_ind.iterrows():
+            tickers = row['Ticker']
+            ranks = row['Rank']
+            pairs = list(zip(ranks, tickers))
+            sorted_pairs = sorted(pairs, key=lambda p: p[0])  # Ascending rank (1 first)
+            df_ind.at[idx, 'Ticker'] = ','.join([p[1] for p in sorted_pairs])
+        
+        # Drop the Rank column from agg
+        df_ind = df_ind.drop(columns=['Rank'])
+        
+        # Round means to int
+        for col in ['RS', '1M_RS', '3M_RS', '6M_RS']:
+            df_ind[col] = df_ind[col].round().astype(int)
+        
+        # Sort by RS descending
+        df_ind = df_ind.sort_values('RS', ascending=False, na_position='last').reset_index(drop=True)
+        
+        # Add Rank
+        df_ind['Rank'] = df_ind.index + 1
+        
+        # Rename 1M_RS to '1 M_RS'
+        df_ind = df_ind.rename(columns={'1M_RS': '1 M_RS'})
+        
+        # Reorder columns
+        df_ind = df_ind[['Rank', 'Industry', 'Sector', 'RS', '1 M_RS', '3M_RS', '6M_RS', 'Ticker']]
+        
+        # Ensure output dir exists
+        os.makedirs(os.path.dirname(output_file), exist_ok=True)
+        
+        # Save to CSV
+        df_ind.to_csv(output_file, index=False)
+        
+        print(f"Generated {output_file} with {len(df_ind)} industries.")
+        EOF
 
     - name: Run the generation script
       run: python generate_rs_sector_industries.py
