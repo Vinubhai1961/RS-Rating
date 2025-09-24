@@ -36,19 +36,27 @@ jobs:
           # Load daily RS data
           df = pd.read_csv("RS_Data/rs_stocks.csv")
 
-          # Sort by RS (highest first)
-          df = df.sort_values(by="RS", ascending=False)
+          # Clean column names
+          df.columns = df.columns.str.strip()
 
-          # Assign rank globally
-          df["Rank"] = range(1, len(df) + 1)
+          # Sort by RS Percentile (highest first)
+          df = df.sort_values(by="RS Percentile", ascending=False)
 
           # Group by Industry + Sector, aggregate tickers in RS order
           grouped = df.groupby(["Industry", "Sector"], as_index=False).agg({
-              "RS": "first",
-              "1M_RS": "first",
-              "3M_RS": "first",
-              "6M_RS": "first",
+              "RS Percentile": "first",
+              "1M_RS Percentile": "first",
+              "3M_RS Percentile": "first",
+              "6M_RS Percentile": "first",
               "Ticker": lambda x: ", ".join(x)
+          })
+
+          # Rename columns for final output
+          grouped = grouped.rename(columns={
+              "RS Percentile": "RS",
+              "1M_RS Percentile": "1M_RS",
+              "3M_RS Percentile": "3M_RS",
+              "6M_RS Percentile": "6M_RS"
           })
 
           # Save to RS_Data/RS_Sector_Industries.csv (overwrite)
