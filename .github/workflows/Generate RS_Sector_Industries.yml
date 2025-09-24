@@ -27,22 +27,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install pandas
 
-    - name: Generate RS_Sector_Industries.csv
-      run: python generate_rs_sector_industries.py
-
-    - name: Commit and push changes
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add RS_Data/RS_Sector_Industries.csv
-        if git diff --staged --quiet; then
-          echo "No changes to commit"
-        else
-          git commit -m "Update RS_Sector_Industries.csv from rs_stocks.csv [skip ci]"
-          git push
-        fi
-
-# The script below is embedded; in real repo, save as generate_rs_sector_industries.py in root
     - name: Create generation script
       run: |
         cat > generate_rs_sector_industries.py << 'EOF'
@@ -120,7 +104,19 @@ os.makedirs(os.path.dirname(output_file), exist_ok=True)
 df_ind.to_csv(output_file, index=False)
 
 print(f"Generated {output_file} with {len(df_ind)} industries.")
-EOF'
+EOF
 
     - name: Run the generation script
       run: python generate_rs_sector_industries.py
+
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add RS_Data/RS_Sector_Industries.csv
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Update RS_Sector_Industries.csv from rs_stocks.csv [skip ci]"
+          git push
+        fi
