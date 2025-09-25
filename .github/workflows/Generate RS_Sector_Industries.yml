@@ -2,7 +2,8 @@ name: Generate RS_Sector_Industries
 
 on:
   workflow_run:
-    workflows: ["📊 Calculate RS Ratings"]
+    workflows: ["📈 Filter Top RS Opportunities"]
+    
     types: [completed]
     branches: [main]
   workflow_dispatch:   # allow manual run
