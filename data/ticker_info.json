@@ -545,6 +545,13 @@
       "type": "Stock"
     }
   },
+  "ACCL": {
+    "info": {
+      "industry": "Consulting Services",
+      "sector": "Industrials",
+      "type": "Stock"
+    }
+  },
   "ACCO": {
     "info": {
       "industry": "Business Equipment & Supplies",
@@ -1646,8 +1653,8 @@
   },
   "AGD": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -27082,27 +27089,6 @@
       "type": "ETF"
     }
   },
-  "FORL": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "FORLU": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "FORLW": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
-    }
-  },
   "FORM": {
     "info": {
       "industry": "Semiconductor Equipment & Materials",
@@ -32404,8 +32390,8 @@
   },
   "HERZ": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Asset Management",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -44302,10 +44288,24 @@
       "type": "Stock"
     }
   },
+  "MBVI": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "MBVIU": {
     "info": {
       "industry": "Shell Companies",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "MBVIW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -52457,6 +52457,13 @@
       "type": "Stock"
     }
   },
+  "ORO": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "ORR": {
     "info": {
       "industry": "n/a",
@@ -54741,8 +54748,8 @@
   },
   "PHYS": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Asset Management",
+      "sector": "Financial Services",
       "type": "ETF"
     }
   },
@@ -56624,8 +56631,8 @@
   },
   "PSLV": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Asset Management",
+      "sector": "Financial Services",
       "type": "ETF"
     }
   },
@@ -66004,8 +66011,8 @@
   },
   "SPPP": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Asset Management",
+      "sector": "Financial Services",
       "type": "ETF"
     }
   },
@@ -67124,8 +67131,8 @@
   },
   "STRC": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Software - Infrastructure",
+      "sector": "Technology",
       "type": "Stock"
     }
   },
@@ -76000,8 +76007,8 @@
   },
   "WENNW": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -76485,13 +76492,6 @@
     "info": {
       "industry": "Banks - Regional",
       "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "WNS": {
-    "info": {
-      "industry": "Information Technology Services",
-      "sector": "Technology",
       "type": "Stock"
     }
   },
