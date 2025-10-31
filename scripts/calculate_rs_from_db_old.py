@@ -273,7 +273,8 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
 
     # Round percentile means to nearest integer (0–99)
     for col in ["RS Percentile", "1M_RS Percentile", "3M_RS Percentile", "6M_RS Percentile"]:
-        df_industries[col] = df_industries[col].round().astype(int).fillna(0)
+        # df_industries[col] = df_industries[col].round().astype(int).fillna(0)
+        df_industries[col] = df_industries[col].fillna(0).round().astype(int)
 
     df_industries = df_industries.sort_values("RS Percentile", ascending=False, na_position="last").reset_index(drop=True)
     df_industries["Rank"] = df_industries.index + 1
