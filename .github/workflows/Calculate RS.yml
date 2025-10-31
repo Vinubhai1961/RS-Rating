@@ -258,8 +258,8 @@ jobs:
             fi
           done
 
-          echo "🧹 Cleaning CSV files older than 90 days in archive..."
-          find archive -type f -name "*.csv" -mtime +90 -print -delete
+          # echo "🧹 Cleaning CSV files older than 90 days in archive..."
+          # find archive -type f -name "*.csv" -mtime +90 -print -delete
 
           echo "📦 Final archived files:"
           ls -l archive | tail -n 10
