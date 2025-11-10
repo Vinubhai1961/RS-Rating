@@ -6012,6 +6012,13 @@
       "type": "Stock"
     }
   },
+  "AXIA": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "AXIL": {
     "info": {
       "industry": "Consumer Electronics",
@@ -12251,8 +12258,8 @@
   },
   "CCID": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Asset Management",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -15152,6 +15159,13 @@
       "industry": "Medical Distribution",
       "sector": "Healthcare",
       "type": "Stock"
+    }
+  },
+  "CORB": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
     }
   },
   "CORD": {
@@ -20730,13 +20744,6 @@
     "info": {
       "industry": "Computer Hardware",
       "sector": "Technology",
-      "type": "Stock"
-    }
-  },
-  "EBR": {
-    "info": {
-      "industry": "Utilities - Renewable",
-      "sector": "Utilities",
       "type": "Stock"
     }
   },
@@ -28069,7 +28076,21 @@
       "type": "ETF"
     }
   },
+  "FTMA": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "FTMH": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
+  "FTMN": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -28090,6 +28111,13 @@
       "type": "ETF"
     }
   },
+  "FTNJ": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "FTNT": {
     "info": {
       "industry": "Software - Infrastructure",
@@ -28098,6 +28126,20 @@
     }
   },
   "FTNY": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
+  "FTOH": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
+  "FTPA": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -41642,10 +41684,24 @@
       "type": "Stock"
     }
   },
+  "LATA": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "LATAU": {
     "info": {
       "industry": "Shell Companies",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "LATAW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -51008,13 +51064,6 @@
       "type": "Stock"
     }
   },
-  "NVFY": {
-    "info": {
-      "industry": "Furnishings, Fixtures & Appliances",
-      "sector": "Consumer Cyclical",
-      "type": "Stock"
-    }
-  },
   "NVG": {
     "info": {
       "industry": "Asset Management",
@@ -51450,6 +51499,13 @@
     }
   },
   "NYF": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
+  "NYM": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -54055,8 +54111,8 @@
   },
   "PCAP": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -54069,8 +54125,8 @@
   },
   "PCAPW": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -62313,6 +62369,13 @@
       "type": "Stock"
     }
   },
+  "SATA": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "SATL": {
     "info": {
       "industry": "Aerospace & Defense",
@@ -63570,6 +63633,13 @@
     "info": {
       "industry": "REIT - Mortgage",
       "sector": "Real Estate",
+      "type": "Stock"
+    }
+  },
+  "SEVNR": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -67110,15 +67180,15 @@
   },
   "SRTA": {
     "info": {
-      "industry": "Airports & Air Services",
-      "sector": "Industrials",
+      "industry": "Medical Care Facilities",
+      "sector": "Healthcare",
       "type": "Stock"
     }
   },
   "SRTAW": {
     "info": {
-      "industry": "Airports & Air Services",
-      "sector": "Industrials",
+      "industry": "Medical Care Facilities",
+      "sector": "Healthcare",
       "type": "Stock"
     }
   },
@@ -67656,8 +67726,8 @@
   },
   "STRC": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Software - Infrastructure",
+      "sector": "Technology",
       "type": "Stock"
     }
   },
@@ -67922,8 +67992,8 @@
   },
   "SUNC": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Oil & Gas Midstream",
+      "sector": "Energy",
       "type": "Stock"
     }
   },
@@ -69317,13 +69387,6 @@
     "info": {
       "industry": "Internet Content & Information",
       "sector": "Communication Services",
-      "type": "Stock"
-    }
-  },
-  "TEAF": {
-    "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -76532,8 +76595,8 @@
   },
   "WENNW": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -77609,6 +77672,13 @@
     }
   },
   "WZRD": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
+  "XAGG": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -78907,6 +78977,13 @@
     "info": {
       "industry": "Diagnostics & Research",
       "sector": "Healthcare",
+      "type": "Stock"
+    }
+  },
+  "XWIN": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
