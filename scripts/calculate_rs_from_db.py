@@ -64,49 +64,65 @@ def load_arctic_db(data_dir):
 def generate_tradingview_csv(df_stocks, output_dir, ref_data, percentile_values=None, use_trading_days=True):
     if percentile_values is None:
         percentile_values = [98, 89, 69, 49, 29, 9, 1]
-    
-    lines = []
-    latest_date = datetime.fromtimestamp(ref_data["datetime"].max())
-    logging.info(f"Using latest date {latest_date} for RSRATING.csv")
 
-    if use_trading_days and get_calendar is not None:
+    latest_ts = ref_data["datetime"].max()
+    latest_date = datetime.fromtimestamp(latest_ts).date()
+    logging.info(f"Latest market date (NYSE): {latest_date}")
+
+    # === Get last 5 trading days (NYSE calendar) ===
+    dates = []
+    if use_trading_days and get_calendar:
         try:
-            calendar = get_calendar('NYSE')
-            trading_days = calendar.schedule(start_date=latest_date - timedelta(days=7), end_date=latest_date)
-            if len(trading_days) < 5:
-                raise ValueError(f"Insufficient trading days found: {len(trading_days)}")
-            dates = trading_days.index[-5:].strftime('%Y%m%dT')
-            logging.info(f"Selected trading days: {', '.join(dates)}")
+            cal = get_calendar('NYSE')
+            sched = cal.schedule(start_date=latest_date - timedelta(days=20),
+                               end_date=latest_date + timedelta(days=2))
+            valid_dates = [d.date() for d in sched.index if d.date() <= latest_date]
+            dates = [d.strftime('%Y%m%dT') for d in valid_dates[-5:]]
+            logging.info(f"NYSE trading days used: {', '.join(dates)}")
         except Exception as e:
-            logging.warning(f"Failed to get trading days: {str(e)}. Falling back to consecutive days.")
-            use_trading_days = False
-    
-    if not use_trading_days or get_calendar is None:
+            logging.warning(f"NYSE calendar failed ({e}) → using consecutive days")
+
+    if len(dates) < 5:
         dates = [(latest_date - timedelta(days=i)).strftime('%Y%m%dT') for i in range(4, -1, -1)]
-        logging.info(f"Using consecutive days: {', '.join(dates)}")
+        logging.info(f"Fallback consecutive dates: {', '.join(dates)}")
 
-    first_rs_values = {}
-    for percentile in percentile_values:
-        matching_rows = df_stocks[df_stocks["RS Percentile"] == percentile]
-        if not matching_rows.empty:
-            first_rs = matching_rows.iloc[0]["RS"]
-            first_rs_values[percentile] = first_rs
-            logging.info(f"Selected RS {first_rs} for percentile {percentile}")
+    # === CORRECT: Threshold = lowest RS in that percentile group ===
+    valid_rs = df_stocks["RS"].dropna().sort_values(ascending=False).reset_index(drop=True)
+    total = len(valid_rs)
+
+    rs_map = {}
+    for p in percentile_values:
+        if total == 0:
+            rs_map[p] = 100.0
+            continue
+
+        # Number of stocks in the top (100-p)%
+        if p >= 98:                                    # 98–99th ≈ top 1–2%
+            top_n = max(1, round(total * 0.01))
         else:
-            first_rs_values[percentile] = 0
-            logging.warning(f"No stocks found for percentile {percentile}, defaulting to 0")
+            top_n = max(1, round(total * (100 - p) / 100.0))
 
-    for percentile in sorted(percentile_values, reverse=True):
-        rs_value = first_rs_values[percentile]
-        for date_str in dates:
-            csv_row = f"{date_str},0,1000,0,{rs_value},0\n"
-            lines.append(csv_row)
+        threshold_rs = valid_rs.iloc[min(top_n - 1, total - 1)]
+        rs_map[p] = round(float(threshold_rs), 2)
 
-    csv_content = ''.join(lines)
-    with open(os.path.join(output_dir, "RSRATING.csv"), "w") as csv_file:
-        csv_file.write(csv_content)
-    logging.info(f"Generated RSRATING.csv with {len(lines)} rows")
-    return csv_content
+    # === Generate CSV ===
+    lines = []
+    for p in sorted(percentile_values, reverse=True):
+        rs_val = rs_map[p]
+        for d in dates:
+            lines.append(f"{d},0,1000,0,{rs_val},0\n")
+
+    os.makedirs(output_dir, exist_ok=True)
+    path = os.path.join(output_dir, "RSRATING.csv")
+    with open(path, "w") as f:
+        f.write(''.join(lines))
+
+    logging.info(f"RSRATING.csv (NYSE) generated → {path}")
+    print("=== NYSE RSRATING.csv thresholds (now correct) ===")
+    for p in sorted(percentile_values, reverse=True):
+        print(f"  {p:2}th percentile → Raw RS ≥ {rs_map[p]:6.2f}")
+
+    return ''.join(lines)
 
 def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=None, percentiles=None):
     os.makedirs(os.path.dirname(log_file), exist_ok=True)
