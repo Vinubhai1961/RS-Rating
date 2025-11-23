@@ -1,15 +1,15 @@
-Analysis of nasdaqtraded.txt (as of 2025-11-16 10:19:06):
+Analysis of nasdaqtraded.txt (as of 2025-11-23 10:19:08):
 
-1. Total Securities: 11990
+1. Total Securities: 12056
    - Represents the total number of securities listed across all exchanges in the file.
 
-2. Number of ETFs: 4677
+2. Number of ETFs: 4736
    - Counts securities marked as ETFs (ETF = Y), which track indices, commodities, or asset baskets.
 
 3. Security Type Breakdown:
-ETF                4677
-Common Stock       4115
-Other              2134
+ETF                4736
+Common Stock       4113
+Other              2143
 Preferred Stock     459
 Warrant             383
 Other               222
@@ -17,10 +17,10 @@ Other               222
 
 4. Securities by Exchange:
 Exchange Name
-Other            5181
-NASDAQ           2898
-NYSE Arca        2501
-BATS             1102
+Other            5216
+NASDAQ           2902
+NYSE Arca        2518
+BATS             1112
 NYSE American     305
 IEX                 3
    - Shows the distribution of securities across exchanges (e.g., NASDAQ, NYSE).
@@ -28,17 +28,17 @@ IEX                 3
 5. Exchange vs. Security Type Breakdown:
 Security Type  Common Stock   ETF  Other  Preferred Stock  Unit  Warrant
 Exchange Name                                                           
-BATS                      2  1096      4                0     0        0
+BATS                      2  1106      4                0     0        0
 IEX                       0     0      3                0     0        0
-NASDAQ                 1632    61    793              323    55       34
-NYSE American           179     0     95               18     4        9
-NYSE Arca                 1  2482     14                1     3        0
-Other                  2301  1038   1223              117   160      340
+NASDAQ                 1630    61    798              324    55       34
+NYSE American           178     0     96               18     4        9
+NYSE Arca                 1  2499     14                1     3        0
+Other                  2302  1070   1226              116   160      340
    - Shows the count of each security type per exchange (e.g., ETFs on NASDAQ).
 
 6. NASDAQ Market Categories:
 Market Category
-    2898
+    2902
    - For NASDAQ-listed securities, indicates market tiers: Q (Global Select, large-cap), G (Global, mid-cap), S (Capital, small-cap).
 
 7. NASDAQ Securities with Financial Issues:
@@ -49,20 +49,20 @@ No distressed securities found.
 
 9. Top 5 Sectors:
 Sector
-Unknown       10261
-Financial       603
-Technology      446
+Unknown       10341
+Financial       586
+Technology      445
 Healthcare      353
-Energy          284
+Energy          287
    - Inferred from Security Name keywords, showing the most common industries.
 
 10. Top 5 Securities by Round Lot Size:
-  Symbol                                            Security Name  Round Lot Size
-0      A                  Agilent Technologies, Inc. Common Stock           100.0
-1     AA                          Alcoa Corporation Common Stock            100.0
-2    AAA           Alternative Access First Priority CLO Bond ETF           100.0
-3   AAAA  EA Series Trust Amplius Aggressive Asset Allocation ETF           100.0
-4   AAAU                   Goldman Sachs Physical Gold ETF Shares           100.0
+  Symbol                                   Security Name  Round Lot Size
+0      A         Agilent Technologies, Inc. Common Stock           100.0
+1     AA                 Alcoa Corporation Common Stock            100.0
+2    AAA  Alternative Access First Priority CLO Bond ETF           100.0
+3   AAAA         Amplius Aggressive Asset Allocation ETF           100.0
+4   AAAU          Goldman Sachs Physical Gold ETF Shares           100.0
    - Lists securities with the largest round lot sizes, indicating higher trading units.
 
 Chart.js Pie Chart for Security Types:
@@ -71,9 +71,9 @@ Chart.js Pie Chart for Security Types:
   "type": "pie",
   "data": {
     "labels": [
-      "ETF: 4677",
-      "Common Stock: 4115",
-      "Other: 2134",
+      "ETF: 4736",
+      "Common Stock: 4113",
+      "Other: 2143",
       "Preferred Stock: 459",
       "Warrant: 383",
       "Other: 222"
@@ -81,9 +81,9 @@ Chart.js Pie Chart for Security Types:
     "datasets": [
       {
         "data": [
-          4677,
-          4115,
-          2134,
+          4736,
+          4113,
+          2143,
           459,
           383,
           222
