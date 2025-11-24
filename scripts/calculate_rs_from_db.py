@@ -128,7 +128,7 @@ def generate_tradingview_csv(df_stocks, output_dir, ref_data, percentile_values=
 
     return ''.join(lines)
 
-def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=None, percentiles=None):
+def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=None, percentiles=None, debug=False):
     os.makedirs(os.path.dirname(log_file), exist_ok=True)
     logging.basicConfig(filename=log_file, level=logging.INFO, format="%(asctime)s - %(message)s")
     logging.info("Starting RS calculation process")
@@ -321,6 +321,70 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
     print(f" - rs_industries.csv")
     print(f" - RSRATING.csv")
 
+    # New: Debug section (enhanced with data sufficiency and RS breakdown)
+    if debug:
+        print("\n=== DEBUG RS VALUES ===")
+        valid_count = valid_rs_count
+        debug_tickers = ["MSFT", "TSLA", "AAPL", "META", "SNDK"]
+        debug_details = []
+        for t in debug_tickers:
+            if t in df_stocks["Ticker"].values:
+                row = df_stocks[df_stocks["Ticker"] == t].iloc[0]
+                rs = row['RS']
+                percentile = row.get('RS Percentile', 'N/A')
+                rank = row.get('Rank', 'N/A')
+                print(f"{t:15} RS = {rs:6.2f} | Rank = {rank:4} | Percentile = {percentile}")
+                
+                # Enhanced: Check data sufficiency and RS calc details
+                try:
+                    data = lib.read(t).data
+                    closes = pd.Series(data["close"].values, index=pd.to_datetime(data["datetime"], unit='s'))
+                    start_date = pd.to_datetime(data["datetime"].min(), unit='s').date()
+                    end_date = pd.to_datetime(data["datetime"].max(), unit='s').date()
+                    num_days = len(closes)
+                    sufficient = "✅ Sufficient" if num_days >= 252 else f"⚠️ Short: {num_days} days (need ~252 for full 1Y)"
+                    
+                    # RS breakdown: Quarters perfs (prices included via last n*63 days)
+                    perf_3m = quarters_perf(closes, 1)
+                    perf_6m = quarters_perf(closes, 2)
+                    perf_9m = quarters_perf(closes, 3)
+                    perf_12m = quarters_perf(closes, 4)
+                    ref_perfs = [quarters_perf(ref_closes, i) for i in range(1, 5)]
+                    strength_stock = strength(closes)
+                    strength_ref = strength(ref_closes)
+                    
+                    print(f"  → Data: {num_days} days ({start_date} to {end_date}) | {sufficient}")
+                    print(f"  → Prices used: Last {min(num_days, 252)} closes (daily adj. from {closes.index[-min(num_days,252):].min().date()} to {end_date})")
+                    print(f"  → Quarters Returns: 3M={perf_3m:.1%} | 6M={perf_6m:.1%} | 9M={perf_9m:.1%} | 12M={perf_12m:.1%}")
+                    print(f"  → Strength (wtd): Stock={strength_stock:.1%} | Ref={strength_ref:.1%} | RS Ratio={rs:.1f}")
+                    print(f"  → Short RS: 1M={row['1M_RS']:.1f} (last 21 days) | 3M={row['3M_RS']:.1f} (last 63 days)")
+                    
+                    # Verify logic: Re-compute RS to confirm
+                    recomputed_rs = relative_strength(closes, ref_closes)
+                    logic_ok = "✅ OK" if abs(recomputed_rs - rs) < 0.01 else "❌ Mismatch!"
+                    print(f"  → Logic Check: Recomputed RS={recomputed_rs:.2f} | {logic_ok}")
+                    
+                    debug_details.append({
+                        'Ticker': t, 'Days': num_days, 'Start_Date': start_date, 'End_Date': end_date,
+                        'Sufficient': sufficient, '3M_Return': perf_3m, '6M_Return': perf_6m,
+                        '9M_Return': perf_9m, '12M_Return': perf_12m, 'Strength_Stock': strength_stock,
+                        'Strength_Ref': strength_ref, 'RS': rs, 'Recomputed_RS': recomputed_rs
+                    })
+                except Exception as e:
+                    print(f"  → Error loading details: {e}")
+            else:
+                print(f"{t:15} → Not found in results")
+        
+        # Save enhanced debug CSV with details
+        if debug_details:
+            debug_df = pd.DataFrame(debug_details)
+            debug_path = os.path.join(output_dir, "debug-rs.csv")
+            debug_df.to_csv(debug_path, index=False)
+            print(f"\nCalculating USA Stocks RS COMPLETE! Valid RS: {valid_count:,} / {len(df_stocks):,}")
+            print(f"Files saved to: {debug_path}")
+        else:
+            print("\nNo debug details saved (no sample tickers found).")
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Calculate RS from ArcticDB")
     parser.add_argument("--arctic-db-path", default="data/arctic_db/prices", help="Path to ArcticDB root (no scheme)")
@@ -329,8 +393,9 @@ if __name__ == "__main__":
     parser.add_argument("--log-file", default="logs/failed_logs.log", help="Log file path")
     parser.add_argument("--metadata-file", default=None, help="Optional ticker metadata JSON file")
     parser.add_argument("--percentiles", default="98,89,69,49,29,9,1", help="Comma-separated list of percentiles for RSRATING.csv")
+    parser.add_argument("--debug", action="store_true", help="Enable detailed debug prints and debug-rs.csv for sample tickers")
     args = parser.parse_args()
 
     percentiles = [int(p) for p in args.percentiles.split(",")]
     os.makedirs(os.path.dirname(args.log_file), exist_ok=True)
-    main(args.arctic_db_path, args.reference_ticker, args.output_dir, args.log_file, args.metadata_file, percentiles)
+    main(args.arctic_db_path, args.reference_ticker, args.output_dir, args.log_file, args.metadata_file, percentiles, args.debug)
