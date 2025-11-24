@@ -6019,3 +6019,1837 @@
 2025-11-21 19:54:29,989 [INFO] Batch 10/10 - Resolved: 0 | Unresolved: 82
 2025-11-21 19:54:29,990 [INFO] Resolved 0 tickers.
 2025-11-21 19:54:29,991 [INFO] Updated unresolved_tickers.txt with 982 remaining tickers
+2025-11-24 19:54:42,308 [INFO] Starting retry process at 07:54 PM EDT on Monday, November 24, 2025
+2025-11-24 19:54:42,308 [INFO] Loaded 1792 unresolved tickers
+2025-11-24 19:54:42,987 [INFO] Fetched 5206 NASDAQ symbols
+2025-11-24 19:54:42,988 [INFO] Retrieved 5206 eligible symbols.
+2025-11-24 19:54:45,120 [INFO] Batch API response type: <class 'dict'>
+2025-11-24 19:54:45,120 [WARNING] Ticker MYLD has no valid sector/industry
+2025-11-24 19:54:45,120 [WARNING] Ticker MYMF has no valid sector/industry
+2025-11-24 19:54:45,120 [WARNING] Ticker MYMG has no valid sector/industry
+2025-11-24 19:54:45,120 [WARNING] Ticker MYMH has no valid sector/industry
+2025-11-24 19:54:45,120 [WARNING] Ticker MYMI has no valid sector/industry
+2025-11-24 19:54:45,120 [WARNING] Ticker MYMJ has no valid sector/industry
+2025-11-24 19:54:45,120 [WARNING] Ticker MYMK has no valid sector/industry
+2025-11-24 19:54:45,120 [WARNING] Ticker MYY has no valid sector/industry
+2025-11-24 19:54:45,120 [WARNING] Ticker MZZ has no valid sector/industry
+2025-11-24 19:54:45,120 [WARNING] Ticker NACP has no valid sector/industry
+2025-11-24 19:54:45,120 [WARNING] Ticker NAIL has no valid sector/industry
+2025-11-24 19:54:45,120 [WARNING] Ticker NANC has no valid sector/industry
+2025-11-24 19:54:45,121 [WARNING] Ticker NANR has no valid sector/industry
+2025-11-24 19:54:45,121 [WARNING] Ticker NAPR has no valid sector/industry
+2025-11-24 19:54:45,121 [WARNING] Ticker NATO has no valid sector/industry
+2025-11-24 19:54:45,121 [WARNING] Ticker NAUG has no valid sector/industry
+2025-11-24 19:54:45,121 [WARNING] Ticker NBCE has no valid sector/industry
+2025-11-24 19:54:45,121 [WARNING] Ticker NBCM has no valid sector/industry
+2025-11-24 19:54:45,121 [WARNING] Ticker NBCR has no valid sector/industry
+2025-11-24 19:54:45,121 [WARNING] Ticker NBDS has no valid sector/industry
+2025-11-24 19:54:45,121 [WARNING] Ticker NBET has no valid sector/industry
+2025-11-24 19:54:45,121 [WARNING] Ticker NBFC has no valid sector/industry
+2025-11-24 19:54:45,121 [WARNING] Ticker NBGX has no valid sector/industry
+2025-11-24 19:54:45,121 [WARNING] Ticker NBIG has no valid sector/industry
+2025-11-24 19:54:45,121 [WARNING] Ticker NBIL has no valid sector/industry
+2025-11-24 19:54:45,121 [WARNING] Ticker NBJP has no valid sector/industry
+2025-11-24 19:54:45,121 [WARNING] Ticker NBOS has no valid sector/industry
+2025-11-24 19:54:45,121 [WARNING] Ticker NBSD has no valid sector/industry
+2025-11-24 19:54:45,121 [WARNING] Ticker NBSM has no valid sector/industry
+2025-11-24 19:54:45,121 [WARNING] Ticker NBTR has no valid sector/industry
+2025-11-24 19:54:45,121 [WARNING] Ticker NCIQ has no valid sector/industry
+2025-11-24 19:54:45,121 [WARNING] Ticker NCLO has no valid sector/industry
+2025-11-24 19:54:45,122 [WARNING] Ticker NCPB has no valid sector/industry
+2025-11-24 19:54:45,122 [WARNING] Ticker NDAA has no valid sector/industry
+2025-11-24 19:54:45,122 [WARNING] Ticker NDEC has no valid sector/industry
+2025-11-24 19:54:45,122 [WARNING] Ticker NDIA has no valid sector/industry
+2025-11-24 19:54:45,122 [WARNING] Ticker NDIV has no valid sector/industry
+2025-11-24 19:54:45,122 [WARNING] Ticker NDOW has no valid sector/industry
+2025-11-24 19:54:45,122 [WARNING] Ticker NDVG has no valid sector/industry
+2025-11-24 19:54:45,122 [WARNING] Ticker NEAR has no valid sector/industry
+2025-11-24 19:54:45,122 [WARNING] Ticker NEBX has no valid sector/industry
+2025-11-24 19:54:45,122 [WARNING] Ticker NELS has no valid sector/industry
+2025-11-24 19:54:45,122 [WARNING] Ticker NEMD has no valid sector/industry
+2025-11-24 19:54:45,122 [WARNING] Ticker NEMG has no valid sector/industry
+2025-11-24 19:54:45,122 [WARNING] Ticker NERD has no valid sector/industry
+2025-11-24 19:54:45,122 [WARNING] Ticker NETG has no valid sector/industry
+2025-11-24 19:54:45,122 [WARNING] Ticker NETL has no valid sector/industry
+2025-11-24 19:54:45,122 [WARNING] Ticker NETX has no valid sector/industry
+2025-11-24 19:54:45,122 [WARNING] Ticker NEWTG has no valid sector/industry
+2025-11-24 19:54:45,122 [WARNING] Ticker NEWTH has no valid sector/industry
+2025-11-24 19:54:45,122 [WARNING] Ticker NEWTI has no valid sector/industry
+2025-11-24 19:54:45,122 [WARNING] Ticker NEWTZ has no valid sector/industry
+2025-11-24 19:54:45,123 [WARNING] Ticker NEWZ has no valid sector/industry
+2025-11-24 19:54:45,123 [WARNING] Ticker NFEB has no valid sector/industry
+2025-11-24 19:54:45,123 [WARNING] Ticker NFLP has no valid sector/industry
+2025-11-24 19:54:45,123 [WARNING] Ticker NFLT has no valid sector/industry
+2025-11-24 19:54:45,123 [WARNING] Ticker NFLU has no valid sector/industry
+2025-11-24 19:54:45,123 [WARNING] Ticker NFLW has no valid sector/industry
+2025-11-24 19:54:45,123 [WARNING] Ticker NFLY has no valid sector/industry
+2025-11-24 19:54:45,123 [WARNING] Ticker NFRA has no valid sector/industry
+2025-11-24 19:54:45,123 [WARNING] Ticker NFTY has no valid sector/industry
+2025-11-24 19:54:45,123 [WARNING] Ticker NFXL has no valid sector/industry
+2025-11-24 19:54:45,123 [WARNING] Ticker NFXS has no valid sector/industry
+2025-11-24 19:54:45,123 [WARNING] Ticker NHIC has no valid sector/industry
+2025-11-24 19:54:45,123 [WARNING] Ticker NHICU has no valid sector/industry
+2025-11-24 19:54:45,123 [WARNING] Ticker NHYB has no valid sector/industry
+2025-11-24 19:54:45,123 [WARNING] Ticker NHYM has no valid sector/industry
+2025-11-24 19:54:45,123 [WARNING] Ticker NIHI has no valid sector/industry
+2025-11-24 19:54:45,123 [WARNING] Ticker NIKL has no valid sector/industry
+2025-11-24 19:54:45,123 [WARNING] Ticker NIOBW has no valid sector/industry
+2025-11-24 19:54:45,123 [WARNING] Ticker NIQ has no valid sector/industry
+2025-11-24 19:54:45,123 [WARNING] Ticker NITE has no valid sector/industry
+2025-11-24 19:54:45,123 [WARNING] Ticker NIXT has no valid sector/industry
+2025-11-24 19:54:45,124 [WARNING] Ticker NJAN has no valid sector/industry
+2025-11-24 19:54:45,124 [WARNING] Ticker NJNK has no valid sector/industry
+2025-11-24 19:54:45,124 [WARNING] Ticker NJUL has no valid sector/industry
+2025-11-24 19:54:45,124 [WARNING] Ticker NJUN has no valid sector/industry
+2025-11-24 19:54:45,124 [WARNING] Ticker NLR has no valid sector/industry
+2025-11-24 19:54:45,124 [WARNING] Ticker NMAR has no valid sector/industry
+2025-11-24 19:54:45,124 [WARNING] Ticker NMAY has no valid sector/industry
+2025-11-24 19:54:45,124 [WARNING] Ticker NMB has no valid sector/industry
+2025-11-24 19:54:45,124 [WARNING] Ticker NMBL has no valid sector/industry
+2025-11-24 19:54:45,124 [WARNING] Ticker NMFCZ has no valid sector/industry
+2025-11-24 19:54:45,124 [WARNING] Ticker NMP has no valid sector/industry
+2025-11-24 19:54:45,124 [WARNING] Ticker NMPAR has no valid sector/industry
+2025-11-24 19:54:45,124 [WARNING] Ticker NMPAU has no valid sector/industry
+2025-11-24 19:54:45,124 [INFO] Resolved ticker: NMTC
+2025-11-24 19:54:45,124 [INFO] Resolved ticker: NMZ
+2025-11-24 19:54:45,124 [INFO] Resolved ticker: NN
+2025-11-24 19:54:45,124 [INFO] Resolved ticker: NNAVW
+2025-11-24 19:54:45,124 [INFO] Resolved ticker: NNBR
+2025-11-24 19:54:45,124 [INFO] Resolved ticker: NNDM
+2025-11-24 19:54:45,124 [INFO] Resolved ticker: NNE
+2025-11-24 19:54:45,125 [WARNING] Ticker NNEX has no valid sector/industry
+2025-11-24 19:54:45,125 [INFO] Resolved ticker: NNI
+2025-11-24 19:54:45,125 [INFO] Resolved ticker: NNN
+2025-11-24 19:54:45,125 [INFO] Resolved ticker: NNNN
+2025-11-24 19:54:45,125 [WARNING] Ticker NNOV has no valid sector/industry
+2025-11-24 19:54:45,125 [INFO] Resolved ticker: NNOX
+2025-11-24 19:54:45,125 [INFO] Resolved ticker: NNVC
+2025-11-24 19:54:45,133 [INFO] Batch 1/18 - Resolved: 12 | Unresolved: 88
+2025-11-24 19:54:50,783 [INFO] Batch API response type: <class 'dict'>
+2025-11-24 19:54:50,784 [INFO] Resolved ticker: NNY
+2025-11-24 19:54:50,784 [INFO] Resolved ticker: NOA
+2025-11-24 19:54:50,784 [INFO] Resolved ticker: NOAH
+2025-11-24 19:54:50,784 [WARNING] Ticker NOBL has no valid sector/industry
+2025-11-24 19:54:50,784 [INFO] Resolved ticker: NOC
+2025-11-24 19:54:50,784 [WARNING] Ticker NOCT has no valid sector/industry
+2025-11-24 19:54:50,784 [WARNING] Ticker NODE has no valid sector/industry
+2025-11-24 19:54:50,784 [INFO] Resolved ticker: NODK
+2025-11-24 19:54:50,784 [INFO] Resolved ticker: NOEM
+2025-11-24 19:54:50,784 [WARNING] Ticker NOEMR has no valid sector/industry
+2025-11-24 19:54:50,784 [INFO] Resolved ticker: NOEMU
+2025-11-24 19:54:50,784 [INFO] Resolved ticker: NOEMW
+2025-11-24 19:54:50,784 [INFO] Resolved ticker: NOG
+2025-11-24 19:54:50,785 [INFO] Resolved ticker: NOK
+2025-11-24 19:54:50,785 [INFO] Resolved ticker: NOM
+2025-11-24 19:54:50,785 [INFO] Resolved ticker: NOMA
+2025-11-24 19:54:50,785 [INFO] Resolved ticker: NOMD
+2025-11-24 19:54:50,785 [WARNING] Ticker NORW has no valid sector/industry
+2025-11-24 19:54:50,785 [INFO] Resolved ticker: NOTE
+2025-11-24 19:54:50,785 [INFO] Resolved ticker: NOTV
+2025-11-24 19:54:50,785 [INFO] Resolved ticker: NOV
+2025-11-24 19:54:50,785 [WARNING] Ticker NOVM has no valid sector/industry
+2025-11-24 19:54:50,785 [WARNING] Ticker NOVP has no valid sector/industry
+2025-11-24 19:54:50,785 [INFO] Resolved ticker: NOVT
+2025-11-24 19:54:50,785 [INFO] Resolved ticker: NOVTU
+2025-11-24 19:54:50,785 [WARNING] Ticker NOVZ has no valid sector/industry
+2025-11-24 19:54:50,785 [INFO] Resolved ticker: NOW
+2025-11-24 19:54:50,785 [WARNING] Ticker NOWL has no valid sector/industry
+2025-11-24 19:54:50,785 [INFO] Resolved ticker: NP
+2025-11-24 19:54:50,785 [INFO] Resolved ticker: NPAC
+2025-11-24 19:54:50,785 [INFO] Resolved ticker: NPACU
+2025-11-24 19:54:50,786 [INFO] Resolved ticker: NPACW
+2025-11-24 19:54:50,786 [INFO] Resolved ticker: NPB
+2025-11-24 19:54:50,786 [INFO] Resolved ticker: NPCE
+2025-11-24 19:54:50,786 [INFO] Resolved ticker: NPCT
+2025-11-24 19:54:50,786 [INFO] Resolved ticker: NPFD
+2025-11-24 19:54:50,786 [WARNING] Ticker NPFI has no valid sector/industry
+2025-11-24 19:54:50,786 [INFO] Resolved ticker: NPK
+2025-11-24 19:54:50,786 [INFO] Resolved ticker: NPKI
+2025-11-24 19:54:50,786 [INFO] Resolved ticker: NPO
+2025-11-24 19:54:50,786 [INFO] Resolved ticker: NPT
+2025-11-24 19:54:50,786 [INFO] Resolved ticker: NPV
+2025-11-24 19:54:50,786 [INFO] Resolved ticker: NPWR
+2025-11-24 19:54:50,786 [INFO] Resolved ticker: NQP
+2025-11-24 19:54:50,786 [INFO] Resolved ticker: NRC
+2025-11-24 19:54:50,786 [INFO] Resolved ticker: NRDS
+2025-11-24 19:54:50,786 [INFO] Resolved ticker: NRDY
+2025-11-24 19:54:50,786 [INFO] Resolved ticker: NREF
+2025-11-24 19:54:50,786 [WARNING] Ticker NRES has no valid sector/industry
+2025-11-24 19:54:50,786 [INFO] Resolved ticker: NRG
+2025-11-24 19:54:50,786 [WARNING] Ticker NRGD has no valid sector/industry
+2025-11-24 19:54:50,786 [WARNING] Ticker NRGU has no valid sector/industry
+2025-11-24 19:54:50,787 [INFO] Resolved ticker: NRGV
+2025-11-24 19:54:50,787 [INFO] Resolved ticker: NRIM
+2025-11-24 19:54:50,787 [INFO] Resolved ticker: NRIX
+2025-11-24 19:54:50,787 [INFO] Resolved ticker: NRK
+2025-11-24 19:54:50,787 [INFO] Resolved ticker: NRO
+2025-11-24 19:54:50,787 [INFO] Resolved ticker: NRP
+2025-11-24 19:54:50,787 [WARNING] Ticker NRSH has no valid sector/industry
+2025-11-24 19:54:50,787 [INFO] Resolved ticker: NRSN
+2025-11-24 19:54:50,787 [INFO] Resolved ticker: NRSNW
+2025-11-24 19:54:50,787 [INFO] Resolved ticker: NRT
+2025-11-24 19:54:50,787 [WARNING] Ticker NRUC has no valid sector/industry
+2025-11-24 19:54:50,787 [INFO] Resolved ticker: NRXP
+2025-11-24 19:54:50,787 [INFO] Resolved ticker: NRXPW
+2025-11-24 19:54:50,787 [INFO] Resolved ticker: NRXS
+2025-11-24 19:54:50,787 [INFO] Resolved ticker: NSA
+2025-11-24 19:54:50,787 [INFO] Resolved ticker: NSC
+2025-11-24 19:54:50,787 [WARNING] Ticker NSCI has no valid sector/industry
+2025-11-24 19:54:50,787 [WARNING] Ticker NSCR has no valid sector/industry
+2025-11-24 19:54:50,787 [WARNING] Ticker NSEP has no valid sector/industry
+2025-11-24 19:54:50,788 [WARNING] Ticker NSI has no valid sector/industry
+2025-11-24 19:54:50,788 [INFO] Resolved ticker: NSIT
+2025-11-24 19:54:50,788 [INFO] Resolved ticker: NSP
+2025-11-24 19:54:50,788 [INFO] Resolved ticker: NSPR
+2025-11-24 19:54:50,788 [INFO] Resolved ticker: NSRX
+2025-11-24 19:54:50,788 [INFO] Resolved ticker: NSSC
+2025-11-24 19:54:50,788 [INFO] Resolved ticker: NSTS
+2025-11-24 19:54:50,788 [INFO] Resolved ticker: NSYS
+2025-11-24 19:54:50,788 [INFO] Resolved ticker: NTAP
+2025-11-24 19:54:50,788 [INFO] Resolved ticker: NTB
+2025-11-24 19:54:50,788 [INFO] Resolved ticker: NTCL
+2025-11-24 19:54:50,788 [INFO] Resolved ticker: NTCT
+2025-11-24 19:54:50,788 [INFO] Resolved ticker: NTES
+2025-11-24 19:54:50,788 [INFO] Resolved ticker: NTGR
+2025-11-24 19:54:50,788 [INFO] Resolved ticker: NTHI
+2025-11-24 19:54:50,788 [INFO] Resolved ticker: NTIC
+2025-11-24 19:54:50,788 [INFO] Resolved ticker: NTIP
+2025-11-24 19:54:50,788 [INFO] Resolved ticker: NTLA
+2025-11-24 19:54:50,789 [INFO] Resolved ticker: NTNX
+2025-11-24 19:54:50,789 [INFO] Resolved ticker: NTR
+2025-11-24 19:54:50,789 [INFO] Resolved ticker: NTRA
+2025-11-24 19:54:50,789 [INFO] Resolved ticker: NTRB
+2025-11-24 19:54:50,789 [INFO] Resolved ticker: NTRBW
+2025-11-24 19:54:50,789 [INFO] Resolved ticker: NTRP
+2025-11-24 19:54:50,789 [INFO] Resolved ticker: NTRS
+2025-11-24 19:54:50,789 [INFO] Resolved ticker: NTRSO
+2025-11-24 19:54:50,789 [WARNING] Ticker NTSE has no valid sector/industry
+2025-11-24 19:54:50,789 [WARNING] Ticker NTSI has no valid sector/industry
+2025-11-24 19:54:50,789 [INFO] Resolved ticker: NTSK
+2025-11-24 19:54:50,797 [INFO] Batch 2/18 - Resolved: 79 | Unresolved: 21
+2025-11-24 19:54:55,995 [INFO] Batch API response type: <class 'dict'>
+2025-11-24 19:54:55,996 [INFO] Resolved ticker: NTST
+2025-11-24 19:54:55,996 [WARNING] Ticker NTSX has no valid sector/industry
+2025-11-24 19:54:55,996 [INFO] Resolved ticker: NTWK
+2025-11-24 19:54:55,996 [INFO] Resolved ticker: NTWO
+2025-11-24 19:54:55,996 [INFO] Resolved ticker: NTWOU
+2025-11-24 19:54:55,996 [INFO] Resolved ticker: NTWOW
+2025-11-24 19:54:55,996 [INFO] Resolved ticker: NTZ
+2025-11-24 19:54:55,996 [INFO] Resolved ticker: NU
+2025-11-24 19:54:55,996 [WARNING] Ticker NUAG has no valid sector/industry
+2025-11-24 19:54:55,996 [INFO] Resolved ticker: NUAI
+2025-11-24 19:54:55,996 [INFO] Resolved ticker: NUAIW
+2025-11-24 19:54:55,996 [WARNING] Ticker NUBD has no valid sector/industry
+2025-11-24 19:54:55,996 [WARNING] Ticker NUDM has no valid sector/industry
+2025-11-24 19:54:55,996 [WARNING] Ticker NUDV has no valid sector/industry
+2025-11-24 19:54:55,996 [INFO] Resolved ticker: NUE
+2025-11-24 19:54:55,997 [WARNING] Ticker NUEM has no valid sector/industry
+2025-11-24 19:54:55,997 [WARNING] Ticker NUG has no valid sector/industry
+2025-11-24 19:54:55,997 [WARNING] Ticker NUGO has no valid sector/industry
+2025-11-24 19:54:55,997 [WARNING] Ticker NUGT has no valid sector/industry
+2025-11-24 19:54:55,997 [WARNING] Ticker NUGY has no valid sector/industry
+2025-11-24 19:54:55,997 [WARNING] Ticker NUHY has no valid sector/industry
+2025-11-24 19:54:55,997 [INFO] Resolved ticker: NUKK
+2025-11-24 19:54:55,997 [INFO] Resolved ticker: NUKKW
+2025-11-24 19:54:55,997 [WARNING] Ticker NUKZ has no valid sector/industry
+2025-11-24 19:54:55,997 [WARNING] Ticker NULC has no valid sector/industry
+2025-11-24 19:54:55,997 [WARNING] Ticker NULG has no valid sector/industry
+2025-11-24 19:54:55,997 [WARNING] Ticker NULV has no valid sector/industry
+2025-11-24 19:54:55,997 [WARNING] Ticker NUMG has no valid sector/industry
+2025-11-24 19:54:55,997 [WARNING] Ticker NUMI has no valid sector/industry
+2025-11-24 19:54:55,997 [WARNING] Ticker NUMV has no valid sector/industry
+2025-11-24 19:54:55,997 [WARNING] Ticker NURE has no valid sector/industry
+2025-11-24 19:54:55,997 [INFO] Resolved ticker: NUS
+2025-11-24 19:54:55,997 [WARNING] Ticker NUSA has no valid sector/industry
+2025-11-24 19:54:55,997 [WARNING] Ticker NUSB has no valid sector/industry
+2025-11-24 19:54:55,997 [WARNING] Ticker NUSC has no valid sector/industry
+2025-11-24 19:54:55,997 [INFO] Resolved ticker: NUTR
+2025-11-24 19:54:55,998 [INFO] Resolved ticker: NUTX
+2025-11-24 19:54:55,998 [INFO] Resolved ticker: NUV
+2025-11-24 19:54:55,998 [INFO] Resolved ticker: NUVB
+2025-11-24 19:54:55,998 [INFO] Resolved ticker: NUVL
+2025-11-24 19:54:55,998 [INFO] Resolved ticker: NUW
+2025-11-24 19:54:55,998 [INFO] Resolved ticker: NUWE
+2025-11-24 19:54:55,998 [INFO] Resolved ticker: NVA
+2025-11-24 19:54:55,998 [INFO] Resolved ticker: NVAWW
+2025-11-24 19:54:55,998 [INFO] Resolved ticker: NVAX
+2025-11-24 19:54:55,998 [WARNING] Ticker NVBT has no valid sector/industry
+2025-11-24 19:54:55,998 [WARNING] Ticker NVBU has no valid sector/industry
+2025-11-24 19:54:55,998 [WARNING] Ticker NVBW has no valid sector/industry
+2025-11-24 19:54:55,998 [INFO] Resolved ticker: NVCR
+2025-11-24 19:54:55,998 [INFO] Resolved ticker: NVCT
+2025-11-24 19:54:55,998 [WARNING] Ticker NVD has no valid sector/industry
+2025-11-24 19:54:55,998 [INFO] Resolved ticker: NVDA
+2025-11-24 19:54:55,998 [WARNING] Ticker NVDB has no valid sector/industry
+2025-11-24 19:54:55,998 [WARNING] Ticker NVDD has no valid sector/industry
+2025-11-24 19:54:55,998 [WARNING] Ticker NVDG has no valid sector/industry
+2025-11-24 19:54:55,998 [WARNING] Ticker NVDL has no valid sector/industry
+2025-11-24 19:54:55,999 [WARNING] Ticker NVDO has no valid sector/industry
+2025-11-24 19:54:55,999 [WARNING] Ticker NVDQ has no valid sector/industry
+2025-11-24 19:54:55,999 [WARNING] Ticker NVDS has no valid sector/industry
+2025-11-24 19:54:55,999 [WARNING] Ticker NVDU has no valid sector/industry
+2025-11-24 19:54:55,999 [WARNING] Ticker NVDW has no valid sector/industry
+2025-11-24 19:54:55,999 [WARNING] Ticker NVDX has no valid sector/industry
+2025-11-24 19:54:55,999 [WARNING] Ticker NVDY has no valid sector/industry
+2025-11-24 19:54:55,999 [INFO] Resolved ticker: NVEC
+2025-11-24 19:54:55,999 [INFO] Resolved ticker: NVG
+2025-11-24 19:54:55,999 [INFO] Resolved ticker: NVGS
+2025-11-24 19:54:55,999 [WARNING] Ticker NVII has no valid sector/industry
+2025-11-24 19:54:55,999 [WARNING] Ticker NVIR has no valid sector/industry
+2025-11-24 19:54:55,999 [WARNING] Ticker NVIT has no valid sector/industry
+2025-11-24 19:54:55,999 [INFO] Resolved ticker: NVMI
+2025-11-24 19:54:55,999 [INFO] Resolved ticker: NVNI
+2025-11-24 19:54:55,999 [INFO] Resolved ticker: NVNIW
+2025-11-24 19:54:55,999 [INFO] Resolved ticker: NVNO
+2025-11-24 19:54:55,999 [INFO] Resolved ticker: NVO
+2025-11-24 19:54:55,999 [WARNING] Ticker NVOH has no valid sector/industry
+2025-11-24 19:54:55,999 [WARNING] Ticker NVOX has no valid sector/industry
+2025-11-24 19:54:55,999 [INFO] Resolved ticker: NVR
+2025-11-24 19:54:56,000 [INFO] Resolved ticker: NVRI
+2025-11-24 19:54:56,000 [INFO] Resolved ticker: NVS
+2025-11-24 19:54:56,000 [INFO] Resolved ticker: NVST
+2025-11-24 19:54:56,000 [INFO] Resolved ticker: NVT
+2025-11-24 19:54:56,000 [INFO] Resolved ticker: NVTS
+2025-11-24 19:54:56,000 [WARNING] Ticker NVTX has no valid sector/industry
+2025-11-24 19:54:56,000 [INFO] Resolved ticker: NVVE
+2025-11-24 19:54:56,000 [INFO] Resolved ticker: NVVEW
+2025-11-24 19:54:56,000 [INFO] Resolved ticker: NVX
+2025-11-24 19:54:56,000 [WARNING] Ticker NVYY has no valid sector/industry
+2025-11-24 19:54:56,000 [INFO] Resolved ticker: NWBI
+2025-11-24 19:54:56,000 [INFO] Resolved ticker: NWE
+2025-11-24 19:54:56,000 [INFO] Resolved ticker: NWFL
+2025-11-24 19:54:56,000 [INFO] Resolved ticker: NWG
+2025-11-24 19:54:56,000 [INFO] Resolved ticker: NWGL
+2025-11-24 19:54:56,000 [INFO] Resolved ticker: NWL
+2025-11-24 19:54:56,000 [WARNING] Ticker NWLG has no valid sector/industry
+2025-11-24 19:54:56,000 [WARNING] Ticker NWMX has no valid sector/industry
+2025-11-24 19:54:56,000 [INFO] Resolved ticker: NWN
+2025-11-24 19:54:56,000 [INFO] Resolved ticker: NWPX
+2025-11-24 19:54:56,000 [INFO] Resolved ticker: NWS
+2025-11-24 19:54:56,001 [INFO] Resolved ticker: NWSA
+2025-11-24 19:54:56,001 [INFO] Resolved ticker: NWTG
+2025-11-24 19:54:56,008 [INFO] Batch 3/18 - Resolved: 54 | Unresolved: 46
+2025-11-24 19:55:02,123 [INFO] Batch API response type: <class 'dict'>
+2025-11-24 19:55:02,123 [INFO] Resolved ticker: NX
+2025-11-24 19:55:02,123 [INFO] Resolved ticker: NXC
+2025-11-24 19:55:02,123 [INFO] Resolved ticker: NXDR
+2025-11-24 19:55:02,123 [INFO] Resolved ticker: NXDT
+2025-11-24 19:55:02,123 [INFO] Resolved ticker: NXE
+2025-11-24 19:55:02,123 [INFO] Resolved ticker: NXG
+2025-11-24 19:55:02,123 [INFO] Resolved ticker: NXGL
+2025-11-24 19:55:02,124 [INFO] Resolved ticker: NXGLW
+2025-11-24 19:55:02,124 [INFO] Resolved ticker: NXJ
+2025-11-24 19:55:02,124 [INFO] Resolved ticker: NXL
+2025-11-24 19:55:02,124 [INFO] Resolved ticker: NXN
+2025-11-24 19:55:02,124 [INFO] Resolved ticker: NXP
+2025-11-24 19:55:02,124 [INFO] Resolved ticker: NXPI
+2025-11-24 19:55:02,124 [INFO] Resolved ticker: NXPL
+2025-11-24 19:55:02,124 [INFO] Resolved ticker: NXPLW
+2025-11-24 19:55:02,124 [INFO] Resolved ticker: NXRT
+2025-11-24 19:55:02,124 [INFO] Resolved ticker: NXST
+2025-11-24 19:55:02,124 [INFO] Resolved ticker: NXT
+2025-11-24 19:55:02,124 [INFO] Resolved ticker: NXTC
+2025-11-24 19:55:02,124 [WARNING] Ticker NXTE has no valid sector/industry
+2025-11-24 19:55:02,124 [WARNING] Ticker NXTG has no valid sector/industry
+2025-11-24 19:55:02,124 [WARNING] Ticker NXTI has no valid sector/industry
+2025-11-24 19:55:02,124 [INFO] Resolved ticker: NXTT
+2025-11-24 19:55:02,125 [WARNING] Ticker NXUS has no valid sector/industry
+2025-11-24 19:55:02,125 [INFO] Resolved ticker: NXXT
+2025-11-24 19:55:02,125 [INFO] Resolved ticker: NYAX
+2025-11-24 19:55:02,125 [INFO] Resolved ticker: NYC
+2025-11-24 19:55:02,125 [WARNING] Ticker NYF has no valid sector/industry
+2025-11-24 19:55:02,125 [WARNING] Ticker NYM has no valid sector/industry
+2025-11-24 19:55:02,125 [INFO] Resolved ticker: NYT
+2025-11-24 19:55:02,125 [INFO] Resolved ticker: NYXH
+2025-11-24 19:55:02,125 [WARNING] Ticker NZAC has no valid sector/industry
+2025-11-24 19:55:02,125 [INFO] Resolved ticker: NZF
+2025-11-24 19:55:02,125 [WARNING] Ticker NZUS has no valid sector/industry
+2025-11-24 19:55:02,125 [INFO] Resolved ticker: O
+2025-11-24 19:55:02,125 [INFO] Resolved ticker: OABI
+2025-11-24 19:55:02,125 [INFO] Resolved ticker: OABIW
+2025-11-24 19:55:02,125 [INFO] Resolved ticker: OACC
+2025-11-24 19:55:02,125 [INFO] Resolved ticker: OACCU
+2025-11-24 19:55:02,125 [INFO] Resolved ticker: OACCW
+2025-11-24 19:55:02,125 [WARNING] Ticker OACP has no valid sector/industry
+2025-11-24 19:55:02,125 [WARNING] Ticker OAEM has no valid sector/industry
+2025-11-24 19:55:02,126 [WARNING] Ticker OAIM has no valid sector/industry
+2025-11-24 19:55:02,126 [WARNING] Ticker OAKM has no valid sector/industry
+2025-11-24 19:55:02,126 [INFO] Resolved ticker: OAKU
+2025-11-24 19:55:02,126 [WARNING] Ticker OAKUR has no valid sector/industry
+2025-11-24 19:55:02,126 [INFO] Resolved ticker: OAKUU
+2025-11-24 19:55:02,126 [WARNING] Ticker OAKUW has no valid sector/industry
+2025-11-24 19:55:02,126 [WARNING] Ticker OALC has no valid sector/industry
+2025-11-24 19:55:02,126 [WARNING] Ticker OARK has no valid sector/industry
+2025-11-24 19:55:02,126 [WARNING] Ticker OASC has no valid sector/industry
+2025-11-24 19:55:02,126 [INFO] Resolved ticker: OBA
+2025-11-24 19:55:02,126 [INFO] Resolved ticker: OBAWU
+2025-11-24 19:55:02,126 [INFO] Resolved ticker: OBAWW
+2025-11-24 19:55:02,126 [INFO] Resolved ticker: OBDC
+2025-11-24 19:55:02,126 [INFO] Resolved ticker: OBE
+2025-11-24 19:55:02,126 [WARNING] Ticker OBIL has no valid sector/industry
+2025-11-24 19:55:02,126 [INFO] Resolved ticker: OBIO
+2025-11-24 19:55:02,126 [INFO] Resolved ticker: OBK
+2025-11-24 19:55:02,126 [INFO] Resolved ticker: OBLG
+2025-11-24 19:55:02,126 [WARNING] Ticker OBND has no valid sector/industry
+2025-11-24 19:55:02,127 [WARNING] Ticker OBOR has no valid sector/industry
+2025-11-24 19:55:02,127 [INFO] Resolved ticker: OBT
+2025-11-24 19:55:02,127 [INFO] Resolved ticker: OC
+2025-11-24 19:55:02,127 [INFO] Resolved ticker: OCC
+2025-11-24 19:55:02,127 [INFO] Resolved ticker: OCCI
+2025-11-24 19:55:02,127 [INFO] Resolved ticker: OCCIM
+2025-11-24 19:55:02,127 [INFO] Resolved ticker: OCCIN
+2025-11-24 19:55:02,127 [INFO] Resolved ticker: OCCIO
+2025-11-24 19:55:02,127 [INFO] Resolved ticker: OCFC
+2025-11-24 19:55:02,127 [INFO] Resolved ticker: OCG
+2025-11-24 19:55:02,127 [INFO] Resolved ticker: OCGN
+2025-11-24 19:55:02,127 [WARNING] Ticker OCIO has no valid sector/industry
+2025-11-24 19:55:02,127 [INFO] Resolved ticker: OCS
+2025-11-24 19:55:02,127 [WARNING] Ticker OCSAW has no valid sector/industry
+2025-11-24 19:55:02,127 [INFO] Resolved ticker: OCSL
+2025-11-24 19:55:02,127 [WARNING] Ticker OCTB has no valid sector/industry
+2025-11-24 19:55:02,127 [WARNING] Ticker OCTH has no valid sector/industry
+2025-11-24 19:55:02,127 [WARNING] Ticker OCTJ has no valid sector/industry
+2025-11-24 19:55:02,127 [WARNING] Ticker OCTM has no valid sector/industry
+2025-11-24 19:55:02,128 [WARNING] Ticker OCTP has no valid sector/industry
+2025-11-24 19:55:02,128 [WARNING] Ticker OCTT has no valid sector/industry
+2025-11-24 19:55:02,128 [WARNING] Ticker OCTU has no valid sector/industry
+2025-11-24 19:55:02,128 [WARNING] Ticker OCTW has no valid sector/industry
+2025-11-24 19:55:02,128 [WARNING] Ticker OCTZ has no valid sector/industry
+2025-11-24 19:55:02,128 [INFO] Resolved ticker: OCUL
+2025-11-24 19:55:02,128 [INFO] Resolved ticker: ODC
+2025-11-24 19:55:02,128 [INFO] Resolved ticker: ODD
+2025-11-24 19:55:02,128 [WARNING] Ticker ODDS has no valid sector/industry
+2025-11-24 19:55:02,128 [INFO] Resolved ticker: ODFL
+2025-11-24 19:55:02,128 [WARNING] Ticker ODHY has no valid sector/industry
+2025-11-24 19:55:02,128 [INFO] Resolved ticker: ODP
+2025-11-24 19:55:02,128 [INFO] Resolved ticker: ODV
+2025-11-24 19:55:02,128 [INFO] Resolved ticker: ODVWZ
+2025-11-24 19:55:02,128 [INFO] Resolved ticker: ODYS
+2025-11-24 19:55:02,128 [INFO] Resolved ticker: OEC
+2025-11-24 19:55:02,128 [WARNING] Ticker OEF has no valid sector/industry
+2025-11-24 19:55:02,128 [WARNING] Ticker OEFA has no valid sector/industry
+2025-11-24 19:55:02,128 [WARNING] Ticker OEI has no valid sector/industry
+2025-11-24 19:55:02,129 [INFO] Resolved ticker: OESX
+2025-11-24 19:55:02,137 [INFO] Batch 4/18 - Resolved: 64 | Unresolved: 36
+2025-11-24 19:55:07,611 [INFO] Batch API response type: <class 'dict'>
+2025-11-24 19:55:07,611 [INFO] Resolved ticker: OFAL
+2025-11-24 19:55:07,611 [INFO] Resolved ticker: OFG
+2025-11-24 19:55:07,612 [INFO] Resolved ticker: OFIX
+2025-11-24 19:55:07,612 [INFO] Resolved ticker: OFLX
+2025-11-24 19:55:07,612 [INFO] Resolved ticker: OFS
+2025-11-24 19:55:07,612 [WARNING] Ticker OFSSH has no valid sector/industry
+2025-11-24 19:55:07,612 [WARNING] Ticker OFSSO has no valid sector/industry
+2025-11-24 19:55:07,612 [INFO] Resolved ticker: OGCP
+2025-11-24 19:55:07,612 [INFO] Resolved ticker: OGE
+2025-11-24 19:55:07,612 [INFO] Resolved ticker: OGEN
+2025-11-24 19:55:07,612 [INFO] Resolved ticker: OGI
+2025-11-24 19:55:07,612 [WARNING] Ticker OGIG has no valid sector/industry
+2025-11-24 19:55:07,612 [INFO] Resolved ticker: OGN
+2025-11-24 19:55:07,612 [INFO] Resolved ticker: OGS
+2025-11-24 19:55:07,612 [WARNING] Ticker OGSP has no valid sector/industry
+2025-11-24 19:55:07,612 [INFO] Resolved ticker: OHI
+2025-11-24 19:55:07,612 [INFO] Resolved ticker: OI
+2025-11-24 19:55:07,612 [INFO] Resolved ticker: OIA
+2025-11-24 19:55:07,612 [WARNING] Ticker OIH has no valid sector/industry
+2025-11-24 19:55:07,612 [INFO] Resolved ticker: OII
+2025-11-24 19:55:07,612 [WARNING] Ticker OILD has no valid sector/industry
+2025-11-24 19:55:07,612 [WARNING] Ticker OILK has no valid sector/industry
+2025-11-24 19:55:07,613 [WARNING] Ticker OILT has no valid sector/industry
+2025-11-24 19:55:07,613 [WARNING] Ticker OILU has no valid sector/industry
+2025-11-24 19:55:07,613 [INFO] Resolved ticker: OIS
+2025-11-24 19:55:07,613 [INFO] Resolved ticker: OKE
+2025-11-24 19:55:07,613 [WARNING] Ticker OKLL has no valid sector/industry
+2025-11-24 19:55:07,613 [INFO] Resolved ticker: OKLO
+2025-11-24 19:55:07,613 [INFO] Resolved ticker: OKTA
+2025-11-24 19:55:07,613 [WARNING] Ticker OKTG has no valid sector/industry
+2025-11-24 19:55:07,613 [WARNING] Ticker OKTX has no valid sector/industry
+2025-11-24 19:55:07,613 [INFO] Resolved ticker: OKUR
+2025-11-24 19:55:07,613 [INFO] Resolved ticker: OKYO
+2025-11-24 19:55:07,613 [INFO] Resolved ticker: OLB
+2025-11-24 19:55:07,613 [INFO] Resolved ticker: OLED
+2025-11-24 19:55:07,613 [INFO] Resolved ticker: OLLI
+2025-11-24 19:55:07,613 [INFO] Resolved ticker: OLMA
+2025-11-24 19:55:07,613 [INFO] Resolved ticker: OLN
+2025-11-24 19:55:07,613 [WARNING] Ticker OMAH has no valid sector/industry
+2025-11-24 19:55:07,613 [WARNING] Ticker OMFL has no valid sector/industry
+2025-11-24 19:55:07,613 [WARNING] Ticker OMFS has no valid sector/industry
+2025-11-24 19:55:07,613 [WARNING] Ticker OND has no valid sector/industry
+2025-11-24 19:55:07,614 [WARNING] Ticker ONEO has no valid sector/industry
+2025-11-24 19:55:07,614 [WARNING] Ticker ONEQ has no valid sector/industry
+2025-11-24 19:55:07,614 [WARNING] Ticker ONEV has no valid sector/industry
+2025-11-24 19:55:07,614 [WARNING] Ticker ONEY has no valid sector/industry
+2025-11-24 19:55:07,614 [WARNING] Ticker ONEZ has no valid sector/industry
+2025-11-24 19:55:07,614 [WARNING] Ticker ONLN has no valid sector/industry
+2025-11-24 19:55:07,614 [WARNING] Ticker ONOF has no valid sector/industry
+2025-11-24 19:55:07,614 [WARNING] Ticker OOQB has no valid sector/industry
+2025-11-24 19:55:07,614 [WARNING] Ticker OOSB has no valid sector/industry
+2025-11-24 19:55:07,614 [WARNING] Ticker OOSP has no valid sector/industry
+2025-11-24 19:55:07,614 [WARNING] Ticker OPENL has no valid sector/industry
+2025-11-24 19:55:07,614 [WARNING] Ticker OPENW has no valid sector/industry
+2025-11-24 19:55:07,614 [WARNING] Ticker OPENZ has no valid sector/industry
+2025-11-24 19:55:07,614 [WARNING] Ticker OPER has no valid sector/industry
+2025-11-24 19:55:07,614 [WARNING] Ticker OPEX has no valid sector/industry
+2025-11-24 19:55:07,614 [WARNING] Ticker OPPE has no valid sector/industry
+2025-11-24 19:55:07,614 [WARNING] Ticker OPPJ has no valid sector/industry
+2025-11-24 19:55:07,614 [WARNING] Ticker OPTZ has no valid sector/industry
+2025-11-24 19:55:07,614 [WARNING] Ticker ORCS has no valid sector/industry
+2025-11-24 19:55:07,614 [WARNING] Ticker ORCU has no valid sector/industry
+2025-11-24 19:55:07,615 [WARNING] Ticker ORCX has no valid sector/industry
+2025-11-24 19:55:07,615 [WARNING] Ticker ORO has no valid sector/industry
+2025-11-24 19:55:07,615 [WARNING] Ticker ORR has no valid sector/industry
+2025-11-24 19:55:07,615 [WARNING] Ticker OSCG has no valid sector/industry
+2025-11-24 19:55:07,615 [WARNING] Ticker OSCV has no valid sector/industry
+2025-11-24 19:55:07,615 [WARNING] Ticker OSCX has no valid sector/industry
+2025-11-24 19:55:07,615 [WARNING] Ticker OSEA has no valid sector/industry
+2025-11-24 19:55:07,615 [WARNING] Ticker OTGL has no valid sector/industry
+2025-11-24 19:55:07,615 [WARNING] Ticker OUNZ has no valid sector/industry
+2025-11-24 19:55:07,615 [WARNING] Ticker OUSA has no valid sector/industry
+2025-11-24 19:55:07,615 [WARNING] Ticker OUSM has no valid sector/industry
+2025-11-24 19:55:07,615 [WARNING] Ticker OVB has no valid sector/industry
+2025-11-24 19:55:07,615 [WARNING] Ticker OVF has no valid sector/industry
+2025-11-24 19:55:07,615 [WARNING] Ticker OVL has no valid sector/industry
+2025-11-24 19:55:07,615 [WARNING] Ticker OVLH has no valid sector/industry
+2025-11-24 19:55:07,615 [WARNING] Ticker OVM has no valid sector/industry
+2025-11-24 19:55:07,615 [WARNING] Ticker OVS has no valid sector/industry
+2025-11-24 19:55:07,615 [WARNING] Ticker OVT has no valid sector/industry
+2025-11-24 19:55:07,615 [WARNING] Ticker OWNB has no valid sector/industry
+2025-11-24 19:55:07,615 [WARNING] Ticker OWNS has no valid sector/industry
+2025-11-24 19:55:07,615 [WARNING] Ticker OXLCG has no valid sector/industry
+2025-11-24 19:55:07,615 [WARNING] Ticker OXLCI has no valid sector/industry
+2025-11-24 19:55:07,616 [WARNING] Ticker OXLCL has no valid sector/industry
+2025-11-24 19:55:07,616 [WARNING] Ticker OXLCZ has no valid sector/industry
+2025-11-24 19:55:07,616 [WARNING] Ticker OXSQG has no valid sector/industry
+2025-11-24 19:55:07,616 [WARNING] Ticker OXSQH has no valid sector/industry
+2025-11-24 19:55:07,616 [WARNING] Ticker OYSER has no valid sector/industry
+2025-11-24 19:55:07,616 [WARNING] Ticker OZEM has no valid sector/industry
+2025-11-24 19:55:07,616 [WARNING] Ticker PAAA has no valid sector/industry
+2025-11-24 19:55:07,616 [WARNING] Ticker PAB has no valid sector/industry
+2025-11-24 19:55:07,616 [WARNING] Ticker PABD has no valid sector/industry
+2025-11-24 19:55:07,616 [WARNING] Ticker PABU has no valid sector/industry
+2025-11-24 19:55:07,616 [WARNING] Ticker PAII has no valid sector/industry
+2025-11-24 19:55:07,616 [WARNING] Ticker PALC has no valid sector/industry
+2025-11-24 19:55:07,616 [WARNING] Ticker PALD has no valid sector/industry
+2025-11-24 19:55:07,616 [WARNING] Ticker PALL has no valid sector/industry
+2025-11-24 19:55:07,616 [WARNING] Ticker PALU has no valid sector/industry
+2025-11-24 19:55:07,616 [WARNING] Ticker PAMC has no valid sector/industry
+2025-11-24 19:55:07,625 [INFO] Batch 5/18 - Resolved: 26 | Unresolved: 74
+2025-11-24 19:55:13,720 [INFO] Batch API response type: <class 'dict'>
+2025-11-24 19:55:13,720 [WARNING] Ticker PANG has no valid sector/industry
+2025-11-24 19:55:13,720 [WARNING] Ticker PAPI has no valid sector/industry
+2025-11-24 19:55:13,720 [WARNING] Ticker PAPR has no valid sector/industry
+2025-11-24 19:55:13,720 [WARNING] Ticker PATN has no valid sector/industry
+2025-11-24 19:55:13,720 [WARNING] Ticker PAUG has no valid sector/industry
+2025-11-24 19:55:13,721 [WARNING] Ticker PAVE has no valid sector/industry
+2025-11-24 19:55:13,721 [WARNING] Ticker PAWZ has no valid sector/industry
+2025-11-24 19:55:13,721 [WARNING] Ticker PAYR has no valid sector/industry
+2025-11-24 19:55:13,721 [WARNING] Ticker PBAP has no valid sector/industry
+2025-11-24 19:55:13,721 [WARNING] Ticker PBAU has no valid sector/industry
+2025-11-24 19:55:13,721 [WARNING] Ticker PBD has no valid sector/industry
+2025-11-24 19:55:13,721 [WARNING] Ticker PBDC has no valid sector/industry
+2025-11-24 19:55:13,721 [WARNING] Ticker PBDE has no valid sector/industry
+2025-11-24 19:55:13,721 [WARNING] Ticker PBE has no valid sector/industry
+2025-11-24 19:55:13,721 [WARNING] Ticker PBFB has no valid sector/industry
+2025-11-24 19:55:13,721 [WARNING] Ticker PBFR has no valid sector/industry
+2025-11-24 19:55:13,721 [WARNING] Ticker PBJ has no valid sector/industry
+2025-11-24 19:55:13,721 [WARNING] Ticker PBJA has no valid sector/industry
+2025-11-24 19:55:13,721 [WARNING] Ticker PBJL has no valid sector/industry
+2025-11-24 19:55:13,721 [WARNING] Ticker PBJN has no valid sector/industry
+2025-11-24 19:55:13,721 [WARNING] Ticker PBL has no valid sector/industry
+2025-11-24 19:55:13,721 [WARNING] Ticker PBMR has no valid sector/industry
+2025-11-24 19:55:13,722 [WARNING] Ticker PBMY has no valid sector/industry
+2025-11-24 19:55:13,722 [WARNING] Ticker PBNV has no valid sector/industry
+2025-11-24 19:55:13,722 [WARNING] Ticker PBOC has no valid sector/industry
+2025-11-24 19:55:13,722 [WARNING] Ticker PBOT has no valid sector/industry
+2025-11-24 19:55:13,722 [WARNING] Ticker PBP has no valid sector/industry
+2025-11-24 19:55:13,722 [WARNING] Ticker PBQQ has no valid sector/industry
+2025-11-24 19:55:13,722 [WARNING] Ticker PBSE has no valid sector/industry
+2025-11-24 19:55:13,722 [WARNING] Ticker PBTP has no valid sector/industry
+2025-11-24 19:55:13,722 [WARNING] Ticker PBUS has no valid sector/industry
+2025-11-24 19:55:13,722 [WARNING] Ticker PBW has no valid sector/industry
+2025-11-24 19:55:13,722 [INFO] Resolved ticker: PCAP
+2025-11-24 19:55:13,722 [INFO] Resolved ticker: PCAPW
+2025-11-24 19:55:13,722 [WARNING] Ticker PCCE has no valid sector/industry
+2025-11-24 19:55:13,722 [WARNING] Ticker PCEF has no valid sector/industry
+2025-11-24 19:55:13,722 [WARNING] Ticker PCEM has no valid sector/industry
+2025-11-24 19:55:13,722 [WARNING] Ticker PCFI has no valid sector/industry
+2025-11-24 19:55:13,723 [WARNING] Ticker PCGG has no valid sector/industry
+2025-11-24 19:55:13,723 [WARNING] Ticker PCHI has no valid sector/industry
+2025-11-24 19:55:13,723 [WARNING] Ticker PCI has no valid sector/industry
+2025-11-24 19:55:13,723 [WARNING] Ticker PCIG has no valid sector/industry
+2025-11-24 19:55:13,723 [WARNING] Ticker PCL has no valid sector/industry
+2025-11-24 19:55:13,723 [WARNING] Ticker PCLG has no valid sector/industry
+2025-11-24 19:55:13,723 [WARNING] Ticker PCLN has no valid sector/industry
+2025-11-24 19:55:13,723 [WARNING] Ticker PCLO has no valid sector/industry
+2025-11-24 19:55:13,723 [WARNING] Ticker PCMM has no valid sector/industry
+2025-11-24 19:55:13,723 [WARNING] Ticker PCR has no valid sector/industry
+2025-11-24 19:55:13,723 [WARNING] Ticker PCRB has no valid sector/industry
+2025-11-24 19:55:13,723 [WARNING] Ticker PCS has no valid sector/industry
+2025-11-24 19:55:13,723 [WARNING] Ticker PCY has no valid sector/industry
+2025-11-24 19:55:13,723 [WARNING] Ticker PDBA has no valid sector/industry
+2025-11-24 19:55:13,723 [WARNING] Ticker PDBC has no valid sector/industry
+2025-11-24 19:55:13,723 [WARNING] Ticker PDDL has no valid sector/industry
+2025-11-24 19:55:13,724 [WARNING] Ticker PDEC has no valid sector/industry
+2025-11-24 19:55:13,724 [WARNING] Ticker PDN has no valid sector/industry
+2025-11-24 19:55:13,724 [WARNING] Ticker PDP has no valid sector/industry
+2025-11-24 19:55:13,724 [WARNING] Ticker PEJ has no valid sector/industry
+2025-11-24 19:55:13,724 [WARNING] Ticker PELIR has no valid sector/industry
+2025-11-24 19:55:13,724 [WARNING] Ticker PEMX has no valid sector/industry
+2025-11-24 19:55:13,724 [WARNING] Ticker PEPS has no valid sector/industry
+2025-11-24 19:55:13,724 [WARNING] Ticker PEVC has no valid sector/industry
+2025-11-24 19:55:13,724 [WARNING] Ticker PEX has no valid sector/industry
+2025-11-24 19:55:13,724 [WARNING] Ticker PEXL has no valid sector/industry
+2025-11-24 19:55:13,724 [WARNING] Ticker PEY has no valid sector/industry
+2025-11-24 19:55:13,724 [WARNING] Ticker PEZ has no valid sector/industry
+2025-11-24 19:55:13,724 [WARNING] Ticker PFEB has no valid sector/industry
+2025-11-24 19:55:13,724 [WARNING] Ticker PFF has no valid sector/industry
+2025-11-24 19:55:13,724 [WARNING] Ticker PFFA has no valid sector/industry
+2025-11-24 19:55:13,724 [WARNING] Ticker PFFD has no valid sector/industry
+2025-11-24 19:55:13,724 [WARNING] Ticker PFFL has no valid sector/industry
+2025-11-24 19:55:13,725 [WARNING] Ticker PFFR has no valid sector/industry
+2025-11-24 19:55:13,725 [WARNING] Ticker PFFV has no valid sector/industry
+2025-11-24 19:55:13,725 [WARNING] Ticker PFH has no valid sector/industry
+2025-11-24 19:55:13,725 [WARNING] Ticker PFI has no valid sector/industry
+2025-11-24 19:55:13,725 [WARNING] Ticker PFIG has no valid sector/industry
+2025-11-24 19:55:13,725 [WARNING] Ticker PFIX has no valid sector/industry
+2025-11-24 19:55:13,725 [WARNING] Ticker PFLD has no valid sector/industry
+2025-11-24 19:55:13,725 [WARNING] Ticker PFM has no valid sector/industry
+2025-11-24 19:55:13,725 [WARNING] Ticker PFRL has no valid sector/industry
+2025-11-24 19:55:13,725 [WARNING] Ticker PFUT has no valid sector/industry
+2025-11-24 19:55:13,725 [WARNING] Ticker PFXF has no valid sector/industry
+2025-11-24 19:55:13,725 [WARNING] Ticker PFXNZ has no valid sector/industry
+2025-11-24 19:55:13,725 [WARNING] Ticker PGACR has no valid sector/industry
+2025-11-24 19:55:13,725 [WARNING] Ticker PGF has no valid sector/industry
+2025-11-24 19:55:13,725 [WARNING] Ticker PGHY has no valid sector/industry
+2025-11-24 19:55:13,725 [WARNING] Ticker PGJ has no valid sector/industry
+2025-11-24 19:55:13,725 [WARNING] Ticker PGRI has no valid sector/industry
+2025-11-24 19:55:13,726 [WARNING] Ticker PGRO has no valid sector/industry
+2025-11-24 19:55:13,726 [WARNING] Ticker PGX has no valid sector/industry
+2025-11-24 19:55:13,726 [WARNING] Ticker PHB has no valid sector/industry
+2025-11-24 19:55:13,726 [WARNING] Ticker PHDG has no valid sector/industry
+2025-11-24 19:55:13,726 [WARNING] Ticker PHEQ has no valid sector/industry
+2025-11-24 19:55:13,726 [WARNING] Ticker PHO has no valid sector/industry
+2025-11-24 19:55:13,726 [WARNING] Ticker PHYD has no valid sector/industry
+2025-11-24 19:55:13,726 [WARNING] Ticker PHYL has no valid sector/industry
+2025-11-24 19:55:13,726 [WARNING] Ticker PICB has no valid sector/industry
+2025-11-24 19:55:13,726 [WARNING] Ticker PICK has no valid sector/industry
+2025-11-24 19:55:13,726 [WARNING] Ticker PID has no valid sector/industry
+2025-11-24 19:55:13,726 [WARNING] Ticker PIE has no valid sector/industry
+2025-11-24 19:55:13,735 [INFO] Batch 6/18 - Resolved: 2 | Unresolved: 98
+2025-11-24 19:55:19,227 [INFO] Batch API response type: <class 'dict'>
+2025-11-24 19:55:19,227 [WARNING] Ticker PIEQ has no valid sector/industry
+2025-11-24 19:55:19,227 [WARNING] Ticker PIFI has no valid sector/industry
+2025-11-24 19:55:19,227 [INFO] Resolved ticker: PII
+2025-11-24 19:55:19,227 [INFO] Resolved ticker: PIII
+2025-11-24 19:55:19,227 [INFO] Resolved ticker: PIIIW
+2025-11-24 19:55:19,227 [WARNING] Ticker PILL has no valid sector/industry
+2025-11-24 19:55:19,227 [INFO] Resolved ticker: PIM
+2025-11-24 19:55:19,227 [WARNING] Ticker PIN has no valid sector/industry
+2025-11-24 19:55:19,227 [INFO] Resolved ticker: PINC
+2025-11-24 19:55:19,228 [INFO] Resolved ticker: PINE
+2025-11-24 19:55:19,228 [WARNING] Ticker PINK has no valid sector/industry
+2025-11-24 19:55:19,228 [INFO] Resolved ticker: PINS
+2025-11-24 19:55:19,228 [WARNING] Ticker PIO has no valid sector/industry
+2025-11-24 19:55:19,228 [WARNING] Ticker PIPE has no valid sector/industry
+2025-11-24 19:55:19,228 [INFO] Resolved ticker: PIPR
+2025-11-24 19:55:19,228 [WARNING] Ticker PIT has no valid sector/industry
+2025-11-24 19:55:19,228 [WARNING] Ticker PIZ has no valid sector/industry
+2025-11-24 19:55:19,228 [WARNING] Ticker PJAN has no valid sector/industry
+2025-11-24 19:55:19,228 [WARNING] Ticker PJBF has no valid sector/industry
+2025-11-24 19:55:19,228 [WARNING] Ticker PJFG has no valid sector/industry
+2025-11-24 19:55:19,228 [WARNING] Ticker PJFM has no valid sector/industry
+2025-11-24 19:55:19,228 [WARNING] Ticker PJFV has no valid sector/industry
+2025-11-24 19:55:19,228 [WARNING] Ticker PJIO has no valid sector/industry
+2025-11-24 19:55:19,228 [WARNING] Ticker PJP has no valid sector/industry
+2025-11-24 19:55:19,228 [INFO] Resolved ticker: PJT
+2025-11-24 19:55:19,228 [WARNING] Ticker PJUL has no valid sector/industry
+2025-11-24 19:55:19,228 [WARNING] Ticker PJUN has no valid sector/industry
+2025-11-24 19:55:19,228 [INFO] Resolved ticker: PK
+2025-11-24 19:55:19,228 [WARNING] Ticker PKB has no valid sector/industry
+2025-11-24 19:55:19,229 [INFO] Resolved ticker: PKBK
+2025-11-24 19:55:19,229 [INFO] Resolved ticker: PKE
+2025-11-24 19:55:19,229 [INFO] Resolved ticker: PKG
+2025-11-24 19:55:19,229 [INFO] Resolved ticker: PKOH
+2025-11-24 19:55:19,229 [INFO] Resolved ticker: PKST
+2025-11-24 19:55:19,229 [WARNING] Ticker PKW has no valid sector/industry
+2025-11-24 19:55:19,229 [INFO] Resolved ticker: PKX
+2025-11-24 19:55:19,229 [INFO] Resolved ticker: PL
+2025-11-24 19:55:19,229 [INFO] Resolved ticker: PLAB
+2025-11-24 19:55:19,229 [INFO] Resolved ticker: PLAG
+2025-11-24 19:55:19,229 [INFO] Resolved ticker: PLAY
+2025-11-24 19:55:19,229 [INFO] Resolved ticker: PLBC
+2025-11-24 19:55:19,229 [INFO] Resolved ticker: PLBL
+2025-11-24 19:55:19,229 [INFO] Resolved ticker: PLBY
+2025-11-24 19:55:19,229 [INFO] Resolved ticker: PLCE
+2025-11-24 19:55:19,229 [INFO] Resolved ticker: PLD
+2025-11-24 19:55:19,229 [WARNING] Ticker PLDR has no valid sector/industry
+2025-11-24 19:55:19,229 [INFO] Resolved ticker: PLG
+2025-11-24 19:55:19,229 [INFO] Resolved ticker: PLMK
+2025-11-24 19:55:19,229 [INFO] Resolved ticker: PLMKU
+2025-11-24 19:55:19,229 [INFO] Resolved ticker: PLMKW
+2025-11-24 19:55:19,229 [INFO] Resolved ticker: PLMR
+2025-11-24 19:55:19,230 [INFO] Resolved ticker: PLNT
+2025-11-24 19:55:19,230 [WARNING] Ticker PLOO has no valid sector/industry
+2025-11-24 19:55:19,230 [INFO] Resolved ticker: PLOW
+2025-11-24 19:55:19,230 [INFO] Resolved ticker: PLPC
+2025-11-24 19:55:19,230 [INFO] Resolved ticker: PLRX
+2025-11-24 19:55:19,230 [INFO] Resolved ticker: PLRZ
+2025-11-24 19:55:19,230 [INFO] Resolved ticker: PLSE
+2025-11-24 19:55:19,230 [WARNING] Ticker PLT has no valid sector/industry
+2025-11-24 19:55:19,230 [WARNING] Ticker PLTA has no valid sector/industry
+2025-11-24 19:55:19,230 [WARNING] Ticker PLTD has no valid sector/industry
+2025-11-24 19:55:19,230 [WARNING] Ticker PLTG has no valid sector/industry
+2025-11-24 19:55:19,230 [WARNING] Ticker PLTI has no valid sector/industry
+2025-11-24 19:55:19,230 [INFO] Resolved ticker: PLTK
+2025-11-24 19:55:19,230 [WARNING] Ticker PLTM has no valid sector/industry
+2025-11-24 19:55:19,230 [INFO] Resolved ticker: PLTR
+2025-11-24 19:55:19,230 [WARNING] Ticker PLTS has no valid sector/industry
+2025-11-24 19:55:19,230 [WARNING] Ticker PLTU has no valid sector/industry
+2025-11-24 19:55:19,230 [WARNING] Ticker PLTW has no valid sector/industry
+2025-11-24 19:55:19,230 [WARNING] Ticker PLTY has no valid sector/industry
+2025-11-24 19:55:19,230 [WARNING] Ticker PLTZ has no valid sector/industry
+2025-11-24 19:55:19,230 [INFO] Resolved ticker: PLUG
+2025-11-24 19:55:19,231 [INFO] Resolved ticker: PLUR
+2025-11-24 19:55:19,231 [INFO] Resolved ticker: PLUS
+2025-11-24 19:55:19,231 [INFO] Resolved ticker: PLUT
+2025-11-24 19:55:19,231 [INFO] Resolved ticker: PLX
+2025-11-24 19:55:19,231 [INFO] Resolved ticker: PLXS
+2025-11-24 19:55:19,231 [INFO] Resolved ticker: PLYM
+2025-11-24 19:55:19,231 [WARNING] Ticker PLYY has no valid sector/industry
+2025-11-24 19:55:19,231 [INFO] Resolved ticker: PM
+2025-11-24 19:55:19,231 [WARNING] Ticker PMAP has no valid sector/industry
+2025-11-24 19:55:19,231 [WARNING] Ticker PMAR has no valid sector/industry
+2025-11-24 19:55:19,231 [WARNING] Ticker PMAU has no valid sector/industry
+2025-11-24 19:55:19,231 [INFO] Resolved ticker: PMAX
+2025-11-24 19:55:19,231 [WARNING] Ticker PMAY has no valid sector/industry
+2025-11-24 19:55:19,231 [WARNING] Ticker PMBS has no valid sector/industry
+2025-11-24 19:55:19,231 [INFO] Resolved ticker: PMCB
+2025-11-24 19:55:19,231 [INFO] Resolved ticker: PMEC
+2025-11-24 19:55:19,231 [WARNING] Ticker PMFB has no valid sector/industry
+2025-11-24 19:55:19,231 [INFO] Resolved ticker: PMI
+2025-11-24 19:55:19,231 [WARNING] Ticker PMIO has no valid sector/industry
+2025-11-24 19:55:19,231 [WARNING] Ticker PMJA has no valid sector/industry
+2025-11-24 19:55:19,231 [WARNING] Ticker PMJL has no valid sector/industry
+2025-11-24 19:55:19,231 [WARNING] Ticker PMJN has no valid sector/industry
+2025-11-24 19:55:19,232 [INFO] Resolved ticker: PML
+2025-11-24 19:55:19,232 [INFO] Resolved ticker: PMM
+2025-11-24 19:55:19,232 [WARNING] Ticker PMMF has no valid sector/industry
+2025-11-24 19:55:19,232 [WARNING] Ticker PMMR has no valid sector/industry
+2025-11-24 19:55:19,232 [WARNING] Ticker PMMY has no valid sector/industry
+2025-11-24 19:55:19,232 [INFO] Resolved ticker: PMN
+2025-11-24 19:55:19,241 [INFO] Batch 7/18 - Resolved: 53 | Unresolved: 47
+2025-11-24 19:55:25,199 [INFO] Batch API response type: <class 'dict'>
+2025-11-24 19:55:25,199 [INFO] Resolved ticker: PMNT
+2025-11-24 19:55:25,199 [WARNING] Ticker PMNV has no valid sector/industry
+2025-11-24 19:55:25,200 [INFO] Resolved ticker: PMO
+2025-11-24 19:55:25,200 [WARNING] Ticker PMOC has no valid sector/industry
+2025-11-24 19:55:25,200 [WARNING] Ticker PMSE has no valid sector/industry
+2025-11-24 19:55:25,200 [INFO] Resolved ticker: PMT
+2025-11-24 19:55:25,200 [INFO] Resolved ticker: PMTR
+2025-11-24 19:55:25,200 [INFO] Resolved ticker: PMTRU
+2025-11-24 19:55:25,200 [INFO] Resolved ticker: PMTRW
+2025-11-24 19:55:25,200 [INFO] Resolved ticker: PMTS
+2025-11-24 19:55:25,200 [WARNING] Ticker PMTU has no valid sector/industry
+2025-11-24 19:55:25,200 [WARNING] Ticker PMTV has no valid sector/industry
+2025-11-24 19:55:25,200 [WARNING] Ticker PMTW has no valid sector/industry
+2025-11-24 19:55:25,200 [INFO] Resolved ticker: PMVP
+2025-11-24 19:55:25,200 [INFO] Resolved ticker: PN
+2025-11-24 19:55:25,200 [INFO] Resolved ticker: PNBK
+2025-11-24 19:55:25,200 [INFO] Resolved ticker: PNC
+2025-11-24 19:55:25,200 [INFO] Resolved ticker: PNFP
+2025-11-24 19:55:25,200 [INFO] Resolved ticker: PNFPP
+2025-11-24 19:55:25,200 [INFO] Resolved ticker: PNI
+2025-11-24 19:55:25,201 [INFO] Resolved ticker: PNNT
+2025-11-24 19:55:25,201 [WARNING] Ticker PNOV has no valid sector/industry
+2025-11-24 19:55:25,201 [WARNING] Ticker PNQI has no valid sector/industry
+2025-11-24 19:55:25,201 [INFO] Resolved ticker: PNR
+2025-11-24 19:55:25,201 [INFO] Resolved ticker: PNRG
+2025-11-24 19:55:25,201 [INFO] Resolved ticker: PNTG
+2025-11-24 19:55:25,201 [INFO] Resolved ticker: PNW
+2025-11-24 19:55:25,201 [INFO] Resolved ticker: POAI
+2025-11-24 19:55:25,201 [INFO] Resolved ticker: POAS
+2025-11-24 19:55:25,201 [INFO] Resolved ticker: POCI
+2025-11-24 19:55:25,201 [WARNING] Ticker POCT has no valid sector/industry
+2025-11-24 19:55:25,201 [INFO] Resolved ticker: PODC
+2025-11-24 19:55:25,201 [INFO] Resolved ticker: PODD
+2025-11-24 19:55:25,201 [INFO] Resolved ticker: POET
+2025-11-24 19:55:25,201 [INFO] Resolved ticker: POLA
+2025-11-24 19:55:25,201 [INFO] Resolved ticker: POLE
+2025-11-24 19:55:25,201 [INFO] Resolved ticker: POLEU
+2025-11-24 19:55:25,202 [INFO] Resolved ticker: POLEW
+2025-11-24 19:55:25,202 [INFO] Resolved ticker: POM
+2025-11-24 19:55:25,202 [WARNING] Ticker PONX has no valid sector/industry
+2025-11-24 19:55:25,202 [INFO] Resolved ticker: PONY
+2025-11-24 19:55:25,202 [INFO] Resolved ticker: POOL
+2025-11-24 19:55:25,202 [INFO] Resolved ticker: POR
+2025-11-24 19:55:25,202 [INFO] Resolved ticker: POST
+2025-11-24 19:55:25,202 [WARNING] Ticker POW has no valid sector/industry
+2025-11-24 19:55:25,202 [WARNING] Ticker POWA has no valid sector/industry
+2025-11-24 19:55:25,202 [INFO] Resolved ticker: POWI
+2025-11-24 19:55:25,202 [INFO] Resolved ticker: POWL
+2025-11-24 19:55:25,202 [WARNING] Ticker POWR has no valid sector/industry
+2025-11-24 19:55:25,202 [INFO] Resolved ticker: POWW
+2025-11-24 19:55:25,202 [INFO] Resolved ticker: POWWP
+2025-11-24 19:55:25,202 [WARNING] Ticker PPA has no valid sector/industry
+2025-11-24 19:55:25,202 [INFO] Resolved ticker: PPBT
+2025-11-24 19:55:25,202 [INFO] Resolved ticker: PPC
+2025-11-24 19:55:25,202 [INFO] Resolved ticker: PPCB
+2025-11-24 19:55:25,202 [WARNING] Ticker PPEM has no valid sector/industry
+2025-11-24 19:55:25,203 [INFO] Resolved ticker: PPG
+2025-11-24 19:55:25,203 [WARNING] Ticker PPH has no valid sector/industry
+2025-11-24 19:55:25,203 [WARNING] Ticker PPI has no valid sector/industry
+2025-11-24 19:55:25,203 [WARNING] Ticker PPIE has no valid sector/industry
+2025-11-24 19:55:25,203 [INFO] Resolved ticker: PPIH
+2025-11-24 19:55:25,203 [INFO] Resolved ticker: PPL
+2025-11-24 19:55:25,203 [WARNING] Ticker PPLT has no valid sector/industry
+2025-11-24 19:55:25,203 [INFO] Resolved ticker: PPSI
+2025-11-24 19:55:25,203 [WARNING] Ticker PPTY has no valid sector/industry
+2025-11-24 19:55:25,203 [WARNING] Ticker PQAP has no valid sector/industry
+2025-11-24 19:55:25,203 [WARNING] Ticker PQDI has no valid sector/industry
+2025-11-24 19:55:25,203 [WARNING] Ticker PQJA has no valid sector/industry
+2025-11-24 19:55:25,203 [WARNING] Ticker PQJL has no valid sector/industry
+2025-11-24 19:55:25,203 [WARNING] Ticker PQNT has no valid sector/industry
+2025-11-24 19:55:25,203 [WARNING] Ticker PQOC has no valid sector/industry
+2025-11-24 19:55:25,203 [WARNING] Ticker PRAE has no valid sector/industry
+2025-11-24 19:55:25,203 [WARNING] Ticker PRAY has no valid sector/industry
+2025-11-24 19:55:25,203 [WARNING] Ticker PRCS has no valid sector/industry
+2025-11-24 19:55:25,204 [WARNING] Ticker PREF has no valid sector/industry
+2025-11-24 19:55:25,204 [WARNING] Ticker PRF has no valid sector/industry
+2025-11-24 19:55:25,204 [WARNING] Ticker PRFD has no valid sector/industry
+2025-11-24 19:55:25,204 [WARNING] Ticker PRFZ has no valid sector/industry
+2025-11-24 19:55:25,204 [WARNING] Ticker PRH has no valid sector/industry
+2025-11-24 19:55:25,204 [WARNING] Ticker PRHIZ has no valid sector/industry
+2025-11-24 19:55:25,204 [WARNING] Ticker PRIV has no valid sector/industry
+2025-11-24 19:55:25,204 [WARNING] Ticker PRN has no valid sector/industry
+2025-11-24 19:55:25,204 [WARNING] Ticker PRNT has no valid sector/industry
+2025-11-24 19:55:25,204 [WARNING] Ticker PRS has no valid sector/industry
+2025-11-24 19:55:25,204 [WARNING] Ticker PRSD has no valid sector/industry
+2025-11-24 19:55:25,204 [WARNING] Ticker PRVS has no valid sector/industry
+2025-11-24 19:55:25,204 [WARNING] Ticker PRXG has no valid sector/industry
+2025-11-24 19:55:25,204 [WARNING] Ticker PRXV has no valid sector/industry
+2025-11-24 19:55:25,204 [WARNING] Ticker PSC has no valid sector/industry
+2025-11-24 19:55:25,204 [WARNING] Ticker PSCC has no valid sector/industry
+2025-11-24 19:55:25,204 [WARNING] Ticker PSCD has no valid sector/industry
+2025-11-24 19:55:25,204 [WARNING] Ticker PSCE has no valid sector/industry
+2025-11-24 19:55:25,204 [WARNING] Ticker PSCF has no valid sector/industry
+2025-11-24 19:55:25,204 [WARNING] Ticker PSCH has no valid sector/industry
+2025-11-24 19:55:25,205 [WARNING] Ticker PSCI has no valid sector/industry
+2025-11-24 19:55:25,205 [WARNING] Ticker PSCJ has no valid sector/industry
+2025-11-24 19:55:25,205 [WARNING] Ticker PSCM has no valid sector/industry
+2025-11-24 19:55:25,205 [WARNING] Ticker PSCQ has no valid sector/industry
+2025-11-24 19:55:25,205 [WARNING] Ticker PSCT has no valid sector/industry
+2025-11-24 19:55:25,205 [WARNING] Ticker PSCU has no valid sector/industry
+2025-11-24 19:55:25,213 [INFO] Batch 8/18 - Resolved: 45 | Unresolved: 55
+2025-11-24 19:55:30,229 [INFO] Batch API response type: <class 'dict'>
+2025-11-24 19:55:30,229 [WARNING] Ticker PSCW has no valid sector/industry
+2025-11-24 19:55:30,229 [WARNING] Ticker PSCX has no valid sector/industry
+2025-11-24 19:55:30,229 [WARNING] Ticker PSDM has no valid sector/industry
+2025-11-24 19:55:30,229 [WARNING] Ticker PSEP has no valid sector/industry
+2025-11-24 19:55:30,229 [WARNING] Ticker PSET has no valid sector/industry
+2025-11-24 19:55:30,230 [WARNING] Ticker PSFD has no valid sector/industry
+2025-11-24 19:55:30,230 [WARNING] Ticker PSFF has no valid sector/industry
+2025-11-24 19:55:30,230 [WARNING] Ticker PSFJ has no valid sector/industry
+2025-11-24 19:55:30,230 [WARNING] Ticker PSFM has no valid sector/industry
+2025-11-24 19:55:30,230 [WARNING] Ticker PSFO has no valid sector/industry
+2025-11-24 19:55:30,230 [WARNING] Ticker PSH has no valid sector/industry
+2025-11-24 19:55:30,230 [WARNING] Ticker PSI has no valid sector/industry
+2025-11-24 19:55:30,230 [WARNING] Ticker PSIL has no valid sector/industry
+2025-11-24 19:55:30,230 [WARNING] Ticker PSK has no valid sector/industry
+2025-11-24 19:55:30,230 [WARNING] Ticker PSL has no valid sector/industry
+2025-11-24 19:55:30,230 [WARNING] Ticker PSMD has no valid sector/industry
+2025-11-24 19:55:30,230 [WARNING] Ticker PSMJ has no valid sector/industry
+2025-11-24 19:55:30,230 [WARNING] Ticker PSMO has no valid sector/industry
+2025-11-24 19:55:30,230 [WARNING] Ticker PSMR has no valid sector/industry
+2025-11-24 19:55:30,230 [WARNING] Ticker PSP has no valid sector/industry
+2025-11-24 19:55:30,230 [WARNING] Ticker PSQ has no valid sector/industry
+2025-11-24 19:55:30,230 [WARNING] Ticker PSQA has no valid sector/industry
+2025-11-24 19:55:30,230 [WARNING] Ticker PSQO has no valid sector/industry
+2025-11-24 19:55:30,230 [WARNING] Ticker PSR has no valid sector/industry
+2025-11-24 19:55:30,230 [WARNING] Ticker PST has no valid sector/industry
+2025-11-24 19:55:30,231 [WARNING] Ticker PSTP has no valid sector/industry
+2025-11-24 19:55:30,231 [WARNING] Ticker PSTR has no valid sector/industry
+2025-11-24 19:55:30,231 [WARNING] Ticker PSWD has no valid sector/industry
+2025-11-24 19:55:30,231 [WARNING] Ticker PTBD has no valid sector/industry
+2025-11-24 19:55:30,231 [WARNING] Ticker PTEU has no valid sector/industry
+2025-11-24 19:55:30,231 [WARNING] Ticker PTF has no valid sector/industry
+2025-11-24 19:55:30,231 [WARNING] Ticker PTH has no valid sector/industry
+2025-11-24 19:55:30,231 [WARNING] Ticker PTIN has no valid sector/industry
+2025-11-24 19:55:30,231 [WARNING] Ticker PTIR has no valid sector/industry
+2025-11-24 19:55:30,231 [WARNING] Ticker PTL has no valid sector/industry
+2025-11-24 19:55:30,231 [WARNING] Ticker PTLC has no valid sector/industry
+2025-11-24 19:55:30,231 [WARNING] Ticker PTMC has no valid sector/industry
+2025-11-24 19:55:30,231 [INFO] Resolved ticker: PTN
+2025-11-24 19:55:30,231 [INFO] Resolved ticker: PTNM
+2025-11-24 19:55:30,231 [WARNING] Ticker PTNQ has no valid sector/industry
+2025-11-24 19:55:30,231 [INFO] Resolved ticker: PTON
+2025-11-24 19:55:30,231 [WARNING] Ticker PTRB has no valid sector/industry
+2025-11-24 19:55:30,231 [INFO] Resolved ticker: PTRN
+2025-11-24 19:55:30,231 [INFO] Resolved ticker: PTY
+2025-11-24 19:55:30,231 [INFO] Resolved ticker: PUBM
+2025-11-24 19:55:30,231 [WARNING] Ticker PUI has no valid sector/industry
+2025-11-24 19:55:30,232 [INFO] Resolved ticker: PUK
+2025-11-24 19:55:30,232 [INFO] Resolved ticker: PULM
+2025-11-24 19:55:30,232 [WARNING] Ticker PULS has no valid sector/industry
+2025-11-24 19:55:30,232 [WARNING] Ticker PULT has no valid sector/industry
+2025-11-24 19:55:30,232 [INFO] Resolved ticker: PUMP
+2025-11-24 19:55:30,232 [WARNING] Ticker PUSH has no valid sector/industry
+2025-11-24 19:55:30,232 [WARNING] Ticker PVAL has no valid sector/industry
+2025-11-24 19:55:30,232 [WARNING] Ticker PVEX has no valid sector/industry
+2025-11-24 19:55:30,232 [INFO] Resolved ticker: PVH
+2025-11-24 19:55:30,232 [WARNING] Ticker PVI has no valid sector/industry
+2025-11-24 19:55:30,232 [INFO] Resolved ticker: PVL
+2025-11-24 19:55:30,232 [INFO] Resolved ticker: PVLA
+2025-11-24 19:55:30,232 [INFO] Resolved ticker: PW
+2025-11-24 19:55:30,232 [WARNING] Ticker PWB has no valid sector/industry
+2025-11-24 19:55:30,232 [WARNING] Ticker PWER has no valid sector/industry
+2025-11-24 19:55:30,232 [INFO] Resolved ticker: PWP
+2025-11-24 19:55:30,232 [INFO] Resolved ticker: PWR
+2025-11-24 19:55:30,232 [WARNING] Ticker PWRD has no valid sector/industry
+2025-11-24 19:55:30,232 [WARNING] Ticker PWS has no valid sector/industry
+2025-11-24 19:55:30,232 [WARNING] Ticker PWV has no valid sector/industry
+2025-11-24 19:55:30,232 [WARNING] Ticker PWZ has no valid sector/industry
+2025-11-24 19:55:30,233 [INFO] Resolved ticker: PX
+2025-11-24 19:55:30,233 [WARNING] Ticker PXE has no valid sector/industry
+2025-11-24 19:55:30,233 [INFO] Resolved ticker: PXED
+2025-11-24 19:55:30,233 [WARNING] Ticker PXF has no valid sector/industry
+2025-11-24 19:55:30,233 [WARNING] Ticker PXH has no valid sector/industry
+2025-11-24 19:55:30,233 [WARNING] Ticker PXI has no valid sector/industry
+2025-11-24 19:55:30,233 [WARNING] Ticker PXIU has no valid sector/industry
+2025-11-24 19:55:30,233 [WARNING] Ticker PXJ has no valid sector/industry
+2025-11-24 19:55:30,233 [INFO] Resolved ticker: PXLW
+2025-11-24 19:55:30,233 [INFO] Resolved ticker: PXS
+2025-11-24 19:55:30,233 [WARNING] Ticker PY has no valid sector/industry
+2025-11-24 19:55:30,233 [WARNING] Ticker PYLD has no valid sector/industry
+2025-11-24 19:55:30,233 [INFO] Resolved ticker: PYPD
+2025-11-24 19:55:30,233 [WARNING] Ticker PYPG has no valid sector/industry
+2025-11-24 19:55:30,233 [INFO] Resolved ticker: PYPL
+2025-11-24 19:55:30,233 [WARNING] Ticker PYPY has no valid sector/industry
+2025-11-24 19:55:30,233 [WARNING] Ticker PYT has no valid sector/industry
+2025-11-24 19:55:30,233 [INFO] Resolved ticker: PYXS
+2025-11-24 19:55:30,233 [WARNING] Ticker PYZ has no valid sector/industry
+2025-11-24 19:55:30,233 [WARNING] Ticker PZA has no valid sector/industry
+2025-11-24 19:55:30,233 [INFO] Resolved ticker: PZG
+2025-11-24 19:55:30,234 [WARNING] Ticker PZT has no valid sector/industry
+2025-11-24 19:55:30,234 [INFO] Resolved ticker: PZZA
+2025-11-24 19:55:30,234 [INFO] Resolved ticker: Q
+2025-11-24 19:55:30,234 [WARNING] Ticker QABA has no valid sector/industry
+2025-11-24 19:55:30,234 [WARNING] Ticker QAI has no valid sector/industry
+2025-11-24 19:55:30,234 [WARNING] Ticker QALT has no valid sector/industry
+2025-11-24 19:55:30,234 [WARNING] Ticker QARP has no valid sector/industry
+2025-11-24 19:55:30,234 [WARNING] Ticker QAT has no valid sector/industry
+2025-11-24 19:55:30,234 [WARNING] Ticker QB has no valid sector/industry
+2025-11-24 19:55:30,234 [WARNING] Ticker QBER has no valid sector/industry
+2025-11-24 19:55:30,234 [WARNING] Ticker QBF has no valid sector/industry
+2025-11-24 19:55:30,234 [WARNING] Ticker QBIG has no valid sector/industry
+2025-11-24 19:55:30,243 [INFO] Batch 9/18 - Resolved: 25 | Unresolved: 75
+2025-11-24 19:55:36,402 [INFO] Batch API response type: <class 'dict'>
+2025-11-24 19:55:36,402 [WARNING] Ticker QBSF has no valid sector/industry
+2025-11-24 19:55:36,402 [INFO] Resolved ticker: QBTS
+2025-11-24 19:55:36,402 [WARNING] Ticker QBTX has no valid sector/industry
+2025-11-24 19:55:36,402 [WARNING] Ticker QBTZ has no valid sector/industry
+2025-11-24 19:55:36,402 [WARNING] Ticker QBUF has no valid sector/industry
+2025-11-24 19:55:36,402 [WARNING] Ticker QBUL has no valid sector/industry
+2025-11-24 19:55:36,402 [WARNING] Ticker QCAP has no valid sector/industry
+2025-11-24 19:55:36,403 [WARNING] Ticker QCJA has no valid sector/industry
+2025-11-24 19:55:36,403 [WARNING] Ticker QCJL has no valid sector/industry
+2025-11-24 19:55:36,403 [WARNING] Ticker QCLN has no valid sector/industry
+2025-11-24 19:55:36,403 [WARNING] Ticker QCLR has no valid sector/industry
+2025-11-24 19:55:36,403 [INFO] Resolved ticker: QCLS
+2025-11-24 19:55:36,403 [WARNING] Ticker QCMD has no valid sector/industry
+2025-11-24 19:55:36,403 [WARNING] Ticker QCML has no valid sector/industry
+2025-11-24 19:55:36,403 [WARNING] Ticker QCMU has no valid sector/industry
+2025-11-24 19:55:36,403 [WARNING] Ticker QCOC has no valid sector/industry
+2025-11-24 19:55:36,403 [INFO] Resolved ticker: QCOM
+2025-11-24 19:55:36,403 [INFO] Resolved ticker: QCRH
+2025-11-24 19:55:36,403 [INFO] Resolved ticker: QD
+2025-11-24 19:55:36,403 [WARNING] Ticker QDEC has no valid sector/industry
+2025-11-24 19:55:36,403 [WARNING] Ticker QDEF has no valid sector/industry
+2025-11-24 19:55:36,403 [INFO] Resolved ticker: QDEL
+2025-11-24 19:55:36,403 [WARNING] Ticker QDF has no valid sector/industry
+2025-11-24 19:55:36,403 [WARNING] Ticker QDIV has no valid sector/industry
+2025-11-24 19:55:36,403 [WARNING] Ticker QDPL has no valid sector/industry
+2025-11-24 19:55:36,403 [WARNING] Ticker QDTE has no valid sector/industry
+2025-11-24 19:55:36,403 [WARNING] Ticker QDTY has no valid sector/industry
+2025-11-24 19:55:36,404 [WARNING] Ticker QDVO has no valid sector/industry
+2025-11-24 19:55:36,404 [WARNING] Ticker QDWN has no valid sector/industry
+2025-11-24 19:55:36,404 [WARNING] Ticker QEFA has no valid sector/industry
+2025-11-24 19:55:36,404 [WARNING] Ticker QEMM has no valid sector/industry
+2025-11-24 19:55:36,404 [INFO] Resolved ticker: QETA
+2025-11-24 19:55:36,404 [WARNING] Ticker QETAR has no valid sector/industry
+2025-11-24 19:55:36,404 [INFO] Resolved ticker: QETAU
+2025-11-24 19:55:36,404 [WARNING] Ticker QETH has no valid sector/industry
+2025-11-24 19:55:36,404 [INFO] Resolved ticker: QFIN
+2025-11-24 19:55:36,404 [WARNING] Ticker QFLR has no valid sector/industry
+2025-11-24 19:55:36,404 [INFO] Resolved ticker: QGEN
+2025-11-24 19:55:36,404 [WARNING] Ticker QGRD has no valid sector/industry
+2025-11-24 19:55:36,404 [WARNING] Ticker QGRO has no valid sector/industry
+2025-11-24 19:55:36,404 [WARNING] Ticker QGRW has no valid sector/industry
+2025-11-24 19:55:36,404 [INFO] Resolved ticker: QH
+2025-11-24 19:55:36,404 [WARNING] Ticker QHDG has no valid sector/industry
+2025-11-24 19:55:36,404 [WARNING] Ticker QHY has no valid sector/industry
+2025-11-24 19:55:36,404 [WARNING] Ticker QID has no valid sector/industry
+2025-11-24 19:55:36,405 [WARNING] Ticker QIDX has no valid sector/industry
+2025-11-24 19:55:36,405 [WARNING] Ticker QIG has no valid sector/industry
+2025-11-24 19:55:36,405 [WARNING] Ticker QINT has no valid sector/industry
+2025-11-24 19:55:36,405 [INFO] Resolved ticker: QIPT
+2025-11-24 19:55:36,405 [WARNING] Ticker QIS has no valid sector/industry
+2025-11-24 19:55:36,405 [WARNING] Ticker QJUN has no valid sector/industry
+2025-11-24 19:55:36,405 [WARNING] Ticker QLC has no valid sector/industry
+2025-11-24 19:55:36,405 [WARNING] Ticker QLD has no valid sector/industry
+2025-11-24 19:55:36,405 [WARNING] Ticker QLDY has no valid sector/industry
+2025-11-24 19:55:36,405 [WARNING] Ticker QLTA has no valid sector/industry
+2025-11-24 19:55:36,405 [WARNING] Ticker QLTI has no valid sector/industry
+2025-11-24 19:55:36,405 [WARNING] Ticker QLTY has no valid sector/industry
+2025-11-24 19:55:36,405 [WARNING] Ticker QLV has no valid sector/industry
+2025-11-24 19:55:36,405 [WARNING] Ticker QLVD has no valid sector/industry
+2025-11-24 19:55:36,405 [WARNING] Ticker QLVE has no valid sector/industry
+2025-11-24 19:55:36,405 [INFO] Resolved ticker: QLYS
+2025-11-24 19:55:36,405 [WARNING] Ticker QMAG has no valid sector/industry
+2025-11-24 19:55:36,405 [WARNING] Ticker QMAR has no valid sector/industry
+2025-11-24 19:55:36,406 [INFO] Resolved ticker: QMCO
+2025-11-24 19:55:36,406 [WARNING] Ticker QMFE has no valid sector/industry
+2025-11-24 19:55:36,406 [WARNING] Ticker QMID has no valid sector/industry
+2025-11-24 19:55:36,406 [INFO] Resolved ticker: QMMM
+2025-11-24 19:55:36,406 [WARNING] Ticker QMMY has no valid sector/industry
+2025-11-24 19:55:36,406 [WARNING] Ticker QMNV has no valid sector/industry
+2025-11-24 19:55:36,406 [WARNING] Ticker QMOM has no valid sector/industry
+2025-11-24 19:55:36,406 [INFO] Resolved ticker: QNCX
+2025-11-24 19:55:36,406 [INFO] Resolved ticker: QNRX
+2025-11-24 19:55:36,406 [INFO] Resolved ticker: QNST
+2025-11-24 19:55:36,406 [INFO] Resolved ticker: QNTM
+2025-11-24 19:55:36,406 [WARNING] Ticker QNXT has no valid sector/industry
+2025-11-24 19:55:36,406 [WARNING] Ticker QOWZ has no valid sector/industry
+2025-11-24 19:55:36,406 [WARNING] Ticker QPUX has no valid sector/industry
+2025-11-24 19:55:36,406 [WARNING] Ticker QPX has no valid sector/industry
+2025-11-24 19:55:36,406 [WARNING] Ticker QQA has no valid sector/industry
+2025-11-24 19:55:36,406 [WARNING] Ticker QQDN has no valid sector/industry
+2025-11-24 19:55:36,406 [WARNING] Ticker QQEW has no valid sector/industry
+2025-11-24 19:55:36,407 [WARNING] Ticker QQH has no valid sector/industry
+2025-11-24 19:55:36,407 [WARNING] Ticker QQHG has no valid sector/industry
+2025-11-24 19:55:36,407 [WARNING] Ticker QQJG has no valid sector/industry
+2025-11-24 19:55:36,407 [WARNING] Ticker QQLV has no valid sector/industry
+2025-11-24 19:55:36,407 [WARNING] Ticker QQMG has no valid sector/industry
+2025-11-24 19:55:36,407 [WARNING] Ticker QQQ has no valid sector/industry
+2025-11-24 19:55:36,407 [WARNING] Ticker QQQA has no valid sector/industry
+2025-11-24 19:55:36,407 [WARNING] Ticker QQQD has no valid sector/industry
+2025-11-24 19:55:36,407 [WARNING] Ticker QQQE has no valid sector/industry
+2025-11-24 19:55:36,407 [WARNING] Ticker QQQG has no valid sector/industry
+2025-11-24 19:55:36,407 [WARNING] Ticker QQQH has no valid sector/industry
+2025-11-24 19:55:36,407 [WARNING] Ticker QQQI has no valid sector/industry
+2025-11-24 19:55:36,407 [WARNING] Ticker QQQJ has no valid sector/industry
+2025-11-24 19:55:36,407 [WARNING] Ticker QQQM has no valid sector/industry
+2025-11-24 19:55:36,407 [WARNING] Ticker QQQP has no valid sector/industry
+2025-11-24 19:55:36,407 [WARNING] Ticker QQQS has no valid sector/industry
+2025-11-24 19:55:36,407 [WARNING] Ticker QQQT has no valid sector/industry
+2025-11-24 19:55:36,407 [WARNING] Ticker QQQU has no valid sector/industry
+2025-11-24 19:55:36,408 [INFO] Resolved ticker: QQQX
+2025-11-24 19:55:36,416 [INFO] Batch 10/18 - Resolved: 20 | Unresolved: 80
+2025-11-24 19:55:42,977 [INFO] Batch API response type: <class 'dict'>
+2025-11-24 19:55:42,977 [WARNING] Ticker QQQY has no valid sector/industry
+2025-11-24 19:55:42,977 [WARNING] Ticker QQUP has no valid sector/industry
+2025-11-24 19:55:42,977 [WARNING] Ticker QQWZ has no valid sector/industry
+2025-11-24 19:55:42,977 [WARNING] Ticker QQXL has no valid sector/industry
+2025-11-24 19:55:42,977 [WARNING] Ticker QQXT has no valid sector/industry
+2025-11-24 19:55:42,977 [WARNING] Ticker QRFT has no valid sector/industry
+2025-11-24 19:55:42,977 [INFO] Resolved ticker: QRHC
+2025-11-24 19:55:42,977 [WARNING] Ticker QRMI has no valid sector/industry
+2025-11-24 19:55:42,977 [INFO] Resolved ticker: QRVO
+2025-11-24 19:55:42,977 [INFO] Resolved ticker: QS
+2025-11-24 19:55:42,977 [INFO] Resolved ticker: QSEA
+2025-11-24 19:55:42,978 [WARNING] Ticker QSEAR has no valid sector/industry
+2025-11-24 19:55:42,978 [INFO] Resolved ticker: QSEAU
+2025-11-24 19:55:42,978 [INFO] Resolved ticker: QSI
+2025-11-24 19:55:42,978 [INFO] Resolved ticker: QSIAW
+2025-11-24 19:55:42,978 [WARNING] Ticker QSIG has no valid sector/industry
+2025-11-24 19:55:42,978 [WARNING] Ticker QSIX has no valid sector/industry
+2025-11-24 19:55:42,978 [WARNING] Ticker QSML has no valid sector/industry
+2025-11-24 19:55:42,978 [WARNING] Ticker QSPT has no valid sector/industry
+2025-11-24 19:55:42,978 [INFO] Resolved ticker: QSR
+2025-11-24 19:55:42,978 [WARNING] Ticker QSU has no valid sector/industry
+2025-11-24 19:55:42,978 [WARNING] Ticker QSX has no valid sector/industry
+2025-11-24 19:55:42,978 [WARNING] Ticker QTAP has no valid sector/industry
+2025-11-24 19:55:42,978 [WARNING] Ticker QTEC has no valid sector/industry
+2025-11-24 19:55:42,978 [WARNING] Ticker QTJA has no valid sector/industry
+2025-11-24 19:55:42,978 [WARNING] Ticker QTJL has no valid sector/industry
+2025-11-24 19:55:42,978 [WARNING] Ticker QTOC has no valid sector/industry
+2025-11-24 19:55:42,978 [WARNING] Ticker QTOP has no valid sector/industry
+2025-11-24 19:55:42,978 [WARNING] Ticker QTPI has no valid sector/industry
+2025-11-24 19:55:42,978 [WARNING] Ticker QTR has no valid sector/industry
+2025-11-24 19:55:42,978 [INFO] Resolved ticker: QTRX
+2025-11-24 19:55:42,978 [INFO] Resolved ticker: QTTB
+2025-11-24 19:55:42,979 [WARNING] Ticker QTUM has no valid sector/industry
+2025-11-24 19:55:42,979 [INFO] Resolved ticker: QTWO
+2025-11-24 19:55:42,979 [INFO] Resolved ticker: QUAD
+2025-11-24 19:55:42,979 [WARNING] Ticker QUAL has no valid sector/industry
+2025-11-24 19:55:42,979 [INFO] Resolved ticker: QUBT
+2025-11-24 19:55:42,979 [WARNING] Ticker QUBX has no valid sector/industry
+2025-11-24 19:55:42,979 [INFO] Resolved ticker: QUIK
+2025-11-24 19:55:42,979 [WARNING] Ticker QUIZ has no valid sector/industry
+2025-11-24 19:55:42,979 [WARNING] Ticker QULL has no valid sector/industry
+2025-11-24 19:55:42,979 [INFO] Resolved ticker: QUMS
+2025-11-24 19:55:42,979 [WARNING] Ticker QUMSR has no valid sector/industry
+2025-11-24 19:55:42,979 [INFO] Resolved ticker: QUMSU
+2025-11-24 19:55:42,979 [WARNING] Ticker QUP has no valid sector/industry
+2025-11-24 19:55:42,979 [INFO] Resolved ticker: QURE
+2025-11-24 19:55:42,979 [WARNING] Ticker QUS has no valid sector/industry
+2025-11-24 19:55:42,979 [WARNING] Ticker QUSA has no valid sector/industry
+2025-11-24 19:55:42,979 [WARNING] Ticker QUVU has no valid sector/industry
+2025-11-24 19:55:42,979 [WARNING] Ticker QVAL has no valid sector/industry
+2025-11-24 19:55:42,979 [WARNING] Ticker QVCC has no valid sector/industry
+2025-11-24 19:55:42,979 [WARNING] Ticker QVCD has no valid sector/industry
+2025-11-24 19:55:42,979 [INFO] Resolved ticker: QVCGA
+2025-11-24 19:55:42,980 [INFO] Resolved ticker: QVCGP
+2025-11-24 19:55:42,980 [WARNING] Ticker QVML has no valid sector/industry
+2025-11-24 19:55:42,980 [WARNING] Ticker QVMM has no valid sector/industry
+2025-11-24 19:55:42,980 [WARNING] Ticker QVMS has no valid sector/industry
+2025-11-24 19:55:42,980 [WARNING] Ticker QVOY has no valid sector/industry
+2025-11-24 19:55:42,980 [WARNING] Ticker QWLD has no valid sector/industry
+2025-11-24 19:55:42,980 [INFO] Resolved ticker: QXO
+2025-11-24 19:55:42,980 [WARNING] Ticker QXQ has no valid sector/industry
+2025-11-24 19:55:42,980 [WARNING] Ticker QYLD has no valid sector/industry
+2025-11-24 19:55:42,980 [WARNING] Ticker QYLG has no valid sector/industry
+2025-11-24 19:55:42,980 [INFO] Resolved ticker: R
+2025-11-24 19:55:42,980 [INFO] Resolved ticker: RA
+2025-11-24 19:55:42,980 [WARNING] Ticker RAA has no valid sector/industry
+2025-11-24 19:55:42,980 [WARNING] Ticker RAAA has no valid sector/industry
+2025-11-24 19:55:42,980 [INFO] Resolved ticker: RAAQ
+2025-11-24 19:55:42,980 [INFO] Resolved ticker: RAAQU
+2025-11-24 19:55:42,980 [INFO] Resolved ticker: RAAQW
+2025-11-24 19:55:42,980 [WARNING] Ticker RAAX has no valid sector/industry
+2025-11-24 19:55:42,980 [WARNING] Ticker RAC has no valid sector/industry
+2025-11-24 19:55:42,980 [INFO] Resolved ticker: RACE
+2025-11-24 19:55:42,981 [INFO] Resolved ticker: RADX
+2025-11-24 19:55:42,981 [WARNING] Ticker RAFE has no valid sector/industry
+2025-11-24 19:55:42,981 [INFO] Resolved ticker: RAIL
+2025-11-24 19:55:42,981 [INFO] Resolved ticker: RAIN
+2025-11-24 19:55:42,981 [INFO] Resolved ticker: RAINW
+2025-11-24 19:55:42,981 [INFO] Resolved ticker: RAL
+2025-11-24 19:55:42,981 [INFO] Resolved ticker: RAMP
+2025-11-24 19:55:42,981 [INFO] Resolved ticker: RAND
+2025-11-24 19:55:42,981 [INFO] Resolved ticker: RANG
+2025-11-24 19:55:42,981 [WARNING] Ticker RANGR has no valid sector/industry
+2025-11-24 19:55:42,981 [INFO] Resolved ticker: RANGU
+2025-11-24 19:55:42,981 [INFO] Resolved ticker: RANI
+2025-11-24 19:55:42,981 [INFO] Resolved ticker: RAPP
+2025-11-24 19:55:42,981 [INFO] Resolved ticker: RAPT
+2025-11-24 19:55:42,981 [INFO] Resolved ticker: RARE
+2025-11-24 19:55:42,981 [WARNING] Ticker RAUS has no valid sector/industry
+2025-11-24 19:55:42,981 [INFO] Resolved ticker: RAVE
+2025-11-24 19:55:42,981 [WARNING] Ticker RAVI has no valid sector/industry
+2025-11-24 19:55:42,981 [INFO] Resolved ticker: RAY
+2025-11-24 19:55:42,981 [INFO] Resolved ticker: RAYA
+2025-11-24 19:55:42,981 [WARNING] Ticker RAYC has no valid sector/industry
+2025-11-24 19:55:42,981 [WARNING] Ticker RAYD has no valid sector/industry
+2025-11-24 19:55:42,981 [WARNING] Ticker RAYE has no valid sector/industry
+2025-11-24 19:55:42,981 [WARNING] Ticker RAYJ has no valid sector/industry
+2025-11-24 19:55:42,981 [WARNING] Ticker RB has no valid sector/industry
+2025-11-24 19:55:42,981 [INFO] Resolved ticker: RBA
+2025-11-24 19:55:42,982 [INFO] Resolved ticker: RBB
+2025-11-24 19:55:42,990 [INFO] Batch 11/18 - Resolved: 44 | Unresolved: 56
+2025-11-24 19:55:47,836 [INFO] Batch API response type: <class 'dict'>
+2025-11-24 19:55:47,837 [INFO] Resolved ticker: RBBN
+2025-11-24 19:55:47,837 [INFO] Resolved ticker: RBC
+2025-11-24 19:55:47,837 [INFO] Resolved ticker: RBCAA
+2025-11-24 19:55:47,837 [WARNING] Ticker RBIL has no valid sector/industry
+2025-11-24 19:55:47,837 [INFO] Resolved ticker: RBKB
+2025-11-24 19:55:47,837 [WARNING] Ticker RBLD has no valid sector/industry
+2025-11-24 19:55:47,837 [WARNING] Ticker RBLU has no valid sector/industry
+2025-11-24 19:55:47,837 [INFO] Resolved ticker: RBLX
+2025-11-24 19:55:47,837 [WARNING] Ticker RBLY has no valid sector/industry
+2025-11-24 19:55:47,837 [INFO] Resolved ticker: RBNE
+2025-11-24 19:55:47,837 [INFO] Resolved ticker: RBOT
+2025-11-24 19:55:47,837 [INFO] Resolved ticker: RBRK
+2025-11-24 19:55:47,837 [WARNING] Ticker RBUF has no valid sector/industry
+2025-11-24 19:55:47,838 [INFO] Resolved ticker: RC
+2025-11-24 19:55:47,838 [INFO] Resolved ticker: RCAT
+2025-11-24 19:55:47,838 [WARNING] Ticker RCB has no valid sector/industry
+2025-11-24 19:55:47,838 [WARNING] Ticker RCC has no valid sector/industry
+2025-11-24 19:55:47,838 [WARNING] Ticker RCD has no valid sector/industry
+2025-11-24 19:55:47,838 [INFO] Resolved ticker: RCEL
+2025-11-24 19:55:47,838 [INFO] Resolved ticker: RCG
+2025-11-24 19:55:47,838 [WARNING] Ticker RCGE has no valid sector/industry
+2025-11-24 19:55:47,838 [INFO] Resolved ticker: RCI
+2025-11-24 19:55:47,838 [INFO] Resolved ticker: RCKT
+2025-11-24 19:55:47,838 [WARNING] Ticker RCKTW has no valid sector/industry
+2025-11-24 19:55:47,838 [INFO] Resolved ticker: RCKY
+2025-11-24 19:55:47,838 [INFO] Resolved ticker: RCL
+2025-11-24 19:55:47,838 [WARNING] Ticker RCLO has no valid sector/industry
+2025-11-24 19:55:47,838 [INFO] Resolved ticker: RCMT
+2025-11-24 19:55:47,838 [INFO] Resolved ticker: RCON
+2025-11-24 19:55:47,838 [INFO] Resolved ticker: RCS
+2025-11-24 19:55:47,838 [INFO] Resolved ticker: RCT
+2025-11-24 19:55:47,838 [WARNING] Ticker RCTR has no valid sector/industry
+2025-11-24 19:55:47,838 [INFO] Resolved ticker: RCUS
+2025-11-24 19:55:47,839 [INFO] Resolved ticker: RDAC
+2025-11-24 19:55:47,839 [WARNING] Ticker RDACR has no valid sector/industry
+2025-11-24 19:55:47,839 [INFO] Resolved ticker: RDACU
+2025-11-24 19:55:47,839 [INFO] Resolved ticker: RDAG
+2025-11-24 19:55:47,839 [INFO] Resolved ticker: RDAGU
+2025-11-24 19:55:47,839 [INFO] Resolved ticker: RDAGW
+2025-11-24 19:55:47,839 [INFO] Resolved ticker: RDCM
+2025-11-24 19:55:47,839 [INFO] Resolved ticker: RDDT
+2025-11-24 19:55:47,839 [WARNING] Ticker RDFI has no valid sector/industry
+2025-11-24 19:55:47,839 [INFO] Resolved ticker: RDGT
+2025-11-24 19:55:47,839 [INFO] Resolved ticker: RDHL
+2025-11-24 19:55:47,839 [INFO] Resolved ticker: RDI
+2025-11-24 19:55:47,839 [INFO] Resolved ticker: RDIB
+2025-11-24 19:55:47,839 [WARNING] Ticker RDIV has no valid sector/industry
+2025-11-24 19:55:47,839 [INFO] Resolved ticker: RDN
+2025-11-24 19:55:47,839 [INFO] Resolved ticker: RDNT
+2025-11-24 19:55:47,839 [INFO] Resolved ticker: RDNW
+2025-11-24 19:55:47,839 [WARNING] Ticker RDOG has no valid sector/industry
+2025-11-24 19:55:47,839 [WARNING] Ticker RDTE has no valid sector/industry
+2025-11-24 19:55:47,839 [WARNING] Ticker RDTL has no valid sector/industry
+2025-11-24 19:55:47,840 [WARNING] Ticker RDTY has no valid sector/industry
+2025-11-24 19:55:47,840 [WARNING] Ticker RDVI has no valid sector/industry
+2025-11-24 19:55:47,840 [INFO] Resolved ticker: RDVT
+2025-11-24 19:55:47,840 [WARNING] Ticker RDVY has no valid sector/industry
+2025-11-24 19:55:47,840 [INFO] Resolved ticker: RDW
+2025-11-24 19:55:47,840 [INFO] Resolved ticker: RDWR
+2025-11-24 19:55:47,840 [INFO] Resolved ticker: RDY
+2025-11-24 19:55:47,840 [WARNING] Ticker RDYY has no valid sector/industry
+2025-11-24 19:55:47,840 [INFO] Resolved ticker: RDZN
+2025-11-24 19:55:47,840 [INFO] Resolved ticker: RDZNW
+2025-11-24 19:55:47,840 [WARNING] Ticker REAI has no valid sector/industry
+2025-11-24 19:55:47,840 [INFO] Resolved ticker: REAL
+2025-11-24 19:55:47,840 [INFO] Resolved ticker: REAX
+2025-11-24 19:55:47,840 [INFO] Resolved ticker: REBN
+2025-11-24 19:55:47,840 [WARNING] Ticker RECS has no valid sector/industry
+2025-11-24 19:55:47,840 [INFO] Resolved ticker: RECT
+2025-11-24 19:55:47,840 [INFO] Resolved ticker: REE
+2025-11-24 19:55:47,840 [WARNING] Ticker REET has no valid sector/industry
+2025-11-24 19:55:47,840 [INFO] Resolved ticker: REFI
+2025-11-24 19:55:47,840 [INFO] Resolved ticker: REFR
+2025-11-24 19:55:47,841 [INFO] Resolved ticker: REG
+2025-11-24 19:55:47,841 [INFO] Resolved ticker: REGCO
+2025-11-24 19:55:47,841 [INFO] Resolved ticker: REGCP
+2025-11-24 19:55:47,841 [WARNING] Ticker REGL has no valid sector/industry
+2025-11-24 19:55:47,841 [INFO] Resolved ticker: REGN
+2025-11-24 19:55:47,841 [INFO] Resolved ticker: REI
+2025-11-24 19:55:47,841 [WARNING] Ticker REIT has no valid sector/industry
+2025-11-24 19:55:47,841 [WARNING] Ticker REK has no valid sector/industry
+2025-11-24 19:55:47,841 [INFO] Resolved ticker: REKR
+2025-11-24 19:55:47,841 [WARNING] Ticker REKT has no valid sector/industry
+2025-11-24 19:55:47,841 [INFO] Resolved ticker: RELI
+2025-11-24 19:55:47,841 [INFO] Resolved ticker: RELIW
+2025-11-24 19:55:47,841 [INFO] Resolved ticker: RELL
+2025-11-24 19:55:47,841 [INFO] Resolved ticker: RELX
+2025-11-24 19:55:47,841 [INFO] Resolved ticker: RELY
+2025-11-24 19:55:47,841 [WARNING] Ticker REM has no valid sector/industry
+2025-11-24 19:55:47,841 [WARNING] Ticker REMG has no valid sector/industry
+2025-11-24 19:55:47,841 [WARNING] Ticker REMX has no valid sector/industry
+2025-11-24 19:55:47,841 [INFO] Resolved ticker: RENT
+2025-11-24 19:55:47,841 [INFO] Resolved ticker: REPL
+2025-11-24 19:55:47,842 [INFO] Resolved ticker: REPX
+2025-11-24 19:55:47,842 [INFO] Resolved ticker: RERE
+2025-11-24 19:55:47,842 [INFO] Resolved ticker: RES
+2025-11-24 19:55:47,842 [WARNING] Ticker RETL has no valid sector/industry
+2025-11-24 19:55:47,842 [INFO] Resolved ticker: RETO
+2025-11-24 19:55:47,842 [INFO] Resolved ticker: REVB
+2025-11-24 19:55:47,842 [INFO] Resolved ticker: REVBW
+2025-11-24 19:55:47,850 [INFO] Batch 12/18 - Resolved: 67 | Unresolved: 33
+2025-11-24 19:55:54,543 [INFO] Batch API response type: <class 'dict'>
+2025-11-24 19:55:54,544 [INFO] Resolved ticker: REVG
+2025-11-24 19:55:54,544 [WARNING] Ticker REVS has no valid sector/industry
+2025-11-24 19:55:54,544 [WARNING] Ticker REW has no valid sector/industry
+2025-11-24 19:55:54,544 [INFO] Resolved ticker: REX
+2025-11-24 19:55:54,544 [INFO] Resolved ticker: REXR
+2025-11-24 19:55:54,544 [INFO] Resolved ticker: REYN
+2025-11-24 19:55:54,544 [WARNING] Ticker REZ has no valid sector/industry
+2025-11-24 19:55:54,544 [INFO] Resolved ticker: REZI
+2025-11-24 19:55:54,544 [INFO] Resolved ticker: RF
+2025-11-24 19:55:54,544 [INFO] Resolved ticker: RFAI
+2025-11-24 19:55:54,544 [WARNING] Ticker RFAIR has no valid sector/industry
+2025-11-24 19:55:54,544 [INFO] Resolved ticker: RFAIU
+2025-11-24 19:55:54,544 [WARNING] Ticker RFCI has no valid sector/industry
+2025-11-24 19:55:54,544 [WARNING] Ticker RFDA has no valid sector/industry
+2025-11-24 19:55:54,544 [WARNING] Ticker RFDI has no valid sector/industry
+2025-11-24 19:55:54,545 [WARNING] Ticker RFEM has no valid sector/industry
+2025-11-24 19:55:54,545 [WARNING] Ticker RFEU has no valid sector/industry
+2025-11-24 19:55:54,545 [WARNING] Ticker RFFC has no valid sector/industry
+2025-11-24 19:55:54,545 [WARNING] Ticker RFG has no valid sector/industry
+2025-11-24 19:55:54,545 [INFO] Resolved ticker: RFI
+2025-11-24 19:55:54,545 [INFO] Resolved ticker: RFIL
+2025-11-24 19:55:54,545 [WARNING] Ticker RFIX has no valid sector/industry
+2025-11-24 19:55:54,545 [INFO] Resolved ticker: RFL
+2025-11-24 19:55:54,545 [WARNING] Ticker RFLR has no valid sector/industry
+2025-11-24 19:55:54,545 [INFO] Resolved ticker: RFM
+2025-11-24 19:55:54,545 [INFO] Resolved ticker: RFMZ
+2025-11-24 19:55:54,545 [WARNING] Ticker RFV has no valid sector/industry
+2025-11-24 19:55:54,545 [INFO] Resolved ticker: RGA
+2025-11-24 19:55:54,545 [INFO] Resolved ticker: RGC
+2025-11-24 19:55:54,545 [INFO] Resolved ticker: RGCO
+2025-11-24 19:55:54,545 [WARNING] Ticker RGEF has no valid sector/industry
+2025-11-24 19:55:54,545 [INFO] Resolved ticker: RGEN
+2025-11-24 19:55:54,545 [INFO] Resolved ticker: RGLD
+2025-11-24 19:55:54,545 [WARNING] Ticker RGLO has no valid sector/industry
+2025-11-24 19:55:54,545 [INFO] Resolved ticker: RGNX
+2025-11-24 19:55:54,546 [INFO] Resolved ticker: RGP
+2025-11-24 19:55:54,546 [INFO] Resolved ticker: RGR
+2025-11-24 19:55:54,546 [INFO] Resolved ticker: RGS
+2025-11-24 19:55:54,546 [INFO] Resolved ticker: RGT
+2025-11-24 19:55:54,546 [INFO] Resolved ticker: RGTI
+2025-11-24 19:55:54,546 [INFO] Resolved ticker: RGTIW
+2025-11-24 19:55:54,546 [WARNING] Ticker RGTU has no valid sector/industry
+2025-11-24 19:55:54,546 [WARNING] Ticker RGTX has no valid sector/industry
+2025-11-24 19:55:54,546 [WARNING] Ticker RGTZ has no valid sector/industry
+2025-11-24 19:55:54,546 [INFO] Resolved ticker: RH
+2025-11-24 19:55:54,546 [INFO] Resolved ticker: RHI
+2025-11-24 19:55:54,546 [INFO] Resolved ticker: RHLD
+2025-11-24 19:55:54,546 [INFO] Resolved ticker: RHP
+2025-11-24 19:55:54,546 [WARNING] Ticker RHRX has no valid sector/industry
+2025-11-24 19:55:54,546 [WARNING] Ticker RHTX has no valid sector/industry
+2025-11-24 19:55:54,546 [INFO] Resolved ticker: RIBB
+2025-11-24 19:55:54,546 [WARNING] Ticker RIBBR has no valid sector/industry
+2025-11-24 19:55:54,546 [INFO] Resolved ticker: RIBBU
+2025-11-24 19:55:54,546 [INFO] Resolved ticker: RICK
+2025-11-24 19:55:54,546 [WARNING] Ticker RIET has no valid sector/industry
+2025-11-24 19:55:54,546 [WARNING] Ticker RIFR has no valid sector/industry
+2025-11-24 19:55:54,547 [INFO] Resolved ticker: RIG
+2025-11-24 19:55:54,547 [INFO] Resolved ticker: RIGL
+2025-11-24 19:55:54,547 [WARNING] Ticker RIGS has no valid sector/industry
+2025-11-24 19:55:54,547 [WARNING] Ticker RILA has no valid sector/industry
+2025-11-24 19:55:54,547 [INFO] Resolved ticker: RILY
+2025-11-24 19:55:54,547 [WARNING] Ticker RILYG has no valid sector/industry
+2025-11-24 19:55:54,547 [WARNING] Ticker RILYK has no valid sector/industry
+2025-11-24 19:55:54,547 [INFO] Resolved ticker: RILYL
+2025-11-24 19:55:54,547 [WARNING] Ticker RILYN has no valid sector/industry
+2025-11-24 19:55:54,547 [INFO] Resolved ticker: RILYP
+2025-11-24 19:55:54,547 [WARNING] Ticker RILYT has no valid sector/industry
+2025-11-24 19:55:54,547 [WARNING] Ticker RILYZ has no valid sector/industry
+2025-11-24 19:55:54,547 [INFO] Resolved ticker: RIME
+2025-11-24 19:55:54,547 [WARNING] Ticker RINF has no valid sector/industry
+2025-11-24 19:55:54,547 [WARNING] Ticker RING has no valid sector/industry
+2025-11-24 19:55:54,547 [WARNING] Ticker RINT has no valid sector/industry
+2025-11-24 19:55:54,547 [INFO] Resolved ticker: RIO
+2025-11-24 19:55:54,547 [INFO] Resolved ticker: RIOT
+2025-11-24 19:55:54,547 [WARNING] Ticker RIOX has no valid sector/industry
+2025-11-24 19:55:54,547 [WARNING] Ticker RISN has no valid sector/industry
+2025-11-24 19:55:54,547 [WARNING] Ticker RISR has no valid sector/industry
+2025-11-24 19:55:54,548 [WARNING] Ticker RITA has no valid sector/industry
+2025-11-24 19:55:54,548 [INFO] Resolved ticker: RITM
+2025-11-24 19:55:54,548 [INFO] Resolved ticker: RITR
+2025-11-24 19:55:54,548 [INFO] Resolved ticker: RIV
+2025-11-24 19:55:54,548 [INFO] Resolved ticker: RIVN
+2025-11-24 19:55:54,548 [WARNING] Ticker RJDI has no valid sector/industry
+2025-11-24 19:55:54,548 [INFO] Resolved ticker: RJF
+2025-11-24 19:55:54,548 [WARNING] Ticker RJMG has no valid sector/industry
+2025-11-24 19:55:54,548 [WARNING] Ticker RJMI has no valid sector/industry
+2025-11-24 19:55:54,548 [WARNING] Ticker RJVI has no valid sector/industry
+2025-11-24 19:55:54,548 [INFO] Resolved ticker: RKDA
+2025-11-24 19:55:54,548 [INFO] Resolved ticker: RKLB
+2025-11-24 19:55:54,548 [WARNING] Ticker RKLX has no valid sector/industry
+2025-11-24 19:55:54,548 [WARNING] Ticker RKLZ has no valid sector/industry
+2025-11-24 19:55:54,548 [INFO] Resolved ticker: RKT
+2025-11-24 19:55:54,548 [INFO] Resolved ticker: RL
+2025-11-24 19:55:54,548 [INFO] Resolved ticker: RLAY
+2025-11-24 19:55:54,548 [INFO] Resolved ticker: RLGT
+2025-11-24 19:55:54,548 [INFO] Resolved ticker: RLI
+2025-11-24 19:55:54,548 [INFO] Resolved ticker: RLJ
+2025-11-24 19:55:54,549 [INFO] Resolved ticker: RLMD
+2025-11-24 19:55:54,549 [INFO] Resolved ticker: RLTY
+2025-11-24 19:55:54,549 [INFO] Resolved ticker: RLX
+2025-11-24 19:55:54,556 [INFO] Batch 13/18 - Resolved: 56 | Unresolved: 44
+2025-11-24 19:55:58,896 [INFO] Batch API response type: <class 'dict'>
+2025-11-24 19:55:58,896 [WARNING] Ticker RLY has no valid sector/industry
+2025-11-24 19:55:58,896 [INFO] Resolved ticker: RLYB
+2025-11-24 19:55:58,896 [INFO] Resolved ticker: RM
+2025-11-24 19:55:58,896 [INFO] Resolved ticker: RMAX
+2025-11-24 19:55:58,896 [INFO] Resolved ticker: RMBI
+2025-11-24 19:55:58,896 [INFO] Resolved ticker: RMBS
+2025-11-24 19:55:58,896 [WARNING] Ticker RMCA has no valid sector/industry
+2025-11-24 19:55:58,896 [INFO] Resolved ticker: RMCF
+2025-11-24 19:55:58,896 [INFO] Resolved ticker: RMCO
+2025-11-24 19:55:58,897 [INFO] Resolved ticker: RMCOW
+2025-11-24 19:55:58,897 [INFO] Resolved ticker: RMD
+2025-11-24 19:55:58,897 [INFO] Resolved ticker: RMI
+2025-11-24 19:55:58,897 [WARNING] Ticker RMIF has no valid sector/industry
+2025-11-24 19:55:58,897 [INFO] Resolved ticker: RMM
+2025-11-24 19:55:58,897 [INFO] Resolved ticker: RMMZ
+2025-11-24 19:55:58,897 [INFO] Resolved ticker: RMNI
+2025-11-24 19:55:58,897 [WARNING] Ticker RMNY has no valid sector/industry
+2025-11-24 19:55:58,897 [WARNING] Ticker RMOP has no valid sector/industry
+2025-11-24 19:55:58,897 [INFO] Resolved ticker: RMR
+2025-11-24 19:55:58,897 [WARNING] Ticker RMSG has no valid sector/industry
+2025-11-24 19:55:58,897 [WARNING] Ticker RMSGW has no valid sector/industry
+2025-11-24 19:55:58,897 [INFO] Resolved ticker: RMT
+2025-11-24 19:55:58,897 [INFO] Resolved ticker: RMTI
+2025-11-24 19:55:58,897 [INFO] Resolved ticker: RNA
+2025-11-24 19:55:58,897 [INFO] Resolved ticker: RNAC
+2025-11-24 19:55:58,897 [INFO] Resolved ticker: RNAZ
+2025-11-24 19:55:58,897 [WARNING] Ticker RND has no valid sector/industry
+2025-11-24 19:55:58,897 [WARNING] Ticker RNEM has no valid sector/industry
+2025-11-24 19:55:58,897 [INFO] Resolved ticker: RNG
+2025-11-24 19:55:58,898 [INFO] Resolved ticker: RNGR
+2025-11-24 19:55:58,898 [WARNING] Ticker RNGT has no valid sector/industry
+2025-11-24 19:55:58,898 [WARNING] Ticker RNGTU has no valid sector/industry
+2025-11-24 19:55:58,898 [WARNING] Ticker RNGTW has no valid sector/industry
+2025-11-24 19:55:58,898 [WARNING] Ticker RNIN has no valid sector/industry
+2025-11-24 19:55:58,898 [INFO] Resolved ticker: RNP
+2025-11-24 19:55:58,898 [INFO] Resolved ticker: RNR
+2025-11-24 19:55:58,898 [WARNING] Ticker RNRG has no valid sector/industry
+2025-11-24 19:55:58,898 [INFO] Resolved ticker: RNST
+2025-11-24 19:55:58,898 [INFO] Resolved ticker: RNTX
+2025-11-24 19:55:58,898 [WARNING] Ticker RNTY has no valid sector/industry
+2025-11-24 19:55:58,898 [INFO] Resolved ticker: RNW
+2025-11-24 19:55:58,898 [INFO] Resolved ticker: RNWWW
+2025-11-24 19:55:58,898 [WARNING] Ticker RNWZ has no valid sector/industry
+2025-11-24 19:55:58,898 [INFO] Resolved ticker: RNXT
+2025-11-24 19:55:58,898 [INFO] Resolved ticker: ROAD
+2025-11-24 19:55:58,898 [WARNING] Ticker ROAM has no valid sector/industry
+2025-11-24 19:55:58,898 [WARNING] Ticker ROBN has no valid sector/industry
+2025-11-24 19:55:58,898 [WARNING] Ticker ROBO has no valid sector/industry
+2025-11-24 19:55:58,899 [WARNING] Ticker ROBT has no valid sector/industry
+2025-11-24 19:55:58,899 [INFO] Resolved ticker: ROCK
+2025-11-24 19:55:58,899 [WARNING] Ticker RODM has no valid sector/industry
+2025-11-24 19:55:58,899 [WARNING] Ticker ROE has no valid sector/industry
+2025-11-24 19:55:58,899 [INFO] Resolved ticker: ROG
+2025-11-24 19:55:58,899 [INFO] Resolved ticker: ROIV
+2025-11-24 19:55:58,899 [INFO] Resolved ticker: ROK
+2025-11-24 19:55:58,899 [WARNING] Ticker ROKT has no valid sector/industry
+2025-11-24 19:55:58,899 [INFO] Resolved ticker: ROKU
+2025-11-24 19:55:58,899 [INFO] Resolved ticker: ROL
+2025-11-24 19:55:58,899 [INFO] Resolved ticker: ROLR
+2025-11-24 19:55:58,899 [WARNING] Ticker ROM has no valid sector/industry
+2025-11-24 19:55:58,899 [INFO] Resolved ticker: ROMA
+2025-11-24 19:55:58,899 [WARNING] Ticker ROMO has no valid sector/industry
+2025-11-24 19:55:58,899 [INFO] Resolved ticker: ROOT
+2025-11-24 19:55:58,899 [INFO] Resolved ticker: ROP
+2025-11-24 19:55:58,899 [WARNING] Ticker ROPE has no valid sector/industry
+2025-11-24 19:55:58,899 [WARNING] Ticker ROSC has no valid sector/industry
+2025-11-24 19:55:58,899 [INFO] Resolved ticker: ROST
+2025-11-24 19:55:58,899 [WARNING] Ticker ROUS has no valid sector/industry
+2025-11-24 19:55:58,900 [WARNING] Ticker RPAR has no valid sector/industry
+2025-11-24 19:55:58,900 [INFO] Resolved ticker: RPAY
+2025-11-24 19:55:58,900 [INFO] Resolved ticker: RPD
+2025-11-24 19:55:58,900 [WARNING] Ticker RPG has no valid sector/industry
+2025-11-24 19:55:58,900 [INFO] Resolved ticker: RPGL
+2025-11-24 19:55:58,900 [WARNING] Ticker RPHS has no valid sector/industry
+2025-11-24 19:55:58,900 [INFO] Resolved ticker: RPID
+2025-11-24 19:55:58,900 [INFO] Resolved ticker: RPM
+2025-11-24 19:55:58,900 [INFO] Resolved ticker: RPRX
+2025-11-24 19:55:58,900 [INFO] Resolved ticker: RPT
+2025-11-24 19:55:58,900 [INFO] Resolved ticker: RPTX
+2025-11-24 19:55:58,900 [WARNING] Ticker RPV has no valid sector/industry
+2025-11-24 19:55:58,900 [INFO] Resolved ticker: RQI
+2025-11-24 19:55:58,900 [INFO] Resolved ticker: RR
+2025-11-24 19:55:58,900 [INFO] Resolved ticker: RRBI
+2025-11-24 19:55:58,900 [INFO] Resolved ticker: RRC
+2025-11-24 19:55:58,900 [INFO] Resolved ticker: RRGB
+2025-11-24 19:55:58,900 [INFO] Resolved ticker: RRR
+2025-11-24 19:55:58,900 [INFO] Resolved ticker: RRX
+2025-11-24 19:55:58,900 [INFO] Resolved ticker: RS
+2025-11-24 19:55:58,901 [WARNING] Ticker RSBA has no valid sector/industry
+2025-11-24 19:55:58,901 [WARNING] Ticker RSBT has no valid sector/industry
+2025-11-24 19:55:58,901 [WARNING] Ticker RSBY has no valid sector/industry
+2025-11-24 19:55:58,901 [WARNING] Ticker RSDE has no valid sector/industry
+2025-11-24 19:55:58,901 [WARNING] Ticker RSEE has no valid sector/industry
+2025-11-24 19:55:58,901 [INFO] Resolved ticker: RSF
+2025-11-24 19:55:58,901 [INFO] Resolved ticker: RSG
+2025-11-24 19:55:58,901 [WARNING] Ticker RSHO has no valid sector/industry
+2025-11-24 19:55:58,901 [INFO] Resolved ticker: RSI
+2025-11-24 19:55:58,901 [WARNING] Ticker RSJN has no valid sector/industry
+2025-11-24 19:55:58,901 [INFO] Resolved ticker: RSKD
+2025-11-24 19:55:58,901 [WARNING] Ticker RSMC has no valid sector/industry
+2025-11-24 19:55:58,909 [INFO] Batch 14/18 - Resolved: 60 | Unresolved: 40
+2025-11-24 19:56:04,652 [INFO] Batch API response type: <class 'dict'>
+2025-11-24 19:56:04,652 [WARNING] Ticker RSMR has no valid sector/industry
+2025-11-24 19:56:04,652 [WARNING] Ticker RSMV has no valid sector/industry
+2025-11-24 19:56:04,652 [WARNING] Ticker RSP has no valid sector/industry
+2025-11-24 19:56:04,653 [WARNING] Ticker RSPA has no valid sector/industry
+2025-11-24 19:56:04,653 [WARNING] Ticker RSPC has no valid sector/industry
+2025-11-24 19:56:04,653 [WARNING] Ticker RSPD has no valid sector/industry
+2025-11-24 19:56:04,653 [WARNING] Ticker RSPE has no valid sector/industry
+2025-11-24 19:56:04,653 [WARNING] Ticker RSPF has no valid sector/industry
+2025-11-24 19:56:04,653 [WARNING] Ticker RSPG has no valid sector/industry
+2025-11-24 19:56:04,653 [WARNING] Ticker RSPH has no valid sector/industry
+2025-11-24 19:56:04,653 [WARNING] Ticker RSPM has no valid sector/industry
+2025-11-24 19:56:04,653 [WARNING] Ticker RSPN has no valid sector/industry
+2025-11-24 19:56:04,653 [WARNING] Ticker RSPR has no valid sector/industry
+2025-11-24 19:56:04,653 [WARNING] Ticker RSPS has no valid sector/industry
+2025-11-24 19:56:04,653 [WARNING] Ticker RSPT has no valid sector/industry
+2025-11-24 19:56:04,653 [WARNING] Ticker RSPU has no valid sector/industry
+2025-11-24 19:56:04,653 [WARNING] Ticker RSSB has no valid sector/industry
+2025-11-24 19:56:04,653 [WARNING] Ticker RSSE has no valid sector/industry
+2025-11-24 19:56:04,653 [WARNING] Ticker RSSL has no valid sector/industry
+2025-11-24 19:56:04,653 [INFO] Resolved ticker: RSSS
+2025-11-24 19:56:04,653 [WARNING] Ticker RSST has no valid sector/industry
+2025-11-24 19:56:04,654 [WARNING] Ticker RSSX has no valid sector/industry
+2025-11-24 19:56:04,654 [WARNING] Ticker RSSY has no valid sector/industry
+2025-11-24 19:56:04,654 [INFO] Resolved ticker: RSVR
+2025-11-24 19:56:04,654 [INFO] Resolved ticker: RSVRW
+2025-11-24 19:56:04,654 [INFO] Resolved ticker: RTAC
+2025-11-24 19:56:04,654 [INFO] Resolved ticker: RTACU
+2025-11-24 19:56:04,654 [INFO] Resolved ticker: RTACW
+2025-11-24 19:56:04,654 [WARNING] Ticker RTAI has no valid sector/industry
+2025-11-24 19:56:04,654 [WARNING] Ticker RTH has no valid sector/industry
+2025-11-24 19:56:04,654 [INFO] Resolved ticker: RTO
+2025-11-24 19:56:04,654 [WARNING] Ticker RTRE has no valid sector/industry
+2025-11-24 19:56:04,654 [INFO] Resolved ticker: RTX
+2025-11-24 19:56:04,654 [WARNING] Ticker RTXG has no valid sector/industry
+2025-11-24 19:56:04,654 [INFO] Resolved ticker: RUBI
+2025-11-24 19:56:04,654 [WARNING] Ticker RULE has no valid sector/industry
+2025-11-24 19:56:04,654 [INFO] Resolved ticker: RUM
+2025-11-24 19:56:04,654 [INFO] Resolved ticker: RUMBW
+2025-11-24 19:56:04,654 [INFO] Resolved ticker: RUN
+2025-11-24 19:56:04,655 [WARNING] Ticker RUNN has no valid sector/industry
+2025-11-24 19:56:04,655 [WARNING] Ticker RUSC has no valid sector/industry
+2025-11-24 19:56:04,655 [INFO] Resolved ticker: RUSHA
+2025-11-24 19:56:04,655 [INFO] Resolved ticker: RUSHB
+2025-11-24 19:56:04,655 [WARNING] Ticker RVER has no valid sector/industry
+2025-11-24 19:56:04,655 [INFO] Resolved ticker: RVLV
+2025-11-24 19:56:04,655 [INFO] Resolved ticker: RVMD
+2025-11-24 19:56:04,655 [INFO] Resolved ticker: RVMDW
+2025-11-24 19:56:04,655 [WARNING] Ticker RVNL has no valid sector/industry
+2025-11-24 19:56:04,655 [WARNING] Ticker RVNU has no valid sector/industry
+2025-11-24 19:56:04,655 [INFO] Resolved ticker: RVP
+2025-11-24 19:56:04,655 [INFO] Resolved ticker: RVPH
+2025-11-24 19:56:04,655 [INFO] Resolved ticker: RVPHW
+2025-11-24 19:56:04,655 [WARNING] Ticker RVRB has no valid sector/industry
+2025-11-24 19:56:04,655 [INFO] Resolved ticker: RVSB
+2025-11-24 19:56:04,655 [INFO] Resolved ticker: RVSN
+2025-11-24 19:56:04,655 [INFO] Resolved ticker: RVSNW
+2025-11-24 19:56:04,655 [INFO] Resolved ticker: RVT
+2025-11-24 19:56:04,655 [INFO] Resolved ticker: RVTY
+2025-11-24 19:56:04,655 [INFO] Resolved ticker: RVYL
+2025-11-24 19:56:04,656 [WARNING] Ticker RW has no valid sector/industry
+2025-11-24 19:56:04,656 [INFO] Resolved ticker: RWAY
+2025-11-24 19:56:04,656 [WARNING] Ticker RWAYL has no valid sector/industry
+2025-11-24 19:56:04,656 [WARNING] Ticker RWAYZ has no valid sector/industry
+2025-11-24 19:56:04,656 [WARNING] Ticker RWJ has no valid sector/industry
+2025-11-24 19:56:04,656 [WARNING] Ticker RWK has no valid sector/industry
+2025-11-24 19:56:04,656 [WARNING] Ticker RWL has no valid sector/industry
+2025-11-24 19:56:04,656 [WARNING] Ticker RWM has no valid sector/industry
+2025-11-24 19:56:04,656 [WARNING] Ticker RWO has no valid sector/industry
+2025-11-24 19:56:04,656 [WARNING] Ticker RWR has no valid sector/industry
+2025-11-24 19:56:04,656 [INFO] Resolved ticker: RWT
+2025-11-24 19:56:04,656 [WARNING] Ticker RWTN has no valid sector/industry
+2025-11-24 19:56:04,656 [WARNING] Ticker RWTO has no valid sector/industry
+2025-11-24 19:56:04,656 [WARNING] Ticker RWTP has no valid sector/industry
+2025-11-24 19:56:04,656 [WARNING] Ticker RWX has no valid sector/industry
+2025-11-24 19:56:04,656 [WARNING] Ticker RXD has no valid sector/industry
+2025-11-24 19:56:04,656 [WARNING] Ticker RXI has no valid sector/industry
+2025-11-24 19:56:04,656 [WARNING] Ticker RXL has no valid sector/industry
+2025-11-24 19:56:04,656 [INFO] Resolved ticker: RXO
+2025-11-24 19:56:04,656 [INFO] Resolved ticker: RXRX
+2025-11-24 19:56:04,657 [INFO] Resolved ticker: RXST
+2025-11-24 19:56:04,657 [INFO] Resolved ticker: RXT
+2025-11-24 19:56:04,657 [INFO] Resolved ticker: RY
+2025-11-24 19:56:04,657 [INFO] Resolved ticker: RYAAY
+2025-11-24 19:56:04,657 [INFO] Resolved ticker: RYAM
+2025-11-24 19:56:04,657 [INFO] Resolved ticker: RYAN
+2025-11-24 19:56:04,657 [INFO] Resolved ticker: RYDE
+2025-11-24 19:56:04,657 [INFO] Resolved ticker: RYET
+2025-11-24 19:56:04,657 [INFO] Resolved ticker: RYI
+2025-11-24 19:56:04,657 [WARNING] Ticker RYLD has no valid sector/industry
+2025-11-24 19:56:04,657 [WARNING] Ticker RYLG has no valid sector/industry
+2025-11-24 19:56:04,657 [INFO] Resolved ticker: RYM
+2025-11-24 19:56:04,657 [INFO] Resolved ticker: RYN
+2025-11-24 19:56:04,657 [INFO] Resolved ticker: RYOJ
+2025-11-24 19:56:04,657 [WARNING] Ticker RYSE has no valid sector/industry
+2025-11-24 19:56:04,657 [INFO] Resolved ticker: RYTM
+2025-11-24 19:56:04,657 [WARNING] Ticker RZB has no valid sector/industry
+2025-11-24 19:56:04,657 [WARNING] Ticker RZC has no valid sector/industry
+2025-11-24 19:56:04,657 [WARNING] Ticker RZG has no valid sector/industry
+2025-11-24 19:56:04,657 [INFO] Resolved ticker: RZLT
+2025-11-24 19:56:04,658 [INFO] Resolved ticker: RZLV
+2025-11-24 19:56:04,666 [INFO] Batch 15/18 - Resolved: 45 | Unresolved: 55
+2025-11-24 19:56:08,901 [INFO] Batch API response type: <class 'dict'>
+2025-11-24 19:56:08,901 [INFO] Resolved ticker: RZLVW
+2025-11-24 19:56:08,901 [WARNING] Ticker RZV has no valid sector/industry
+2025-11-24 19:56:08,901 [INFO] Resolved ticker: S
+2025-11-24 19:56:08,901 [INFO] Resolved ticker: SA
+2025-11-24 19:56:08,901 [WARNING] Ticker SAA has no valid sector/industry
+2025-11-24 19:56:08,901 [INFO] Resolved ticker: SABA
+2025-11-24 19:56:08,902 [INFO] Resolved ticker: SABR
+2025-11-24 19:56:08,902 [INFO] Resolved ticker: SABS
+2025-11-24 19:56:08,902 [INFO] Resolved ticker: SABSW
+2025-11-24 19:56:08,902 [INFO] Resolved ticker: SACH
+2025-11-24 19:56:08,902 [WARNING] Ticker SAEF has no valid sector/industry
+2025-11-24 19:56:08,902 [INFO] Resolved ticker: SAFE
+2025-11-24 19:56:08,902 [INFO] Resolved ticker: SAFT
+2025-11-24 19:56:08,902 [INFO] Resolved ticker: SAFX
+2025-11-24 19:56:08,902 [WARNING] Ticker SAGP has no valid sector/industry
+2025-11-24 19:56:08,902 [INFO] Resolved ticker: SAGT
+2025-11-24 19:56:08,902 [INFO] Resolved ticker: SAH
+2025-11-24 19:56:08,902 [INFO] Resolved ticker: SAIA
+2025-11-24 19:56:08,902 [INFO] Resolved ticker: SAIC
+2025-11-24 19:56:08,902 [INFO] Resolved ticker: SAIH
+2025-11-24 19:56:08,902 [INFO] Resolved ticker: SAIHW
+2025-11-24 19:56:08,902 [INFO] Resolved ticker: SAIL
+2025-11-24 19:56:08,902 [WARNING] Ticker SAJ has no valid sector/industry
+2025-11-24 19:56:08,902 [INFO] Resolved ticker: SAM
+2025-11-24 19:56:08,903 [INFO] Resolved ticker: SAMG
+2025-11-24 19:56:08,903 [WARNING] Ticker SAMM has no valid sector/industry
+2025-11-24 19:56:08,903 [WARNING] Ticker SAMT has no valid sector/industry
+2025-11-24 19:56:08,903 [INFO] Resolved ticker: SAN
+2025-11-24 19:56:08,903 [INFO] Resolved ticker: SANA
+2025-11-24 19:56:08,903 [INFO] Resolved ticker: SANG
+2025-11-24 19:56:08,903 [INFO] Resolved ticker: SANM
+2025-11-24 19:56:08,903 [INFO] Resolved ticker: SAP
+2025-11-24 19:56:08,903 [WARNING] Ticker SAPH has no valid sector/industry
+2025-11-24 19:56:08,903 [INFO] Resolved ticker: SAR
+2025-11-24 19:56:08,903 [WARNING] Ticker SARK has no valid sector/industry
+2025-11-24 19:56:08,903 [INFO] Resolved ticker: SARO
+2025-11-24 19:56:08,903 [WARNING] Ticker SAT has no valid sector/industry
+2025-11-24 19:56:08,903 [INFO] Resolved ticker: SATA
+2025-11-24 19:56:08,903 [INFO] Resolved ticker: SATL
+2025-11-24 19:56:08,903 [INFO] Resolved ticker: SATLW
+2025-11-24 19:56:08,903 [WARNING] Ticker SATO has no valid sector/industry
+2025-11-24 19:56:08,903 [INFO] Resolved ticker: SATS
+2025-11-24 19:56:08,903 [WARNING] Ticker SAUG has no valid sector/industry
+2025-11-24 19:56:08,903 [INFO] Resolved ticker: SAVA
+2025-11-24 19:56:08,904 [WARNING] Ticker SAWG has no valid sector/industry
+2025-11-24 19:56:08,904 [WARNING] Ticker SAWS has no valid sector/industry
+2025-11-24 19:56:08,904 [WARNING] Ticker SAY has no valid sector/industry
+2025-11-24 19:56:08,904 [WARNING] Ticker SAZ has no valid sector/industry
+2025-11-24 19:56:08,904 [INFO] Resolved ticker: SB
+2025-11-24 19:56:08,904 [INFO] Resolved ticker: SBAC
+2025-11-24 19:56:08,904 [WARNING] Ticker SBAR has no valid sector/industry
+2025-11-24 19:56:08,904 [WARNING] Ticker SBB has no valid sector/industry
+2025-11-24 19:56:08,904 [INFO] Resolved ticker: SBC
+2025-11-24 19:56:08,904 [INFO] Resolved ticker: SBCF
+2025-11-24 19:56:08,904 [INFO] Resolved ticker: SBCWW
+2025-11-24 19:56:08,904 [INFO] Resolved ticker: SBDS
+2025-11-24 19:56:08,904 [INFO] Resolved ticker: SBET
+2025-11-24 19:56:08,904 [INFO] Resolved ticker: SBEV
+2025-11-24 19:56:08,904 [INFO] Resolved ticker: SBFG
+2025-11-24 19:56:08,904 [INFO] Resolved ticker: SBFM
+2025-11-24 19:56:08,904 [INFO] Resolved ticker: SBFMW
+2025-11-24 19:56:08,904 [INFO] Resolved ticker: SBGI
+2025-11-24 19:56:08,904 [INFO] Resolved ticker: SBH
+2025-11-24 19:56:08,904 [INFO] Resolved ticker: SBI
+2025-11-24 19:56:08,905 [WARNING] Ticker SBIL has no valid sector/industry
+2025-11-24 19:56:08,905 [WARNING] Ticker SBIO has no valid sector/industry
+2025-11-24 19:56:08,905 [WARNING] Ticker SBIT has no valid sector/industry
+2025-11-24 19:56:08,905 [INFO] Resolved ticker: SBLK
+2025-11-24 19:56:08,905 [INFO] Resolved ticker: SBLX
+2025-11-24 19:56:08,905 [WARNING] Ticker SBND has no valid sector/industry
+2025-11-24 19:56:08,905 [INFO] Resolved ticker: SBR
+2025-11-24 19:56:08,905 [INFO] Resolved ticker: SBRA
+2025-11-24 19:56:08,905 [INFO] Resolved ticker: SBS
+2025-11-24 19:56:08,905 [INFO] Resolved ticker: SBSI
+2025-11-24 19:56:08,905 [INFO] Resolved ticker: SBSW
+2025-11-24 19:56:08,905 [WARNING] Ticker SBTU has no valid sector/industry
+2025-11-24 19:56:08,905 [WARNING] Ticker SBU has no valid sector/industry
+2025-11-24 19:56:08,905 [INFO] Resolved ticker: SBUX
+2025-11-24 19:56:08,905 [INFO] Resolved ticker: SBXD
+2025-11-24 19:56:08,905 [INFO] Resolved ticker: SCAG
+2025-11-24 19:56:08,905 [INFO] Resolved ticker: SCAGW
+2025-11-24 19:56:08,905 [WARNING] Ticker SCAP has no valid sector/industry
+2025-11-24 19:56:08,905 [WARNING] Ticker SCC has no valid sector/industry
+2025-11-24 19:56:08,905 [WARNING] Ticker SCCD has no valid sector/industry
+2025-11-24 19:56:08,906 [WARNING] Ticker SCCE has no valid sector/industry
+2025-11-24 19:56:08,906 [WARNING] Ticker SCCF has no valid sector/industry
+2025-11-24 19:56:08,906 [WARNING] Ticker SCCG has no valid sector/industry
+2025-11-24 19:56:08,906 [INFO] Resolved ticker: SCCO
+2025-11-24 19:56:08,906 [WARNING] Ticker SCCR has no valid sector/industry
+2025-11-24 19:56:08,906 [INFO] Resolved ticker: SCD
+2025-11-24 19:56:08,906 [WARNING] Ticker SCDL has no valid sector/industry
+2025-11-24 19:56:08,906 [WARNING] Ticker SCDS has no valid sector/industry
+2025-11-24 19:56:08,906 [WARNING] Ticker SCDV has no valid sector/industry
+2025-11-24 19:56:08,906 [WARNING] Ticker SCEC has no valid sector/industry
+2025-11-24 19:56:08,906 [WARNING] Ticker SCHA has no valid sector/industry
+2025-11-24 19:56:08,906 [WARNING] Ticker SCHB has no valid sector/industry
+2025-11-24 19:56:08,906 [WARNING] Ticker SCHC has no valid sector/industry
+2025-11-24 19:56:08,906 [WARNING] Ticker SCHD has no valid sector/industry
+2025-11-24 19:56:08,906 [WARNING] Ticker SCHE has no valid sector/industry
+2025-11-24 19:56:08,906 [WARNING] Ticker SCHF has no valid sector/industry
+2025-11-24 19:56:08,914 [INFO] Batch 16/18 - Resolved: 59 | Unresolved: 41
+2025-11-24 19:56:14,555 [INFO] Batch API response type: <class 'dict'>
+2025-11-24 19:56:14,555 [WARNING] Ticker SCHG has no valid sector/industry
+2025-11-24 19:56:14,555 [WARNING] Ticker SCHH has no valid sector/industry
+2025-11-24 19:56:14,555 [WARNING] Ticker SCHI has no valid sector/industry
+2025-11-24 19:56:14,555 [WARNING] Ticker SCHJ has no valid sector/industry
+2025-11-24 19:56:14,555 [WARNING] Ticker SCHK has no valid sector/industry
+2025-11-24 19:56:14,555 [INFO] Resolved ticker: SCHL
+2025-11-24 19:56:14,555 [WARNING] Ticker SCHM has no valid sector/industry
+2025-11-24 19:56:14,555 [WARNING] Ticker SCHO has no valid sector/industry
+2025-11-24 19:56:14,555 [WARNING] Ticker SCHP has no valid sector/industry
+2025-11-24 19:56:14,556 [WARNING] Ticker SCHQ has no valid sector/industry
+2025-11-24 19:56:14,556 [WARNING] Ticker SCHR has no valid sector/industry
+2025-11-24 19:56:14,556 [WARNING] Ticker SCHV has no valid sector/industry
+2025-11-24 19:56:14,556 [INFO] Resolved ticker: SCHW
+2025-11-24 19:56:14,556 [WARNING] Ticker SCHX has no valid sector/industry
+2025-11-24 19:56:14,556 [WARNING] Ticker SCHY has no valid sector/industry
+2025-11-24 19:56:14,556 [WARNING] Ticker SCHZ has no valid sector/industry
+2025-11-24 19:56:14,556 [INFO] Resolved ticker: SCI
+2025-11-24 19:56:14,556 [WARNING] Ticker SCIO has no valid sector/industry
+2025-11-24 19:56:14,556 [WARNING] Ticker SCJ has no valid sector/industry
+2025-11-24 19:56:14,556 [INFO] Resolved ticker: SCKT
+2025-11-24 19:56:14,556 [INFO] Resolved ticker: SCL
+2025-11-24 19:56:14,556 [WARNING] Ticker SCLS has no valid sector/industry
+2025-11-24 19:56:14,556 [INFO] Resolved ticker: SCLX
+2025-11-24 19:56:14,556 [INFO] Resolved ticker: SCLXW
+2025-11-24 19:56:14,556 [WARNING] Ticker SCLZ has no valid sector/industry
+2025-11-24 19:56:14,557 [INFO] Resolved ticker: SCM
+2025-11-24 19:56:14,557 [WARNING] Ticker SCMB has no valid sector/industry
+2025-11-24 19:56:14,557 [INFO] Resolved ticker: SCNI
+2025-11-24 19:56:14,557 [INFO] Resolved ticker: SCNX
+2025-11-24 19:56:14,557 [WARNING] Ticker SCO has no valid sector/industry
+2025-11-24 19:56:14,557 [INFO] Resolved ticker: SCOR
+2025-11-24 19:56:14,557 [WARNING] Ticker SCOW has no valid sector/industry
+2025-11-24 19:56:14,557 [INFO] Resolved ticker: SCS
+2025-11-24 19:56:14,557 [INFO] Resolved ticker: SCSC
+2025-11-24 19:56:14,557 [WARNING] Ticker SCUS has no valid sector/industry
+2025-11-24 19:56:14,557 [INFO] Resolved ticker: SCVL
+2025-11-24 19:56:14,557 [INFO] Resolved ticker: SCWO
+2025-11-24 19:56:14,557 [WARNING] Ticker SCYB has no valid sector/industry
+2025-11-24 19:56:14,557 [INFO] Resolved ticker: SCYX
+2025-11-24 19:56:14,557 [WARNING] Ticker SCZ has no valid sector/industry
+2025-11-24 19:56:14,558 [INFO] Resolved ticker: SD
+2025-11-24 19:56:14,558 [INFO] Resolved ticker: SDA
+2025-11-24 19:56:14,558 [WARNING] Ticker SDAWW has no valid sector/industry
+2025-11-24 19:56:14,558 [WARNING] Ticker SDCI has no valid sector/industry
+2025-11-24 19:56:14,558 [WARNING] Ticker SDCP has no valid sector/industry
+2025-11-24 19:56:14,558 [WARNING] Ticker SDD has no valid sector/industry
+2025-11-24 19:56:14,558 [WARNING] Ticker SDEM has no valid sector/industry
+2025-11-24 19:56:14,558 [WARNING] Ticker SDFI has no valid sector/industry
+2025-11-24 19:56:14,558 [WARNING] Ticker SDG has no valid sector/industry
+2025-11-24 19:56:14,558 [INFO] Resolved ticker: SDGR
+2025-11-24 19:56:14,558 [INFO] Resolved ticker: SDHC
+2025-11-24 19:56:14,558 [INFO] Resolved ticker: SDHI
+2025-11-24 19:56:14,558 [WARNING] Ticker SDHIR has no valid sector/industry
+2025-11-24 19:56:14,558 [INFO] Resolved ticker: SDHIU
+2025-11-24 19:56:14,558 [INFO] Resolved ticker: SDHY
+2025-11-24 19:56:14,558 [WARNING] Ticker SDIV has no valid sector/industry
+2025-11-24 19:56:14,559 [INFO] Resolved ticker: SDM
+2025-11-24 19:56:14,559 [WARNING] Ticker SDOG has no valid sector/industry
+2025-11-24 19:56:14,559 [INFO] Resolved ticker: SDOT
+2025-11-24 19:56:14,559 [WARNING] Ticker SDOW has no valid sector/industry
+2025-11-24 19:56:14,559 [WARNING] Ticker SDP has no valid sector/industry
+2025-11-24 19:56:14,559 [INFO] Resolved ticker: SDRL
+2025-11-24 19:56:14,559 [WARNING] Ticker SDS has no valid sector/industry
+2025-11-24 19:56:14,559 [WARNING] Ticker SDSI has no valid sector/industry
+2025-11-24 19:56:14,559 [INFO] Resolved ticker: SDST
+2025-11-24 19:56:14,559 [INFO] Resolved ticker: SDSTW
+2025-11-24 19:56:14,559 [WARNING] Ticker SDTY has no valid sector/industry
+2025-11-24 19:56:14,559 [WARNING] Ticker SDVD has no valid sector/industry
+2025-11-24 19:56:14,559 [WARNING] Ticker SDVY has no valid sector/industry
+2025-11-24 19:56:14,559 [WARNING] Ticker SDY has no valid sector/industry
+2025-11-24 19:56:14,559 [INFO] Resolved ticker: SE
+2025-11-24 19:56:14,559 [WARNING] Ticker SEA has no valid sector/industry
+2025-11-24 19:56:14,559 [INFO] Resolved ticker: SEAT
+2025-11-24 19:56:14,559 [INFO] Resolved ticker: SEATW
+2025-11-24 19:56:14,559 [INFO] Resolved ticker: SEB
+2025-11-24 19:56:14,559 [WARNING] Ticker SECR has no valid sector/industry
+2025-11-24 19:56:14,559 [WARNING] Ticker SECT has no valid sector/industry
+2025-11-24 19:56:14,559 [INFO] Resolved ticker: SEDG
+2025-11-24 19:56:14,559 [INFO] Resolved ticker: SEE
+2025-11-24 19:56:14,559 [INFO] Resolved ticker: SEED
+2025-11-24 19:56:14,559 [WARNING] Ticker SEEM has no valid sector/industry
+2025-11-24 19:56:14,559 [INFO] Resolved ticker: SEER
+2025-11-24 19:56:14,559 [WARNING] Ticker SEF has no valid sector/industry
+2025-11-24 19:56:14,559 [INFO] Resolved ticker: SEG
+2025-11-24 19:56:14,559 [INFO] Resolved ticker: SEGG
+2025-11-24 19:56:14,559 [INFO] Resolved ticker: SEI
+2025-11-24 19:56:14,559 [INFO] Resolved ticker: SEIC
+2025-11-24 19:56:14,560 [WARNING] Ticker SEIE has no valid sector/industry
+2025-11-24 19:56:14,560 [WARNING] Ticker SEIM has no valid sector/industry
+2025-11-24 19:56:14,560 [WARNING] Ticker SEIQ has no valid sector/industry
+2025-11-24 19:56:14,560 [WARNING] Ticker SEIS has no valid sector/industry
+2025-11-24 19:56:14,560 [WARNING] Ticker SEIV has no valid sector/industry
+2025-11-24 19:56:14,560 [WARNING] Ticker SEIX has no valid sector/industry
+2025-11-24 19:56:14,560 [INFO] Resolved ticker: SELF
+2025-11-24 19:56:14,560 [WARNING] Ticker SELV has no valid sector/industry
+2025-11-24 19:56:14,560 [INFO] Resolved ticker: SELX
+2025-11-24 19:56:14,560 [INFO] Resolved ticker: SEM
+2025-11-24 19:56:14,560 [WARNING] Ticker SEMG has no valid sector/industry
+2025-11-24 19:56:14,560 [WARNING] Ticker SEMI has no valid sector/industry
+2025-11-24 19:56:14,560 [INFO] Resolved ticker: SEMR
+2025-11-24 19:56:14,569 [INFO] Batch 17/18 - Resolved: 44 | Unresolved: 56
+2025-11-24 19:56:21,344 [INFO] Batch API response type: <class 'dict'>
+2025-11-24 19:56:21,344 [WARNING] Ticker SEMY has no valid sector/industry
+2025-11-24 19:56:21,344 [INFO] Resolved ticker: SENEA
+2025-11-24 19:56:21,344 [INFO] Resolved ticker: SENEB
+2025-11-24 19:56:21,344 [INFO] Resolved ticker: SENS
+2025-11-24 19:56:21,344 [WARNING] Ticker SEPI has no valid sector/industry
+2025-11-24 19:56:21,345 [WARNING] Ticker SEPM has no valid sector/industry
+2025-11-24 19:56:21,345 [INFO] Resolved ticker: SEPN
+2025-11-24 19:56:21,345 [WARNING] Ticker SEPP has no valid sector/industry
+2025-11-24 19:56:21,345 [WARNING] Ticker SEPT has no valid sector/industry
+2025-11-24 19:56:21,345 [WARNING] Ticker SEPU has no valid sector/industry
+2025-11-24 19:56:21,345 [WARNING] Ticker SEPW has no valid sector/industry
+2025-11-24 19:56:21,345 [WARNING] Ticker SEPZ has no valid sector/industry
+2025-11-24 19:56:21,345 [INFO] Resolved ticker: SER
+2025-11-24 19:56:21,345 [INFO] Resolved ticker: SERA
+2025-11-24 19:56:21,345 [INFO] Resolved ticker: SERV
+2025-11-24 19:56:21,345 [INFO] Resolved ticker: SES
+2025-11-24 19:56:21,345 [WARNING] Ticker SETH has no valid sector/industry
+2025-11-24 19:56:21,345 [WARNING] Ticker SETM has no valid sector/industry
+2025-11-24 19:56:21,345 [WARNING] Ticker SEV has no valid sector/industry
+2025-11-24 19:56:21,345 [INFO] Resolved ticker: SEVN
+2025-11-24 19:56:21,346 [WARNING] Ticker SEVNR has no valid sector/industry
+2025-11-24 19:56:21,346 [INFO] Resolved ticker: SEZL
+2025-11-24 19:56:21,346 [INFO] Resolved ticker: SF
+2025-11-24 19:56:21,346 [WARNING] Ticker SFB has no valid sector/industry
+2025-11-24 19:56:21,346 [INFO] Resolved ticker: SFBC
+2025-11-24 19:56:21,346 [INFO] Resolved ticker: SFBS
+2025-11-24 19:56:21,346 [INFO] Resolved ticker: SFD
+2025-11-24 19:56:21,346 [WARNING] Ticker SFEB has no valid sector/industry
+2025-11-24 19:56:21,346 [WARNING] Ticker SFGV has no valid sector/industry
+2025-11-24 19:56:21,346 [INFO] Resolved ticker: SFHG
+2025-11-24 19:56:21,346 [INFO] Resolved ticker: SFIX
+2025-11-24 19:56:21,346 [INFO] Resolved ticker: SFL
+2025-11-24 19:56:21,346 [WARNING] Ticker SFLO has no valid sector/industry
+2025-11-24 19:56:21,346 [WARNING] Ticker SFLR has no valid sector/industry
+2025-11-24 19:56:21,346 [INFO] Resolved ticker: SFM
+2025-11-24 19:56:21,346 [INFO] Resolved ticker: SFNC
+2025-11-24 19:56:21,347 [INFO] Resolved ticker: SFST
+2025-11-24 19:56:21,347 [WARNING] Ticker SFTY has no valid sector/industry
+2025-11-24 19:56:21,347 [INFO] Resolved ticker: SFWL
+2025-11-24 19:56:21,347 [WARNING] Ticker SFY has no valid sector/industry
+2025-11-24 19:56:21,347 [WARNING] Ticker SFYF has no valid sector/industry
+2025-11-24 19:56:21,347 [WARNING] Ticker SFYX has no valid sector/industry
+2025-11-24 19:56:21,347 [INFO] Resolved ticker: SG
+2025-11-24 19:56:21,347 [INFO] Resolved ticker: SGA
+2025-11-24 19:56:21,347 [INFO] Resolved ticker: SGBX
+2025-11-24 19:56:21,347 [INFO] Resolved ticker: SGC
+2025-11-24 19:56:21,347 [INFO] Resolved ticker: SGD
+2025-11-24 19:56:21,347 [WARNING] Ticker SGDJ has no valid sector/industry
+2025-11-24 19:56:21,347 [WARNING] Ticker SGDM has no valid sector/industry
+2025-11-24 19:56:21,347 [INFO] Resolved ticker: SGHC
+2025-11-24 19:56:21,347 [INFO] Resolved ticker: SGHT
+2025-11-24 19:56:21,347 [INFO] Resolved ticker: SGI
+2025-11-24 19:56:21,347 [WARNING] Ticker SGLC has no valid sector/industry
+2025-11-24 19:56:21,348 [INFO] Resolved ticker: SGLY
+2025-11-24 19:56:21,348 [INFO] Resolved ticker: SGML
+2025-11-24 19:56:21,348 [INFO] Resolved ticker: SGMO
+2025-11-24 19:56:21,348 [INFO] Resolved ticker: SGMT
+2025-11-24 19:56:21,348 [INFO] Resolved ticker: SGN
+2025-11-24 19:56:21,348 [WARNING] Ticker SGOL has no valid sector/industry
+2025-11-24 19:56:21,348 [WARNING] Ticker SGOV has no valid sector/industry
+2025-11-24 19:56:21,348 [INFO] Resolved ticker: SGRP
+2025-11-24 19:56:21,348 [WARNING] Ticker SGRT has no valid sector/industry
+2025-11-24 19:56:21,348 [INFO] Resolved ticker: SGRY
+2025-11-24 19:56:21,348 [INFO] Resolved ticker: SGU
+2025-11-24 19:56:21,348 [WARNING] Ticker SGVT has no valid sector/industry
+2025-11-24 19:56:21,348 [WARNING] Ticker SH has no valid sector/industry
+2025-11-24 19:56:21,348 [WARNING] Ticker SHAG has no valid sector/industry
+2025-11-24 19:56:21,348 [INFO] Resolved ticker: SHAK
+2025-11-24 19:56:21,348 [INFO] Resolved ticker: SHBI
+2025-11-24 19:56:21,348 [INFO] Resolved ticker: SHC
+2025-11-24 19:56:21,348 [INFO] Resolved ticker: SHCO
+2025-11-24 19:56:21,349 [WARNING] Ticker SHDG has no valid sector/industry
+2025-11-24 19:56:21,349 [WARNING] Ticker SHE has no valid sector/industry
+2025-11-24 19:56:21,349 [WARNING] Ticker SHEH has no valid sector/industry
+2025-11-24 19:56:21,349 [INFO] Resolved ticker: SHEL
+2025-11-24 19:56:21,349 [INFO] Resolved ticker: SHEN
+2025-11-24 19:56:21,349 [INFO] Resolved ticker: SHFS
+2025-11-24 19:56:21,349 [INFO] Resolved ticker: SHFSW
+2025-11-24 19:56:21,349 [INFO] Resolved ticker: SHG
+2025-11-24 19:56:21,349 [INFO] Resolved ticker: SHIM
+2025-11-24 19:56:21,349 [INFO] Resolved ticker: SHIP
+2025-11-24 19:56:21,349 [WARNING] Ticker SHLD has no valid sector/industry
+2025-11-24 19:56:21,349 [INFO] Resolved ticker: SHLS
+2025-11-24 19:56:21,349 [WARNING] Ticker SHM has no valid sector/industry
+2025-11-24 19:56:21,349 [INFO] Resolved ticker: SHMD
+2025-11-24 19:56:21,349 [INFO] Resolved ticker: SHMDW
+2025-11-24 19:56:21,349 [WARNING] Ticker SHNY has no valid sector/industry
+2025-11-24 19:56:21,349 [INFO] Resolved ticker: SHO
+2025-11-24 19:56:21,349 [WARNING] Ticker SHOC has no valid sector/industry
+2025-11-24 19:56:21,349 [INFO] Resolved ticker: SHOO
+2025-11-24 19:56:21,350 [INFO] Resolved ticker: SHOP
+2025-11-24 19:56:21,350 [WARNING] Ticker SHPD has no valid sector/industry
+2025-11-24 19:56:21,358 [INFO] Batch 18/18 - Resolved: 54 | Unresolved: 38
+2025-11-24 19:56:21,359 [INFO] Resolved 809 tickers.
+2025-11-24 19:56:21,375 [INFO] Updated unresolved_tickers.txt with 983 remaining tickers
