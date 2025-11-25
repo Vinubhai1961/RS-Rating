@@ -4,7 +4,7 @@ import sys
 import json
 import argparse
 import logging
-from datetime import datetime import datetime, timedelta
+from datetime import datetime, timedelta
 import pandas as pd
 import numpy as np
 import arcticdb as adb
