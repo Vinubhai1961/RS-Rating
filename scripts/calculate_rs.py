@@ -10,20 +10,8 @@ import pandas as pd
 import arcticdb as adb
 
 
-def is_valid_data(data) -> bool:
-    """Safely check if yahooquery returned usable data"""
-    if data is None:
-        return False
-    if isinstance(data, dict):
-        return len(data) > 0
-    if isinstance(data, pd.DataFrame):
-        return not data.empty
-    return False
-
-
 def fetch_historical_data(tickers, arctic, log_file):
     batch_size = 200
-    delay_between_batches = 1.0
     max_retries = 3
     failed_tickers = []
     skipped_tickers = []
@@ -32,74 +20,53 @@ def fetch_historical_data(tickers, arctic, log_file):
     lib = arctic.get_library("prices", create_if_missing=True)
     total_batches = (len(tickers) + batch_size - 1) // batch_size
 
-    print(f"Starting fetch: {len(tickers):,} tickers → {total_batches} batches of {batch_size}")
-    pbar = tqdm(range(0, len(tickers), batch_size), total=total_batches, desc="Batches")
+    print(f"Fetching {len(tickers):,} tickers → {total_batches} batches of {batch_size}")
+    logging.info(f"Starting fetch: {len(tickers)} tickers")
 
-    for i in pbar:
+    for i in tqdm(range(0, len(tickers), batch_size), total=total_batches, desc="Batches"):
         batch = tickers[i:i + batch_size]
         data = None
-        success = False
 
         for attempt in range(max_retries):
             try:
-                t = Ticker(batch, asynchronous=True, max_workers=10, progress=False, timeout=30)
-                raw = t.history(period="2y", interval="1d")
-
-                if is_valid_data(raw):
-                    data = raw
-                    success = True
+                # YOUR WINNING LINE — NEVER CHANGE THIS
+                data = Ticker(batch).history(period="2y", interval="1d")
+                if data is not None and not data.empty:
                     break
-                else:
-                    raise ValueError("Empty or invalid response")
-
             except Exception as e:
-                wait = 2 * (2 ** attempt)  # 2s, 4s, 8s
-                logging.warning(f"Batch {i//batch_size + 1} | Try {attempt+1}/{max_retries} → {e}")
-                if attempt < max_retries - 1:
-                    time.sleep(wait)
+                if attempt == max_retries - 1:
+                    logging.error(f"Batch failed permanently: {e}")
+                    failed_tickers.extend([(t, str(e)) for t in batch])
                 else:
-                    failed_tickers.extend([(tk, str(e)) for tk in batch])
+                    logging.warning(f"Retry {attempt+1} for batch...")
+                    time.sleep(2)
 
-        if not success:
-            time.sleep(delay_between_batches)
+        if data is None or data.empty:
             continue
 
-        # Process batch
         for ticker in batch:
             try:
-                if ticker not in data:
-                    skipped_tickers.append((ticker, "Not returned"))
+                # YOUR WINNING LINE — NEVER CHANGE THIS EITHER
+                if ticker not in data.index.get_level_values(0):
+                    skipped_tickers.append((ticker, "No data"))
                     continue
 
-                item = data[ticker]
+                df = data.loc[ticker].copy()
+                if isinstance(df, pd.Series):
+                    df = df.to_frame().T
 
-                # Convert dict → DataFrame
-                if isinstance(item, dict):
-                    if not item:
-                        skipped_tickers.append((ticker, "Empty dict"))
-                        continue
-                    df = pd.DataFrame(item)
-                else:
-                    df = item.copy() if isinstance(item, pd.DataFrame) else pd.DataFrame()
-
-                if df.empty or len(df) < 30:
-                    skipped_tickers.append((ticker, f"Short data: {len(df)}"))
+                if df.empty:
+                    skipped_tickers.append((ticker, "Empty"))
                     continue
 
                 df = df.reset_index()
-                if 'date' not in df.columns and getattr(df.index, 'name', None) in ('date', 'Date'):
+                if 'date' not in df.columns:
                     df = df.reset_index()
 
-                if 'date' not in df.columns:
-                    skipped_tickers.append((ticker, "No date column"))
-                    continue
-
-                # Use adjusted close
+                # Use adjusted close as 'close'
                 df["close"] = df.get("adjclose", df.get("close"))
-                if df["close"].isna().all():
-                    skipped_tickers.append((ticker, "No price"))
-                    continue
 
+                # Final schema
                 df = df[["date", "open", "high", "low", "close", "volume"]].copy()
                 df["datetime"] = pd.to_datetime(df["date"], utc=True).astype("int64") // 1_000_000_000
                 df = df.drop(columns=["date"])
@@ -109,27 +76,18 @@ def fetch_historical_data(tickers, arctic, log_file):
                 success_tickers.append(ticker)
 
             except Exception as e:
-                failed_tickers.append((ticker, f"Parse error: {e}"))
+                failed_tickers.append((ticker, str(e)))
 
-        time.sleep(delay_between_batches)
-        pbar.set_postfix({
-            "OK": len(success_tickers),
-            "Skip": len(skipped_tickers),
-            "Fail": len(failed_tickers)
-        })
+        # Progress
+        tqdm.write(f"Batch {i//batch_size + 1}/{total_batches} → OK: {len(success_tickers)} | Skip: {len(skipped_tickers)}")
 
-    # Final summary
-    print(f"\nFETCH SUCCESS!")
-    print(f"   Success : {len(success_tickers):,} tickers")
-    print(f"   Skipped : {len(skipped_tickers)}")
-    print(f"   Failed  : {len(failed_tickers)}")
+    print(f"\nDONE! Success: {len(success_tickers):,} | Skipped: {len(skipped_tickers)} | Failed: {len(failed_tickers)}")
 
 
 def load_ticker_list(file_path, partition=None, total_partitions=None):
     with open(file_path, "r", encoding="utf-8") as f:
         data = json.load(f)
-
-    tickers = [item["ticker"] if isinstance(item, dict) else item for item in data if item]
+    tickers = [item["ticker"] if isinstance(item, dict) else item for item in data]
 
     if partition is not None and total_partitions and total_partitions > 1:
         chunk = len(tickers) // total_partitions
@@ -153,11 +111,8 @@ def main():
     os.makedirs(os.path.dirname(args.log_file), exist_ok=True)
     os.makedirs(args.arctic_db_path, exist_ok=True)
 
-    logging.basicConfig(
-        filename=args.log_file,
-        level=logging.INFO,
-        format="%(asctime)s | %(message)s"
-    )
+    logging.basicConfig(filename=args.log_file, level=logging.INFO,
+                        format="%(asctime)s | %(message)s")
     logging.getLogger().addHandler(logging.StreamHandler())
 
     tickers = load_ticker_list(args.input_file, args.partition, args.total_partitions)
