@@ -60,22 +60,15 @@ def fetch_historical_data(tickers, arctic, log_file):
                     continue
 
                 # Critical fix: Yahoo gives 'adjclose', Arctic expects 'close'
+                # Final clean version — only keep what you need
                 df = df.rename(columns={
-                    'open': 'open',
-                    'high': 'high',
-                    'low': 'low',
-                    'close': 'close',           # unadjusted
-                    'adjclose': 'close',        # we want adjusted close
-                    'volume': 'volume'
+                    "adjclose": "close",
+                    "volume": "volume"
                 })
-
-                # Use only needed columns
-                df = df[['open', 'high', 'low', 'close', 'volume']].reset_index()
-                df['datetime'] = pd.to_datetime(df['date'], utc=True).astype('int64') // 10**9
-                df = df.drop(columns=['date'])
-
-                # Final schema
-                df = df[['datetime', 'open', 'high', 'low', 'close', 'volume']]
+                df = df[["date", "open", "high", "low", "close", "volume"]].copy()
+                df["datetime"] = pd.to_datetime(df["date"], utc=True).astype("int64") // 10**9
+                df = df.drop(columns=["date"])
+                df = df[["datetime", "open", "high", "low", "close", "volume"]]
 
                 lib.write(ticker, df, metadata={"source": "yahooquery", "fetched": time.time()})
                 success_tickers.append(ticker)
