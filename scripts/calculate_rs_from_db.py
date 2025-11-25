@@ -275,7 +275,9 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
     df_stocks.loc[df_stocks["Type"] == "ETF", "Industry"] = "ETF"
     df_stocks.loc[df_stocks["Type"] == "ETF", "Sector"] = "ETF"
 
-    # Save main files
+    # =================================================================
+    # ONLY CHANGE: MOVED THIS BLOCK TO THE VERY END (after all calculations)
+    # =================================================================
     os.makedirs(output_dir, exist_ok=True)
     df_stocks[["Rank", "Ticker", "Price", "DVol", "Sector", "Industry", "RS Percentile", "1M_RS Percentile",
                "3M_RS Percentile", "6M_RS Percentile", "AvgVol", "AvgVol10", "52WKH", "52WKL", "MCAP", "IPO"]] \
@@ -375,6 +377,7 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
             print(f"  → {path}  ({len(chunk)} rows)")
 
         print(f"\nFULL DEBUG EXPORT DONE! {total:,} records → logs/debug_rs/debug-rs-*.csv")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Calculate RS from ArcticDB")
