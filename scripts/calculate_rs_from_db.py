@@ -401,28 +401,18 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
 
         print(f"\nFULL DEBUG EXPORT DONE! {total:,} records.")
 
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Calculate RS from ArcticDB")
-    parser.add_argument("--arctic-db-path", default="data/arctic_db/prices")
-    parser.add_argument("--reference-ticker", default="SPY")
-    parser.add_argument("--output-dir", default="output")
-    parser.add_argument("--log-file", default="logs/failed_logs.log")
-    parser.add_argument("--metadata-file", default=None)
-    parser.add_argument("--percentiles", default="98,89,69,49,29,9,1")
+    parser.add_argument("--arctic-db-path", default="data/arctic_db/prices", help="Path to ArcticDB root (no scheme)")
+    parser.add_argument("--reference-ticker", default="SPY", help="Reference ticker symbol")
+    parser.add_argument("--output-dir", default="output", help="Directory to save results")
+    parser.add_argument("--log-file", default="logs/failed_logs.log", help="Log file path")
+    parser.add_argument("--metadata-file", default=None, help="Optional ticker metadata JSON file")
+    parser.add_argument("--percentiles", default="98,89,69,49,29,9,1", help="Comma-separated list of percentiles for RSRATING.csv")
     parser.add_argument("--debug", action="store_true", help="Enable FULL debug export (all tickers → split CSVs)")
     args = parser.parse_args()
 
     percentiles = [int(p) for p in args.percentiles.split(",")]
-
     os.makedirs(os.path.dirname(args.log_file), exist_ok=True)
-
-    main(
-        args.arctic_db_path,
-        args.reference_ticker,
-        args.output_dir,
-        args.log_file,
-        args.metadata_file,
-        percentiles,
-        args.debug
-    )
+    main(args.arctic_db_path, args.reference_ticker, args.output_dir, args.log_file,
+         args.metadata_file, percentiles, args.debug)
