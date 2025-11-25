@@ -45,7 +45,7 @@ def relative_strength(closes: pd.Series, closes_ref: pd.Series) -> float:
         logging.info(f"NaN RS for ticker with {len(closes)} days, ref with {len(closes_ref)} days")
         return np.nan
     rs = (1 + rs_stock) / (1 + rs_ref) * 100
-    return round(rs, 2) if rs <= 590 else np.nan
+    return round(rs, 2) if rs <= 700 else np.nan
 
 
 def short_relative_strength(closes: pd.Series, closes_ref: pd.Series, days: int) -> float:
@@ -54,7 +54,7 @@ def short_relative_strength(closes: pd.Series, closes_ref: pd.Series, days: int)
     stock_ret = closes.iloc[-1] / closes.iloc[-days] - 1
     ref_ret = closes_ref.iloc[-1] / closes_ref.iloc[-days] - 1
     rs = (1 + stock_ret) / (1 + ref_ret) * 100
-    return round(rs, 2) if rs <= 590 else np.nan  # Keep your cap
+    return round(rs, 2) if rs <= 700 else np.nan  # Keep your cap
 
 
 def load_arctic_db(data_dir):
