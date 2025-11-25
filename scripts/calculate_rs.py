@@ -10,6 +10,17 @@ import pandas as pd
 import arcticdb as adb
 
 
+def is_valid_data(data) -> bool:
+    """Safely check if yahooquery returned usable data"""
+    if data is None:
+        return False
+    if isinstance(data, dict):
+        return len(data) > 0
+    if isinstance(data, pd.DataFrame):
+        return not data.empty
+    return False
+
+
 def fetch_historical_data(tickers, arctic, log_file):
     batch_size = 200
     delay_between_batches = 1.0
@@ -22,8 +33,6 @@ def fetch_historical_data(tickers, arctic, log_file):
     total_batches = (len(tickers) + batch_size - 1) // batch_size
 
     print(f"Starting fetch: {len(tickers):,} tickers → {total_batches} batches of {batch_size}")
-    logging.info(f"Fetch started: {len(tickers)} tickers, {total_batches} batches")
-
     pbar = tqdm(range(0, len(tickers), batch_size), total=total_batches, desc="Batches")
 
     for i in pbar:
@@ -31,77 +40,73 @@ def fetch_historical_data(tickers, arctic, log_file):
         data = None
         success = False
 
-        # === Retry Logic ===
         for attempt in range(max_retries):
             try:
-                ticker_obj = Ticker(batch, asynchronous=True, max_workers=10, progress=False)
-                data = ticker_obj.history(period="2y", interval="1d")
+                t = Ticker(batch, asynchronous=True, max_workers=10, progress=False, timeout=30)
+                raw = t.history(period="2y", interval="1d")
 
-                if data and len(data) > 0:
+                if is_valid_data(raw):
+                    data = raw
                     success = True
                     break
                 else:
-                    raise Exception("Empty response from Yahoo")
+                    raise ValueError("Empty or invalid response")
 
             except Exception as e:
-                wait = (2 ** attempt) + 1  # 1s, 3s, 7s
-                logging.warning(f"Batch {i//batch_size + 1} | Attempt {attempt+1}/{max_retries} failed: {e}")
+                wait = 2 * (2 ** attempt)  # 2s, 4s, 8s
+                logging.warning(f"Batch {i//batch_size + 1} | Try {attempt+1}/{max_retries} → {e}")
                 if attempt < max_retries - 1:
                     time.sleep(wait)
                 else:
-                    logging.error(f"Batch permanently failed after {max_retries} attempts")
-                    failed_tickers.extend([(tk, f"Request failed: {e}") for tk in batch])
+                    failed_tickers.extend([(tk, str(e)) for tk in batch])
 
         if not success:
             time.sleep(delay_between_batches)
             continue
 
-        # === Process Successful Batch ===
-        batch_success = 0
+        # Process batch
         for ticker in batch:
             try:
                 if ticker not in data:
-                    skipped_tickers.append((ticker, "Not in response"))
+                    skipped_tickers.append((ticker, "Not returned"))
                     continue
 
-                raw = data[ticker]
+                item = data[ticker]
 
-                # Handle both dict and DataFrame responses
-                if isinstance(raw, dict):
-                    if not raw:
+                # Convert dict → DataFrame
+                if isinstance(item, dict):
+                    if not item:
                         skipped_tickers.append((ticker, "Empty dict"))
                         continue
-                    df = pd.DataFrame(raw)
+                    df = pd.DataFrame(item)
                 else:
-                    df = raw.copy()
+                    df = item.copy() if isinstance(item, pd.DataFrame) else pd.DataFrame()
 
-                if df.empty or len(df) < 20:
-                    skipped_tickers.append((ticker, f"Too few rows: {len(df)}"))
+                if df.empty or len(df) < 30:
+                    skipped_tickers.append((ticker, f"Short data: {len(df)}"))
                     continue
 
                 df = df.reset_index()
+                if 'date' not in df.columns and getattr(df.index, 'name', None) in ('date', 'Date'):
+                    df = df.reset_index()
 
-                # Ensure 'date' column exists
                 if 'date' not in df.columns:
-                    if df.index.name == 'date':
-                        df = df.reset_index()
-                    else:
-                        skipped_tickers.append((ticker, "No date column"))
-                        continue
+                    skipped_tickers.append((ticker, "No date column"))
+                    continue
 
                 # Use adjusted close
                 df["close"] = df.get("adjclose", df.get("close"))
+                if df["close"].isna().all():
+                    skipped_tickers.append((ticker, "No price"))
+                    continue
 
-                # Final clean DataFrame
                 df = df[["date", "open", "high", "low", "close", "volume"]].copy()
                 df["datetime"] = pd.to_datetime(df["date"], utc=True).astype("int64") // 1_000_000_000
                 df = df.drop(columns=["date"])
                 df = df[["datetime", "open", "high", "low", "close", "volume"]]
 
-                # Write to ArcticDB
-                lib.write(ticker, df, metadata={"source": "yahooquery", "fetched": time.time()})
+                lib.write(ticker, df)
                 success_tickers.append(ticker)
-                batch_success += 1
 
             except Exception as e:
                 failed_tickers.append((ticker, f"Parse error: {e}"))
@@ -113,29 +118,20 @@ def fetch_historical_data(tickers, arctic, log_file):
             "Fail": len(failed_tickers)
         })
 
-    # === Final Summary ===
-    total = len(success_tickers) + len(skipped_tickers) + len(failed_tickers)
-    print(f"\nFETCH COMPLETE!")
-    print(f"   Success: {len(success_tickers):,} / {total:,}")
-    print(f"   Skipped: {len(skipped_tickers)}")
-    print(f"   Failed : {len(failed_tickers)}")
-
-    with open(log_file, "a", encoding="utf-8") as f:
-        f.write(f"\n{'='*50}\n")
-        f.write(f"FETCH SUMMARY - {time.strftime('%Y-%m-%d %H:%M')}\n")
-        f.write(f"Success: {len(success_tickers)} | Skipped: {len(skipped_tickers)} | Failed: {len(failed_tickers)}\n")
-        if failed_tickers:
-            f.write("\n--- Failed Tickers ---\n")
-            for t, e in failed_tickers[:100]:
-                f.write(f"{t}: {e}\n")
+    # Final summary
+    print(f"\nFETCH SUCCESS!")
+    print(f"   Success : {len(success_tickers):,} tickers")
+    print(f"   Skipped : {len(skipped_tickers)}")
+    print(f"   Failed  : {len(failed_tickers)}")
 
 
 def load_ticker_list(file_path, partition=None, total_partitions=None):
     with open(file_path, "r", encoding="utf-8") as f:
         data = json.load(f)
-    tickers = [item["ticker"] for item in data if isinstance(item, dict) and "ticker" in item]
 
-    if partition is not None and total_partitions is not None and total_partitions > 1:
+    tickers = [item["ticker"] if isinstance(item, dict) else item for item in data if item]
+
+    if partition is not None and total_partitions and total_partitions > 1:
         chunk = len(tickers) // total_partitions
         start = partition * chunk
         end = None if partition == total_partitions - 1 else start + chunk
@@ -146,12 +142,12 @@ def load_ticker_list(file_path, partition=None, total_partitions=None):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Fetch 2Y daily data → ArcticDB (yahooquery)")
-    parser.add_argument("input_file", help="Path to ticker JSON file (e.g. ticker_price.json)")
-    parser.add_argument("--arctic-db-path", default="tmp/arctic_db", help="Output folder, e.g. tmp/arctic_db_0")
-    parser.add_argument("--log-file", default="logs/fetch.log", help="Log file")
-    parser.add_argument("--partition", type=int, help="Partition index (0-based)")
-    parser.add_argument("--total-partitions", type=int, help="Total number of partitions")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("input_file", help="Path to ticker JSON")
+    parser.add_argument("--arctic-db-path", default="tmp/arctic_db", help="e.g. tmp/arctic_db_0")
+    parser.add_argument("--log-file", default="logs/fetch.log")
+    parser.add_argument("--partition", type=int)
+    parser.add_argument("--total-partitions", type=int)
     args = parser.parse_args()
 
     os.makedirs(os.path.dirname(args.log_file), exist_ok=True)
@@ -166,7 +162,7 @@ def main():
 
     tickers = load_ticker_list(args.input_file, args.partition, args.total_partitions)
     if not tickers:
-        print("No tickers found!")
+        print("No tickers!")
         return
 
     arctic = adb.Arctic(f"lmdb://{args.arctic_db_path}")
