@@ -284,8 +284,8 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
     # Industry aggregation
     df_industries = df_stocks.groupby("Industry").agg({"RS Percentile": "mean", "1M_RS Percentile": "mean", "3M_RS Percentile": "mean", "6M_RS Percentile": "mean", "Sector": "first", "Ticker": lambda x: ",".join(sorted(x, key=lambda t: float(df_stocks.loc[df_stocks["Ticker"] == t, "MCAP"].iloc[0] or 0), reverse=True))}).reset_index()
 
-    for col in ["RS Percentile", "1M_RS Percentile", "3M_RS Percentile", "6M_RS Percentile"]:
-    df_industries[col] = df_industries[col].fillna(0).round().astype(int)
+    for col in ["RS Percentile", "1M_RS Percentile", "3M_RS Percentile", "6M_RS Percentile"]: 
+        df_industries[col] = df_industries[col].fillna(0).round().astype(int)
     df_industries = df_industries.sort_values("RS Percentile", ascending=False).reset_index(drop=True)
     df_industries["Rank"] = df_industries.index + 1
     df_industries = df_industries.rename(columns={"RS Percentile": "RS", "1M_RS Percentile": "1 M_RS", "3M_RS Percentile": "3M_RS", "6M_RS Percentile": "6M_RS"})
