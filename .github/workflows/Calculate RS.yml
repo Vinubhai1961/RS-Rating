@@ -285,7 +285,7 @@ jobs:
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
 
           echo "📌 Repo status before commit:"
-          git status
+          git status --porcelain
 
           # 📥 Save list of modified files
           mkdir -p logs
@@ -296,6 +296,12 @@ jobs:
           echo "➕ Staging all relevant result files..."
           git add archive/*.csv RS_Data/*.csv
 
+          # NEW: Stage the full debug export (split files)
+          git add logs/debug_rs/*.csv 2>/dev/null || true
+
+          # Optional: also commit the main log if you want to keep history of failures
+          git add logs/failed_tickers.log || true
+          
           # ✅ Skip commit if nothing is staged
           if git diff --cached --quiet; then
             echo "⚠️ No changes to commit. Skipping commit & push."
