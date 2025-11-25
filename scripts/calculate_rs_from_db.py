@@ -342,7 +342,7 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
         if not valid_values.empty:
             df_stocks.loc[valid_values.index, f"{col} Percentile"] = (valid_values.rank(pct=True, method='min') * 99).astype(int)
         else:
-            df_stocks[f"{col} Percentile"] =668 np.nan
+            df_stocks[f"{col} Percentile"] = np.nan
 
     df_stocks = df_stocks.sort_values("RS", ascending=False, na_position="last").reset_index(drop=True)
     df_stocks["Rank"] = df_stocks.index + 1
