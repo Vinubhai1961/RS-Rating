@@ -410,7 +410,7 @@ if __name__ == "__main__":
     parser.add_argument("--log-file", default="logs/failed_logs.log")
     parser.add_argument("--metadata-file", default=None)
     parser.add_argument("--percentiles", default="98,89,69,49,29,9,1")
-    parser.add_argument("--debug", action="true")
+    parser.add_argument("--debug", action="store_true", help="Enable FULL debug export (all tickers → split CSVs)")
     args = parser.parse_args()
 
     percentiles = [int(p) for p in args.percentiles.split(",")]
