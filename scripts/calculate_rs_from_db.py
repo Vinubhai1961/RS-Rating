@@ -280,9 +280,12 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
     # =================================================================
     # === FINAL SAVE — 100% WORKING (6M_RS Percentile WILL appear) ===
     os.makedirs(output_dir, exist_ok=True)
+    df_stocks[[
+        "Rank", "Ticker", "Price", "DVol", "Sector", "Industry",
+        "RS Percentile", "1M_RS Percentile", "3M_RS Percentile", "6M_RS Percentile",
+        "AvgVol", "AvgVol10", "52WKH", "52WKL", "MCAP", "IPO"
+    ]].to_csv(os.path.join(output_dir, "rs_stocks.csv"), index=False, na_rep="")
     
-    df_stocks[["Rank", "Ticker", "Price", "DVol", "Sector", "Industry", "RS Percentile", "1M_RS Percentile", "3M_RS Percentile", "6M_RS Percentile", "AvgVol", "AvgVol10", "52WKH", "52WKL", "MCAP", "IPO"]].to_csv(os.path.join(output_dir, "rs_stocks.csv"), index=False, na_rep="")
-
     # Industry aggregation
     df_industries = df_stocks.groupby("Industry").agg({"RS Percentile": "mean", "1M_RS Percentile": "mean", "3M_RS Percentile": "mean", "6M_RS Percentile": "mean", "Sector": "first", "Ticker": lambda x: ",".join(sorted(x, key=lambda t: float(df_stocks.loc[df_stocks["Ticker"] == t, "MCAP"].iloc[0] or 0), reverse=True))}).reset_index()
 
