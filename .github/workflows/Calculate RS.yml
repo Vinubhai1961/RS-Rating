@@ -225,9 +225,9 @@ jobs:
             arctic = adb.Arctic("lmdb://tmp/arctic_db")
             if not arctic.has_library("prices"):
                 raise ValueError("Library 'prices' not found")
-            print("\u2705 ArcticDB loaded successfully")
+            print("ArcticDB loaded successfully")
           except Exception as e:
-            print(f"\u274c Failed to load ArcticDB: {e}")
+            print(f"Failed to load ArcticDB: {e}")
             exit(0)
           EOF
 
@@ -238,8 +238,9 @@ jobs:
             --arctic-db-path tmp/arctic_db \
             --reference-ticker SPY \
             --output-dir RS_Data \
-            --log-file RS_Logs/failed_tickers.log \
-            --metadata-file data/ticker_price.json
+            --log-file logs/failed_tickers.log \
+            --metadata-file data/ticker_price.json \
+            --debug
 
       - name: 📃 Archive RS Results
         run: |
