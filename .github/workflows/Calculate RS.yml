@@ -233,7 +233,7 @@ jobs:
 
       - name: 📃 Run RS calculation
         run: |
-          mkdir -p RS_Logs RS_Data 
+          mkdir -p logs RS_Data 
           python scripts/calculate_rs_from_db.py \
             --arctic-db-path tmp/arctic_db \
             --reference-ticker SPY \
@@ -271,7 +271,7 @@ jobs:
           name: rs-results
           path: |
             RS_Data/*.csv
-            RS_Logs/failed_tickers.log
+            logs/failed_tickers.log
             archive/*.csv
 
       - name: 📤 Commit and Push RS Results
@@ -288,10 +288,10 @@ jobs:
           git status
 
           # 📥 Save list of modified files
-          mkdir -p RS_Logs
-          git status | grep "modified:" > RS_Logs/git_modified_files.log || true
-          echo "📝 Modified files saved to RS_Logs/git_modified_files.log"
-          cat RS_Logs/git_modified_files.log
+          mkdir -p logs
+          git status | grep "modified:" > logs/git_modified_files.log || true
+          echo "📝 Modified files saved to logs/git_modified_files.log"
+          cat logs/git_modified_files.log
 
           echo "➕ Staging all relevant result files..."
           git add archive/*.csv RS_Data/*.csv
