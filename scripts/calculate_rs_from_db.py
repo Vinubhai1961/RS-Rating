@@ -279,29 +279,17 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
     # ONLY CHANGE: MOVED THIS BLOCK TO THE VERY END (after all calculations)
     # =================================================================
     os.makedirs(output_dir, exist_ok=True)
-    df_stocks[["Rank", "Ticker", "Price", "DVol", "Sector", "Industry", "RS Percentile", "1M_RS Percentile",
-               "3M_RS Percentile", "6M_RS Percentile", "AvgVol", "AvgVol10", "52WKH", "52WKL", "MCAP", "IPO"]] \
-        .to_csv(os.path.join(output_dir, "rs_stocks.csv"), index=False, na_rep="")
+    df_stocks[["Rank", "Ticker", "Price", "DVol", "Sector", "Industry", "RS Percentile", "1M_RS Percentile", "3M_RS Percentile", "6M_RS Percentile", "AvgVol", "AvgVol10", "52WKH", "52WKL", "MCAP", "IPO"]].to_csv(os.path.join(output_dir, "rs_stocks.csv"), index=False, na_rep="")
 
     # Industry aggregation
-    df_industries = df_stocks.groupby("Industry").agg({
-        "RS Percentile": "mean", "1M_RS Percentile": "mean",
-        "3M_RS Percentile": "mean", "6M_RS Percentile": "mean",
-        "Sector": "first",
-        "Ticker": lambda x: ",".join(sorted(x, key=lambda t: float(df_stocks.loc[df_stocks["Ticker"] == t, "MCAP"].iloc[0] or 0), reverse=True))
-    }).reset_index()
+    df_industries = df_stocks.groupby("Industry").agg({"RS Percentile": "mean", "1M_RS Percentile": "mean", "3M_RS Percentile": "mean", "6M_RS Percentile": "mean", "Sector": "first", "Ticker": lambda x: ",".join(sorted(x, key=lambda t: float(df_stocks.loc[df_stocks["Ticker"] == t, "MCAP"].iloc[0] or 0), reverse=True))}).reset_index()
 
     for col in ["RS Percentile", "1M_RS Percentile", "3M_RS Percentile", "6M_RS Percentile"]:
-        df_industries[col] = df_industries[col].fillna(0).round().astype(int)
-
+    df_industries[col] = df_industries[col].fillna(0).round().astype(int)
     df_industries = df_industries.sort_values("RS Percentile", ascending=False).reset_index(drop=True)
     df_industries["Rank"] = df_industries.index + 1
-    df_industries = df_industries.rename(columns={
-        "RS Percentile": "RS", "1M_RS Percentile": "1 M_RS",
-        "3M_RS Percentile": "3M_RS", "6M_RS Percentile": "6M_RS"
-    })
-    df_industries[["Rank", "Industry", "Sector", "RS", "1 M_RS", "3M_RS", "6M_RS", "Ticker"]] \
-        .to_csv(os.path.join(output_dir, "rs_industries.csv"), index=False)
+    df_industries = df_industries.rename(columns={"RS Percentile": "RS", "1M_RS Percentile": "1 M_RS", "3M_RS Percentile": "3M_RS", "6M_RS Percentile": "6M_RS"})
+    df_industries[["Rank", "Industry", "Sector", "RS", "1 M_RS", "3M_RS", "6M_RS", "Ticker"]].to_csv(os.path.join(output_dir, "rs_industries.csv"), index=False)
 
     generate_tradingview_csv(df_stocks, output_dir, ref_data, percentiles)
 
