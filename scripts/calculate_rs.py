@@ -131,7 +131,7 @@ def load_ticker_list(file_path, partition=None, total_partitions=None):
 def main():
     parser = argparse.ArgumentParser(description="Fetch 2Y daily data → ArcticDB (yahooquery)")
     parser.add_argument("input_file", help="Path to ticker JSON file")
-    parser.add_argument("--arctic-db-path", default="data/arctic_db/prices", help="ArcticDB path")
+    parser.add_argument("--arctic-db-path", default="tmp/arctic_db/", help="ArcticDB path")
     parser.add_argument("--log-file", default="logs/fetch.log", help="Log file")
     parser.add_argument("--partition", type=int, help="Partition index (0-based)")
     parser.add_argument("--total-partitions", type=int, help="Total partitions")
