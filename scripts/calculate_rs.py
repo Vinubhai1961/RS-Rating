@@ -113,7 +113,7 @@ def main():
     os.makedirs(os.path.dirname(args.log_file), exist_ok=True)
     os.makedirs(args.arctic_db_path, exist_ok=True)
 
-    logging.basicConfig(filename=args.log_file, level=logging.INFO, format="%(asctime)s - %(message)s")
+    logging.basicConfig(filename=args.log_file, level=logging.INFO, format="%(asctime)s - %(message)s", filemode="a")
 
     tickers = load_ticker_list(args.input_file, args.partition, args.total_partitions)
     arctic = adb.Arctic(f"lmdb://{args.arctic_db_path}")  # Fixed typo: arctic_db-path to arctic_db_path
