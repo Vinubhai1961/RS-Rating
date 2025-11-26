@@ -273,6 +273,8 @@ jobs:
             RS_Data/*.csv
             logs/failed_tickers.log
             archive/*.csv
+            logs/debug_rs/*.log
+            logs/debug_rs/*.csv
 
       - name: 📤 Commit and Push RS Results
         env:
