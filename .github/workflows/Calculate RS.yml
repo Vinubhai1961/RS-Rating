@@ -298,6 +298,7 @@ jobs:
 
           # NEW: Stage the full debug export (split files)
           git add logs/debug_rs/*.csv 2>/dev/null || true
+          git add logs/debug_rs/*.log 2>/dev/null || true
 
           # Optional: also commit the main log if you want to keep history of failures
           git add logs/failed_tickers.log || true
