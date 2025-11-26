@@ -306,28 +306,37 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
 
             rs_6m = short_relative_strength(closes, ref_closes, 126)
             if pd.isna(rs_6m):
-                has_issue = True
-                log_missing_rs(ticker, "*** 6M_RS is NaN — REASON BELOW ***", missing_rs_log)
-                if len(closes) < 127:
-                    log_missing_rs(ticker, "CAUSE: Stock has <127 trading days", missing_rs_log)
-                elif len(ref_closes) < 127:
-                    log_missing_rs(ticker, "CAUSE: Reference ticker (SPY) has <127 days", missing_rs_log)
-                else:
-                    try:
-                        p_old = closes.iloc[-126]
-                        p_new = closes.iloc[-1]
-                        sp_old = ref_closes.iloc[-126]
-                        sp_new = ref_closes.iloc[-1]
-                        log_missing_rs(ticker, f"Price[-126]={p_old:.4f}, Price[-1]={p_new:.4f}", missing_rs_log)
-                        log_missing_rs(ticker, f"SPY[-126]={sp_old:.4f}, SPY[-1]={sp_new:.4f}", missing_rs_log)
-                        if p_new <= 0 or sp_new <= 0:
-                            log_missing_rs(ticker, "CAUSE: Zero or negative close price", missing_rs_log)
-                        elif pd.isna(p_old) or pd.isna(p_new):
-                            log_missing_rs(ticker, "CAUSE: NaN in price series", missing_rs_log)
-                        else:
-                            log_missing_rs(ticker, "CAUSE: Unknown (possible index misalignment or division issue)", missing_rs_log)
-                    except Exception as ex:
-                        log_missing_rs(ticker, f"CAUSE: Exception accessing prices → {ex}", missing_rs_log)
+               log_missing_rs(ticker, "*** 6M_RS is NaN — REASON BELOW ***", missing_rs_log)
+            if len(closes) < 127:
+               log_missing_rs(ticker, "CAUSE: <127 trading days", missing_rs_log)
+            else:
+            try:
+                # Correct index: 126 trading days ago = iloc[-127]
+                p_old = closes.iloc[-127]
+                p_new = closes.iloc[-1]
+                sp_old = ref_closes.iloc[-127]
+                sp_new = ref_closes.iloc[-1]
+
+            log_missing_rs(ticker, f"Price[-127]={p_old:.4f} → Price[-1]={p_new:.4f}", missing_rs_log)
+            log_missing_rs(ticker, f"SPY[-127]={sp_old:.4f} → SPY[-1]={sp_new:.4f}", missing_rs_log)
+
+            if p_old <= 0 or p_new <= 0:
+                log_missing_rs(ticker, f"CAUSE: Zero/negative stock price (old={p_old}, new={p_new})", missing_rs_log)
+            elif sp_old <= 0 or sp_new <= 0:
+                log_missing_rs(ticker, f"CAUSE: Zero/negative SPY price (old={sp_old}, new={sp_new})", missing_rs_log)
+            elif pd.isna(p_old) or pd.isna(p_new) or pd.isna(sp_old) or pd.isna(sp_new):
+                log_missing_rs(ticker, "CAUSE: NaN in price series", missing_rs_log)
+            else:
+                # Only gets here if prices are valid but RS still NaN → extremely rare
+                stock_ret = p_new / p_old - 1
+                spy_ret = sp_new / sp_old - 1
+                log_missing_rs(ticker, f"Returns → Stock={stock_ret:+.1%}, SPY={spy_ret:+.1%}", missing_rs_log)
+                log_missing_rs(ticker, "CAUSE: Unknown (data valid, but calculation failed)", missing_rs_log)
+
+        except IndexError:
+            log_missing_rs(ticker, "CAUSE: IndexError — not enough data points (even though len >= 127)", missing_rs_log)
+        except Exception as e:
+            log_missing_rs(ticker, f"CAUSE: Unexpected error → {e}", missing_rs_log)
 
             # Final values
             log_missing_rs(ticker, f"FINAL → RS={rs}, 1M_RS={rs_1m}, 3M_RS={rs_3m}, 6M_RS={rs_6m}", missing_rs_log)
