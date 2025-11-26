@@ -58,10 +58,28 @@ def relative_strength(closes: pd.Series, closes_ref: pd.Series) -> float:
 def short_relative_strength(closes: pd.Series, closes_ref: pd.Series, days: int) -> float:
     if len(closes) < days + 1 or len(closes_ref) < days + 1:
         return np.nan
-    stock_ret = closes.iloc[-1] / closes.iloc[-days] - 1
-    ref_ret = closes_ref.iloc[-1] / closes_ref.iloc[-days] - 1
+
+    price_old = closes.iloc[-days - 1]   # Better: explicit index
+    price_new = closes.iloc[-1]
+    ref_old = closes_ref.iloc[-days - 1]
+    ref_new = closes_ref.iloc[-1]
+
+    # === ADD THIS SAFETY BLOCK ===
+    if price_new <= 0 or ref_new <= 0:
+        return np.nan
+    if price_old <= 0 or ref_old <= 0:
+        return np.nan
+    if pd.isna(price_old) or pd.isna(price_new) or pd.isna(ref_old) or pd.isna(ref_new):
+        return np.nan
+
+    stock_ret = price_new / price_old - 1
+    ref_ret = ref_new / ref_old - 1
+
+    if ref_ret == 0:  # avoid division by zero
+        return np.nan if stock_ret <= 0 else 999.0
+
     rs = (1 + stock_ret) / (1 + ref_ret) * 100
-    return round(rs, 2) if rs <= 700 else np.nan  # Keep your cap
+    return round(rs, 2) if rs <= 700 else 700.0  # cap but don't NaN
 
 
 def load_arctic_db(data_dir):
