@@ -1639,8 +1639,8 @@
   },
   "AGD": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Asset Management",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -1835,8 +1835,8 @@
   },
   "AGPU": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Software - Infrastructure",
+      "sector": "Technology",
       "type": "Stock"
     }
   },
@@ -2502,13 +2502,6 @@
     "info": {
       "industry": "Biotechnology",
       "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
-  "ALE": {
-    "info": {
-      "industry": "Utilities - Diversified",
-      "sector": "Utilities",
       "type": "Stock"
     }
   },
@@ -4203,13 +4196,6 @@
     "info": {
       "industry": "Capital Markets",
       "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "ARBKL": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -7139,11 +7125,25 @@
       "type": "Stock"
     }
   },
+  "BCFN": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "BCG": {
     "info": {
       "industry": "Asset Management",
       "sector": "Financial Services",
       "type": "Stock"
+    }
+  },
+  "BCGD": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
     }
   },
   "BCGWW": {
@@ -7258,11 +7258,25 @@
       "type": "Stock"
     }
   },
+  "BCSM": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "BCSS": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
       "type": "Stock"
+    }
+  },
+  "BCTK": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
     }
   },
   "BCTX": {
@@ -8980,13 +8994,6 @@
       "type": "Stock"
     }
   },
-  "BLMZ": {
-    "info": {
-      "industry": "Entertainment",
-      "sector": "Communication Services",
-      "type": "Stock"
-    }
-  },
   "BLND": {
     "info": {
       "industry": "Software - Application",
@@ -10123,7 +10130,7 @@
   },
   "BRR": {
     "info": {
-      "industry": "Shell Companies",
+      "industry": "Capital Markets",
       "sector": "Financial Services",
       "type": "Stock"
     }
@@ -10137,7 +10144,7 @@
   },
   "BRRWW": {
     "info": {
-      "industry": "Shell Companies",
+      "industry": "Capital Markets",
       "sector": "Financial Services",
       "type": "Stock"
     }
@@ -14531,6 +14538,13 @@
       "type": "Stock"
     }
   },
+  "CMCSV": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "CMCT": {
     "info": {
       "industry": "REIT - Office",
@@ -18605,13 +18619,6 @@
       "type": "ETF"
     }
   },
-  "DFND": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
   "DFNL": {
     "info": {
       "industry": "n/a",
@@ -20497,8 +20504,8 @@
   },
   "DVGR": {
     "info": {
-      "industry": "Telecom Services",
-      "sector": "Communication Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "ETF"
     }
   },
@@ -25656,8 +25663,8 @@
   },
   "FEED": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Medical Devices",
+      "sector": "Healthcare",
       "type": "Stock"
     }
   },
@@ -29238,13 +29245,6 @@
       "type": "Stock"
     }
   },
-  "GAST": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
   "GATX": {
     "info": {
       "industry": "Rental & Leasing Services",
@@ -30132,6 +30132,13 @@
       "industry": "Asset Management",
       "sector": "Financial Services",
       "type": "Stock"
+    }
+  },
+  "GGTL": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
     }
   },
   "GGUS": {
@@ -31333,8 +31340,8 @@
   },
   "GPACU": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -32673,6 +32680,20 @@
       "industry": "n/a",
       "sector": "n/a",
       "type": "ETF"
+    }
+  },
+  "HAVA": {
+    "info": {
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "HAVAR": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
     }
   },
   "HAVAU": {
@@ -42246,8 +42267,8 @@
   },
   "LATAW": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -42764,8 +42785,8 @@
   },
   "LFACU": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -46934,10 +46955,24 @@
       "type": "ETF"
     }
   },
+  "MMTX": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "MMTXU": {
     "info": {
       "industry": "Shell Companies",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "MMTXW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -54762,8 +54797,8 @@
   },
   "PCAP": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -54776,8 +54811,8 @@
   },
   "PCAPW": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -59408,6 +59443,13 @@
       "type": "ETF"
     }
   },
+  "QSOL": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "QSPT": {
     "info": {
       "industry": "n/a",
@@ -61858,6 +61900,13 @@
       "type": "ETF"
     }
   },
+  "RONB": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "ROOT": {
     "info": {
       "industry": "Insurance - Property & Casualty",
@@ -62482,13 +62531,6 @@
     }
   },
   "RVPH": {
-    "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
-  "RVPHW": {
     "info": {
       "industry": "Biotechnology",
       "sector": "Healthcare",
@@ -66734,13 +66776,6 @@
     "info": {
       "industry": "n/a",
       "sector": "n/a",
-      "type": "Stock"
-    }
-  },
-  "SOL": {
-    "info": {
-      "industry": "Solar",
-      "sector": "Technology",
       "type": "Stock"
     }
   },
@@ -76649,6 +76684,13 @@
       "type": "ETF"
     }
   },
+  "VSNTV": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "VSOL": {
     "info": {
       "industry": "n/a",
@@ -76808,13 +76850,6 @@
       "industry": "n/a",
       "sector": "n/a",
       "type": "ETF"
-    }
-  },
-  "VTLE": {
-    "info": {
-      "industry": "Oil & Gas E&P",
-      "sector": "Energy",
-      "type": "Stock"
     }
   },
   "VTMX": {
@@ -78859,6 +78894,13 @@
       "industry": "Specialty Industrial Machinery",
       "sector": "Industrials",
       "type": "Stock"
+    }
+  },
+  "XCHG": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
     }
   },
   "XCLR": {
