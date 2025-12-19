@@ -32,6 +32,7 @@ for col in numeric_cols:
 
 # Apply filters
 filtered_df = df[
+    (df["Price"] >= 50) &
     (df["Price"] >= 0.75 * df["52WKH"]) &
     (df["Price"] >= 1.2 * df["52WKL"]) &
     (df["RS Percentile"] > 85) &
