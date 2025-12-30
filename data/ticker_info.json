@@ -342,13 +342,6 @@
       "type": "ETF"
     }
   },
-  "ABL": {
-    "info": {
-      "industry": "Insurance - Life",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
   "ABLD": {
     "info": {
       "industry": "n/a",
@@ -361,13 +354,6 @@
       "industry": "n/a",
       "sector": "n/a",
       "type": "ETF"
-    }
-  },
-  "ABLLL": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
     }
   },
   "ABLS": {
@@ -514,6 +500,13 @@
     "info": {
       "industry": "Biotechnology",
       "sector": "Healthcare",
+      "type": "Stock"
+    }
+  },
+  "ABX": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -4624,6 +4617,13 @@
       "industry": "Electronics & Computer Distribution",
       "sector": "Technology",
       "type": "Stock"
+    }
+  },
+  "ARWG": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
     }
   },
   "ARWR": {
@@ -10730,6 +10730,13 @@
       "type": "ETF"
     }
   },
+  "BTFL": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "BTG": {
     "info": {
       "industry": "Gold",
@@ -14262,13 +14269,6 @@
     "info": {
       "industry": "Packaged Foods",
       "sector": "Consumer Defensive",
-      "type": "Stock"
-    }
-  },
-  "CLNNW": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -25514,6 +25514,13 @@
       "type": "ETF"
     }
   },
+  "FDRS": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "FDRV": {
     "info": {
       "industry": "n/a",
@@ -36693,20 +36700,6 @@
       "type": "ETF"
     }
   },
-  "ILLR": {
-    "info": {
-      "industry": "Software - Application",
-      "sector": "Technology",
-      "type": "Stock"
-    }
-  },
-  "ILLRW": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
-    }
-  },
   "ILMN": {
     "info": {
       "industry": "Diagnostics & Research",
@@ -37857,8 +37850,8 @@
   },
   "IPST": {
     "info": {
-      "industry": "Beverages - Wineries & Distilleries",
-      "sector": "Consumer Defensive",
+      "industry": "Capital Markets",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -44720,6 +44713,13 @@
       "industry": "Paper & Paper Products",
       "sector": "Basic Materials",
       "type": "Stock"
+    }
+  },
+  "MAGO": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
     }
   },
   "MAGS": {
@@ -53143,6 +53143,13 @@
       "type": "ETF"
     }
   },
+  "ONDL": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "ONDS": {
     "info": {
       "industry": "Communication Equipment",
@@ -54548,6 +54555,20 @@
       "industry": "Software - Application",
       "sector": "Technology",
       "type": "Stock"
+    }
+  },
+  "PAYH": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
+  "PAYM": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
     }
   },
   "PAYO": {
@@ -72533,6 +72554,13 @@
       "type": "Stock"
     }
   },
+  "TSCM": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "TSCO": {
     "info": {
       "industry": "Specialty Retail",
@@ -72589,6 +72617,13 @@
       "type": "ETF"
     }
   },
+  "TSES": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "TSHA": {
     "info": {
       "industry": "Biotechnology",
@@ -72601,6 +72636,13 @@
       "industry": "Asset Management",
       "sector": "Financial Services",
       "type": "Stock"
+    }
+  },
+  "TSIC": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
     }
   },
   "TSII": {
@@ -72771,6 +72813,13 @@
       "type": "Stock"
     }
   },
+  "TSNF": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "TSOL": {
     "info": {
       "industry": "n/a",
@@ -72804,6 +72853,20 @@
       "industry": "Advertising Agencies",
       "sector": "Communication Services",
       "type": "Stock"
+    }
+  },
+  "TSRS": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
+  "TSSD": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
     }
   },
   "TSSI": {
