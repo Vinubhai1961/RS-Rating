@@ -30,15 +30,15 @@ def add_section_label(df, label):
     df.insert(0, "Section", label)
     return df
 
-def find_latest_rs_file(archive_path="archive"):
-    pattern = os.path.join(archive_path, "rs_stocks_*.csv")
+def find_latest_industry_file(archive_path="archive"):
+    pattern = os.path.join(archive_path, "rs_industries_*.csv")
     files = glob.glob(pattern)
 
     if not files:
-        raise FileNotFoundError("❌ No RS files found in archive/")
+        raise FileNotFoundError(f"❌ No rs_industries_*.csv files found in {archive_path}/")
 
     def extract_date_for_sort(filepath):
-        match = re.search(r'rs_stocks_(\d{8})\.csv', filepath)
+        match = re.search(r'rs_industries_(\d{8})\.csv', filepath)
         if not match:
             raise ValueError(f"❌ Invalid filename: {filepath}")
 
@@ -48,10 +48,10 @@ def find_latest_rs_file(archive_path="archive"):
                 return datetime.strptime(raw, fmt)
             except ValueError:
                 continue
-
         raise ValueError(f"❌ Invalid date format: {filepath}")
 
-    return max(files, key=extract_date_for_sort)
+    latest_file = max(files, key=extract_date_for_sort)
+    return latest_file
 
 def extract_date_from_filename(filepath):
     """
@@ -59,7 +59,7 @@ def extract_date_from_filename(filepath):
     Supports MMDDYYYY and YYYYMMDD.
     Returns date as YYYYMMDD string.
     """
-    match = re.search(r'rs_stocks_(\d{8})\.csv', filepath)
+    match = re.search(r'rs_industries_(\d{8})\.csv', filepath)
     if not match:
         raise ValueError(f"❌ Could not extract date from: {filepath}")
 
@@ -170,8 +170,8 @@ def generate_sector_report(source_file: str, output_file: str):
 # Main execution
 if __name__ == "__main__":
     try:
-        latest_csv = find_latest_rs_file()   # ← corrected function name
-        print(f"📅 Latest RS file detected: {os.path.basename(latest_csv)}")
+        latest_csv = find_latest_industry_file()   # ← now looks for rs_industries_*.csv
+        print(f"📅 Latest industry RS file detected: {os.path.basename(latest_csv)}")
         date_str = extract_date_from_filename(latest_csv)
         output_path = f"IBD-20/rs_top_sectors_opportunities_{date_str}.csv"
         generate_sector_report(latest_csv, output_path)
