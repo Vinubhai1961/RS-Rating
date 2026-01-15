@@ -15,12 +15,27 @@ def add_section_label(df, label):
     return df
 
 def find_latest_rs_file(archive_path="archive"):
-    """Find the latest rs_stocks_YYYYMMDD.csv file in the archive directory."""
     pattern = os.path.join(archive_path, "rs_stocks_*.csv")
-    files = sorted(glob.glob(pattern), reverse=True)
+    files = glob.glob(pattern)
+
     if not files:
         raise FileNotFoundError("❌ No RS files found in archive/")
-    return files[0]
+
+    def extract_date_for_sort(filepath):
+        match = re.search(r'rs_stocks_(\d{8})\.csv', filepath)
+        if not match:
+            raise ValueError(f"❌ Invalid filename: {filepath}")
+
+        raw = match.group(1)
+        for fmt in ("%Y%m%d", "%m%d%Y"):
+            try:
+                return datetime.strptime(raw, fmt)
+            except ValueError:
+                continue
+
+        raise ValueError(f"❌ Invalid date format: {filepath}")
+
+    return max(files, key=extract_date_for_sort)
 
 def extract_date_from_filename(filepath):
     """
