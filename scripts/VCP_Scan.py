@@ -1,5 +1,6 @@
-import pandas as pd
 from pathlib import Path
+from datetime import datetime
+import pandas as pd
 import re
 
 # Define directories
@@ -14,9 +15,16 @@ if not csv_files:
     raise FileNotFoundError("No rs_stocks_*.csv files found in archive/")
 
 # Extract date from filename
+#def extract_date(f):
+     #match = re.search(r'rs_stocks_(\d{8})\.csv', f.name)
+     #return int(match.group(1)) if match else 0
+
 def extract_date(f):
     match = re.search(r'rs_stocks_(\d{8})\.csv', f.name)
-    return int(match.group(1)) if match else 0
+    if not match:
+        return datetime.min
+    return datetime.strptime(match.group(1), "%m%d%Y")
+
 
 latest_file = max(csv_files, key=extract_date)
 date_str = re.search(r'rs_stocks_(\d{8})\.csv', latest_file.name).group(1)
