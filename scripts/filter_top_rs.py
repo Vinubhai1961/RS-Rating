@@ -231,6 +231,7 @@ def generate_opportunity_report(source_file: str, output_file: str):
 if __name__ == "__main__":
     # Auto-detect input file and extract date
     latest_csv = find_latest_rs_file()
+    print(f"📅 Latest RS file detected: {os.path.basename(latest_csv)}")
     date_str = extract_date_from_filename(latest_csv)
     output_path = f"IBD-20/rs_opportunities_{date_str}.csv"
     generate_opportunity_report(latest_csv, output_path)
