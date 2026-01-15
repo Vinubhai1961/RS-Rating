@@ -1,4 +1,5 @@
 import pandas as pd
+from datetime import datetime
 import os
 import glob
 import re
@@ -22,11 +23,33 @@ def find_latest_rs_file(archive_path="archive"):
     return files[0]
 
 def extract_date_from_filename(filepath):
-    """Extract the date (YYYYMMDD) from the rs_stocks_YYYYMMDD.csv filename."""
+    """
+    Extract date from rs_stocks_XXXXXXXX.csv filename.
+    Supports MMDDYYYY and YYYYMMDD.
+    Returns date as YYYYMMDD string.
+    """
     match = re.search(r'rs_stocks_(\d{8})\.csv', filepath)
     if not match:
         raise ValueError(f"❌ Could not extract date from: {filepath}")
-    return match.group(1)
+
+    raw = match.group(1)
+
+    # Try YYYYMMDD first
+    try:
+        dt = datetime.strptime(raw, "%Y%m%d")
+        return dt.strftime("%Y%m%d")
+    except ValueError:
+        pass
+
+    # Try MMDDYYYY
+    try:
+        dt = datetime.strptime(raw, "%m%d%Y")
+        return dt.strftime("%Y%m%d")
+    except ValueError:
+        pass
+
+    raise ValueError(f"❌ Invalid date format in filename: {filepath}")
+
 
 def generate_opportunity_report(source_file: str, output_file: str):
     """Generate an opportunity report based on RS criteria with four sections."""
