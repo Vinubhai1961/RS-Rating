@@ -16,7 +16,7 @@ Section                  | Criteria
 
 The results are saved to: `IBD-20/rs_top_sectors_opportunities_<DATE>.csv`
 """
-
+from datetime import datetime
 import pandas as pd
 import os
 import glob
@@ -38,10 +38,32 @@ def find_latest_industry_file(archive_path="archive"):
     return files[0]
 
 def extract_date_from_filename(filepath):
-    match = re.search(r'rs_industries_(\d{8})\.csv', filepath)
+    """
+    Extract date from rs_stocks_XXXXXXXX.csv filename.
+    Supports MMDDYYYY and YYYYMMDD.
+    Returns date as YYYYMMDD string.
+    """
+    match = re.search(r'rs_stocks_(\d{8})\.csv', filepath)
     if not match:
         raise ValueError(f"❌ Could not extract date from: {filepath}")
-    return match.group(1)
+
+    raw = match.group(1)
+
+    # Try YYYYMMDD first
+    try:
+        dt = datetime.strptime(raw, "%Y%m%d")
+        return dt.strftime("%Y%m%d")
+    except ValueError:
+        pass
+
+    # Try MMDDYYYY
+    try:
+        dt = datetime.strptime(raw, "%m%d%Y")
+        return dt.strftime("%Y%m%d")
+    except ValueError:
+        pass
+
+    raise ValueError(f"❌ Invalid date format in filename: {filepath}")
 
 def generate_sector_report(source_file: str, output_file: str):
     df = pd.read_csv(source_file)
