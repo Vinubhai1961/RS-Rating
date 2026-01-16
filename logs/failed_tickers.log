@@ -424,3 +424,13 @@
 2026-01-15 21:52:48,454 - NYSE trading days used: 20260109T, 20260112T, 20260113T, 20260114T, 20260115T
 2026-01-15 21:52:48,455 - RSRATING.csv (NYSE) generated → RS_Data/RSRATING.csv
 2026-01-15 21:52:48,455 - RS calculation completed. 9316 tickers processed, 9292 with valid RS.
+2026-01-16 21:52:07,500 - Starting RS calculation process
+2026-01-16 21:52:07,501 - Missing RS debug log: logs/debug_rs/Missing_RS.log
+2026-01-16 21:52:07,508 - Found 9312 symbols in tmp/arctic_db
+2026-01-16 21:52:17,783 - Found 0 tickers with no data: []...
+2026-01-16 21:52:17,806 - Metadata file structure: list
+2026-01-16 21:52:17,854 - Starting RS calculation for 9312 tickers
+2026-01-16 21:53:18,150 - Latest market date (NYSE): 2026-01-16
+2026-01-16 21:53:18,303 - NYSE trading days used: 20260112T, 20260113T, 20260114T, 20260115T, 20260116T
+2026-01-16 21:53:18,304 - RSRATING.csv (NYSE) generated → RS_Data/RSRATING.csv
+2026-01-16 21:53:18,304 - RS calculation completed. 9311 tickers processed, 9287 with valid RS.
