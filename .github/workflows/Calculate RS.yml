@@ -44,7 +44,7 @@ jobs:
       - name: 📦 Install dependencies
         run: |
           pip install --upgrade pip
-          pip install yahooquery pandas numpy tqdm arcticdb
+          pip install yahooquery pandas numpy tqdm  pytz arcticdb
 
       - name: 🔢 Verify calculate_rs.py checksum
         run: |
