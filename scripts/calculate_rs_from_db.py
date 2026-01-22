@@ -7,6 +7,7 @@ import logging
 from datetime import datetime, timedelta
 import pandas as pd
 import numpy as np
+import pytz
 import arcticdb as adb
 from tqdm.auto import tqdm
 
