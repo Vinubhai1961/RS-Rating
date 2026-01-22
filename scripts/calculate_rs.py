@@ -7,6 +7,7 @@ import logging
 from tqdm import tqdm
 from yahooquery import Ticker
 import pandas as pd
+import pytz
 import arcticdb as adb
 
 def fetch_historical_data(tickers, arctic, log_file):
