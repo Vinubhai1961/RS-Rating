@@ -266,7 +266,7 @@ jobs:
               cp "RS_Data/${file}.csv" "archive/${file}_${current_date}.csv"
               echo "Archived ${file}_${current_date}.csv"
             else
-              echo ""❌ RS_Data/${file}.csv not found!"
+              echo "❌ RS_Data/${file}.csv not found!"
               exit 1
             fi
           done
