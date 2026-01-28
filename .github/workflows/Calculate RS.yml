@@ -242,23 +242,43 @@ jobs:
             --log-file logs/failed_tickers.log \
             --metadata-file data/ticker_price.json \
             --debug
+            
+      - name: 🔍 Find Inside Bars (RS >= 75)
+        run: |
+          current_date=$(date -u -d "4 hours ago" +"%m%d%Y")
+          mkdir -p logs RS_Data
+          python scripts/find_inside_bars.py \
+            --arctic-db-path tmp/arctic_db \
+            --input-csv RS_Data/rs_stocks.csv \
+            --output-dir RS_Data \
+            --log-file logs/failed_ib_tickers.log \
+            --date "$current_date"
 
-      - name: 📃 Archive RS Results
+      - name: 📦 Archive RS + Inside Bar Results
         run: |
           mkdir -p archive
           current_date=$(date -u -d "4 hours ago" +"%m%d%Y")
-          echo "📅 Archiving results for: ${current_date}"
+          echo "Archiving results for: ${current_date}"
 
-          # Copy result CSVs to archive only
+          # RS files
           for file in rs_stocks rs_industries RSRATING; do
             if [ -f "RS_Data/${file}.csv" ]; then
-              cp RS_Data/${file}.csv archive/${file}_${current_date}.csv
-              echo "✅ Archived ${file}.csv"
+              cp "RS_Data/${file}.csv" "archive/${file}_${current_date}.csv"
+              echo "Archived ${file}_${current_date}.csv"
             else
-              echo "❌ RS_Data/${file}.csv not found!"
+              echo ""❌ RS_Data/${file}.csv not found!"
               exit 1
             fi
           done
+
+          # Inside Bar file
+          ib_file="RS_Data/IB_Stocks_${current_date}.csv"
+          if [ -f "$ib_file" ]; then
+            cp "$ib_file" "archive/IB_Stocks_${current_date}.csv"
+            echo "✅ Archived IB_Stocks_${current_date}.csv"
+          else
+            echo "❌ Warning: IB_Stocks_${current_date}.csv not found"
+          fi
 
           # echo "🧹 Cleaning CSV files older than 90 days in archive..."
           # find archive -type f -name "*.csv" -mtime +90 -print -delete
