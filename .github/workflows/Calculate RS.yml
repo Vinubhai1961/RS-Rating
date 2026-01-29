@@ -253,6 +253,8 @@ jobs:
             --output-dir RS_Data \
             --log-file logs/failed_ib_tickers.log \
             --date "$current_date"
+            --rs-threshold 80.0 \
+            --min-price 30.0
 
       - name: 📦 Archive RS + Inside Bar Results
         run: |
