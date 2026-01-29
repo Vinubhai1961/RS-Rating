@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Find tickers with Inside Bar (latest day inside previous day) 
-from RS_Data/rs_stocks.csv (only RS Percentile >= threshold)
+Find tickers with Inside Bar (latest day inside previous day)
+from RS_Data/rs_stocks.csv (filtered by RS Percentile and Price)
 using ArcticDB price data.
 """
 
@@ -25,6 +25,8 @@ def parse_arguments():
                         help="Log file for skipped/failed tickers")
     parser.add_argument("--rs-threshold", type=float, default=75.0,
                         help="Minimum RS Percentile to consider (default: 75.0)")
+    parser.add_argument("--min-price", type=float, default=0.0,
+                        help="Minimum Price to consider (default: 0.0 = no filter)")
     parser.add_argument("--date", required=True,
                         help="Date string for filename e.g. 01282026")
     return parser.parse_args()
@@ -44,7 +46,10 @@ def main():
     )
     logger = logging.getLogger(__name__)
 
-    logger.info(f"Starting Inside Bar scan | RS >= {args.rs_threshold} | date={args.date}")
+    logger.info(
+        f"Starting Inside Bar scan | "
+        f"RS >= {args.rs_threshold} | Price >= {args.min_price} | date={args.date}"
+    )
 
     # Connect to ArcticDB
     try:
@@ -56,17 +61,26 @@ def main():
         logger.error(f"Failed to open ArcticDB: {e}")
         return
 
-    # Read RS stocks and filter high RS tickers
+    # Read RS stocks and apply filters
     try:
         df_rs = pd.read_csv(args.input_csv)
-        if "RS Percentile" not in df_rs.columns:
-            raise ValueError("'RS Percentile' column not found in input CSV")
-        
-        df_high = df_rs[df_rs["RS Percentile"] >= args.rs_threshold].copy()
-        tickers = df_high["Ticker"].unique().tolist()
-        logger.info(f"Found {len(tickers)} tickers with RS Percentile >= {args.rs_threshold}")
+        required_cols = ["RS Percentile", "Price", "Ticker"]
+        missing = [col for col in required_cols if col not in df_rs.columns]
+        if missing:
+            raise ValueError(f"Missing required columns in CSV: {missing}")
+
+        df_filtered = df_rs[
+            (df_rs["RS Percentile"] >= args.rs_threshold) &
+            (df_rs["Price"] >= args.min_price)
+        ].copy()
+
+        tickers = df_filtered["Ticker"].unique().tolist()
+        logger.info(
+            f"Found {len(tickers)} tickers after filtering "
+            f"(RS >= {args.rs_threshold}, Price >= {args.min_price})"
+        )
     except Exception as e:
-        logger.error(f"Failed to read/filter input CSV: {e}")
+        logger.error(f"Failed to read or filter input CSV: {e}")
         return
 
     inside_bar_tickers = []
@@ -80,7 +94,7 @@ def main():
 
             df_price = item.data
 
-            # Ensure we have datetime as column and sort
+            # Ensure datetime column exists and sort
             if "datetime" not in df_price.columns:
                 logger.debug(f"No 'datetime' column for {ticker}")
                 continue
@@ -95,25 +109,24 @@ def main():
             prev = df_price.iloc[-2]
             curr = df_price.iloc[-1]
 
-            # Required columns
             if not all(col in df_price.columns for col in ["high", "low"]):
                 logger.debug(f"Missing high/low columns for {ticker}")
                 continue
 
-            # Strict inside bar definition
+            # Strict inside bar: current day completely inside previous day
             if curr["high"] < prev["high"] and curr["low"] > prev["low"]:
                 inside_bar_tickers.append(ticker)
 
         except Exception as e:
             logger.warning(f"Error processing {ticker}: {str(e)}")
 
-    # Build result
+    # Build result DataFrame (same columns as source, just filtered rows)
     if inside_bar_tickers:
         result_df = df_rs[df_rs["Ticker"].isin(inside_bar_tickers)]
-        logger.info(f"Found {len(result_df)} inside bar tickers (RS >= {args.rs_threshold})")
+        logger.info(f"Found {len(result_df)} inside bar tickers")
     else:
-        result_df = df_rs.head(0)  # empty dataframe with same columns
-        logger.info("No inside bars found")
+        result_df = df_rs.head(0)  # empty df with headers
+        logger.info("No inside bars found matching criteria")
 
     # Save result
     output_dir = Path(args.output_dir)
