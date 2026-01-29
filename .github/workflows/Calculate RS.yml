@@ -243,7 +243,7 @@ jobs:
             --metadata-file data/ticker_price.json \
             --debug
             
-      - name: 🔍 Find Inside Bars (RS >= 75)
+      - name: 🔍 Find Inside Bars (RS >= 80, Price >= 30)
         run: |
           current_date=$(date -u -d "4 hours ago" +"%m%d%Y")
           mkdir -p logs RS_Data
@@ -252,10 +252,10 @@ jobs:
             --input-csv RS_Data/rs_stocks.csv \
             --output-dir RS_Data \
             --log-file logs/failed_ib_tickers.log \
-            --date "$current_date"
+            --date "$current_date" \
             --rs-threshold 80.0 \
             --min-price 30.0
-
+            
       - name: 📦 Archive RS + Inside Bar Results
         run: |
           mkdir -p archive
