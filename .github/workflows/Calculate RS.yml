@@ -274,7 +274,7 @@ jobs:
           done
 
           # Inside Bar file
-          ib_file="RS_Data/IB_Stocks_${current_date}.csv"
+          ib_file="RS_Data/IB_Stocks.csv"
           if [ -f "$ib_file" ]; then
             cp "$ib_file" "archive/IB_Stocks_${current_date}.csv"
             echo "✅ Archived IB_Stocks_${current_date}.csv"
