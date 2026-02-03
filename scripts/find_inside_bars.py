@@ -132,7 +132,8 @@ def main():
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    filename = f"IB_Stocks_{args.date}.csv"
+    #filename = f"IB_Stocks_{args.date}.csv"
+    filename = f"IB_Stocks.csv"
     output_path = output_dir / filename
 
     result_df.to_csv(output_path, index=False)
