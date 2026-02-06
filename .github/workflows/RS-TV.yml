@@ -30,6 +30,7 @@ jobs:
           python - << 'EOF'
           import pandas as pd
           from pathlib import Path
+          from datetime import datetime
 
           source_file = Path("RS_Data/RSRATING.csv")
           dest_file   = Path("RS_Data/RS-Rating.txt")
@@ -43,12 +44,13 @@ jobs:
                            names=['date','a','b','c','rs','e'],
                            dtype={'rs': float})
 
-          # Keep first occurrence of each RS value (preserves appearance order = descending)
+          # Keep **first** occurrence of each RS value (earliest date = highest RS first)
           first_occ = df.drop_duplicates(subset='rs', keep='first') \
                         .sort_values('rs', ascending=False) \
                         .reset_index(drop=True)
 
-          # The 7 thresholds we care about (in your example order)
+          # Define the percentiles in correct order (highest → lowest)
+          percentiles = [98, 89, 69, 49, 29, 9, 1]
           labels = [
               "USA 98th → RS ≥",
               "USA 89th → RS ≥",
@@ -61,26 +63,29 @@ jobs:
 
           lines = []
           for i, row in first_occ.iterrows():
-              if i >= len(labels):
+              if i >= len(percentiles):
                   break
-              val = row['rs']
+              p = percentiles[i]
               label = labels[i]
-              line = f'usa{i*10+98 if i==0 else 98-i*10 if i<6 else 1:02d} = input.float({val:.2f}, "{label}", group="USA Thresholds")'
+              val = row['rs']
+              line = f'usa{p:02d} = input.float({val:.2f}, "{label}", group="USA Thresholds")'
               lines.append(line)
 
           # Write to destination
           dest_file.parent.mkdir(parents=True, exist_ok=True)
           with open(dest_file, 'w', encoding='utf-8') as f:
               f.write('// Auto-generated RS Rating thresholds - do not edit manually\n')
-              f.write('// Last updated: ${{ github.event.schedule || github.event_name }}\n\n')
+              f.write(f'// Last updated: {datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")}\n')
+              f.write(f'// Trigger: { "${{ github.event_name }}" }\n\n')
               f.write('```pine_v6\n')
               for line in lines:
                   f.write(line + '\n')
               f.write('```\n')
 
-          print("Generated RS-Rating.txt with", len(lines), "thresholds")
-          print("First few lines:")
-          print('\n'.join(lines[:3]))
+          print(f"Generated {dest_file} with {len(lines)} thresholds")
+          if lines:
+              print("First 3 lines:")
+              print('\n'.join(lines[:3]))
           EOF
 
       - name: Commit and push changes (if any)
