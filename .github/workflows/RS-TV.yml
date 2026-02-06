@@ -1,0 +1,101 @@
+name: Update RS Rating Thresholds for TradingView
+
+on:
+  schedule:
+    - cron: '30 4 * * *'          # every day at 4:30 UTC (~11:30 PM - 12:30 AM EST)
+  workflow_dispatch:              # allows manual run from GitHub UI
+
+jobs:
+  update-thresholds:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas
+
+      - name: Generate RS-Rating.txt from CSV
+        run: |
+          python - << 'EOF'
+          import pandas as pd
+          from pathlib import Path
+
+          source_file = Path("RS_Data/RSRATING.csv")
+          dest_file   = Path("RS_Data/RS-Rating.txt")
+
+          if not source_file.exists():
+              print(f"Error: Source file not found → {source_file}")
+              exit(1)
+
+          # Read CSV - no header
+          df = pd.read_csv(source_file, header=None, 
+                           names=['date','a','b','c','rs','e'],
+                           dtype={'rs': float})
+
+          # Keep first occurrence of each RS value (preserves appearance order = descending)
+          first_occ = df.drop_duplicates(subset='rs', keep='first') \
+                        .sort_values('rs', ascending=False) \
+                        .reset_index(drop=True)
+
+          # The 7 thresholds we care about (in your example order)
+          labels = [
+              "USA 98th → RS ≥",
+              "USA 89th → RS ≥",
+              "USA 69th → RS ≥",
+              "USA 49th → RS ≥",
+              "USA 29th → RS ≥",
+              "USA 9th  → RS ≥",
+              "USA 1st  → RS ≥"
+          ]
+
+          lines = []
+          for i, row in first_occ.iterrows():
+              if i >= len(labels):
+                  break
+              val = row['rs']
+              label = labels[i]
+              line = f'usa{i*10+98 if i==0 else 98-i*10 if i<6 else 1:02d} = input.float({val:.2f}, "{label}", group="USA Thresholds")'
+              lines.append(line)
+
+          # Write to destination
+          dest_file.parent.mkdir(parents=True, exist_ok=True)
+          with open(dest_file, 'w', encoding='utf-8') as f:
+              f.write('// Auto-generated RS Rating thresholds - do not edit manually\n')
+              f.write('// Last updated: ${{ github.event.schedule || github.event_name }}\n\n')
+              f.write('```pine_v6\n')
+              for line in lines:
+                  f.write(line + '\n')
+              f.write('```\n')
+
+          print("Generated RS-Rating.txt with", len(lines), "thresholds")
+          print("First few lines:")
+          print('\n'.join(lines[:3]))
+          EOF
+
+      - name: Commit and push changes (if any)
+        run: |
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          
+          git add RS_Data/RS-Rating.txt
+          
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update RS rating thresholds [$(date +'%Y-%m-%d')]"
+            git push
+          fi
+
+      - name: Show result file content
+        run: cat RS_Data/RS-Rating.txt || echo "File not created"
