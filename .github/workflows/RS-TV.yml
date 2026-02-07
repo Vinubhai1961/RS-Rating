@@ -1,8 +1,8 @@
 name: Update RS Rating Thresholds for TradingView
 
 on:
-  schedule:
-    - cron: '30 4 * * *'          # every day at 4:30 UTC (~11:30 PM - 12:30 AM EST)
+  #schedule:
+    #- cron: '30 4 * * *'          # every day at 4:30 UTC (~11:30 PM - 12:30 AM EST)
   workflow_dispatch:              # allows manual run from GitHub UI
 
 jobs:
