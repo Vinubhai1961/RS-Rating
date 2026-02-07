@@ -75,8 +75,8 @@ def main():
     result = filtered[available]
 
     # Sort by RS Percentile descending
-    #result = result.sort_values('RS Percentile', ascending=False).reset_index(drop=True)
-    result = result.sort_values(by=['%_From_52WKH', 'Rank'], ascending=[True, True]).reset_index(drop=True)
+    result = result.sort_values('RS Percentile', ascending=False).reset_index(drop=True)
+    #result = result.sort_values(by=['%_From_52WKH', 'Rank'], ascending=[True, True]).reset_index(drop=True)
 
     # Overwrite output
     result.to_csv(OUTPUT_PATH, index=False)
