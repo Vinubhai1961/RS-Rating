@@ -1,22 +1,25 @@
-name: Filter stocks near 52-week high
+name: Filter strong RS stocks near 52-week high
 
 on:
   schedule:
-    - cron: '30 9 * * *'
-  workflow_dispatch:
+    - cron: '45 9 * * *'          # ~4:45 AM EST – adjust if needed
+  workflow_dispatch:              # allows manual trigger from GitHub UI
 
 jobs:
   filter:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0          # needed for proper git diff / history
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'           # or 3.12 — both fine
-          cache: 'pip'                     # optional but speeds up repeated runs
+          python-version: '3.11'
+          cache: 'pip'
 
       - name: Install dependencies
         run: |
@@ -26,10 +29,15 @@ jobs:
       - name: Run filter script
         run: python scripts/filter_52wh.py
 
-      - name: Commit result if changed
+      - name: Commit and push result if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add RS_Data/within_*pct_of_52wh.csv
-          git diff --staged --quiet || git commit -m "Update: stocks within threshold of 52-week high"
-          git push || echo "No changes or already up-to-date"
+          
+          # Only add the actual output file your script creates
+          git add RS_Data/RS80_Price30_within27pct_52wh.csv || true
+          
+          # Commit only if there are actual changes
+          git diff --staged --quiet || git commit -m "chore: update RS>80 + Price>30 + near 52WH list"
+          
+          git push || echo "No changes to push or already up-to-date"
