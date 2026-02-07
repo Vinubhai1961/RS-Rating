@@ -1,0 +1,36 @@
+name: RS → Within 25% of 52WH
+
+on:
+  schedule:
+    - cron: '45 8 * * *'     # Every day 8:45 UTC (after your RS update finishes)
+  workflow_dispatch:
+  push:
+    paths: ['RS_Data/rs_stocks.csv']
+
+jobs:
+  filter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install deps
+        run: pip install pandas
+
+      - name: Run 52WH Filter
+        run: python scripts/filter_52wh.py
+
+      - name: Commit & Push Results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add RS_Data/0-25%_52WK/ RS_Data/0-27%_52WK/
+          git commit -m "Auto-update: Within 25% of 52WH filter" || echo "No changes"
+          git push
