@@ -2,20 +2,28 @@ name: Filter stocks near 52-week high
 
 on:
   schedule:
-    - cron: '30 9 * * *'          # once per day
+    - cron: '30 9 * * *'
   workflow_dispatch:
 
 jobs:
   filter:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.11'           # or 3.12 — both fine
+          cache: 'pip'                     # optional but speeds up repeated runs
 
-      - name: Run filter
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas
+
+      - name: Run filter script
         run: python scripts/filter_52wh.py
 
       - name: Commit result if changed
@@ -23,5 +31,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add RS_Data/within_*pct_of_52wh.csv
-          git diff --staged --quiet || git commit -m "Update: stocks within threshold of 52WH"
+          git diff --staged --quiet || git commit -m "Update: stocks within threshold of 52-week high"
           git push || echo "No changes or already up-to-date"
