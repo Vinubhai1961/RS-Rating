@@ -1,5 +1,4 @@
 Symbol,Security Name,Listing Exchange,Financial Status,Test Issue,Market Category,Round Lot Size
-AAM.W,"AA Mission Acquisition Corp. Warrants, each whole warrant entitles the holder to purchase one Class A ordinary share at a price of $11.50 per share",N,N,N, ,100.0
 ABLVW,Able View Global Inc. - Warrant,Q,N,N,S,100.0
 ABPWW,"Abpro Holdings, Inc - Warrant",Q,N,N,S,100.0
 ABVEW,Above Food Ingredients Inc. - Warrant,Q,E,N,G,100.0
@@ -54,13 +53,14 @@ BGLWW,Blue Gold Limited - Warrant,Q,N,N,S,100.0
 BIAFW,"bioAffinity Technologies, Inc. - Warrant",Q,N,N,S,100.0
 BIVIW,BioVie Inc. - Warrant,Q,N,N,S,100.0
 BIXIW,Bitcoin Infrastructure Acquisition Corp Ltd. - Warrants,Q,N,N,G,100.0
+BLRKW,Bluerock Acquisition Corp. - Warrants,Q,N,N,G,100.0
 BLUWW,Blue Water Acquisition Corp. III - Warrant.,Q,N,N,G,100.0
 BLZRW,Trailblazer Acquisition Corp. - Warrant,Q,N,N,G,100.0
 BNAIW,Brand Engagement Network Inc. - Warrant,Q,N,N,S,100.0
 BNCWW,CEA Industries Inc. - Warrant,Q,N,N,S,100.0
 BNZIW,"Banzai International, Inc. - Warrant",Q,N,N,S,100.0
 BRLSW,Borealis Foods Inc. - Warrant,Q,D,N,S,100.0
-BRRWW,"ProCap Financial, Inc. - Warrant.",Q,N,N,S,100.0
+BRRWW,"ProCap Financial, Inc. - Warrant.",Q,D,N,S,100.0
 BTBDW,"BT Brands, Inc. - Warrant",Q,D,N,S,100.0
 BTMWW,Bitcoin Depot Inc. - Warrant,Q,N,N,S,100.0
 BULLW,Webull Corporation - Warrants,Q,N,N,S,100.0
@@ -87,7 +87,7 @@ CORZW,"Core Scientific, Inc. - Tranche 1 Warrants",Q,N,N,Q,100.0
 CORZZ,"Core Scientific, Inc. - Tranche 2 Warrants",Q,N,N,Q,100.0
 CRACW,Crown Reserve Acquisition Corp. I - Warrant,Q,N,N,G,100.0
 CRESW,Cresud S.A.C.I.F. y A. - Warrant,Q,N,N,S,100.0
-CREVW,Carbon Revolution Public Limited Company - Warrant,Q,E,N,S,100.0
+CREVW,Carbon Revolution Public Limited Company - Warrant,Q,N,N,S,100.0
 CRGOW,Freightos Limited - Warrants,Q,N,N,S,100.0
 CRMLW,Critical Metals Corp. - Warrants,Q,N,N,S,100.0
 CUBWW,Lionheart Holdings - Warrant,Q,N,N,G,100.0
@@ -112,6 +112,7 @@ DYORW,Insight Digital Partners II - Warrants,Q,N,N,G,100.0
 ECXWW,ECARX Holdings Inc. - Warrants,Q,N,N,S,100.0
 EDBLW,Edible Garden AG Incorporated - Warrant,Q,N,N,S,100.0
 ENGNW,enGene Holdings Inc. - Warrants,Q,N,N,S,100.0
+ERNAW,Ernexa Therapeutics Inc. - Warrants,Q,N,N,S,100.0
 ESGLW,ESGL Holdings Limited - Warrants,Q,N,N,S,100.0
 ESLAW,"Estrella Immunopharma, Inc. - Warrant",Q,D,N,S,100.0
 ETHMW,Dynamix Corporation - Warrant,Q,N,N,G,100.0
@@ -167,8 +168,8 @@ IINNW,Inspira Technologies Oxy B.H.N. Ltd. - Warrant,Q,N,N,S,100.0
 IMSRW,Terrestrial Energy Inc. - Warrant,Q,N,N,Q,100.0
 INVZW,Innoviz Technologies Ltd. - Warrant,Q,N,N,S,100.0
 IPODW,Dune Acquisition Corporation II - Warrants,Q,N,N,G,100.0
+IRAB.U,"Iris Acquisition Corp II Units, each consisting of one Class A Ordinary Share and one-half of one redeemable Warrant",N,N,N, ,100.0
 IRS.W,IRSA Inversiones Y Representaciones S.A. Warrants to purchase Common Shares,N,N,N, ,100.0
-ISPOW,Inspirato Incorporated - Warrant,Q,N,N,G,100.0
 ITHAW,ITHAX Acquisition Corp III - Warrants,Q,N,N,G,100.0
 IVDAW,"Iveda Solutions, Inc. - Warrant",Q,N,N,S,100.0
 JFBRW,Jeffs' Brands Ltd - Warrant,Q,N,N,S,100.0
@@ -192,7 +193,6 @@ LEGT.W,"Legato Merger Corp. III Redeemable Warrants, each whole warrant exercisa
 LFACW,Leapfrog Acquisition Corporation - Warrants,Q,N,N,G,100.0
 LIDRW,"AEye, Inc. - Warrant",Q,N,N,S,100.0
 LIMNW,"Liminatus Pharma, Inc. - Warrants",Q,N,N,S,100.0
-LMND.W,"Lemonade, Inc. Warrants",A,N,N, ,100.0
 LNZAW,"LanzaTech Global, Inc. - Warrant",Q,N,N,S,100.0
 LOKVW,Live Oak Acquisition Corp. V - Warrants,Q,N,N,G,100.0
 LOTWW,Lotus Technology Inc. - Warrants,Q,N,N,S,100.0
@@ -245,7 +245,7 @@ NUAIW,"New Era Energy & Digital, Inc. - Warrants",Q,N,N,S,100.0
 NUKKW,Nukkleus Inc. - Warrants,Q,N,N,S,100.0
 NUVB.W,Nuvation Bio Inc. Warrants,N,N,N, ,100.0
 NVAWW,Nova Minerals Limited - Warrant,Q,N,N,S,100.0
-NVNIW,Nvni Group Limited - Warrants,Q,N,N,S,100.0
+NVNIW,Nvni Group Limited - Warrants,Q,D,N,S,100.0
 NVVEW,Nuvve Holding Corp. - Warrant,Q,N,N,S,100.0
 NWAX.W,"New America Acquisition I Corp. Warrants, each whole warrant is exercisable to purchase one share of Class A common stock",N,N,N, ,100.0
 NXGLW,"NexGel, Inc - Warrant",Q,N,N,S,100.0
@@ -321,7 +321,7 @@ SLXNW,Silexion Therapeutics Corp - Warrant,Q,N,N,S,100.0
 SMXWW,SMX (Security Matters) Public Limited Company - Warrant,Q,N,N,S,100.0
 SOCAW,Solarius Capital Acquisition Corp. - Warrant,Q,N,N,G,100.0
 SOUNW,"SoundHound AI, Inc. - Warrant",Q,N,N,G,100.0
-SPKLW,Spark I Acquisition Corp. - Warrant,Q,N,N,G,100.0
+SPKLW,Spark I Acquisition Corp. - Warrant,Q,D,N,G,100.0
 SPWRW,SunPower Inc. - Warrant,Q,N,N,S,100.0
 SRTAW,"Strata Critical Medical, Inc. - Warrants",Q,N,N,S,100.0
 SRZNW,"Surrozen, Inc. - Warrant",Q,N,N,S,100.0
@@ -371,4 +371,5 @@ XRPNW,Armada Acquisition Corp. II - Warrant,Q,N,N,G,100.0
 YCY.W,"AA Mission Acquisition Corp. II Warrants, each whole warrant entitles to purchase one Class A ordinary share at a price of $11.50 per share",N,N,N, ,100.0
 YDESW,YD Bio Limited - Warrants,Q,N,N,G,100.0
 ZEOWW,Zeo Energy Corporation - Warrants,Q,N,N,S,100.0
+ZKPW,Lafayette Digital Acquisition Corp. I - Warrant,Q,N,N,G,100.0
 ZOOZW,ZOOZ Strategy Ltd. - Warrant,Q,N,N,S,100.0
