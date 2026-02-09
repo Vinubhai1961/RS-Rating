@@ -3,7 +3,6 @@
 #   Overwrites the output file every run
 # scripts/filter_52wh.py
 # =============================================================================
-
 import pandas as pd
 from pathlib import Path
 
@@ -16,6 +15,7 @@ OUTPUT_PATH  = Path("RS_Data/RS80_Price30_within27pct_52wh.csv")
 RS_THRESHOLD    = 80.0
 PRICE_THRESHOLD = 30.0
 MAX_PCT_BELOW   = 27.0
+MIN_AVGVOL10    = 500_000           # ← new: minimum 10-day average volume
 # ────────────────────────────────────────────────
 
 
@@ -29,30 +29,36 @@ def main():
 
     print(f"→ Loaded {len(df):,} rows")
 
-    # Ensure numeric columns
-    numeric_cols = ['Price', '52WKH', 'RS Percentile']
+    # Ensure numeric columns – added 'AvgVol10'
+    numeric_cols = ['Price', '52WKH', 'RS Percentile', 'AvgVol10']
     for col in numeric_cols:
         if col in df.columns:
             df[col] = pd.to_numeric(df[col], errors='coerce')
 
-    # Drop rows we cannot calculate properly
-    df = df.dropna(subset=['Price', '52WKH', 'RS Percentile'])
+    # Drop rows we cannot calculate properly – added 'AvgVol10'
+    df = df.dropna(subset=['Price', '52WKH', 'RS Percentile', 'AvgVol10'])
 
     # Calculate % below 52-week high
     df['%_From_52WKH'] = ((df['52WKH'] - df['Price']) / df['52WKH']) * 100
     df['%_From_52WKH'] = df['%_From_52WKH'].round(2)
 
-    # Apply all filters
+    # Apply all filters – added volume condition
     mask = (
         (df['%_From_52WKH'] >= 0) &
         (df['%_From_52WKH'] <= MAX_PCT_BELOW) &
         (df['RS Percentile'] > RS_THRESHOLD) &
-        (df['Price'] > PRICE_THRESHOLD)
+        (df['Price'] > PRICE_THRESHOLD) &
+        (df['AvgVol10'] > MIN_AVGVOL10)              # ← NEW LINE
     )
 
     filtered = df[mask].copy()
 
-    print(f"After filters ({MAX_PCT_BELOW}% from 52WH + RS > {RS_THRESHOLD} + Price > {PRICE_THRESHOLD}):")
+    # Updated print – shows all active filters
+    print(f"After filters:")
+    print(f"  • within {MAX_PCT_BELOW}% of 52-week high")
+    print(f"  • RS Percentile > {RS_THRESHOLD}")
+    print(f"  • Price > ${PRICE_THRESHOLD:,}")
+    print(f"  • 10-day Avg Volume > {MIN_AVGVOL10:,} shares")
     print(f"→ {len(filtered):,} rows remain")
 
     if len(filtered) == 0:
@@ -70,13 +76,13 @@ def main():
         '%_From_52WKH'
     ]
 
-    # Keep only columns that actually exist
     available = [c for c in desired if c in filtered.columns]
     result = filtered[available]
 
-    # Sort by RS Percentile descending
+    # Sort by RS Percentile descending (you can switch to % closeness if preferred)
     result = result.sort_values('RS Percentile', ascending=False).reset_index(drop=True)
-    #result = result.sort_values(by=['%_From_52WKH', 'Rank'], ascending=[True, True]).reset_index(drop=True)
+    # Alternative (closest to high first):
+    # result = result.sort_values(by=['%_From_52WKH', 'RS Percentile'], ascending=[True, False]).reset_index(drop=True)
 
     # Overwrite output
     result.to_csv(OUTPUT_PATH, index=False)
