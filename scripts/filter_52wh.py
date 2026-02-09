@@ -14,7 +14,7 @@ OUTPUT_PATH  = Path("RS_Data/RS80_Price30_within27pct_52wh.csv")
 
 RS_THRESHOLD    = 80.0
 PRICE_THRESHOLD = 30.0
-MAX_PCT_BELOW   = 27.0
+MAX_PCT_BELOW   = 28.0
 MIN_AVGVOL10    = 500_000           # ← new: minimum 10-day average volume
 # ────────────────────────────────────────────────
 
@@ -43,12 +43,13 @@ def main():
     df['%_From_52WKH'] = df['%_From_52WKH'].round(2)
 
     # Apply all filters – added volume condition
+    
     mask = (
-        (df['%_From_52WKH'] >= 0) &
-        (df['%_From_52WKH'] <= MAX_PCT_BELOW) &
-        (df['RS Percentile'] > RS_THRESHOLD) &
-        (df['Price'] > PRICE_THRESHOLD) &
-        (df['AvgVol10'] > MIN_AVGVOL10)              # ← NEW LINE
+    (df['%_From_52WKH'] >= 0) &
+    (df['%_From_52WKH'] <= MAX_PCT_BELOW) &
+    (df['RS Percentile'] >= RS_THRESHOLD) &  # ← Changed from > to >=
+    (df['Price'] >= PRICE_THRESHOLD) &       # ← Changed from > to >=
+    (df['AvgVol10'] >= MIN_AVGVOL10)         # ← Changed from > to >=
     )
 
     filtered = df[mask].copy()
