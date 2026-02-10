@@ -1,6 +1,6 @@
 // Auto-generated RS Rating thresholds - do not edit manually
-// Last updated: 2026-02-10 23:37 UTC
-// Trigger: workflow_dispatch
+// Last updated: 2026-02-10 23:39 UTC
+// Trigger: workflow_run
 
 ```pine_v6
 usa98 = input.float(197.47, "USA 98th → RS ≥", group="USA Thresholds")
