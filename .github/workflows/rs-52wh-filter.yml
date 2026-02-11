@@ -3,7 +3,7 @@ name: Filter strong RS stocks near 52-week high
 on:
   workflow_dispatch:         # manual run
   workflow_run:
-    workflows: ["📈 Filter Top RS Opportunities"]
+    workflows: ["Filter Top RS Opportunities"]
     types: [completed]
     branches: [main]
 
