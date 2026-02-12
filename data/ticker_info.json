@@ -2190,6 +2190,13 @@
       "type": "ETF"
     }
   },
+  "AIOS": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "AIOT": {
     "info": {
       "industry": "Software - Infrastructure",
@@ -3881,6 +3888,13 @@
     "info": {
       "industry": "Asset Management",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "APC": {
+    "info": {
+      "industry": "Oil & Gas Refining & Marketing",
+      "sector": "Energy",
       "type": "Stock"
     }
   },
@@ -10177,6 +10191,13 @@
       "type": "Stock"
     }
   },
+  "BRAI": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "BRAZ": {
     "info": {
       "industry": "n/a",
@@ -13133,8 +13154,8 @@
   },
   "CEF": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Asset Management",
+      "sector": "Financial Services",
       "type": "ETF"
     }
   },
@@ -14161,6 +14182,13 @@
     }
   },
   "CICB": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
+  "CICC": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -17664,13 +17692,6 @@
     "info": {
       "industry": "Security & Protection Services",
       "sector": "Industrials",
-      "type": "Stock"
-    }
-  },
-  "CYBR": {
-    "info": {
-      "industry": "Software - Infrastructure",
-      "sector": "Technology",
       "type": "Stock"
     }
   },
@@ -25073,6 +25094,13 @@
       "type": "Stock"
     }
   },
+  "FAAA": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "FAAR": {
     "info": {
       "industry": "n/a",
@@ -25508,6 +25536,13 @@
     }
   },
   "FCLD": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
+  "FCLO": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -32974,6 +33009,13 @@
       "industry": "n/a",
       "sector": "n/a",
       "type": "ETF"
+    }
+  },
+  "HACQU": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
     }
   },
   "HAE": {
@@ -42785,8 +42827,8 @@
   },
   "LATAW": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -47543,6 +47585,13 @@
       "type": "ETF"
     }
   },
+  "MMK": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "MMKT": {
     "info": {
       "industry": "n/a",
@@ -50753,13 +50802,6 @@
     "info": {
       "industry": "n/a",
       "sector": "n/a",
-      "type": "Stock"
-    }
-  },
-  "NISN": {
-    "info": {
-      "industry": "Credit Services",
-      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -54844,6 +54886,13 @@
       "type": "ETF"
     }
   },
+  "PAACU": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "PAAS": {
     "info": {
       "industry": "Gold",
@@ -55525,8 +55574,8 @@
   },
   "PCAP": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55539,8 +55588,8 @@
   },
   "PCAPW": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -56666,8 +56715,8 @@
   },
   "PHYS": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Asset Management",
+      "sector": "Financial Services",
       "type": "ETF"
     }
   },
@@ -58605,8 +58654,8 @@
   },
   "PSLV": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Asset Management",
+      "sector": "Financial Services",
       "type": "ETF"
     }
   },
@@ -64665,10 +64714,24 @@
       "type": "ETF"
     }
   },
+  "SCPQ": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "SCPQU": {
     "info": {
       "industry": "Shell Companies",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "SCPQW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -68279,8 +68342,8 @@
   },
   "SPPP": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Asset Management",
+      "sector": "Financial Services",
       "type": "ETF"
     }
   },
@@ -69824,10 +69887,24 @@
       "type": "ETF"
     }
   },
+  "SVAQ": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "SVAQU": {
     "info": {
       "industry": "Shell Companies",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "SVAQW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -72458,8 +72535,8 @@
   },
   "TMTSU": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -78716,8 +78793,8 @@
   },
   "WENNW": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
