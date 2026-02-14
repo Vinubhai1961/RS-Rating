@@ -4,8 +4,10 @@ on:
   workflow_dispatch:         # manual run
   workflow_run:
     workflows: ["Filter Top RS Opportunities"]
-    types: [completed]
-    branches: [main]
+    types:
+      - completed
+    branches:
+      - main
 
   
 
