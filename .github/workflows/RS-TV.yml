@@ -1,12 +1,13 @@
 name: Update RS Rating Thresholds for TradingView
 
 on:
+  workflow_dispatch: # manual run
   workflow_run:
     workflows: ["Filter strong RS stocks near 52-week high"]
-    types: [completed]
-    branches: [main]
-
-  workflow_dispatch:         # manual run
+    types:
+      - completed
+    branches:
+      - main
   
 jobs:
   update-thresholds:
