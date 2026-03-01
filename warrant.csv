@@ -1,6 +1,5 @@
 Symbol,Security Name,Listing Exchange,Financial Status,Test Issue,Market Category,Round Lot Size
 ABLVW,Able View Global Inc. - Warrant,Q,N,N,S,100.0
-ABPWW,"Abpro Holdings, Inc - Warrant",Q,N,N,S,100.0
 ABVEW,Above Food Ingredients Inc. - Warrant,Q,E,N,G,100.0
 ACHR.W,"Archer Aviation Inc. Redeemable Warrants, each whole warrant exercisable for one Class A common stock at an exercise price of $11.50",N,N,N, ,100.0
 ACONW,"Aclarion, Inc. - Warrant",Q,N,N,S,100.0
@@ -28,6 +27,7 @@ APLMW,Apollomics Inc. - Warrant,Q,N,N,S,100.0
 APXTW,Apex Treasury Corporation - Warrants,Q,N,N,G,100.0
 ARBEW,Arbe Robotics Ltd. - Warrant,Q,N,N,S,100.0
 ARQQW,Arqit Quantum Inc. - Warrants,Q,N,N,S,100.0
+ARTCW,Art Technology Acquisition Corp. - Warrants,Q,N,N,G,100.0
 ASBPW,"Aspire Biopharma Holdings, Inc.  - Warrant",Q,N,N,S,100.0
 ASPSW,Altisource Portfolio Solutions S.A. - Net Settle Stakeholder Warrants,Q,N,N,Q,100.0
 ASPSZ,Altisource Portfolio Solutions S.A. - Cash Exercise Stakeholder Warrants,Q,N,N,Q,100.0
@@ -39,7 +39,6 @@ BBCQW,Bleichroeder Acquisition Corp. II - Warrants,Q,N,N,G,100.0
 BCARW,D. Boral ARC Acquisition I Corp. - Warrant,Q,N,N,G,100.0
 BCGWW,"Binah Capital Group, Inc. - Warrants",Q,N,N,S,100.0
 BCTXL,BriaCell Therapeutics Corp. - Warrants,Q,N,N,S,100.0
-BCTXW,BriaCell Therapeutics Corp. - Warrant expiring 2026,Q,N,N,S,100.0
 BCTXZ,BriaCell Therapeutics Corp. - Warrant,Q,N,N,S,100.0
 BDCIW,BTC Development Corp. - Warrant,Q,N,N,G,100.0
 BDMDW,Baird Medical Investment Holdings Ltd - Warrant,Q,N,N,S,100.0
@@ -78,8 +77,9 @@ CGCTW,Cartesian Growth Corporation III - Warrant,Q,N,N,G,100.0
 CHECW,Chenghe Acquisition III Co. - Warrants,Q,N,N,G,100.0
 CINGW,Cingulate Inc. - Warrants,Q,N,N,S,100.0
 CLSKW,"CleanSpark, Inc. - Warrant",Q,N,N,S,100.0
+CMIIW,Columbus Circle Capital Corp II - Warrant,Q,N,N,G,100.0
 CNCKW,Coincheck Group N.V. - Warrants,Q,N,N,S,100.0
-COCHW,"Envoy Medical, Inc. - Warrant",Q,D,N,S,100.0
+COCHW,"Envoy Medical, Inc. - Warrant",Q,N,N,S,100.0
 COEPW,"Coeptis Therapeutics Holdings, Inc. - Warrants",Q,N,N,S,100.0
 COOTW,Australian Oilseeds Holdings Limited - Warrant,Q,N,N,S,100.0
 CORZW,"Core Scientific, Inc. - Tranche 1 Warrants",Q,N,N,Q,100.0
@@ -94,6 +94,7 @@ CYCUW,"Cycurion, Inc. - Warrants",Q,N,N,S,100.0
 DAAQW,Digital Asset Acquisition Corp. - Warrant,Q,N,N,G,100.0
 DAICW,"CID HoldCo, Inc. - Warrants",Q,D,N,G,100.0
 DAVEW,Dave Inc.  - Warrants,Q,N,N,G,100.0
+DBCAW,D. Boral Acquisition I Corp. - Warrants,Q,N,N,G,100.0
 DC.W,"Dakota Gold Corp. Warrants, each warrant exercisable for one Common Share at an exercise price of $2.08",A,N,N, ,100.0
 DFDVW,DeFi Development Corp. - Warrant,Q,N,N,S,100.0
 DFLIW,Dragonfly Energy Holdings Corp - Warrant,Q,N,N,S,100.0
@@ -159,11 +160,12 @@ HYAC.U,"Haymaker Acquisition Corp. 4 Units, each consisting one Class A Ordinary
 HYAC.W,"Haymaker Acquisition Corp. 4 Warrants, each whole warrant exercisable for one Class A ordinary share at an exercise price of $11.50 per share",N,N,N, ,100.0
 IAUX.W,"i-80 Gold Corp. Warrants, each warrant exercisable for one Common Share at an exercise price of $0.70",A,N,N, ,100.0
 ICUCW,SeaStar Medical Holding Corporation - Warrant,Q,N,N,S,100.0
-IINNW,Inspira Technologies Oxy B.H.N. Ltd. - Warrant,Q,N,N,S,100.0
+IINNW,Inspira Technologies Oxy B.H.N. Ltd. - Warrant,Q,D,N,S,100.0
 IMSRW,Terrestrial Energy Inc. - Warrant,Q,N,N,Q,100.0
 INVZW,Innoviz Technologies Ltd. - Warrant,Q,N,N,S,100.0
 IPODW,Dune Acquisition Corporation II - Warrants,Q,N,N,G,100.0
 IRAB.U,"Iris Acquisition Corp II Units, each consisting of one Class A Ordinary Share and one-half of one redeemable Warrant",N,N,N, ,100.0
+IRAB.W,"Iris Acquisition Corp II Redeemable Warrants, each whole warrant exercisable for one Class A Ordinary Share at an exercise price of $11.50 per share",N,N,N, ,100.0
 IRS.W,IRSA Inversiones Y Representaciones S.A. Warrants to purchase Common Shares,N,N,N, ,100.0
 ITHAW,ITHAX Acquisition Corp III - Warrants,Q,N,N,G,100.0
 IVDAW,"Iveda Solutions, Inc. - Warrant",Q,N,N,S,100.0
@@ -196,7 +198,6 @@ LPBBW,Launch Two Acquisition Corp. - Warrant,Q,N,N,G,100.0
 LPCVW,Launchpad Cadenza Acquisition Corp I - Warrant,Q,N,N,G,100.0
 LTRYW,Sports Entertainment Gaming Global Corporation  - Warrant,Q,N,N,G,100.0
 LUCYW,"Innovative Eyewear, Inc. - Warrants",Q,N,N,S,100.0
-LVROW,Lavoro Limited - Warrant,Q,N,N,G,100.0
 LWACW,LightWave Acquisition Corp. - Warrants,Q,N,N,G,100.0
 LZM.W,Lifezone Metals Limited Warrants,N,N,N, ,100.0
 MACIW,Melar Acquisition Corp. I - Warrant,Q,N,N,G,100.0
@@ -239,6 +240,7 @@ NRXPW,"NRX Pharmaceuticals, Inc. - Warrant",Q,D,N,S,100.0
 NTRBW,Nutriband Inc. - Warrant,Q,N,N,S,100.0
 NTWOW,Newbury Street II Acquisition Corp - Warrant,Q,N,N,G,100.0
 NUAIW,"New Era Energy & Digital, Inc. - Warrants",Q,N,N,S,100.0
+NUCLW,Eagle Nuclear Energy Corp. - Warrants,Q,N,N,S,100.0
 NVAWW,Nova Minerals Limited - Warrant,Q,N,N,S,100.0
 NVNIW,Nvni Group Limited - Warrants,Q,D,N,S,100.0
 NVVEW,Nuvve Holding Corp. - Warrant,Q,N,N,S,100.0
@@ -280,7 +282,7 @@ PSQH.W,"PSQ Holdings, Inc. Warrants, each exercisable for one share of Class A c
 QSIAW,Quantum-Si Incorporated - Warrant,Q,N,N,G,100.0
 RAAQW,Real Asset Acquisition Corp. - Warrants,Q,N,N,G,100.0
 RAC.U,Rithm Acquisition Corp. Units (each consists of one Class A Ordinary Share and one-third of one redeemable Warrant),N,N,N, ,100.0
-RAINW,"Rain Enhancement Technologies Holdco, Inc. - Warrants",Q,N,N,S,100.0
+RAINW,"Rain Enhancement Technologies Holdco, Inc. - Warrants",Q,D,N,S,100.0
 RCKTW,"Rocket Pharmaceuticals, Inc. - Warrant",Q,N,N,S,100.0
 RDAGW,Republic Digital Acquisition Company - Warrants,Q,N,N,G,100.0
 RDZNW,"Roadzen, Inc. - Warrants",Q,N,N,S,100.0
@@ -316,11 +318,13 @@ SLND.W,"Southland Holdings, Inc. Warrants",A,N,N, ,100.0
 SLXNW,Silexion Therapeutics Corp - Warrant,Q,N,N,S,100.0
 SMXWW,SMX (Security Matters) Public Limited Company - Warrant,Q,N,N,S,100.0
 SOCAW,Solarius Capital Acquisition Corp. - Warrant,Q,N,N,G,100.0
+SORNW,Soren Acquisition Corp. - Warrant,Q,N,N,G,100.0
 SOUNW,"SoundHound AI, Inc. - Warrant",Q,N,N,G,100.0
 SPKLW,Spark I Acquisition Corp. - Warrant,Q,D,N,G,100.0
 SPWRW,SunPower Inc. - Warrant,Q,N,N,S,100.0
 SRTAW,"Strata Critical Medical, Inc. - Warrants",Q,N,N,S,100.0
 SRZNW,"Surrozen, Inc. - Warrant",Q,N,N,S,100.0
+SSACW,SPACSphere Acquisition Corp. - Warrant,Q,N,N,G,100.0
 STSSW,Sharps Technology Inc. - Warrant,Q,N,N,S,100.0
 SVACW,Spring Valley Acquisition Corp. III - Warrant,Q,N,N,G,100.0
 SVAQW,Silicon Valley Acquisition Corp. - Warrants,Q,N,N,G,100.0
