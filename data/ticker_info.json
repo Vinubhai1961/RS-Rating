@@ -1994,13 +1994,6 @@
       "type": "Stock"
     }
   },
-  "AHH": {
-    "info": {
-      "industry": "REIT - Diversified",
-      "sector": "Real Estate",
-      "type": "Stock"
-    }
-  },
   "AHLT": {
     "info": {
       "industry": "n/a",
@@ -2016,6 +2009,13 @@
     }
   },
   "AHR": {
+    "info": {
+      "industry": "REIT - Healthcare Facilities",
+      "sector": "Real Estate",
+      "type": "Stock"
+    }
+  },
+  "AHRT": {
     "info": {
       "industry": "REIT - Healthcare Facilities",
       "sector": "Real Estate",
@@ -3524,13 +3524,6 @@
     "info": {
       "industry": "Personal Services",
       "sector": "Consumer Cyclical",
-      "type": "Stock"
-    }
-  },
-  "ANEB": {
-    "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
       "type": "Stock"
     }
   },
@@ -7736,8 +7729,8 @@
   },
   "BEBE": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Rental & Leasing Services",
+      "sector": "Industrials",
       "type": "Stock"
     }
   },
@@ -8050,13 +8043,6 @@
     }
   },
   "BFOR": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
-  "BFRE": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -18388,6 +18374,13 @@
       "type": "ETF"
     }
   },
+  "DDFM": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "DDFN": {
     "info": {
       "industry": "n/a",
@@ -18501,6 +18494,13 @@
     }
   },
   "DDTL": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
+  "DDTM": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -19859,13 +19859,6 @@
     }
   },
   "DMAR": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
-  "DMAT": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -21438,6 +21431,13 @@
       "industry": "Asset Management",
       "sector": "Financial Services",
       "type": "Stock"
+    }
+  },
+  "EART": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
     }
   },
   "EASG": {
@@ -24154,13 +24154,6 @@
       "industry": "n/a",
       "sector": "n/a",
       "type": "ETF"
-    }
-  },
-  "ETHZ": {
-    "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
-      "type": "Stock"
     }
   },
   "ETJ": {
@@ -28370,13 +28363,6 @@
       "type": "ETF"
     }
   },
-  "FRGE": {
-    "info": {
-      "industry": "Capital Markets",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
   "FRGN": {
     "info": {
       "industry": "n/a",
@@ -28427,6 +28413,13 @@
     }
   },
   "FRMI": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
+  "FRMM": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -29231,13 +29224,6 @@
       "type": "Stock"
     }
   },
-  "FUNL": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
   "FURY": {
     "info": {
       "industry": "Other Industrial Metals & Mining",
@@ -29897,13 +29883,6 @@
     }
   },
   "GBXA": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
-  "GBXC": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -40781,7 +40760,7 @@
       "type": "ETF"
     }
   },
-  "JPMO": {
+  "JPO": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -55812,8 +55791,8 @@
   },
   "PCAP": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55826,8 +55805,8 @@
   },
   "PCAPW": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -62712,13 +62691,6 @@
       "type": "Stock"
     }
   },
-  "RNAM": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
-    }
-  },
   "RNAZ": {
     "info": {
       "industry": "Biotechnology",
@@ -63946,8 +63918,8 @@
   },
   "RYZ": {
     "info": {
-      "industry": "Beverages - Wineries & Distilleries",
-      "sector": "Consumer Defensive",
+      "industry": "Metal Fabrication",
+      "sector": "Industrials",
       "type": "Stock"
     }
   },
@@ -70034,6 +70006,13 @@
       "type": "Stock"
     }
   },
+  "SUNB": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "SUNC": {
     "info": {
       "industry": "Oil & Gas Midstream",
@@ -70244,10 +70223,24 @@
       "type": "Stock"
     }
   },
+  "SVIV": {
+    "info": {
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
   "SVIVU": {
     "info": {
       "industry": "Shell Companies",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "SVIVW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -79129,8 +79122,8 @@
   },
   "WENNW": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -81306,8 +81299,8 @@
   },
   "XRN": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "REIT - Healthcare Facilities",
+      "sector": "Real Estate",
       "type": "Stock"
     }
   },
