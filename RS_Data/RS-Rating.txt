@@ -1,13 +1,13 @@
 // Auto-generated RS Rating thresholds - do not edit manually
-// Last updated: 2026-03-04 22:54 UTC
+// Last updated: 2026-03-05 23:50 UTC
 // Trigger: workflow_run
 
 ```pine_v6
-usa98 = input.float(204.93, "USA 98th → RS ≥", group="USA Thresholds")
-usa89 = input.float(124.39, "USA 89th → RS ≥", group="USA Thresholds")
-usa69 = input.float(103.54, "USA 69th → RS ≥", group="USA Thresholds")
-usa49 = input.float(96.61, "USA 49th → RS ≥", group="USA Thresholds")
-usa29 = input.float(92.40, "USA 29th → RS ≥", group="USA Thresholds")
-usa09 = input.float(73.54, "USA 9th  → RS ≥", group="USA Thresholds")
-usa01 = input.float(41.39, "USA 1st  → RS ≥", group="USA Thresholds")
+usa98 = input.float(196.21, "USA 98th → RS ≥", group="USA Thresholds")
+usa89 = input.float(122.93, "USA 89th → RS ≥", group="USA Thresholds")
+usa69 = input.float(102.95, "USA 69th → RS ≥", group="USA Thresholds")
+usa49 = input.float(96.54, "USA 49th → RS ≥", group="USA Thresholds")
+usa29 = input.float(92.75, "USA 29th → RS ≥", group="USA Thresholds")
+usa09 = input.float(73.58, "USA 9th  → RS ≥", group="USA Thresholds")
+usa01 = input.float(40.48, "USA 1st  → RS ≥", group="USA Thresholds")
 ```
