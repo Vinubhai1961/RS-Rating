@@ -6,16 +6,13 @@ on:
     workflows: ["Filter strong RS stocks near 52-week high"]
     types:
       - completed
-    branches:
-      - main
-  
 jobs:
   update-thresholds:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 1
 
