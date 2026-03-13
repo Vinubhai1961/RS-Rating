@@ -5,12 +5,7 @@ on:
   workflow_run:
     workflows: ["Filter Top RS Opportunities"]
     types:
-      - completed
-    branches:
-      - main
-
-  
-
+      - completed 
 jobs:
   filter:
     runs-on: ubuntu-latest
