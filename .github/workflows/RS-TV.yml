@@ -7,8 +7,8 @@ on:
     types:
       - completed
     # Fallback schedule: Run daily at 6:10 PM EST **only if** the previous run failed
-  schedule:
-    - cron: '10 23 * * *'   # 23:10 UTC = 6:10 PM EST (UTC-5, or UTC-4 during EDT — see note below)
+  #schedule:
+    #- cron: '30 20 * * *'   # 23:10 UTC = 6:10 PM EST (UTC-5, or UTC-4 during EDT — see note below)
 jobs:
   update-thresholds:
     runs-on: ubuntu-latest
