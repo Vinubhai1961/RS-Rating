@@ -1,9 +1,9 @@
-name: Update RSRATING_TV.CSV
+name: Update RSRATING_TV
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '20 22 * * 1-5'  # Runs at 10:00 PM UTC (6:00 PM EST) Mon-Fri
+    - cron: '20 20 * * 1-5'  # Runs at 10:00 PM UTC (6:00 PM EST) Mon-Fri
 
 jobs:
   update-rsrating:
