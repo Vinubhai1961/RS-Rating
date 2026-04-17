@@ -8,8 +8,8 @@ on:
       - completed 
       
   # Fallback schedule: Run daily at 6:00 PM EST **only if** the previous run failed
-  schedule:
-    - cron: '30 20 * * *'   # 23:00 UTC = 6:00 PM EST (UTC-5, or UTC-4 during EDT — see note below)
+  #schedule:
+    #- cron: '30 20 * * *'   # 23:00 UTC = 6:00 PM EST (UTC-5, or UTC-4 during EDT — see note below)
     
 jobs:
   filter:
