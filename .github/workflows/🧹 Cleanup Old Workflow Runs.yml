@@ -2,45 +2,88 @@ name: 🧹 Cleanup Old Workflow Runs
 
 on:
   schedule:
-    - cron: '0 2 * * *'  # Runs daily at 2 AM UTC
-  workflow_dispatch:     # Manual trigger support
+    - cron: '0 3 * * *'     # Runs daily at 3 AM UTC (slightly changed from 2 AM)
+  workflow_dispatch:
+    inputs:
+      days_old:
+        description: 'Delete runs older than how many days?'
+        required: true
+        default: '2'
+        type: number
+      dry_run:
+        description: 'Dry run (only show what would be deleted)'
+        required: false
+        default: true
+        type: boolean
 
 jobs:
-  cleanup_old_runs:
+  cleanup:
     runs-on: ubuntu-latest
-
     permissions:
-      actions: write  # Required to delete runs
+      actions: write
       contents: read
 
     steps:
-      - name: Delete workflow runs older than 2 days
+      - name: Delete workflow runs older than ${{ inputs.days_old || 2 }} days
         uses: actions/github-script@v7
         with:
           script: |
             const owner = context.repo.owner;
             const repo = context.repo.repo;
-            const workflows = await github.rest.actions.listRepoWorkflows({ owner, repo });
+            const daysOld = ${{ inputs.days_old || 2 }};
+            const dryRun = ${{ inputs.dry_run || true }};
+            const cutoffDate = new Date();
+            cutoffDate.setDate(cutoffDate.getDate() - daysOld);
 
-            for (const workflow of workflows.data.workflows) {
-              const runs = await github.rest.actions.listWorkflowRuns({
+            console.log(`🧹 Looking for workflow runs older than ${daysOld} days (before ${cutoffDate.toISOString()})`);
+            if (dryRun) console.log("🔍 DRY RUN MODE - No deletions will occur");
+
+            let deletedCount = 0;
+            let page = 1;
+            let hasMore = true;
+
+            while (hasMore) {
+              const runsResponse = await github.rest.actions.listWorkflowRunsForRepo({
                 owner,
                 repo,
-                workflow_id: workflow.id,
                 per_page: 100,
+                page: page,
+                status: 'completed'   // Only delete completed runs
               });
 
-              for (const run of runs.data.workflow_runs) {
-                const createdAt = new Date(run.created_at);
-                const twoDaysAgo = new Date(Date.now() - 2 * 24 * 60 * 60 * 1000); // 48 hours ago
+              const runs = runsResponse.data.workflow_runs;
+              if (runs.length === 0) {
+                hasMore = false;
+                break;
+              }
 
-                if (createdAt < twoDaysAgo) {
-                  console.log(`Deleting run ${run.id} from ${createdAt}`);
-                  await github.rest.actions.deleteWorkflowRun({
-                    owner,
-                    repo,
-                    run_id: run.id,
-                  });
+              for (const run of runs) {
+                const createdAt = new Date(run.created_at);
+                if (createdAt < cutoffDate) {
+                  console.log(`🗑️ ${dryRun ? '[DRY RUN] Would delete' : 'Deleting'} run ${run.id} (${run.name || 'Unnamed'}) - Created: ${createdAt.toISOString()}`);
+
+                  if (!dryRun) {
+                    try {
+                      await github.rest.actions.deleteWorkflowRun({
+                        owner,
+                        repo,
+                        run_id: run.id
+                      });
+                      deletedCount++;
+                      // Small delay to avoid rate limiting
+                      await new Promise(resolve => setTimeout(resolve, 200));
+                    } catch (error) {
+                      console.error(`Failed to delete run ${run.id}: ${error.message}`);
+                    }
+                  } else {
+                    deletedCount++; // Count for dry-run summary
+                  }
                 }
               }
+
+              page++;
+              // GitHub returns fewer than 100 items when last page
+              if (runs.length < 100) hasMore = false;
             }
+
+            console.log(`✅ Finished! ${dryRun ? 'Would have deleted' : 'Deleted'} ${deletedCount} workflow runs older than ${daysOld} days.`);
