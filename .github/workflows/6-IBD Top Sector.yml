@@ -1,9 +1,9 @@
-name: 📈 Filter Top RS Sector Opportunities
+name: Filter Top RS Sector Opportunities
 
 on:
   workflow_dispatch: # Manual trigger
   workflow_run:
-    workflows: ["📈 Filter Top RS Opportunities"]
+    workflows: ["Filter Top RS Opportunities"]
     types:
       - completed
     branches:
