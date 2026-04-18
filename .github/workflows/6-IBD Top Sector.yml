@@ -1,11 +1,12 @@
 name: Filter Top RS Sector Opportunities
 
 on:
+  workflow_call:  
   workflow_dispatch: # Manual trigger
-  workflow_run:
-    workflows: ["Filter Top RS Opportunities"]
-    types: [completed]
-    branches: [main]
+  #workflow_run:
+    #workflows: ["Filter Top RS Opportunities"]
+    #types: [completed]
+    #branches: [main]
 
 
 jobs:
