@@ -4,10 +4,9 @@ on:
   workflow_dispatch: # Manual trigger
   workflow_run:
     workflows: ["Filter Top RS Sector Opportunities"]
-    types:
-      - completed
-    branches:
-      - main
+    types: [completed]
+    branches: [main]
+
 jobs:
   update-rsrating:
     runs-on: ubuntu-latest
