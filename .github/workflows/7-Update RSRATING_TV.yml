@@ -54,8 +54,28 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
           git add RS_Data/RSRATING.csv RS_Data/RSRATING_TV.csv
-          git commit -m "Update RSRATING files with last 35 calendar days"
-          git push
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update RSRATING files with last 35 calendar days"
+
+            echo "Pulling latest changes before push..."
+            git pull --rebase origin main || echo "Pull had issues, continuing..."
+
+            echo "Pushing changes..."
+            for i in {1..3}; do
+              if git push origin main; then
+                echo "✅ Successfully pushed changes"
+                break
+              else
+                echo "Push failed (attempt $i/3). Retrying..."
+                sleep 3
+                git pull --rebase origin main || true
+              fi
+            done
+          fi
