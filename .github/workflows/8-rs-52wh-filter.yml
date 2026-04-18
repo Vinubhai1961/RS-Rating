@@ -1,15 +1,13 @@
 name: Filter strong RS stocks near 52-week high
 
 on:
+  workflow_call:  
   workflow_dispatch:         # manual run
-  workflow_run:
-    workflows: ["Update RSRATING_TV"]
-    types: [completed]
-    branches: [main]
-      
-  # Fallback schedule: Run daily at 6:00 PM EST **only if** the previous run failed
-  #schedule:
-    #- cron: '30 20 * * *'   # 23:00 UTC = 6:00 PM EST (UTC-5, or UTC-4 during EDT — see note below)
+  #workflow_run:
+    #workflows: ["Update RSRATING_TV"]
+    #types: [completed]
+    #branches: [main]
+
     
 jobs:
   filter:
