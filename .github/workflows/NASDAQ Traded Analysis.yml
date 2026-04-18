@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '0 10 * * 0'  # Every Sunday at 10 AM UTC
+      timezone: 'America/New_York' 
 
 jobs:
   run-analysis:
