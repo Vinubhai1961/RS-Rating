@@ -5,7 +5,7 @@ name: NASDAQ Traded Analysis
 on:
   workflow_dispatch:
   schedule:
-    - cron: '38 11 * * 5'  # Every Sunday at 10 AM UTC
+    - cron: '38 11 * * 5'    # Every Sunday at 10 AM UTC
       timezone: 'America/New_York' 
 
 jobs:
