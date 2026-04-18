@@ -2,10 +2,14 @@ name: 📊 Calculate RS Ratings
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '20 20 * * 1-5'  # 8:20 UTC = 4:20 PM EST / 5:20 PM EDT
+  #schedule:
+    #- cron: '20 20 * * 1-5'  # 8:20 UTC = 4:20 PM EST / 5:20 PM EDT
     #- cron: '30 21 * * 1-5'  # 8:20 UTC = 4:20 PM EST / 5:20 PM EDT
-
+  workflow_run:
+    workflows: ["Build Ticker Info"]
+    types: [completed]
+    branches: [main]
+  
 jobs:
   fetch-rs:
     strategy:
