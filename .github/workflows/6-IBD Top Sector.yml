@@ -4,10 +4,9 @@ on:
   workflow_dispatch: # Manual trigger
   workflow_run:
     workflows: ["Filter Top RS Opportunities"]
-    types:
-      - completed
-    branches:
-      - main
+    types: [completed]
+    branches: [main]
+
 
 jobs:
   filter_top_Sector:
