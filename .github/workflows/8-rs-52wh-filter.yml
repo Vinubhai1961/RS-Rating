@@ -4,8 +4,8 @@ on:
   workflow_dispatch:         # manual run
   workflow_run:
     workflows: ["Update RSRATING_TV"]
-    types:
-      - completed 
+    types: [completed]
+    branches: [main]
       
   # Fallback schedule: Run daily at 6:00 PM EST **only if** the previous run failed
   #schedule:
