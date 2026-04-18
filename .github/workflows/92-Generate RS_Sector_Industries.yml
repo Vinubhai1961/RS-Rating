@@ -3,7 +3,6 @@ name: Generate RS_Sector_Industries
 on:
   workflow_run:
     workflows: ["Generate-IPO"]
-    
     types: [completed]
     branches: [main]
   workflow_dispatch:   # allow manual run
