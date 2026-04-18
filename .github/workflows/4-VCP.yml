@@ -2,11 +2,9 @@ name: Run VCP Stock Scanner
 
 # Controls when the workflow runs
 on:
+  workflow_call:  
   workflow_dispatch: # Manual trigger
-  workflow_run:
-    workflows: ["Split rs_stocks.csv"]
-    types: [completed]
-    branches: [main]       
+     
   push:
     paths:
       - 'archive/**.csv'
