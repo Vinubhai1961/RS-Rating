@@ -1,11 +1,12 @@
 name: Filter Top RS Opportunities
 
 on:
+  workflow_call: 
   workflow_dispatch: # Manual trigger
-  workflow_run:
-    workflows: ["Run VCP Stock Scanner"]
-    types: [completed]
-    branches: [main]
+  #workflow_run:
+    #workflows: ["Run VCP Stock Scanner"]
+    #types: [completed]
+    #branches: [main]
 
 jobs:
   filter_top_rs:
