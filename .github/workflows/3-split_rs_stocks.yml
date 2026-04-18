@@ -2,11 +2,10 @@ name: Split rs_stocks.csv
 
 on:
   workflow_dispatch: # Manual trigger
-  workflow_call:
-  #workflow_run:
-    #workflows: ["Calculate RS Ratings"]
-    #types: [completed]
-    #branches: [main]
+  workflow_run:
+    workflows: ["Calculate RS Ratings"]
+    types: [completed]
+    branches: [main]
 
 jobs:
   split-csv:
