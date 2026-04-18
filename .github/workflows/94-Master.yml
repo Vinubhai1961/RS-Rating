@@ -1,25 +1,20 @@
-name: Master RS Pipeline
+name: Master RS Pipeline (From Job 4 Onwards)
 
 on:
   workflow_run:
-    workflows: ["Calculate RS Ratings"]   # ← This is the real starting point
+    workflows: ["Split rs_stocks.csv"]   # ← Triggered automatically after 3-split_rs_stocks.yml finishes
     types: [completed]
     branches: [main]
 
-  workflow_dispatch:   # For manual testing
+  workflow_dispatch:   # Manual trigger for testing
 
 permissions:
-  contents: write      # Required because many jobs do git push
+  contents: write      # Needed for git push in child workflows
 
 jobs:
 
-  # 3. Split rs_stocks.csv  (automatically triggered after "Calculate RS Ratings")
-  split-rs:
-    uses: ./.github/workflows/3-split_rs_stocks.yml
-
   # 4. Run VCP Stock Scanner
   vcp-scan:
-    needs: split-rs
     uses: ./.github/workflows/4-VCP.yml
 
   # 5. Filter Top RS Opportunities
@@ -56,7 +51,3 @@ jobs:
   generate-sector-industries:
     needs: generate-ipo
     uses: ./.github/workflows/92-Generate RS_Sector_Industries.yml
-
-  # 93. NASDAQ Traded Analysis (runs independently on its own schedule)
-  nasdaq-analysis:
-    uses: ./.github/workflows/93-NASDAQ Traded Analysis.yml
