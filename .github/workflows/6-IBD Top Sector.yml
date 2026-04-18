@@ -42,17 +42,38 @@ jobs:
       # Commit and push the results
       - name: 📤 Commit & Push Results
         run: |
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Add the file(s) - using the same pattern you had
           if ls IBD-20/rs_top_sectors_opportunities_*.csv 1> /dev/null 2>&1; then
             git add IBD-20/rs_top_sectors_opportunities_*.csv
-            git commit -m "📊 Add RS Sector + Opportunity Report [$(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')]"
-            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
+            if git diff --staged --quiet; then
+              echo "No changes to commit"
+            else
+              git commit -m "📊 Add RS Sector + Opportunity Report [$(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')]"
+
+              # Critical part: Pull latest changes before pushing
+              echo "Pulling latest changes with rebase..."
+              git pull --rebase origin main || echo "Pull had no effect or minor issue"
+
+              # Push with retry logic (handles race conditions better)
+              echo "Pushing changes..."
+              for i in {1..3}; do
+                if git push origin main; then
+                  echo "✅ Push successful"
+                  break
+                else
+                  echo "Push failed (attempt $i/3). Retrying after pull..."
+                  sleep 3
+                  git pull --rebase origin main || true
+                fi
+              done
+            fi
           else
             echo "⚠️ No RS combined report file found. Skipping commit."
           fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Print workflow end time
       - name: Print workflow end time (EDT)
