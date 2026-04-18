@@ -2,7 +2,7 @@ name: Generate RS_Sector_Industries
 
 on:
   workflow_run:
-    workflows: ["📈 Filter Top RS Opportunities"]
+    workflows: ["Update RS Rating Thresholds for TradingView"]
     
     types: [completed]
     branches: [main]
