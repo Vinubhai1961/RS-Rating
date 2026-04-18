@@ -5,10 +5,8 @@ on:
   workflow_dispatch: # Manual trigger
   workflow_run:
     workflows: ["Split rs_stocks.csv"]
-    types:
-      - completed
-    branches:
-      - main
+    types: [completed]
+    branches: [main]       
   push:
     paths:
       - 'archive/**.csv'
