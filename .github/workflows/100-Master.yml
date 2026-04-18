@@ -1,0 +1,62 @@
+name: Master RS Pipeline
+
+on:
+  workflow_run:
+    workflows: ["Calculate RS Ratings"]   # ← This is the real starting point
+    types: [completed]
+    branches: [main]
+
+  workflow_dispatch:   # For manual testing
+
+permissions:
+  contents: write      # Required because many jobs do git push
+
+jobs:
+
+  # 3. Split rs_stocks.csv  (automatically triggered after "Calculate RS Ratings")
+  split-rs:
+    uses: ./.github/workflows/3-split_rs_stocks.yml
+
+  # 4. Run VCP Stock Scanner
+  vcp-scan:
+    needs: split-rs
+    uses: ./.github/workflows/4-VCP.yml
+
+  # 5. Filter Top RS Opportunities
+  filter-top-rs:
+    needs: vcp-scan
+    uses: ./.github/workflows/5-IBD 20.yml
+
+  # 6. Filter Top RS Sector Opportunities
+  filter-top-sector:
+    needs: filter-top-rs
+    uses: ./.github/workflows/6-IBD Top Sector.yml
+
+  # 7. Update RSRATING_TV
+  update-rsrating-tv:
+    needs: filter-top-sector
+    uses: ./.github/workflows/7-Update RSRATING_TV.yml
+
+  # 8. Filter strong RS stocks near 52-week high
+  filter-52wh:
+    needs: update-rsrating-tv
+    uses: ./.github/workflows/8-rs-52wh-filter.yml
+
+  # 9. Update RS Rating Thresholds for TradingView
+  update-rs-thresholds:
+    needs: filter-52wh
+    uses: ./.github/workflows/9-RS-TV.yml
+
+  # 91. Generate-IPO
+  generate-ipo:
+    needs: update-rs-thresholds
+    uses: ./.github/workflows/91-Generate-IPO.yml
+
+  # 92. Generate RS_Sector_Industries
+  generate-sector-industries:
+    needs: generate-ipo
+    uses: ./.github/workflows/92-Generate RS_Sector_Industries.yml
+
+  # 93. NASDAQ Traded Analysis (runs independently on its own schedule)
+  nasdaq-analysis:
+    uses: ./.github/workflows/93-NASDAQ Traded Analysis.yml
