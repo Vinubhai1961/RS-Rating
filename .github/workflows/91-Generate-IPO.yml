@@ -1,11 +1,13 @@
 name: Generate-IPO
 
 on:
-  workflow_run:
-    workflows: ["Update RS Rating Thresholds for TradingView"]
-    types: [completed]
-    branches: [main]
+  workflow_call: 
   workflow_dispatch: # allow manual run
+  #workflow_run:
+    #workflows: ["Update RS Rating Thresholds for TradingView"]
+    #types: [completed]
+    #branches: [main]
+  
   push:
     branches:
       - main
