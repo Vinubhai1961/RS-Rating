@@ -4,8 +4,9 @@ on:
   workflow_dispatch: # manual run
   workflow_run:
     workflows: ["Filter strong RS stocks near 52-week high"]
-    types:
-      - completed
+    types: [completed]
+    branches: [main]
+
     # Fallback schedule: Run daily at 6:10 PM EST **only if** the previous run failed
   #schedule:
     #- cron: '30 20 * * *'   # 23:10 UTC = 6:10 PM EST (UTC-5, or UTC-4 during EDT — see note below)
