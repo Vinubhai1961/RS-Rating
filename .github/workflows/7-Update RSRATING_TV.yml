@@ -1,11 +1,12 @@
 name: Update RSRATING_TV
 
 on:
+  workflow_call:  
   workflow_dispatch: # Manual trigger
-  workflow_run:
-    workflows: ["Filter Top RS Sector Opportunities"]
-    types: [completed]
-    branches: [main]
+  #branch_protection_rule: workflow_run:
+    #workflows: ["Filter Top RS Sector Opportunities"]
+    #types: [completed]
+    #branches: [main]
 
 jobs:
   update-rsrating:
