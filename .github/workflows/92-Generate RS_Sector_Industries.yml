@@ -1,11 +1,13 @@
 name: Generate RS_Sector_Industries
 
 on:
-  workflow_run:
-    workflows: ["Generate-IPO"]
-    types: [completed]
-    branches: [main]
+  workflow_call:
   workflow_dispatch:   # allow manual run
+  #branch_protection_rule: workflow_run:
+    #workflows: ["Generate-IPO"]
+    #types: [completed]
+    #branches: [main]
+  
 
 jobs:
   build:
