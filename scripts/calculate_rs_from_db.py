@@ -26,24 +26,43 @@ def log_missing_rs(ticker: str, message: str, log_path: str):
 
 
 def quarters_perf(closes: pd.Series, n: int) -> float:
+    """Calculate total return over exactly n quarters (63 trading days per quarter)"""
     days = n * 63
-    slice_len = min(len(closes), days + 1)  # +1 for n intervals
-    available_data = closes[-slice_len:]
-    if len(available_data) < 2:  # Need at least 2 for ratio
+    # Take exactly 'days' points (or all available if shorter)
+    slice_len = min(len(closes), days)
+    available_data = closes.iloc[-slice_len:]   # Use .iloc for clarity and safety
+    
+    if len(available_data) < 2:
         return 0.0 if len(available_data) == 1 else np.nan
-    pct_change = available_data.pct_change().dropna()
-    return (pct_change + 1).cumprod().iloc[-1] - 1 if not pct_change.empty else np.nan
+    
+    # pandas 2.2+ safe
+    pct_change = available_data.pct_change(fill_method=None).dropna()
+    if pct_change.empty:
+        return np.nan
+    
+    return (pct_change + 1).cumprod().iloc[-1] - 1
 
 
 def strength(closes: pd.Series) -> float:
-    perfs = [quarters_perf(closes, i) for i in range(1, 5)]
-    valid_perfs = [p for p in perfs if not np.isnan(p)]
-    if not valid_perfs:
+    """Yearly performance with most recent quarter weighted 40%"""
+    try:
+        q1 = quarters_perf(closes, 1)
+        q2 = quarters_perf(closes, 2)
+        q3 = quarters_perf(closes, 3)
+        q4 = quarters_perf(closes, 4)
+        
+        valid_perfs = [p for p in [q1, q2, q3, q4] if not np.isnan(p)]
+        if not valid_perfs:
+            return np.nan
+            
+        # Dynamic weighting (your current logic is good)
+        weights = [0.4, 0.2, 0.2, 0.2][:len(valid_perfs)]
+        total_weight = sum(weights)
+        weights = [w / total_weight for w in weights]
+        
+        return sum(w * p for w, p in zip(weights, valid_perfs))
+    except:
         return np.nan
-    weights = [0.4, 0.2, 0.2, 0.2][:len(valid_perfs)]
-    total_weight = sum(weights)
-    weights = [w / total_weight for w in weights] if total_weight > 0 else weights
-    return sum(w * p for w, p in zip(weights, valid_perfs))
 
 
 def relative_strength(closes: pd.Series, closes_ref: pd.Series) -> float:
@@ -57,30 +76,30 @@ def relative_strength(closes: pd.Series, closes_ref: pd.Series) -> float:
 
 
 def short_relative_strength(closes: pd.Series, closes_ref: pd.Series, days: int) -> float:
-    if len(closes) < days + 1 or len(closes_ref) < days + 1:
+    """Pure relative strength over exact 'days' period (no +1)"""
+    if len(closes) < days or len(closes_ref) < days:   # Changed: no +1
         return np.nan
-
-    price_old = closes.iloc[-days - 1]   # Better: explicit index
+    
+    # Use exactly 'days' lookback → price from 'days' ago
+    price_old = closes.iloc[-days]      # Changed from -days-1
     price_new = closes.iloc[-1]
-    ref_old = closes_ref.iloc[-days - 1]
+    ref_old = closes_ref.iloc[-days]
     ref_new = closes_ref.iloc[-1]
-
-    # === ADD THIS SAFETY BLOCK ===
-    if price_new <= 0 or ref_new <= 0:
+    
+    if (price_new <= 0 or ref_new <= 0 or 
+        price_old <= 0 or ref_old <= 0 or
+        pd.isna(price_old) or pd.isna(price_new) or 
+        pd.isna(ref_old) or pd.isna(ref_new)):
         return np.nan
-    if price_old <= 0 or ref_old <= 0:
-        return np.nan
-    if pd.isna(price_old) or pd.isna(price_new) or pd.isna(ref_old) or pd.isna(ref_new):
-        return np.nan
-
+    
     stock_ret = price_new / price_old - 1
     ref_ret = ref_new / ref_old - 1
-
-    if ref_ret == 0:  # avoid division by zero
+    
+    if ref_ret == 0:
         return np.nan if stock_ret <= 0 else 999.0
-
+    
     rs = (1 + stock_ret) / (1 + ref_ret) * 100
-    return round(rs, 2) if rs <= 700 else 700.0  # cap but don't NaN
+    return round(rs, 2) if rs <= 700 else np.nan
 
 
 def load_arctic_db(data_dir):
