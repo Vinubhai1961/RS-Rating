@@ -18,7 +18,7 @@ except ImportError:
     logging.warning("pandas_market_calendars not installed. Falling back to consecutive days for RSRATING.csv.")
 
 
-# ====================== NEW: Unified Missing RS Logger ======================
+# ====================== Unified Missing RS Logger ======================
 def log_missing_rs(ticker: str, message: str, log_path: str):
     """Append a debug line to the single Missing_RS.log file"""
     with open(log_path, "a", encoding="utf-8") as f:
@@ -28,9 +28,8 @@ def log_missing_rs(ticker: str, message: str, log_path: str):
 def quarters_perf(closes: pd.Series, n: int) -> float:
     """Calculate total return over exactly n quarters (63 trading days per quarter)"""
     days = n * 63
-    # Take exactly 'days' points (or all available if shorter)
-    slice_len = min(len(closes), days)
-    available_data = closes.iloc[-slice_len:]   # Use .iloc for clarity and safety
+    slice_len = min(len(closes), days)                    # No +1
+    available_data = closes.iloc[-slice_len:]
     
     if len(available_data) < 2:
         return 0.0 if len(available_data) == 1 else np.nan
@@ -44,28 +43,21 @@ def quarters_perf(closes: pd.Series, n: int) -> float:
 
 
 def strength(closes: pd.Series) -> float:
-    """Yearly performance with most recent quarter weighted 40%"""
-    try:
-        q1 = quarters_perf(closes, 1)
-        q2 = quarters_perf(closes, 2)
-        q3 = quarters_perf(closes, 3)
-        q4 = quarters_perf(closes, 4)
-        
-        valid_perfs = [p for p in [q1, q2, q3, q4] if not np.isnan(p)]
-        if not valid_perfs:
-            return np.nan
-            
-        # Dynamic weighting (your current logic is good)
-        weights = [0.4, 0.2, 0.2, 0.2][:len(valid_perfs)]
-        total_weight = sum(weights)
-        weights = [w / total_weight for w in weights]
-        
-        return sum(w * p for w, p in zip(weights, valid_perfs))
-    except:
+    """Weighted yearly performance: 40% on most recent quarter"""
+    perfs = [quarters_perf(closes, i) for i in range(1, 5)]
+    valid_perfs = [p for p in perfs if not np.isnan(p)]
+    if not valid_perfs:
         return np.nan
+    
+    weights = [0.4, 0.2, 0.2, 0.2][:len(valid_perfs)]
+    total_weight = sum(weights)
+    weights = [w / total_weight for w in weights]
+    
+    return sum(w * p for w, p in zip(weights, valid_perfs))
 
 
 def relative_strength(closes: pd.Series, closes_ref: pd.Series) -> float:
+    """Main IBD-style Relative Strength (12-month weighted)"""
     rs_stock = strength(closes)
     rs_ref = strength(closes_ref)
     if np.isnan(rs_stock) or np.isnan(rs_ref):
@@ -76,26 +68,26 @@ def relative_strength(closes: pd.Series, closes_ref: pd.Series) -> float:
 
 
 def short_relative_strength(closes: pd.Series, closes_ref: pd.Series, days: int) -> float:
+    """Pure relative strength over exact number of days (used for 1M/3M/6M RS)"""
     if len(closes) < days or len(closes_ref) < days:
         return np.nan
 
-    price_old = closes.iloc[-days]
+    price_old = closes.iloc[-days]          # Exactly 'days' ago
     price_new = closes.iloc[-1]
     ref_old = closes_ref.iloc[-days]
     ref_new = closes_ref.iloc[-1]
 
-    if (price_new <= 0 or ref_new <= 0 or
-        price_old <= 0 or ref_old <= 0 or
-        pd.isna(price_old) or pd.isna(price_new) or
-        pd.isna(ref_old) or pd.isna(ref_new)):
+    if (price_new <= 0 or ref_new <= 0 or 
+        price_old <= 0 or ref_old <= 0):
+        return np.nan
+    if pd.isna(price_old) or pd.isna(price_new) or pd.isna(ref_old) or pd.isna(ref_new):
         return np.nan
 
     stock_ret = price_new / price_old - 1
     ref_ret = ref_new / ref_old - 1
 
-    # Reference exactly flat → treat as invalid, like long-term RS
     if ref_ret == 0:
-        return np.nan
+        return np.nan if stock_ret <= 0 else 999.0
 
     rs = (1 + stock_ret) / (1 + ref_ret) * 100
     return round(rs, 2) if rs <= 700 else np.nan
@@ -143,7 +135,7 @@ def generate_tradingview_csv(df_stocks, output_dir, ref_data, percentile_values=
         dates = [(latest_date - timedelta(days=i)).strftime('%Y%m%dT') for i in range(4, -1, -1)]
         logging.info(f"Fallback consecutive dates: {', '.join(dates)}")
 
-    # === CORRECT: Threshold = lowest RS in that percentile group ===
+    # === Threshold = lowest RS in that percentile group ===
     valid_rs = df_stocks["RS"].dropna().sort_values(ascending=False).reset_index(drop=True)
     total = len(valid_rs)
 
@@ -181,7 +173,7 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
     logging.basicConfig(filename=log_file, level=logging.INFO, format="%(asctime)s - %(message)s")
     logging.info("Starting RS calculation process")
 
-    # === NEW: Setup unified Missing_RS.log ===
+    # === Setup unified Missing_RS.log ===
     debug_rs_dir = os.path.join(os.path.dirname(log_file), "debug_rs")
     os.makedirs(debug_rs_dir, exist_ok=True)
     missing_rs_log = os.path.join(debug_rs_dir, "Missing_RS.log")
@@ -223,7 +215,7 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
             insufficient_tickers.append(ticker)
     logging.info(f"Found {len(insufficient_tickers)} tickers with no data: {insufficient_tickers[:5]}...")
 
-    # === METADATA LOADING (100% unchanged from your original) ===
+    # === METADATA LOADING ===
     metadata_df = pd.DataFrame()
     if metadata_file and os.path.exists(metadata_file):
         try:
@@ -280,79 +272,59 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
     rs_results = []
     valid_rs_count = 0
 
-    # ====================== MAIN LOOP WITH DETAILED MISSING RS LOGGING ======================
+    # ====================== MAIN LOOP ======================
     for ticker in tqdm(tickers, desc="Calculating RS"):
         if ticker == reference_ticker:
             continue
-
-        # Flag to decide whether to write debug block
-        has_issue = False
 
         try:
             data = lib.read(ticker).data
             closes = pd.Series(data["close"].values, index=pd.to_datetime(data["datetime"], unit='s')).sort_index()
 
-            # Start debug block
+            # Debug logging
             log_missing_rs(ticker, f"=== Debug for {ticker} ===", missing_rs_log)
             log_missing_rs(ticker, f"Rows loaded: {len(closes)}", missing_rs_log)
             log_missing_rs(ticker, f"Start={closes.index[0].date()}, End={closes.index[-1].date()}", missing_rs_log)
             log_missing_rs(ticker, f"Has_1M={len(closes)>=22}, Has_3M={len(closes)>=64}, Has_6M={len(closes)>=127}, Has_12M={len(closes)>=253}", missing_rs_log)
 
             if len(closes) < 2:
-                has_issue = True
                 log_missing_rs(ticker, "NOT ENOUGH DATA (<2 rows)", missing_rs_log)
                 rs_results.append((ticker, np.nan, np.nan, np.nan, np.nan))
                 continue
 
-            # Main RS
+            # Main RS (12-month weighted)
             rs = relative_strength(closes, ref_closes)
             if pd.isna(rs):
-                has_issue = True
                 log_missing_rs(ticker, f"RS=NaN → stock_strength={strength(closes):.4f}, ref_strength={strength(ref_closes):.4f}", missing_rs_log)
             else:
                 log_missing_rs(ticker, f"RS={rs}", missing_rs_log)
 
             # Short-term RS
             rs_1m = short_relative_strength(closes, ref_closes, 21)
-            if pd.isna(rs_1m):
-                has_issue = True
-                log_missing_rs(ticker, "1M_RS=NaN → insufficient 21-day history", missing_rs_log)
-
             rs_3m = short_relative_strength(closes, ref_closes, 63)
             rs_6m = short_relative_strength(closes, ref_closes, 126)
 
-            if pd.isna(rs_6m):
+            if pd.isna(rs_6m) and len(closes) >= 126:
                 log_missing_rs(ticker, "*** 6M_RS is NaN — REASON BELOW ***", missing_rs_log)
-                if len(closes) < 127:
-                    log_missing_rs(ticker, "CAUSE: <127 trading days", missing_rs_log)
-                else:
-                    try:
-                        # Correct index: 126 trading days ago = iloc[-127]
-                        p_old = closes.iloc[-127]
-                        p_new = closes.iloc[-1]
-                        sp_old = ref_closes.iloc[-127]
-                        sp_new = ref_closes.iloc[-1]
+                try:
+                    p_old = closes.iloc[-126]
+                    p_new = closes.iloc[-1]
+                    sp_old = ref_closes.iloc[-126]
+                    sp_new = ref_closes.iloc[-1]
 
-                        log_missing_rs(ticker, f"Price[-127]={p_old:.4f} → Price[-1]={p_new:.4f}", missing_rs_log)
-                        log_missing_rs(ticker, f"SPY[-127]={sp_old:.4f} → SPY[-1]={sp_new:.4f}", missing_rs_log)
+                    log_missing_rs(ticker, f"Price[-126]={p_old:.4f} → Price[-1]={p_new:.4f}", missing_rs_log)
+                    log_missing_rs(ticker, f"SPY[-126]={sp_old:.4f} → SPY[-1]={sp_new:.4f}", missing_rs_log)
 
-                        if p_old <= 0 or p_new <= 0:
-                            log_missing_rs(ticker, f"CAUSE: Zero/negative stock price (old={p_old}, new={p_new})", missing_rs_log)
-                        elif sp_old <= 0 or sp_new <= 0:
-                            log_missing_rs(ticker, f"CAUSE: Zero/negative SPY price (old={sp_old}, new={sp_new})", missing_rs_log)
-                        elif pd.isna(p_old) or pd.isna(p_new) or pd.isna(sp_old) or pd.isna(sp_new):
-                            log_missing_rs(ticker, "CAUSE: NaN in price series", missing_rs_log)
-                        else:
-                            # Only gets here if prices are valid but RS still NaN → extremely rare
-                            stock_ret = p_new / p_old - 1
-                            spy_ret = sp_new / sp_old - 1
-                            log_missing_rs(ticker, f"Returns → Stock={stock_ret:+.1%}, SPY={spy_ret:+.1%}", missing_rs_log)
-                            log_missing_rs(ticker, "CAUSE: Unknown (data valid, but calculation failed)", missing_rs_log)
-
-                    except IndexError:
-                        log_missing_rs(ticker, "CAUSE: IndexError — not enough data points (even though len >= 127)", missing_rs_log)
-                    except Exception as e:
-                        log_missing_rs(ticker, f"CAUSE: Unexpected error → {e}", missing_rs_log)
+                    if p_old <= 0 or p_new <= 0 or sp_old <= 0 or sp_new <= 0:
+                        log_missing_rs(ticker, f"CAUSE: Zero/negative price", missing_rs_log)
+                    elif pd.isna(p_old) or pd.isna(p_new) or pd.isna(sp_old) or pd.isna(sp_new):
+                        log_missing_rs(ticker, "CAUSE: NaN in price series", missing_rs_log)
+                    else:
+                        stock_ret = p_new / p_old - 1
+                        spy_ret = sp_new / sp_old - 1
+                        log_missing_rs(ticker, f"Returns → Stock={stock_ret:+.1%}, SPY={spy_ret:+.1%}", missing_rs_log)
+                except Exception as e:
+                    log_missing_rs(ticker, f"CAUSE: Unexpected error → {e}", missing_rs_log)
 
             # Final values
             log_missing_rs(ticker, f"FINAL → RS={rs}, 1M_RS={rs_1m}, 3M_RS={rs_3m}, 6M_RS={rs_6m}", missing_rs_log)
@@ -363,13 +335,12 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
                 valid_rs_count += 1
 
         except Exception as e:
-            has_issue = True
             log_missing_rs(ticker, f"=== Debug for {ticker} ===", missing_rs_log)
             log_missing_rs(ticker, f"EXCEPTION: {e}", missing_rs_log)
             log_missing_rs(ticker, "-" * 60, missing_rs_log)
             rs_results.append((ticker, np.nan, np.nan, np.nan, np.nan))
 
-    # ====================== REST OF ORIGINAL PIPELINE (unchanged) ======================
+    # ====================== REST OF PIPELINE ======================
     df_stocks = pd.DataFrame(rs_results, columns=["Ticker", "RS", "1M_RS", "3M_RS", "6M_RS"])
     if not metadata_df.empty and "Ticker" in metadata_df.columns:
         df_stocks = df_stocks.merge(metadata_df, on="Ticker", how="left")
@@ -390,8 +361,9 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
     df_stocks = df_stocks.sort_values("RS", ascending=False, na_position="last").reset_index(drop=True)
     df_stocks["Rank"] = df_stocks.index + 1
 
+    # IPO flag
     df_stocks["IPO"] = df_stocks.apply(
-        lambda row: "Yes" if row["Type"] == "Stock" and len(lib.read(row["Ticker"]).data) < 20 else "No", axis=1
+        lambda row: "Yes" if row.get("Type") == "Stock" and len(lib.read(row["Ticker"]).data) < 20 else "No", axis=1
     )
 
     df_stocks.loc[df_stocks["Type"] == "ETF", "Industry"] = "ETF"
@@ -417,6 +389,7 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
 
     for col in ["RS Percentile", "1M_RS Percentile", "3M_RS Percentile", "6M_RS Percentile"]:
         df_industries[col] = df_industries[col].fillna(0).round().astype(int)
+
     df_industries = df_industries.sort_values("RS Percentile", ascending=False).reset_index(drop=True)
     df_industries["Rank"] = df_industries.index + 1
     df_industries = df_industries.rename(columns={
@@ -438,7 +411,7 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
     print(f" - RSRATING.csv")
     print(f" - {missing_rs_log}  ← All tickers with missing/NaN RS values + full diagnostics")
 
-    # Full debug export (unchanged)
+    # Full debug export
     if debug:
         print("\nStarting FULL DEBUG export for ALL tickers...")
         debug_dir = os.path.join(os.path.dirname(log_file), "debug_rs")
