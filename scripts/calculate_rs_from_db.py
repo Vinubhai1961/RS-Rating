@@ -76,28 +76,26 @@ def relative_strength(closes: pd.Series, closes_ref: pd.Series) -> float:
 
 
 def short_relative_strength(closes: pd.Series, closes_ref: pd.Series, days: int) -> float:
-    """Pure relative strength over exact 'days' period (no +1)"""
-    if len(closes) < days or len(closes_ref) < days:   # Changed: no +1
+    if len(closes) < days or len(closes_ref) < days:
         return np.nan
-    
-    # Use exactly 'days' lookback → price from 'days' ago
-    price_old = closes.iloc[-days]      # Changed from -days-1
+
+    price_old = closes.iloc[-days]
     price_new = closes.iloc[-1]
     ref_old = closes_ref.iloc[-days]
     ref_new = closes_ref.iloc[-1]
-    
-    if (price_new <= 0 or ref_new <= 0 or 
+
+    if (price_new <= 0 or ref_new <= 0 or
         price_old <= 0 or ref_old <= 0 or
-        pd.isna(price_old) or pd.isna(price_new) or 
+        pd.isna(price_old) or pd.isna(price_new) or
         pd.isna(ref_old) or pd.isna(ref_new)):
         return np.nan
-    
+
     stock_ret = price_new / price_old - 1
     ref_ret = ref_new / ref_old - 1
-    
+
     if ref_ret == 0:
-        return np.nan if stock_ret <= 0 else 999.0
-    
+        return np.nan if stock_ret <= 0 else 999.0  # <-- tweak this
+
     rs = (1 + stock_ret) / (1 + ref_ret) * 100
     return round(rs, 2) if rs <= 700 else np.nan
 
