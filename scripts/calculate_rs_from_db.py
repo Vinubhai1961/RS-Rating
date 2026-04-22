@@ -365,7 +365,7 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
     for col in ["RS", "1M_RS", "3M_RS", "6M_RS"]:
         valid_values = df_stocks[col].dropna()
         if not valid_values.empty:
-            df_stocks.loc[valid_values.index, f"{col} Percentile"] = (valid_values.rank(pct=True, method='min') * 99).astype(int)
+            df_stocks.loc[valid_values.index, f"{col} Percentile"] = np.ceil(valid_values.rank(pct=True, method='min') * 99).astype(int)
         else:
             df_stocks[f"{col} Percentile"] = np.nan
 
