@@ -53,7 +53,8 @@ def relative_strength(closes: pd.Series, closes_ref: pd.Series) -> float:
         logging.info(f"NaN RS for ticker with {len(closes)} days, ref with {len(closes_ref)} days")
         return np.nan
     rs = (1 + rs_stock) / (1 + rs_ref) * 100
-    return round(rs, 2) if rs <= 700 else np.nan
+    #return round(rs, 2) if rs <= 700 else np.nan
+    return round(rs, 2) if rs <= 700 else 700.0  # cap but don't NaN
 
 
 def short_relative_strength(closes: pd.Series, closes_ref: pd.Series, days: int) -> float:
