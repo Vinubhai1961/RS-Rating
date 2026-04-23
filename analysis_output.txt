@@ -1,14 +1,14 @@
-Analysis of nasdaqtraded.txt (as of 2026-04-22 02:52:57):
+Analysis of nasdaqtraded.txt (as of 2026-04-23 02:55:45):
 
-1. Total Securities: 12525
+1. Total Securities: 12532
    - Represents the total number of securities listed across all exchanges in the file.
 
-2. Number of ETFs: 5100
+2. Number of ETFs: 5105
    - Counts securities marked as ETFs (ETF = Y), which track indices, commodities, or asset baskets.
 
 3. Security Type Breakdown:
-ETF                5100
-Common Stock       4054
+ETF                5105
+Common Stock       4056
 Other              2228
 Preferred Stock     452
 Warrant             396
@@ -17,10 +17,10 @@ Other               295
 
 4. Securities by Exchange:
 Exchange Name
-Other            5435
-NASDAQ           2906
-NYSE Arca        2626
-BATS             1238
+Other            5439
+NASDAQ           2905
+NYSE Arca        2628
+BATS             1240
 NYSE American     317
 IEX                 3
    - Shows the distribution of securities across exchanges (e.g., NASDAQ, NYSE).
@@ -28,17 +28,17 @@ IEX                 3
 5. Exchange vs. Security Type Breakdown:
 Security Type  Common Stock   ETF  Other  Preferred Stock  Unit  Warrant
 Exchange Name                                                           
-BATS                      2  1232      4                0     0        0
+BATS                      2  1234      4                0     0        0
 IEX                       0     0      3                0     0        0
-NASDAQ                 1601    75    809              323    67       31
+NASDAQ                 1601    75    808              323    67       31
 NYSE American           182     0    103               17     7        8
-NYSE Arca                 1  2607     14                1     3        0
-Other                  2268  1186   1293              111   218      357
+NYSE Arca                 1  2609     14                1     3        0
+Other                  2270  1187   1294              111   218      357
    - Shows the count of each security type per exchange (e.g., ETFs on NASDAQ).
 
 6. NASDAQ Market Categories:
 Market Category
-    2906
+    2905
    - For NASDAQ-listed securities, indicates market tiers: Q (Global Select, large-cap), G (Global, mid-cap), S (Capital, small-cap).
 
 7. NASDAQ Securities with Financial Issues:
@@ -49,10 +49,10 @@ No distressed securities found.
 
 9. Top 5 Sectors:
 Sector
-Unknown       10769
-Financial       605
+Unknown       10775
+Financial       604
 Technology      466
-Healthcare      348
+Healthcare      350
 Energy          292
    - Inferred from Security Name keywords, showing the most common industries.
 
@@ -71,8 +71,8 @@ Chart.js Pie Chart for Security Types:
   "type": "pie",
   "data": {
     "labels": [
-      "ETF: 5100",
-      "Common Stock: 4054",
+      "ETF: 5105",
+      "Common Stock: 4056",
       "Other: 2228",
       "Preferred Stock: 452",
       "Warrant: 396",
@@ -81,8 +81,8 @@ Chart.js Pie Chart for Security Types:
     "datasets": [
       {
         "data": [
-          5100,
-          4054,
+          5105,
+          4056,
           2228,
           452,
           396,
