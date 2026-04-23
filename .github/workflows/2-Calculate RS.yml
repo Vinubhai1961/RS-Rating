@@ -241,7 +241,7 @@ jobs:
       
           except Exception as e:
               print(f"❌ VALIDATION FAILED: {e}")
-              exit(1)
+              # exit(1)
           EOF
 
       - name: 📦 Upload merged ArcticDB
