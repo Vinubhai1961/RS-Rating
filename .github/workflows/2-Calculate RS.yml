@@ -146,38 +146,101 @@ jobs:
              echo "✅ ArcticDB merge completed successfully"
           fi
 
-      - name: 🔮 Verify merged ArcticDB (Top 10 symbols)
+      - name: 🔮 Deep Validate ArcticDB
         run: |
-          pip install arcticdb pandas
+          pip install arcticdb pandas numpy
           python <<EOF
           import arcticdb as adb
+          import pandas as pd
+          import numpy as np
           import time
-
+      
           start = time.time()
+      
+          def classify_days(n):
+              if n < 21: return "INVALID"
+              elif n < 63: return "1M_ONLY"
+              elif n < 126: return "PARTIAL"
+              elif n < 252: return "GOOD"
+              else: return "FULL"
+      
           try:
               arctic = adb.Arctic("lmdb://tmp/arctic_db")
-              if not arctic.has_library("prices"):
-                  raise ValueError("Library 'prices' not found.")
-
-              lib = arctic.get_library("prices")
       
-              print("🔎 Fetching symbols (this may take a few seconds)...")
+              if not arctic.has_library("prices"):
+                  raise ValueError("❌ Library 'prices' not found.")
+      
+              lib = arctic.get_library("prices")
               symbols = lib.list_symbols()
-              elapsed = time.time() - start
       
               if not symbols:
-                  raise ValueError("❌ No symbols found in 'prices' library.")
+                  raise ValueError("❌ No symbols found")
       
-              print(f"✅ Found {len(symbols)} symbols in {elapsed:.2f} seconds")
-              print("🕟 Sample symbols:", symbols[:10])
+              print(f"✅ Found {len(symbols)} symbols")
       
-              # (Optional) Print min/max datetime for the first symbol
-              sample = symbols[0]
-              df = lib.read(sample).data
-              print(f"📅 {sample} datetime range: {df['datetime'].min()} to {df['datetime'].max()}")
+              issues = []
+              summary = {"INVALID":0, "1M_ONLY":0, "PARTIAL":0, "GOOD":0, "FULL":0}
+      
+              for sym in symbols:
+                  try:
+                      df = lib.read(sym).data
+      
+                      # --- Column check ---
+                      if "datetime" not in df.columns or "close" not in df.columns:
+                          issues.append((sym, "Missing columns"))
+                          continue
+      
+                      # --- Sort ---
+                      df = df.sort_values("datetime")
+      
+                      # --- Basic stats ---
+                      rows = len(df)
+                      nan_close = df["close"].isna().sum()
+                      zero_close = (df["close"] <= 0).sum()
+                      dupes = df["datetime"].duplicated().sum()
+      
+                      # --- Gaps ---
+                      df["dt"] = pd.to_datetime(df["datetime"], unit="s")
+                      gaps = (df["dt"].diff().dt.days > 5).sum()
+      
+                      # --- Outliers ---
+                      returns = df["close"].pct_change()
+                      spikes = ((returns > 1.0) | (returns < -0.8)).sum()
+      
+                      # --- Classification ---
+                      category = classify_days(rows)
+                      summary[category] += 1
+      
+                      # --- Collect issues ---
+                      if nan_close > 0 or zero_close > 0 or dupes > 0 or spikes > 0:
+                          issues.append((
+                              sym,
+                              f"rows={rows}, NaN={nan_close}, zero={zero_close}, dupes={dupes}, spikes={spikes}, gaps={gaps}, class={category}"
+                          ))
+      
+                  except Exception as e:
+                      issues.append((sym, f"READ ERROR: {e}"))
+      
+              # ================= OUTPUT =================
+              print("\n📊 DATA QUALITY SUMMARY")
+              for k,v in summary.items():
+                  print(f"{k:10}: {v}")
+      
+              print(f"\n⚠️ Total problematic tickers: {len(issues)}")
+      
+              # Show top 20 issues
+              for i in issues[:20]:
+                  print("❌", i)
+      
+              # Fail pipeline if too many bad tickers
+              if len(issues) > len(symbols) * 0.2:
+                  raise ValueError("❌ Too many bad tickers (>20%)")
+      
+              elapsed = time.time() - start
+              print(f"\n✅ Validation completed in {elapsed:.2f}s")
       
           except Exception as e:
-              print(f"❌ ArcticDB error: {e}")
+              print(f"❌ VALIDATION FAILED: {e}")
               exit(1)
           EOF
 
