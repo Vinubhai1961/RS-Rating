@@ -818,13 +818,6 @@
       "type": "Stock"
     }
   },
-  "ACLX": {
-    "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
   "ACM": {
     "info": {
       "industry": "Engineering & Construction",
@@ -2176,6 +2169,13 @@
       "type": "ETF"
     }
   },
+  "AIFC": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "AIFD": {
     "info": {
       "industry": "n/a",
@@ -3041,13 +3041,6 @@
     "info": {
       "industry": "Specialty Chemicals",
       "sector": "Basic Materials",
-      "type": "Stock"
-    }
-  },
-  "ALTS": {
-    "info": {
-      "industry": "Software - Application",
-      "sector": "Technology",
       "type": "Stock"
     }
   },
@@ -12044,6 +12037,13 @@
       "industry": "n/a",
       "sector": "n/a",
       "type": "ETF"
+    }
+  },
+  "CAIIU": {
+    "info": {
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
+      "type": "Stock"
     }
   },
   "CAIQ": {
@@ -25372,6 +25372,13 @@
       "industry": "n/a",
       "sector": "n/a",
       "type": "ETF"
+    }
+  },
+  "FABC": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
     }
   },
   "FACT": {
@@ -53864,13 +53871,6 @@
       "type": "Stock"
     }
   },
-  "OCCIO": {
-    "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
   "OCFC": {
     "info": {
       "industry": "Banks - Regional",
@@ -59247,6 +59247,13 @@
       "type": "Stock"
     }
   },
+  "PS": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "PSA": {
     "info": {
       "industry": "REIT - Industrial",
@@ -59650,6 +59657,13 @@
     "info": {
       "industry": "Biotechnology",
       "sector": "Healthcare",
+      "type": "Stock"
+    }
+  },
+  "PSUS": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -65152,13 +65166,6 @@
     "info": {
       "industry": "Marine Shipping",
       "sector": "Industrials",
-      "type": "Stock"
-    }
-  },
-  "SBLX": {
-    "info": {
-      "industry": "Auto Manufacturers",
-      "sector": "Consumer Cyclical",
       "type": "Stock"
     }
   },
@@ -78352,8 +78359,8 @@
   },
   "VIVK": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Oil & Gas Integrated",
+      "sector": "Energy",
       "type": "Stock"
     }
   },
