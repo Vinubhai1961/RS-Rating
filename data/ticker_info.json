@@ -3114,6 +3114,13 @@
       "type": "Stock"
     }
   },
+  "AMA": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "AMAL": {
     "info": {
       "industry": "Banks - Regional",
@@ -6049,8 +6056,8 @@
   },
   "AVLN": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Biotechnology",
+      "sector": "Healthcare",
       "type": "Stock"
     }
   },
@@ -8289,8 +8296,8 @@
   },
   "BGDE": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Capital Markets",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -14330,7 +14337,7 @@
   },
   "CIG": {
     "info": {
-      "industry": "Utilities - Diversified",
+      "industry": "Utilities - Regulated Electric",
       "sector": "Utilities",
       "type": "Stock"
     }
@@ -14858,6 +14865,13 @@
       "industry": "Banks - Diversified",
       "sector": "Financial Services",
       "type": "Stock"
+    }
+  },
+  "CMAY": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
     }
   },
   "CMBO": {
@@ -15404,6 +15418,13 @@
       "industry": "n/a",
       "sector": "n/a",
       "type": "ETF"
+    }
+  },
+  "COAG": {
+    "info": {
+      "industry": "Biotechnology",
+      "sector": "Healthcare",
+      "type": "Stock"
     }
   },
   "COAL": {
@@ -18605,6 +18626,13 @@
       "type": "ETF"
     }
   },
+  "DDFY": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "DDI": {
     "info": {
       "industry": "Electronic Gaming & Multimedia",
@@ -18732,6 +18760,13 @@
     }
   },
   "DDTS": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
+  "DDTY": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -21524,6 +21559,27 @@
       "type": "ETF"
     }
   },
+  "DYNC": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
+  "DYNCU": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
+  "DYNCW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "DYNF": {
     "info": {
       "industry": "n/a",
@@ -21697,13 +21753,6 @@
       "industry": "Restaurants",
       "sector": "Consumer Cyclical",
       "type": "Stock"
-    }
-  },
-  "EATZ": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
     }
   },
   "EBAY": {
@@ -24065,20 +24114,6 @@
       "type": "ETF"
     }
   },
-  "ESHA": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "ESHAR": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
-    }
-  },
   "ESI": {
     "info": {
       "industry": "Specialty Chemicals",
@@ -24329,27 +24364,6 @@
       "industry": "n/a",
       "sector": "n/a",
       "type": "ETF"
-    }
-  },
-  "ETHM": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "ETHMU": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "ETHMW": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
     }
   },
   "ETHO": {
@@ -29016,21 +29030,21 @@
   },
   "FTAI": {
     "info": {
-      "industry": "Rental & Leasing Services",
+      "industry": "Aerospace & Defense",
       "sector": "Industrials",
       "type": "Stock"
     }
   },
   "FTAIM": {
     "info": {
-      "industry": "Rental & Leasing Services",
+      "industry": "Aerospace & Defense",
       "sector": "Industrials",
       "type": "Stock"
     }
   },
   "FTAIN": {
     "info": {
-      "industry": "Rental & Leasing Services",
+      "industry": "Aerospace & Defense",
       "sector": "Industrials",
       "type": "Stock"
     }
@@ -30314,13 +30328,6 @@
       "industry": "n/a",
       "sector": "n/a",
       "type": "ETF"
-    }
-  },
-  "GDEN": {
-    "info": {
-      "industry": "Resorts & Casinos",
-      "sector": "Consumer Cyclical",
-      "type": "Stock"
     }
   },
   "GDEV": {
@@ -44841,13 +44848,6 @@
       "type": "ETF"
     }
   },
-  "LNKB": {
-    "info": {
-      "industry": "Banks - Regional",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
   "LNKS": {
     "info": {
       "industry": "Electrical Equipment & Parts",
@@ -45718,7 +45718,7 @@
   },
   "LVO": {
     "info": {
-      "industry": "Entertainment",
+      "industry": "Internet Content & Information",
       "sector": "Communication Services",
       "type": "Stock"
     }
@@ -46290,6 +46290,13 @@
       "type": "Stock"
     }
   },
+  "MAUG": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "MAVF": {
     "info": {
       "industry": "n/a",
@@ -46318,11 +46325,11 @@
       "type": "ETF"
     }
   },
-  "MAXN": {
+  "MAYC": {
     "info": {
-      "industry": "Solar",
-      "sector": "Technology",
-      "type": "Stock"
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
     }
   },
   "MAYM": {
@@ -47347,6 +47354,13 @@
       "type": "ETF"
     }
   },
+  "MFEB": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "MFEM": {
     "info": {
       "industry": "n/a",
@@ -48299,6 +48313,13 @@
       "type": "ETF"
     }
   },
+  "MMAY": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "MMCA": {
     "info": {
       "industry": "n/a",
@@ -48598,6 +48619,13 @@
       "industry": "n/a",
       "sector": "n/a",
       "type": "Stock"
+    }
+  },
+  "MNVR": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
     }
   },
   "MNVT": {
@@ -58582,6 +58610,13 @@
       "type": "Stock"
     }
   },
+  "POEL": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "POET": {
     "info": {
       "industry": "Semiconductors",
@@ -60997,6 +61032,13 @@
       "type": "ETF"
     }
   },
+  "QQMY": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "QQQ": {
     "info": {
       "industry": "n/a",
@@ -61496,8 +61538,8 @@
   },
   "QXL": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Internet Content & Information",
+      "sector": "Communication Services",
       "type": "Stock"
     }
   },
@@ -69507,6 +69549,13 @@
       "industry": "n/a",
       "sector": "n/a",
       "type": "ETF"
+    }
+  },
+  "SPTX": {
+    "info": {
+      "industry": "Biotechnology",
+      "sector": "Healthcare",
+      "type": "Stock"
     }
   },
   "SPUC": {
