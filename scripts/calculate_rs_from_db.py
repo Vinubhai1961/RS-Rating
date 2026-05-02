@@ -35,38 +35,40 @@ def align_series(closes, closes_ref):
 
 def debug_alignment(ticker, closes, closes_ref, df, log_path):
     log_missing_rs(ticker,
-        f"ALIGNMENT → stock_len={len(closes)}, ref_len={len(closes_ref)}, aligned_len={len(df)}",
+        f"ALIGNMENT → stock={len(closes)}, ref={len(closes_ref)}, aligned={len(df)}", 
         log_path
     )
     if len(df) < min(len(closes), len(closes_ref)) * 0.9:
-        log_missing_rs(ticker,
-            "⚠️ ALIGNMENT WARNING: Significant rows dropped after alignment",
-            log_path
-        )
+        log_missing_rs(ticker, "⚠️ ALIGNMENT WARNING: Significant date mismatch!", log_path)
+    
     if len(df) > 5:
         tail_dates = [d.strftime("%Y-%m-%d") for d in df.index[-5:]]
-        log_missing_rs(ticker, f"Aligned last dates: {tail_dates}", log_path)
+        log_missing_rs(ticker, f"Last aligned dates: {tail_dates}", log_path)
 
 
 def debug_returns(ticker, df, days, label, log_path):
     if len(df) < days + 1:
-        log_missing_rs(ticker, f"{label} → insufficient aligned data", log_path)
+        log_missing_rs(ticker, f"{label} → INSUFFICIENT DATA", log_path)
         return None, None
+    
     old_date = df.index[-days-1]
     new_date = df.index[-1]
-    s_old, s_new = df["stock"].iloc[-days-1], df["stock"].iloc[-1]
-    r_old, r_new = df["ref"].iloc[-days-1], df["ref"].iloc[-1]
+    s_old = df["stock"].iloc[-days-1]
+    s_new = df["stock"].iloc[-1]
+    r_old = df["ref"].iloc[-days-1]
+    r_new = df["ref"].iloc[-1]
+
     s_ret = s_new / s_old - 1
     r_ret = r_new / r_old - 1
+
     log_missing_rs(
         ticker,
-        f"{label} → {old_date.date()}→{new_date.date()} | "
-        f"Stock {s_old:.2f}->{s_new:.2f} ({s_ret:+.2%}) | "
-        f"SPY {r_old:.2f}->{r_new:.2f} ({r_ret:+.2%})",
+        f"{label:>2} → {old_date.date()} → {new_date.date()} | "
+        f"Stock: {s_old:.2f} → {s_new:.2f} ({s_ret:+6.2%}) | "
+        f"SPY: {r_old:.2f} → {r_new:.2f} ({r_ret:+6.2%})",
         log_path
     )
     return s_ret, r_ret
-
 
 def validate_rs(ticker, rs, s_ret, r_ret, label, log_path):
     if s_ret is None or r_ret is None or pd.isna(rs):
