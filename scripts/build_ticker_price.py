@@ -35,9 +35,12 @@ logging.basicConfig(
 )
 
 # =========================================================
-# ✅ NEW: Earnings Helper (ONLY returns today earnings)
+# ✅ NEW: Earnings Helper (consider last trading date)
 # =========================================================
-def get_today_earning_date(calendar_events, yahoo_sym):
+def get_recent_earning_date(calendar_events, yahoo_sym, ref_date):
+    """
+    Returns YYYY-MM-DD if earnings date matches reference trading date
+    """
     try:
         cal = calendar_events.get(yahoo_sym, {})
         if not isinstance(cal, dict):
@@ -53,7 +56,7 @@ def get_today_earning_date(calendar_events, yahoo_sym):
 
         ed = e_dates[0]
 
-        # Normalize to date
+        # Normalize
         if hasattr(ed, "date"):
             ed_date = ed.date()
         elif isinstance(ed, str):
@@ -62,10 +65,9 @@ def get_today_earning_date(calendar_events, yahoo_sym):
         else:
             return None
 
-        today = datetime.now().date()
-
-        if ed_date == today:
-            return today.strftime("%Y-%m-%d")
+        # ✅ Compare with reference trading date
+        if ed_date == ref_date:
+            return ed_date.strftime("%Y-%m-%d")
 
     except Exception:
         return None
