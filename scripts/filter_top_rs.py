@@ -198,8 +198,12 @@ def generate_opportunity_report(source_file: str, output_file: str):
     final_columns = [
         'Section', 'Rank', 'Ticker', 'Price', 'DVol', 'Sector', 'Industry',
         'RS Percentile', '1M_RS Percentile', '3M_RS Percentile', '6M_RS Percentile',
-        'AvgVol', 'AvgVol10', '52WKH', '52WKL', 'MCAP', 'IPO'
+        'AvgVol', 'AvgVol10', '52WKH', '52WKL', 'MCAP', 'IPO',
+        'Earning_Date', 'SMA50', 'SMA200', 'SMA10W', 'SMA30W'   # ← NEW COLUMNS ADDED
     ]
+    
+    # Only use columns that exist in the dataframe
+    final_columns = [col for col in final_columns if col in combined_df.columns]
     combined_df = combined_df[final_columns]
 
     # Save the report
