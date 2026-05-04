@@ -233,7 +233,7 @@ jobs:
 
       - name: Merge ticker price files
         run: |
-          python scripts/merge_ticker_price.py data --part-total 5
+          python scripts/merge_ticker_price.py data --part-total 10
         working-directory: .
 
       - name: Upload final price artifact
