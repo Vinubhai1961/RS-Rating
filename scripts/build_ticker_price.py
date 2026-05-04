@@ -26,7 +26,7 @@ RETRY_SUBPASS = True
 PRICE_THRESHOLD = 5.0
 
 logging.basicConfig(
-    level=logging.DEBUG,  # 🔥 DEBUG ENABLED
+    level=logging.DEBUG,
     format="%(asctime)s [%(levelname)s] %(message)s",
     handlers=[
         logging.FileHandler(LOG_PATH, encoding="utf-8"),
@@ -34,9 +34,6 @@ logging.basicConfig(
     ]
 )
 
-# =========================================================
-# ✅ UPDATED: Earnings helper (TODAY ONLY)
-# =========================================================
 def get_today_earning_date(calendar_events, yahoo_sym):
     try:
         cal = calendar_events.get(yahoo_sym, {})
@@ -51,14 +48,10 @@ def get_today_earning_date(calendar_events, yahoo_sym):
         dt = datetime.fromisoformat(cleaned)
         today = datetime.now().date()
 
-        logging.debug(f"{yahoo_sym} | raw={raw} | parsed={dt.date()} | today={today}")
-
         if dt.date() == today:
             return today.strftime("%Y-%m-%d")
-
     except Exception as e:
         logging.debug(f"{yahoo_sym} earnings parse error: {e}")
-
     return None
 
 
@@ -97,11 +90,10 @@ def yahoo_symbol(symbol: str) -> str:
 
 def process_batch(batch, ticker_info):
     total_wait = 0
-
     for attempt in range(MAX_BATCH_RETRIES):
         try:
             prices = []
-            failure_reasons = {"no_price": 0, "below_threshold": 0, "error": 0}
+            failure_reasons = {"no_price": 0, "below_threshold": 0, "error": 0, "skipped_type": 0}
 
             yahoo_symbols = [yahoo_symbol(symbol) for symbol in batch]
             yq = Ticker(yahoo_symbols)
@@ -112,13 +104,9 @@ def process_batch(batch, ticker_info):
 
             for symbol in batch:
                 yahoo_sym = yahoo_symbol(symbol)
-
                 try:
+                    # Price extraction
                     price = None
-
-                    # =========================
-                    # Price extraction (UNCHANGED)
-                    # =========================
                     if yahoo_sym in hist.index.get_level_values(0):
                         df = hist.loc[yahoo_sym]
                         if not df.empty:
@@ -141,15 +129,17 @@ def process_batch(batch, ticker_info):
                     fifty_two_week_high = summary.get("fiftyTwoWeekHigh")
                     market_cap = summary.get("marketCap")
 
-                    # =========================
-                    # ✅ NEW: Earnings logic
-                    # =========================
+                    # ================== FIXED TYPE HANDLING ==================
                     info = ticker_info.get(symbol, {}).get("info", {})
+                    ticker_type = info.get("type", "Unknown")
 
-                    # ✅ Skip non-stocks (ETF, Fund, etc.)
-                    if info.get("type") != "Stock":
+                    # Allow both Stocks AND ETFs (especially SPY, QQQ, etc.)
+                    if ticker_type not in ["Stock", "ETF"]:
                         earning_date = None
-                        logging.debug(f"{symbol} skipped (type={info.get('type')})")
+                        logging.debug(f"{symbol} skipped (type={ticker_type})")
+                        failure_reasons["skipped_type"] += 1
+                        if symbol != "SPY":   # Force include SPY even if type is weird
+                            continue
                     else:
                         earning_date = get_today_earning_date(calendar_events, yahoo_sym)
 
@@ -159,7 +149,7 @@ def process_batch(batch, ticker_info):
                             "Price": round(price, 2),
                             "industry": info.get("industry", "n/a"),
                             "sector": info.get("sector", "n/a"),
-                            "type": info.get("type", "Unknown"),
+                            "type": ticker_type,
                             "DVol": volume if isinstance(volume, int) else None,
                             "AvgVol": avg_volume if isinstance(avg_volume, int) else None,
                             "AvgVol10": avg_volume_10days if isinstance(avg_volume_10days, int) else None,
@@ -187,7 +177,6 @@ def process_batch(batch, ticker_info):
 
 def main(part_index=None, part_total=None, verbose=False):
     start_time = time.time()
-
     ensure_dirs()
     setup_logging(verbose)
 
@@ -198,6 +187,12 @@ def main(part_index=None, part_total=None, verbose=False):
         return
 
     qualified_tickers = list(ticker_info.keys())
+    logging.info(f"Total tickers loaded: {len(qualified_tickers)}")
+
+    if "SPY" in qualified_tickers:
+        logging.info("✅ SPY found in ticker_info.json")
+    else:
+        logging.warning("❌ SPY NOT found in ticker_info.json!")
 
     if part_index is not None and part_total is not None:
         part_tickers = partition_tickers(qualified_tickers, part_index, part_total)
@@ -211,28 +206,28 @@ def main(part_index=None, part_total=None, verbose=False):
 
     for idx, batch in enumerate(tqdm(batches, desc="Processing Price Batches"), 1):
         updated, failed_tickers, prices = process_batch(batch, ticker_info)
-
         all_prices.extend(prices)
         all_failed.extend(failed_tickers)
 
-        logging.info(f"Batch {idx}/{len(batches)} - Fetched data for {updated} tickers")
+        logging.info(f"Batch {idx}/{len(batches)} - Fetched {updated} tickers")
 
         if idx < len(batches):
             time.sleep(random.uniform(*BATCH_DELAY_RANGE))
 
+    # Final check for SPY
+    spy_in_output = any(p.get("ticker") == "SPY" for p in all_prices)
+    logging.info(f"SPY in final output: {'✅ YES' if spy_in_output else '❌ NO'}")
+
     if RETRY_SUBPASS and all_failed:
         unresolved_unique = sorted(set(all_failed))
-        logging.info(f"Retry sub-pass for {len(unresolved_unique)} unresolved tickers...")
-
+        logging.info(f"Retry sub-pass for {len(unresolved_unique)} tickers...")
         retry_batches = [unresolved_unique[i:i + BATCH_SIZE] for i in range(0, len(unresolved_unique), BATCH_SIZE)]
-
         for idx, batch in enumerate(tqdm(retry_batches, desc="Retry Price Batches"), 1):
             updated, failed_tickers, prices = process_batch(batch, ticker_info)
             all_prices.extend(prices)
             time.sleep(random.uniform(5, 10))
 
     unresolved_final = sorted(set(all_failed))
-
     with open(UNRESOLVED_PRICE_TICKERS, "w") as f:
         f.write("\n".join(unresolved_final))
 
@@ -240,8 +235,9 @@ def main(part_index=None, part_total=None, verbose=False):
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(all_prices, f, indent=2)
 
+    logging.info(f"Price build completed. Total tickers saved: {len(all_prices)}")
     elapsed = time.time() - start_time
-    logging.info("Price build completed. Elapsed: %.1fs", elapsed)
+    logging.info("Elapsed: %.1fs", elapsed)
 
 
 if __name__ == "__main__":
@@ -249,7 +245,5 @@ if __name__ == "__main__":
     parser.add_argument("--part-index", type=int, required=True)
     parser.add_argument("--part-total", type=int, required=True)
     parser.add_argument("--verbose", action="store_true")
-
     args = parser.parse_args()
-
     main(part_index=args.part_index, part_total=args.part_total, verbose=args.verbose)
