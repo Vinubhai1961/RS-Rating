@@ -21,10 +21,10 @@ jobs:
         run: |
           echo "Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
       
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.13"
 
@@ -42,7 +42,7 @@ jobs:
         working-directory: .
 
       - name: Upload partition artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ticker-info-part-${{ matrix.part_index }}
           path: |
@@ -66,17 +66,17 @@ jobs:
         run: |
           echo "Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Download partition artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           path: artifacts
           pattern: ticker-info-part-*
           merge-multiple: false
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.13"
 
@@ -116,7 +116,7 @@ jobs:
         working-directory: .
 
       - name: Upload merged artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ticker-info
           path: |
@@ -156,16 +156,16 @@ jobs:
         run: |
           echo "Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Download ticker info artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: ticker-info
           path: data
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.13"
 
@@ -183,7 +183,7 @@ jobs:
         working-directory: .
 
       - name: Upload price artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ticker-price-part-${{ matrix.part_index }}
           path: |
@@ -205,17 +205,17 @@ jobs:
         run: |
           echo "Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Download price artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           path: artifacts
           pattern: ticker-price-part-*
           merge-multiple: false
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.13"
 
@@ -237,7 +237,7 @@ jobs:
         working-directory: .
 
       - name: Upload final price artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ticker-price
           path: |
