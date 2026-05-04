@@ -165,7 +165,7 @@ def process_batch(batch, ticker_info):
                     # =========================
                     # ✅ Earnings logic (TODAY ONLY)
                     # =========================
-                    earning_date = get_today_earning_date(calendar_events, yahoo_sym)
+                    earning_date = get_recent_earning_date(calendar_events, yahoo_sym, price_date   # 🔥 THIS IS THE FIX)
 
                     # =========================
                     # Build output
