@@ -23,7 +23,7 @@ jobs:
           echo "Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
 
       - name: ⬇️ Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: 🔍 Verify ticker_price.json
         run: |
@@ -41,7 +41,7 @@ jobs:
             ${{ runner.os }}-pip-
 
       - name: 🔬 Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.13"
 
@@ -73,13 +73,13 @@ jobs:
             --total-partitions 4
 
       - name: 📦 Upload ArcticDB data
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: arctic-db-${{ matrix.partition }}
           path: tmp/arctic_db/
 
       - name: 📊 Upload failed tickers log
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: failed-tickers-${{ matrix.partition }}
           path: logs/failed_tickers.log
@@ -99,7 +99,7 @@ jobs:
           echo "Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
 
       - name: ⬇️ Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: 🗃️ Restore cached merged ArcticDB # 🆕
         uses: actions/cache@v4
@@ -109,7 +109,7 @@ jobs:
           restore-keys: arcticdb-merged-
 
       - name: ⬇️ Download ArcticDB partitions
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           path: tmp
           pattern: arctic-db-*
@@ -245,7 +245,7 @@ jobs:
           EOF
 
       - name: 📦 Upload merged ArcticDB
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: arctic-db-merged
           path: tmp/arctic_db
@@ -267,16 +267,16 @@ jobs:
           echo "Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
 
       - name: ⬇️ Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: ⬇️ Download merged ArcticDB
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: arctic-db-merged
           path: tmp/arctic_db
 
       - name: 📆 Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.11"
 
@@ -356,7 +356,7 @@ jobs:
           ls -l archive | tail -n 10
 
       - name: 🗓️ Upload outputs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: rs-results
           path: |
