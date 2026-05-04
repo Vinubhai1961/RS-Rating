@@ -26,7 +26,7 @@ RETRY_SUBPASS = True
 PRICE_THRESHOLD = 5.0
 
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.DEBUG,  # 🔥 DEBUG ENABLED
     format="%(asctime)s [%(levelname)s] %(message)s",
     handlers=[
         logging.FileHandler(LOG_PATH, encoding="utf-8"),
@@ -35,42 +35,29 @@ logging.basicConfig(
 )
 
 # =========================================================
-# ✅ NEW: Earnings Helper (consider last trading date)
+# ✅ UPDATED: Earnings helper (TODAY ONLY)
 # =========================================================
-def get_recent_earning_date(calendar_events, yahoo_sym, ref_date):
-    """
-    Returns YYYY-MM-DD if earnings date matches reference trading date
-    """
+def get_today_earning_date(calendar_events, yahoo_sym):
     try:
         cal = calendar_events.get(yahoo_sym, {})
-        if not isinstance(cal, dict):
-            return None
-
         earnings = cal.get("earnings", {})
-        if not isinstance(earnings, dict):
+        ed_list = earnings.get("earningsDate")
+
+        if not ed_list:
             return None
 
-        e_dates = earnings.get("earningsDate")
-        if not e_dates or not isinstance(e_dates, list):
-            return None
+        raw = ed_list[0]
+        cleaned = raw.replace(":S", "")
+        dt = datetime.fromisoformat(cleaned)
+        today = datetime.now().date()
 
-        ed = e_dates[0]
+        logging.debug(f"{yahoo_sym} | raw={raw} | parsed={dt.date()} | today={today}")
 
-        # Normalize
-        if hasattr(ed, "date"):
-            ed_date = ed.date()
-        elif isinstance(ed, str):
-            ed_clean = ed.replace(":S", ":00")
-            ed_date = datetime.fromisoformat(ed_clean).date()
-        else:
-            return None
+        if dt.date() == today:
+            return today.strftime("%Y-%m-%d")
 
-        # ✅ Compare with reference trading date
-        if ed_date == ref_date:
-            return ed_date.strftime("%Y-%m-%d")
-
-    except Exception:
-        return None
+    except Exception as e:
+        logging.debug(f"{yahoo_sym} earnings parse error: {e}")
 
     return None
 
@@ -82,14 +69,7 @@ def ensure_dirs():
 
 def setup_logging(verbose: bool):
     level = logging.DEBUG if verbose else logging.INFO
-    logging.basicConfig(
-        level=level,
-        format="%(asctime)s [%(levelname)s] %(message)s",
-        handlers=[
-            logging.FileHandler(LOG_PATH, encoding="utf-8"),
-            logging.StreamHandler()
-        ]
-    )
+    logging.getLogger().setLevel(level)
 
 
 def load_ticker_info():
@@ -116,7 +96,6 @@ def yahoo_symbol(symbol: str) -> str:
 
 
 def process_batch(batch, ticker_info):
-    start_time = time.time()
     total_wait = 0
 
     for attempt in range(MAX_BATCH_RETRIES):
@@ -129,24 +108,21 @@ def process_batch(batch, ticker_info):
 
             hist = yq.history(period="1d")
             summary_details = yq.summary_detail
-            calendar_events = yq.calendar_events  # ✅ NEW
+            calendar_events = yq.calendar_events
 
             for symbol in batch:
                 yahoo_sym = yahoo_symbol(symbol)
 
                 try:
-                    # =========================
-                    # Price extraction
-                    # =========================
                     price = None
-                    price_date = None
 
+                    # =========================
+                    # Price extraction (UNCHANGED)
+                    # =========================
                     if yahoo_sym in hist.index.get_level_values(0):
                         df = hist.loc[yahoo_sym]
-
-                    if not df.empty:
-                        price = df['close'].iloc[-1]
-                        price_date = df.index[-1][1].date()   # 🔥 THIS WAS MISSING
+                        if not df.empty:
+                            price = df['close'].iloc[-1]
 
                     if price is None or not isinstance(price, (int, float)):
                         failure_reasons["no_price"] += 1
@@ -156,9 +132,6 @@ def process_batch(batch, ticker_info):
                         failure_reasons["below_threshold"] += 1
                         continue
 
-                    # =========================
-                    # Summary details
-                    # =========================
                     summary = summary_details.get(yahoo_sym, {}) if isinstance(summary_details, dict) else {}
 
                     volume = summary.get("volume")
@@ -169,13 +142,13 @@ def process_batch(batch, ticker_info):
                     market_cap = summary.get("marketCap")
 
                     # =========================
-                    # ✅ Earnings logic (TODAY ONLY)
+                    # ✅ NEW: Earnings logic
                     # =========================
-                    earning_date = get_recent_earning_date(calendar_events, yahoo_sym, price_date)
+                    earning_date = get_today_earning_date(calendar_events, yahoo_sym)
 
-                    # =========================
-                    # Build output
-                    # =========================
+                    if earning_date:
+                        logging.info(f"🔥 {symbol} → Earnings TODAY ({earning_date})")
+
                     info = ticker_info.get(symbol, {}).get("info", {})
 
                     prices.append({
@@ -191,12 +164,12 @@ def process_batch(batch, ticker_info):
                             "52WKL": round(fifty_two_week_low, 2) if isinstance(fifty_two_week_low, (int, float)) else None,
                             "52WKH": round(fifty_two_week_high, 2) if isinstance(fifty_two_week_high, (int, float)) else None,
                             "MCAP": round(market_cap, 2) if isinstance(market_cap, (int, float)) else None,
-                            "Earning_Date": earning_date  # ✅ NEW FIELD
+                            "Earning_Date": earning_date
                         }
                     })
 
                 except Exception as e:
-                    logging.debug(f"Failed to process {symbol}: {e}")
+                    logging.debug(f"{symbol} failed: {e}")
                     failure_reasons["error"] += 1
 
             failed_tickers = [s for s in batch if s not in [p["ticker"] for p in prices]]
@@ -204,17 +177,8 @@ def process_batch(batch, ticker_info):
             return len(prices), failed_tickers, prices
 
         except Exception as e:
-            if "429" in str(e) or "curl" in str(e).lower():
-                wait = min((2 ** attempt) * random.uniform(5, 10), MAX_RETRY_TIMEOUT - total_wait)
-                total_wait += wait
-                if total_wait >= MAX_RETRY_TIMEOUT:
-                    logging.warning(f"Max retry timeout reached for batch after {total_wait:.1f}s. Skipping.")
-                    break
-                logging.warning(f"Batch error (attempt {attempt+1}/{MAX_BATCH_RETRIES}): {e}. Retrying in {wait:.1f}s.")
-                time.sleep(wait)
-            else:
-                logging.error(f"Unexpected error in batch: {e}. Aborting batch.")
-                break
+            logging.warning(f"Batch error (attempt {attempt+1}): {e}")
+            time.sleep(random.uniform(5, 10))
 
     return 0, batch, []
 
