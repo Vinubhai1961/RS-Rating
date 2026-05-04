@@ -139,8 +139,14 @@ def process_batch(batch, ticker_info):
                     # Price extraction
                     # =========================
                     price = None
+                    price_date = None
+
                     if yahoo_sym in hist.index.get_level_values(0):
-                        price = hist.loc[yahoo_sym]['close'].iloc[-1] if not hist.loc[yahoo_sym].empty else None
+                        df = hist.loc[yahoo_sym]
+
+                    if not df.empty:
+                        price = df['close'].iloc[-1]
+                        price_date = df.index[-1][1].date()   # 🔥 THIS WAS MISSING
 
                     if price is None or not isinstance(price, (int, float)):
                         failure_reasons["no_price"] += 1
