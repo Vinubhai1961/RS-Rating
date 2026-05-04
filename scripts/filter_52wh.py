@@ -1,7 +1,6 @@
 # =============================================================================
 #   Filter high-RS, higher-priced stocks near 52-week highs
 #   Overwrites the output file every run
-# scripts/filter_52wh.py
 # =============================================================================
 import pandas as pd
 from pathlib import Path
@@ -15,8 +14,7 @@ OUTPUT_PATH  = Path("RS_Data/RS80_Price30_within27pct_52wh.csv")
 RS_THRESHOLD    = 80.0
 PRICE_THRESHOLD = 30.0
 MAX_PCT_BELOW   = 28.0
-MIN_AVGVOL10    = 450_000           # ← new: minimum 10-day average volume
-#MIN_AVGVOL10    = 500_000           # ← new: minimum 10-day average volume
+MIN_AVGVOL10    = 450_000 # ← new: minimum 10-day average volume
 # ────────────────────────────────────────────────
 
 
@@ -30,44 +28,42 @@ def main():
 
     print(f"→ Loaded {len(df):,} rows")
 
-    # Ensure numeric columns – added 'AvgVol10'
-    numeric_cols = ['Price', '52WKH', 'RS Percentile', 'AvgVol10']
+    # Ensure numeric columns
+    numeric_cols = ['Price', '52WKH', 'RS Percentile', 'AvgVol10', 'SMA50', 'SMA200']
     for col in numeric_cols:
         if col in df.columns:
             df[col] = pd.to_numeric(df[col], errors='coerce')
 
-    # Drop rows we cannot calculate properly – added 'AvgVol10'
+    # Drop rows we cannot calculate properly
     df = df.dropna(subset=['Price', '52WKH', 'RS Percentile', 'AvgVol10'])
 
     # Calculate % below 52-week high
     df['%_From_52WKH'] = ((df['52WKH'] - df['Price']) / df['52WKH']) * 100
     df['%_From_52WKH'] = df['%_From_52WKH'].round(2)
 
-    # Apply all filters – added volume condition
-    
+    # Apply filters
     mask = (
-    (df['%_From_52WKH'] >= 0) &
-    (df['%_From_52WKH'] <= MAX_PCT_BELOW) &
-    (df['RS Percentile'] >= RS_THRESHOLD) &  # ← Changed from > to >=
-    (df['Price'] >= PRICE_THRESHOLD) &       # ← Changed from > to >=
-    (df['AvgVol10'] >= MIN_AVGVOL10)         # ← Changed from > to >=
+        (df['%_From_52WKH'] >= 0) &
+        (df['%_From_52WKH'] <= MAX_PCT_BELOW) &
+        (df['RS Percentile'] >= RS_THRESHOLD) &
+        (df['Price'] >= PRICE_THRESHOLD) &
+        (df['AvgVol10'] >= MIN_AVGVOL10)
     )
 
     filtered = df[mask].copy()
 
-    # Updated print – shows all active filters
     print(f"After filters:")
     print(f"  • within {MAX_PCT_BELOW}% of 52-week high")
-    print(f"  • RS Percentile > {RS_THRESHOLD}")
-    print(f"  • Price > ${PRICE_THRESHOLD:,}")
-    print(f"  • 10-day Avg Volume > {MIN_AVGVOL10:,} shares")
+    print(f"  • RS Percentile ≥ {RS_THRESHOLD}")
+    print(f"  • Price ≥ ${PRICE_THRESHOLD:,}")
+    print(f"  • 10-day Avg Volume ≥ {MIN_AVGVOL10:,} shares")
     print(f"→ {len(filtered):,} rows remain")
 
     if len(filtered) == 0:
         print("No stocks match the current criteria.")
         return
 
-    # Define exact column order you requested
+    # ====================== UPDATED DESIRED COLUMNS ======================
     desired = [
         'Rank', 'Ticker', 'Price', 'DVol',
         'Sector', 'Industry',
@@ -75,23 +71,20 @@ def main():
         '1M_RS Percentile', '3M_RS Percentile', '6M_RS Percentile',
         'AvgVol', 'AvgVol10',
         '52WKH', '52WKL', 'MCAP',
+        'Earning_Date', 'SMA50', 'SMA200', 'SMA10W', 'SMA30W',   # ← NEW
         '%_From_52WKH'
     ]
 
     available = [c for c in desired if c in filtered.columns]
     result = filtered[available]
 
-    # Sort by RS Percentile descending (you can switch to % closeness if preferred)
+    # Sort by RS Percentile descending
     result = result.sort_values('RS Percentile', ascending=False).reset_index(drop=True)
-    # Alternative (closest to high first):
-    # result = result.sort_values(by=['%_From_52WKH', 'RS Percentile'], ascending=[True, False]).reset_index(drop=True)
 
-    # Overwrite output
     result.to_csv(OUTPUT_PATH, index=False)
     print(f"\nOutput overwritten → {OUTPUT_PATH}")
     print(f"Total rows saved: {len(result):,}")
 
-    # Show preview
     print("\nFirst 10 rows:")
     print(result.head(10).to_string(index=False))
 
