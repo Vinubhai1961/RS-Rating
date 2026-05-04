@@ -88,11 +88,18 @@ def fetch_historical_data(tickers, arctic, log_file):
                 # Optional: forward fill small gaps (safe)
                 df["close"] = df["close"].ffill()
 
-                # Minimum data check (important for RS)
+                # Minimum data check (important for RS + SMAs)
                 if len(df) < 5:
                     skipped_tickers.append((ticker, f"Too few valid rows: {len(df)}"))
                     batch_skipped += 1
                     continue
+
+                # ====================== NEW: DATA QUALITY FOR SMA ======================
+                final_rows = len(df)
+                if final_rows < 200:
+                    logging.warning(f"{ticker}: Limited history ({final_rows} days) - SMA200/SMA30W may be NaN")
+                elif final_rows < 50:
+                    logging.info(f"{ticker}: Very short history ({final_rows} days)")
 
                 # Convert datetime to UNIX timestamp (seconds)
                 df["datetime"] = df["datetime"].astype("int64") // 10**9
@@ -109,7 +116,7 @@ def fetch_historical_data(tickers, arctic, log_file):
                         f"NaN_removed={nan_count}, "
                         f"invalid_price_removed={invalid_price_count}, "
                         f"duplicates_removed={dupes_removed}, "
-                        f"final_rows={len(df)}"
+                        f"final_rows={final_rows}"
                     )
 
             except Exception as e:
