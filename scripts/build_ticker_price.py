@@ -144,12 +144,14 @@ def process_batch(batch, ticker_info):
                     # =========================
                     # ✅ NEW: Earnings logic
                     # =========================
-                    earning_date = get_today_earning_date(calendar_events, yahoo_sym)
-
-                    if earning_date:
-                        logging.info(f"🔥 {symbol} → Earnings TODAY ({earning_date})")
-
                     info = ticker_info.get(symbol, {}).get("info", {})
+
+                    # ✅ Skip non-stocks (ETF, Fund, etc.)
+                    if info.get("type") != "Stock":
+                        earning_date = None
+                        logging.debug(f"{symbol} skipped (type={info.get('type')})")
+                    else:
+                        earning_date = get_today_earning_date(calendar_events, yahoo_sym)
 
                     prices.append({
                         "ticker": symbol,
