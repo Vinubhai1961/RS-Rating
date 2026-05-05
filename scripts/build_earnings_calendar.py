@@ -127,13 +127,15 @@ def main():
 
         if len(df_candidates) == 0:
             print("[INFO] No earnings candidates today.")
-            return
 
         df_candidates = df_candidates[BASE_COLS].copy()
         df_candidates = df_candidates.rename(columns={"EarningDate": "Earning_Date"})
         df_candidates["Earning_Date"] = pd.to_datetime(df_candidates["Earning_Date"], errors="coerce")
         df_candidates["Ticker"] = df_candidates["Ticker"].apply(normalize_ticker)
 
+        # -------------------------------
+        # LOAD EXISTING FILE
+        # -------------------------------
         if out_path.exists():
             df_existing = pd.read_csv(out_path)
             df_existing["Earning_Date"] = pd.to_datetime(df_existing["Earning_Date"], errors="coerce")
@@ -143,8 +145,50 @@ def main():
             df_existing = pd.DataFrame(columns=list(df_candidates.columns) + DAY_COLS)
             print("[INFO] Creating new monthly earnings file")
 
-        records_to_add = []
         updated_count = 0
+
+        # =========================================================
+        # 🔴 PATCH FIX: UPDATE ALL EXISTING ROWS FIRST
+        # =========================================================
+        print("\n[STEP] Updating existing records (CRITICAL FIX)...")
+
+        for idx, row in df_existing.iterrows():
+            ticker = normalize_ticker(row["Ticker"])
+            earn_date = pd.to_datetime(row["Earning_Date"], errors="coerce")
+
+            if pd.isna(earn_date):
+                continue
+
+            earn_date = earn_date.date()
+
+            for i in range(1, 7):
+                col = f"E_Day{i}"
+
+                if col not in df_existing.columns:
+                    continue
+
+                val = row[col]
+
+                if is_missing(val):
+                    target_date = earn_date + timedelta(days=i)
+
+                    if target_date > run_date:
+                        continue
+
+                    print(f"[UPDATE] {ticker} {col} -> {target_date}")
+
+                    price_map = get_price_map(target_date)
+                    price = price_map.get(ticker, pd.NA)
+
+                    print(f"[RESULT] Price={price}")
+
+                    df_existing.at[idx, col] = price
+                    updated_count += 1
+
+        # =========================================================
+        # 🟢 ORIGINAL LOGIC (UNCHANGED): ADD / UPDATE CANDIDATES
+        # =========================================================
+        records_to_add = []
 
         for _, row in df_candidates.iterrows():
             ticker = normalize_ticker(row["Ticker"])
@@ -158,31 +202,8 @@ def main():
             print(f"\n[TRACE] Processing {ticker} | Earn Date: {earn_date} | Matches: {mask.sum()}")
 
             if mask.any():
-                for idx in df_existing[mask].index:
-                    for i in range(1, 7):
-                        col = f"E_Day{i}"
-
-                        val = df_existing.at[idx, col] if col in df_existing.columns else None
-
-                        if is_missing(val):
-                            target_date = earn_date + timedelta(days=i)
-
-                            # 🚫 Skip future dates (CRITICAL FIX)
-                            if target_date > run_date:
-                                print(f"[SKIP FUTURE] {ticker} {col} -> {target_date}")
-                                continue
-
-                            print(f"[CHECK] {ticker} {col} -> {target_date}")
-
-                            price_map = get_price_map(target_date)
-
-                            found = ticker in price_map
-                            price = price_map.get(ticker, pd.NA)
-
-                            print(f"[RESULT] Found={found} Price={price}")
-
-                            df_existing.at[idx, col] = price
-                            updated_count += 1
+                # Optional: skip since already handled above
+                continue
             else:
                 print(f"[NEW] Adding new record for {ticker}")
 
@@ -202,6 +223,9 @@ def main():
 
                 records_to_add.append(new_row)
 
+        # -------------------------------
+        # FINAL MERGE
+        # -------------------------------
         if records_to_add:
             df_new = pd.DataFrame(records_to_add)
             final_df = pd.concat([df_existing, df_new], ignore_index=True)
@@ -212,17 +236,12 @@ def main():
                       "RS Percentile", "52WKH", "52WKL", "Earning_Date"] + DAY_COLS
 
         final_df = final_df[final_cols].copy()
-
         final_df = final_df.sort_values(["Earning_Date", "Rank"], na_position="last")
 
         final_df.to_csv(out_path, index=False)
 
-        print(f"[SUCCESS] Updated {updated_count} fields | Total records: {len(final_df)}")
+        print(f"\n[SUCCESS] Updated {updated_count} fields | Total records: {len(final_df)}")
 
     except Exception as e:
         print(f"\n[CRITICAL ERROR] {type(e).__name__}: {e}")
         print(traceback.format_exc())
-
-
-if __name__ == "__main__":
-    main()
