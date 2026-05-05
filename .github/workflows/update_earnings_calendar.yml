@@ -1,0 +1,37 @@
+# .github/workflows/update_earnings_calendar.yml
+name: Update Earnings Calendar
+
+on:
+  schedule:
+    - cron: "15 14 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-calendar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas
+
+      - name: Build earnings calendar
+        run: |
+          python scripts/build_earnings_calendar.py
+
+      - name: Commit updated CSV
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update earnings calendar"
+          file_pattern: Earnings/*.csv
