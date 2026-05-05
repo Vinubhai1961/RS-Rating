@@ -33,7 +33,7 @@ jobs:
           fi
 
       - name: 🗕️ Cache Python dependencies
-        uses: actions/cache@v4
+        uses: actions/checkout@v6
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
@@ -102,7 +102,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: 🗃️ Restore cached merged ArcticDB # 🆕
-        uses: actions/cache@v4
+        uses: actions/checkout@v6
         with:
           path: tmp/arctic_db
           key: arcticdb-merged-${{ github.run_id }}
