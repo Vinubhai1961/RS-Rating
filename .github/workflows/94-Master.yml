@@ -46,8 +46,13 @@ jobs:
   generate-ipo:
     needs: update-rs-thresholds
     uses: ./.github/workflows/91-Generate-IPO.yml
-
+  
   # 92. Generate RS_Sector_Industries
   generate-sector-industries:
     needs: generate-ipo
     uses: ./.github/workflows/92-Generate RS_Sector_Industries.yml
+    
+  # 94. update_earnings_calender
+  update_earnings_calender:
+    needs: generate-sector-industries
+    uses: ./.github/workflows/94-update_earnings_calender.yml
