@@ -43,7 +43,9 @@ def read_source(path: Path):
         raise ValueError(f"Ticker column missing in {path}")
 
     if "EarningDate" in df.columns:
-        df["EarningDate"] = df["EarningDate"].astype(str)
+        df["EarningDate"] = pd.to_datetime(df["EarningDate"], errors="coerce")
+
+    df = df[df["EarningDate"].notna()].copy()
 
     for col in ["Price", "SMA200", "SMA30W", "52WKH", "52WKL", "RS Percentile", "Rank"]:
         if col in df.columns:
