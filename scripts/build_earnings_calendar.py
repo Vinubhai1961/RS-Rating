@@ -98,18 +98,25 @@ def main():
         out[day_col] = tickers.map(price_map)
 
     if out_path.exists():
-        existing = pd.read_csv(out_path)
-        if "Ticker" in existing.columns:
-            existing = existing.set_index("Ticker")
-            out = out.set_index("Ticker")
-            existing.update(out)
-            merged = existing.reset_index()
-            new_rows = out.loc[~out.index.isin(existing.index)].reset_index()
-            final_df = pd.concat([merged, new_rows], ignore_index=True)
-        else:
-            final_df = out.reset_index()
+       existing = pd.read_csv(out_path)
+
+    if "Ticker" in existing.columns:
+        existing = existing.set_index("Ticker")
+        out = out.set_index("Ticker")
+
+        # ✅ ALIGN TYPES (critical fix)
+        out = out.astype(str)
+        existing = existing.astype(str)
+
+        existing.update(out)
+
+        merged = existing.reset_index()
+        new_rows = out.loc[~out.index.isin(existing.index)].reset_index()
+        final_df = pd.concat([merged, new_rows], ignore_index=True)
     else:
         final_df = out.reset_index()
+else:
+    final_df = out.reset_index()
 
     final_df = final_df[
         ["Rank", "Ticker", "Price", "Sector", "Industry", "RS Percentile", "52WKH", "52WKL", "Earning_Date"] + DAY_COLS
