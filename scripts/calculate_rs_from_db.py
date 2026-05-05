@@ -93,9 +93,9 @@ def debug_trend(ticker, rs_1m, rs_3m, rs_6m, log_path):
 
 def quarters_perf(closes: pd.Series, n: int) -> float:
     days = n * 63
-    slice_len = min(len(closes), days + 1)  # +1 for n intervals
+    slice_len = min(len(closes), days + 1)
     available_data = closes[-slice_len:]
-    if len(available_data) < 2:  # Need at least 2 for ratio
+    if len(available_data) < 2:
         return 0.0 if len(available_data) == 1 else np.nan
     pct_change = available_data.pct_change().dropna()
     return (pct_change + 1).cumprod().iloc[-1] - 1 if not pct_change.empty else np.nan
@@ -141,7 +141,7 @@ def short_relative_strength(closes: pd.Series, closes_ref: pd.Series, days: int)
     stock_ret = price_new / price_old - 1
     ref_ret = ref_new / ref_old - 1
 
-    if ref_ret == 0:  # avoid division by zero
+    if ref_ret == 0:
         return np.nan if stock_ret <= 0 else 999.0
 
     rs = (1 + stock_ret) / (1 + ref_ret) * 100
@@ -150,16 +150,13 @@ def short_relative_strength(closes: pd.Series, closes_ref: pd.Series, days: int)
 
 # ====================== NEW: SMA CALCULATION HELPER ======================
 def calculate_smas(closes: pd.Series):
-    """Calculate SMA50/200 daily and SMA10/30 weekly. NaN if insufficient data."""
     sma50 = sma200 = sma10w = sma30w = np.nan
 
-    # Daily SMAs
     if len(closes) >= 50:
         sma50 = round(closes.rolling(window=50).mean().iloc[-1], 2)
     if len(closes) >= 200:
         sma200 = round(closes.rolling(window=200).mean().iloc[-1], 2)
 
-    # Weekly SMAs
     if len(closes) >= 30:
         weekly_closes = closes.resample('W').last().dropna()
         if len(weekly_closes) >= 10:
@@ -247,11 +244,10 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
     logging.basicConfig(filename=log_file, level=logging.INFO, format="%(asctime)s - %(message)s")
     logging.info("Starting RS calculation process")
 
-    # === NEW: Setup unified Missing_RS.log ===
     debug_rs_dir = os.path.join(os.path.dirname(log_file), "debug_rs")
     os.makedirs(debug_rs_dir, exist_ok=True)
     missing_rs_log = os.path.join(debug_rs_dir, "Missing_RS.log")
-    open(missing_rs_log, "w").close()  # Clear previous run
+    open(missing_rs_log, "w").close()
     logging.info(f"Missing RS debug log: {missing_rs_log}")
 
     result = load_arctic_db(arctic_db_path)
@@ -267,7 +263,6 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
         print(f"Reference ticker {reference_ticker} not found in ArcticDB.")
         sys.exit(1)
 
-    # Validate reference ticker data
     ref_data = lib.read(reference_ticker).data
     ref_closes = pd.Series(ref_data["close"].values, index=pd.to_datetime(ref_data["datetime"], unit='s')).sort_index()
     if len(ref_closes) < 20:
@@ -275,7 +270,7 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
         print(f"Not enough reference ticker data.")
         sys.exit(1)
 
-    # === METADATA LOADING (Updated with Earning_Date) ===
+    # === METADATA LOADING ===
     metadata_df = pd.DataFrame()
     if metadata_file and os.path.exists(metadata_file):
         try:
@@ -296,7 +291,7 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
                         "52WKL": data[t].get("info", {}).get("52WKL"),
                         "MCAP": data[t].get("info", {}).get("MCAP"),
                         "Type": data[t].get("info", {}).get("type"),
-                        "Earning_Date": data[t].get("info", {}).get("Earning_Date")  # ← NEW
+                        "Earning_Date": data[t].get("info", {}).get("Earning_Date")
                     }
                     for t in data
                 ]
@@ -314,7 +309,7 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
                         "52WKL": item.get("info", {}).get("52WKL"),
                         "MCAP": item.get("info", {}).get("MCAP"),
                         "Type": item.get("info", {}).get("type"),
-                        "Earning_Date": item.get("info", {}).get("Earning_Date")  # ← NEW
+                        "Earning_Date": item.get("info", {}).get("Earning_Date")
                     }
                     for item in data
                 ]
@@ -324,7 +319,7 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
             if "Ticker" not in metadata_df.columns or metadata_df.empty:
                 logging.warning(f"Metadata file {metadata_file} invalid or lacks 'Ticker' column.")
                 metadata_df = pd.DataFrame()
-        except (json.JSONDecodeError, KeyError, ValueError) as e:
+        except Exception as e:
             logging.error(f"Invalid metadata file {metadata_file}: {str(e)}.")
             metadata_df = pd.DataFrame()
 
@@ -334,7 +329,6 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
     rs_results = []
     valid_rs_count = 0
 
-    # ====================== MAIN LOOP ======================
     for ticker in tqdm(tickers, desc="Calculating RS"):
         if ticker == reference_ticker:
             continue
@@ -343,7 +337,6 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
             data = lib.read(ticker).data
             closes = pd.Series(data["close"].values, index=pd.to_datetime(data["datetime"], unit='s')).sort_index()
 
-            # Start debug block
             log_missing_rs(ticker, f"=== Debug for {ticker} ===", missing_rs_log)
             log_missing_rs(ticker, f"Rows loaded: {len(closes)}", missing_rs_log)
             if len(closes) > 0:
@@ -355,17 +348,10 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
                 rs_results.append((ticker, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, None))
                 continue
 
-            # ====================== NEW: SMA CALCULATIONS ======================
             sma50, sma200, sma10w, sma30w = calculate_smas(closes)
 
-            # Main RS
             rs = relative_strength(closes, ref_closes)
-            if pd.isna(rs):
-                log_missing_rs(ticker, f"RS=NaN → stock_strength={strength(closes):.4f}, ref_strength={strength(ref_closes):.4f}", missing_rs_log)
-            else:
-                log_missing_rs(ticker, f"RS={rs}", missing_rs_log)
 
-            # ====================== ENHANCED DEBUG BLOCK ======================
             df_aligned = align_series(closes, ref_closes)
             debug_alignment(ticker, closes, ref_closes, df_aligned, missing_rs_log)
 
@@ -382,12 +368,10 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
             validate_rs(ticker, rs_6m, s6, r6, "6M", missing_rs_log)
 
             debug_trend(ticker, rs_1m, rs_3m, rs_6m, missing_rs_log)
-            # ====================== END ENHANCED DEBUG ======================
 
             log_missing_rs(ticker, f"FINAL → RS={rs}, 1M_RS={rs_1m}, 3M_RS={rs_3m}, 6M_RS={rs_6m} | SMA50={sma50}, SMA200={sma200}", missing_rs_log)
             log_missing_rs(ticker, "-" * 60, missing_rs_log)
 
-            # Get Earning_Date
             earning_date = None
             if not metadata_df.empty:
                 meta_row = metadata_df[metadata_df["Ticker"] == ticker]
@@ -404,7 +388,6 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
             log_missing_rs(ticker, "-" * 60, missing_rs_log)
             rs_results.append((ticker, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, None))
 
-    # ====================== REST OF ORIGINAL PIPELINE ======================
     df_stocks = pd.DataFrame(rs_results, columns=["Ticker", "RS", "1M_RS", "3M_RS", "6M_RS",
                                                   "SMA50", "SMA200", "SMA10W", "SMA30W", "Earning_Date"])
 
@@ -416,7 +399,6 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
         print("No RS results calculated. Check if ArcticDB has data or reference ticker.")
         sys.exit(1)
 
-    # Calculate percentiles
     for col in ["RS", "1M_RS", "3M_RS", "6M_RS"]:
         valid_values = df_stocks[col].dropna()
         if not valid_values.empty:
@@ -434,16 +416,31 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
     df_stocks.loc[df_stocks["Type"] == "ETF", "Industry"] = "ETF"
     df_stocks.loc[df_stocks["Type"] == "ETF", "Sector"] = "ETF"
 
-    # Final save
-    os.makedirs(output_dir, exist_ok=True)
-    df_stocks[[
+    # ====================== FIXED: ROBUST COLUMN SELECTION ======================
+    final_columns = [
         "Rank", "Ticker", "Price", "DVol", "Sector", "Industry",
         "RS Percentile", "1M_RS Percentile", "3M_RS Percentile", "6M_RS Percentile",
         "AvgVol", "AvgVol10", "52WKH", "52WKL", "MCAP", "IPO",
-        "Earning_Date", "SMA50", "SMA200", "SMA10W", "SMA30W"
-    ]].to_csv(os.path.join(output_dir, "rs_stocks.csv"), index=False, na_rep="")
+        "SMA50", "SMA200", "SMA10W", "SMA30W"
+    ]
 
-    # Industry aggregation
+    # Safe Earning_Date handling after merge
+    if "Earning_Date" in df_stocks.columns:
+        final_columns.insert(16, "Earning_Date")   # after IPO
+    elif "Earning_Date_x" in df_stocks.columns:
+        df_stocks = df_stocks.rename(columns={"Earning_Date_x": "Earning_Date"})
+        final_columns.insert(16, "Earning_Date")
+    elif "Earning_Date_y" in df_stocks.columns:
+        df_stocks = df_stocks.rename(columns={"Earning_Date_y": "Earning_Date"})
+        final_columns.insert(16, "Earning_Date")
+
+    # Only select existing columns
+    available_cols = [col for col in final_columns if col in df_stocks.columns]
+    
+    os.makedirs(output_dir, exist_ok=True)
+    df_stocks[available_cols].to_csv(os.path.join(output_dir, "rs_stocks.csv"), index=False, na_rep="")
+
+    # Industry aggregation (unchanged)
     df_industries = df_stocks.groupby("Industry").agg({
         "RS Percentile": "mean",
         "1M_RS Percentile": "mean",
@@ -476,7 +473,6 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
     print(f" - RSRATING.csv")
     print(f" - {missing_rs_log}  ← All tickers with missing/NaN RS values + full diagnostics")
 
-    # Full debug export
     if debug:
         print("\nStarting FULL DEBUG export for ALL tickers...")
         debug_dir = os.path.join(os.path.dirname(log_file), "debug_rs")
