@@ -7,8 +7,6 @@ BASE_DIR = Path(".")
 ARCHIVE_DIR = BASE_DIR / "archive"
 OUTPUT_DIR = BASE_DIR / "Earnings"
 
-TODAY_SOURCE = ARCHIVE_DIR / "rs_stocks_05042026.csv"
-
 BASE_COLS = [
     "Rank", "Ticker", "Price", "Sector", "Industry",
     "RS Percentile", "52WKH", "52WKL", "EarningDate"
@@ -16,19 +14,33 @@ BASE_COLS = [
 DAY_COLS = [f"E_Day{i}" for i in range(1, 7)]
 
 
+def get_today_source():
+    """Dynamically get today's rs_stocks file"""
+    today_str = datetime.now().strftime("%m%d%Y")
+    file_path = ARCHIVE_DIR / f"rs_stocks_{today_str}.csv"
+    
+    if not file_path.exists():
+        files = sorted(ARCHIVE_DIR.glob("rs_stocks_*.csv"), reverse=True)
+        if files:
+            file_path = files[0]
+            print(f"[WARNING] Today's file not found. Using latest: {file_path.name}")
+        else:
+            raise FileNotFoundError(f"No rs_stocks_*.csv files found in {ARCHIVE_DIR}")
+    
+    print(f"[INFO] Using source file: {file_path.name}")
+    return file_path
+
+
 def parse_date_from_filename(path: Path):
     try:
         s = path.stem
         digits = "".join(ch for ch in s if ch.isdigit())
-        if len(digits) < 8:
-            raise ValueError(f"Not enough digits in filename: {s}")
         date_str = digits[-8:]
         dt = datetime.strptime(date_str, "%m%d%Y").date()
-        print(f"[DEBUG] Parsed date from {path.name} → {dt}")
+        print(f"[DEBUG] Parsed run date: {dt}")
         return dt
-    except Exception as e:
-        print(f"[ERROR] Failed to parse date from {path}: {e}")
-        raise
+    except Exception:
+        return datetime.now().date()
 
 
 def month_output_path(run_date):
@@ -37,15 +49,10 @@ def month_output_path(run_date):
 
 
 def read_source(path: Path):
-    print(f"[DEBUG] Reading source: {path}")
     if not path.exists():
-        raise FileNotFoundError(f"Source file not found: {path}")
-
+        raise FileNotFoundError(f"File not found: {path}")
     df = pd.read_csv(path)
-    print(f"[DEBUG] Columns before cleaning: {list(df.columns)}")
-    
     df.columns = [c.strip().replace(" ", "") for c in df.columns]
-    print(f"[DEBUG] Columns after cleaning: {list(df.columns)}")
 
     rename_map = {
         "EarningDate": "EarningDate",
@@ -57,8 +64,6 @@ def read_source(path: Path):
 
     if "EarningDate" in df.columns:
         df["EarningDate"] = pd.to_datetime(df["EarningDate"], errors="coerce")
-        valid_earnings = df["EarningDate"].notna().sum()
-        print(f"[DEBUG] Valid EarningDate rows: {valid_earnings}/{len(df)}")
 
     for col in ["Price", "SMA200", "SMA30W", "52WKH", "52WKL", "RS Percentile", "Rank"]:
         if col in df.columns:
@@ -67,93 +72,107 @@ def read_source(path: Path):
     return df
 
 
-def get_price_map(path: Path):
-    print(f"[DEBUG] Loading price map from: {path}")
-    if not path.exists():
-        print(f"[WARNING] Price file missing: {path}")
+def get_price_map(date_obj):
+    file_path = ARCHIVE_DIR / f"rs_stocks_{date_obj.strftime('%m%d%Y')}.csv"
+    if not file_path.exists():
         return {}
-
     try:
-        df = read_source(path)  # reuse cleaning logic
+        df = read_source(file_path)
         price_col = "Close" if "Close" in df.columns else "Price"
-        if price_col not in df.columns:
-            print(f"[WARNING] No price column in {path}. Available: {list(df.columns)}")
-            return {}
-        price_dict = df.set_index("Ticker")[price_col].to_dict()
-        print(f"[DEBUG] Loaded {len(price_dict)} prices from {path.name}")
-        return price_dict
-    except Exception as e:
-        print(f"[ERROR] Failed to load price map {path}: {e}")
+        return df.set_index("Ticker")[price_col].to_dict() if price_col in df.columns else {}
+    except:
         return {}
 
 
 def main():
     try:
+        TODAY_SOURCE = get_today_source()
         run_date = parse_date_from_filename(TODAY_SOURCE)
         out_path = month_output_path(run_date)
-        print(f"[INFO] Run date: {run_date} | Output: {out_path}")
+
+        print(f"[INFO] Run Date: {run_date} | Monthly File: {out_path.name}")
 
         # === Load today's data ===
-        df = read_source(TODAY_SOURCE)
-        print(f"[DEBUG] Total rows loaded: {len(df)}")
+        df_today = read_source(TODAY_SOURCE)
+        print(f"[DEBUG] Loaded {len(df_today)} rows from today's source")
 
-        # === Technical filter ===
-        print("[DEBUG] Applying technical filter (Price > SMA200 & SMA30W)...")
+        # Technical + Earnings filter
         tech_filter = (
-            (df["Price"].fillna(-1) > df["SMA200"].fillna(float("inf"))) &
-            (df["Price"].fillna(-1) > df["SMA30W"].fillna(float("inf")))
+            (df_today["Price"].fillna(-1) > df_today.get("SMA200", float("inf")).fillna(float("inf"))) &
+            (df_today["Price"].fillna(-1) > df_today.get("SMA30W", float("inf")).fillna(float("inf")))
         )
-        df = df[tech_filter].copy()
-        print(f"[DEBUG] After technical filter: {len(df)} rows")
+        df_new = df_today[tech_filter].copy()
 
-        # === Earnings filter ===
-        if "EarningDate" in df.columns:
-            df = df[df["EarningDate"].notna()].copy()
-            print(f"[DEBUG] After earnings date filter: {len(df)} rows")
+        if "EarningDate" in df_new.columns:
+            df_new = df_new[df_new["EarningDate"].notna()].copy()
 
-        if len(df) == 0:
-            print("[ERROR] No rows left after filtering! Check technical conditions or data.")
+        if len(df_new) == 0:
+            print("[INFO] No new stocks passed filters.")
             return
 
-        # === Prepare base output ===
-        out = df[BASE_COLS].copy()
-        out = out.rename(columns={"EarningDate": "Earning_Date"})
-        out["Earning_Date"] = pd.to_datetime(out["Earning_Date"], errors="coerce")
+        df_new = df_new[BASE_COLS].copy()
+        df_new = df_new.rename(columns={"EarningDate": "Earning_Date"})
+        df_new["Earning_Date"] = pd.to_datetime(df_new["Earning_Date"], errors="coerce")
 
-        # Initialize E_Day columns
+        print(f"[INFO] {len(df_new)} potential new earnings candidates")
+
+        # === Load existing monthly file ===
+        existing_df = pd.DataFrame()
+        if out_path.exists():
+            existing_df = pd.read_csv(out_path)
+            print(f"[INFO] Loaded existing file with {len(existing_df)} records")
+            
+            # Create unique key for deduplication: Ticker + Earning_Date
+            existing_df["Earning_Date"] = pd.to_datetime(existing_df["Earning_Date"], errors="coerce")
+            existing_keys = set(
+                zip(existing_df["Ticker"].astype(str), existing_df["Earning_Date"].dt.date)
+            )
+        else:
+            existing_keys = set()
+
+        # Filter only truly new earnings
+        df_new["key"] = list(zip(df_new["Ticker"].astype(str), df_new["Earning_Date"].dt.date))
+        df_to_add = df_new[~df_new["key"].isin(existing_keys)].copy()
+        df_to_add = df_to_add.drop(columns=["key"])
+
+        print(f"[INFO] New earnings to append: {len(df_to_add)}")
+
+        if len(df_to_add) == 0:
+            print("[INFO] No new earnings to add. File is up to date.")
+            return
+
+        # === Fill E_Day columns ONLY for new entries ===
         for col in DAY_COLS:
-            out[col] = pd.NA
+            df_to_add[col] = pd.NA
 
-        print(f"[DEBUG] Starting E_Day price lookup for {len(out)} tickers...")
-
-        # === Fill E_Day columns ===
+        print("[INFO] Filling post-earnings prices for new entries...")
         for i in range(1, 7):
             day_prices = []
-            target_date = run_date + timedelta(days=i)
-            file_path = ARCHIVE_DIR / f"rs_stocks_{target_date.strftime('%m%d%Y')}.csv"
-
-            price_map = get_price_map(file_path)
-
-            for _, row in out.iterrows():
-                ticker = row["Ticker"]
-                price = price_map.get(ticker, pd.NA)
+            for _, row in df_to_add.iterrows():
+                earning_date = row["Earning_Date"]
+                target_date = earning_date + timedelta(days=i)
+                price_map = get_price_map(target_date)
+                price = price_map.get(row["Ticker"], pd.NA)
                 day_prices.append(price)
+            df_to_add[f"E_Day{i}"] = day_prices
+            print(f"[DEBUG] Filled E_Day{i}")
 
-            out[f"E_Day{i}"] = day_prices
-            print(f"[DEBUG] Filled E_Day{i} using {target_date} → {len(price_map)} prices available")
+        # === Append to existing data ===
+        if not existing_df.empty:
+            final_df = pd.concat([existing_df, df_to_add], ignore_index=True)
+        else:
+            final_df = df_to_add.copy()
 
-        # === Final output ===
-        final_df = out.reset_index(drop=True)
+        # Final cleanup and sort
         final_df = final_df[
             ["Rank", "Ticker", "Price", "Sector", "Industry",
              "RS Percentile", "52WKH", "52WKL", "Earning_Date"] + DAY_COLS
-        ]
+        ].copy()
 
         final_df = final_df.sort_values(["Earning_Date", "Rank"], na_position="last")
 
-        print(f"[SUCCESS] Final rows: {len(final_df)}")
         final_df.to_csv(out_path, index=False)
-        print(f"[SUCCESS] File saved: {out_path}")
+        print(f"[SUCCESS] Added {len(df_to_add)} new records. Total now: {len(final_df)} → {out_path.name}")
 
     except Exception as e:
         print(f"\n[CRITICAL ERROR] {type(e).__name__}: {e}")
