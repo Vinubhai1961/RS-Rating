@@ -5,7 +5,7 @@ import math
 # Configuration
 INPUT_CSV = "RS_Data/rs_stocks.csv"
 OUTPUT_DIR = "RS_Data"
-CHUNK_SIZE = 4300
+CHUNK_SIZE = 4000
 
 def split_csv():
     # Ensure output directory exists
