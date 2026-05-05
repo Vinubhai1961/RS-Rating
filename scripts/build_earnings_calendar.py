@@ -42,6 +42,7 @@ def read_source(path: Path):
     if "Ticker" not in df.columns:
         raise ValueError(f"Ticker column missing in {path}")
 
+    # ✅ Clean + enforce valid earnings only
     if "EarningDate" in df.columns:
         df["EarningDate"] = pd.to_datetime(df["EarningDate"], errors="coerce")
         df = df[df["EarningDate"].notna()].copy()
@@ -74,56 +75,65 @@ def main():
 
     df = read_source(TODAY_SOURCE)
 
+    # ✅ Technical filter
     df = df[
         (df["Price"].fillna(-1) > df["SMA200"].fillna(float("inf"))) &
         (df["Price"].fillna(-1) > df["SMA30W"].fillna(float("inf")))
     ].copy()
 
+    # ✅ Earnings already cleaned in read_source, but safe to keep
     if "EarningDate" in df.columns:
-        df["EarningDate"] = pd.to_datetime(df["EarningDate"], errors="coerce")
         df = df[df["EarningDate"].notna()].copy()
 
     out = df[BASE_COLS].copy()
     out = out.rename(columns={"EarningDate": "Earning_Date"})
 
+    # Initialize day columns
     for col in DAY_COLS:
         out[col] = pd.NA
 
     tickers = out["Ticker"].astype(str)
 
+    # Fill future prices
     for i in range(1, 7):
         future_file = build_future_file(run_date, i)
         price_map = get_price_map(future_file)
-        day_col = f"E_Day{i}"
-        out[day_col] = tickers.map(price_map)
+        out[f"E_Day{i}"] = tickers.map(price_map)
 
+    # =========================
+    # ✅ Merge with existing file
+    # =========================
     if out_path.exists():
-       existing = pd.read_csv(out_path)
+        existing = pd.read_csv(out_path)
 
-    if "Ticker" in existing.columns:
-        existing = existing.set_index("Ticker")
-        out = out.set_index("Ticker")
+        if "Ticker" in existing.columns:
+            existing = existing.set_index("Ticker")
+            out = out.set_index("Ticker")
 
-        # ✅ ALIGN TYPES (critical fix)
-        out = out.astype(str)
-        existing = existing.astype(str)
+            # ✅ Critical fix: align dtype
+            existing = existing.astype(str)
+            out = out.astype(str)
 
-        existing.update(out)
+            existing.update(out)
 
-        merged = existing.reset_index()
-        new_rows = out.loc[~out.index.isin(existing.index)].reset_index()
-        final_df = pd.concat([merged, new_rows], ignore_index=True)
+            merged = existing.reset_index()
+            new_rows = out.loc[~out.index.isin(existing.index)].reset_index()
+
+            final_df = pd.concat([merged, new_rows], ignore_index=True)
+        else:
+            final_df = out.reset_index()
     else:
         final_df = out.reset_index()
-else:
-    final_df = out.reset_index()
 
+    # Final formatting
     final_df = final_df[
-        ["Rank", "Ticker", "Price", "Sector", "Industry", "RS Percentile", "52WKH", "52WKL", "Earning_Date"] + DAY_COLS
+        ["Rank", "Ticker", "Price", "Sector", "Industry",
+         "RS Percentile", "52WKH", "52WKL", "Earning_Date"] + DAY_COLS
     ]
 
     final_df = final_df.sort_values(["Earning_Date", "Rank"], na_position="last")
     final_df.to_csv(out_path, index=False)
+
 
 if __name__ == "__main__":
     main()
