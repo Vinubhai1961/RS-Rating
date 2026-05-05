@@ -1,12 +1,8 @@
 name: Update Earnings Calendar
 
 on:
-  schedule:
-    - cron: "15 14 * * 1-5"
-  workflow_dispatch:
-
-permissions:
-  contents: write
+  workflow_call:
+  workflow_dispatch:   # allow manual run
 
 jobs:
   build-calendar:
