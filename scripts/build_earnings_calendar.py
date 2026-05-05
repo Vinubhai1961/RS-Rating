@@ -245,3 +245,6 @@ def main():
     except Exception as e:
         print(f"\n[CRITICAL ERROR] {type(e).__name__}: {e}")
         print(traceback.format_exc())
+        
+if __name__ == "__main__":
+    main()
