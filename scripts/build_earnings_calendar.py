@@ -73,57 +73,66 @@ def main():
     run_date = parse_date_from_filename(TODAY_SOURCE)
     out_path = month_output_path(run_date)
 
+    print(f"[DEBUG] Run date: {run_date}")
+
     df = read_source(TODAY_SOURCE)
+    print(f"[DEBUG] Total rows from source: {len(df)}")
 
     # ✅ Technical filter
     df = df[
         (df["Price"].fillna(-1) > df["SMA200"].fillna(float("inf"))) &
         (df["Price"].fillna(-1) > df["SMA30W"].fillna(float("inf")))
     ].copy()
+    print(f"[DEBUG] After technical filter: {len(df)}")
 
-    # ✅ Earnings already cleaned in read_source, but safe to keep
+    # ✅ Ensure valid earnings
     if "EarningDate" in df.columns:
         df = df[df["EarningDate"].notna()].copy()
+    print(f"[DEBUG] After earnings filter: {len(df)}")
 
+    # Prepare output
     out = df[BASE_COLS].copy()
     out = out.rename(columns={"EarningDate": "Earning_Date"})
 
-    # Initialize day columns
+    # Ensure datetime
+    out["Earning_Date"] = pd.to_datetime(out["Earning_Date"], errors="coerce")
+
+    print(f"[DEBUG] New earnings rows: {len(out)}")
+
+    # Initialize columns
     for col in DAY_COLS:
         out[col] = pd.NA
 
-    tickers = out["Ticker"].astype(str)
+    # =========================
+    # ✅ Per-ticker E_Day logic
+    # =========================
+    print("[DEBUG] Building E_Day columns (per ticker)...")
 
-    # Fill future prices
     for i in range(1, 7):
-        future_file = build_future_file(run_date, i)
-        price_map = get_price_map(future_file)
-        out[f"E_Day{i}"] = tickers.map(price_map)
+        day_prices = []
+
+        for _, row in out.iterrows():
+            earning_date = row["Earning_Date"]
+
+            if pd.isna(earning_date):
+                day_prices.append(pd.NA)
+                continue
+
+            target_date = earning_date + pd.Timedelta(days=i)
+            file_path = ARCHIVE_DIR / f"rs_stocks_{target_date.strftime('%m%d%Y')}.csv"
+
+            price_map = get_price_map(file_path)
+            price = price_map.get(row["Ticker"], pd.NA)
+
+            day_prices.append(price)
+
+        out[f"E_Day{i}"] = day_prices
+        print(f"[DEBUG] Filled E_Day{i}")
 
     # =========================
-    # ✅ Merge with existing file
+    # ✅ Final output (overwrite clean)
     # =========================
-    if out_path.exists():
-        existing = pd.read_csv(out_path)
-
-        if "Ticker" in existing.columns:
-            existing = existing.set_index("Ticker")
-            out = out.set_index("Ticker")
-
-            # ✅ Critical fix: align dtype
-            existing = existing.astype(str)
-            out = out.astype(str)
-
-            existing.update(out)
-
-            merged = existing.reset_index()
-            new_rows = out.loc[~out.index.isin(existing.index)].reset_index()
-
-            final_df = pd.concat([merged, new_rows], ignore_index=True)
-        else:
-            final_df = out.reset_index()
-    else:
-        final_df = out.reset_index()
+    final_df = out.reset_index(drop=True)
 
     # Final formatting
     final_df = final_df[
@@ -132,8 +141,8 @@ def main():
     ]
 
     final_df = final_df.sort_values(["Earning_Date", "Rank"], na_position="last")
+
+    print(f"[DEBUG] Final output rows: {len(final_df)}")
+
     final_df.to_csv(out_path, index=False)
-
-
-if __name__ == "__main__":
-    main()
+    print(f"[DEBUG] Saved file: {out_path}")
