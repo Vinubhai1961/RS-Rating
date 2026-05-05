@@ -13,36 +13,40 @@ BASE_COLS = [
 ]
 DAY_COLS = [f"E_Day{i}" for i in range(1, 7)]
 
+# -------------------------------
+# GLOBAL PRICE CACHE (performance)
+# -------------------------------
+PRICE_CACHE = {}
+
+
+def normalize_ticker(val):
+    return str(val).strip().upper()
+
 
 def get_today_source():
-    """Dynamically get today's rs_stocks file"""
     today_str = datetime.now().strftime("%m%d%Y")
     file_path = ARCHIVE_DIR / f"rs_stocks_{today_str}.csv"
-    
+
     if not file_path.exists():
-        # Fallback to latest available file
         files = sorted(ARCHIVE_DIR.glob("rs_stocks_*.csv"), reverse=True)
         if files:
             file_path = files[0]
             print(f"[WARNING] Today's file not found. Using latest: {file_path.name}")
         else:
             raise FileNotFoundError(f"No rs_stocks files found in {ARCHIVE_DIR}")
-    
+
     print(f"[INFO] Using source file: {file_path.name}")
     return file_path
 
 
 def read_source(path: Path):
-    """Read and clean source file"""
     print(f"[DEBUG] Reading file: {path.name}")
-    if not path.exists():
-        raise FileNotFoundError(f"File not found: {path}")
 
     df = pd.read_csv(path)
-    print(f"[DEBUG] Original columns: {list(df.columns)}")
-    
+
+    # normalize column names
     df.columns = [c.strip().replace(" ", "") for c in df.columns]
-    
+
     rename_map = {
         "EarningDate": "EarningDate",
         "Earning_Date": "EarningDate",
@@ -50,6 +54,10 @@ def read_source(path: Path):
         "RSPercentileAvg": "RS Percentile",
     }
     df = df.rename(columns=rename_map)
+
+    # normalize ticker EARLY
+    if "Ticker" in df.columns:
+        df["Ticker"] = df["Ticker"].astype(str).str.strip().str.upper()
 
     if "EarningDate" in df.columns:
         df["EarningDate"] = pd.to_datetime(df["EarningDate"], errors="coerce")
@@ -62,23 +70,40 @@ def read_source(path: Path):
 
 
 def get_price_map(target_date):
-    """Get price dictionary for a specific date"""
-    file_path = ARCHIVE_DIR / f"rs_stocks_{target_date.strftime('%m%d%Y')}.csv"
+    if target_date in PRICE_CACHE:
+        return PRICE_CACHE[target_date]
+
+    file_name = f"rs_stocks_{target_date.strftime('%m%d%Y')}.csv"
+    file_path = ARCHIVE_DIR / file_name
+
+    print(f"[DEBUG] Loading price file: {file_name}")
+
     if not file_path.exists():
-        print(f"[WARNING] Price file missing: {file_path.name}")
+        print(f"[WARNING] Missing file: {file_name}")
+        PRICE_CACHE[target_date] = {}
         return {}
 
-    try:
-        df = read_source(file_path)
-        price_col = "Close" if "Close" in df.columns else "Price"
-        if price_col in df.columns:
-            price_dict = df.set_index("Ticker")[price_col].to_dict()
-            print(f"[DEBUG] Loaded {len(price_dict)} prices for {target_date.date()}")
-            return price_dict
-    except Exception as e:
-        print(f"[ERROR] Failed to load prices for {target_date.date()}: {e}")
-    
-    return {}
+    df = read_source(file_path)
+
+    price_col = "Close" if "Close" in df.columns else "Price"
+
+    if price_col not in df.columns:
+        print(f"[ERROR] No price column found in {file_name}")
+        PRICE_CACHE[target_date] = {}
+        return {}
+
+    df["Ticker"] = df["Ticker"].astype(str).str.strip().str.upper()
+
+    price_dict = df.set_index("Ticker")[price_col].to_dict()
+
+    print(f"[DEBUG] Loaded {len(price_dict)} tickers for {target_date}")
+
+    PRICE_CACHE[target_date] = price_dict
+    return price_dict
+
+
+def is_missing(val):
+    return pd.isna(val) or val == "" or str(val).strip().lower() == "nan"
 
 
 def month_output_path(run_date):
@@ -92,101 +117,111 @@ def main():
         run_date = datetime.now().date()
         out_path = month_output_path(run_date)
 
-        print(f"[INFO] Run Date: {run_date} | Output File: {out_path.name}")
+        print(f"[INFO] Run Date: {run_date}")
 
-        # Load and filter today's data
         df_today = read_source(TODAY_SOURCE)
-        print(f"[DEBUG] Total rows loaded: {len(df_today)}")
 
-        # Technical filter
+        print(f"[DEBUG] Total rows: {len(df_today)}")
+
         tech_filter = (
             (df_today["Price"].fillna(-1) > df_today.get("SMA200", float("inf")).fillna(float("inf"))) &
             (df_today["Price"].fillna(-1) > df_today.get("SMA30W", float("inf")).fillna(float("inf")))
         )
-        df_candidates = df_today[tech_filter].copy()
-        print(f"[DEBUG] After technical filter: {len(df_candidates)} rows")
 
-        if "EarningDate" in df_candidates.columns:
-            df_candidates = df_candidates[df_candidates["EarningDate"].notna()].copy()
-            print(f"[DEBUG] After earnings date filter: {len(df_candidates)} rows")
+        df_candidates = df_today[tech_filter].copy()
+
+        print(f"[DEBUG] After filter: {len(df_candidates)}")
+
+        df_candidates = df_candidates[df_candidates["EarningDate"].notna()].copy()
+
+        print(f"[DEBUG] With earnings date: {len(df_candidates)}")
 
         if len(df_candidates) == 0:
-            print("[INFO] No earnings candidates today.")
+            print("[INFO] No candidates.")
             return
 
-        # Prepare candidates
         df_candidates = df_candidates[BASE_COLS].copy()
         df_candidates = df_candidates.rename(columns={"EarningDate": "Earning_Date"})
-        df_candidates["Earning_Date"] = pd.to_datetime(df_candidates["Earning_Date"], errors="coerce")
 
-        # Load existing file
+        df_candidates["Earning_Date"] = pd.to_datetime(df_candidates["Earning_Date"], errors="coerce")
+        df_candidates["Ticker"] = df_candidates["Ticker"].apply(normalize_ticker)
+
         if out_path.exists():
             df_existing = pd.read_csv(out_path)
             df_existing["Earning_Date"] = pd.to_datetime(df_existing["Earning_Date"], errors="coerce")
-            print(f"[INFO] Loaded existing file with {len(df_existing)} records")
+            df_existing["Ticker"] = df_existing["Ticker"].apply(normalize_ticker)
+            print(f"[INFO] Loaded existing: {len(df_existing)}")
         else:
             df_existing = pd.DataFrame(columns=list(df_candidates.columns) + DAY_COLS)
-            print("[INFO] Creating new monthly earnings file")
+            print("[INFO] Creating new file")
 
-        # Process records
         records_to_add = []
         updated_count = 0
 
         for _, row in df_candidates.iterrows():
-            ticker = row["Ticker"]
+            ticker = normalize_ticker(row["Ticker"])
             earn_date = row["Earning_Date"].date()
-            
-            # Check if record already exists
-            mask = (df_existing["Ticker"] == ticker) & (df_existing["Earning_Date"].dt.date == earn_date)
-            
+
+            mask = (
+                df_existing["Ticker"].eq(ticker) &
+                (pd.to_datetime(df_existing["Earning_Date"]).dt.normalize() == pd.to_datetime(earn_date))
+            )
+
+            print(f"\n[TRACE] {ticker} | Earn: {earn_date} | Matches: {mask.sum()}")
+
             if mask.any():
-                # Update missing E_Day columns
-                idx = df_existing[mask].index[0]
-                for i in range(1, 7):
-                    col = f"E_Day{i}"
-                    if col in df_existing.columns and pd.isna(df_existing.at[idx, col]):
-                        target_date = earn_date + timedelta(days=i)
-                        price_map = get_price_map(target_date)
-                        price = price_map.get(ticker, pd.NA)
-                        df_existing.at[idx, col] = price
-                        updated_count += 1
-                        print(f"[UPDATE] Filled {col} for {ticker} (Earning: {earn_date})")
+                for idx in df_existing[mask].index:
+                    for i in range(1, 7):
+                        col = f"E_Day{i}"
+                        val = df_existing.at[idx, col] if col in df_existing.columns else None
+
+                        if is_missing(val):
+                            target_date = earn_date + timedelta(days=i)
+
+                            print(f"[CHECK] {ticker} {col} -> {target_date}")
+
+                            price_map = get_price_map(target_date)
+
+                            found = ticker in price_map
+                            price = price_map.get(ticker, pd.NA)
+
+                            print(f"[RESULT] Found={found} Price={price}")
+
+                            df_existing.at[idx, col] = price
+                            updated_count += 1
             else:
-                # New record
+                print(f"[NEW] Adding {ticker}")
+
                 new_row = row.copy()
+
                 for col in DAY_COLS:
                     new_row[col] = pd.NA
-                
-                # Fill E_Days for new record
+
                 for i in range(1, 7):
                     target_date = earn_date + timedelta(days=i)
+
                     price_map = get_price_map(target_date)
                     new_row[f"E_Day{i}"] = price_map.get(ticker, pd.NA)
-                
-                records_to_add.append(new_row)
-                print(f"[NEW] Added new earning: {ticker} on {earn_date}")
 
-        # Combine data
+                records_to_add.append(new_row)
+
         if records_to_add:
             df_new = pd.DataFrame(records_to_add)
             final_df = pd.concat([df_existing, df_new], ignore_index=True)
         else:
             final_df = df_existing.copy()
 
-        # Final formatting and save
-        final_cols = ["Rank", "Ticker", "Price", "Sector", "Industry",
-                     "RS Percentile", "52WKH", "52WKL", "Earning_Date"] + DAY_COLS
-        final_df = final_df[final_cols].copy()
-        
-        final_df = final_df.sort_values(["Earning_Date", "Rank"], na_position="last")
+        final_cols = BASE_COLS[:-1] + ["Earning_Date"] + DAY_COLS
+        final_df = final_df[final_cols]
+
+        final_df = final_df.sort_values(["Earning_Date", "Rank"])
 
         final_df.to_csv(out_path, index=False)
-        
-        action = f"Added {len(records_to_add)} new | Updated {updated_count} fields"
-        print(f"[SUCCESS] {action} | Total records: {len(final_df)} → {out_path.name}")
+
+        print(f"[SUCCESS] Updated={updated_count} Total={len(final_df)}")
 
     except Exception as e:
-        print(f"\n[CRITICAL ERROR] {type(e).__name__}: {e}")
+        print(f"[CRITICAL] {e}")
         print(traceback.format_exc())
 
 
