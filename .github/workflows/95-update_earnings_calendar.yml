@@ -1,4 +1,3 @@
-# .github/workflows/update_earnings_calendar.yml
 name: Update Earnings Calendar
 
 on:
@@ -15,6 +14,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # Important for proper git history
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -30,8 +31,33 @@ jobs:
         run: |
           python scripts/build_earnings_calendar.py
 
-      - name: Commit updated CSV
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "Update earnings calendar"
-          file_pattern: Earnings/*.csv
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          git add Earnings/*.csv
+          
+          if git diff --staged --quiet; then
+            echo "No changes to commit. Earnings calendar is up to date."
+          else
+            COMMIT_MSG="Update Earnings Calendar [$(date +'%Y-%m-%d %H:%M:%S')]"
+            echo "Committing with message: $COMMIT_MSG"
+            
+            git commit -m "$COMMIT_MSG [skip ci]"
+            
+            echo "🔄 Pulling latest changes from main..."
+            git pull --rebase origin main || echo "Pull had minor issues (maybe no upstream changes)"
+            
+            echo "🚀 Pushing changes..."
+            for i in {1..3}; do
+              if git push origin main; then
+                echo "✅ Push successful"
+                break
+              else
+                echo "⚠️ Push failed (attempt $i). Retrying..."
+                sleep 3
+                git pull --rebase origin main || true
+              fi
+            done
+          fi
