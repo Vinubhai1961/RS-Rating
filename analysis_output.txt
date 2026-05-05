@@ -1,15 +1,15 @@
-Analysis of nasdaqtraded.txt (as of 2026-05-04 03:33:47):
+Analysis of nasdaqtraded.txt (as of 2026-05-05 03:21:06):
 
-1. Total Securities: 12559
+1. Total Securities: 12560
    - Represents the total number of securities listed across all exchanges in the file.
 
-2. Number of ETFs: 5132
+2. Number of ETFs: 5133
    - Counts securities marked as ETFs (ETF = Y), which track indices, commodities, or asset baskets.
 
 3. Security Type Breakdown:
-ETF                5132
-Common Stock       4052
-Other              2224
+ETF                5133
+Common Stock       4051
+Other              2225
 Preferred Stock     448
 Warrant             397
 Other               306
@@ -19,7 +19,7 @@ Other               306
 Exchange Name
 Other            5442
 NASDAQ           2904
-NYSE Arca        2634
+NYSE Arca        2635
 BATS             1258
 NYSE American     318
 IEX                 3
@@ -32,8 +32,8 @@ BATS                      2  1252      4                0     0        0
 IEX                       0     0      3                0     0        0
 NASDAQ                 1599    75    806              321    70       33
 NYSE American           182     0    104               17     7        8
-NYSE Arca                 1  2615     14                1     3        0
-Other                  2268  1190   1291              109   226      356
+NYSE Arca                 1  2616     14                1     3        0
+Other                  2267  1190   1292              109   226      356
    - Shows the count of each security type per exchange (e.g., ETFs on NASDAQ).
 
 6. NASDAQ Market Categories:
@@ -49,7 +49,7 @@ No distressed securities found.
 
 9. Top 5 Sectors:
 Sector
-Unknown       10798
+Unknown       10799
 Financial       608
 Technology      464
 Healthcare      350
@@ -71,9 +71,9 @@ Chart.js Pie Chart for Security Types:
   "type": "pie",
   "data": {
     "labels": [
-      "ETF: 5132",
-      "Common Stock: 4052",
-      "Other: 2224",
+      "ETF: 5133",
+      "Common Stock: 4051",
+      "Other: 2225",
       "Preferred Stock: 448",
       "Warrant: 397",
       "Other: 306"
@@ -81,9 +81,9 @@ Chart.js Pie Chart for Security Types:
     "datasets": [
       {
         "data": [
-          5132,
-          4052,
-          2224,
+          5133,
+          4051,
+          2225,
           448,
           397,
           306
