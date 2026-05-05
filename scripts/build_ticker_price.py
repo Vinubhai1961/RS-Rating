@@ -75,13 +75,26 @@ def setup_logging(verbose: bool):
 def load_ticker_info():
     if not os.path.exists(TICKER_INFO_FILE):
         logging.error(f"{TICKER_INFO_FILE} not found!")
-        return {}
+        return {}, []
+    
     with open(TICKER_INFO_FILE, "r", encoding="utf-8") as f:
         try:
-            return json.load(f)
+            ticker_info = json.load(f)
+            # ✅ CRITICAL FIX: Always sort for consistent partitioning
+            qualified_tickers = sorted(ticker_info.keys())
+            
+            logging.info(f"Total tickers loaded: {len(qualified_tickers)}")
+            logging.info(f"First 5 tickers: {qualified_tickers[:5]}")
+            logging.info(f"Last 5 tickers: {qualified_tickers[-5:]}")
+            
+            if "SPY" in qualified_tickers:
+                logging.info("✅ SPY found in ticker_info.json")
+            
+            return ticker_info, qualified_tickers
+            
         except json.JSONDecodeError:
             logging.error("Invalid JSON in ticker_info.json")
-            return {}
+            return {}, []
 
 
 def partition_tickers(tickers, part_index, part_total):
@@ -193,7 +206,8 @@ def main(part_index=None, part_total=None, verbose=False):
 
     logging.info(f"Starting price build for part {part_index}")
 
-    ticker_info = load_ticker_info()
+    ticker_info, qualified_tickers = load_ticker_info()
+    
     if not ticker_info:
         logging.error("No ticker_info.json found to process.")
         return
