@@ -80,7 +80,8 @@ def main():
     ].copy()
 
     if "EarningDate" in df.columns:
-        df = df[df["EarningDate"].str.lower().ne("black")].copy()
+        df["EarningDate"] = pd.to_datetime(df["EarningDate"], errors="coerce")
+        df = df[df["EarningDate"].notna()].copy()
 
     out = df[BASE_COLS].copy()
     out = out.rename(columns={"EarningDate": "Earning_Date"})
