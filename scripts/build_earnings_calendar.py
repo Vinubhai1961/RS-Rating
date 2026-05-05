@@ -1,4 +1,3 @@
-# scripts/build_earnings_calendar.py
 from pathlib import Path
 from datetime import datetime, timedelta
 import pandas as pd
@@ -15,105 +14,89 @@ BASE_COLS = [
 ]
 DAY_COLS = [f"E_Day{i}" for i in range(1, 7)]
 
-
 def parse_date_from_filename(path: Path):
-    s = path.stem
-    digits = "".join(ch for ch in s if ch.isdigit())
+    digits = "".join(ch for ch in path.stem if ch.isdigit())
     return datetime.strptime(digits[-8:], "%m%d%Y").date()
-
 
 def month_output_path(run_date):
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     return OUTPUT_DIR / f"{run_date.strftime('%B_%Y')}_Earnings.csv"
 
-
 def read_source(path: Path):
     df = pd.read_csv(path)
-    df.columns = [c.strip().replace(" ", "") for c in df.columns]
-
-    rename_map = {
-        "EarningDate": "EarningDate",
-        "Earning_Date": "EarningDate",
-        "RSPercentile": "RS Percentile",
-        "RSPercentileAvg": "RS Percentile",
-    }
-    df = df.rename(columns=rename_map)
-
-    if "Ticker" not in df.columns:
-        raise ValueError(f"Ticker column missing in {path}")
-
-    if "EarningDate" in df.columns:
-        df["EarningDate"] = df["EarningDate"].astype(str)
-
-    for col in ["Price", "SMA200", "SMA30W", "52WKH", "52WKL", "RS Percentile", "Rank"]:
-        if col in df.columns:
-            df[col] = pd.to_numeric(df[col], errors="coerce")
-
+    # Use exact column names from your file
+    # Rank, Ticker, Price, Sector, Industry, "RS Percentile", "52WKH", "52WKL",
+    # EarningDate, SMA200, SMA30W, ...
     return df
 
+def filter_earnings_universe(df: pd.DataFrame) -> pd.DataFrame:
+    # SMA filters
+    cond_price = df["Price"] > df["SMA200"]
+    cond_30w = df["Price"] > df["SMA30W"]
 
-def get_price_map(path: Path):
+    # Drop non‑reporters: EarningDate == 'No' or blank/NaN
+    ed = df["EarningDate"].astype(str).str.strip()
+    cond_earn = (ed.ne("No")) & (ed.ne("")) & (ed.str.lower().ne("black"))
+
+    return df[cond_price & cond_30w & cond_earn].copy()
+
+def future_file(run_date, offset_days):
+    d = run_date + timedelta(days=offset_days)
+    return ARCHIVE_DIR / f"rs_stocks_{d.strftime('%m%d%Y')}.csv"
+
+def price_map_for_file(path: Path):
     if not path.exists():
         return {}
     df = read_source(path)
-    price_col = "Close" if "Close" in df.columns else "Price"
-    if price_col not in df.columns:
-        raise ValueError(f"No Close/Price column found in {path}")
-    return df.set_index("Ticker")[price_col].to_dict()
-
-
-def build_future_file(current_date, offset_days):
-    future_date = current_date + timedelta(days=offset_days)
-    return ARCHIVE_DIR / f"rs_stocks_{future_date.strftime('%m%d%Y')}.csv"
-
+    # Assuming same schema: use Price as close
+    return df.set_index("Ticker")["Price"].to_dict()
 
 def main():
     run_date = parse_date_from_filename(TODAY_SOURCE)
     out_path = month_output_path(run_date)
 
-    df = read_source(TODAY_SOURCE)
+    src = read_source(TODAY_SOURCE)
+    base_df = filter_earnings_universe(src)
 
-    df = df[
-        (df["Price"].fillna(-1) > df["SMA200"].fillna(float("inf"))) &
-        (df["Price"].fillna(-1) > df["SMA30W"].fillna(float("inf")))
-    ].copy()
+    # Start fresh for *this* day’s universe:
+    cur = base_df[BASE_COLS].copy()
+    cur = cur.rename(columns={"EarningDate": "EarningDate"})  # keep name consistent
 
-    if "EarningDate" in df.columns:
-        df = df[df["EarningDate"].str.lower().ne("black")].copy()
+    # Initialize day columns as NaN
+    for c in DAY_COLS:
+        cur[c] = pd.NA
 
-    out = df[BASE_COLS].copy()
-    out = out.rename(columns={"EarningDate": "Earning_Date"})
-
-    for col in DAY_COLS:
-        out[col] = pd.NA
-
-    tickers = out["Ticker"].astype(str)
-
+    # Fill E_Day1..E_Day6 from future files
+    tickers = cur["Ticker"].astype(str)
     for i in range(1, 7):
-        future_file = build_future_file(run_date, i)
-        price_map = get_price_map(future_file)
-        day_col = f"E_Day{i}"
-        out[day_col] = tickers.map(price_map)
+        f = future_file(run_date, i)
+        pmap = price_map_for_file(f)
+        cur[f"E_Day{i}"] = tickers.map(pmap)
 
+    # If month file exists, we only want to preserve E_Day columns for the same tickers,
+    # but *not* keep tickers that no longer satisfy earnings + SMA filters.
     if out_path.exists():
-        existing = pd.read_csv(out_path)
-        if "Ticker" in existing.columns:
-            existing = existing.set_index("Ticker")
-            out = out.set_index("Ticker")
-            existing.update(out)
-            merged = existing.reset_index()
-            new_rows = out.loc[~out.index.isin(existing.index)].reset_index()
-            final_df = pd.concat([merged, new_rows], ignore_index=True)
-        else:
-            final_df = out.reset_index()
+        old = pd.read_csv(out_path)
+        # Restrict old to tickers still in today's filtered universe
+        old = old.set_index("Ticker")
+        cur = cur.set_index("Ticker")
+
+        # For tickers in both, keep existing E_Day values where current is NaN
+        for c in DAY_COLS:
+            if c in old.columns:
+                cur[c] = cur[c].fillna(old[c])
+
+        final_df = cur.reset_index()
     else:
-        final_df = out.reset_index()
+        final_df = cur.reset_index()
 
+    # Final column order
     final_df = final_df[
-        ["Rank", "Ticker", "Price", "Sector", "Industry", "RS Percentile", "52WKH", "52WKL", "Earning_Date"] + DAY_COLS
+        ["Rank", "Ticker", "Price", "Sector", "Industry",
+         "RS Percentile", "52WKH", "52WKL", "EarningDate"] + DAY_COLS
     ]
+    final_df.sort_values(["EarningDate", "Rank"], inplace=True, na_position="last")
 
-    final_df = final_df.sort_values(["Earning_Date", "Rank"], na_position="last")
     final_df.to_csv(out_path, index=False)
 
 if __name__ == "__main__":
