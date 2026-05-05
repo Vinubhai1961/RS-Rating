@@ -146,8 +146,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        part_index: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  # Four partitions for Phase 2
-        part_total: [11]
+        part_index: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  # Four partitions for Phase 2
+        part_total: [10]
     runs-on: ubuntu-latest
     timeout-minutes: 120  # Allow up to 180 minutes for safety
 
@@ -233,7 +233,7 @@ jobs:
 
       - name: Merge ticker price files
         run: |
-          python scripts/merge_ticker_price.py data --part-total 11
+          python scripts/merge_ticker_price.py data --part-total 10
         working-directory: .
 
       - name: Upload final price artifact
