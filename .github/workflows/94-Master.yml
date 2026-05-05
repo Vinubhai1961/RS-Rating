@@ -52,7 +52,7 @@ jobs:
     needs: generate-ipo
     uses: ./.github/workflows/92-Generate RS_Sector_Industries.yml
     
-  # 94. update_earnings_calender
+  # 95. update_earnings_calender
   update_earnings_calender:
     needs: generate-sector-industries
-    uses: ./.github/workflows/94-update_earnings_calender.yml
+    uses: ./.github/workflows/95-update_earnings_calender.yml
