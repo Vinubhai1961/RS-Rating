@@ -48,8 +48,8 @@ def debug_ticker(df, ticker):
     pct_from_high = ((price - high) / high * 100).round(2) if pd.notna(high) and pd.notna(price) else None
 
     print(f"\n=== DEBUG: {ticker} ===")
-    print(f"Price           : ₹{price:,.2f}")
-    print(f"52W High        : ₹{high:,.2f}")
+    print(f"Price           : ${price:,.2f}")
+    print(f"52W High        : ${high:,.2f}")
     print(f"% from 52WH     : {pct_from_high}%")
     print(f"RS Percentile   : {rs:.1f}")
     print(f"10d Avg Volume  : {vol:,.0f}")
