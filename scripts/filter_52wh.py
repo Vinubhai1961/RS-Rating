@@ -13,7 +13,7 @@ OUTPUT_PATH  = Path("RS_Data/RS80_Price30_within27pct_52wh.csv")
 
 RS_THRESHOLD    = 80.0
 PRICE_THRESHOLD = 30.0
-MAX_PCT_BELOW   = 28.0          # ← as per this script
+MAX_PCT_BELOW   = 25.0          # ← as per this script
 MIN_AVGVOL10    = 450_000
 
 DEBUG_TICKER = "NVDA"        # Change or add more if needed
