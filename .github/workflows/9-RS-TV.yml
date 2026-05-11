@@ -82,11 +82,11 @@ jobs:
           with open(dest_file, 'w', encoding='utf-8') as f:
               f.write('// Auto-generated RS Rating thresholds - do not edit manually\n')
               f.write(f'// Last updated: {datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")}\n')
-              f.write(f'// Trigger: { "${{ github.event_name }}" }\n\n')
-              f.write('```pine_v6\n')
+          
+         
               for line in lines:
                   f.write(line + '\n')
-              f.write('```\n')
+    
 
           print(f"Generated {dest_file} with {len(lines)} thresholds")
           if lines:
