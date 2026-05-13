@@ -2701,6 +2701,13 @@
       "type": "Stock"
     }
   },
+  "ALDB": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "ALDF": {
     "info": {
       "industry": "Shell Companies",
@@ -4588,20 +4595,6 @@
     "info": {
       "industry": "REIT - Office",
       "sector": "Real Estate",
-      "type": "Stock"
-    }
-  },
-  "AREB": {
-    "info": {
-      "industry": "Footwear & Accessories",
-      "sector": "Consumer Cyclical",
-      "type": "Stock"
-    }
-  },
-  "AREBW": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -9295,13 +9288,6 @@
       "type": "Stock"
     }
   },
-  "BKYI": {
-    "info": {
-      "industry": "Security & Protection Services",
-      "sector": "Industrials",
-      "type": "Stock"
-    }
-  },
   "BL": {
     "info": {
       "industry": "Software - Application",
@@ -10207,8 +10193,8 @@
   },
   "BOT": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Asset Management",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -10497,6 +10483,13 @@
       "industry": "n/a",
       "sector": "n/a",
       "type": "ETF"
+    }
+  },
+  "BREZU": {
+    "info": {
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
+      "type": "Stock"
     }
   },
   "BRF": {
@@ -13406,8 +13399,8 @@
   },
   "CEF": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Asset Management",
+      "sector": "Financial Services",
       "type": "ETF"
     }
   },
@@ -24296,13 +24289,6 @@
       "type": "ETF"
     }
   },
-  "ESIX": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
   "ESK": {
     "info": {
       "industry": "n/a",
@@ -28944,6 +28930,13 @@
       "type": "ETF"
     }
   },
+  "FRVO": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "FRWD": {
     "info": {
       "industry": "n/a",
@@ -31982,6 +31975,13 @@
       "type": "ETF"
     }
   },
+  "GMRS": {
+    "info": {
+      "industry": "Medical Care Facilities",
+      "sector": "Healthcare",
+      "type": "Stock"
+    }
+  },
   "GMTL": {
     "info": {
       "industry": "Other Precious Metals & Mining",
@@ -32319,6 +32319,13 @@
     }
   },
   "GOVI": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
+  "GOVM": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -45541,7 +45548,7 @@
       "type": "ETF"
     }
   },
-  "LQIG": {
+  "LQID": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -46767,13 +46774,6 @@
     }
   },
   "MBND": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
-  "MBNE": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -49657,6 +49657,13 @@
       "type": "ETF"
     }
   },
+  "MSR": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "MSS": {
     "info": {
       "industry": "Grocery Stores",
@@ -51967,6 +51974,13 @@
       "type": "Stock"
     }
   },
+  "NISM": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "NITE": {
     "info": {
       "industry": "n/a",
@@ -53988,13 +54002,6 @@
       "industry": "Asset Management",
       "sector": "Financial Services",
       "type": "Stock"
-    }
-  },
-  "NZUS": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
     }
   },
   "O": {
@@ -57926,8 +57933,8 @@
   },
   "PHYS": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Asset Management",
+      "sector": "Financial Services",
       "type": "ETF"
     }
   },
@@ -58297,8 +58304,8 @@
   },
   "PLGO": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Insurance - Diversified",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -59928,8 +59935,8 @@
   },
   "PSLV": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Asset Management",
+      "sector": "Financial Services",
       "type": "ETF"
     }
   },
@@ -64616,6 +64623,13 @@
       "type": "ETF"
     }
   },
+  "RTB": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "RTH": {
     "info": {
       "industry": "n/a",
@@ -64816,13 +64830,6 @@
     "info": {
       "industry": "Diagnostics & Research",
       "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
-  "RVYL": {
-    "info": {
-      "industry": "Software - Infrastructure",
-      "sector": "Technology",
       "type": "Stock"
     }
   },
@@ -69791,8 +69798,8 @@
   },
   "SPPP": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Asset Management",
+      "sector": "Financial Services",
       "type": "ETF"
     }
   },
@@ -80629,6 +80636,13 @@
     "info": {
       "industry": "Restaurants",
       "sector": "Consumer Cyclical",
+      "type": "Stock"
+    }
+  },
+  "WENC": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
