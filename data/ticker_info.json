@@ -2155,6 +2155,13 @@
       "type": "ETF"
     }
   },
+  "AIAI": {
+    "info": {
+      "industry": "Conglomerates",
+      "sector": "Industrials",
+      "type": "Stock"
+    }
+  },
   "AIB": {
     "info": {
       "industry": "Software - Application",
@@ -2677,27 +2684,6 @@
     "info": {
       "industry": "Farm Products",
       "sector": "Consumer Defensive",
-      "type": "Stock"
-    }
-  },
-  "ALCY": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "ALCYU": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "ALCYW": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -11878,6 +11864,13 @@
       "type": "Stock"
     }
   },
+  "BXDC": {
+    "info": {
+      "industry": "REIT - Specialty",
+      "sector": "Real Estate",
+      "type": "Stock"
+    }
+  },
   "BXMT": {
     "info": {
       "industry": "REIT - Mortgage",
@@ -12739,6 +12732,13 @@
       "type": "Stock"
     }
   },
+  "CBRS": {
+    "info": {
+      "industry": "Semiconductors",
+      "sector": "Technology",
+      "type": "Stock"
+    }
+  },
   "CBSE": {
     "info": {
       "industry": "n/a",
@@ -13399,8 +13399,8 @@
   },
   "CEF": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "ETF"
     }
   },
@@ -24163,6 +24163,13 @@
       "type": "Stock"
     }
   },
+  "EROK": {
+    "info": {
+      "industry": "Oil & Gas Equipment & Services",
+      "sector": "Energy",
+      "type": "Stock"
+    }
+  },
   "ERTH": {
     "info": {
       "industry": "n/a",
@@ -33095,6 +33102,13 @@
       "type": "Stock"
     }
   },
+  "GSRVU": {
+    "info": {
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
   "GSSC": {
     "info": {
       "industry": "n/a",
@@ -33275,6 +33289,13 @@
       "industry": "Broadcasting",
       "sector": "Communication Services",
       "type": "Stock"
+    }
+  },
+  "GTND": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
     }
   },
   "GTO": {
@@ -45233,6 +45254,13 @@
       "type": "ETF"
     }
   },
+  "LOHA": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "LOKV": {
     "info": {
       "industry": "Shell Companies",
@@ -50291,6 +50319,13 @@
     "info": {
       "industry": "Specialty Industrial Machinery",
       "sector": "Industrials",
+      "type": "Stock"
+    }
+  },
+  "MWC": {
+    "info": {
+      "industry": "Auto Parts",
+      "sector": "Consumer Cyclical",
       "type": "Stock"
     }
   },
@@ -57933,8 +57968,8 @@
   },
   "PHYS": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "ETF"
     }
   },
@@ -58577,8 +58612,8 @@
   },
   "PMAX": {
     "info": {
-      "industry": "Specialty Business Services",
-      "sector": "Industrials",
+      "industry": "Capital Markets",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -59935,8 +59970,8 @@
   },
   "PSLV": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "ETF"
     }
   },
@@ -64625,8 +64660,8 @@
   },
   "RTB": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Software - Application",
+      "sector": "Technology",
       "type": "Stock"
     }
   },
@@ -64787,13 +64822,6 @@
   "RVP": {
     "info": {
       "industry": "Medical Instruments & Supplies",
-      "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
-  "RVPH": {
-    "info": {
-      "industry": "Biotechnology",
       "sector": "Healthcare",
       "type": "Stock"
     }
@@ -68732,13 +68760,6 @@
       "type": "Stock"
     }
   },
-  "SNCY": {
-    "info": {
-      "industry": "Airlines",
-      "sector": "Industrials",
-      "type": "Stock"
-    }
-  },
   "SND": {
     "info": {
       "industry": "Oil & Gas Equipment & Services",
@@ -69798,8 +69819,8 @@
   },
   "SPPP": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "ETF"
     }
   },
@@ -73688,6 +73709,13 @@
       "type": "ETF"
     }
   },
+  "TKNS": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "TKO": {
     "info": {
       "industry": "Entertainment",
@@ -74574,13 +74602,6 @@
     "info": {
       "industry": "n/a",
       "sector": "n/a",
-      "type": "Stock"
-    }
-  },
-  "TPH": {
-    "info": {
-      "industry": "Residential Construction",
-      "sector": "Consumer Cyclical",
       "type": "Stock"
     }
   },
@@ -78777,13 +78798,6 @@
       "type": "Stock"
     }
   },
-  "VIDA": {
-    "info": {
-      "industry": "Software - Application",
-      "sector": "Technology",
-      "type": "Stock"
-    }
-  },
   "VIDI": {
     "info": {
       "industry": "n/a",
@@ -80541,6 +80555,13 @@
       "type": "ETF"
     }
   },
+  "WDRN": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "WDS": {
     "info": {
       "industry": "Oil & Gas E&P",
@@ -80641,8 +80662,8 @@
   },
   "WENC": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
