@@ -9,7 +9,7 @@ from pathlib import Path
 #   CONFIG
 # ────────────────────────────────────────────────
 INPUT_PATH   = Path("RS_Data/rs_stocks.csv")
-OUTPUT_PATH  = Path("RS_Data/RS_Data/RS80_Price30_within27pct_52wh.csv")
+OUTPUT_PATH  = Path("RS_Data/RS80_Price30_within27pct_52wh.csv")
 
 RS_THRESHOLD          = 80.0
 PRICE_THRESHOLD       = 30.0
