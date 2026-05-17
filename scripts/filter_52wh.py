@@ -16,7 +16,7 @@ PRICE_THRESHOLD       = 30.0
 MAX_PCT_BELOW_52WH    = 22
 MIN_AVGVOL10          = 450_000
 
-DEBUG_TICKER = "NVDA"        # Change for testing
+DEBUG_TICKER = "OUST"        # Change for testing
 # ────────────────────────────────────────────────
 
 def parse_volume(x):
