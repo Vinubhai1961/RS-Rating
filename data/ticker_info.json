@@ -1854,13 +1854,6 @@
       "type": "ETF"
     }
   },
-  "AGH": {
-    "info": {
-      "industry": "Leisure",
-      "sector": "Consumer Cyclical",
-      "type": "Stock"
-    }
-  },
   "AGI": {
     "info": {
       "industry": "Gold",
@@ -2261,6 +2254,13 @@
     }
   },
   "AIIOW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
+  "AIIR": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -5687,6 +5687,13 @@
     "info": {
       "industry": "Banks - Regional",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "AUC": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -12116,13 +12123,6 @@
       "type": "Stock"
     }
   },
-  "CAEP": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
   "CAF": {
     "info": {
       "industry": "Asset Management",
@@ -17702,6 +17702,13 @@
       "type": "Stock"
     }
   },
+  "CVGD": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "CVGI": {
     "info": {
       "industry": "Auto Parts",
@@ -17836,6 +17843,13 @@
     }
   },
   "CVSB": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
+  "CVSM": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -20132,6 +20146,13 @@
     }
   },
   "DLLL": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
+  "DLMY": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -25432,8 +25453,8 @@
   },
   "EXYN": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Software - Infrastructure",
+      "sector": "Technology",
       "type": "Stock"
     }
   },
@@ -26063,13 +26084,6 @@
   "FCNCP": {
     "info": {
       "industry": "Banks - Regional",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "FCO": {
-    "info": {
-      "industry": "Asset Management",
       "sector": "Financial Services",
       "type": "Stock"
     }
@@ -28104,6 +28118,20 @@
       "type": "Stock"
     }
   },
+  "FMAC": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
+  "FMACR": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "FMACU": {
     "info": {
       "industry": "Shell Companies",
@@ -28563,13 +28591,6 @@
     "info": {
       "industry": "Real Estate - Development",
       "sector": "Real Estate",
-      "type": "Stock"
-    }
-  },
-  "FORA": {
-    "info": {
-      "industry": "Health Information Services",
-      "sector": "Healthcare",
       "type": "Stock"
     }
   },
@@ -37129,8 +37150,8 @@
   },
   "IDACU": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -39129,10 +39150,24 @@
       "type": "Stock"
     }
   },
+  "IPFX": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "IPFXU": {
     "info": {
       "industry": "Shell Companies",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "IPFXW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43331,8 +43366,8 @@
   },
   "KSPI": {
     "info": {
-      "industry": "Software - Infrastructure",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43345,8 +43380,8 @@
   },
   "KSS": {
     "info": {
-      "industry": "Department Stores",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43359,22 +43394,22 @@
   },
   "KT": {
     "info": {
-      "industry": "Telecom Services",
-      "sector": "Communication Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "KTB": {
     "info": {
-      "industry": "Apparel Manufacturing",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "KTCC": {
     "info": {
-      "industry": "Computer Hardware",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43387,8 +43422,8 @@
   },
   "KTF": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43408,15 +43443,15 @@
   },
   "KTOS": {
     "info": {
-      "industry": "Aerospace & Defense",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "KTTA": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43436,8 +43471,8 @@
   },
   "KTWO": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43450,22 +43485,22 @@
   },
   "KTWOU": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "KULR": {
     "info": {
-      "industry": "Electronic Components",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "KURA": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43478,22 +43513,22 @@
   },
   "KUST": {
     "info": {
-      "industry": "Entertainment",
-      "sector": "Communication Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "KVAC": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "KVACU": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43506,8 +43541,8 @@
   },
   "KVHI": {
     "info": {
-      "industry": "Telecom Services",
-      "sector": "Communication Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43520,22 +43555,22 @@
   },
   "KVUE": {
     "info": {
-      "industry": "Household & Personal Products",
-      "sector": "Consumer Defensive",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "KVYO": {
     "info": {
-      "industry": "Software - Application",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "KW": {
     "info": {
-      "industry": "Real Estate Services",
-      "sector": "Real Estate",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43555,8 +43590,8 @@
   },
   "KWM": {
     "info": {
-      "industry": "Entertainment",
-      "sector": "Communication Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43569,8 +43604,8 @@
   },
   "KWR": {
     "info": {
-      "industry": "Specialty Chemicals",
-      "sector": "Basic Materials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43590,8 +43625,8 @@
   },
   "KXIN": {
     "info": {
-      "industry": "Auto & Truck Dealerships",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43604,8 +43639,8 @@
   },
   "KYIV": {
     "info": {
-      "industry": "Telecom Services",
-      "sector": "Communication Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43625,50 +43660,50 @@
   },
   "KYMR": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "KYN": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "KYNB": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "KYTX": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "KZIA": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "L": {
     "info": {
-      "industry": "Insurance - Property & Casualty",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "LAB": {
     "info": {
-      "industry": "Medical Devices",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43681,8 +43716,8 @@
   },
   "LABT": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43702,8 +43737,8 @@
   },
   "LAC": {
     "info": {
-      "industry": "Other Industrial Metals & Mining",
-      "sector": "Basic Materials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43716,29 +43751,29 @@
   },
   "LAD": {
     "info": {
-      "industry": "Auto & Truck Dealerships",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "LADR": {
     "info": {
-      "industry": "REIT - Mortgage",
-      "sector": "Real Estate",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "LAES": {
     "info": {
-      "industry": "Semiconductors",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "LAFA": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43751,15 +43786,15 @@
   },
   "LAFAU": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "LAKE": {
     "info": {
-      "industry": "Apparel Manufacturing",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43772,36 +43807,36 @@
   },
   "LAMR": {
     "info": {
-      "industry": "REIT - Specialty",
-      "sector": "Real Estate",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "LAND": {
     "info": {
-      "industry": "REIT - Specialty",
-      "sector": "Real Estate",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "LANDO": {
     "info": {
-      "industry": "REIT - Specialty",
-      "sector": "Real Estate",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "LANDP": {
     "info": {
-      "industry": "REIT - Specialty",
-      "sector": "Real Estate",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "LANV": {
     "info": {
-      "industry": "Luxury Goods",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43814,43 +43849,43 @@
   },
   "LAR": {
     "info": {
-      "industry": "Other Industrial Metals & Mining",
-      "sector": "Basic Materials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "LARK": {
     "info": {
-      "industry": "Banks - Regional",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "LASE": {
     "info": {
-      "industry": "Specialty Industrial Machinery",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "LASR": {
     "info": {
-      "industry": "Semiconductors",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "LATA": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "LATAU": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43870,36 +43905,36 @@
   },
   "LAUR": {
     "info": {
-      "industry": "Education & Training Services",
-      "sector": "Consumer Defensive",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "LAW": {
     "info": {
-      "industry": "Software - Application",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "LAWR": {
     "info": {
-      "industry": "Consulting Services",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "LAZ": {
     "info": {
-      "industry": "Capital Markets",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "LB": {
     "info": {
-      "industry": "Oil & Gas Equipment & Services",
-      "sector": "Energy",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43912,8 +43947,8 @@
   },
   "LBGJ": {
     "info": {
-      "industry": "Specialty Industrial Machinery",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43926,22 +43961,22 @@
   },
   "LBRDA": {
     "info": {
-      "industry": "Telecom Services",
-      "sector": "Communication Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "LBRDK": {
     "info": {
-      "industry": "Telecom Services",
-      "sector": "Communication Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "LBRDP": {
     "info": {
-      "industry": "Telecom Services",
-      "sector": "Communication Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -44309,6 +44344,13 @@
       "type": "Stock"
     }
   },
+  "LEND": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "LENS": {
     "info": {
       "industry": "n/a",
@@ -44509,13 +44551,6 @@
     "info": {
       "industry": "Medical Devices",
       "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
-  "LGCB": {
-    "info": {
-      "industry": "Internet Retail",
-      "sector": "Consumer Cyclical",
       "type": "Stock"
     }
   },
@@ -47531,15 +47566,15 @@
   },
   "METC": {
     "info": {
-      "industry": "Coking Coal",
-      "sector": "Basic Materials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "METCB": {
     "info": {
-      "industry": "Coking Coal",
-      "sector": "Basic Materials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -47594,15 +47629,15 @@
   },
   "MEVO": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MEVOU": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -47622,8 +47657,8 @@
   },
   "MFA": {
     "info": {
-      "industry": "REIT - Mortgage",
-      "sector": "Real Estate",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -47643,8 +47678,8 @@
   },
   "MFC": {
     "info": {
-      "industry": "Insurance - Life",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -47671,22 +47706,22 @@
   },
   "MFG": {
     "info": {
-      "industry": "Banks - Regional",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MFI": {
     "info": {
-      "industry": "Software - Application",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MFIC": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -47706,8 +47741,8 @@
   },
   "MFIN": {
     "info": {
-      "industry": "Credit Services",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -47720,8 +47755,8 @@
   },
   "MFM": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -47797,15 +47832,15 @@
   },
   "MG": {
     "info": {
-      "industry": "Security & Protection Services",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MGA": {
     "info": {
-      "industry": "Auto Parts",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -47818,22 +47853,22 @@
   },
   "MGEE": {
     "info": {
-      "industry": "Utilities - Regulated Electric",
-      "sector": "Utilities",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MGF": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MGIH": {
     "info": {
-      "industry": "Packaging & Containers",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -47846,15 +47881,15 @@
   },
   "MGLD": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MGM": {
     "info": {
-      "industry": "Resorts & Casinos",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -47867,15 +47902,15 @@
   },
   "MGN": {
     "info": {
-      "industry": "Engineering & Construction",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MGNI": {
     "info": {
-      "industry": "Advertising Agencies",
-      "sector": "Communication Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -47888,8 +47923,8 @@
   },
   "MGNX": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -47902,8 +47937,8 @@
   },
   "MGPI": {
     "info": {
-      "industry": "Beverages - Wineries & Distilleries",
-      "sector": "Consumer Defensive",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -47923,8 +47958,8 @@
   },
   "MGRC": {
     "info": {
-      "industry": "Rental & Leasing Services",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -47944,22 +47979,22 @@
   },
   "MGRT": {
     "info": {
-      "industry": "Information Technology Services",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MGRX": {
     "info": {
-      "industry": "Health Information Services",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MGTX": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -47972,50 +48007,50 @@
   },
   "MGX": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MGY": {
     "info": {
-      "industry": "Oil & Gas E&P",
-      "sector": "Energy",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MGYR": {
     "info": {
-      "industry": "Banks - Regional",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MH": {
     "info": {
-      "industry": "Education & Training Services",
-      "sector": "Consumer Defensive",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MHD": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MHF": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MHH": {
     "info": {
-      "industry": "Staffing & Employment Services",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -48035,8 +48070,8 @@
   },
   "MHK": {
     "info": {
-      "industry": "Furnishings, Fixtures & Appliances",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -48056,8 +48091,8 @@
   },
   "MHO": {
     "info": {
-      "industry": "Residential Construction",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -48070,22 +48105,22 @@
   },
   "MI": {
     "info": {
-      "industry": "Internet Retail",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MIAX": {
     "info": {
-      "industry": "Capital Markets",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MICC": {
     "info": {
-      "industry": "Packaged Foods",
-      "sector": "Consumer Defensive",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -48098,8 +48133,8 @@
   },
   "MIDD": {
     "info": {
-      "industry": "Specialty Industrial Machinery",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -48147,29 +48182,29 @@
   },
   "MIMI": {
     "info": {
-      "industry": "Engineering & Construction",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MIN": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MIND": {
     "info": {
-      "industry": "Scientific & Technical Instruments",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MINE": {
     "info": {
-      "industry": "Gold",
-      "sector": "Basic Materials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -48210,22 +48245,22 @@
   },
   "MIR": {
     "info": {
-      "industry": "Specialty Industrial Machinery",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MIRA": {
     "info": {
-      "industry": "Drug Manufacturers - General",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MIRM": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -48238,15 +48273,15 @@
   },
   "MIST": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MITK": {
     "info": {
-      "industry": "Software - Application",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -48266,22 +48301,22 @@
   },
   "MITQ": {
     "info": {
-      "industry": "Communication Equipment",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MITT": {
     "info": {
-      "industry": "REIT - Mortgage",
-      "sector": "Real Estate",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MIY": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -48308,15 +48343,15 @@
   },
   "MKC": {
     "info": {
-      "industry": "Packaged Foods",
-      "sector": "Consumer Defensive",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MKDW": {
     "info": {
-      "industry": "Auto Parts",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -48329,15 +48364,15 @@
   },
   "MKL": {
     "info": {
-      "industry": "Insurance - Property & Casualty",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MKLY": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -48350,8 +48385,8 @@
   },
   "MKLYU": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -48364,8 +48399,8 @@
   },
   "MKSI": {
     "info": {
-      "industry": "Scientific & Technical Instruments",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -48378,22 +48413,22 @@
   },
   "MKTW": {
     "info": {
-      "industry": "Financial Data & Stock Exchanges",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MKTX": {
     "info": {
-      "industry": "Capital Markets",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MKZR": {
     "info": {
-      "industry": "REIT - Diversified",
-      "sector": "Real Estate",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -48406,8 +48441,8 @@
   },
   "MLAAU": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -48420,8 +48455,8 @@
   },
   "MLAB": {
     "info": {
-      "industry": "Scientific & Technical Instruments",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -48448,8 +48483,8 @@
   },
   "MLCI": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -48462,8 +48497,8 @@
   },
   "MLCO": {
     "info": {
-      "industry": "Resorts & Casinos",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -48476,8 +48511,8 @@
   },
   "MLEC": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -48490,29 +48525,29 @@
   },
   "MLGO": {
     "info": {
-      "industry": "Software - Infrastructure",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MLI": {
     "info": {
-      "industry": "Metal Fabrication",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MLKN": {
     "info": {
-      "industry": "Furnishings, Fixtures & Appliances",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MLM": {
     "info": {
-      "industry": "Building Materials",
-      "sector": "Basic Materials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -48525,8 +48560,8 @@
   },
   "MLP": {
     "info": {
-      "industry": "Real Estate Services",
-      "sector": "Real Estate",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -48574,8 +48609,8 @@
   },
   "MLR": {
     "info": {
-      "industry": "Auto Parts",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -49631,15 +49666,15 @@
   },
   "MSI": {
     "info": {
-      "industry": "Communication Equipment",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MSIF": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -49659,15 +49694,15 @@
   },
   "MSLE": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "MSM": {
     "info": {
-      "industry": "Industrial Distribution",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -49680,8 +49715,8 @@
   },
   "MSN": {
     "info": {
-      "industry": "Consumer Electronics",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -54881,29 +54916,29 @@
   },
   "OLP": {
     "info": {
-      "industry": "REIT - Diversified",
-      "sector": "Real Estate",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OLPX": {
     "info": {
-      "industry": "Specialty Retail",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OM": {
     "info": {
-      "industry": "Medical Devices",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OMAB": {
     "info": {
-      "industry": "Airports & Air Services",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -54916,43 +54951,43 @@
   },
   "OMC": {
     "info": {
-      "industry": "Advertising Agencies",
-      "sector": "Communication Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OMCL": {
     "info": {
-      "industry": "Health Information Services",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OMDA": {
     "info": {
-      "industry": "Health Information Services",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OMER": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OMEX": {
     "info": {
-      "industry": "Other Industrial Metals & Mining",
-      "sector": "Basic Materials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OMF": {
     "info": {
-      "industry": "Credit Services",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -54972,64 +55007,64 @@
   },
   "OMH": {
     "info": {
-      "industry": "Real Estate Services",
-      "sector": "Real Estate",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OMSE": {
     "info": {
-      "industry": "Oil & Gas Equipment & Services",
-      "sector": "Energy",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "ON": {
     "info": {
-      "industry": "Semiconductors",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "ONB": {
     "info": {
-      "industry": "Banks - Regional",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "ONBPO": {
     "info": {
-      "industry": "Banks - Regional",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "ONBPP": {
     "info": {
-      "industry": "Banks - Regional",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "ONC": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "ONCH": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "ONCHU": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55042,15 +55077,15 @@
   },
   "ONCO": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "ONCY": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55077,8 +55112,8 @@
   },
   "ONDS": {
     "info": {
-      "industry": "Communication Equipment",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55091,8 +55126,8 @@
   },
   "ONEG": {
     "info": {
-      "industry": "Engineering & Construction",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55126,8 +55161,8 @@
   },
   "ONEW": {
     "info": {
-      "industry": "Specialty Retail",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55147,8 +55182,8 @@
   },
   "ONFO": {
     "info": {
-      "industry": "Internet Content & Information",
-      "sector": "Communication Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55161,15 +55196,15 @@
   },
   "ONIT": {
     "info": {
-      "industry": "Mortgage Finance",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "ONL": {
     "info": {
-      "industry": "REIT - Office",
-      "sector": "Real Estate",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55182,8 +55217,8 @@
   },
   "ONMD": {
     "info": {
-      "industry": "Health Information Services",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55203,29 +55238,29 @@
   },
   "ONON": {
     "info": {
-      "industry": "Footwear & Accessories",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "ONT": {
     "info": {
-      "industry": "Waste Management",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "ONTO": {
     "info": {
-      "industry": "Semiconductor Equipment & Materials",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OOMA": {
     "info": {
-      "industry": "Software - Application",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55238,29 +55273,29 @@
   },
   "OPAD": {
     "info": {
-      "industry": "Real Estate Services",
-      "sector": "Real Estate",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OPAL": {
     "info": {
-      "industry": "Utilities - Regulated Gas",
-      "sector": "Utilities",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OPBK": {
     "info": {
-      "industry": "Banks - Regional",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OPCH": {
     "info": {
-      "industry": "Medical Care Facilities",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55273,8 +55308,8 @@
   },
   "OPEN": {
     "info": {
-      "industry": "Real Estate Services",
-      "sector": "Real Estate",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55315,36 +55350,36 @@
   },
   "OPFI": {
     "info": {
-      "industry": "Credit Services",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OPHC": {
     "info": {
-      "industry": "Banks - Regional",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OPK": {
     "info": {
-      "industry": "Diagnostics & Research",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OPLN": {
     "info": {
-      "industry": "Auto & Truck Dealerships",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OPP": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55364,43 +55399,43 @@
   },
   "OPRA": {
     "info": {
-      "industry": "Internet Content & Information",
-      "sector": "Communication Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OPRT": {
     "info": {
-      "industry": "Credit Services",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OPRX": {
     "info": {
-      "industry": "Health Information Services",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OPTT": {
     "info": {
-      "industry": "Specialty Industrial Machinery",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OPTU": {
     "info": {
-      "industry": "Telecom Services",
-      "sector": "Communication Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OPTX": {
     "info": {
-      "industry": "Electronic Components",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55420,36 +55455,36 @@
   },
   "OPXS": {
     "info": {
-      "industry": "Aerospace & Defense",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OPY": {
     "info": {
-      "industry": "Capital Markets",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OR": {
     "info": {
-      "industry": "Gold",
-      "sector": "Basic Materials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "ORA": {
     "info": {
-      "industry": "Utilities - Renewable",
-      "sector": "Utilities",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "ORBS": {
     "info": {
-      "industry": "Packaging & Containers",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55462,15 +55497,15 @@
   },
   "ORC": {
     "info": {
-      "industry": "REIT - Mortgage",
-      "sector": "Real Estate",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "ORCL": {
     "info": {
-      "industry": "Software - Infrastructure",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55497,8 +55532,8 @@
   },
   "ORGN": {
     "info": {
-      "industry": "Chemicals",
-      "sector": "Basic Materials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55511,43 +55546,43 @@
   },
   "ORGO": {
     "info": {
-      "industry": "Drug Manufacturers - Specialty & Generic",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "ORI": {
     "info": {
-      "industry": "Insurance - Property & Casualty",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "ORIC": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "ORIO": {
     "info": {
-      "industry": "Software - Infrastructure",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "ORIQ": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "ORIQU": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55560,29 +55595,29 @@
   },
   "ORIS": {
     "info": {
-      "industry": "Packaged Foods",
-      "sector": "Consumer Defensive",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "ORKA": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "ORKT": {
     "info": {
-      "industry": "Software - Application",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "ORLA": {
     "info": {
-      "industry": "Gold",
-      "sector": "Basic Materials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55595,22 +55630,22 @@
   },
   "ORLY": {
     "info": {
-      "industry": "Auto Parts",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "ORMP": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "ORN": {
     "info": {
-      "industry": "Engineering & Construction",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55630,15 +55665,15 @@
   },
   "ORRF": {
     "info": {
-      "industry": "Banks - Regional",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OSBC": {
     "info": {
-      "industry": "Banks - Regional",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55651,8 +55686,8 @@
   },
   "OSCR": {
     "info": {
-      "industry": "Healthcare Plans",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55679,36 +55714,36 @@
   },
   "OSG": {
     "info": {
-      "industry": "Insurance - Specialty",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OSIS": {
     "info": {
-      "industry": "Electronic Components",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OSK": {
     "info": {
-      "industry": "Farm & Heavy Construction Machinery",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OSPN": {
     "info": {
-      "industry": "Software - Infrastructure",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OSRH": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55721,64 +55756,64 @@
   },
   "OSS": {
     "info": {
-      "industry": "Computer Hardware",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OST": {
     "info": {
-      "industry": "Electronic Components",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OSTX": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OSUR": {
     "info": {
-      "industry": "Medical Instruments & Supplies",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OSW": {
     "info": {
-      "industry": "Leisure",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OTEX": {
     "info": {
-      "industry": "Software - Application",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OTF": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OTGA": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OTGAU": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55798,36 +55833,36 @@
   },
   "OTH": {
     "info": {
-      "industry": "Auto & Truck Dealerships",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OTIS": {
     "info": {
-      "industry": "Specialty Industrial Machinery",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OTLK": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OTLY": {
     "info": {
-      "industry": "Packaged Foods",
-      "sector": "Consumer Defensive",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OTTR": {
     "info": {
-      "industry": "Conglomerates",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55854,15 +55889,15 @@
   },
   "OUST": {
     "info": {
-      "industry": "Electronic Components",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OUT": {
     "info": {
-      "industry": "REIT - Specialty",
-      "sector": "Real Estate",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55875,8 +55910,8 @@
   },
   "OVBC": {
     "info": {
-      "industry": "Banks - Regional",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55889,8 +55924,8 @@
   },
   "OVID": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55910,8 +55945,8 @@
   },
   "OVLY": {
     "info": {
-      "industry": "Banks - Regional",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55938,29 +55973,29 @@
   },
   "OVV": {
     "info": {
-      "industry": "Oil & Gas E&P",
-      "sector": "Energy",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OWL": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OWLS": {
     "info": {
-      "industry": "Software - Infrastructure",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OWLT": {
     "info": {
-      "industry": "Medical Devices",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55980,8 +56015,8 @@
   },
   "OXBR": {
     "info": {
-      "industry": "Insurance - Reinsurance",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55994,8 +56029,8 @@
   },
   "OXLC": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -56029,22 +56064,22 @@
   },
   "OXLCN": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OXLCO": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OXLCP": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -56057,15 +56092,15 @@
   },
   "OXM": {
     "info": {
-      "industry": "Apparel Manufacturing",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OXSQ": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -56085,15 +56120,15 @@
   },
   "OXY": {
     "info": {
-      "industry": "Oil & Gas E&P",
-      "sector": "Energy",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OYSE": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -56106,15 +56141,15 @@
   },
   "OYSEU": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OZ": {
     "info": {
-      "industry": "Real Estate - Development",
-      "sector": "Real Estate",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -56127,29 +56162,29 @@
   },
   "OZK": {
     "info": {
-      "industry": "Banks - Regional",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "OZKAP": {
     "info": {
-      "industry": "Banks - Regional",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "P": {
     "info": {
-      "industry": "Computer Hardware",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "PAA": {
     "info": {
-      "industry": "Oil & Gas Midstream",
-      "sector": "Energy",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -56162,15 +56197,15 @@
   },
   "PAAC": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "PAACU": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -56183,8 +56218,8 @@
   },
   "PAAS": {
     "info": {
-      "industry": "Gold",
-      "sector": "Basic Materials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -56218,29 +56253,29 @@
   },
   "PAC": {
     "info": {
-      "industry": "Airports & Air Services",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "PACB": {
     "info": {
-      "industry": "Medical Devices",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "PACH": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "PACHU": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -56253,64 +56288,64 @@
   },
   "PACK": {
     "info": {
-      "industry": "Packaging & Containers",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "PACS": {
     "info": {
-      "industry": "Medical Care Facilities",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "PAG": {
     "info": {
-      "industry": "Auto & Truck Dealerships",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "PAGP": {
     "info": {
-      "industry": "Oil & Gas Midstream",
-      "sector": "Energy",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "PAGS": {
     "info": {
-      "industry": "Software - Infrastructure",
-      "sector": "Technology",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "PAHC": {
     "info": {
-      "industry": "Drug Manufacturers - Specialty & Generic",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "PAI": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "PAII": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "PAL": {
     "info": {
-      "industry": "Integrated Freight & Logistics",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -56330,8 +56365,8 @@
   },
   "PALI": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -56344,15 +56379,15 @@
   },
   "PALO": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
   "PALOU": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -56372,8 +56407,8 @@
   },
   "PAM": {
     "info": {
-      "industry": "Conglomerates",
-      "sector": "Industrials",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -57014,6 +57049,13 @@
       "type": "Stock"
     }
   },
+  "PCLC": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "PCLG": {
     "info": {
       "industry": "n/a",
@@ -57117,6 +57159,13 @@
       "industry": "Shell Companies",
       "sector": "Financial Services",
       "type": "Stock"
+    }
+  },
+  "PCSG": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
     }
   },
   "PCT": {
@@ -60448,6 +60497,13 @@
     "info": {
       "industry": "Capital Markets",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "PUSA": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -77965,6 +78021,13 @@
       "type": "Stock"
     }
   },
+  "UZX": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "V": {
     "info": {
       "industry": "Credit Services",
@@ -82375,55 +82438,6 @@
       "type": "ETF"
     }
   },
-  "XHYC": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
-  "XHYD": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
-  "XHYE": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
-  "XHYF": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
-  "XHYH": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
-  "XHYI": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
-  "XHYT": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
   "XIDE": {
     "info": {
       "industry": "n/a",
@@ -82695,6 +82709,13 @@
       "industry": "n/a",
       "sector": "n/a",
       "type": "ETF"
+    }
+  },
+  "XMAX": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
     }
   },
   "XMAY": {
@@ -83376,13 +83397,6 @@
       "type": "Stock"
     }
   },
-  "XWIN": {
-    "info": {
-      "industry": "Furnishings, Fixtures & Appliances",
-      "sector": "Consumer Cyclical",
-      "type": "Stock"
-    }
-  },
   "XXI": {
     "info": {
       "industry": "Shell Companies",
@@ -84018,13 +84032,6 @@
       "industry": "n/a",
       "sector": "n/a",
       "type": "ETF"
-    }
-  },
-  "ZBAI": {
-    "info": {
-      "industry": "Capital Markets",
-      "sector": "Financial Services",
-      "type": "Stock"
     }
   },
   "ZBAO": {
