@@ -18,6 +18,18 @@ DAY_COLS = [f"E_Day{i}" for i in range(1, 7)]
 # -------------------------------
 PRICE_CACHE = {}
 
+def next_trading_day(start_date, days_ahead: int):
+    """Return the date that is 'days_ahead' trading days after start_date (skips weekends)"""
+    current = start_date
+    trading_days_found = 0
+    
+    while trading_days_found < days_ahead:
+        current += timedelta(days=1)
+        if current.weekday() < 5:        # 0=Mon ... 4=Fri
+            trading_days_found += 1
+            
+    return current
+
 def normalize_ticker(val):
     return str(val).strip().upper()
 
@@ -155,7 +167,10 @@ def main():
         # =========================================================
         # 🔴 PATCH FIX: UPDATE ALL EXISTING ROWS FIRST
         # =========================================================
-        print("\n[STEP] Updating existing records (CRITICAL FIX)...")
+        # =========================================================
+        # 🔴 UPDATE EXISTING RECORDS - Using Trading Days
+        # =========================================================
+        print("\n[STEP] Updating existing records (Trading Days)...")
 
         for idx, row in df_existing.iterrows():
             ticker = normalize_ticker(row["Ticker"])
@@ -168,27 +183,27 @@ def main():
 
             for i in range(1, 7):
                 col = f"E_Day{i}"
-
                 if col not in df_existing.columns:
                     continue
 
-                val = row[col]
+                if not is_missing(row[col]):
+                    continue  # Already filled
 
-                if is_missing(val):
-                    target_date = earn_date + timedelta(days=i)
+                # Calculate next trading day
+                target_date = next_trading_day(earn_date, i)
 
-                    if target_date > run_date:
-                        continue
+                if target_date > run_date:
+                    continue
 
-                    print(f"[UPDATE] {ticker} {col} -> {target_date}")
+                print(f"[UPDATE] {ticker} {col} -> {target_date}")
 
-                    price_map = get_price_map(target_date)
-                    price = price_map.get(ticker, pd.NA)
+                price_map = get_price_map(target_date)
+                price = price_map.get(ticker, pd.NA)
 
-                    print(f"[RESULT] Price={price}")
+                print(f"[RESULT] Price={price}")
 
-                    df_existing.at[idx, col] = price
-                    updated_count += 1
+                df_existing.at[idx, col] = price
+                updated_count += 1
 
         # =========================================================
         # 🟢 ORIGINAL LOGIC (UNCHANGED): ADD / UPDATE CANDIDATES
