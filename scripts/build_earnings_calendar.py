@@ -67,37 +67,42 @@ def read_source(path: Path):
     return df
 
 def get_price_map(target_date):
+    """Get price map, falling back to the most recent trading day with data."""
     if target_date in PRICE_CACHE:
         return PRICE_CACHE[target_date]
 
-    file_name = f"rs_stocks_{target_date.strftime('%m%d%Y')}.csv"
-    file_path = ARCHIVE_DIR / file_name
+    print(f"[DEBUG] Looking for prices on/near {target_date.strftime('%Y-%m-%d')}")
 
-    print(f"[DEBUG] Loading price file: {file_name}")
+    current_date = target_date
+    max_lookback = 7
 
-    if not file_path.exists():
-        print(f"[WARNING] Missing file: {file_name}")
-        PRICE_CACHE[target_date] = {}
-        return {}
+    for _ in range(max_lookback + 1):
+        file_name = f"rs_stocks_{current_date.strftime('%m%d%Y')}.csv"
+        file_path = ARCHIVE_DIR / file_name
 
-    df = read_source(file_path)
+        if file_path.exists():
+            print(f"[INFO] Using data from {current_date.strftime('%Y-%m-%d')} for target {target_date.strftime('%Y-%m-%d')}")
+            
+            df = read_source(file_path)
+            price_col = "Close" if "Close" in df.columns else "Price"
+            
+            if price_col not in df.columns:
+                print(f"[ERROR] No price column in {file_name}")
+                PRICE_CACHE[target_date] = {}
+                return {}
 
-    price_col = "Close" if "Close" in df.columns else "Price"
+            df["Ticker"] = df["Ticker"].astype(str).str.strip().str.upper()
+            price_dict = df.set_index("Ticker")[price_col].to_dict()
 
-    if price_col not in df.columns:
-        print(f"[ERROR] No price column in {file_name}")
-        PRICE_CACHE[target_date] = {}
-        return {}
+            PRICE_CACHE[target_date] = price_dict
+            return price_dict
 
-    df["Ticker"] = df["Ticker"].astype(str).str.strip().str.upper()
+        current_date = current_date - timedelta(days=1)
 
-    price_dict = df.set_index("Ticker")[price_col].to_dict()
-
-    print(f"[DEBUG] Loaded {len(price_dict)} prices for {target_date}")
-
-    PRICE_CACHE[target_date] = price_dict
-    return price_dict
-
+    print(f"[WARNING] No price data found within {max_lookback} days for {target_date}")
+    PRICE_CACHE[target_date] = {}
+    return {}
+    
 def month_output_path(run_date):
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     return OUTPUT_DIR / f"{run_date.strftime('%B_%Y')}_Earnings.csv"
