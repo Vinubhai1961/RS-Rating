@@ -231,9 +231,9 @@ def main():
 
                 for col in DAY_COLS:
                     new_row[col] = pd.NA
-
+                    
                 for i in range(1, 7):
-                    target_date = earn_date + timedelta(days=i)
+                    target_date = next_trading_day(earn_date, i)
 
                     if target_date > run_date:
                         continue
