@@ -224,6 +224,7 @@ def main():
                 new_row[f"E_Day{i}"] = price_map.get(ticker, pd.NA)
 
             records_to_add.append(new_row)
+
         # -------------------------------
         # FINAL MERGE
         # -------------------------------
@@ -233,23 +234,37 @@ def main():
         else:
             final_df = df_existing.copy()
 
-        # ====================== FINAL COLUMNS WITH SAFE HANDLING ======================
+        # ====================== SAFE ATR HANDLING FOR OLD FILES ======================
+        # Add ATR column if missing (backward compatibility)
+        if "ATR" not in final_df.columns:
+            final_df["ATR"] = np.nan
+            print("[INFO] Added missing 'ATR' column for backward compatibility")
+
+        # Backfill ATR from latest rs_stocks data for existing tickers
+        if "ATR" in df_today.columns:
+            latest_atr = df_today[["Ticker", "ATR"]].drop_duplicates("Ticker")
+            latest_atr = latest_atr.set_index("Ticker")["ATR"]
+            
+            # Update only rows where ATR is still NaN
+            mask_nan = final_df["ATR"].isna()
+            if mask_nan.any():
+                final_df.loc[mask_nan, "ATR"] = final_df.loc[mask_nan, "Ticker"].map(latest_atr)
+                filled_count = mask_nan.sum() - final_df["ATR"].isna().sum()
+                print(f"[INFO] Backfilled ATR for {filled_count} existing records")
+        # ============================================================================
+
+        # Final column list
         final_cols = [
             "Rank", "Ticker", "Price", "Sector", "Industry",
             "RS Percentile", "ATR",                    
             "52WKH", "52WKL", "Earning_Date"
         ] + DAY_COLS
 
-        # Safe column selection - only use columns that actually exist
+        # Safe selection
         available_cols = [col for col in final_cols if col in final_df.columns]
-        
-        # Add missing ATR column with NaN if it doesn't exist (for old records)
-        if "ATR" not in final_df.columns:
-            final_df["ATR"] = np.nan
-
         final_df = final_df[available_cols].copy()
-        final_df = final_df.sort_values(["Earning_Date", "Rank"], na_position="last")
 
+        final_df = final_df.sort_values(["Earning_Date", "Rank"], na_position="last")
         final_df.to_csv(out_path, index=False)
 
         print(f"\n[SUCCESS] Updated {updated_count} fields | Total records: {len(final_df)}")
