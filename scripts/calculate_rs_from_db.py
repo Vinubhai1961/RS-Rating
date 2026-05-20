@@ -173,7 +173,35 @@ def calculate_smas(closes: pd.Series):
             sma30w = round(weekly_closes.rolling(window=30).mean().iloc[-1], 2)
 
     return sma50, sma200, sma10w, sma30w
+    
+# ====================== NEW: ATR & ADR FUNCTION ======================
+def get_atr_adr(ticker: str, lib, period: int = 14):
+    """Calculate latest ATR(14) and ADR(14)"""
+    try:
+        data = lib.read(ticker).data
+        df = pd.DataFrame({
+            "high": data["high"].values,
+            "low": data["low"].values,
+            "close": data["close"].values,
+        }, index=pd.to_datetime(data["datetime"], unit='s')).sort_index()
 
+        if len(df) < period + 1:
+            return np.nan, np.nan
+
+        # True Range
+        tr0 = df["high"] - df["low"]
+        tr1 = (df["high"] - df["close"].shift(1)).abs()
+        tr2 = (df["low"] - df["close"].shift(1)).abs()
+        tr = pd.concat([tr0, tr1, tr2], axis=1).max(axis=1)
+
+        atr = tr.rolling(window=period).mean().iloc[-1]
+        adr = (df["high"] - df["low"]).rolling(window=period).mean().iloc[-1]
+
+        return round(float(atr), 4), round(float(adr), 4)
+
+    except Exception as e:
+        logging.warning(f"ATR/ADR calculation failed for {ticker}: {e}")
+        return np.nan, np.nan
 
 def load_arctic_db(data_dir):
     try:
@@ -359,7 +387,9 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
             sma50, sma200, sma10w, sma30w = calculate_smas(closes)
 
             rs = relative_strength(closes, ref_closes)
-
+            # === NEW: ATR & ADR ===
+            atr, adr = get_atr_adr(ticker, lib, period=14)
+            
             df_aligned = align_series(closes, ref_closes)
             debug_alignment(ticker, closes, ref_closes, df_aligned, missing_rs_log)
 
@@ -386,7 +416,7 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
                 if not meta_row.empty:
                     earning_date = meta_row.iloc[0].get("Earning_Date")
 
-            rs_results.append((ticker, rs, rs_1m, rs_3m, rs_6m, sma50, sma200, sma10w, sma30w, earning_date))
+            rs_results.append((ticker, rs, rs_1m, rs_3m, rs_6m, sma50, sma200, sma10w, sma30w, earning_date, atr, adr))
             if not np.isnan(rs):
                 valid_rs_count += 1
 
@@ -396,8 +426,7 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
             log_missing_rs(ticker, "-" * 60, missing_rs_log)
             rs_results.append((ticker, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, None))
 
-    df_stocks = pd.DataFrame(rs_results, columns=["Ticker", "RS", "1M_RS", "3M_RS", "6M_RS",
-                                                  "SMA50", "SMA200", "SMA10W", "SMA30W", "Earning_Date"])
+    df_stocks = pd.DataFrame(rs_results, columns=["Ticker", "RS", "1M_RS", "3M_RS", "6M_RS", "SMA50", "SMA200", "SMA10W", "SMA30W", "Earning_Date", "ATR", "ADR"])
 
     if not metadata_df.empty and "Ticker" in metadata_df.columns:
         df_stocks = df_stocks.merge(metadata_df, on="Ticker", how="left")
@@ -425,9 +454,10 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
     df_stocks.loc[df_stocks["Type"] == "ETF", "Sector"] = "ETF"
 
     # ====================== FIXED: ROBUST COLUMN SELECTION ======================
-    final_columns = [
+final_columns = [
         "Rank", "Ticker", "Price", "DVol", "Sector", "Industry",
         "RS Percentile", "1M_RS Percentile", "3M_RS Percentile", "6M_RS Percentile",
+        "ATR", "ADR",                                   # ← NEW
         "AvgVol", "AvgVol10", "52WKH", "52WKL", "MCAP", "IPO",
         "SMA50", "SMA200", "SMA10W", "SMA30W"
     ]
