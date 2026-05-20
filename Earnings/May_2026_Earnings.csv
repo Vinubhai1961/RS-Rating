@@ -171,7 +171,7 @@ Rank,Ticker,Price,Sector,Industry,RS Percentile,ATR,52WKH,52WKL,Earning_Date,E_D
 1006,AKAM,116.69,Technology,Software - Infrastructure,89.0,9.8718,122.24,69.78,2026-05-07,147.71,153.01,149.56,153.01,149.56,161.14
 1015,AAON,129.25,Industrials,Building Products & Equipment,89.0,11.2864,148.88,62.0,2026-05-07,139.66,141.7,133.66,141.7,133.66,135.37
 1084,LNTH,91.0,Healthcare,Drug Manufacturers - Specialty & Generic,88.0,3.4119,93.0,47.25,2026-05-07,93.06,94.07,96.23,94.07,96.23,96.46
-1131,NB,5.99,Basic Materials,Other Industrial Metals & Mining,88.0,,12.58,2.17,2026-05-07,6.09,6.13,6.13,6.13,6.13,5.95
+1131,NB,5.99,Basic Materials,Other Industrial Metals & Mining,88.0,0.4231,12.58,2.17,2026-05-07,6.09,6.13,6.13,6.13,6.13,5.95
 1194,LGND,210.33,Healthcare,Biotechnology,87.0,9.7957,247.38,98.89,2026-05-07,221.41,220.48,222.0,220.48,222.0,221.21
 1344,FROG,57.02,Technology,Software - Application,86.0,4.2891,70.43,34.05,2026-05-07,70.55,69.01,67.55,69.01,67.55,64.18
 1588,NTRA,219.82,Healthcare,Diagnostics & Research,83.0,11.373,256.36,131.81,2026-05-07,194.24,199.14,204.21,199.14,204.21,195.32
@@ -209,7 +209,7 @@ Rank,Ticker,Price,Sector,Industry,RS Percentile,ATR,52WKH,52WKL,Earning_Date,E_D
 674,AU,107.03,Basic Materials,Gold,93.0,5.0346,129.14,38.61,2026-05-08,108.34,104.33,108.34,104.33,102.37,102.07
 727,NHC,188.82,Healthcare,Medical Care Facilities,92.0,7.0293,189.95,93.54,2026-05-08,189.75,189.47,189.75,189.47,194.71,197.96
 944,MSGS,330.13,Communication Services,Entertainment,90.0,13.3307,345.5,186.0,2026-05-08,344.12,336.12,344.12,336.12,348.2,349.3
-1078,NB,6.09,Basic Materials,Other Industrial Metals & Mining,88.0,,12.58,2.17,2026-05-08,6.13,6.13,6.13,6.13,5.95,5.86
+1078,NB,6.09,Basic Materials,Other Industrial Metals & Mining,88.0,0.4231,12.58,2.17,2026-05-08,6.13,6.13,6.13,6.13,5.95,5.86
 1092,JOUT,51.4,Consumer Cyclical,Leisure,88.0,3.0657,53.54,25.18,2026-05-08,44.82,43.46,44.82,43.46,39.43,39.76
 1604,ROAD,140.48,Industrials,Engineering & Construction,83.0,7.7483,151.0,91.72,2026-05-08,135.45,126.87,135.45,126.87,126.87,124.84
 117,NEWP,5.97,Basic Materials,Silver,98.0,,6.31,1.11,2026-05-11,6.05,5.97,5.57,5.32,5.32,
@@ -277,3 +277,17 @@ Rank,Ticker,Price,Sector,Industry,RS Percentile,ATR,52WKH,52WKL,Earning_Date,E_D
 7731,TOL,124.14,Consumer Cyclical,Residential Construction,19.0,4.0496,168.36,100.92,2026-05-19,124.14,,,,,
 8060,EXP,199.88,Basic Materials,Building Materials,16.0,7.7164,243.64,171.99,2026-05-19,199.88,,,,,
 8657,HD,302.44,Consumer Cyclical,Home Improvement Retail,9.0,8.0832,426.75,289.1,2026-05-19,302.44,,,,,
+97,VSAT,75.27,Technology,Communication Equipment,99.0,3.7914,75.72,8.61,2026-05-20,,,,,,
+499,ENS,214.56,Industrials,Electrical Equipment & Parts,94.0,8.7379,239.69,76.6,2026-05-20,,,,,,
+608,DRUG,82.78,Healthcare,Biotechnology,93.0,5.0702,123.75,23.18,2026-05-20,,,,,,
+727,ADI,398.05,Technology,Semiconductors,92.0,13.5757,435.72,206.0,2026-05-20,,,,,,
+735,PNRG,245.98,Energy,Oil & Gas E&P,92.0,15.4379,278.9,126.4,2026-05-20,,,,,,
+800,BLTE,143.36,Healthcare,Biotechnology,91.0,6.6582,200.0,56.1,2026-05-20,,,,,,
+1271,NVDA,223.47,Technology,Semiconductors,86.0,8.0854,236.54,129.16,2026-05-20,,,,,,
+1980,TGT,122.33,Consumer Defensive,Discount Stores,79.0,4.5636,133.1,83.44,2026-05-20,,,,,,
+2462,NDSN,276.2,Industrials,Specialty Industrial Machinery,74.0,5.6286,305.28,191.99,2026-05-20,,,,,,
+3430,TJX,159.21,Consumer Cyclical,Apparel Retail,64.0,3.8193,165.82,119.84,2026-05-20,,,,,,
+7937,ICLR,115.09,Healthcare,Diagnostics & Research,17.0,6.4229,211.0,66.57,2026-05-20,,,,,,
+8279,LOW,221.05,Consumer Cyclical,Home Improvement Retail,14.0,6.4329,293.06,208.0,2026-05-20,,,,,,
+8948,INTU,383.93,Technology,Software - Application,7.0,19.33,813.7,342.11,2026-05-20,,,,,,
+9375,ELF,50.72,Consumer Defensive,Household & Personal Products,2.0,3.0816,150.99,50.15,2026-05-20,,,,,,
