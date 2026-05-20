@@ -1,6 +1,5 @@
 # =============================================================================
-#   Filter high-RS, higher-priced stocks near 52-week highs
-#   (Including new all-time highs + up to 28% pullback)
+#   Filter high-RS, higher-priced stocks near 52-week highs + ATR/ADR Filter
 # =============================================================================
 import pandas as pd
 from pathlib import Path
@@ -13,10 +12,12 @@ OUTPUT_PATH  = Path("RS_Data/RS80_Price30_within27pct_52wh.csv")
 
 RS_THRESHOLD    = 80.0
 PRICE_THRESHOLD = 30.0
-MAX_PCT_BELOW   = 22        # ← as per this script
+MAX_PCT_BELOW   = 27        # You can change this
 MIN_AVGVOL10    = 450_000
 
-DEBUG_TICKER = "NVDA"        # Change or add more if needed
+# NEW: ATR & ADR Filter
+MIN_ATR = 3.0
+MIN_ADR = 3.0
 # ────────────────────────────────────────────────
 
 def parse_volume(x):
@@ -32,35 +33,6 @@ def parse_volume(x):
     return float(x)
 
 
-def debug_ticker(df, ticker):
-    """Debug specific ticker"""
-    row = df[df['Ticker'] == ticker]
-    if row.empty:
-        print(f"\nDEBUG: {ticker} → NOT FOUND in source data")
-        return
-    
-    row = row.iloc[0]
-    price = row['Price']
-    high = row['52WKH']
-    rs = row['RS Percentile']
-    vol = row['AvgVol10']
-    
-    pct_from_high = ((price - high) / high * 100).round(2) if pd.notna(high) and pd.notna(price) else None
-
-    print(f"\n=== DEBUG: {ticker} ===")
-    print(f"Price           : ${price:,.2f}")
-    print(f"52W High        : ${high:,.2f}")
-    print(f"% from 52WH     : {pct_from_high}%")
-    print(f"RS Percentile   : {rs:.1f}")
-    print(f"10d Avg Volume  : {vol:,.0f}")
-    print("-" * 50)
-
-    if pct_from_high is not None and pct_from_high >= -MAX_PCT_BELOW:
-        print("→ 52WH Distance : PASSED")
-    else:
-        print(f"→ 52WH Distance : FAILED (too far below {MAX_PCT_BELOW}%)")
-
-
 def main():
     if not INPUT_PATH.exists():
         print(f"Error: Input file not found → {INPUT_PATH}")
@@ -71,7 +43,8 @@ def main():
     print(f"→ Loaded {len(df):,} rows")
 
     # Convert numeric columns
-    numeric_cols = ['Price', '52WKH', 'RS Percentile', 'AvgVol10', 'SMA50', 'SMA200']
+    numeric_cols = ['Price', '52WKH', 'RS Percentile', 'AvgVol10', 'ATR', 'ADR',
+                    'SMA50', 'SMA200']
     for col in numeric_cols:
         if col in df.columns:
             if col == 'AvgVol10':
@@ -82,29 +55,39 @@ def main():
     # Drop invalid rows
     df = df.dropna(subset=['Price', '52WKH', 'RS Percentile', 'AvgVol10'])
 
-    # === CORRECTED: % From 52-Week High ===
+    # Calculate % from 52-week high
     df['%_From_52WKH'] = ((df['Price'] - df['52WKH']) / df['52WKH']) * 100
     df['%_From_52WKH'] = df['%_From_52WKH'].round(2)
 
-    # Debug BBOX.NS
-    debug_ticker(df, DEBUG_TICKER)
-
-    # === MAIN FILTER (Fixed) ===
+    # === MAIN FILTER with ATR/ADR ===
     mask = (
-        (df['%_From_52WKH'] >= -MAX_PCT_BELOW) &     # New highs + up to 28% pullback
+        (df['%_From_52WKH'] >= -MAX_PCT_BELOW) &     
         (df['RS Percentile'] >= RS_THRESHOLD) &
         (df['Price'] >= PRICE_THRESHOLD) &
         (df['AvgVol10'] >= MIN_AVGVOL10)
     )
 
+    # Apply ATR & ADR filter only on Stocks (not ETFs)
+    stock_mask = (df['Sector'] != 'ETF') & (df['Sector'].notna())
+    df.loc[stock_mask, 'Passes_ATR_ADR'] = (
+        (df.loc[stock_mask, 'ATR'] >= MIN_ATR) & 
+        (df.loc[stock_mask, 'ADR'] >= MIN_ADR)
+    )
+    # ETFs automatically pass ATR/ADR filter
+    df['Passes_ATR_ADR'] = df['Passes_ATR_ADR'].fillna(True)
+
+    # Final combined filter
+    mask = mask & df['Passes_ATR_ADR']
+
     filtered = df[mask].copy()
 
     print(f"\nAfter filters:")
-    print(f"  • within {MAX_PCT_BELOW}% pullback from 52-week high (including new highs)")
     print(f"  • RS Percentile ≥ {RS_THRESHOLD}")
     print(f"  • Price ≥ ${PRICE_THRESHOLD:,}")
-    print(f"  • 10-day Avg Volume ≥ {MIN_AVGVOL10:,} shares")
-    print(f"→ {len(filtered):,} rows remain")
+    print(f"  • Within {MAX_PCT_BELOW}% of 52-week high")
+    print(f"  • 10d Avg Vol ≥ {MIN_AVGVOL10:,}")
+    print(f"  • ATR ≥ {MIN_ATR}  AND  ADR ≥ {MIN_ADR}  (Stocks only)")
+    print(f"→ {len(filtered):,} stocks remain")
 
     if len(filtered) == 0:
         print("No stocks match the current criteria.")
@@ -112,27 +95,25 @@ def main():
 
     # Desired columns
     desired = [
-        'Rank', 'Ticker', 'Price', 'DVol',
-        'Sector', 'Industry',
-        'RS Percentile',
-        '1M_RS Percentile', '3M_RS Percentile', '6M_RS Percentile', 'ATR', 'ADR',
-        'AvgVol', 'AvgVol10',
-        '52WKH', '52WKL', 'MCAP',
+        'Rank', 'Ticker', 'Price', 'DVol', 'Sector', 'Industry',
+        'RS Percentile', '1M_RS Percentile', '3M_RS Percentile', '6M_RS Percentile',
+        'ATR', 'ADR',
+        'AvgVol', 'AvgVol10', '52WKH', '52WKL', 'MCAP',
         'Earning_Date', 'SMA50', 'SMA200', 'SMA10W', 'SMA30W',
         '%_From_52WKH'
     ]
 
     available = [c for c in desired if c in filtered.columns]
-    result = filtered[available]
+    result = filtered[available].copy()
 
     result = result.sort_values('RS Percentile', ascending=False).reset_index(drop=True)
 
     result.to_csv(OUTPUT_PATH, index=False)
-    print(f"\nOutput overwritten → {OUTPUT_PATH}")
+    print(f"\nOutput saved → {OUTPUT_PATH}")
     print(f"Total rows saved: {len(result):,}")
 
     print("\nFirst 10 rows:")
-    print(result.head(10).to_string(index=False))
+    print(result.head(10)[['Rank', 'Ticker', 'Price', 'ATR', 'ADR', 'RS Percentile', '%_From_52WKH']].to_string(index=False))
 
 
 if __name__ == "__main__":
