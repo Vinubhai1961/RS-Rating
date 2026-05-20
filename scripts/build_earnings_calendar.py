@@ -231,7 +231,7 @@ def main():
             final_df = df_existing.copy()
 
         final_cols = ["Rank", "Ticker", "Price", "Sector", "Industry",
-                      "RS Percentile", "52WKH", "52WKL", "Earning_Date"] + DAY_COLS
+                      "RS Percentile", "52WKH", "52WKL", "Earning_Date", "ATR"] + DAY_COLS
 
         final_df = final_df[final_cols].copy()
         final_df = final_df.sort_values(["Earning_Date", "Rank"], na_position="last")
