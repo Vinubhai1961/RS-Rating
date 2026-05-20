@@ -115,7 +115,7 @@ def main():
         'Rank', 'Ticker', 'Price', 'DVol',
         'Sector', 'Industry',
         'RS Percentile',
-        '1M_RS Percentile', '3M_RS Percentile', '6M_RS Percentile',
+        '1M_RS Percentile', '3M_RS Percentile', '6M_RS Percentile', 'ATR', 'ADR',
         'AvgVol', 'AvgVol10',
         '52WKH', '52WKL', 'MCAP',
         'Earning_Date', 'SMA50', 'SMA200', 'SMA10W', 'SMA30W',
