@@ -2,8 +2,8 @@ name: Run VCP Stock Scanner
 
 # Controls when the workflow runs
 on:
-  #workflow_call:  
-  #workflow_dispatch: # Manual trigger
+  workflow_call:  
+  workflow_dispatch: # Manual trigger
      
   push:
     paths:
