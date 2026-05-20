@@ -223,17 +223,30 @@ def main():
                 new_row[f"E_Day{i}"] = price_map.get(ticker, pd.NA)
 
             records_to_add.append(new_row)
-
+        # -------------------------------
+        # FINAL MERGE
+        # -------------------------------
         if records_to_add:
             df_new = pd.DataFrame(records_to_add)
             final_df = pd.concat([df_existing, df_new], ignore_index=True)
         else:
             final_df = df_existing.copy()
 
-        final_cols = ["Rank", "Ticker", "Price", "Sector", "Industry",
-                      "RS Percentile", "52WKH", "52WKL", "Earning_Date", "ATR"] + DAY_COLS
+        # ====================== FINAL COLUMNS WITH SAFE HANDLING ======================
+        final_cols = [
+            "Rank", "Ticker", "Price", "Sector", "Industry",
+            "RS Percentile", "ATR",                    
+            "52WKH", "52WKL", "Earning_Date"
+        ] + DAY_COLS
 
-        final_df = final_df[final_cols].copy()
+        # Safe column selection - only use columns that actually exist
+        available_cols = [col for col in final_cols if col in final_df.columns]
+        
+        # Add missing ATR column with NaN if it doesn't exist (for old records)
+        if "ATR" not in final_df.columns:
+            final_df["ATR"] = np.nan
+
+        final_df = final_df[available_cols].copy()
         final_df = final_df.sort_values(["Earning_Date", "Rank"], na_position="last")
 
         final_df.to_csv(out_path, index=False)
