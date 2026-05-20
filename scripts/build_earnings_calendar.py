@@ -14,7 +14,7 @@ MIN_ADR = 3.0
 
 BASE_COLS = [
     "Rank", "Ticker", "Price", "Sector", "Industry",
-    "RS Percentile", "52WKH", "52WKL", "EarningDate"
+    "RS Percentile", "52WKH", "52WKL", "EarningDate", "ATR"
 ]
 DAY_COLS = [f"E_Day{i}" for i in range(1, 7)]
 
