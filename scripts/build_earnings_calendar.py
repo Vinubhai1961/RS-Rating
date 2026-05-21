@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 import pandas as pd
 import numpy as np
 import traceback
+import pytz
 
 BASE_DIR = Path(".")
 ARCHIVE_DIR = BASE_DIR / "archive"
@@ -43,19 +44,28 @@ def is_missing(val):
     return pd.isna(val) or val == "" or str(val).strip().lower() == "nan"
 
 def get_today_source():
-    today_str = datetime.now().strftime("%m%d%Y")
-    file_path = ARCHIVE_DIR / f"rs_stocks_{today_str}.csv"
+    """Use US Eastern Time to determine market date"""
+    # Force Eastern Time (US Market timezone)
+    eastern = pytz.timezone('US/Eastern')
+    now_et = datetime.now(eastern)
+    
+    today_str = now_et.strftime("%m%d%Y")
+    preferred_file = ARCHIVE_DIR / f"rs_stocks_{today_str}.csv"
 
-    if not file_path.exists():
-        files = sorted(ARCHIVE_DIR.glob("rs_stocks_*.csv"), reverse=True)
-        if files:
-            file_path = files[0]
-            print(f"[WARNING] Today's file not found. Using latest: {file_path.name}")
-        else:
-            raise FileNotFoundError(f"No rs_stocks files found in {ARCHIVE_DIR}")
+    print(f"[INFO] Current Eastern Time: {now_et.strftime('%Y-%m-%d %H:%M')} → Looking for {today_str}")
 
-    print(f"[INFO] Using source file: {file_path.name}")
-    return file_path
+    if preferred_file.exists():
+        print(f"[INFO] Using today's file: {preferred_file.name}")
+        return preferred_file
+
+    # Fallback to latest file
+    files = sorted(ARCHIVE_DIR.glob("rs_stocks_*.csv"), reverse=True)
+    if files:
+        latest = files[0]
+        print(f"[WARNING] Today's file not found. Using latest: {latest.name}")
+        return latest
+    else:
+        raise FileNotFoundError(f"No rs_stocks files found in {ARCHIVE_DIR}")
 
         
 def read_source(path: Path):
