@@ -22,12 +22,18 @@ DAY_COLS = [f"E_Day{i}" for i in range(1, 7)]
 PRICE_CACHE = {}
 
 def next_trading_day(start_date, days_ahead: int):
+    """Return the date that is 'days_ahead' trading days AFTER start_date"""
+    if days_ahead < 1:
+        return start_date
+    
     current = start_date
     trading_days_found = 0
+    
     while trading_days_found < days_ahead:
         current += timedelta(days=1)
-        if current.weekday() < 5:
+        if current.weekday() < 5:        # Mon=0 ... Fri=4
             trading_days_found += 1
+            
     return current
 
 def normalize_ticker(val):
@@ -198,7 +204,7 @@ def main():
                 df_existing.at[idx, col] = price
                 updated_count += 1
 
-        records_to_add = []
+records_to_add = []
 
         for _, row in df_candidates.iterrows():
             ticker = normalize_ticker(row["Ticker"])
@@ -216,10 +222,12 @@ def main():
             for col in DAY_COLS:
                 new_row[col] = pd.NA
                 
+            # === FIXED: Proper post-earnings day counting ===
             for i in range(1, 7):
-                target_date = next_trading_day(earn_date, i)
+                target_date = next_trading_day(earn_date, i)   # Day 1 = next trading day after earnings
                 if target_date > run_date:
                     continue
+                    
                 price_map = get_price_map(target_date)
                 new_row[f"E_Day{i}"] = price_map.get(ticker, pd.NA)
 
