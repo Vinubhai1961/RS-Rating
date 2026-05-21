@@ -1,9 +1,9 @@
 // Auto-generated RS Rating thresholds - do not edit manually
-// Last updated: 2026-05-20 21:39 UTC
-usa98 = input.float(203.66, "USA 98th → RS ≥", group="USA Thresholds")
-usa89 = input.float(120.13, "USA 89th → RS ≥", group="USA Thresholds")
-usa69 = input.float(98.48, "USA 69th → RS ≥", group="USA Thresholds")
+// Last updated: 2026-05-21 21:29 UTC
+usa98 = input.float(209.00, "USA 98th → RS ≥", group="USA Thresholds")
+usa89 = input.float(120.57, "USA 89th → RS ≥", group="USA Thresholds")
+usa69 = input.float(98.54, "USA 69th → RS ≥", group="USA Thresholds")
 usa49 = input.float(91.42, "USA 49th → RS ≥", group="USA Thresholds")
-usa29 = input.float(86.85, "USA 29th → RS ≥", group="USA Thresholds")
-usa09 = input.float(71.39, "USA 9th  → RS ≥", group="USA Thresholds")
-usa01 = input.float(42.58, "USA 1st  → RS ≥", group="USA Thresholds")
+usa29 = input.float(86.79, "USA 29th → RS ≥", group="USA Thresholds")
+usa09 = input.float(71.98, "USA 9th  → RS ≥", group="USA Thresholds")
+usa01 = input.float(43.92, "USA 1st  → RS ≥", group="USA Thresholds")
