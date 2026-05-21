@@ -204,7 +204,7 @@ def main():
                 df_existing.at[idx, col] = price
                 updated_count += 1
 
-records_to_add = []
+        records_to_add = []
 
         for _, row in df_candidates.iterrows():
             ticker = normalize_ticker(row["Ticker"])
