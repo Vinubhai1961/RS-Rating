@@ -2347,3 +2347,18 @@
 2026-05-20 21:21:41,677 [INFO] Loaded 971 tickers from ticker_price_part_9.json
 2026-05-20 21:21:41,804 [INFO] Merged data saved to data/ticker_price.json with 9579 entries
 2026-05-20 21:21:41,807 [INFO] Price merge completed. Elapsed time: 0.2s
+2026-05-21 21:11:44,187 [INFO] Starting price merge process at 09:11 PM EDT on Thursday, May 21, 2026
+2026-05-21 21:11:44,187 [INFO] Searching for ticker_price_part_*.json files in data
+2026-05-21 21:11:44,187 [INFO] Found 10 part files to merge: ['ticker_price_part_0.json', 'ticker_price_part_1.json', 'ticker_price_part_2.json', 'ticker_price_part_3.json', 'ticker_price_part_4.json', 'ticker_price_part_5.json', 'ticker_price_part_6.json', 'ticker_price_part_7.json', 'ticker_price_part_8.json', 'ticker_price_part_9.json']
+2026-05-21 21:11:44,191 [INFO] Loaded 927 tickers from ticker_price_part_0.json
+2026-05-21 21:11:44,195 [INFO] Loaded 946 tickers from ticker_price_part_1.json
+2026-05-21 21:11:44,199 [INFO] Loaded 1000 tickers from ticker_price_part_2.json
+2026-05-21 21:11:44,204 [INFO] Loaded 996 tickers from ticker_price_part_3.json
+2026-05-21 21:11:44,208 [INFO] Loaded 991 tickers from ticker_price_part_4.json
+2026-05-21 21:11:44,212 [INFO] Loaded 923 tickers from ticker_price_part_5.json
+2026-05-21 21:11:44,217 [INFO] Loaded 918 tickers from ticker_price_part_6.json
+2026-05-21 21:11:44,223 [INFO] Loaded 976 tickers from ticker_price_part_7.json
+2026-05-21 21:11:44,228 [INFO] Loaded 964 tickers from ticker_price_part_8.json
+2026-05-21 21:11:44,232 [INFO] Loaded 986 tickers from ticker_price_part_9.json
+2026-05-21 21:11:44,354 [INFO] Merged data saved to data/ticker_price.json with 9627 entries
+2026-05-21 21:11:44,357 [INFO] Price merge completed. Elapsed time: 0.2s
