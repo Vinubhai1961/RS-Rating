@@ -43,7 +43,7 @@ def is_missing(val):
     return pd.isna(val) or val == "" or str(val).strip().lower() == "nan"
 
 def get_today_source():
-    """Improved: Better fallback logic"""
+    """Simple: Look for today's file, fallback to latest available"""
     today_str = datetime.now().strftime("%m%d%Y")
     preferred_file = ARCHIVE_DIR / f"rs_stocks_{today_str}.csv"
 
@@ -51,7 +51,7 @@ def get_today_source():
         print(f"[INFO] Using today's file: {preferred_file.name}")
         return preferred_file
 
-    # Fallback: Find the most recent file
+    # Fallback to most recent file
     files = sorted(ARCHIVE_DIR.glob("rs_stocks_*.csv"), reverse=True)
     if files:
         latest = files[0]
