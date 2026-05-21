@@ -229,53 +229,240 @@ def main():
 
             records_to_add.append(new_row)
 
-        # -------------------------------
-        # FINAL MERGE
-        # -------------------------------
-        if records_to_add:
-            df_new = pd.DataFrame(records_to_add)
-            final_df = pd.concat([df_existing, df_new], ignore_index=True)
-        else:
-            final_df = df_existing.copy()
 
-        # ====================== SAFE ATR HANDLING FOR OLD FILES ======================
-        # Add ATR column if missing (backward compatibility)
-        if "ATR" not in final_df.columns:
-            final_df["ATR"] = np.nan
-            print("[INFO] Added missing 'ATR' column for backward compatibility")
-
-        # Backfill ATR from latest rs_stocks data for existing tickers
-        if "ATR" in df_today.columns:
-            latest_atr = df_today[["Ticker", "ATR"]].drop_duplicates("Ticker")
-            latest_atr = latest_atr.set_index("Ticker")["ATR"]
+            # -------------------------------
+            # FINAL MERGE
+            # -------------------------------
+            if records_to_add:
+                df_new = pd.DataFrame(records_to_add)
+                final_df = pd.concat([df_existing, df_new], ignore_index=True)
+            else:
+                final_df = df_existing.copy()
             
-            # Update only rows where ATR is still NaN
-            mask_nan = final_df["ATR"].isna()
-            if mask_nan.any():
-                final_df.loc[mask_nan, "ATR"] = final_df.loc[mask_nan, "Ticker"].map(latest_atr)
-                filled_count = mask_nan.sum() - final_df["ATR"].isna().sum()
-                print(f"[INFO] Backfilled ATR for {filled_count} existing records")
-        # ============================================================================
-
-        # Final column list
-        final_cols = [
-            "Rank", "Ticker", "Price", "Sector", "Industry",
-            "RS Percentile", "ATR",                    
-            "52WKH", "52WKL", "Earning_Date"
-        ] + DAY_COLS
-
-        # Safe selection
-        available_cols = [col for col in final_cols if col in final_df.columns]
-        final_df = final_df[available_cols].copy()
-
-        final_df = final_df.sort_values(["Earning_Date", "Rank"], na_position="last")
-        final_df.to_csv(out_path, index=False)
-
-        print(f"\n[SUCCESS] Updated {updated_count} fields | Total records: {len(final_df)}")
-
-    except Exception as e:
-        print(f"\n[CRITICAL ERROR] {type(e).__name__}: {e}")
-        print(traceback.format_exc())
-        
+            # ====================== SAFE ATR HANDLING FOR OLD FILES ======================
+            if "ATR" not in final_df.columns:
+                final_df["ATR"] = np.nan
+                print("[INFO] Added missing 'ATR' column for backward compatibility")
+            
+            if "ATR" in df_today.columns:
+            
+                latest_atr = df_today[["Ticker", "ATR"]].drop_duplicates("Ticker")
+                latest_atr = latest_atr.set_index("Ticker")["ATR"]
+            
+                mask_nan = final_df["ATR"].isna()
+            
+                if mask_nan.any():
+            
+                    final_df.loc[mask_nan, "ATR"] = (
+                        final_df.loc[mask_nan, "Ticker"].map(latest_atr)
+                    )
+            
+                    filled_count = mask_nan.sum() - final_df["ATR"].isna().sum()
+            
+                    print(f"[INFO] Backfilled ATR for {filled_count} existing records")
+            
+            # ============================================================================
+            
+            # Final column list
+            final_cols = [
+                "Rank",
+                "Ticker",
+                "Price",
+                "Sector",
+                "Industry",
+                "RS Percentile",
+                "ATR",
+                "52WKH",
+                "52WKL",
+                "Earning_Date"
+            ] + DAY_COLS
+            
+            available_cols = [col for col in final_cols if col in final_df.columns]
+            
+            final_df = final_df[available_cols].copy()
+            
+            # =========================================================
+            # VALIDATE + AUTO FIX E_DAY PRICES
+            # =========================================================
+            
+            print("\n[STEP] VALIDATING & FIXING E_DAY PRICES...")
+            
+            validation_issues = []
+            fixed_count = 0
+            
+            for idx, row in final_df.iterrows():
+            
+                ticker = normalize_ticker(row["Ticker"])
+            
+                earn_date = pd.to_datetime(
+                    row["Earning_Date"],
+                    errors="coerce"
+                )
+            
+                if pd.isna(earn_date):
+                    continue
+            
+                earn_date = earn_date.date()
+            
+                for i in range(1, 7):
+            
+                    col = f"E_Day{i}"
+            
+                    if col not in final_df.columns:
+                        continue
+            
+                    target_date = next_trading_day(earn_date, i)
+            
+                    file_name = (
+                        f"rs_stocks_{target_date.strftime('%m%d%Y')}.csv"
+                    )
+            
+                    file_path = ARCHIVE_DIR / file_name
+            
+                    # exact archive required
+                    if not file_path.exists():
+            
+                        if not is_missing(row.get(col)):
+            
+                            validation_issues.append({
+                                "Ticker": ticker,
+                                "Column": col,
+                                "Issue": "Archive Missing",
+                                "ExpectedDate": target_date,
+                                "OldPrice": row.get(col),
+                                "NewPrice": pd.NA
+                            })
+            
+                            # clear stale price
+                            final_df.at[idx, col] = pd.NA
+            
+                            fixed_count += 1
+            
+                        continue
+            
+                    # load exact archive
+                    df_check = read_source(file_path)
+            
+                    price_col = (
+                        "Close"
+                        if "Close" in df_check.columns
+                        else "Price"
+                    )
+            
+                    df_check["Ticker"] = (
+                        df_check["Ticker"]
+                        .astype(str)
+                        .str.strip()
+                        .str.upper()
+                    )
+            
+                    match = df_check[df_check["Ticker"] == ticker]
+            
+                    if match.empty():
+            
+                        if not is_missing(row.get(col)):
+            
+                            validation_issues.append({
+                                "Ticker": ticker,
+                                "Column": col,
+                                "Issue": "Ticker Missing",
+                                "ExpectedDate": target_date,
+                                "OldPrice": row.get(col),
+                                "NewPrice": pd.NA
+                            })
+            
+                            final_df.at[idx, col] = pd.NA
+            
+                            fixed_count += 1
+            
+                        continue
+            
+                    actual_price = match.iloc[0][price_col]
+            
+                    if pd.isna(actual_price):
+                        continue
+            
+                    recorded_price = row.get(col)
+            
+                    # blank -> fill correct price
+                    if is_missing(recorded_price):
+            
+                        final_df.at[idx, col] = actual_price
+            
+                        validation_issues.append({
+                            "Ticker": ticker,
+                            "Column": col,
+                            "Issue": "Filled Missing Price",
+                            "ExpectedDate": target_date,
+                            "OldPrice": pd.NA,
+                            "NewPrice": actual_price
+                        })
+            
+                        fixed_count += 1
+            
+                        continue
+            
+                    # mismatch -> fix
+                    if round(float(actual_price), 4) != round(float(recorded_price), 4):
+            
+                        validation_issues.append({
+                            "Ticker": ticker,
+                            "Column": col,
+                            "Issue": "Price Corrected",
+                            "ExpectedDate": target_date,
+                            "OldPrice": recorded_price,
+                            "NewPrice": actual_price
+                        })
+            
+                        final_df.at[idx, col] = actual_price
+            
+                        fixed_count += 1
+            
+            # =========================================================
+            # SAVE VALIDATION REPORT
+            # =========================================================
+            
+            if validation_issues:
+            
+                df_issues = pd.DataFrame(validation_issues)
+            
+                validation_file = (
+                    OUTPUT_DIR / "validation_fixes.csv"
+                )
+            
+                df_issues.to_csv(validation_file, index=False)
+            
+                print(
+                    f"[INFO] Validation report saved: "
+                    f"{validation_file}"
+                )
+            
+                print(
+                    f"[INFO] Total fixes applied: "
+                    f"{fixed_count}"
+                )
+            
+            else:
+            
+                print("[SUCCESS] No validation issues found")
+            
+            # =========================================================
+            # FINAL SAVE
+            # =========================================================
+            
+            final_df = final_df.sort_values(
+                ["Earning_Date", "Rank"],
+                na_position="last"
+            )
+            
+            final_df.to_csv(out_path, index=False)
+            
+            print(
+                f"\n[SUCCESS] Updated {updated_count} fields | "
+                f"Auto-fixed {fixed_count} price issues | "
+                f"Total records: {len(final_df)}"
+            )
+            
+                    
 if __name__ == "__main__":
     main()
