@@ -43,22 +43,20 @@ def is_missing(val):
     return pd.isna(val) or val == "" or str(val).strip().lower() == "nan"
 
 def get_today_source():
-    """Simple: Look for today's file, fallback to latest available"""
     today_str = datetime.now().strftime("%m%d%Y")
-    preferred_file = ARCHIVE_DIR / f"rs_stocks_{today_str}.csv"
+    file_path = ARCHIVE_DIR / f"rs_stocks_{today_str}.csv"
 
-    if preferred_file.exists():
-        print(f"[INFO] Using today's file: {preferred_file.name}")
-        return preferred_file
+    if not file_path.exists():
+        files = sorted(ARCHIVE_DIR.glob("rs_stocks_*.csv"), reverse=True)
+        if files:
+            file_path = files[0]
+            print(f"[WARNING] Today's file not found. Using latest: {file_path.name}")
+        else:
+            raise FileNotFoundError(f"No rs_stocks files found in {ARCHIVE_DIR}")
 
-    # Fallback to most recent file
-    files = sorted(ARCHIVE_DIR.glob("rs_stocks_*.csv"), reverse=True)
-    if files:
-        latest = files[0]
-        print(f"[WARNING] Today's file ({today_str}) not found. Using latest available: {latest.name}")
-        return latest
-    else:
-        raise FileNotFoundError(f"No rs_stocks files found in {ARCHIVE_DIR}")
+    print(f"[INFO] Using source file: {file_path.name}")
+    return file_path
+
         
 def read_source(path: Path):
     print(f"[DEBUG] Reading file: {path.name}")
