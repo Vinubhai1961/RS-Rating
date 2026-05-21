@@ -79,31 +79,35 @@ def read_source(path: Path):
     return df
 
 def get_price_map(target_date):
+
     if target_date in PRICE_CACHE:
         return PRICE_CACHE[target_date]
 
-    print(f"[DEBUG] Looking for prices on/near {target_date.strftime('%Y-%m-%d')}")
+    print(f"[DEBUG] Looking for exact prices on {target_date.strftime('%Y-%m-%d')}")
 
-    current_date = target_date
-    max_lookback = 7
-    for _ in range(max_lookback + 1):
-        file_name = f"rs_stocks_{current_date.strftime('%m%d%Y')}.csv"
-        file_path = ARCHIVE_DIR / file_name
+    file_name = f"rs_stocks_{target_date.strftime('%m%d%Y')}.csv"
+    file_path = ARCHIVE_DIR / file_name
 
-        if file_path.exists():
-            print(f"[INFO] Using data from {current_date.strftime('%Y-%m-%d')}")
-            df = read_source(file_path)
-            price_col = "Close" if "Close" in df.columns else "Price"
-            df["Ticker"] = df["Ticker"].astype(str).str.strip().str.upper()
-            price_dict = df.set_index("Ticker")[price_col].to_dict()
-            PRICE_CACHE[target_date] = price_dict
-            return price_dict
+    # STRICT MATCH ONLY
+    if not file_path.exists():
+        print(f"[WARNING] Missing archive file: {file_name}")
 
-        current_date = current_date - timedelta(days=1)
+        PRICE_CACHE[target_date] = {}
+        return {}
 
-    print(f"[WARNING] No price data found for {target_date}")
-    PRICE_CACHE[target_date] = {}
-    return {}
+    print(f"[INFO] Using exact archive: {file_name}")
+
+    df = read_source(file_path)
+
+    price_col = "Close" if "Close" in df.columns else "Price"
+
+    df["Ticker"] = df["Ticker"].astype(str).str.strip().str.upper()
+
+    price_dict = df.set_index("Ticker")[price_col].to_dict()
+
+    PRICE_CACHE[target_date] = price_dict
+
+    return price_dict
 
 def month_output_path(run_date):
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
