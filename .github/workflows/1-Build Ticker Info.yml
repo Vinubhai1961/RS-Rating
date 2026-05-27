@@ -3,24 +3,44 @@ name: Build Ticker Info
 on:
   workflow_dispatch:
   schedule: 
-    - cron: "15 19 * * 1-5"  # 4:15 PM EST (07:15 UTC) Monday through Friday
-    #- cron: "00 21 * * 1-5"  # 4:00 PM EST (07:45 UTC) Monday through Friday
+    - cron: "15 19 * * 1-5"  # 4:15 PM EST Mon-Fri
 
 jobs:
+  check-market:
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.check.outputs.should_run }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install market calendar checker
+        run: pip install pandas_market_calendars pytz
+
+      - name: Check if NYSE is open today
+        id: check
+        run: python scripts/check_market_open.py
+
   build-ticker-info:
+    needs: check-market
+    if: needs.check-market.outputs.should_run == 'true'
     strategy:
       fail-fast: false
       matrix:
-        part_index: [0, 1, 2, 3, 4, 5]  # Four partitions for Phase 1
+        part_index: [0, 1, 2, 3, 4, 5]
         part_total: [6]
     runs-on: ubuntu-latest
-    timeout-minutes: 180  # Allow up to 180 minutes for safety
+    timeout-minutes: 180
 
     steps:
       - name: Print workflow start time (EDT)
         run: |
-          echo "Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
-      
+          echo "🚀 Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
       - uses: actions/checkout@v6
 
       - name: Setup Python
