@@ -1,21 +1,20 @@
 name: Build Ticker Info
- 
+
 on:
   workflow_dispatch:
   schedule: 
     - cron: "15 19 * * 1-5"  # 4:15 PM EST Mon-Fri
 
-  
-jobs:
+# ====================== WORKFLOW OUTPUTS ======================
+outputs:
+  market_open: ${{ needs.check-market.outputs.market_open }}
+# ============================================================
 
-  # Workflow-level output so next workflow can read it
-  outputs:
-    market_open: ${{ needs.check-market.outputs.market_open }}
-    
+jobs:
   check-market:
     runs-on: ubuntu-latest
     outputs:
-      should_run: ${{ steps.check.outputs.should_run }}
+      market_open: ${{ steps.check.outputs.market_open }}
     steps:
       - uses: actions/checkout@v6
 
@@ -33,7 +32,7 @@ jobs:
 
   build-ticker-info:
     needs: check-market
-    if: needs.check-market.outputs.should_run == 'true'
+    if: needs.check-market.outputs.market_open == 'true'
     strategy:
       fail-fast: false
       matrix:
@@ -118,7 +117,6 @@ jobs:
           find artifacts -type f -name "ticker_info_part_*.json" -exec cp {} data/ \; || true
           find artifacts -type f -name "partition_summary.json" -exec cp {} data/ \; || true
           find artifacts -type f -name "unresolved_tickers.txt" -exec cp {} data/ \; || true
-          ls -l data/ | grep -E "ticker_info_part_|partition_summary.json|unresolved_tickers.txt" || echo "No expected files copied"
 
       - name: Merge ticker_info.json files
         run: |
@@ -161,7 +159,7 @@ jobs:
           git stash pop || echo "No stash to pop"
           git add data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt logs/*
           edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
-          git commit -m "Commit Phase 1 final outputs: ticker_info.json, unresolved_tickers.txt, partition_summary.json and logs [${edt_time}]" || echo "No changes to commit"
+          git commit -m "Commit Phase 1 final outputs [${edt_time}]" || echo "No changes to commit"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git || echo "Push failed, possibly no changes"
 
       - name: Print workflow end time (EDT)
@@ -170,13 +168,14 @@ jobs:
 
   build-ticker-price:
     needs: merge-ticker-info
+    if: needs.check-market.outputs.market_open == 'true'
     strategy:
       fail-fast: false
       matrix:
-        part_index: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  # Four partitions for Phase 2
+        part_index: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
         part_total: [10]
     runs-on: ubuntu-latest
-    timeout-minutes: 120  # Allow up to 180 minutes for safety
+    timeout-minutes: 120
 
     steps:
       - name: Print workflow start time (EDT)
@@ -224,6 +223,7 @@ jobs:
 
   merge-ticker-price:
     needs: build-ticker-price
+    if: needs.check-market.outputs.market_open == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
@@ -255,8 +255,6 @@ jobs:
         run: |
           mkdir -p data logs
           find artifacts -type f -name "ticker_price_part_*.json" -exec cp {} data/ \; || true
-          ls -l data/ | grep -E "ticker_price_part_" || echo "No ticker_price_part_*.json files copied"
-        working-directory: .
 
       - name: Merge ticker price files
         run: |
