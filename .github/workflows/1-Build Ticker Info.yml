@@ -77,7 +77,8 @@ jobs:
           echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
 
   merge-ticker-info:
-    needs: build-ticker-info
+    needs: [check-market, build-ticker-info]
+    if: needs.check-market.outputs.market_open == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
