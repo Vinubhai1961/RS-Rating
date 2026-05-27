@@ -1,6 +1,6 @@
-Analysis of nasdaqtraded.txt (as of 2026-05-26 03:54:25):
+Analysis of nasdaqtraded.txt (as of 2026-05-27 04:08:14):
 
-1. Total Securities: 12683
+1. Total Securities: 12677
    - Represents the total number of securities listed across all exchanges in the file.
 
 2. Number of ETFs: 5230
@@ -9,16 +9,16 @@ Analysis of nasdaqtraded.txt (as of 2026-05-26 03:54:25):
 3. Security Type Breakdown:
 ETF                5230
 Common Stock       4043
-Other              2243
+Other              2241
 Preferred Stock     450
-Warrant             400
-Other               317
+Warrant             397
+Other               316
    - Categorizes securities based on ETF status and keywords in Security Name (e.g., Common Stock, Preferred Stock). Top 5 types shown, others in 'Other'.
 
 4. Securities by Exchange:
 Exchange Name
-Other            5473
-NASDAQ           2919
+Other            5468
+NASDAQ           2918
 NYSE Arca        2642
 BATS             1328
 NYSE American     318
@@ -30,30 +30,30 @@ Security Type  Common Stock   ETF  Other  Preferred Stock  Unit  Warrant
 Exchange Name                                                           
 BATS                      2  1322      4                0     0        0
 IEX                       0     0      3                0     0        0
-NASDAQ                 1598    75    815              323    74       34
+NASDAQ                 1598    75    814              323    74       34
 NYSE American           183     0    103               17     7        8
 NYSE Arca                 1  2623     14                1     3        0
-Other                  2259  1210   1302              109   233      358
+Other                  2259  1210   1301              109   232      355
    - Shows the count of each security type per exchange (e.g., ETFs on NASDAQ).
 
 6. NASDAQ Market Categories:
 Market Category
-    2919
+    2918
    - For NASDAQ-listed securities, indicates market tiers: Q (Global Select, large-cap), G (Global, mid-cap), S (Capital, small-cap).
 
 7. NASDAQ Securities with Financial Issues:
 No distressed securities found.
 
-8. Number of Warrant Stocks: 400
+8. Number of Warrant Stocks: 397
    - Counts securities categorized as warrants (e.g., rights to buy stock at a specific price).
 
 9. Top 5 Sectors:
 Sector
-Unknown       10910
-Financial       618
+Unknown       10905
+Financial       616
 Technology      465
-Healthcare      348
-Energy          298
+Healthcare      347
+Energy          300
    - Inferred from Security Name keywords, showing the most common industries.
 
 10. Top 5 Securities by Round Lot Size:
@@ -73,20 +73,20 @@ Chart.js Pie Chart for Security Types:
     "labels": [
       "ETF: 5230",
       "Common Stock: 4043",
-      "Other: 2243",
+      "Other: 2241",
       "Preferred Stock: 450",
-      "Warrant: 400",
-      "Other: 317"
+      "Warrant: 397",
+      "Other: 316"
     ],
     "datasets": [
       {
         "data": [
           5230,
           4043,
-          2243,
+          2241,
           450,
-          400,
-          317
+          397,
+          316
         ],
         "backgroundColor": [
           "#36A2EB",
