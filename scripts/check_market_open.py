@@ -6,7 +6,6 @@ import pytz
 import os
 
 def is_nyse_trading_day():
-    """Return True if today is a regular NYSE trading day"""
     try:
         nyse = mcal.get_calendar('NYSE')
         today = datetime.now(pytz.timezone('America/New_York')).date()
@@ -19,20 +18,19 @@ def is_nyse_trading_day():
         return is_open
     except Exception as e:
         print(f"Error checking market calendar: {e}")
-        # Fallback: skip weekends
         today_weekday = datetime.now().weekday()
         is_open = today_weekday < 5
-        print(f"Fallback check (weekday): {'OPEN' if is_open else 'CLOSED'}")
+        print(f"Fallback: {'OPEN' if is_open else 'CLOSED'}")
         return is_open
 
 if __name__ == "__main__":
-    should_run = is_nyse_trading_day()
+    market_open = is_nyse_trading_day()
     
-    # Modern GitHub Actions output method (no warning)
+    # Write to GITHUB_OUTPUT (modern way)
     output_file = os.getenv('GITHUB_OUTPUT')
     if output_file:
         with open(output_file, "a") as f:
-            f.write(f"should_run={str(should_run).lower()}\n")
+            f.write(f"market_open={str(market_open).lower()}\n")
+            f.write(f"should_run={str(market_open).lower()}\n")
     else:
-        # For manual running
-        print(f"Manual run - Should run: {should_run}")
+        print(f"Manual run - Market Open: {market_open}")
