@@ -1,11 +1,17 @@
 name: Build Ticker Info
-
+ 
 on:
   workflow_dispatch:
   schedule: 
     - cron: "15 19 * * 1-5"  # 4:15 PM EST Mon-Fri
 
+  
 jobs:
+
+  # Workflow-level output so next workflow can read it
+  outputs:
+    market_open: ${{ needs.check-market.outputs.market_open }}
+    
   check-market:
     runs-on: ubuntu-latest
     outputs:
