@@ -30,7 +30,7 @@ jobs:
       - name: Check NYSE status
         id: market
         run: |
-          python check_market_open.py
+          python scripts/check_market_open.py
 
       - name: Print status
         run: |
