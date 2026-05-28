@@ -6,28 +6,7 @@ on:
     - cron: "15 19 * * 1-5"  # 4:15 PM EST Mon-Fri
 
 jobs:
-  check-market:
-    runs-on: ubuntu-latest
-    outputs:
-      should_run: ${{ steps.check.outputs.should_run }}
-    steps:
-      - uses: actions/checkout@v6
-
-      - name: Setup Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.13"
-
-      - name: Install market calendar checker
-        run: pip install pandas_market_calendars pytz
-
-      - name: Check if NYSE is open today
-        id: check
-        run: python scripts/check_market_open.py
-
   build-ticker-info:
-    needs: check-market
-    if: needs.check-market.outputs.should_run == 'true'
     strategy:
       fail-fast: false
       matrix:
