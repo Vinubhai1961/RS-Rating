@@ -1,0 +1,44 @@
+name: Check Market Open
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: "15 19 * * 1-5"
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  check-market:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pandas_market_calendars pytz
+
+      - name: Check NYSE status
+        id: market
+        run: |
+          python check_market_open.py
+
+      - name: Print status
+        run: |
+          echo "Market Open = ${{ steps.market.outputs.market_open }}"
+
+      - name: Trigger 1-Build Ticker Info
+        if: steps.market.outputs.market_open == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run "1-Build Ticker Info.yml"
