@@ -2,10 +2,10 @@ name: Calculate RS Ratings
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Build Ticker Info"]
-    types: [completed]
-    branches: [main]
+  #workflow_run:
+    #workflows: ["Build Ticker Info"]
+    #types: [completed]
+    #branches: [main]
   
 jobs:
   fetch-rs:
