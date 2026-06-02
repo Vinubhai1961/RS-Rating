@@ -405,6 +405,12 @@ jobs:
             echo "🚀 Pushing committed results to GitHub..."
             git push origin main
           fi
+          
+      - name: Trigger 3-split_rs_stocks.yml
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run "3-split_rs_stocks.yml"
 
       - name: Print workflow end time (EDT)
         run: |
