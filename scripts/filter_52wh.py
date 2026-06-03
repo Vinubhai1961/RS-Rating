@@ -109,6 +109,9 @@ def main():
     mask = mask & df['Passes_ATR_ADR']
 
     filtered = df[mask].copy()
+    
+    # Debug specific ticker
+    debug_ticker(df, DEBUG_TICKER)        # checks original loaded data
 
     print(f"\nAfter filters:")
     print(f"  • RS Percentile ≥ {RS_THRESHOLD}")
