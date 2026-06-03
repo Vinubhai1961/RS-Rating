@@ -33,6 +33,32 @@ def parse_volume(x):
     return float(x)
 
 
+def debug_ticker(df, ticker):
+    """Enhanced debug"""
+    row = df[df['Ticker'] == ticker]
+    if row.empty:
+        print(f"\nDEBUG: {ticker} → NOT FOUND")
+        return
+    
+    row = row.iloc[0]
+    print(f"\n=== DEBUG: {ticker} ===")
+    print(f"Price           : ${row['Price']:,.2f}")
+    print(f"52W High        : ${row['52WKH']:,.2f}")
+    print(f"% from 52WH     : {row.get('%_From_52WKH', 'N/A')}%")
+    print(f"RS Percentile   : {row['RS Percentile']:.1f}")
+    print(f"10d Avg Volume  : {row['AvgVol10']:,.0f}")
+    print(f"SMA50           : ${row.get('SMA50', 'N/A'):,.2f}")
+    print(f"SMA200          : ${row.get('SMA200', 'N/A'):,.2f}")
+    
+    if pd.notna(row.get('SMA50')) and pd.notna(row.get('SMA200')):
+        print(f"SMA50 > SMA200  : {row['SMA50'] > row['SMA200']}")
+    if pd.notna(row.get('Price')) and pd.notna(row.get('SMA50')):
+        print(f"Price > SMA50   : {row['Price'] > row['SMA50']}")
+    if pd.notna(row.get('Price')) and pd.notna(row.get('SMA200')):
+        print(f"Price > SMA200  : {row['Price'] > row['SMA200']}")
+    
+    print("-" * 60)
+
 def main():
     if not INPUT_PATH.exists():
         print(f"Error: Input file not found → {INPUT_PATH}")
