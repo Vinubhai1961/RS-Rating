@@ -15,6 +15,9 @@ PRICE_THRESHOLD = 30.0
 MAX_PCT_BELOW   = 27        # You can change this
 MIN_AVGVOL10    = 400_000
 
+DEBUG_TICKER = "VSH"        # Change for testing
+
+
 # NEW: ATR & ADR Filter
 MIN_ATR = 3.0
 MIN_ADR = 3.0
