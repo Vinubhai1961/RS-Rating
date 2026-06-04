@@ -4,7 +4,11 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron: "00 18 * * 1-5"
+  # EDT (Mar-Nov)
+  - cron: "40 20 * * 1-5"
+
+  # EST (Nov-Mar)
+  #- cron: "40 21 * * 1-5"
 
 permissions:
   actions: write
