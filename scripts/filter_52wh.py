@@ -19,8 +19,8 @@ DEBUG_TICKER = "VSH"        # Change for testing
 
 
 # NEW: ATR & ADR Filter
-MIN_ATR = 3.0
-MIN_ADR = 3.0
+MIN_ATR = 2.5
+MIN_ADR = 2.5
 # ────────────────────────────────────────────────
 
 def parse_volume(x):
