@@ -2542,3 +2542,48 @@
 2026-06-05 22:17:16,167 [INFO] Loaded 978 tickers from ticker_price_part_9.json
 2026-06-05 22:17:16,300 [INFO] Merged data saved to data/ticker_price.json with 9726 entries
 2026-06-05 22:17:16,303 [INFO] Price merge completed. Elapsed time: 0.2s
+2026-06-08 22:30:52,558 [INFO] Starting price merge process at 10:30 PM EDT on Monday, June 08, 2026
+2026-06-08 22:30:52,558 [INFO] Searching for ticker_price_part_*.json files in data
+2026-06-08 22:30:52,558 [INFO] Found 10 part files to merge: ['ticker_price_part_0.json', 'ticker_price_part_1.json', 'ticker_price_part_2.json', 'ticker_price_part_3.json', 'ticker_price_part_4.json', 'ticker_price_part_5.json', 'ticker_price_part_6.json', 'ticker_price_part_7.json', 'ticker_price_part_8.json', 'ticker_price_part_9.json']
+2026-06-08 22:30:52,561 [INFO] Loaded 932 tickers from ticker_price_part_0.json
+2026-06-08 22:30:52,566 [INFO] Loaded 926 tickers from ticker_price_part_1.json
+2026-06-08 22:30:52,571 [INFO] Loaded 991 tickers from ticker_price_part_2.json
+2026-06-08 22:30:52,576 [INFO] Loaded 1004 tickers from ticker_price_part_3.json
+2026-06-08 22:30:52,577 [WARNING] Invalid 52WKL for FIGXU in ticker_price_part_3.json: 0.0
+2026-06-08 22:30:52,577 [WARNING] Invalid 52WKL for FMACU in ticker_price_part_3.json: 0.0
+2026-06-08 22:30:52,577 [WARNING] Invalid 52WKL for FSHP in ticker_price_part_3.json: 0.0
+2026-06-08 22:30:52,577 [WARNING] Invalid 52WKL for FSHPU in ticker_price_part_3.json: 0.0
+2026-06-08 22:30:52,578 [WARNING] Invalid 52WKL for FVN in ticker_price_part_3.json: 0.0
+2026-06-08 22:30:52,578 [WARNING] Invalid 52WKL for GIWWU in ticker_price_part_3.json: 0.0
+2026-06-08 22:30:52,578 [WARNING] Invalid 52WKL for GIXXU in ticker_price_part_3.json: 0.0
+2026-06-08 22:30:52,578 [WARNING] Invalid 52WKL for GPAC in ticker_price_part_3.json: 0.0
+2026-06-08 22:30:52,578 [WARNING] Invalid 52WKL for GPACU in ticker_price_part_3.json: 0.0
+2026-06-08 22:30:52,578 [WARNING] Invalid 52WKL for GSHR in ticker_price_part_3.json: 0.0
+2026-06-08 22:30:52,578 [WARNING] Invalid 52WKL for GSIW in ticker_price_part_3.json: 0.0
+2026-06-08 22:30:52,578 [WARNING] Invalid 52WKL for GSRF in ticker_price_part_3.json: 0.0
+2026-06-08 22:30:52,578 [WARNING] Invalid 52WKL for GTENU in ticker_price_part_3.json: 0.0
+2026-06-08 22:30:52,578 [WARNING] Invalid 52WKL for GYRO in ticker_price_part_3.json: 0.0
+2026-06-08 22:30:52,581 [INFO] Loaded 976 tickers from ticker_price_part_4.json
+2026-06-08 22:30:52,586 [INFO] Loaded 918 tickers from ticker_price_part_5.json
+2026-06-08 22:30:52,590 [INFO] Loaded 915 tickers from ticker_price_part_6.json
+2026-06-08 22:30:52,596 [INFO] Loaded 991 tickers from ticker_price_part_7.json
+2026-06-08 22:30:52,598 [WARNING] Invalid 52WKL for PTNM in ticker_price_part_7.json: 0.0
+2026-06-08 22:30:52,598 [WARNING] Invalid 52WKL for QETA in ticker_price_part_7.json: 0.0
+2026-06-08 22:30:52,598 [WARNING] Invalid 52WKL for QETAU in ticker_price_part_7.json: 0.0
+2026-06-08 22:30:52,598 [WARNING] Invalid 52WKL for QMMM in ticker_price_part_7.json: 0.0
+2026-06-08 22:30:52,598 [WARNING] Invalid 52WKL for QSEAU in ticker_price_part_7.json: 0.0
+2026-06-08 22:30:52,598 [WARNING] Invalid 52WKL for RANGU in ticker_price_part_7.json: 0.0
+2026-06-08 22:30:52,598 [WARNING] Invalid 52WKL for RDACU in ticker_price_part_7.json: 0.0
+2026-06-08 22:30:52,598 [WARNING] Invalid 52WKL for RDAGU in ticker_price_part_7.json: 0.0
+2026-06-08 22:30:52,598 [WARNING] Invalid 52WKL for RFAI in ticker_price_part_7.json: 0.0
+2026-06-08 22:30:52,598 [WARNING] Invalid 52WKL for RFAM in ticker_price_part_7.json: 0.0
+2026-06-08 22:30:52,598 [WARNING] Invalid 52WKL for RNGTU in ticker_price_part_7.json: 0.0
+2026-06-08 22:30:52,598 [WARNING] Invalid 52WKL for SCII in ticker_price_part_7.json: 0.0
+2026-06-08 22:30:52,598 [WARNING] Invalid 52WKL for SCIIU in ticker_price_part_7.json: 0.0
+2026-06-08 22:30:52,599 [WARNING] Invalid 52WKL for SCPQ in ticker_price_part_7.json: 0.0
+2026-06-08 22:30:52,599 [WARNING] Invalid 52WKL for SDHIU in ticker_price_part_7.json: 0.0
+2026-06-08 22:30:52,599 [WARNING] Invalid 52WKL for SENEB in ticker_price_part_7.json: 0.0
+2026-06-08 22:30:52,602 [INFO] Loaded 969 tickers from ticker_price_part_8.json
+2026-06-08 22:30:52,606 [INFO] Loaded 951 tickers from ticker_price_part_9.json
+2026-06-08 22:30:52,733 [INFO] Merged data saved to data/ticker_price.json with 9543 entries
+2026-06-08 22:30:52,737 [INFO] Price merge completed. Elapsed time: 0.2s
