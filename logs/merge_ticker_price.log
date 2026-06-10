@@ -2602,3 +2602,19 @@
 2026-06-09 22:25:34,579 [INFO] Loaded 983 tickers from ticker_price_part_9.json
 2026-06-09 22:25:34,710 [INFO] Merged data saved to data/ticker_price.json with 9721 entries
 2026-06-09 22:25:34,712 [INFO] Price merge completed. Elapsed time: 0.2s
+2026-06-10 00:15:56,687 [INFO] Starting price merge process at 12:15 AM EDT on Wednesday, June 10, 2026
+2026-06-10 00:15:56,687 [INFO] Searching for ticker_price_part_*.json files in data
+2026-06-10 00:15:56,687 [INFO] Found 10 part files to merge: ['ticker_price_part_0.json', 'ticker_price_part_1.json', 'ticker_price_part_2.json', 'ticker_price_part_3.json', 'ticker_price_part_4.json', 'ticker_price_part_5.json', 'ticker_price_part_6.json', 'ticker_price_part_7.json', 'ticker_price_part_8.json', 'ticker_price_part_9.json']
+2026-06-10 00:15:56,691 [INFO] Loaded 969 tickers from ticker_price_part_0.json
+2026-06-10 00:15:56,695 [INFO] Loaded 962 tickers from ticker_price_part_1.json
+2026-06-10 00:15:56,700 [INFO] Loaded 1022 tickers from ticker_price_part_2.json
+2026-06-10 00:15:56,701 [WARNING] Invalid 52WKL for ELOX in ticker_price_part_2.json: 0.0
+2026-06-10 00:15:56,705 [INFO] Loaded 1018 tickers from ticker_price_part_3.json
+2026-06-10 00:15:56,709 [INFO] Loaded 1012 tickers from ticker_price_part_4.json
+2026-06-10 00:15:56,714 [INFO] Loaded 957 tickers from ticker_price_part_5.json
+2026-06-10 00:15:56,720 [INFO] Loaded 960 tickers from ticker_price_part_6.json
+2026-06-10 00:15:56,724 [INFO] Loaded 1010 tickers from ticker_price_part_7.json
+2026-06-10 00:15:56,729 [INFO] Loaded 1005 tickers from ticker_price_part_8.json
+2026-06-10 00:15:56,734 [INFO] Loaded 988 tickers from ticker_price_part_9.json
+2026-06-10 00:15:56,867 [INFO] Merged data saved to data/ticker_price.json with 9902 entries
+2026-06-10 00:15:56,870 [INFO] Price merge completed. Elapsed time: 0.2s
