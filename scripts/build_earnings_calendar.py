@@ -9,8 +9,8 @@ ARCHIVE_DIR = BASE_DIR / "archive"
 OUTPUT_DIR = BASE_DIR / "Earnings"
 
 # ====================== NEW: ATR & ADR CONFIG ======================
-MIN_ATR = 3.0
-MIN_ADR = 3.0
+MIN_ATR = 2.5
+MIN_ADR = 2.5
 # ================================================================
 
 BASE_COLS = [
