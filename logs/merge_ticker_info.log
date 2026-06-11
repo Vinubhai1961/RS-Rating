@@ -2450,3 +2450,14 @@
 2026-06-10 22:32:54,898 [INFO] Loaded 2035 tickers from ticker_info_part_5.json
 2026-06-10 22:32:54,975 [INFO] Merged data saved to data/ticker_info.json with 12235 entries
 2026-06-10 22:32:54,977 [INFO] Ticker info merge completed. Elapsed time: 0.1s
+2026-06-11 22:28:48,614 [INFO] Starting ticker info merge process at 10:28 PM EDT on Thursday, June 11, 2026
+2026-06-11 22:28:48,614 [INFO] Searching for ticker_info_part_*.json files in data
+2026-06-11 22:28:48,615 [INFO] Found 6 part files to merge: ['ticker_info_part_0.json', 'ticker_info_part_1.json', 'ticker_info_part_2.json', 'ticker_info_part_3.json', 'ticker_info_part_4.json', 'ticker_info_part_5.json']
+2026-06-11 22:28:48,617 [INFO] Loaded 2040 tickers from ticker_info_part_0.json
+2026-06-11 22:28:48,619 [INFO] Loaded 2040 tickers from ticker_info_part_1.json
+2026-06-11 22:28:48,621 [INFO] Loaded 2040 tickers from ticker_info_part_2.json
+2026-06-11 22:28:48,623 [INFO] Loaded 2040 tickers from ticker_info_part_3.json
+2026-06-11 22:28:48,627 [INFO] Loaded 2040 tickers from ticker_info_part_4.json
+2026-06-11 22:28:48,630 [INFO] Loaded 2035 tickers from ticker_info_part_5.json
+2026-06-11 22:28:48,692 [INFO] Merged data saved to data/ticker_info.json with 12235 entries
+2026-06-11 22:28:48,694 [INFO] Ticker info merge completed. Elapsed time: 0.1s
