@@ -75,7 +75,7 @@ jobs:
           name: arctic-db-${{ matrix.partition }}
           path: tmp/arctic_db/
 
-      - name: 📊 Upload failed tickers log
+      - name: 📊 Upload fetch_price_history_rs log
         uses: actions/upload-artifact@v7
         with:
           name: fetch_price_history_rs_-${{ matrix.partition }}
