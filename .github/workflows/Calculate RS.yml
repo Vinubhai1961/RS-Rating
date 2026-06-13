@@ -29,6 +29,14 @@ jobs:
             exit 1
           fi
 
+      - name: 🗕️ Cache Python dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       - name: 🔬 Setup Python
         uses: actions/setup-python@v6
         with:
@@ -38,6 +46,18 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install yahooquery pandas numpy tqdm pytz arcticdb
+
+      - name: 🔢 Verify calculate_rs.py checksum
+        run: |
+          if [ ! -f scripts/calculate_rs.py ]; then
+            echo "Error: scripts/calculate_rs.py not found"
+            exit 1
+          fi
+          echo "SHA256: $(sha256sum scripts/calculate_rs.py)"
+
+      - name: 🔎 Verify calculate_rs.py arguments
+        run: |
+          python scripts/calculate_rs.py -h
 
       - name: ▶️ Fetch data for partition ${{ matrix.partition }}
         run: |
@@ -264,6 +284,20 @@ jobs:
           pip install --upgrade pip
           pip install pandas pandas-market-calendars numpy tqdm pytz arcticdb
 
+      - name: 🔮 Verify ArcticDB before RS calculation
+        run: |
+          python <<EOF
+          import arcticdb as adb
+          try:
+            arctic = adb.Arctic("lmdb://tmp/arctic_db")
+            if not arctic.has_library("prices"):
+                raise ValueError("Library 'prices' not found")
+            print("ArcticDB loaded successfully")
+          except Exception as e:
+            print(f"Failed to load ArcticDB: {e}")
+            exit(0)
+          EOF
+
       - name: 📃 Run RS calculation
         run: |
           mkdir -p logs RS_Data 
@@ -288,18 +322,45 @@ jobs:
             --rs-threshold 80.0 \
             --min-price 30.0
 
-      - name: 📦 Archive Results
+      - name: 📦 Archive RS + Inside Bar Results
         run: |
           mkdir -p archive
           current_date=$(date -u -d "4 hours ago" +"%m%d%Y")
+          echo "Archiving results for: ${current_date}"
+
           for file in rs_stocks rs_industries RSRATING; do
             if [ -f "RS_Data/${file}.csv" ]; then
               cp "RS_Data/${file}.csv" "archive/${file}_${current_date}.csv"
+              echo "Archived ${file}_${current_date}.csv"
+            else
+              echo "❌ RS_Data/${file}.csv not found!"
+              exit 1
             fi
           done
-          if [ -f "RS_Data/IB_Stocks.csv" ]; then
-            cp "RS_Data/IB_Stocks.csv" "archive/IB_Stocks_${current_date}.csv"
+
+          ib_file="RS_Data/IB_Stocks.csv"
+          if [ -f "$ib_file" ]; then
+            cp "$ib_file" "archive/IB_Stocks_${current_date}.csv"
+            echo "✅ Archived IB_Stocks_${current_date}.csv"
+          else
+            echo "❌ Warning: IB_Stocks_${current_date}.csv not found"
           fi
+
+          echo "📦 Final archived files:"
+          ls -l archive | tail -n 10
+
+      - name: 🗓️ Upload outputs
+        uses: actions/upload-artifact@v7
+        with:
+          name: rs-results
+          path: |
+            RS_Data/*.csv
+            logs/fetch_price_history_rs.log
+            logs/failed_tickers.log
+            logs/failed_ib_tickers.log
+            archive/*.csv
+            logs/debug_rs/*.log
+            logs/debug_rs/*.csv
 
       - name: 📤 Commit and Push RS Results
         env:
@@ -309,14 +370,24 @@ jobs:
           git config --global user.email "action@github.com"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
 
-          git add RS_Data/*.csv archive/*.csv logs/fetch_price_history_rs.log logs/failed_tickers.log logs/failed_ib_tickers.log logs/debug_rs/* 2>/dev/null || true
+          echo "📌 Repo status before commit:"
+          git status --porcelain
+
+          mkdir -p logs
+          git status | grep "modified:" > logs/git_modified_files.log || true
+
+          git add archive/*.csv RS_Data/*.csv logs/fetch_price_history_rs.log logs/failed_tickers.log logs/failed_ib_tickers.log logs/debug_rs/* 2>/dev/null || true
 
           if git diff --cached --quiet; then
-            echo "No changes to commit"
+            echo "⚠️ No changes to commit. Skipping commit & push."
           else
             commit_date=$(date -u -d '4 hours ago' +'%m%d%Y')
-            git commit -m "Add RS results for ${commit_date} [fetch logs included]"
-            git pull --rebase origin main
+            git commit -m "Add RS results for ${commit_date}"
+
+            echo "🔄 Pulling latest changes from origin/main (rebase)..."
+            git pull origin main
+
+            echo "🚀 Pushing committed results to GitHub..."
             git push origin main
           fi
 
