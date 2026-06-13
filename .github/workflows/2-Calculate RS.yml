@@ -63,9 +63,9 @@ jobs:
         run: |
           mkdir -p tmp/arctic_db
           mkdir -p logs
-          rm -f logs/failed_tickers.log
+          rm -f logs/fetch_price_history_rs.log
           python scripts/calculate_rs.py data/ticker_price.json \
-            --log-file logs/failed_tickers.log \
+            --log-file logs/fetch_price_history_rs.log \
             --partition ${{ matrix.partition }} \
             --total-partitions 4
 
@@ -79,7 +79,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: failed-tickers-${{ matrix.partition }}
-          path: logs/failed_tickers.log
+          path: logs/fetch_price_history_rs.log
           if-no-files-found: ignore
 
       - name: Print workflow end time (EDT)
