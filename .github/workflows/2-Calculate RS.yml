@@ -30,7 +30,7 @@ jobs:
           fi
 
       - name: 🗕️ Cache Python dependencies
-        uses: actions/checkout@v6
+        uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
@@ -45,7 +45,7 @@ jobs:
       - name: 📦 Install dependencies
         run: |
           pip install --upgrade pip
-          pip install yahooquery pandas numpy tqdm  pytz arcticdb
+          pip install yahooquery pandas numpy tqdm pytz arcticdb
 
       - name: 🔢 Verify calculate_rs.py checksum
         run: |
@@ -61,9 +61,7 @@ jobs:
 
       - name: ▶️ Fetch data for partition ${{ matrix.partition }}
         run: |
-          mkdir -p tmp/arctic_db
-          mkdir -p logs
-          rm -f logs/fetch_price_history_rs.log
+          mkdir -p tmp/arctic_db logs
           python scripts/calculate_rs.py data/ticker_price.json \
             --log-file logs/fetch_price_history_rs.log \
             --partition ${{ matrix.partition }} \
@@ -75,10 +73,10 @@ jobs:
           name: arctic-db-${{ matrix.partition }}
           path: tmp/arctic_db/
 
-      - name: 📊 Upload fetch_price_history_rs log
+      - name: 📊 Upload fetch log (per partition)
         uses: actions/upload-artifact@v7
         with:
-          name: fetch_price_history_rs_-${{ matrix.partition }}
+          name: fetch-logs
           path: logs/fetch_price_history_rs.log
           if-no-files-found: ignore
 
@@ -97,13 +95,6 @@ jobs:
 
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v6
-
-      - name: 🗃️ Restore cached merged ArcticDB # 🆕
-        uses: actions/checkout@v6
-        with:
-          path: tmp/arctic_db
-          key: arcticdb-merged-${{ github.run_id }}
-          restore-keys: arcticdb-merged-
 
       - name: ⬇️ Download ArcticDB partitions
         uses: actions/download-artifact@v8
@@ -182,33 +173,25 @@ jobs:
                   try:
                       df = lib.read(sym).data
       
-                      # --- Column check ---
                       if "datetime" not in df.columns or "close" not in df.columns:
                           issues.append((sym, "Missing columns"))
                           continue
       
-                      # --- Sort ---
                       df = df.sort_values("datetime")
-      
-                      # --- Basic stats ---
                       rows = len(df)
                       nan_close = df["close"].isna().sum()
                       zero_close = (df["close"] <= 0).sum()
                       dupes = df["datetime"].duplicated().sum()
       
-                      # --- Gaps ---
                       df["dt"] = pd.to_datetime(df["datetime"], unit="s")
                       gaps = (df["dt"].diff().dt.days > 5).sum()
       
-                      # --- Outliers ---
                       returns = df["close"].pct_change()
                       spikes = ((returns > 1.0) | (returns < -0.8)).sum()
       
-                      # --- Classification ---
                       category = classify_days(rows)
                       summary[category] += 1
       
-                      # --- Collect issues ---
                       if nan_close > 0 or zero_close > 0 or dupes > 0 or spikes > 0:
                           issues.append((
                               sym,
@@ -218,18 +201,14 @@ jobs:
                   except Exception as e:
                       issues.append((sym, f"READ ERROR: {e}"))
       
-              # ================= OUTPUT =================
               print("\n📊 DATA QUALITY SUMMARY")
               for k,v in summary.items():
                   print(f"{k:10}: {v}")
       
               print(f"\n⚠️ Total problematic tickers: {len(issues)}")
-      
-              # Show top 20 issues
               for i in issues[:20]:
                   print("❌", i)
       
-              # Fail pipeline if too many bad tickers
               if len(issues) > len(symbols) * 0.2:
                   raise ValueError("❌ Too many bad tickers (>20%)")
       
@@ -238,7 +217,6 @@ jobs:
       
           except Exception as e:
               print(f"❌ VALIDATION FAILED: {e}")
-              # exit(1)
           EOF
 
       - name: 📦 Upload merged ArcticDB
@@ -265,6 +243,30 @@ jobs:
 
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v6
+
+      - name: ⬇️ Download all fetch logs
+        uses: actions/download-artifact@v8
+        with:
+          name: fetch-logs
+          path: logs/temp_fetch_logs
+
+      - name: 🔄 Combine all partition logs
+        run: |
+          mkdir -p logs
+          echo "===== FETCH PRICE HISTORY RS LOG - COMBINED =====" > logs/fetch_price_history_rs.log
+          echo "Run Date: $(date -u -d '4 hours ago' +'%Y-%m-%d %H:%M:%S EDT')" >> logs/fetch_price_history_rs.log
+          echo "Total Partitions: 4" >> logs/fetch_price_history_rs.log
+          echo "" >> logs/fetch_price_history_rs.log
+
+          for log in logs/temp_fetch_logs/*.log; do
+            if [ -f "$log" ]; then
+              echo ">>> Partition Log from: $(basename "$log")" >> logs/fetch_price_history_rs.log
+              cat "$log" >> logs/fetch_price_history_rs.log
+              echo -e "\n\n=== END OF PARTITION LOG ===\n" >> logs/fetch_price_history_rs.log
+            fi
+          done
+
+          echo "✅ Combined fetch log created successfully"
 
       - name: ⬇️ Download merged ArcticDB
         uses: actions/download-artifact@v8
@@ -306,8 +308,8 @@ jobs:
             --log-file logs/failed_tickers.log \
             --metadata-file data/ticker_price.json \
             --debug
-            
-      - name: 🔍 Find Inside Bars (RS >= 80, Price >= 30)
+
+      - name: 🔍 Find Inside Bars
         run: |
           current_date=$(date -u -d "4 hours ago" +"%m%d%Y")
           mkdir -p logs RS_Data
@@ -319,14 +321,13 @@ jobs:
             --date "$current_date" \
             --rs-threshold 80.0 \
             --min-price 30.0
-            
+
       - name: 📦 Archive RS + Inside Bar Results
         run: |
           mkdir -p archive
           current_date=$(date -u -d "4 hours ago" +"%m%d%Y")
           echo "Archiving results for: ${current_date}"
 
-          # RS files
           for file in rs_stocks rs_industries RSRATING; do
             if [ -f "RS_Data/${file}.csv" ]; then
               cp "RS_Data/${file}.csv" "archive/${file}_${current_date}.csv"
@@ -337,7 +338,6 @@ jobs:
             fi
           done
 
-          # Inside Bar file
           ib_file="RS_Data/IB_Stocks.csv"
           if [ -f "$ib_file" ]; then
             cp "$ib_file" "archive/IB_Stocks_${current_date}.csv"
@@ -345,9 +345,6 @@ jobs:
           else
             echo "❌ Warning: IB_Stocks_${current_date}.csv not found"
           fi
-
-          # echo "🧹 Cleaning CSV files older than 90 days in archive..."
-          # find archive -type f -name "*.csv" -mtime +90 -print -delete
 
           echo "📦 Final archived files:"
           ls -l archive | tail -n 10
@@ -358,8 +355,9 @@ jobs:
           name: rs-results
           path: |
             RS_Data/*.csv
-            logs/failed_tickers.log
             logs/fetch_price_history_rs.log
+            logs/failed_tickers.log
+            logs/failed_ib_tickers.log
             archive/*.csv
             logs/debug_rs/*.log
             logs/debug_rs/*.csv
@@ -370,31 +368,16 @@ jobs:
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
-
-          # 🔐 Authenticate using GitHub token
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
 
           echo "📌 Repo status before commit:"
           git status --porcelain
 
-          # 📥 Save list of modified files
           mkdir -p logs
           git status | grep "modified:" > logs/git_modified_files.log || true
-          echo "📝 Modified files saved to logs/git_modified_files.log"
-          cat logs/git_modified_files.log
 
-          echo "➕ Staging all relevant result files..."
-          git add archive/*.csv RS_Data/*.csv
+          git add archive/*.csv RS_Data/*.csv logs/fetch_price_history_rs.log logs/failed_tickers.log logs/failed_ib_tickers.log logs/debug_rs/* 2>/dev/null || true
 
-          # NEW: Stage the full debug export (split files)
-          git add logs/debug_rs/*.csv 2>/dev/null || true
-          git add logs/debug_rs/*.log 2>/dev/null || true
-
-          # Optional: also commit the main log if you want to keep history of failures
-          git add logs/failed_tickers.log || true
-          git add logs/fetch_price_history_rs.log || true
-          
-          # ✅ Skip commit if nothing is staged
           if git diff --cached --quiet; then
             echo "⚠️ No changes to commit. Skipping commit & push."
           else
@@ -407,7 +390,7 @@ jobs:
             echo "🚀 Pushing committed results to GitHub..."
             git push origin main
           fi
-          
+
       - name: Trigger 3-split_rs_stocks.yml
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
