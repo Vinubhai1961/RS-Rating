@@ -1,0 +1,99 @@
+===== FETCH PRICE HISTORY RS LOG - COMBINED =====
+Run Date: 2026-06-13 18:02:16 EDT
+Total Partitions: 4
+
+>>> Partition Log from: fetch_price_history_rs.log
+2026-06-13 21:52:41,535 - Partition 1/4: 2487 tickers
+2026-06-13 21:52:41,542 - Starting fetch for 2487 tickers in 13 batches of 200
+2026-06-13 21:52:41,542 - Special tickers (bypass short history): {'SPY', 'SPCX'}
+2026-06-13 21:53:03,901 - ⚠️ ELOX: Limited history (4 days)
+2026-06-13 21:53:04,172 - ⚠️ EMEM: Limited history (17 days)
+2026-06-13 21:53:04,293 - ⚠️ EMJN: Limited history (9 days)
+2026-06-13 21:53:04,367 - ⚠️ EMMY: Limited history (27 days)
+2026-06-13 21:53:04,484 - ⚠️ EMSC: Limited history (16 days)
+2026-06-13 21:53:04,549 - ⚠️ EMXX: Limited history (6 days)
+2026-06-13 21:53:04,686 - ⚠️ ENRD: Limited history (3 days)
+2026-06-13 21:53:05,393 - ✅ Batch 1/13 completed in 23.85s | Success: 200 | Skipped: 0 | Failed: 0
+2026-06-13 21:53:26,198 - ⚠️ EROC: Limited history (3 days)
+2026-06-13 21:53:26,209 - ⚠️ EROK: Limited history (21 days)
+2026-06-13 21:53:26,875 - ⚠️ ETNG: Limited history (22 days)
+2026-06-13 21:53:26,946 - ⚠️ ETSS: Limited history (6 days)
+2026-06-13 21:53:27,193 - ⚠️ EUV: Limited history (27 days)
+2026-06-13 21:53:27,204 - ⚠️ EUVX: Limited history (8 days)
+2026-06-13 21:53:27,379 - ⚠️ EVMU: Limited history (13 days)
+2026-06-13 21:53:28,154 - ⚠️ EXYN: Limited history (20 days)
+2026-06-13 21:53:28,190 - ⚠️ EYES: Limited history (28 days)
+2026-06-13 21:53:28,581 - ✅ Batch 2/13 completed in 23.19s | Success: 200 | Skipped: 0 | Failed: 0
+2026-06-13 21:53:58,388 - ⚠️ FDXF: Limited history (13 days)
+2026-06-13 21:53:59,584 - ✅ Batch 3/13 completed in 31.00s | Success: 200 | Skipped: 0 | Failed: 0
+2026-06-13 21:54:23,999 - ⚠️ FINY: Limited history (28 days)
+2026-06-13 21:54:24,090 - ⚠️ FITZ: Limited history (12 days)
+2026-06-13 21:54:24,205 - ⚠️ FIYY: Limited history (28 days)
+2026-06-13 21:54:25,129 - ⚠️ FMAC: Limited history (19 days)
+2026-06-13 21:54:25,916 - ⚠️ FOTO: Limited history (11 days)
+2026-06-13 21:54:26,010 - ⚠️ FPAA: Limited history (5 days)
+2026-06-13 21:54:26,248 - ⚠️ FRBT: Limited history (2 days)
+2026-06-13 21:54:26,325 - ✅ Batch 4/13 completed in 26.74s | Success: 200 | Skipped: 0 | Failed: 0
+2026-06-13 21:54:49,471 - ⚠️ FRVO: Limited history (22 days)
+2026-06-13 21:54:50,840 - ⚠️ FXACU: Limited history (15 days)
+2026-06-13 21:54:51,348 - ⚠️ GASZ: Limited history (26 days)
+2026-06-13 21:54:51,632 - ✅ Batch 5/13 completed in 25.31s | Success: 200 | Skipped: 0 | Failed: 0
+2026-06-13 21:55:13,990 - ⚠️ GEQ: Limited history (4 days)
+2026-06-13 21:55:14,382 - ⚠️ GIEQ: Limited history (16 days)
+2026-06-13 21:55:14,704 - ⚠️ GLAM: Limited history (27 days)
+2026-06-13 21:55:15,314 - ⚠️ GMRS: Limited history (22 days)
+2026-06-13 21:55:15,391 - ⚠️ GNMX: Limited history (26 days)
+2026-06-13 21:55:15,586 - ✅ Batch 6/13 completed in 23.95s | Success: 200 | Skipped: 0 | Failed: 0
+2026-06-13 21:55:39,116 - ⚠️ GOOGM: Limited history (8 days)
+2026-06-13 21:55:39,127 - ⚠️ GOOGN: Limited history (8 days)
+2026-06-13 21:55:39,231 - ⚠️ GOVM: Limited history (21 days)
+2026-06-13 21:55:40,135 - ⚠️ GSRVU: Limited history (20 days)
+2026-06-13 21:55:40,330 - ⚠️ GTND: Limited history (21 days)
+2026-06-13 21:55:40,446 - ⚠️ GUACU: Limited history (20 days)
+2026-06-13 21:55:40,935 - ⚠️ HALX: Limited history (18 days)
+2026-06-13 21:55:41,053 - ⚠️ HAWK: Limited history (26 days)
+2026-06-13 21:55:41,192 - ⚠️ HBMX: Limited history (9 days)
+2026-06-13 21:55:41,237 - ✅ Batch 7/13 completed in 25.65s | Success: 200 | Skipped: 0 | Failed: 0
+2026-06-13 21:56:12,667 - ⚠️ HIS: Limited history (18 days)
+2026-06-13 21:56:12,711 - ⚠️ HJUN: Limited history (8 days)
+2026-06-13 21:56:12,850 - ⚠️ HMAY: Limited history (26 days)
+2026-06-13 21:56:13,096 - ⚠️ HONG: Limited history (22 days)
+2026-06-13 21:56:13,810 - ⚠️ HULL: Limited history (26 days)
+2026-06-13 21:56:13,876 - ✅ Batch 8/13 completed in 32.64s | Success: 200 | Skipped: 0 | Failed: 0
+2026-06-13 21:56:40,359 - ⚠️ HYPG: Limited history (8 days)
+2026-06-13 21:56:41,729 - ⚠️ IDACU: Limited history (20 days)
+2026-06-13 21:56:41,823 - ⚠️ IDJN: Limited history (8 days)
+2026-06-13 21:56:41,854 - ⚠️ IDMY: Limited history (26 days)
+2026-06-13 21:56:42,036 - ✅ Batch 9/13 completed in 28.16s | Success: 200 | Skipped: 0 | Failed: 0
+2026-06-13 21:57:11,744 - ⚠️ INFH: Limited history (6 days)
+2026-06-13 21:57:11,871 - ⚠️ INIO: Limited history (5 days)
+2026-06-13 21:57:12,266 - ⚠️ INYY: Limited history (8 days)
+2026-06-13 21:57:12,414 - ✅ Batch 10/13 completed in 30.38s | Success: 200 | Skipped: 0 | Failed: 0
+2026-06-13 21:57:42,856 - ⚠️ IPFX: Limited history (19 days)
+2026-06-13 21:57:42,933 - ⚠️ IPVVU: Limited history (7 days)
+2026-06-13 21:57:43,467 - ⚠️ ISNRU: Limited history (4 days)
+2026-06-13 21:57:44,715 - ⚠️ JABRU: Limited history (3 days)
+2026-06-13 21:57:44,758 - ⚠️ JADB: Limited history (26 days)
+2026-06-13 21:57:44,964 - ✅ Batch 11/13 completed in 32.55s | Success: 200 | Skipped: 0 | Failed: 0
+2026-06-13 21:58:11,707 - ⚠️ JOUL: Limited history (27 days)
+2026-06-13 21:58:11,798 - ⚠️ JPFP: Limited history (5 days)
+2026-06-13 21:58:12,129 - ⚠️ JUDB: Limited history (27 days)
+2026-06-13 21:58:12,255 - ⚠️ JUNC: Limited history (8 days)
+2026-06-13 21:58:12,752 - ✅ Batch 12/13 completed in 27.79s | Success: 200 | Skipped: 0 | Failed: 0
+2026-06-13 21:58:24,554 - ⚠️ KEYYU: Limited history (8 days)
+2026-06-13 21:58:24,864 - ⚠️ KMCA: Limited history (26 days)
+2026-06-13 21:58:25,066 - ✅ Batch 13/13 completed in 12.31s | Success: 87 | Skipped: 0 | Failed: 0
+2026-06-13 21:58:25,067 - 
+=== FINAL FETCH SUMMARY ===
+2026-06-13 21:58:25,067 - Successful: 2487
+2026-06-13 21:58:25,067 - Skipped: 0
+2026-06-13 21:58:25,067 - Failed: 0
+
+================================================================================
+FINAL SUMMARY - Partition finished at 2026-06-13 21:58:25
+Successful: 2487 | Skipped: 0 | Failed: 0
+================================================================================
+
+
+=== END OF PARTITION LOG ===
+
