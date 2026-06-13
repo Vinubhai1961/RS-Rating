@@ -262,7 +262,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          #gh workflow run "2-Calculate RS.yml"
+          gh workflow run "2-Calculate RS.yml"
 
       - name: Print workflow end time (EDT)
         run: |
