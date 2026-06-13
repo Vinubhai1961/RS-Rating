@@ -359,6 +359,7 @@ jobs:
           path: |
             RS_Data/*.csv
             logs/failed_tickers.log
+            logs/fetch_price_history_rs.log
             archive/*.csv
             logs/debug_rs/*.log
             logs/debug_rs/*.csv
