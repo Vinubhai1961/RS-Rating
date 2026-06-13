@@ -38,8 +38,6 @@ logging.basicConfig(
 )
 
 # =========================================================
-# Earnings helper
-# =========================================================
 def get_today_earning_date(calendar_events, yahoo_sym):
     try:
         cal = calendar_events.get(yahoo_sym, {})
@@ -77,40 +75,6 @@ def setup_logging(verbose: bool):
 
 def is_special(symbol):
     return symbol in SPECIAL_TICKERS
-
-
-def get_price_with_fallback(yq, yahoo_sym, symbol):
-    """Improved price fetch for new IPOs like SPCX"""
-    price = None
-    source = "none"
-
-    # Primary: History
-    try:
-        hist = yq.history(period="1d")
-        if yahoo_sym in hist.index.get_level_values(0):
-            df = hist.loc[yahoo_sym]
-            if not df.empty and 'close' in df.columns:
-                price = df['close'].iloc[-1]
-                source = "history"
-    except Exception:
-        pass
-
-    # Fallback: summary_detail
-    if price is None:
-        try:
-            summary = yq.summary_detail.get(yahoo_sym, {}) if isinstance(yq.summary_detail, dict) else {}
-            for key in ["regularMarketPrice", "previousClose", "currentPrice", "price", "open"]:
-                if key in summary and isinstance(summary[key], (int, float)):
-                    price = summary[key]
-                    source = f"summary.{key}"
-                    break
-        except Exception:
-            pass
-
-    if is_special(symbol):
-        logging.debug(f"{symbol}: price from {source} = {price}")
-
-    return price, source
 
 
 def load_ticker_info():
@@ -160,6 +124,7 @@ def process_batch(batch, ticker_info):
             yahoo_symbols = [yahoo_symbol(symbol) for symbol in batch]
             yq = Ticker(yahoo_symbols)
 
+            # === Batch-level calls (performance critical) ===
             hist = yq.history(period="1d")
             summary_details = yq.summary_detail
             calendar_events = yq.calendar_events
@@ -168,7 +133,30 @@ def process_batch(batch, ticker_info):
                 yahoo_sym = yahoo_symbol(symbol)
 
                 try:
-                    price, price_source = get_price_with_fallback(yq, yahoo_sym, symbol)
+                    price = None
+                    source = "none"
+
+                    # 1. History (main method - fast)
+                    if yahoo_sym in hist.index.get_level_values(0):
+                        df = hist.loc[yahoo_sym]
+                        if not df.empty and 'close' in df.columns:
+                            price = df['close'].iloc[-1]
+                            source = "history"
+
+                    # 2. Fallback for new IPOs like SPCX
+                    if price is None:
+                        try:
+                            summary = summary_details.get(yahoo_sym, {}) if isinstance(summary_details, dict) else {}
+                            for key in ["regularMarketPrice", "previousClose", "currentPrice", "price", "open"]:
+                                if key in summary and isinstance(summary[key], (int, float)):
+                                    price = summary[key]
+                                    source = f"summary.{key}"
+                                    break
+                        except Exception:
+                            pass
+
+                    if is_special(symbol):
+                        logging.debug(f"{symbol}: price from {source} = {price}")
 
                     if price is None or not isinstance(price, (int, float)):
                         if is_special(symbol):
@@ -206,7 +194,7 @@ def process_batch(batch, ticker_info):
                             "52WKH": round(summary.get("fiftyTwoWeekHigh") or 0, 2),
                             "MCAP": round(summary.get("marketCap") or 0, 2),
                             "Earning_Date": earning_date,
-                            "Price_Source": price_source
+                            "Price_Source": source
                         }
                     })
 
@@ -261,7 +249,7 @@ def main(part_index=None, part_total=None, verbose=False):
         if idx < len(batches):
             time.sleep(random.uniform(*BATCH_DELAY_RANGE))
 
-    # Final checks for special tickers
+    # Final checks
     for special in SPECIAL_TICKERS:
         in_output = any(p.get("ticker") == special for p in all_prices)
         logging.info(f"{special} in final output: {'✅ YES' if in_output else '❌ NO'}")
