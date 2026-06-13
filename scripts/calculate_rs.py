@@ -12,7 +12,7 @@ import arcticdb as adb
 
 
 # ================== SPECIAL TICKERS (Force Save) ==================
-SPECIAL_TICKERS = {"SPCX", "SPY"}   # ← Add more tickers here as needed
+SPECIAL_TICKERS = {"SPCX", "SPY"}   # ← Add more new IPOs here
 
 
 def fetch_historical_data(tickers, arctic, log_file):
@@ -37,7 +37,7 @@ def fetch_historical_data(tickers, arctic, log_file):
 
         batch_skipped_list = []
 
-        # ================= FETCH WITH RETRY =================
+        # Fetch data
         for attempt in range(max_retries):
             try:
                 data = Ticker(batch).history(period="2y")
@@ -56,23 +56,25 @@ def fetch_historical_data(tickers, arctic, log_file):
         if data is None:
             continue
 
-        # ================= PROCESS EACH TICKER =================
+        # Process each ticker
         for ticker in batch:
             try:
                 if ticker not in data.index.get_level_values(0):
-                    skipped_tickers.append((ticker, "No data returned"))
+                    reason = "No data returned from Yahoo"
+                    skipped_tickers.append((ticker, reason))
                     batch_skipped_list.append(ticker)
                     batch_skipped += 1
                     continue
 
                 df = data.loc[ticker].reset_index()
                 if df.empty:
-                    skipped_tickers.append((ticker, "Empty DataFrame"))
+                    reason = "Empty DataFrame"
+                    skipped_tickers.append((ticker, reason))
                     batch_skipped_list.append(ticker)
                     batch_skipped += 1
                     continue
 
-                # Cleaning Pipeline
+                # Cleaning
                 df = df.rename(columns={"date": "datetime"})
                 df["datetime"] = pd.to_datetime(df["datetime"], utc=True)
                 df = df.sort_values("datetime")
@@ -85,21 +87,20 @@ def fetch_historical_data(tickers, arctic, log_file):
                 final_rows = len(df)
                 is_special = ticker in SPECIAL_TICKERS
 
-                # Bypass minimum rows for special tickers
                 if final_rows < 2 and not is_special:
-                    skipped_tickers.append((ticker, f"Too few valid rows: {final_rows}"))
+                    reason = f"Too few valid rows: {final_rows}"
+                    skipped_tickers.append((ticker, reason))
                     batch_skipped_list.append(ticker)
                     batch_skipped += 1
                     continue
 
                 if final_rows < 30:
                     if is_special:
-                        logging.info(f"✅ Force saved {ticker} ({final_rows} days history)")
+                        logging.info(f"✅ Force saved {ticker} ({final_rows} days)")
                     else:
                         logging.warning(f"⚠️ {ticker}: Limited history ({final_rows} days)")
 
                 df["datetime"] = df["datetime"].astype("int64") // 10**9
-
                 lib.write(ticker, df)
                 success_tickers.append(ticker)
                 batch_success += 1
@@ -111,7 +112,6 @@ def fetch_historical_data(tickers, arctic, log_file):
 
         batch_time = time.time() - batch_start_time
 
-        # ================= CLEAN BATCH SUMMARY =================
         logging.info(
             f"✅ Batch {i//batch_size + 1}/{total_batches} completed in {batch_time:.2f}s | "
             f"Success: {batch_success} | Skipped: {batch_skipped} | Failed: {batch_failed}"
@@ -120,19 +120,35 @@ def fetch_historical_data(tickers, arctic, log_file):
         if batch_skipped_list:
             logging.info(f"   Skipped: {batch_skipped_list}")
 
-    # ================= FINAL SUMMARY =================
-    with open(log_file, "a") as f:
-        if skipped_tickers:
-            f.write("\n--- Skipped Tickers ---\n")
-            for ticker, reason in skipped_tickers:
-                f.write(f"{ticker}: {reason}\n")
-
+    # ================= FINAL DETAILED SUMMARY =================
     logging.info("\n=== FINAL FETCH SUMMARY ===")
     logging.info(f"Successful: {len(success_tickers)}")
     logging.info(f"Skipped: {len(skipped_tickers)}")
     logging.info(f"Failed: {len(failed_tickers)}")
 
     print(f"\n✅ Fetch complete! Success: {len(success_tickers)}, Skipped: {len(skipped_tickers)}, Failed: {len(failed_tickers)}")
+
+    # Always show skipped details
+    if skipped_tickers:
+        print("\n--- Skipped Tickers ---")
+        logging.info("--- Skipped Tickers ---")
+        for ticker, reason in skipped_tickers:
+            line = f"{ticker}: {reason}"
+            print(line)
+            logging.info(line)
+
+    # Save to file as well
+    with open(log_file, "a") as f:
+        if skipped_tickers:
+            f.write("\n--- Skipped Tickers ---\n")
+            for ticker, reason in skipped_tickers:
+                f.write(f"{ticker}: {reason}\n")
+        if failed_tickers:
+            f.write("\n--- Failed Tickers ---\n")
+            for ticker, error in failed_tickers:
+                f.write(f"{ticker}: {error}\n")
+
+    print(f"Full details saved to: {log_file}")
 
 
 def load_ticker_list(file_path, partition=None, total_partitions=None):
