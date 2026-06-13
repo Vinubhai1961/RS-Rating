@@ -74,7 +74,7 @@ def fetch_historical_data(tickers, arctic, log_file):
                     batch_skipped += 1
                     continue
 
-                # Cleaning
+                # Cleaning Pipeline
                 df = df.rename(columns={"date": "datetime"})
                 df["datetime"] = pd.to_datetime(df["datetime"], utc=True)
                 df = df.sort_values("datetime")
@@ -120,7 +120,7 @@ def fetch_historical_data(tickers, arctic, log_file):
         if batch_skipped_list:
             logging.info(f"   Skipped: {batch_skipped_list}")
 
-    # ================= FINAL DETAILED SUMMARY =================
+    # ================= FINAL SUMMARY (Always shows skipped details) =================
     logging.info("\n=== FINAL FETCH SUMMARY ===")
     logging.info(f"Successful: {len(success_tickers)}")
     logging.info(f"Skipped: {len(skipped_tickers)}")
@@ -128,7 +128,6 @@ def fetch_historical_data(tickers, arctic, log_file):
 
     print(f"\n✅ Fetch complete! Success: {len(success_tickers)}, Skipped: {len(skipped_tickers)}, Failed: {len(failed_tickers)}")
 
-    # Always show skipped details
     if skipped_tickers:
         print("\n--- Skipped Tickers ---")
         logging.info("--- Skipped Tickers ---")
@@ -137,18 +136,18 @@ def fetch_historical_data(tickers, arctic, log_file):
             print(line)
             logging.info(line)
 
-    # Save to file as well
+    # Append final summary to shared log file
     with open(log_file, "a") as f:
+        f.write("\n" + "="*80 + "\n")
+        f.write(f"FINAL SUMMARY - Partition finished at {time.strftime('%Y-%m-%d %H:%M:%S')}\n")
+        f.write(f"Successful: {len(success_tickers)} | Skipped: {len(skipped_tickers)} | Failed: {len(failed_tickers)}\n")
         if skipped_tickers:
-            f.write("\n--- Skipped Tickers ---\n")
+            f.write("--- Skipped Tickers ---\n")
             for ticker, reason in skipped_tickers:
                 f.write(f"{ticker}: {reason}\n")
-        if failed_tickers:
-            f.write("\n--- Failed Tickers ---\n")
-            for ticker, error in failed_tickers:
-                f.write(f"{ticker}: {error}\n")
+        f.write("="*80 + "\n")
 
-    print(f"Full details saved to: {log_file}")
+    print(f"Full log saved to: {log_file}")
 
 
 def load_ticker_list(file_path, partition=None, total_partitions=None):
@@ -169,7 +168,7 @@ def load_ticker_list(file_path, partition=None, total_partitions=None):
 def main():
     parser = argparse.ArgumentParser(description="Fetch Yahoo historical data and store in ArcticDB")
     parser.add_argument("input_file", help="Path to ticker_price.json")
-    parser.add_argument("--log-file", default="logs/fetch_log.log", help="Path to log file")
+    parser.add_argument("--log-file", default="logs/fetch_price_history_rs.log", help="Shared log file")
     parser.add_argument("--arctic-db-path", default="tmp/arctic_db", help="Directory for ArcticDB")
     parser.add_argument("--partition", type=int, default=None)
     parser.add_argument("--total-partitions", type=int, default=None)
@@ -182,7 +181,7 @@ def main():
         filename=args.log_file,
         level=logging.INFO,
         format="%(asctime)s - %(message)s",
-        filemode="a"
+        filemode="a"          # 'a' = append (important for parallel partitions)
     )
 
     tickers = load_ticker_list(args.input_file, args.partition, args.total_partitions)
