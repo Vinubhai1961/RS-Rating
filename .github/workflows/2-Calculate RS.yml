@@ -78,7 +78,7 @@ jobs:
       - name: 📊 Upload failed tickers log
         uses: actions/upload-artifact@v7
         with:
-          name: failed-tickers-${{ matrix.partition }}
+          name: fetch_price_history_rs_-${{ matrix.partition }}
           path: logs/fetch_price_history_rs.log
           if-no-files-found: ignore
 
@@ -391,6 +391,7 @@ jobs:
 
           # Optional: also commit the main log if you want to keep history of failures
           git add logs/failed_tickers.log || true
+          git add logs/fetch_price_history_rs.log || true
           
           # ✅ Skip commit if nothing is staged
           if git diff --cached --quiet; then
