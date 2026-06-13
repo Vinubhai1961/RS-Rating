@@ -25,6 +25,9 @@ MAX_RETRY_TIMEOUT = 120
 RETRY_SUBPASS = True
 PRICE_THRESHOLD = 5.0
 
+# === Add important tickers here (detailed logs only for these) ===
+SPECIAL_TICKERS = {"SPY", "SPCX"}
+
 logging.basicConfig(
     level=logging.DEBUG,
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -35,7 +38,7 @@ logging.basicConfig(
 )
 
 # =========================================================
-# ✅ UPDATED: Earnings helper (TODAY ONLY) - SAFER VERSION
+# Earnings helper
 # =========================================================
 def get_today_earning_date(calendar_events, yahoo_sym):
     try:
@@ -72,6 +75,44 @@ def setup_logging(verbose: bool):
     logging.getLogger().setLevel(level)
 
 
+def is_special(symbol):
+    return symbol in SPECIAL_TICKERS
+
+
+def get_price_with_fallback(yq, yahoo_sym, symbol):
+    """Improved price fetch for new IPOs like SPCX"""
+    price = None
+    source = "none"
+
+    # Primary: History
+    try:
+        hist = yq.history(period="1d")
+        if yahoo_sym in hist.index.get_level_values(0):
+            df = hist.loc[yahoo_sym]
+            if not df.empty and 'close' in df.columns:
+                price = df['close'].iloc[-1]
+                source = "history"
+    except Exception:
+        pass
+
+    # Fallback: summary_detail
+    if price is None:
+        try:
+            summary = yq.summary_detail.get(yahoo_sym, {}) if isinstance(yq.summary_detail, dict) else {}
+            for key in ["regularMarketPrice", "previousClose", "currentPrice", "price", "open"]:
+                if key in summary and isinstance(summary[key], (int, float)):
+                    price = summary[key]
+                    source = f"summary.{key}"
+                    break
+        except Exception:
+            pass
+
+    if is_special(symbol):
+        logging.debug(f"{symbol}: price from {source} = {price}")
+
+    return price, source
+
+
 def load_ticker_info():
     if not os.path.exists(TICKER_INFO_FILE):
         logging.error(f"{TICKER_INFO_FILE} not found!")
@@ -80,15 +121,17 @@ def load_ticker_info():
     with open(TICKER_INFO_FILE, "r", encoding="utf-8") as f:
         try:
             ticker_info = json.load(f)
-            # ✅ CRITICAL FIX: Always sort for consistent partitioning
             qualified_tickers = sorted(ticker_info.keys())
             
             logging.info(f"Total tickers loaded: {len(qualified_tickers)}")
             logging.info(f"First 5 tickers: {qualified_tickers[:5]}")
             logging.info(f"Last 5 tickers: {qualified_tickers[-5:]}")
             
-            if "SPY" in qualified_tickers:
-                logging.info("✅ SPY found in ticker_info.json")
+            for special in SPECIAL_TICKERS:
+                if special in qualified_tickers:
+                    logging.info(f"✅ {special} found in ticker_info.json")
+                else:
+                    logging.warning(f"❌ {special} NOT found!")
             
             return ticker_info, qualified_tickers
             
@@ -109,8 +152,6 @@ def yahoo_symbol(symbol: str) -> str:
 
 
 def process_batch(batch, ticker_info):
-    total_wait = 0
-
     for attempt in range(MAX_BATCH_RETRIES):
         try:
             prices = []
@@ -127,42 +168,27 @@ def process_batch(batch, ticker_info):
                 yahoo_sym = yahoo_symbol(symbol)
 
                 try:
-                    price = None
-
-                    if yahoo_sym in hist.index.get_level_values(0):
-                        df = hist.loc[yahoo_sym]
-                        if not df.empty:
-                            price = df['close'].iloc[-1]
+                    price, price_source = get_price_with_fallback(yq, yahoo_sym, symbol)
 
                     if price is None or not isinstance(price, (int, float)):
+                        if is_special(symbol):
+                            logging.warning(f"❌ {symbol}: No valid price found")
                         failure_reasons["no_price"] += 1
                         continue
 
-                    if price < PRICE_THRESHOLD:
+                    if price < PRICE_THRESHOLD and not is_special(symbol):
                         failure_reasons["below_threshold"] += 1
                         continue
 
                     summary = summary_details.get(yahoo_sym, {}) if isinstance(summary_details, dict) else {}
-
-                    volume = summary.get("volume")
-                    avg_volume = summary.get("averageVolume")
-                    avg_volume_10days = summary.get("averageVolume10days")
-                    fifty_two_week_low = summary.get("fiftyTwoWeekLow")
-                    fifty_two_week_high = summary.get("fiftyTwoWeekHigh")
-                    market_cap = summary.get("marketCap")
-
-                    # =========================
-                    # ✅ FIXED: Earnings logic (Only for Stocks)
-                    # =========================
                     info = ticker_info.get(symbol, {}).get("info", {})
                     ticker_type = info.get("type", "Unknown")
 
                     if ticker_type != "Stock":
                         earning_date = None
                         logging.debug(f"{symbol} skipped earnings (type={ticker_type})")
-                        # Still include SPY and other important ETFs
-                        if symbol == "SPY":
-                            logging.info(f"✅ Force including SPY (type={ticker_type})")
+                        if is_special(symbol):
+                            logging.info(f"✅ Force including special ticker {symbol}")
                     else:
                         earning_date = get_today_earning_date(calendar_events, yahoo_sym)
 
@@ -173,18 +199,20 @@ def process_batch(batch, ticker_info):
                             "industry": info.get("industry", "n/a"),
                             "sector": info.get("sector", "n/a"),
                             "type": ticker_type,
-                            "DVol": volume if isinstance(volume, int) else None,
-                            "AvgVol": avg_volume if isinstance(avg_volume, int) else None,
-                            "AvgVol10": avg_volume_10days if isinstance(avg_volume_10days, int) else None,
-                            "52WKL": round(fifty_two_week_low, 2) if isinstance(fifty_two_week_low, (int, float)) else None,
-                            "52WKH": round(fifty_two_week_high, 2) if isinstance(fifty_two_week_high, (int, float)) else None,
-                            "MCAP": round(market_cap, 2) if isinstance(market_cap, (int, float)) else None,
-                            "Earning_Date": earning_date
+                            "DVol": summary.get("volume"),
+                            "AvgVol": summary.get("averageVolume"),
+                            "AvgVol10": summary.get("averageVolume10days"),
+                            "52WKL": round(summary.get("fiftyTwoWeekLow") or 0, 2),
+                            "52WKH": round(summary.get("fiftyTwoWeekHigh") or 0, 2),
+                            "MCAP": round(summary.get("marketCap") or 0, 2),
+                            "Earning_Date": earning_date,
+                            "Price_Source": price_source
                         }
                     })
 
                 except Exception as e:
-                    logging.debug(f"{symbol} failed: {e}")
+                    if is_special(symbol):
+                        logging.error(f"{symbol} failed: {e}")
                     failure_reasons["error"] += 1
 
             failed_tickers = [s for s in batch if s not in [p["ticker"] for p in prices]]
@@ -204,21 +232,13 @@ def main(part_index=None, part_total=None, verbose=False):
     ensure_dirs()
     setup_logging(verbose)
 
-    logging.info(f"Starting price build for part {part_index}")
+    logging.info(f"Starting price build for part {part_index} | Special: {SPECIAL_TICKERS}")
 
     ticker_info, qualified_tickers = load_ticker_info()
     
     if not ticker_info:
         logging.error("No ticker_info.json found to process.")
         return
-
-    qualified_tickers = list(ticker_info.keys())
-    logging.info(f"Total tickers loaded: {len(qualified_tickers)}")
-
-    if "SPY" in qualified_tickers:
-        logging.info("✅ SPY found in ticker_info.json")
-    else:
-        logging.warning("❌ SPY NOT found in ticker_info.json!")
 
     if part_index is not None and part_total is not None:
         part_tickers = partition_tickers(qualified_tickers, part_index, part_total)
@@ -241,9 +261,10 @@ def main(part_index=None, part_total=None, verbose=False):
         if idx < len(batches):
             time.sleep(random.uniform(*BATCH_DELAY_RANGE))
 
-    # Final SPY check
-    spy_in_output = any(p.get("ticker") == "SPY" for p in all_prices)
-    logging.info(f"SPY in final output: {'✅ YES' if spy_in_output else '❌ NO'}")
+    # Final checks for special tickers
+    for special in SPECIAL_TICKERS:
+        in_output = any(p.get("ticker") == special for p in all_prices)
+        logging.info(f"{special} in final output: {'✅ YES' if in_output else '❌ NO'}")
 
     if RETRY_SUBPASS and all_failed:
         unresolved_unique = sorted(set(all_failed))
