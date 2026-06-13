@@ -26,7 +26,11 @@ def fetch_historical_data(tickers, arctic, log_file):
         batch = tickers[i:i + batch_size]
         batch_success = 0
         batch_skipped = 0
+        batch_failed = 0
         batch_start_time = time.time()
+
+        batch_skipped_list = []
+        batch_failed_list = []   # Will store (ticker, reason)
 
         # ================= FETCH WITH RETRY =================
         for attempt in range(max_retries):
@@ -35,73 +39,62 @@ def fetch_historical_data(tickers, arctic, log_file):
                 break
             except Exception as e:
                 if attempt == max_retries - 1:
-                    logging.error(f"Batch {i//batch_size + 1} failed: {str(e)}")
-                    failed_tickers.extend([(t, str(e)) for t in batch])
+                    logging.error(f"Batch {i//batch_size + 1} completely failed: {str(e)}")
+                    for t in batch:
+                        failed_tickers.append((t, f"Batch fetch failed: {str(e)}"))
+                        batch_failed_list.append((t, f"Batch fetch failed: {str(e)}"))
+                    batch_failed = len(batch)
                     data = None
                 else:
-                    logging.warning(f"Retrying batch {i//batch_size + 1} (attempt {attempt+2}/{max_retries}) after error: {str(e)}")
+                    logging.warning(f"Retrying batch {i//batch_size + 1} (attempt {attempt+2}/{max_retries})")
                     time.sleep(2)
 
         if data is None:
+            logging.info(f"Batch {i//batch_size + 1} → ❌ {batch_failed} failed")
             continue
 
         # ================= PROCESS EACH TICKER =================
         for ticker in batch:
             try:
                 if ticker not in data.index.get_level_values(0):
-                    skipped_tickers.append((ticker, "No data returned"))
+                    reason = "No data returned from Yahoo"
+                    skipped_tickers.append((ticker, reason))
+                    batch_skipped_list.append((ticker, reason))
                     batch_skipped += 1
                     continue
 
                 df = data.loc[ticker].reset_index()
 
                 if df.empty:
-                    skipped_tickers.append((ticker, "Empty DataFrame"))
+                    reason = "Empty DataFrame"
+                    skipped_tickers.append((ticker, reason))
+                    batch_skipped_list.append((ticker, reason))
                     batch_skipped += 1
                     continue
 
                 # ================= CLEANING PIPELINE =================
                 df = df.rename(columns={"date": "datetime"})
                 df["datetime"] = pd.to_datetime(df["datetime"], utc=True)
-
-                # Sort (critical)
                 df = df.sort_values("datetime")
-
-                # Remove duplicates
-                before_dupes = len(df)
                 df = df.drop_duplicates(subset=["datetime"])
-                dupes_removed = before_dupes - len(df)
-
-                # Replace inf values
                 df = df.replace([np.inf, -np.inf], np.nan)
-
-                # Count NaNs before drop
                 nan_count = df["close"].isna().sum()
-
-                # Drop NaN closes
                 df = df.dropna(subset=["close"])
-
-                # Remove zero/negative prices (critical)
                 invalid_price_count = (df["close"] <= 0).sum()
                 df = df[df["close"] > 0]
-
-                # Optional: forward fill small gaps (safe)
                 df["close"] = df["close"].ffill()
 
-                # Minimum data check (important for RS + SMAs)
                 if len(df) < 5:
-                    skipped_tickers.append((ticker, f"Too few valid rows: {len(df)}"))
+                    reason = f"Too few valid rows: {len(df)}"
+                    skipped_tickers.append((ticker, reason))
+                    batch_skipped_list.append((ticker, reason))
                     batch_skipped += 1
                     continue
 
-                # ====================== NEW: DATA QUALITY FOR SMA ======================
                 final_rows = len(df)
                 if final_rows < 200:
-                    logging.warning(f"{ticker}: Limited history ({final_rows} days) - SMA200/SMA30W may be NaN")
-                elif final_rows < 50:
-                    logging.info(f"{ticker}: Very short history ({final_rows} days)")
+                    logging.warning(f"{ticker}: Limited history ({final_rows} days)")
 
-                # Convert datetime to UNIX timestamp (seconds)
                 df["datetime"] = df["datetime"].astype("int64") // 10**9
 
                 # ================= WRITE TO DB =================
@@ -109,38 +102,43 @@ def fetch_historical_data(tickers, arctic, log_file):
                 success_tickers.append(ticker)
                 batch_success += 1
 
-                # ================= DEBUG LOGGING =================
-                if nan_count > 0 or invalid_price_count > 0 or dupes_removed > 0:
-                    logging.info(
-                        f"{ticker}: cleaned → "
-                        f"NaN_removed={nan_count}, "
-                        f"invalid_price_removed={invalid_price_count}, "
-                        f"duplicates_removed={dupes_removed}, "
-                        f"final_rows={final_rows}"
-                    )
+                if nan_count > 0 or invalid_price_count > 0:
+                    logging.info(f"{ticker}: cleaned → NaN={nan_count}, invalid={invalid_price_count}, rows={final_rows}")
 
             except Exception as e:
-                failed_tickers.append((ticker, str(e)))
+                error_msg = str(e)
+                failed_tickers.append((ticker, error_msg))
+                batch_failed_list.append((ticker, error_msg))
+                batch_failed += 1
+                logging.warning(f"❌ Failed {ticker}: {error_msg}")
 
         batch_time = time.time() - batch_start_time
+
+        # ================= DETAILED BATCH SUMMARY =================
         logging.info(
-            f"✅ Completed batch {i//batch_size + 1}/{total_batches} - "
-            f"{batch_success} success, {batch_skipped} skipped, in {batch_time:.2f}s"
+            f"✅ Batch {i//batch_size + 1}/{total_batches} completed in {batch_time:.2f}s | "
+            f"✅ Success: {batch_success} | ⏭ Skipped: {batch_skipped} | ❌ Failed: {batch_failed}"
         )
 
-    # ================= FINAL LOGGING =================
+        if batch_skipped_list:
+            logging.info(f"   Skipped: {[t[0] for t in batch_skipped_list]}")
+        if batch_failed_list:
+            logging.info("   Failed tickers with reasons:")
+            for ticker, reason in batch_failed_list:
+                logging.info(f"     • {ticker}: {reason}")
+
+    # ================= FINAL SUMMARY =================
     with open(log_file, "a") as f:
         if skipped_tickers:
             f.write("\n--- Skipped Tickers ---\n")
             for ticker, reason in skipped_tickers:
                 f.write(f"{ticker}: {reason}\n")
-
         if failed_tickers:
             f.write("\n--- Failed Tickers ---\n")
             for ticker, error in failed_tickers:
                 f.write(f"{ticker}: {error}\n")
 
-    logging.info("\n=== Fetch Summary ===")
+    logging.info("\n=== FINAL FETCH SUMMARY ===")
     logging.info(f"Successful: {len(success_tickers)}")
     logging.info(f"Skipped: {len(skipped_tickers)}")
     logging.info(f"Failed: {len(failed_tickers)}")
@@ -151,7 +149,6 @@ def fetch_historical_data(tickers, arctic, log_file):
 def load_ticker_list(file_path, partition=None, total_partitions=None):
     with open(file_path, "r") as f:
         data = json.load(f)
-
     tickers = [item["ticker"] for item in data]
 
     if partition is not None and total_partitions:
@@ -184,7 +181,6 @@ def main():
     )
 
     tickers = load_ticker_list(args.input_file, args.partition, args.total_partitions)
-
     arctic = adb.Arctic(f"lmdb://{args.arctic_db_path}")
     fetch_historical_data(tickers, arctic, args.log_file)
 
