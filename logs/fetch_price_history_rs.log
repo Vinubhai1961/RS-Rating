@@ -1,5 +1,48 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-06-13 19:54:27 EDT
+Run Date: 2026-06-14 11:09:36 EDT
 Total Partitions: 4
 
-✅ Combined 0 partition logs successfully
+>>> Partition 0 Log
+
+================================================================================
+FINAL SUMMARY - Partition finished at 2026-06-14 15:06:25
+Successful: 2486 | Skipped: 1 | Failed: 0
+--- Skipped Tickers ---
+BRUNW: Too few valid rows: 1
+================================================================================
+
+=== END OF PARTITION 0 ===
+
+>>> Partition 1 Log
+
+================================================================================
+FINAL SUMMARY - Partition finished at 2026-06-14 15:06:28
+Successful: 2487 | Skipped: 0 | Failed: 0
+================================================================================
+
+=== END OF PARTITION 1 ===
+
+>>> Partition 2 Log
+
+================================================================================
+FINAL SUMMARY - Partition finished at 2026-06-14 15:06:24
+Successful: 2486 | Skipped: 1 | Failed: 0
+--- Skipped Tickers ---
+MFICL: Too few valid rows: 1
+================================================================================
+
+=== END OF PARTITION 2 ===
+
+>>> Partition 3 Log
+
+================================================================================
+FINAL SUMMARY - Partition finished at 2026-06-14 15:07:37
+Successful: 2487 | Skipped: 1 | Failed: 0
+--- Skipped Tickers ---
+SHRD: Too few valid rows: 1
+================================================================================
+
+=== END OF PARTITION 3 ===
+
+
+✅ Combined 4 partition logs successfully
