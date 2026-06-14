@@ -163,30 +163,43 @@ def load_ticker_list(file_path, partition=None, total_partitions=None):
         logging.info(f"Partition {partition}/{total_partitions}: {len(tickers)} tickers")
 
     return tickers
-
-
+    
 def main():
     parser = argparse.ArgumentParser(description="Fetch Yahoo historical data and store in ArcticDB")
     parser.add_argument("input_file", help="Path to ticker_price.json")
-    parser.add_argument("--log-file", default="logs/fetch_price_history_rs.log", help="Shared log file")
+    parser.add_argument("--log-file", default="logs/fetch_price_history_rs.log", help="Base log file name")
     parser.add_argument("--arctic-db-path", default="tmp/arctic_db", help="Directory for ArcticDB")
     parser.add_argument("--partition", type=int, default=None)
     parser.add_argument("--total-partitions", type=int, default=None)
     args = parser.parse_args()
 
-    os.makedirs(os.path.dirname(args.log_file), exist_ok=True)
+    # ================== DYNAMIC LOG FILE NAME ==================
+    if args.partition is not None:
+        # Create partition-specific log: fetch_price_history_rs_0.log, fetch_price_history_rs_1.log, etc.
+        base_name = os.path.splitext(os.path.basename(args.log_file))[0]
+        log_file = f"logs/{base_name}_{args.partition}.log"
+        logging.info(f"Partition {args.partition}: Using dedicated log file -> {log_file}")
+    else:
+        log_file = args.log_file
+
+    # Ensure directories exist
+    os.makedirs(os.path.dirname(log_file), exist_ok=True)
     os.makedirs(args.arctic_db_path, exist_ok=True)
 
+    # Setup logging
     logging.basicConfig(
-        filename=args.log_file,
+        filename=log_file,
         level=logging.INFO,
         format="%(asctime)s - %(message)s",
-        filemode="a"          # 'a' = append (important for parallel partitions)
+        filemode="a"          # append mode (safe for parallel runs)
     )
+
+    logging.info(f"Starting fetch for partition: {args.partition if args.partition is not None else 'ALL'}")
 
     tickers = load_ticker_list(args.input_file, args.partition, args.total_partitions)
     arctic = adb.Arctic(f"lmdb://{args.arctic_db_path}")
-    fetch_historical_data(tickers, arctic, args.log_file)
+    
+    fetch_historical_data(tickers, arctic, log_file)
 
 
 if __name__ == "__main__":
