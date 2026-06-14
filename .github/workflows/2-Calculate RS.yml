@@ -254,28 +254,70 @@ jobs:
       - name: 🔄 Combine all partition logs + Keep individual files
         shell: bash
         run: |
+          set -x
+      
           mkdir -p logs
       
-          echo "===== FETCH PRICE HISTORY RS LOG - COMBINED =====" > logs/fetch_price_history_rs.log
-          echo "Run Date: $(date -u -d '4 hours ago' +'%Y-%m-%d %H:%M:%S EDT')" >> logs/fetch_price_history_rs.log
-          echo "Total Partitions: 4" >> logs/fetch_price_history_rs.log
-          echo "" >> logs/fetch_price_history_rs.log
+          COMBINED_LOG="logs/fetch_price_history_rs.log"
+      
+          echo "===== FETCH PRICE HISTORY RS LOG - COMBINED =====" > "$COMBINED_LOG"
+          echo "Run Date: $(date -u -d '4 hours ago' +'%Y-%m-%d %H:%M:%S EDT')" >> "$COMBINED_LOG"
+          echo "Total Partitions: 4" >> "$COMBINED_LOG"
+          echo "" >> "$COMBINED_LOG"
+      
+          echo "===== DEBUG: Downloaded Files ====="
+          pwd
+          find logs -type f | sort || true
       
           count=0
       
-          find logs/temp_fetch_logs -name "*.log" | sort | while read log; do
+          while read -r log; do
+            [ -z "$log" ] && continue
+      
+            echo "Processing: $log"
+      
             count=$((count+1))
       
-            partition_num=$(basename "$log" | grep -o '[0-3]' | tail -1)
+            partition_num=$(basename "$log" | sed -E 's/.*_([0-9]+)\.log/\1/')
       
-            echo ">>> Partition $partition_num Log" >> logs/fetch_price_history_rs.log
-            cat "$log" >> logs/fetch_price_history_rs.log
-            echo "" >> logs/fetch_price_history_rs.log
-            echo "=== END OF PARTITION $partition_num ===" >> logs/fetch_price_history_rs.log
-            echo "" >> logs/fetch_price_history_rs.log
-          done
+            echo ">>> Partition $partition_num Log" >> "$COMBINED_LOG"
+            cat "$log" >> "$COMBINED_LOG"
       
-          echo "✅ Combined logs successfully" >> logs/fetch_price_history_rs.log
+            echo "" >> "$COMBINED_LOG"
+            echo "=== END OF PARTITION $partition_num ===" >> "$COMBINED_LOG"
+            echo "" >> "$COMBINED_LOG"
+      
+          done < <(find logs/temp_fetch_logs -type f -name "*.log" | sort)
+      
+          echo "===== DEBUG SUMMARY ====="
+          echo "Log files found: $count"
+      
+          if [ "$count" -eq 0 ]; then
+            echo "::error::No log files found in logs/temp_fetch_logs"
+      
+            echo "===== DIRECTORY TREE ====="
+            ls -lah logs || true
+            ls -lah logs/temp_fetch_logs || true
+            find . -name "*.log" | sort || true
+      
+            exit 1
+          fi
+      
+          if [ ! -s "$COMBINED_LOG" ]; then
+            echo "::error::Combined log file was not created or is empty"
+            exit 1
+          fi
+      
+          echo "" >> "$COMBINED_LOG"
+          echo "✅ Combined $count partition logs successfully" >> "$COMBINED_LOG"
+      
+          echo "===== COMBINED LOG CREATED ====="
+          ls -lh "$COMBINED_LOG"
+      
+          echo "===== FIRST 20 LINES ====="
+          head -20 "$COMBINED_LOG" || true
+      
+          echo "✅ Successfully merged $count partition logs"
       
       - name: ⬇️ Download merged ArcticDB
         uses: actions/download-artifact@v8
