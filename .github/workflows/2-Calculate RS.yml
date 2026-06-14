@@ -76,8 +76,8 @@ jobs:
       - name: 📊 Upload fetch log (per partition)
         uses: actions/upload-artifact@v7
         with:
-          name: fetch-logs
-          path: logs/fetch_price_history_rs.log
+          name: fetch_price_history_rs log -${{ matrix.partition }}
+          path: logs/fetch_price_history_rs-${{ matrix.partition }}.log
           if-no-files-found: ignore
 
       - name: Print workflow end time (EDT)
