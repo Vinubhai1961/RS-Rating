@@ -377,6 +377,11 @@ jobs:
             archive/*.csv
             logs/debug_rs/*.log
             logs/debug_rs/*.csv
+            
+      - name: 🧹 Clean up temporary files
+        run: |
+          rm -rf tmp/ logs/temp_fetch_logs/
+          echo "✅ Cleaned temporary directories"
 
       - name: 📤 Commit and Push RS Results
         env:
@@ -385,22 +390,33 @@ jobs:
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
-
+      
+          # Clean temp folders
+          rm -rf tmp/ logs/temp_fetch_logs/
+      
           echo "📌 Repo status before commit:"
           git status --porcelain
-
-          git add RS_Data/*.csv archive/*.csv logs/fetch_price_history_rs.log logs/fetch_price_history_rs_*.log logs/failed_tickers.log logs/failed_ib_tickers.log logs/debug_rs/* 2>/dev/null || true
-
+      
+          # Add only the files we care about
+          git add -f \
+            RS_Data/*.csv \
+            archive/*.csv \
+            logs/fetch_price_history_rs.log \
+            logs/failed_tickers.log \
+            logs/failed_ib_tickers.log \
+            logs/debug_rs/* 2>/dev/null || true
+      
           if git diff --cached --quiet; then
             echo "⚠️ No changes to commit. Skipping commit & push."
           else
             commit_date=$(date -u -d '4 hours ago' +'%m%d%Y')
-            git commit -m "Add RS results for ${commit_date}"
-
-            echo "🔄 Pulling latest changes from origin/main (rebase)..."
-            git pull origin main
-
-            echo "🚀 Pushing committed results to GitHub..."
+            echo "✅ Committing RS results for ${commit_date}..."
+            git commit -m "Add RS results for ${commit_date} [automated]"
+      
+            echo "🔄 Pulling latest changes..."
+            git pull --rebase origin main || true
+      
+            echo "🚀 Pushing..."
             git push origin main
           fi
 
