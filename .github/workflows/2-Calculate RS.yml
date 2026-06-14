@@ -245,34 +245,38 @@ jobs:
         uses: actions/checkout@v6
 
       - name: ⬇️ Download all fetch logs
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@v4
         with:
-          name: fetch-logs
+          pattern: fetch_price_history_rs_*
           path: logs/temp_fetch_logs
           merge-multiple: true
 
       - name: 🔄 Combine all partition logs + Keep individual files
+        shell: bash
         run: |
           mkdir -p logs
+      
           echo "===== FETCH PRICE HISTORY RS LOG - COMBINED =====" > logs/fetch_price_history_rs.log
           echo "Run Date: $(date -u -d '4 hours ago' +'%Y-%m-%d %H:%M:%S EDT')" >> logs/fetch_price_history_rs.log
           echo "Total Partitions: 4" >> logs/fetch_price_history_rs.log
           echo "" >> logs/fetch_price_history_rs.log
-
+      
           count=0
-          for log in logs/temp_fetch_logs/**/*.log; do
-            if [ -f "$log" ]; then
-              count=$((count+1))
-              partition_num=$(echo "$log" | grep -o '_[0-3]\.log' | tr -d '_.' || echo $count)
-              echo ">>> Partition $partition_num Log" >> logs/fetch_price_history_rs.log
-              cat "$log" >> logs/fetch_price_history_rs.log
-              echo -e "\n\n=== END OF PARTITION $partition_num ===\n" >> logs/fetch_price_history_rs.log
-            fi
+      
+          find logs/temp_fetch_logs -name "*.log" | sort | while read log; do
+            count=$((count+1))
+      
+            partition_num=$(basename "$log" | grep -o '[0-3]' | tail -1)
+      
+            echo ">>> Partition $partition_num Log" >> logs/fetch_price_history_rs.log
+            cat "$log" >> logs/fetch_price_history_rs.log
+            echo "" >> logs/fetch_price_history_rs.log
+            echo "=== END OF PARTITION $partition_num ===" >> logs/fetch_price_history_rs.log
+            echo "" >> logs/fetch_price_history_rs.log
           done
-
-          echo "✅ Combined $count partition logs successfully" >> logs/fetch_price_history_rs.log
-          echo "Individual logs also preserved in logs/ folder"
-
+      
+          echo "✅ Combined logs successfully" >> logs/fetch_price_history_rs.log
+      
       - name: ⬇️ Download merged ArcticDB
         uses: actions/download-artifact@v8
         with:
