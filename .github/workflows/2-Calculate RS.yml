@@ -251,7 +251,7 @@ jobs:
           path: logs/temp_fetch_logs
           merge-multiple: true
 
-      - name: 🔄 Combine all partition logs
+      - name: 🔄 Combine all partition logs + Keep individual files
         run: |
           mkdir -p logs
           echo "===== FETCH PRICE HISTORY RS LOG - COMBINED =====" > logs/fetch_price_history_rs.log
@@ -263,13 +263,15 @@ jobs:
           for log in logs/temp_fetch_logs/**/*.log; do
             if [ -f "$log" ]; then
               count=$((count+1))
-              echo ">>> Partition #$count Log" >> logs/fetch_price_history_rs.log
+              partition_num=$(echo "$log" | grep -o '_[0-3]\.log' | tr -d '_.' || echo $count)
+              echo ">>> Partition $partition_num Log" >> logs/fetch_price_history_rs.log
               cat "$log" >> logs/fetch_price_history_rs.log
-              echo -e "\n\n=== END OF PARTITION #$count ===\n" >> logs/fetch_price_history_rs.log
+              echo -e "\n\n=== END OF PARTITION $partition_num ===\n" >> logs/fetch_price_history_rs.log
             fi
           done
 
           echo "✅ Combined $count partition logs successfully" >> logs/fetch_price_history_rs.log
+          echo "Individual logs also preserved in logs/ folder"
 
       - name: ⬇️ Download merged ArcticDB
         uses: actions/download-artifact@v8
@@ -376,7 +378,7 @@ jobs:
           echo "📌 Repo status before commit:"
           git status --porcelain
 
-          git add RS_Data/*.csv archive/*.csv logs/fetch_price_history_rs.log logs/failed_tickers.log logs/failed_ib_tickers.log logs/debug_rs/* 2>/dev/null || true
+          git add RS_Data/*.csv archive/*.csv logs/fetch_price_history_rs.log logs/fetch_price_history_rs_*.log logs/failed_tickers.log logs/failed_ib_tickers.log logs/debug_rs/* 2>/dev/null || true
 
           if git diff --cached --quiet; then
             echo "⚠️ No changes to commit. Skipping commit & push."
