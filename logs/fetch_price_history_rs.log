@@ -1,12 +1,12 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-06-14 11:09:36 EDT
+Run Date: 2026-06-15 18:59:10 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-14 15:06:25
-Successful: 2486 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-06-15 22:56:59
+Successful: 2536 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
 BRUNW: Too few valid rows: 1
 ================================================================================
@@ -16,8 +16,8 @@ BRUNW: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-14 15:06:28
-Successful: 2487 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-06-15 22:55:43
+Successful: 2537 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -25,8 +25,8 @@ Successful: 2487 | Skipped: 0 | Failed: 0
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-14 15:06:24
-Successful: 2486 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-06-15 22:55:41
+Successful: 2536 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
 MFICL: Too few valid rows: 1
 ================================================================================
@@ -36,8 +36,8 @@ MFICL: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-14 15:07:37
-Successful: 2487 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-06-15 22:56:22
+Successful: 2537 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
 SHRD: Too few valid rows: 1
 ================================================================================
