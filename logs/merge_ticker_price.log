@@ -198,3 +198,19 @@
 2026-06-13 04:04:52,048 [INFO] Loaded 1028 tickers from ticker_price_part_9.json
 2026-06-13 04:04:52,190 [INFO] Merged data saved to data/ticker_price.json with 9949 entries
 2026-06-13 04:04:52,194 [INFO] Price merge completed. Elapsed time: 0.2s
+2026-06-15 22:51:26,378 [INFO] Starting price merge process at 10:51 PM EDT on Monday, June 15, 2026
+2026-06-15 22:51:26,378 [INFO] Searching for ticker_price_part_*.json files in data
+2026-06-15 22:51:26,378 [INFO] Found 10 part files to merge: ['ticker_price_part_0.json', 'ticker_price_part_1.json', 'ticker_price_part_2.json', 'ticker_price_part_3.json', 'ticker_price_part_4.json', 'ticker_price_part_5.json', 'ticker_price_part_6.json', 'ticker_price_part_7.json', 'ticker_price_part_8.json', 'ticker_price_part_9.json']
+2026-06-15 22:51:26,382 [INFO] Loaded 985 tickers from ticker_price_part_0.json
+2026-06-15 22:51:26,387 [INFO] Loaded 989 tickers from ticker_price_part_1.json
+2026-06-15 22:51:26,392 [INFO] Loaded 1036 tickers from ticker_price_part_2.json
+2026-06-15 22:51:26,397 [INFO] Loaded 1035 tickers from ticker_price_part_3.json
+2026-06-15 22:51:26,402 [INFO] Loaded 1038 tickers from ticker_price_part_4.json
+2026-06-15 22:51:26,407 [INFO] Loaded 988 tickers from ticker_price_part_5.json
+2026-06-15 22:51:26,409 [WARNING] Invalid 52WKL for MMAR in ticker_price_part_5.json: 0
+2026-06-15 22:51:26,414 [INFO] Loaded 990 tickers from ticker_price_part_6.json
+2026-06-15 22:51:26,419 [INFO] Loaded 1033 tickers from ticker_price_part_7.json
+2026-06-15 22:51:26,424 [INFO] Loaded 1024 tickers from ticker_price_part_8.json
+2026-06-15 22:51:26,430 [INFO] Loaded 1032 tickers from ticker_price_part_9.json
+2026-06-15 22:51:26,571 [INFO] Merged data saved to data/ticker_price.json with 10149 entries
+2026-06-15 22:51:26,575 [INFO] Price merge completed. Elapsed time: 0.2s
