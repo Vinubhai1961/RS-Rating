@@ -37,8 +37,8 @@ def is_missing(val):
     return pd.isna(val) or val == "" or str(val).strip().lower() == "nan"
 
 def get_today_source():
-    #today_str = datetime.now().strftime("%m%d%Y")
-    today_str = (datetime.now() - timedelta(days=1)).strftime("%m%d%Y")
+    today_str = datetime.now().strftime("%m%d%Y")
+    #today_str = (datetime.now() - timedelta(days=1)).strftime("%m%d%Y")
     file_path = ARCHIVE_DIR / f"rs_stocks_{today_str}.csv"
 
     if not file_path.exists():
