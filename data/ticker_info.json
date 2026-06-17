@@ -902,6 +902,13 @@
       "type": "Stock"
     }
   },
+  "ACOM": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
   "ACON": {
     "info": {
       "industry": "Health Information Services",
@@ -5414,13 +5421,6 @@
     "info": {
       "industry": "Airports & Air Services",
       "sector": "Industrials",
-      "type": "Stock"
-    }
-  },
-  "ASRT": {
-    "info": {
-      "industry": "Drug Manufacturers - Specialty & Generic",
-      "sector": "Healthcare",
       "type": "Stock"
     }
   },
@@ -12452,6 +12452,13 @@
       "type": "Stock"
     }
   },
+  "CAES": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "CAF": {
     "info": {
       "industry": "Asset Management",
@@ -16113,13 +16120,6 @@
       "type": "Stock"
     }
   },
-  "COIO": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
   "COIW": {
     "info": {
       "industry": "n/a",
@@ -17765,10 +17765,24 @@
       "type": "ETF"
     }
   },
+  "CTGG": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "CTGO": {
     "info": {
       "industry": "Gold",
       "sector": "Basic Materials",
+      "type": "Stock"
+    }
+  },
+  "CTHH": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -18409,10 +18423,24 @@
       "type": "Stock"
     }
   },
+  "CXII": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "CXIIU": {
     "info": {
       "industry": "Shell Companies",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "CXIIW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -27598,6 +27626,13 @@
       "industry": "Asset Management",
       "sector": "Financial Services",
       "type": "Stock"
+    }
+  },
+  "FHIL": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
     }
   },
   "FHLC": {
@@ -42580,6 +42615,13 @@
       "type": "ETF"
     }
   },
+  "KAZR": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "KB": {
     "info": {
       "industry": "Banks - Regional",
@@ -45345,21 +45387,7 @@
       "type": "Stock"
     }
   },
-  "LILAV": {
-    "info": {
-      "industry": "Telecom Services",
-      "sector": "Communication Services",
-      "type": "Stock"
-    }
-  },
-  "LILKV": {
-    "info": {
-      "industry": "Telecom Services",
-      "sector": "Communication Services",
-      "type": "Stock"
-    }
-  },
-  "LILPV": {
+  "LILAP": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -50294,13 +50322,6 @@
       "type": "Stock"
     }
   },
-  "MSOO": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
   "MSOS": {
     "info": {
       "industry": "n/a",
@@ -54088,6 +54109,13 @@
       "type": "Stock"
     }
   },
+  "NVA": {
+    "info": {
+      "industry": "Other Industrial Metals & Mining",
+      "sector": "Basic Materials",
+      "type": "Stock"
+    }
+  },
   "NVAX": {
     "info": {
       "industry": "Biotechnology",
@@ -54166,13 +54194,6 @@
     }
   },
   "NVDL": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
-  "NVDO": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -59168,13 +59189,6 @@
       "industry": "Leisure",
       "sector": "Consumer Cyclical",
       "type": "Stock"
-    }
-  },
-  "PLOO": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
     }
   },
   "PLOW": {
@@ -66996,13 +67010,6 @@
       "type": "Stock"
     }
   },
-  "SCLS": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
   "SCLX": {
     "info": {
       "industry": "Drug Manufacturers - General",
@@ -68711,13 +68718,6 @@
       "type": "Stock"
     }
   },
-  "SKBL": {
-    "info": {
-      "industry": "Engineering & Construction",
-      "sector": "Industrials",
-      "type": "Stock"
-    }
-  },
   "SKE": {
     "info": {
       "industry": "Other Industrial Metals & Mining",
@@ -69280,8 +69280,8 @@
   },
   "SMCIP": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Computer Hardware",
+      "sector": "Technology",
       "type": "Stock"
     }
   },
@@ -76286,13 +76286,6 @@
     }
   },
   "TSLL": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "ETF"
-    }
-  },
-  "TSLO": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -84280,6 +84273,13 @@
     }
   },
   "XSHD": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "ETF"
+    }
+  },
+  "XSHP": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
