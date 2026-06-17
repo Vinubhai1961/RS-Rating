@@ -1,12 +1,12 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-06-16 18:53:42 EDT
+Run Date: 2026-06-17 18:45:07 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-16 22:50:45
-Successful: 2540 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-06-17 22:42:56
+Successful: 2539 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
 BRUNW: Too few valid rows: 1
 ================================================================================
@@ -16,8 +16,8 @@ BRUNW: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-16 22:50:49
-Successful: 2541 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-06-17 22:41:58
+Successful: 2540 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -25,8 +25,8 @@ Successful: 2541 | Skipped: 0 | Failed: 0
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-16 22:51:29
-Successful: 2540 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-06-17 22:43:00
+Successful: 2539 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
 MFICL: Too few valid rows: 1
 ================================================================================
@@ -36,8 +36,8 @@ MFICL: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-16 22:51:05
-Successful: 2544 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-06-17 22:42:21
+Successful: 2543 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 3 ===
