@@ -149,7 +149,7 @@ def main():
 
     # Save dated archive output
     ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
-    archive_path = ARCHIVE_DIR / f"52wh_{date.today().strftime('%Y%m%d')}.csv"
+    archive_path = ARCHIVE_DIR / f"52wh_{date.today().strftime('%m%d%Y')}.csv"
     result.to_csv(archive_path, index=False)
     print(f"Archive saved → {archive_path}")
 
