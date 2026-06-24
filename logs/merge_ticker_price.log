@@ -289,3 +289,19 @@
 2026-06-23 22:15:52,118 [INFO] Loaded 1032 tickers from ticker_price_part_9.json
 2026-06-23 22:15:52,263 [INFO] Merged data saved to data/ticker_price.json with 9977 entries
 2026-06-23 22:15:52,268 [INFO] Price merge completed. Elapsed time: 0.2s
+2026-06-24 22:12:37,186 [INFO] Starting price merge process at 10:12 PM EDT on Wednesday, June 24, 2026
+2026-06-24 22:12:37,186 [INFO] Searching for ticker_price_part_*.json files in data
+2026-06-24 22:12:37,186 [INFO] Found 10 part files to merge: ['ticker_price_part_0.json', 'ticker_price_part_1.json', 'ticker_price_part_2.json', 'ticker_price_part_3.json', 'ticker_price_part_4.json', 'ticker_price_part_5.json', 'ticker_price_part_6.json', 'ticker_price_part_7.json', 'ticker_price_part_8.json', 'ticker_price_part_9.json']
+2026-06-24 22:12:37,188 [INFO] Loaded 990 tickers from ticker_price_part_0.json
+2026-06-24 22:12:37,190 [INFO] Loaded 996 tickers from ticker_price_part_1.json
+2026-06-24 22:12:37,193 [INFO] Loaded 1038 tickers from ticker_price_part_2.json
+2026-06-24 22:12:37,194 [WARNING] Invalid 52WKL for DFAL in ticker_price_part_2.json: 0
+2026-06-24 22:12:37,196 [INFO] Loaded 1036 tickers from ticker_price_part_3.json
+2026-06-24 22:12:37,200 [INFO] Loaded 1038 tickers from ticker_price_part_4.json
+2026-06-24 22:12:37,202 [INFO] Loaded 994 tickers from ticker_price_part_5.json
+2026-06-24 22:12:37,205 [INFO] Loaded 991 tickers from ticker_price_part_6.json
+2026-06-24 22:12:37,208 [INFO] Loaded 1036 tickers from ticker_price_part_7.json
+2026-06-24 22:12:37,211 [INFO] Loaded 1024 tickers from ticker_price_part_8.json
+2026-06-24 22:12:37,214 [INFO] Loaded 1037 tickers from ticker_price_part_9.json
+2026-06-24 22:12:37,295 [INFO] Merged data saved to data/ticker_price.json with 10179 entries
+2026-06-24 22:12:37,297 [INFO] Price merge completed. Elapsed time: 0.1s
