@@ -40,8 +40,8 @@ def fetch_historical_data(tickers, arctic, log_file):
         # Fetch data
         for attempt in range(max_retries):
             try:
-                # data = Ticker(batch).history(period="2y")
-                data = Ticker(batch).history(period="max")
+                data = Ticker(batch).history(period="2y")
+                # data = Ticker(batch).history(period="max")
                 break
             except Exception as e:
                 if attempt == max_retries - 1:
