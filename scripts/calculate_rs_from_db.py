@@ -553,7 +553,8 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
         os.path.join(output_dir, "rs_industries.csv"), index=False)
 
     generate_tradingview_csv(df_stocks, output_dir, ref_data, percentiles)
-
+    generate_pine_thresholds(df_stocks, output_dir, percentiles)
+    
     logging.info(f"RS calculation completed. {len(df_stocks)} tickers processed, {valid_rs_count} with valid RS.")
     print(f"\nRS calculation completed. {len(df_stocks)} tickers written.")
     print(f"Output files:")
