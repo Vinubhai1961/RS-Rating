@@ -274,7 +274,59 @@ def generate_tradingview_csv(df_stocks, output_dir, ref_data, percentile_values=
 
     return ''.join(lines)
 
+def build_rs_threshold_map(df_stocks, column, percentile_values):
+    valid_rs = (
+        df_stocks[column]
+        .dropna()
+        .sort_values(ascending=False)
+        .reset_index(drop=True)
+    )
 
+    total = len(valid_rs)
+    rs_map = {}
+
+    for p in percentile_values:
+        if total == 0:
+            rs_map[p] = 100.0
+            continue
+
+        top_n = max(1, round(total * (100 - p) / 100.0))
+        threshold_rs = valid_rs.iloc[min(top_n - 1, total - 1)]
+        rs_map[p] = round(float(threshold_rs), 2)
+
+    return rs_map
+
+
+def generate_pine_thresholds(df_stocks, output_dir, percentile_values):
+    threshold_sets = {
+        "ind": "RS",
+        "ind1m": "1M_RS",
+        "ind3m": "3M_RS",
+        "ind6m": "6M_RS",
+    }
+
+    lines = []
+    lines.append("// Auto-generated RS Rating thresholds - do not edit manually\n")
+    lines.append(f"// Last updated: {datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')}\n\n")
+
+    for prefix, col in threshold_sets.items():
+        rs_map = build_rs_threshold_map(df_stocks, col, percentile_values)
+
+        lines.append(f"// {col} thresholds\n")
+        for p in sorted(percentile_values, reverse=True):
+            label = f"{prefix}{p:02d}"
+            lines.append(
+                f'{label} = input.float({rs_map[p]:.2f}, "{prefix.upper()} {p}th → RS ≥", group="{prefix.upper()} Thresholds")\n'
+            )
+        lines.append("\n")
+
+    path = os.path.join(output_dir, "RS-Rating.txt")
+
+    with open(path, "w", encoding="utf-8") as f:
+        f.write("".join(lines))
+
+    print(f"RS-Rating.txt Pine thresholds generated → {path}")
+    
 def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=None, percentiles=None, debug=False):
     os.makedirs(os.path.dirname(log_file), exist_ok=True)
     logging.basicConfig(filename=log_file, level=logging.INFO, format="%(asctime)s - %(message)s")
