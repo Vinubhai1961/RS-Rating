@@ -1,0 +1,39 @@
+// Auto-generated RS Rating thresholds - do not edit manually
+// Last updated: 2026-06-25 02:57 UTC
+
+// RS thresholds
+usa98 = input.float(215.30, "USA 98th → RS ≥", group="USA Thresholds")
+usa89 = input.float(120.11, "USA 89th → RS ≥", group="USA Thresholds")
+usa69 = input.float(100.08, "USA 69th → RS ≥", group="USA Thresholds")
+usa49 = input.float(92.78, "USA 49th → RS ≥", group="USA Thresholds")
+usa29 = input.float(88.46, "USA 29th → RS ≥", group="USA Thresholds")
+usa09 = input.float(72.21, "USA 9th → RS ≥", group="USA Thresholds")
+usa01 = input.float(39.76, "USA 1th → RS ≥", group="USA Thresholds")
+
+// 1M_RS thresholds
+usa1m98 = input.float(135.94, "USA1M 98th → RS ≥", group="USA1M Thresholds")
+usa1m89 = input.float(111.94, "USA1M 89th → RS ≥", group="USA1M Thresholds")
+usa1m69 = input.float(103.56, "USA1M 69th → RS ≥", group="USA1M Thresholds")
+usa1m49 = input.float(101.70, "USA1M 49th → RS ≥", group="USA1M Thresholds")
+usa1m29 = input.float(99.66, "USA1M 29th → RS ≥", group="USA1M Thresholds")
+usa1m09 = input.float(88.45, "USA1M 9th → RS ≥", group="USA1M Thresholds")
+usa1m01 = input.float(63.69, "USA1M 1th → RS ≥", group="USA1M Thresholds")
+
+// 3M_RS thresholds
+usa3m98 = input.float(174.49, "USA3M 98th → RS ≥", group="USA3M Thresholds")
+usa3m89 = input.float(114.95, "USA3M 89th → RS ≥", group="USA3M Thresholds")
+usa3m69 = input.float(99.69, "USA3M 69th → RS ≥", group="USA3M Thresholds")
+usa3m49 = input.float(93.42, "USA3M 49th → RS ≥", group="USA3M Thresholds")
+usa3m29 = input.float(89.46, "USA3M 29th → RS ≥", group="USA3M Thresholds")
+usa3m09 = input.float(77.20, "USA3M 9th → RS ≥", group="USA3M Thresholds")
+usa3m01 = input.float(50.85, "USA3M 1th → RS ≥", group="USA3M Thresholds")
+
+// 6M_RS thresholds
+usa6m98 = input.float(202.30, "USA6M 98th → RS ≥", group="USA6M Thresholds")
+usa6m89 = input.float(123.05, "USA6M 89th → RS ≥", group="USA6M Thresholds")
+usa6m69 = input.float(102.81, "USA6M 69th → RS ≥", group="USA6M Thresholds")
+usa6m49 = input.float(95.71, "USA6M 49th → RS ≥", group="USA6M Thresholds")
+usa6m29 = input.float(91.56, "USA6M 29th → RS ≥", group="USA6M Thresholds")
+usa6m09 = input.float(69.81, "USA6M 9th → RS ≥", group="USA6M Thresholds")
+usa6m01 = input.float(34.79, "USA6M 1th → RS ≥", group="USA6M Thresholds")
+
