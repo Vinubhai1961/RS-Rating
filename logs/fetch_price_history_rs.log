@@ -1,19 +1,14 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-06-24 22:54:45 EDT
+Run Date: 2026-06-25 18:30:17 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-25 02:52:02
-Successful: 2538 | Skipped: 6 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-06-25 22:27:36
+Successful: 2543 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-AAAP: Too few valid rows: 1
-ASTG: Too few valid rows: 1
-BD: Too few valid rows: 1
-BKLG: Too few valid rows: 1
 BRUNW: Too few valid rows: 1
-CDNG: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -21,7 +16,7 @@ CDNG: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-25 02:51:57
+FINAL SUMMARY - Partition finished at 2026-06-25 22:28:23
 Successful: 2544 | Skipped: 0 | Failed: 0
 ================================================================================
 
@@ -30,12 +25,10 @@ Successful: 2544 | Skipped: 0 | Failed: 0
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-25 02:51:58
-Successful: 2541 | Skipped: 3 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-06-25 22:27:22
+Successful: 2543 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
 MFICL: Too few valid rows: 1
-PBSC: Too few valid rows: 1
-PRXI: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -43,10 +36,8 @@ PRXI: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-25 02:52:30
-Successful: 2546 | Skipped: 1 | Failed: 0
---- Skipped Tickers ---
-TPTS: Too few valid rows: 1
+FINAL SUMMARY - Partition finished at 2026-06-25 22:27:11
+Successful: 2547 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 3 ===
