@@ -17,7 +17,7 @@ import arcticdb as adb
 SPECIAL_TICKERS = {"SPCX", "SPY", "QQQ"}
 
 # USA should be tolerant, but still avoid saving broken one-row symbols.
-MIN_VALID_ROWS = 5
+MIN_VALID_ROWS = 2
 
 # Benchmark/index tickers to print extra Yahoo/debug diagnostics for.
 # This helps catch cases where stocks update to a newer date, but SPY/QQQ
