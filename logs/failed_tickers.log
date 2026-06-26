@@ -152,3 +152,24 @@
 2026-06-25 22:33:03,492 - NYSE trading days used: 20260618T, 20260622T, 20260623T, 20260624T, 20260625T
 2026-06-25 22:33:03,493 - RSRATING.csv (NYSE) generated → RS_Data/RSRATING.csv
 2026-06-25 22:33:03,495 - RS calculation completed. 10176 tickers processed, 10176 with valid RS.
+2026-06-26 02:18:08,188 - Starting RS calculation process
+2026-06-26 02:18:08,189 - Missing RS debug log: logs/debug_rs/Missing_RS.log
+2026-06-26 02:18:08,199 - Found 10172 symbols in tmp/arctic_db
+2026-06-26 02:18:08,290 - Metadata loaded: 10,190 tickers
+2026-06-26 02:18:08,293 - Starting RS calculation for 10172 tickers
+2026-06-26 02:20:39,625 - Latest market date (NYSE): 2026-06-25
+2026-06-26 02:20:39,776 - NYSE trading days used: 20260618T, 20260622T, 20260623T, 20260624T, 20260625T
+2026-06-26 02:20:39,777 - RSRATING.csv (NYSE) generated → RS_Data/RSRATING.csv
+2026-06-26 02:20:39,779 - QUALITY total_processed: 10171
+2026-06-26 02:20:39,779 - QUALITY valid_rs: 10171
+2026-06-26 02:20:39,779 - QUALITY missing_rs: 0
+2026-06-26 02:20:39,779 - QUALITY missing_1m_rs: 282
+2026-06-26 02:20:39,779 - QUALITY missing_3m_rs: 623
+2026-06-26 02:20:39,779 - QUALITY missing_6m_rs: 1051
+2026-06-26 02:20:39,780 - QUALITY missing_atr: 140
+2026-06-26 02:20:39,780 - QUALITY missing_adr: 140
+2026-06-26 02:20:39,780 - QUALITY missing_sma50: 493
+2026-06-26 02:20:39,780 - QUALITY missing_sma200: 1567
+2026-06-26 02:20:39,780 - QUALITY short_history_lt_252: 1867
+2026-06-26 02:20:39,780 - QUALITY exceptions: 0
+2026-06-26 02:20:39,780 - RS calculation completed. 10171 tickers processed, 10171 with valid RS.
