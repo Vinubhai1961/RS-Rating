@@ -316,7 +316,7 @@ jobs:
 
       - name: 📃 Run RS calculation
         run: |
-          mkdir -p logs RS_Data 
+          mkdir -p logs RS_Data archive HVE 9M_Vol
           python scripts/calculate_rs_from_db.py \
             --arctic-db-path tmp/arctic_db \
             --reference-ticker SPY \
@@ -328,7 +328,7 @@ jobs:
       - name: 🔍 Find Inside Bars
         run: |
           current_date=$(date -u -d "4 hours ago" +"%m%d%Y")
-          mkdir -p logs RS_Data
+          mkdir -p logs RS_Data archive HVE 9M_Vol
           python scripts/find_inside_bars.py \
             --arctic-db-path tmp/arctic_db \
             --input-csv RS_Data/rs_stocks.csv \
@@ -344,7 +344,8 @@ jobs:
           current_date=$(date -u -d "4 hours ago" +"%m%d%Y")
           echo "Archiving results for: ${current_date}"
 
-          for file in rs_stocks rs_industries RSRATING; do
+          for file in rs_stocks rs_industries RSRATING rs_sectors industry_leaders sector_opportunities; do
+            
             if [ -f "RS_Data/${file}.csv" ]; then
               cp "RS_Data/${file}.csv" "archive/${file}_${current_date}.csv"
               echo "Archived ${file}_${current_date}.csv"
@@ -371,10 +372,12 @@ jobs:
           name: rs-results
           path: |
             RS_Data/*.csv
+            HVE/*.csv
+            9M_Vol/*.csv
+            archive/*.csv
             logs/fetch_price_history_rs.log
             logs/failed_tickers.log
             logs/failed_ib_tickers.log
-            archive/*.csv
             logs/debug_rs/*.log
             logs/debug_rs/*.csv
             
@@ -401,11 +404,13 @@ jobs:
           git add -f \
             RS_Data/*.csv \
             archive/*.csv \
+            HVE/*.csv \
+            9M_Vol/*.csv \
             logs/fetch_price_history_rs.log \
             logs/failed_tickers.log \
             logs/failed_ib_tickers.log \
             logs/debug_rs/* 2>/dev/null || true
-      
+            
           if git diff --cached --quiet; then
             echo "⚠️ No changes to commit. Skipping commit & push."
           else
