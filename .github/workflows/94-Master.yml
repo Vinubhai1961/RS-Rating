@@ -1,10 +1,10 @@
 name: Master RS Pipeline (From Job 4 Onwards)
 
 on:
-  workflow_run:
-    workflows: ["Split rs_stocks.csv"]   # ← Triggered automatically after 3-split_rs_stocks.yml finishes
-    types: [completed]
-    branches: [main]
+  #workflow_run:
+    #workflows: ["Split rs_stocks.csv"]   # ← Triggered automatically after 3-split_rs_stocks.yml finishes
+    #types: [completed]
+    #branches: [main]
 
   workflow_dispatch:   # Manual trigger for testing
 
