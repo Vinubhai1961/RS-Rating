@@ -23,7 +23,7 @@ BATCH_DELAY_RANGE = (20, 30)
 MAX_BATCH_RETRIES = 3
 MAX_RETRY_TIMEOUT = 120
 RETRY_SUBPASS = True
-PRICE_THRESHOLD = 25.0
+PRICE_THRESHOLD = 15.0
 
 # === Add important tickers here (detailed logs only for these) ===
 SPECIAL_TICKERS = {"SPY", "SPCX"}
