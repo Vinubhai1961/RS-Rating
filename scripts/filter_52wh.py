@@ -128,12 +128,14 @@ def main():
         return
 
     # Desired columns
+    # Keep 52WH scanner output aligned with latest RS_Data/rs_stocks.csv visibility fields.
+    # %_From_52WKH is scanner-specific and is appended at the end for 52WH context.
     desired = [
         'Rank', 'Ticker', 'Price', 'DVol', 'Sector', 'Industry',
         'RS Percentile', '1M_RS Percentile', '3M_RS Percentile', '6M_RS Percentile',
-        'ATR', 'ADR',
-        'AvgVol', 'AvgVol10', '52WKH', '52WKL', 'MCAP',
-        'Earning_Date', 'SMA50', 'SMA200', 'SMA10W', 'SMA30W',
+        'ATR', 'ADR', 'AvgVol', 'AvgVol10', '52WKH', '52WKL', 'MCAP',
+        'IPO', 'SMA50', 'SMA200', 'SMA10W', 'SMA30W', 'History_Days',
+        'Gap (%)', 'Latest Volume', '9M+ Volume', 'HVE', 'HVE Date', 'HVE Volume',
         '%_From_52WKH'
     ]
 
@@ -156,7 +158,12 @@ def main():
     print(f"Total rows saved: {len(result):,}")
 
     print("\nFirst 10 rows:")
-    print(result.head(10)[['Rank', 'Ticker', 'Price', 'ATR', 'ADR', 'RS Percentile', '%_From_52WKH']].to_string(index=False))
+    preview_cols = [
+        'Rank', 'Ticker', 'Price', 'ATR', 'ADR', 'RS Percentile',
+        '%_From_52WKH', 'IPO', 'Gap (%)', 'Latest Volume', '9M+ Volume', 'HVE'
+    ]
+    preview_cols = [c for c in preview_cols if c in result.columns]
+    print(result.head(10)[preview_cols].to_string(index=False))
 
 
 if __name__ == "__main__":
