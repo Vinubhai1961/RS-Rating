@@ -1,17 +1,16 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-06-26 18:14:34 EDT
+Run Date: 2026-06-27 09:57:57 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-26 22:08:50
-Successful: 2502 | Skipped: 5 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-06-27 13:53:16
+Successful: 2503 | Skipped: 4 | Failed: 0
 --- Skipped Tickers ---
 AIX: Too few valid rows: 1
 AMHI: Too few valid rows: 1
 BRUNW: Too few valid rows: 1
-CARX: Too few valid rows: 1
 CCXIW: Too few valid rows: 1
 ================================================================================
 
@@ -20,7 +19,7 @@ CCXIW: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-26 22:10:05
+FINAL SUMMARY - Partition finished at 2026-06-27 13:53:25
 Successful: 2507 | Skipped: 0 | Failed: 0
 ================================================================================
 
@@ -29,12 +28,10 @@ Successful: 2507 | Skipped: 0 | Failed: 0
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-26 22:12:36
-Successful: 2504 | Skipped: 3 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-06-27 13:53:24
+Successful: 2506 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
 MFICL: Too few valid rows: 1
-MNSX: Too few valid rows: 1
-MSIX: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -42,10 +39,9 @@ MSIX: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-26 22:09:06
-Successful: 2507 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-06-27 13:55:58
+Successful: 2508 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-TPLX: Too few valid rows: 1
 XIGV: Too few valid rows: 1
 ================================================================================
 
