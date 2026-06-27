@@ -1,11 +1,11 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-06-27 11:45:45 EDT
+Run Date: 2026-06-27 14:14:29 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-27 15:43:43
+FINAL SUMMARY - Partition finished at 2026-06-27 18:09:25
 Successful: 2497 | Skipped: 10 | Failed: 0
 --- Skipped Tickers ---
 AIX: Too few valid rows: 1
@@ -25,7 +25,7 @@ DSC: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-27 15:41:15
+FINAL SUMMARY - Partition finished at 2026-06-27 18:11:17
 Successful: 2506 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
 FWACU: Too few valid rows: 1
@@ -36,13 +36,10 @@ FWACU: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-27 15:42:02
-Successful: 2503 | Skipped: 4 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-06-27 18:10:33
+Successful: 2506 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-LSCP: Too few valid rows: 1
 MFICL: Too few valid rows: 1
-MNSX: Too few valid rows: 1
-MSIX: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -50,10 +47,9 @@ MSIX: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-27 15:43:12
-Successful: 2507 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-06-27 18:09:29
+Successful: 2508 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-TPLX: Too few valid rows: 1
 XIGV: Too few valid rows: 1
 ================================================================================
 
