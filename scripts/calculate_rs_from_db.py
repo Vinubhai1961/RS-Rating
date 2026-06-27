@@ -715,9 +715,11 @@ if __name__ == "__main__":
     parser.add_argument("--output-dir", default="output", help="Output directory")
     parser.add_argument("--log-file", default="logs/failed_logs.log", help="Log file")
     parser.add_argument("--metadata-file", default=None, help="Metadata JSON file")
-    parser.add_argument("--percentiles", default="98,89,69,49,29,9,1", help="Percentiles")
+    #parser.add_argument("--percentiles", default="98,89,69,49,29,9,1", help="Percentiles")
+    parser.add_argument("--percentiles", default="99,98,95,90,85,80,75,70,60,50,40,30,20,10,5,1", help="Comma-separated percentile thresholds")
     parser.add_argument("--debug", action="store_true", help="Enable debug")
     args = parser.parse_args()
-    percentiles = [int(p) for p in args.percentiles.split(",")]
+    #percentiles = [int(p) for p in args.percentiles.split(",")]
+    percentiles = sorted({int(x.strip()) for x in args.percentiles.split(",") if x.strip()}, reverse=True)
     os.makedirs(os.path.dirname(args.log_file), exist_ok=True)
     main(args.arctic_db_path, args.reference_ticker, args.output_dir, args.log_file, args.metadata_file, percentiles, args.debug)
