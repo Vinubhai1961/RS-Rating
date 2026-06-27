@@ -181,10 +181,17 @@ def calculate_atr_adr_from_dataframe(data: pd.DataFrame, ticker: str, period: in
 
 def calculate_gap_pct_from_dataframe(data: pd.DataFrame) -> float:
     """
-    Calculate latest daily opening gap percentage:
-      Gap (%) = (latest open - previous close) / previous close * 100
+    Calculate latest bullish gap-up percentage.
 
-    Positive = gap up. Negative = gap down. NaN when open/close data is missing.
+    User definition:
+      - Yesterday close = previous close
+      - Today open gaps above yesterday close
+      - Today close must finish above today open
+
+    Gap (%) = (today open - previous close) / previous close * 100
+
+    Returns 0.00 when the latest bar is not a bullish gap-up.
+    Returns NaN only when open/close data is missing or invalid.
     """
     try:
         required_cols = {"datetime", "open", "close"}
@@ -203,9 +210,15 @@ def calculate_gap_pct_from_dataframe(data: pd.DataFrame) -> float:
             return np.nan
 
         latest_open = float(df["open"].iloc[-1])
+        latest_close = float(df["close"].iloc[-1])
         prev_close = float(df["close"].iloc[-2])
+
         if prev_close <= 0:
             return np.nan
+
+        is_bullish_gap_up = latest_open > prev_close and latest_close > latest_open
+        if not is_bullish_gap_up:
+            return 0.00
 
         return round(((latest_open - prev_close) / prev_close) * 100.0, 2)
     except Exception:
@@ -338,7 +351,7 @@ def build_hve_record_from_dataframe(data: pd.DataFrame, ticker: str) -> dict:
         return empty
 
 
-def write_hve_outputs(df_stocks: pd.DataFrame, hve_history: list, hve_output_dir: str):
+def write_hve_outputs(df_stocks: pd.DataFrame, hve_history: list, hve_output_dir: str, latest_market_date=None):
     """
     Writes:
       HVE/History_HVE.csv
@@ -379,10 +392,21 @@ def write_hve_outputs(df_stocks: pd.DataFrame, hve_history: list, hve_output_dir
     today = datetime.now().strftime("%m%d%Y")
     hve_today = df_stocks[df_stocks.get("HVE", "NO").astype(str).str.upper().eq("YES")].copy()
 
+    # Daily HVE files should only include symbols whose HVE happened on the
+    # latest market/reference date. This prevents stale 06/25 bars from showing
+    # inside a 06/26 HVE report when a ticker did not update to the latest day.
+    if latest_market_date is not None and "HVE Date" in hve_today.columns:
+        hve_dates = pd.to_datetime(hve_today["HVE Date"], errors="coerce").dt.date
+        hve_today = hve_today[hve_dates.eq(latest_market_date)].copy()
+
+    # Keep HVE daily files in the same column format as 9M_Vol output.
     base_cols = [
-        "Ticker", "Price", "Sector", "Industry",
+        "Rank", "Ticker", "Type", "Price", "DVol", "Sector", "Industry",
         "RS Percentile", "1M_RS Percentile", "3M_RS Percentile", "6M_RS Percentile",
-        "Gap (%)", "HVE Date", "HVE Volume", "ATR", "ADR", "IPO"
+        "Latest Volume", "9M+ Volume", "History_Days", "Gap (%)",
+        "HVE", "HVE Date", "HVE Volume", "IPO", "ATR", "ADR",
+        "AvgVol", "AvgVol10", "52WKH", "52WKL", "MCAP",
+        "SMA50", "SMA200", "SMA10W", "SMA30W"
     ]
     base_cols = [c for c in base_cols if c in hve_today.columns]
 
@@ -731,6 +755,7 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
 
     ref_data = lib.read(reference_ticker).data
     ref_closes = pd.Series(ref_data["close"].values, index=pd.to_datetime(ref_data["datetime"], unit='s')).sort_index()
+    latest_market_date = datetime.fromtimestamp(ref_data["datetime"].max()).date()
 
     metadata_df = load_metadata(metadata_file)
 
@@ -849,6 +874,14 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
         etf_mask = df_stocks["Type"].astype(str).str.upper().eq("ETF")
         df_stocks.loc[etf_mask, ["Sector", "Industry"]] = "ETF"
         df_stocks.loc[etf_mask, "IPO"] = "NO"
+
+    # HVE should mean highest-volume-ever on the latest market date, not a stale
+    # ticker-specific latest bar. Keep HVE Date / HVE Volume visible as history,
+    # but turn HVE to NO when the record date is not the market/reference date.
+    if "HVE" in df_stocks.columns and "HVE Date" in df_stocks.columns:
+        hve_dates = pd.to_datetime(df_stocks["HVE Date"], errors="coerce").dt.date
+        stale_hve_mask = df_stocks["HVE"].astype(str).str.upper().eq("YES") & ~hve_dates.eq(latest_market_date)
+        df_stocks.loc[stale_hve_mask, "HVE"] = "NO"
 
     # Ensure required fields exist before output/groupby, so USA behaves safely
     # even when metadata is missing or partially populated.
