@@ -1,23 +1,24 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-06-27 14:14:29 EDT
+Run Date: 2026-06-27 16:05:50 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-27 18:09:25
-Successful: 2497 | Skipped: 10 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-06-27 20:02:54
+Successful: 2008 | Skipped: 11 | Failed: 0
 --- Skipped Tickers ---
 AIX: Too few valid rows: 1
-ALPXU: Too few valid rows: 1
+AMAA: Too few valid rows: 1
+AMDC: Too few valid rows: 1
 AMHI: Too few valid rows: 1
+APPC: Too few valid rows: 1
+ASTT: Too few valid rows: 1
 BRUNW: Too few valid rows: 1
 CARX: Too few valid rows: 1
-CCXIW: Too few valid rows: 1
-CGCFU: Too few valid rows: 1
+COIX: Too few valid rows: 1
 DPC: Too few valid rows: 1
 DRAL: Too few valid rows: 1
-DSC: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -25,10 +26,11 @@ DSC: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-27 18:11:17
-Successful: 2506 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-06-27 20:01:50
+Successful: 2017 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
-FWACU: Too few valid rows: 1
+FBX: Too few valid rows: 1
+GOGL: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -36,10 +38,14 @@ FWACU: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-27 18:10:33
-Successful: 2506 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-06-27 20:01:35
+Successful: 2014 | Skipped: 5 | Failed: 0
 --- Skipped Tickers ---
 MFICL: Too few valid rows: 1
+MIC: Too few valid rows: 1
+MSFC: Too few valid rows: 1
+MSTC: Too few valid rows: 1
+NVC: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -47,9 +53,13 @@ MFICL: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-27 18:09:29
-Successful: 2508 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-06-27 20:01:33
+Successful: 2015 | Skipped: 5 | Failed: 0
 --- Skipped Tickers ---
+SNDC: Too few valid rows: 1
+TESC: Too few valid rows: 1
+TWSC: Too few valid rows: 1
+UCTX: Too few valid rows: 1
 XIGV: Too few valid rows: 1
 ================================================================================
 
