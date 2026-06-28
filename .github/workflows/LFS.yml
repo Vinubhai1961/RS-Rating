@@ -1,36 +1,45 @@
-name: 📤 Migrate existing large file to LFS
+name: 📤 Migrate History_HVE.csv to Git LFS
 
 on:
-  #schedule:
-    # Run Mon–Fri at 6:00PM EST (23:00 UTC)
-    #- cron: "10 22 * * 1-5"
-  workflow_dispatch:
-  
+  workflow_dispatch:  # Run manually from GitHub Actions tab
+
 jobs:
   setup-lfs:
     runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
-          lfs: true   # Important: this fetches LFS files too
+          lfs: true
+          fetch-depth: 0
 
       - name: Install Git LFS
-        run: |
-          git lfs install
+        run: git lfs install
 
-      - name: Track large CSVs
+      - name: Clean working directory
         run: |
-          git lfs track "*.csv"          # or specifically "HVE/History_HVE.csv"
+          git reset --hard HEAD
+          git clean -fd
+
+      - name: Track specific file with Git LFS
+        run: |
+          git lfs track "HVE/History_HVE.csv"
           git add .gitattributes
 
-      - name: Migrate existing large file to LFS
+      - name: Add the large CSV to LFS
         run: |
-          git lfs migrate import --include="HVE/History_HVE.csv" --everything
-          # Or without rewriting full history: git add HVE/History_HVE.csv
+          git add HVE/History_HVE.csv
 
-      - name: Commit and push
+      - name: Commit and Push
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git commit -m "Track History_HVE.csv with Git LFS"
-          git push
+          
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Track History_HVE.csv with Git LFS"
+            git push
+          fi
