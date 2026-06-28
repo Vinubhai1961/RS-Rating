@@ -1,0 +1,28 @@
+jobs:
+  setup-lfs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true   # Important: this fetches LFS files too
+
+      - name: Install Git LFS
+        run: |
+          git lfs install
+
+      - name: Track large CSVs
+        run: |
+          git lfs track "*.csv"          # or specifically "HVE/History_HVE.csv"
+          git add .gitattributes
+
+      - name: Migrate existing large file to LFS
+        run: |
+          git lfs migrate import --include="HVE/History_HVE.csv" --everything
+          # Or without rewriting full history: git add HVE/History_HVE.csv
+
+      - name: Commit and push
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git commit -m "Track History_HVE.csv with Git LFS"
+          git push
