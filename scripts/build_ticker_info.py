@@ -111,13 +111,21 @@ def yahoo_symbol(symbol: str) -> str:
 
 def extract_info(mods: Dict[str, Any], symbol: str, nasdaq_data_map: Dict[str, Dict[str, str]]):
     entry = mods.get(symbol) or mods.get(yahoo_symbol(symbol))
+
+    etf_flag = nasdaq_data_map.get(symbol, {}).get("ETF", "N")
+    type_value = "ETF" if etf_flag == "Y" else "Stock"
+
+    # Keep ETF classification clean for downstream RS sector/industry logic.
+    if type_value == "ETF":
+        return "ETF", "ETF", "ETF"
+
     if not isinstance(entry, dict):
-        return None, None, None
+        return None, None, type_value
+
     prof = entry.get("summaryProfile") or {}
     industry = prof.get("industry")
     sector = prof.get("sector")
-    etf_flag = nasdaq_data_map.get(symbol, {}).get("ETF", "N")
-    type_value = "ETF" if etf_flag == "Y" else "Stock"
+
     return sector, industry, type_value
 
 def partition(lst: List[str], size: int):
@@ -148,13 +156,28 @@ def process_batch(batch, existing, nasdaq_data_map):
         return 0, batch
 
     failed = set(mods.get("failed") or [])
+    # Yahoo may report failures in Yahoo format (BRK-B) while our source
+    # symbol may be NASDAQ format (BRK.B). Check both forms.
+    failed_original = failed | {s.replace("-", ".") for s in failed}
+
     updated = 0
     unresolved = []
 
     for symbol in tqdm(batch, desc="Symbols", leave=False):
-        if symbol in failed:
+        etf_flag = nasdaq_data_map[symbol].get("ETF", "N")
+        default_type = "ETF" if etf_flag == "Y" else "Stock"
+        default_sector = "ETF" if default_type == "ETF" else "n/a"
+        default_industry = "ETF" if default_type == "ETF" else "n/a"
+
+        if symbol in failed_original or yahoo_symbol(symbol) in failed:
             if symbol not in existing:
-                existing[symbol] = {"info": {"industry": "n/a", "sector": "n/a", "type": nasdaq_data_map[symbol].get("ETF", "N") == "Y" and "ETF" or "Stock"}}
+                existing[symbol] = {
+                    "info": {
+                        "industry": default_industry,
+                        "sector": default_sector,
+                        "type": default_type
+                    }
+                }
             unresolved.append(symbol)
             continue
 
@@ -166,7 +189,16 @@ def process_batch(batch, existing, nasdaq_data_map):
                 updated += 1
         else:
             if symbol not in existing:
-                existing[symbol] = {"info": {"industry": "n/a", "sector": "n/a", "type": type_value or (nasdaq_data_map[symbol].get("ETF", "N") == "Y" and "ETF" or "Stock")}}
+                fallback_type = type_value or default_type
+                fallback_sector = "ETF" if fallback_type == "ETF" else "n/a"
+                fallback_industry = "ETF" if fallback_type == "ETF" else "n/a"
+                existing[symbol] = {
+                    "info": {
+                        "industry": fallback_industry,
+                        "sector": fallback_sector,
+                        "type": fallback_type
+                    }
+                }
             unresolved.append(symbol)
 
     return updated, unresolved
