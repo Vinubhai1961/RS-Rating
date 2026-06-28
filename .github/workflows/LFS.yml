@@ -1,3 +1,11 @@
+name: 📤 Migrate existing large file to LFS
+
+on:
+  #schedule:
+    # Run Mon–Fri at 6:00PM EST (23:00 UTC)
+    #- cron: "10 22 * * 1-5"
+  workflow_dispatch:
+  
 jobs:
   setup-lfs:
     runs-on: ubuntu-latest
