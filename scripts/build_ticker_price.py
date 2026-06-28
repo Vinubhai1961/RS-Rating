@@ -28,6 +28,9 @@ PRICE_THRESHOLD = 15.0
 # === Add important tickers here (detailed logs only for these) ===
 SPECIAL_TICKERS = {"SPY", "SPCX"}
 
+# Ensure log directory exists before FileHandler is created.
+os.makedirs(os.path.dirname(LOG_PATH), exist_ok=True)
+
 logging.basicConfig(
     level=logging.DEBUG,
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -254,6 +257,8 @@ def main(part_index=None, part_total=None, verbose=False):
         in_output = any(p.get("ticker") == special for p in all_prices)
         logging.info(f"{special} in final output: {'✅ YES' if in_output else '❌ NO'}")
 
+    retry_resolved = set()
+
     if RETRY_SUBPASS and all_failed:
         unresolved_unique = sorted(set(all_failed))
         logging.info(f"Retry sub-pass for {len(unresolved_unique)} unresolved tickers...")
@@ -263,9 +268,18 @@ def main(part_index=None, part_total=None, verbose=False):
         for idx, batch in enumerate(tqdm(retry_batches, desc="Retry Price Batches"), 1):
             updated, failed_tickers, prices = process_batch(batch, ticker_info)
             all_prices.extend(prices)
+
+            # Remove successfully recovered retry tickers from the final unresolved list.
+            retry_resolved.update(p.get("ticker") for p in prices if p.get("ticker"))
+
+            logging.info(
+                f"Retry batch {idx}/{len(retry_batches)} - "
+                f"Recovered {updated} tickers, still failed {len(failed_tickers)}"
+            )
+
             time.sleep(random.uniform(5, 10))
 
-    unresolved_final = sorted(set(all_failed))
+    unresolved_final = sorted(set(all_failed) - retry_resolved)
 
     with open(UNRESOLVED_PRICE_TICKERS, "w") as f:
         f.write("\n".join(unresolved_final))
