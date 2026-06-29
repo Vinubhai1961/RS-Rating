@@ -192,13 +192,11 @@ jobs:
           name: ticker-info
           path: data
 
-      # === ENHANCEMENT: Fix common artifact path issues ===
       - name: Fix artifact structure & debug
         run: |
           echo "=== Files after download ==="
           ls -R data/ || true
           
-          # Handle possible nested data/ folder (very common with artifacts)
           if [ -d "data/data" ]; then
             echo "Moving files from nested data/ directory..."
             mv data/data/* data/ 2>/dev/null || true
@@ -244,7 +242,6 @@ jobs:
         run: |
           echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
 
-  # ... (merge-ticker-price and update-ticker-price-master remain unchanged)
   merge-ticker-price:
     needs: build-ticker-price
     runs-on: ubuntu-latest
@@ -280,6 +277,7 @@ jobs:
       - name: Merge ticker price files
         run: |
           python scripts/merge_ticker_price.py data --part-total 10
+
       - name: Debug merged ticker_price.json before master update
         run: |
           python - <<'PY'
@@ -312,6 +310,7 @@ jobs:
           print("sample blank industry tickers:", bad_industry[:50])
           print("============================================================")
           PY
+
       - name: Upload final price artifact before master update
         uses: actions/upload-artifact@v7
         with:
@@ -342,6 +341,30 @@ jobs:
         with:
           name: ticker-price
           path: data
+
+      # === FIXED: Artifact structure handling + better validation ===
+      - name: Fix artifact structure & validate
+        run: |
+          echo "=== Raw download contents ==="
+          ls -R data/ || true
+          
+          if [ -d "data/data" ]; then
+            echo "Fixing nested data/ structure..."
+            mv data/data/* data/ 2>/dev/null || true
+            rmdir data/data 2>/dev/null || true
+          fi
+          
+          echo "=== Final data/ contents after fix ==="
+          ls -la data/
+          
+          if [ -f "data/ticker_price.json" ]; then
+            echo "✅ SUCCESS: data/ticker_price.json found"
+            ls -lh data/ticker_price.json
+          else
+            echo "❌ ERROR: data/ticker_price.json is missing!"
+            ls -R . || true
+            exit 1
+          fi
 
       - name: Setup Python
         uses: actions/setup-python@v6
