@@ -917,9 +917,19 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
                      "ATR", "ADR", "AvgVol", "AvgVol10", "52WKH", "52WKL", "MCAP", "IPO",
                      "SMA50", "SMA200", "SMA10W", "SMA30W", "Earning_Date",
                      "History_Days", "Gap (%)", "Latest Volume", "9M+ Volume", "HVE", "HVE Date", "HVE Volume"]
+
+    # ====================== ROBUST EARNING_DATE HANDLING ======================
+    # Fix column name conflict from pandas merge (Earning_Date_x / _y)
+    if "Earning_Date_x" in df_stocks.columns:
+        df_stocks = df_stocks.rename(columns={"Earning_Date_x": "Earning_Date"})
+    elif "Earning_Date_y" in df_stocks.columns:
+        df_stocks = df_stocks.rename(columns={"Earning_Date_y": "Earning_Date"})
+
+    # Only select existing columns
     available_cols = [col for col in final_columns if col in df_stocks.columns]
     os.makedirs(output_dir, exist_ok=True)
     df_stocks[available_cols].to_csv(os.path.join(output_dir, "rs_stocks.csv"), index=False, na_rep="")
+    
 
     # Industry Table (your original logic)
     df_industries = df_stocks.groupby("Industry", dropna=False).agg({
