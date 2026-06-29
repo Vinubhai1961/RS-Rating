@@ -14592,3 +14592,21 @@
 2026-06-29 04:42:13,162 [INFO] Batch 2/2 - Resolved: 0 | Unresolved: 19
 2026-06-29 04:42:13,162 [INFO] Resolved 0 tickers.
 2026-06-29 04:42:13,163 [INFO] Updated unresolved_tickers.txt with 119 remaining tickers
+2026-06-29 06:08:19,476 [INFO] ============================================================
+2026-06-29 06:08:19,476 [INFO] RETRY UNRESOLVED TICKERS
+2026-06-29 06:08:19,476 [INFO] ============================================================
+2026-06-29 06:08:19,476 [INFO] ticker_info entries: 11773
+2026-06-29 06:08:19,476 [INFO] unresolved loaded: 120
+2026-06-29 06:08:19,476 [INFO] excluded loaded: 567
+2026-06-29 06:08:19,476 [INFO] ============================================================
+2026-06-29 06:10:05,835 [INFO] ============================================================
+2026-06-29 06:10:05,835 [INFO] RETRY SUMMARY
+2026-06-29 06:10:05,835 [INFO] ============================================================
+2026-06-29 06:10:05,835 [INFO] Unresolved before retry: 120
+2026-06-29 06:10:05,835 [INFO] Recovered: 0
+2026-06-29 06:10:05,835 [INFO] Skipped because excluded: 0
+2026-06-29 06:10:05,835 [INFO] Still unresolved: 120
+2026-06-29 06:10:05,835 [INFO] Sample recovered: []
+2026-06-29 06:10:05,835 [INFO] Sample skipped excluded: []
+2026-06-29 06:10:05,835 [INFO] Sample still unresolved: ['PBMWW', 'PCAPW', 'PCTTW', 'PDYNW', 'PECER', 'PECEW', 'PFFL', 'PFH', 'PFLA', 'PFXNZ', 'PGACR', 'PGYWW', 'PIIIW', 'PLMKW', 'PMTRW', 'PMTU', 'PMTV', 'PMTW', 'POLEW', 'PONOR', 'PRENW', 'PRH', 'PRHIZ', 'PRS', 'PTORW', 'PYT', 'QADRW', 'QETAR', 'QSEAR', 'QTEXW', 'QUMSR', 'RAAQW', 'RAINW', 'RANGR', 'RCD', 'RCKTW', 'RDACR', 'RDAGW', 'RDZNW', 'REVBW', 'RFAIR', 'RFAMR', 'RGTIW', 'RIBBR', 'RILYG', 'RILYN', 'RILYT', 'RILYZ', 'RMCOW', 'RMSGW']
+2026-06-29 06:10:05,835 [INFO] ============================================================
