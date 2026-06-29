@@ -1,0 +1,499 @@
+name: Build Ticker Info
+
+on:
+  workflow_dispatch:
+  #schedule:
+    #- cron: "15 19 * * 1-5"
+    #- cron: "00 21 * * 1-5"
+
+jobs:
+  build-ticker-info:
+    strategy:
+      fail-fast: false
+      matrix:
+        part_index: [0, 1, 2, 3, 4, 5]
+        part_total: [6]
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+
+    steps:
+      - name: Print workflow start time EDT
+        run: |
+          echo "Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
+      - uses: actions/checkout@v6
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install yahooquery pandas requests tqdm
+
+      - name: Run ticker info builder
+        run: |
+          python scripts/build_ticker_info.py \
+            --part-index ${{ matrix.part_index }} \
+            --part-total ${{ matrix.part_total }} \
+            --verbose
+
+      - name: Upload partition artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: ticker-info-part-${{ matrix.part_index }}
+          path: |
+            data/ticker_info_part_${{ matrix.part_index }}.json
+            data/partition_summary.json
+            data/unresolved_tickers.txt
+            logs/build_ticker_info.log
+          retention-days: 5
+
+      - name: Print workflow end time EDT
+        run: |
+          echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
+  merge-ticker-info:
+    needs: build-ticker-info
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Print workflow start time EDT
+        run: |
+          echo "Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
+      - uses: actions/checkout@v6
+
+      - name: Download partition artifacts
+        uses: actions/download-artifact@v8
+        with:
+          path: artifacts
+          pattern: ticker-info-part-*
+          merge-multiple: false
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install yahooquery pandas requests tqdm
+
+      - name: Prepare files for merge
+        run: |
+          mkdir -p data logs
+          find artifacts -type f -name "ticker_info_part_*.json" -exec cp {} data/ \; || true
+          find artifacts -type f -name "partition_summary.json" -exec cp {} data/ \; || true
+          find artifacts -type f -name "unresolved_tickers.txt" -exec cp {} data/ \; || true
+          ls -l data/ | grep -E "ticker_info_part_|partition_summary.json|unresolved_tickers.txt" || echo "No expected files copied"
+
+      - name: Merge ticker_info.json files
+        run: |
+          python scripts/merge_ticker_info.py data
+
+      - name: Commit merged ticker_info.json
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+
+          git stash push --include-untracked || true
+          git pull --rebase origin main
+          git stash pop || echo "No stash to pop"
+
+          git add data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt || true
+
+          edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
+
+          if git diff --staged --quiet; then
+            echo "No ticker_info changes to commit"
+          else
+            git commit -m "Commit merged ticker_info.json, partition_summary.json, unresolved_tickers.txt [${edt_time}]"
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          fi
+
+      - name: Retry unresolved tickers
+        run: |
+          python scripts/retry_unresolved_tickers.py data
+
+      - name: Upload merged artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: ticker-info
+          path: |
+            data/ticker_info.json
+            data/unresolved_tickers.txt
+            logs/merge_ticker_info.log
+          retention-days: 5
+
+      - name: Commit and push final ticker_info changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+
+          git stash push --include-untracked || true
+          git pull --rebase origin main
+          git stash pop || echo "No stash to pop"
+
+          git add data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt logs/* || true
+
+          edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
+
+          if git diff --staged --quiet; then
+            echo "No final ticker_info changes to commit"
+          else
+            git commit -m "Commit Phase 1 final outputs: ticker_info.json, unresolved_tickers.txt, partition_summary.json and logs [${edt_time}]"
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          fi
+
+      - name: Print workflow end time EDT
+        run: |
+          echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
+  build-ticker-price:
+    needs: merge-ticker-info
+    strategy:
+      fail-fast: false
+      matrix:
+        part_index: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        part_total: [10]
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - name: Print workflow start time EDT
+        run: |
+          echo "Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
+      - uses: actions/checkout@v6
+
+      - name: Download ticker info artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: ticker-info
+          path: data
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install yahooquery pandas requests tqdm
+
+      - name: Run ticker price builder
+        run: |
+          python scripts/build_ticker_price.py \
+            --part-index ${{ matrix.part_index }} \
+            --part-total ${{ matrix.part_total }} \
+            --verbose
+
+      - name: Upload price artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: ticker-price-part-${{ matrix.part_index }}
+          path: |
+            data/ticker_price_part_${{ matrix.part_index }}.json
+            logs/build_ticker_price.log
+          retention-days: 5
+
+      - name: Print workflow end time EDT
+        run: |
+          echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
+  merge-ticker-price:
+    needs: build-ticker-price
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Print workflow start time EDT
+        run: |
+          echo "Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
+      - uses: actions/checkout@v6
+
+      - name: Download price artifacts
+        uses: actions/download-artifact@v8
+        with:
+          path: artifacts
+          pattern: ticker-price-part-*
+          merge-multiple: false
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install yahooquery pandas requests tqdm
+
+      - name: Prepare files for merge
+        run: |
+          mkdir -p data logs
+          find artifacts -type f -name "ticker_price_part_*.json" -exec cp {} data/ \; || true
+          ls -l data/ | grep -E "ticker_price_part_" || echo "No ticker_price_part_*.json files copied"
+
+      - name: Merge ticker price files
+        run: |
+          python scripts/merge_ticker_price.py data --part-total 10
+
+      - name: Debug merged ticker_price.json before master update
+        run: |
+          python - <<'PY'
+          import json
+          from collections import Counter
+
+          with open("data/ticker_price.json", "r", encoding="utf-8") as f:
+              data = json.load(f)
+
+          bad_sector = []
+          bad_industry = []
+          type_count = Counter()
+
+          for row in data:
+              ticker = row.get("ticker")
+              info = row.get("info", {})
+              sector = str(info.get("sector", "")).strip().lower()
+              industry = str(info.get("industry", "")).strip().lower()
+              typ = str(info.get("type", "Unknown")).strip()
+
+              type_count[typ] += 1
+
+              if sector in {"", "n/a", "nan", "none"}:
+                  bad_sector.append(ticker)
+              if industry in {"", "n/a", "nan", "none"}:
+                  bad_industry.append(ticker)
+
+          print("============================================================")
+          print("MERGED TICKER PRICE DEBUG BEFORE MASTER UPDATE")
+          print("============================================================")
+          print("ticker_price.json rows:", len(data))
+          print("type count:", dict(type_count))
+          print("blank/n-a sector count:", len(bad_sector))
+          print("blank/n-a industry count:", len(bad_industry))
+          print("sample blank sector tickers:", bad_sector[:50])
+          print("sample blank industry tickers:", bad_industry[:50])
+          print("============================================================")
+          PY
+
+      - name: Upload final price artifact before master update
+        uses: actions/upload-artifact@v7
+        with:
+          name: ticker-price
+          path: |
+            data/ticker_price.json
+            logs/build_ticker_price.log
+            logs/merge_ticker_price.log
+          retention-days: 5
+
+      - name: Print workflow end time EDT
+        run: |
+          echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
+  update-ticker-price-master:
+    needs: merge-ticker-price
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Print workflow start time EDT
+        run: |
+          echo "Workflow started at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
+      - uses: actions/checkout@v6
+
+      - name: Download merged ticker price artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: ticker-price
+          path: data
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install pandas
+
+      - name: Validate required files
+        run: |
+          echo "============================================================"
+          echo "VALIDATING REQUIRED FILES"
+          echo "============================================================"
+
+          test -f source/USA_Tickers_ALL.csv
+          test -f data/ticker_price.json
+
+          echo "✅ source/USA_Tickers_ALL.csv found"
+          echo "✅ data/ticker_price.json found"
+
+          echo ""
+          echo "Files:"
+          ls -lh source/USA_Tickers_ALL.csv data/ticker_price.json
+
+      - name: Debug before master correction
+        run: |
+          python - <<'PY'
+          import json
+          import pandas as pd
+          from collections import Counter
+
+          price_file = "data/ticker_price.json"
+          master_csv = "source/USA_Tickers_ALL.csv"
+
+          with open(price_file, "r", encoding="utf-8") as f:
+              data = json.load(f)
+
+          df = pd.read_csv(master_csv)
+
+          bad_sector = []
+          bad_industry = []
+          type_count = Counter()
+
+          for row in data:
+              ticker = row.get("ticker")
+              info = row.get("info", {})
+              sector = str(info.get("sector", "")).strip().lower()
+              industry = str(info.get("industry", "")).strip().lower()
+              typ = str(info.get("type", "Unknown")).strip()
+
+              type_count[typ] += 1
+
+              if sector in {"", "n/a", "nan", "none"}:
+                  bad_sector.append(ticker)
+              if industry in {"", "n/a", "nan", "none"}:
+                  bad_industry.append(ticker)
+
+          print("============================================================")
+          print("BEFORE TRADINGVIEW MASTER UPDATE")
+          print("============================================================")
+          print("ticker_price.json rows:", len(data))
+          print("USA_Tickers_ALL.csv rows:", len(df))
+          print("type count:", dict(type_count))
+          print("blank/n-a sector count:", len(bad_sector))
+          print("blank/n-a industry count:", len(bad_industry))
+          print("sample blank sector tickers:", bad_sector[:50])
+          print("sample blank industry tickers:", bad_industry[:50])
+
+          watch = ["HONIV", "MANE", "GH", "FROG", "MOD"]
+          print("")
+          print("Watchlist before:")
+          for w in watch:
+              match = next((x for x in data if x.get("ticker") == w), None)
+              print(w, match.get("info", {}) if match else "NOT FOUND")
+          print("============================================================")
+          PY
+
+      - name: Build ticker_price_master.json
+        run: |
+          python scripts/build_ticker_price_master.py
+
+      - name: Apply ticker_price_master.json to ticker_price.json
+        run: |
+          python scripts/apply_ticker_price_master.py
+
+      - name: Debug after master correction
+        run: |
+          python - <<'PY'
+          import json
+          from collections import Counter
+
+          with open("data/ticker_price.json", "r", encoding="utf-8") as f:
+              data = json.load(f)
+
+          master = []
+          try:
+              with open("data/ticker_price_master.json", "r", encoding="utf-8") as f:
+                  master = json.load(f)
+          except Exception as e:
+              print("Could not read ticker_price_master.json:", e)
+
+          bad_sector = []
+          bad_industry = []
+          type_count = Counter()
+
+          for row in data:
+              ticker = row.get("ticker")
+              info = row.get("info", {})
+              sector = str(info.get("sector", "")).strip().lower()
+              industry = str(info.get("industry", "")).strip().lower()
+              typ = str(info.get("type", "Unknown")).strip()
+
+              type_count[typ] += 1
+
+              if sector in {"", "n/a", "nan", "none"}:
+                  bad_sector.append(ticker)
+              if industry in {"", "n/a", "nan", "none"}:
+                  bad_industry.append(ticker)
+
+          print("============================================================")
+          print("AFTER TRADINGVIEW MASTER UPDATE")
+          print("============================================================")
+          print("ticker_price.json rows:", len(data))
+          print("ticker_price_master.json rows:", len(master))
+          print("type count:", dict(type_count))
+          print("blank/n-a sector count:", len(bad_sector))
+          print("blank/n-a industry count:", len(bad_industry))
+          print("sample blank sector tickers:", bad_sector[:50])
+          print("sample blank industry tickers:", bad_industry[:50])
+
+          watch = ["HONIV", "MANE", "GH", "FROG", "MOD"]
+          print("")
+          print("Watchlist after:")
+          for w in watch:
+              match = next((x for x in data if x.get("ticker") == w), None)
+              print(w, match.get("info", {}) if match else "NOT FOUND")
+          print("============================================================")
+          PY
+
+      - name: Upload master-corrected artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: ticker-price-master-updated
+          path: |
+            data/ticker_price.json
+            data/ticker_price_master.json
+            logs/*
+          retention-days: 5
+
+      - name: Commit final master-corrected ticker price
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+
+          git stash push --include-untracked || true
+          git pull --rebase origin main
+          git stash pop || echo "No stash to pop"
+
+          git add data/ticker_price.json data/ticker_price_master.json logs/* || true
+
+          edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
+
+          if git diff --staged --quiet; then
+            echo "No master-corrected ticker price changes to commit"
+          else
+            git commit -m "Update ticker_price.json with TradingView master metadata [${edt_time}]"
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          fi
+
+      - name: Trigger 2-Calculate RS
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run "2-Calculate RS.yml"
+
+      - name: Print workflow end time EDT
+        run: |
+          echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
