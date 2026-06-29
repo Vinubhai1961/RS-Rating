@@ -1,0 +1,126 @@
+2026-06-29 02:55:55,383 [INFO] ============================================================
+2026-06-29 02:55:55,383 [INFO] APPLY TICKER PRICE MASTER SUMMARY
+2026-06-29 02:55:55,383 [INFO] ============================================================
+2026-06-29 02:55:55,383 [INFO] Mode: FILL MISSING ONLY
+2026-06-29 02:55:55,383 [INFO] ticker_price rows: 8077
+2026-06-29 02:55:55,383 [INFO] matched master tickers: 2923
+2026-06-29 02:55:55,383 [INFO] coverage: 36.19%
+2026-06-29 02:55:55,383 [INFO] missing in master: 5154
+2026-06-29 02:55:55,384 [INFO] duplicate ticker_price rows: 0
+2026-06-29 02:55:55,384 [INFO] sector filled: 201
+2026-06-29 02:55:55,384 [INFO] industry filled: 201
+2026-06-29 02:55:55,384 [INFO] type filled: 0
+2026-06-29 02:55:55,384 [INFO] type count before: {'Stock': 3083, 'ETF': 4994}
+2026-06-29 02:55:55,384 [INFO] type count after: {'Stock': 3083, 'ETF': 4994}
+2026-06-29 02:55:55,384 [INFO] remaining blank/n-a sector: 5146
+2026-06-29 02:55:55,384 [INFO] remaining blank/n-a industry: 5146
+2026-06-29 02:55:55,384 [INFO] remaining bad type: 0
+2026-06-29 02:55:55,384 [INFO] sample missing in master: ['AAA', 'AAAA', 'AAAC', 'AAAD', 'AAAP', 'AAAU', 'AADR', 'AAEQ', 'AALG', 'AAOX', 'AAPB', 'AAPR', 'AAPU', 'AAPW', 'AAPX', 'AAPY', 'AAUA', 'AAUM', 'AAUS', 'AAVM', 'AAXJ', 'ABCS', 'ABEQ', 'ABFL', 'ABI', 'ABIG', 'ABLD', 'ABLG', 'ABLS', 'ABNG', 'ABOT', 'ABUF', 'ABXB', 'ABXL', 'ACEI', 'ACEP', 'ACES', 'ACGO', 'ACGR', 'ACII', 'ACIO', 'ACKY', 'ACLC', 'ACLO', 'ACLZ', 'ACMM', 'ACOM', 'ACSG', 'ACSI', 'ACSV']
+2026-06-29 02:55:55,384 [INFO] sample duplicate ticker_price rows: []
+2026-06-29 02:55:55,384 [INFO] sample remaining blank sector: ['AAA', 'AAAA', 'AAAC', 'AAAD', 'AAAP', 'AAAU', 'AADR', 'AAEQ', 'AALG', 'AAOX', 'AAPB', 'AAPR', 'AAPU', 'AAPW', 'AAPX', 'AAPY', 'AAUA', 'AAUM', 'AAUS', 'AAVM', 'AAXJ', 'ABCS', 'ABEQ', 'ABFL', 'ABI', 'ABIG', 'ABLD', 'ABLG', 'ABLS', 'ABNG', 'ABOT', 'ABUF', 'ABXB', 'ABXL', 'ACEI', 'ACEP', 'ACES', 'ACGO', 'ACGR', 'ACII', 'ACIO', 'ACKY', 'ACLC', 'ACLO', 'ACLZ', 'ACMM', 'ACOM', 'ACSG', 'ACSI', 'ACSV']
+2026-06-29 02:55:55,384 [INFO] sample remaining blank industry: ['AAA', 'AAAA', 'AAAC', 'AAAD', 'AAAP', 'AAAU', 'AADR', 'AAEQ', 'AALG', 'AAOX', 'AAPB', 'AAPR', 'AAPU', 'AAPW', 'AAPX', 'AAPY', 'AAUA', 'AAUM', 'AAUS', 'AAVM', 'AAXJ', 'ABCS', 'ABEQ', 'ABFL', 'ABI', 'ABIG', 'ABLD', 'ABLG', 'ABLS', 'ABNG', 'ABOT', 'ABUF', 'ABXB', 'ABXL', 'ACEI', 'ACEP', 'ACES', 'ACGO', 'ACGR', 'ACII', 'ACIO', 'ACKY', 'ACLC', 'ACLO', 'ACLZ', 'ACMM', 'ACOM', 'ACSG', 'ACSI', 'ACSV']
+2026-06-29 02:55:55,384 [INFO] sample remaining bad type: []
+2026-06-29 02:55:55,384 [INFO] ============================================================
+2026-06-29 02:55:55,384 [INFO] Sample sector fills:
+2026-06-29 02:55:55,385 [INFO] ADAMH | sector: n/a -> Finance
+2026-06-29 02:55:55,385 [INFO] AOMN | sector: n/a -> Finance
+2026-06-29 02:55:55,385 [INFO] ATLCZ | sector: n/a -> Finance
+2026-06-29 02:55:55,385 [INFO] BANFP | sector: n/a -> Finance
+2026-06-29 02:55:55,385 [INFO] BEPI | sector: n/a -> Finance
+2026-06-29 02:55:55,385 [INFO] BMNP | sector: n/a -> Finance
+2026-06-29 02:55:55,385 [INFO] BPOPM | sector: n/a -> Finance
+2026-06-29 02:55:55,385 [INFO] CIMN | sector: n/a -> Finance
+2026-06-29 02:55:55,385 [INFO] DDT | sector: n/a -> Finance
+2026-06-29 02:55:55,385 [INFO] ECCU | sector: n/a -> Miscellaneous
+2026-06-29 02:55:55,385 [INFO] ELC | sector: n/a -> Utilities
+2026-06-29 02:55:55,385 [INFO] FCNCN | sector: n/a -> Finance
+2026-06-29 02:55:55,385 [INFO] FISV | sector: n/a -> Commercial services
+2026-06-29 02:55:55,385 [INFO] GAINI | sector: n/a -> Miscellaneous
+2026-06-29 02:55:55,385 [INFO] GECCG | sector: n/a -> Miscellaneous
+2026-06-29 02:55:55,385 [INFO] GJO | sector: n/a -> Finance
+2026-06-29 02:55:55,385 [INFO] GJP | sector: n/a -> Finance
+2026-06-29 02:55:55,385 [INFO] GJR | sector: n/a -> Finance
+2026-06-29 02:55:55,385 [INFO] GJS | sector: n/a -> Finance
+2026-06-29 02:55:55,386 [INFO] GJT | sector: n/a -> Finance
+2026-06-29 02:55:55,386 [INFO] GOODO | sector: n/a -> Finance
+2026-06-29 02:55:55,386 [INFO] GOOGM | sector: n/a -> Technology services
+2026-06-29 02:55:55,386 [INFO] GOOGN | sector: n/a -> Technology services
+2026-06-29 02:55:55,386 [INFO] HONIV | sector: n/a -> Electronic technology
+2026-06-29 02:55:55,386 [INFO] HOVNP | sector: n/a -> Consumer durables
+2026-06-29 02:55:55,386 [INFO] IPB | sector: n/a -> Finance
+2026-06-29 02:55:55,386 [INFO] KMPB | sector: n/a -> Finance
+2026-06-29 02:55:55,386 [INFO] KTH | sector: n/a -> Finance
+2026-06-29 02:55:55,386 [INFO] KTN | sector: n/a -> Finance
+2026-06-29 02:55:55,386 [INFO] LION | sector: n/a -> Consumer services
+2026-06-29 02:55:55,386 [INFO] MFAO | sector: n/a -> Finance
+2026-06-29 02:55:55,386 [INFO] MITN | sector: n/a -> Finance
+2026-06-29 02:55:55,386 [INFO] NEWTG | sector: n/a -> Finance
+2026-06-29 02:55:55,386 [INFO] NMFCZ | sector: n/a -> Miscellaneous
+2026-06-29 02:55:55,386 [INFO] NOVT | sector: n/a -> Electronic technology
+2026-06-29 02:55:55,386 [INFO] NOVTU | sector: n/a -> Electronic technology
+2026-06-29 02:55:55,386 [INFO] NOW | sector: n/a -> Technology services
+2026-06-29 02:55:55,386 [INFO] NP | sector: n/a -> Finance
+2026-06-29 02:55:55,386 [INFO] NPB | sector: n/a -> Finance
+2026-06-29 02:55:55,386 [INFO] NPCE | sector: n/a -> Health technology
+2026-06-29 02:55:55,387 [INFO] NPFD | sector: n/a -> Miscellaneous
+2026-06-29 02:55:55,387 [INFO] NPK | sector: n/a -> Electronic technology
+2026-06-29 02:55:55,387 [INFO] NPKI | sector: n/a -> Producer manufacturing
+2026-06-29 02:55:55,387 [INFO] NPO | sector: n/a -> Producer manufacturing
+2026-06-29 02:55:55,387 [INFO] NRC | sector: n/a -> Health services
+2026-06-29 02:55:55,387 [INFO] NREF | sector: n/a -> Finance
+2026-06-29 02:55:55,387 [INFO] NRG | sector: n/a -> Utilities
+2026-06-29 02:55:55,387 [INFO] NRIM | sector: n/a -> Finance
+2026-06-29 02:55:55,387 [INFO] NRIX | sector: n/a -> Health technology
+2026-06-29 02:55:55,387 [INFO] NRP | sector: n/a -> Energy minerals
+2026-06-29 02:55:55,387 [INFO] Sample industry fills:
+2026-06-29 02:55:55,387 [INFO] ADAMH | industry: n/a -> Real estate investment trusts
+2026-06-29 02:55:55,387 [INFO] AOMN | industry: n/a -> Real estate investment trusts
+2026-06-29 02:55:55,387 [INFO] ATLCZ | industry: n/a -> Finance/Rental/Leasing
+2026-06-29 02:55:55,387 [INFO] BANFP | industry: n/a -> Finance/Rental/Leasing
+2026-06-29 02:55:55,387 [INFO] BEPI | industry: n/a -> Real estate development
+2026-06-29 02:55:55,387 [INFO] BMNP | industry: n/a -> Financial conglomerates
+2026-06-29 02:55:55,387 [INFO] BPOPM | industry: n/a -> Finance/Rental/Leasing
+2026-06-29 02:55:55,387 [INFO] CIMN | industry: n/a -> Real estate investment trusts
+2026-06-29 02:55:55,387 [INFO] DDT | industry: n/a -> Finance/Rental/Leasing
+2026-06-29 02:55:55,388 [INFO] ECCU | industry: n/a -> Investment trusts
+2026-06-29 02:55:55,388 [INFO] ELC | industry: n/a -> Electric utilities
+2026-06-29 02:55:55,388 [INFO] FCNCN | industry: n/a -> Regional banks
+2026-06-29 02:55:55,388 [INFO] FISV | industry: n/a -> Miscellaneous commercial services
+2026-06-29 02:55:55,388 [INFO] GAINI | industry: n/a -> Investment trusts
+2026-06-29 02:55:55,388 [INFO] GECCG | industry: n/a -> Investment trusts
+2026-06-29 02:55:55,388 [INFO] GJO | industry: n/a -> Finance/Rental/Leasing
+2026-06-29 02:55:55,388 [INFO] GJP | industry: n/a -> Finance/Rental/Leasing
+2026-06-29 02:55:55,388 [INFO] GJR | industry: n/a -> Finance/Rental/Leasing
+2026-06-29 02:55:55,388 [INFO] GJS | industry: n/a -> Finance/Rental/Leasing
+2026-06-29 02:55:55,388 [INFO] GJT | industry: n/a -> Finance/Rental/Leasing
+2026-06-29 02:55:55,388 [INFO] GOODO | industry: n/a -> Real estate investment trusts
+2026-06-29 02:55:55,388 [INFO] GOOGM | industry: n/a -> Internet software/Services
+2026-06-29 02:55:55,388 [INFO] GOOGN | industry: n/a -> Internet software/Services
+2026-06-29 02:55:55,388 [INFO] HONIV | industry: n/a -> Aerospace & defense
+2026-06-29 02:55:55,388 [INFO] HOVNP | industry: n/a -> Homebuilding
+2026-06-29 02:55:55,388 [INFO] IPB | industry: n/a -> Finance/Rental/Leasing
+2026-06-29 02:55:55,388 [INFO] KMPB | industry: n/a -> Property/Casualty insurance
+2026-06-29 02:55:55,388 [INFO] KTH | industry: n/a -> Finance/Rental/Leasing
+2026-06-29 02:55:55,388 [INFO] KTN | industry: n/a -> Finance/Rental/Leasing
+2026-06-29 02:55:55,388 [INFO] LION | industry: n/a -> Movies/Entertainment
+2026-06-29 02:55:55,389 [INFO] MFAO | industry: n/a -> Real estate investment trusts
+2026-06-29 02:55:55,389 [INFO] MITN | industry: n/a -> Real estate investment trusts
+2026-06-29 02:55:55,389 [INFO] NEWTG | industry: n/a -> Finance/Rental/Leasing
+2026-06-29 02:55:55,389 [INFO] NMFCZ | industry: n/a -> Investment trusts
+2026-06-29 02:55:55,389 [INFO] NOVT | industry: n/a -> Electronic equipment/Instruments
+2026-06-29 02:55:55,389 [INFO] NOVTU | industry: n/a -> Electronic equipment/Instruments
+2026-06-29 02:55:55,389 [INFO] NOW | industry: n/a -> Packaged software
+2026-06-29 02:55:55,389 [INFO] NP | industry: n/a -> Insurance brokers/Services
+2026-06-29 02:55:55,389 [INFO] NPB | industry: n/a -> Regional banks
+2026-06-29 02:55:55,389 [INFO] NPCE | industry: n/a -> Medical specialties
+2026-06-29 02:55:55,389 [INFO] NPFD | industry: n/a -> Investment trusts
+2026-06-29 02:55:55,389 [INFO] NPK | industry: n/a -> Aerospace & defense
+2026-06-29 02:55:55,389 [INFO] NPKI | industry: n/a -> Building products
+2026-06-29 02:55:55,389 [INFO] NPO | industry: n/a -> Industrial machinery
+2026-06-29 02:55:55,389 [INFO] NRC | industry: n/a -> Services to the health industry
+2026-06-29 02:55:55,389 [INFO] NREF | industry: n/a -> Real estate investment trusts
+2026-06-29 02:55:55,389 [INFO] NRG | industry: n/a -> Electric utilities
+2026-06-29 02:55:55,389 [INFO] NRIM | industry: n/a -> Regional banks
+2026-06-29 02:55:55,389 [INFO] NRIX | industry: n/a -> Biotechnology
+2026-06-29 02:55:55,390 [INFO] NRP | industry: n/a -> Coal
+2026-06-29 02:55:55,390 [INFO] Sample type fills:
