@@ -16,6 +16,7 @@ OUTPUT_DIR = "data"
 TICKER_INFO_FILE = os.path.join(OUTPUT_DIR, "ticker_info.json")
 TICKER_PRICE_PART_FILE = os.path.join(OUTPUT_DIR, "ticker_price_part_%d.json")
 UNRESOLVED_PRICE_TICKERS = os.path.join(OUTPUT_DIR, "unresolved_price_tickers.txt")
+SKIPPED_BELOW_THRESHOLD_TICKERS = os.path.join(OUTPUT_DIR, "skipped_below_threshold_price_tickers.txt")
 LOG_PATH = "logs/build_ticker_price.log"
 
 BATCH_SIZE = 250
@@ -25,10 +26,8 @@ MAX_RETRY_TIMEOUT = 120
 RETRY_SUBPASS = True
 PRICE_THRESHOLD = 15.0
 
-# === Add important tickers here (detailed logs only for these) ===
 SPECIAL_TICKERS = {"SPY", "SPCX"}
 
-# Ensure log directory exists before FileHandler is created.
 os.makedirs(os.path.dirname(LOG_PATH), exist_ok=True)
 
 logging.basicConfig(
@@ -40,7 +39,7 @@ logging.basicConfig(
     ]
 )
 
-# =========================================================
+
 def get_today_earning_date(calendar_events, yahoo_sym):
     try:
         cal = calendar_events.get(yahoo_sym, {})
@@ -84,24 +83,24 @@ def load_ticker_info():
     if not os.path.exists(TICKER_INFO_FILE):
         logging.error(f"{TICKER_INFO_FILE} not found!")
         return {}, []
-    
+
     with open(TICKER_INFO_FILE, "r", encoding="utf-8") as f:
         try:
             ticker_info = json.load(f)
             qualified_tickers = sorted(ticker_info.keys())
-            
+
             logging.info(f"Total tickers loaded: {len(qualified_tickers)}")
             logging.info(f"First 5 tickers: {qualified_tickers[:5]}")
             logging.info(f"Last 5 tickers: {qualified_tickers[-5:]}")
-            
+
             for special in SPECIAL_TICKERS:
                 if special in qualified_tickers:
                     logging.info(f"✅ {special} found in ticker_info.json")
                 else:
                     logging.warning(f"❌ {special} NOT found!")
-            
+
             return ticker_info, qualified_tickers
-            
+
         except json.JSONDecodeError:
             logging.error("Invalid JSON in ticker_info.json")
             return {}, []
@@ -122,12 +121,16 @@ def process_batch(batch, ticker_info):
     for attempt in range(MAX_BATCH_RETRIES):
         try:
             prices = []
-            failure_reasons = {"no_price": 0, "below_threshold": 0, "error": 0}
+            skipped_tickers = set()
+            failure_reasons = {
+                "no_price": 0,
+                "below_threshold": 0,
+                "error": 0
+            }
 
             yahoo_symbols = [yahoo_symbol(symbol) for symbol in batch]
             yq = Ticker(yahoo_symbols)
 
-            # === Batch-level calls (performance critical) ===
             hist = yq.history(period="1d")
             summary_details = yq.summary_detail
             calendar_events = yq.calendar_events
@@ -139,18 +142,23 @@ def process_batch(batch, ticker_info):
                     price = None
                     source = "none"
 
-                    # 1. History (main method - fast)
                     if yahoo_sym in hist.index.get_level_values(0):
                         df = hist.loc[yahoo_sym]
-                        if not df.empty and 'close' in df.columns:
-                            price = df['close'].iloc[-1]
+                        if not df.empty and "close" in df.columns:
+                            price = df["close"].iloc[-1]
                             source = "history"
 
-                    # 2. Fallback for new IPOs like SPCX
                     if price is None:
                         try:
                             summary = summary_details.get(yahoo_sym, {}) if isinstance(summary_details, dict) else {}
-                            for key in ["regularMarketPrice", "previousClose", "currentPrice", "price", "open"]:
+
+                            for key in [
+                                "regularMarketPrice",
+                                "previousClose",
+                                "currentPrice",
+                                "price",
+                                "open"
+                            ]:
                                 if key in summary and isinstance(summary[key], (int, float)):
                                     price = summary[key]
                                     source = f"summary.{key}"
@@ -169,6 +177,7 @@ def process_batch(batch, ticker_info):
 
                     if price < PRICE_THRESHOLD and not is_special(symbol):
                         failure_reasons["below_threshold"] += 1
+                        skipped_tickers.add(symbol)
                         continue
 
                     summary = summary_details.get(yahoo_sym, {}) if isinstance(summary_details, dict) else {}
@@ -178,6 +187,7 @@ def process_batch(batch, ticker_info):
                     if ticker_type != "Stock":
                         earning_date = None
                         logging.debug(f"{symbol} skipped earnings (type={ticker_type})")
+
                         if is_special(symbol):
                             logging.info(f"✅ Force including special ticker {symbol}")
                     else:
@@ -206,15 +216,22 @@ def process_batch(batch, ticker_info):
                         logging.error(f"{symbol} failed: {e}")
                     failure_reasons["error"] += 1
 
-            failed_tickers = [s for s in batch if s not in [p["ticker"] for p in prices]]
+            output_tickers = {p["ticker"] for p in prices}
+
+            failed_tickers = [
+                s for s in batch
+                if s not in output_tickers and s not in skipped_tickers
+            ]
+
             logging.info(f"Batch failure reasons: {failure_reasons}")
-            return len(prices), failed_tickers, prices
+
+            return len(prices), failed_tickers, prices, skipped_tickers, failure_reasons
 
         except Exception as e:
-            logging.warning(f"Batch error (attempt {attempt+1}): {e}")
+            logging.warning(f"Batch error (attempt {attempt + 1}): {e}")
             time.sleep(random.uniform(5, 10))
 
-    return 0, batch, []
+    return 0, batch, [], set(), {"no_price": 0, "below_threshold": 0, "error": len(batch)}
 
 
 def main(part_index=None, part_total=None, verbose=False):
@@ -226,7 +243,7 @@ def main(part_index=None, part_total=None, verbose=False):
     logging.info(f"Starting price build for part {part_index} | Special: {SPECIAL_TICKERS}")
 
     ticker_info, qualified_tickers = load_ticker_info()
-    
+
     if not ticker_info:
         logging.error("No ticker_info.json found to process.")
         return
@@ -236,60 +253,103 @@ def main(part_index=None, part_total=None, verbose=False):
     else:
         part_tickers = qualified_tickers
 
-    batches = [part_tickers[i:i + BATCH_SIZE] for i in range(0, len(part_tickers), BATCH_SIZE)]
+    batches = [
+        part_tickers[i:i + BATCH_SIZE]
+        for i in range(0, len(part_tickers), BATCH_SIZE)
+    ]
 
     all_prices = []
     all_failed = []
+    all_skipped_below_threshold = set()
+
+    total_failure_reasons = {
+        "no_price": 0,
+        "below_threshold": 0,
+        "error": 0
+    }
 
     for idx, batch in enumerate(tqdm(batches, desc="Processing Price Batches"), 1):
-        updated, failed_tickers, prices = process_batch(batch, ticker_info)
+        updated, failed_tickers, prices, skipped_tickers, failure_reasons = process_batch(batch, ticker_info)
 
         all_prices.extend(prices)
         all_failed.extend(failed_tickers)
+        all_skipped_below_threshold.update(skipped_tickers)
+
+        for key in total_failure_reasons:
+            total_failure_reasons[key] += failure_reasons.get(key, 0)
 
         logging.info(f"Batch {idx}/{len(batches)} - Fetched data for {updated} tickers")
 
         if idx < len(batches):
             time.sleep(random.uniform(*BATCH_DELAY_RANGE))
 
-    # Final checks
     for special in SPECIAL_TICKERS:
         in_output = any(p.get("ticker") == special for p in all_prices)
         logging.info(f"{special} in final output: {'✅ YES' if in_output else '❌ NO'}")
 
     retry_resolved = set()
+    retry_failed_final = set()
 
-    if RETRY_SUBPASS and all_failed:
-        unresolved_unique = sorted(set(all_failed))
-        logging.info(f"Retry sub-pass for {len(unresolved_unique)} unresolved tickers...")
+    true_failed_for_retry = sorted(set(all_failed))
 
-        retry_batches = [unresolved_unique[i:i + BATCH_SIZE] for i in range(0, len(unresolved_unique), BATCH_SIZE)]
+    if RETRY_SUBPASS and true_failed_for_retry:
+        logging.info(
+            "Retry sub-pass for %s true unresolved tickers. "
+            "Below-threshold tickers are NOT retried.",
+            len(true_failed_for_retry)
+        )
+
+        retry_batches = [
+            true_failed_for_retry[i:i + BATCH_SIZE]
+            for i in range(0, len(true_failed_for_retry), BATCH_SIZE)
+        ]
 
         for idx, batch in enumerate(tqdm(retry_batches, desc="Retry Price Batches"), 1):
-            updated, failed_tickers, prices = process_batch(batch, ticker_info)
-            all_prices.extend(prices)
+            updated, failed_tickers, prices, skipped_tickers, failure_reasons = process_batch(batch, ticker_info)
 
-            # Remove successfully recovered retry tickers from the final unresolved list.
+            all_prices.extend(prices)
             retry_resolved.update(p.get("ticker") for p in prices if p.get("ticker"))
+            retry_failed_final.update(failed_tickers)
+            all_skipped_below_threshold.update(skipped_tickers)
 
             logging.info(
                 f"Retry batch {idx}/{len(retry_batches)} - "
-                f"Recovered {updated} tickers, still failed {len(failed_tickers)}"
+                f"Recovered {updated} tickers, still failed {len(failed_tickers)}, "
+                f"below-threshold skipped {len(skipped_tickers)}"
             )
 
             time.sleep(random.uniform(5, 10))
 
-    unresolved_final = sorted(set(all_failed) - retry_resolved)
+    unresolved_final = sorted((set(all_failed) | retry_failed_final) - retry_resolved)
 
-    with open(UNRESOLVED_PRICE_TICKERS, "w") as f:
+    with open(UNRESOLVED_PRICE_TICKERS, "w", encoding="utf-8") as f:
         f.write("\n".join(unresolved_final))
 
+    with open(SKIPPED_BELOW_THRESHOLD_TICKERS, "w", encoding="utf-8") as f:
+        f.write("\n".join(sorted(all_skipped_below_threshold)))
+
     output_file = TICKER_PRICE_PART_FILE % part_index
+
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(all_prices, f, indent=2)
 
     elapsed = time.time() - start_time
-    logging.info("Price build completed. Elapsed: %.1fs", elapsed)
+
+    logging.info("============================================================")
+    logging.info("PRICE BUILD SUMMARY")
+    logging.info("============================================================")
+    logging.info("Part index: %s", part_index)
+    logging.info("Part total: %s", part_total)
+    logging.info("Input tickers in part: %s", len(part_tickers))
+    logging.info("Output price rows: %s", len(all_prices))
+    logging.info("Unresolved true failures: %s", len(unresolved_final))
+    logging.info("Skipped below threshold: %s", len(all_skipped_below_threshold))
+    logging.info("Failure reason totals: %s", total_failure_reasons)
+    logging.info("Sample unresolved: %s", unresolved_final[:50])
+    logging.info("Sample below-threshold skipped: %s", sorted(all_skipped_below_threshold)[:50])
+    logging.info("Output file: %s", output_file)
+    logging.info("Elapsed: %.1fs", elapsed)
+    logging.info("============================================================")
 
 
 if __name__ == "__main__":
