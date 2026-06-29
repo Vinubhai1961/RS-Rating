@@ -53,6 +53,7 @@ jobs:
       - name: Print workflow end time EDT
         run: |
           echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
   merge-ticker-info:
     needs: build-ticker-info
     runs-on: ubuntu-latest
@@ -149,41 +150,26 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
-          
-          # Clean up temporary files
-          rm -rf artifacts/ data/ticker_info_part_*.json || true
-          
           git stash push --include-untracked || true
           git pull --rebase origin main
           git stash pop || echo "No stash to pop"
           
-          # Add only the files we care about
-          git add data/ticker_info.json \
-                  data/partition_summary.json \
-                  data/unresolved_tickers.txt \
-                  data/excluded_symbols.txt \
-                  data/excluded_symbols_summary.json \
-                  logs/* || true
+          # Cleanup temporary files
+          rm -rf artifacts/ data/ticker_info_part_*.json || true
+          
+          git add data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt data/excluded_symbols.txt data/excluded_symbols_summary.json logs/* || true
           
           edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
-          
           if git diff --staged --quiet; then
             echo "No final ticker_info changes to commit"
           else
             git commit -m "Commit Phase 1 final ticker_info outputs and excluded symbols [${edt_time}]"
             git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
           fi
-
-      - name: Cleanup temporary files
-        run: |
-          rm -rf artifacts/ data/ticker_info_part_*.json || true
-          echo "Temporary partition files cleaned up"
-          
       - name: Print workflow end time EDT
         run: |
           echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
 
-          
   build-ticker-price:
     needs: merge-ticker-info
     strategy:
@@ -205,6 +191,30 @@ jobs:
         with:
           name: ticker-info
           path: data
+
+      # === ENHANCEMENT: Fix common artifact path issues ===
+      - name: Fix artifact structure & debug
+        run: |
+          echo "=== Files after download ==="
+          ls -R data/ || true
+          
+          # Handle possible nested data/ folder (very common with artifacts)
+          if [ -d "data/data" ]; then
+            echo "Moving files from nested data/ directory..."
+            mv data/data/* data/ 2>/dev/null || true
+            rmdir data/data 2>/dev/null || true
+          fi
+          
+          echo "=== Final data/ contents ==="
+          ls -la data/
+          
+          if [ -f "data/ticker_info.json" ]; then
+            echo "✅ ticker_info.json is ready"
+            ls -lh data/ticker_info.json
+          else
+            echo "❌ ERROR: ticker_info.json still missing!"
+            exit 1
+          fi
 
       - name: Setup Python
         uses: actions/setup-python@v6
@@ -233,6 +243,8 @@ jobs:
       - name: Print workflow end time EDT
         run: |
           echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
+  # ... (merge-ticker-price and update-ticker-price-master remain unchanged)
   merge-ticker-price:
     needs: build-ticker-price
     runs-on: ubuntu-latest
@@ -313,6 +325,7 @@ jobs:
       - name: Print workflow end time EDT
         run: |
           echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
+
   update-ticker-price-master:
     needs: merge-ticker-price
     runs-on: ubuntu-latest
@@ -462,6 +475,10 @@ jobs:
           git stash push --include-untracked || true
           git pull --rebase origin main
           git stash pop || echo "No stash to pop"
+          
+          # Cleanup
+          rm -rf artifacts/ data/ticker_price_part_*.json || true
+          
           git add data/ticker_price.json data/ticker_price_master.json logs/apply_ticker_price_master.log logs/build_ticker_price_master.log || true
           
           edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
@@ -471,6 +488,7 @@ jobs:
             git commit -m "Update ticker_price.json with TradingView master metadata [${edt_time}]"
             git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
           fi
+          
       - name: Trigger 2-Calculate RS
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
