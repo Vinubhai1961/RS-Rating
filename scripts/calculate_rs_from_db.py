@@ -372,13 +372,26 @@ def write_hve_outputs(df_stocks: pd.DataFrame, hve_history: list, hve_output_dir
         hve_df = pd.DataFrame(columns=history_cols)
     else:
         # Add Type from metadata/rs_stocks so History_HVE can split Stock vs ETF clearly.
-        if "Type" in df_stocks.columns:
-            type_map = df_stocks[["Ticker", "Type"]].drop_duplicates(subset=["Ticker"])
+        # Prefer the explicit Type column, and fall back to Sector == ETF when needed.
+        type_source_cols = [c for c in ["Ticker", "Type", "Sector"] if c in df_stocks.columns]
+        if "Ticker" in type_source_cols:
+            type_map = df_stocks[type_source_cols].drop_duplicates(subset=["Ticker"])
             hve_df = hve_df.merge(type_map, on="Ticker", how="left")
         else:
             hve_df["Type"] = "Stock"
 
-        hve_df["Type"] = hve_df["Type"].fillna("Stock").replace("", "Stock")
+        if "Type" not in hve_df.columns:
+            hve_df["Type"] = "Stock"
+        if "Sector" not in hve_df.columns:
+            hve_df["Sector"] = ""
+
+        hve_type = hve_df["Type"].astype(str).str.strip().str.upper()
+        hve_sector = hve_df["Sector"].astype(str).str.strip().str.upper()
+        hve_df["Type"] = np.where((hve_type == "ETF") | (hve_sector == "ETF"), "ETF", "Stock")
+
+        # Sector is only used as a fallback helper above; keep History_HVE output clean.
+        if "Sector" in hve_df.columns and "Sector" not in history_cols:
+            hve_df = hve_df.drop(columns=["Sector"])
 
         for col in history_cols:
             if col not in hve_df.columns:
