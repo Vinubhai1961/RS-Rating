@@ -52,6 +52,20 @@ BAD_ETF_KEYWORDS = [
     "income strategy",
 ]
 # ---------------------------------------------------------------
+# Remove only these STOCK strategy/product types.
+BAD_NON_STOCK_KEYWORDS = [
+    "senior notes",
+    "subordinated notes",
+    "notes due",
+    "debentures",
+    "preferred stock",
+    "preference shares",
+    "depositary shares",
+    "trust preferred",
+    "warrant",
+    "rights",
+    "units",
+]
 
 
 def ensure_dirs():
