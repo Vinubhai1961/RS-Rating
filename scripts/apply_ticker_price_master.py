@@ -30,6 +30,10 @@ def normalize(value):
     return str(value).strip()
 
 
+def normalize_compare(value):
+    return normalize(value).lower()
+
+
 def is_good(value):
     return normalize(value).lower() not in BAD_VALUES
 
@@ -78,10 +82,46 @@ def get_master_info(master_data, ticker):
 
     if isinstance(master_data, list):
         for row in master_data:
-            if str(row.get("ticker", "")).upper().strip() == ticker:
-                return row.get("info", {})
+            if normalize(row.get("ticker")).upper() == ticker:
+                return row.get("info", row)
 
     return {}
+
+
+def group_by_first_letter(tickers, letters=("A", "B", "C", "D")):
+    groups = {letter: [] for letter in letters}
+
+    for ticker in tickers:
+        ticker = normalize(ticker).upper()
+        if not ticker:
+            continue
+
+        first = ticker[0]
+        if first in groups:
+            groups[first].append(ticker)
+
+    return groups
+
+
+def print_grouped_tickers(title, groups):
+    logging.info("============================================================")
+    logging.info(title)
+    logging.info("============================================================")
+
+    print("")
+    print("============================================================")
+    print(title)
+    print("============================================================")
+
+    for letter in ["A", "B", "C", "D"]:
+        tickers = groups.get(letter, [])
+        line = ", ".join(tickers) if tickers else "(none)"
+
+        logging.info("%s count: %s", letter, len(tickers))
+        logging.info("%s tickers: %s", letter, line)
+
+        print(f"{letter} count: {len(tickers)}")
+        print(f"{letter} tickers: {line}")
 
 
 def main():
@@ -99,6 +139,9 @@ def main():
     sector_updates = []
     industry_updates = []
     type_updates = []
+
+    sector_mismatches = []
+    industry_mismatches = []
 
     type_counter_before = Counter()
     type_counter_after = Counter()
@@ -138,11 +181,29 @@ def main():
         new_type = master.get("type", "Unknown")
 
         # -------------------------------------------------
+        # MISMATCH REPORT ONLY:
+        # Track differences when both existing and master are valid.
+        # Do NOT overwrite valid ticker_price.json values.
+        # -------------------------------------------------
+        if (
+            is_good(old_sector)
+            and is_good(new_sector)
+            and normalize_compare(old_sector) != normalize_compare(new_sector)
+        ):
+            sector_mismatches.append((ticker, old_sector, new_sector))
+
+        if (
+            is_good(old_industry)
+            and is_good(new_industry)
+            and normalize_compare(old_industry) != normalize_compare(new_industry)
+        ):
+            industry_mismatches.append((ticker, old_industry, new_industry))
+
+        # -------------------------------------------------
         # SAFE RULE:
         # Only fill missing values.
         # Never overwrite existing valid Yahoo/current values.
         # -------------------------------------------------
-
         if not is_good(old_sector) and is_good(new_sector):
             info["sector"] = new_sector
             sector_updates.append((ticker, old_sector, new_sector))
@@ -192,6 +253,8 @@ def main():
     logging.info("sector filled: %s", len(sector_updates))
     logging.info("industry filled: %s", len(industry_updates))
     logging.info("type filled: %s", len(type_updates))
+    logging.info("sector mismatches report-only: %s", len(sector_mismatches))
+    logging.info("industry mismatches report-only: %s", len(industry_mismatches))
     logging.info("type count before: %s", dict(type_counter_before))
     logging.info("type count after: %s", dict(type_counter_after))
     logging.info("remaining blank/n-a sector: %s", len(remaining_blank_sector))
@@ -216,16 +279,72 @@ def main():
     for ticker, old, new in type_updates[:50]:
         logging.info("%s | type: %s -> %s", ticker, old, new)
 
-    print("✅ Applied TradingView master using FILL-MISSING-ONLY mode")
+    logging.info("Sample sector mismatches report-only:")
+    for ticker, old, new in sector_mismatches[:100]:
+        logging.info("%s | ticker_price sector: %s | master sector: %s", ticker, old, new)
+
+    logging.info("Sample industry mismatches report-only:")
+    for ticker, old, new in industry_mismatches[:100]:
+        logging.info("%s | ticker_price industry: %s | master industry: %s", ticker, old, new)
+
+    # -------------------------------------------------
+    # Group missing tickers A/B/C/D for screen + logs
+    # -------------------------------------------------
+    sector_groups = group_by_first_letter(remaining_blank_sector)
+    industry_groups = group_by_first_letter(remaining_blank_industry)
+
+    print_grouped_tickers(
+        "MISSING SECTOR TICKERS BY LETTER A/B/C/D",
+        sector_groups
+    )
+
+    print_grouped_tickers(
+        "MISSING INDUSTRY TICKERS BY LETTER A/B/C/D",
+        industry_groups
+    )
+
+    # -------------------------------------------------
+    # Print mismatch details on screen
+    # -------------------------------------------------
+    print("")
+    print("============================================================")
+    print("SECTOR MISMATCHES REPORT ONLY")
+    print("============================================================")
+    print(f"Total sector mismatches: {len(sector_mismatches)}")
+    for ticker, old, new in sector_mismatches[:100]:
+        print(f"{ticker}: ticker_price='{old}' | master='{new}'")
+
+    print("")
+    print("============================================================")
+    print("INDUSTRY MISMATCHES REPORT ONLY")
+    print("============================================================")
+    print(f"Total industry mismatches: {len(industry_mismatches)}")
+    for ticker, old, new in industry_mismatches[:100]:
+        print(f"{ticker}: ticker_price='{old}' | master='{new}'")
+
+    # -------------------------------------------------
+    # Final console summary
+    # -------------------------------------------------
+    print("")
+    print("============================================================")
+    print("APPLY TICKER PRICE MASTER FINAL SUMMARY")
+    print("============================================================")
+    print("Mode: FILL MISSING ONLY")
     print(f"Rows: {len(price_data)}")
     print(f"Matched master tickers: {matched}")
     print(f"Coverage: {coverage:.2f}%")
+    print(f"Missing in master: {len(missing_in_master)}")
+    print(f"Duplicate ticker_price rows: {len(duplicate_price_rows)}")
     print(f"Sector filled: {len(sector_updates)}")
     print(f"Industry filled: {len(industry_updates)}")
     print(f"Type filled: {len(type_updates)}")
+    print(f"Sector mismatches report-only: {len(sector_mismatches)}")
+    print(f"Industry mismatches report-only: {len(industry_mismatches)}")
     print(f"Remaining blank sector: {len(remaining_blank_sector)}")
     print(f"Remaining blank industry: {len(remaining_blank_industry)}")
-    print(f"Missing in master: {len(missing_in_master)}")
+    print(f"Remaining bad type: {len(remaining_bad_type)}")
+    print("============================================================")
+    print("✅ Applied TradingView master using FILL-MISSING-ONLY mode")
 
 
 if __name__ == "__main__":
