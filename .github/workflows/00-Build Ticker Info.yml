@@ -477,7 +477,8 @@ jobs:
           git pull --rebase origin main
           git stash pop || echo "No stash to pop"
 
-          git add data/ticker_price.json data/ticker_price_master.json logs/* || true
+          git add data/ticker_price.json data/ticker_price_master.json logs/apply_ticker_price_master.log logs/build_ticker_price_master.log || true
+          
 
           edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
 
