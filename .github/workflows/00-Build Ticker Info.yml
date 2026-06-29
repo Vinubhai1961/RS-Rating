@@ -48,6 +48,8 @@ jobs:
             data/ticker_info_part_${{ matrix.part_index }}.json
             data/partition_summary.json
             data/unresolved_tickers.txt
+            data/excluded_symbols.txt
+            data/excluded_symbols_summary.json
             logs/build_ticker_info.log
           retention-days: 5
 
@@ -105,14 +107,14 @@ jobs:
           git pull --rebase origin main
           git stash pop || echo "No stash to pop"
 
-          git add data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt || true
+          git add data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt data/excluded_symbols.txt data/excluded_symbols_summary.json || true
 
           edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
 
           if git diff --staged --quiet; then
             echo "No ticker_info changes to commit"
           else
-            git commit -m "Commit merged ticker_info.json, partition_summary.json, unresolved_tickers.txt [${edt_time}]"
+            git commit -m "Commit merged ticker_info.json, partition_summary.json, unresolved_tickers.txt data/excluded_symbols.txt data/excluded_symbols_summary.json[${edt_time}]"
             git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
           fi
 
