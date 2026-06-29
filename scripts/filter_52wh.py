@@ -133,7 +133,7 @@ def main():
     desired = [
         'Rank', 'Ticker', 'Price', 'DVol', 'Sector', 'Industry',
         'RS Percentile', '1M_RS Percentile', '3M_RS Percentile', '6M_RS Percentile',
-        'ATR', 'ADR', 'AvgVol', 'AvgVol10', '52WKH', '52WKL', 'MCAP',
+        'ATR', 'ADR', 'AvgVol', 'AvgVol10', '52WKH', '52WKL', 'Earning_Date', 'MCAP',
         'IPO', 'SMA50', 'SMA200', 'SMA10W', 'SMA30W', 'History_Days',
         'Gap (%)', 'Latest Volume', '9M+ Volume', 'HVE', 'HVE Date', 'HVE Volume',
         '%_From_52WKH'
@@ -160,7 +160,7 @@ def main():
     print("\nFirst 10 rows:")
     preview_cols = [
         'Rank', 'Ticker', 'Price', 'ATR', 'ADR', 'RS Percentile',
-        '%_From_52WKH', 'IPO', 'Gap (%)', 'Latest Volume', '9M+ Volume', 'HVE'
+        '%_From_52WKH', 'Earning_Date', 'IPO', 'Gap (%)', 'Latest Volume', '9M+ Volume', 'HVE'
     ]
     preview_cols = [c for c in preview_cols if c in result.columns]
     print(result.head(10)[preview_cols].to_string(index=False))
