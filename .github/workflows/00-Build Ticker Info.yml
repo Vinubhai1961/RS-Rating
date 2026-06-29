@@ -152,12 +152,8 @@ jobs:
           git stash push --include-untracked || true
           git pull --rebase origin main
           git stash pop || echo "No stash to pop"
-          git add data/ticker_info.json \
-                  data/partition_summary.json \
-                  data/unresolved_tickers.txt \
-                  data/excluded_symbols.txt \
-                  data/excluded_symbols_summary.json \
-                  logs/* || true
+          git add data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt data/excluded_symbols.txt data/excluded_symbols_summary.json logs/* || true
+          #git add data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt
           edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
           if git diff --staged --quiet; then
             echo "No final ticker_info changes to commit"
