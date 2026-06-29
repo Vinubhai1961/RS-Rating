@@ -92,7 +92,9 @@ jobs:
           find artifacts -type f -name "ticker_info_part_*.json" -exec cp {} data/ \; || true
           find artifacts -type f -name "partition_summary.json" -exec cp {} data/ \; || true
           find artifacts -type f -name "unresolved_tickers.txt" -exec cp {} data/ \; || true
-          ls -l data/ | grep -E "ticker_info_part_|partition_summary.json|unresolved_tickers.txt" || echo "No expected files copied"
+          find artifacts -type f -name "excluded_symbols.txt" -exec cp {} data/ \; || true
+          find artifacts -type f -name "excluded_symbols_summary.json" -exec cp {} data/ \; || true
+          ls -l data/ | grep -E "ticker_info_part_|partition_summary.json|unresolved_tickers.txt|excluded_symbols" || echo "No expected files copied"
 
       - name: Merge ticker_info.json files
         run: |
@@ -107,8 +109,8 @@ jobs:
           git pull --rebase origin main
           git stash pop || echo "No stash to pop"
 
-          git add data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt data/excluded_symbols.txt data/excluded_symbols_summary.json || true
-
+          git add data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt data/excluded_symbols.txt data/excluded_symbols_summary.json logs/* || true
+          
           edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
 
           if git diff --staged --quiet; then
