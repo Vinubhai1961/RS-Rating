@@ -6,6 +6,7 @@ from collections import Counter
 
 PRICE_FILE = "data/ticker_price.json"
 MASTER_FILE = "data/ticker_price_master.json"
+EXCLUDE_FILE = "source/problematic_stocks.txt"
 LOG_FILE = "logs/apply_ticker_price_master.log"
 
 BAD_VALUES = {"", "n/a", "na", "nan", "none", "null", "-", "unknown"}
@@ -49,6 +50,22 @@ def load_json(path):
 def save_json(path, data):
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
+
+
+def load_exclusion_list(path):
+    if not os.path.exists(path):
+        logging.warning("%s not found. No problematic tickers excluded.", path)
+        return set()
+
+    with open(path, "r", encoding="utf-8") as f:
+        tickers = {
+            line.strip().upper()
+            for line in f
+            if line.strip() and not line.strip().startswith("#")
+        }
+
+    logging.info("Loaded problematic exclusion tickers: %s", len(tickers))
+    return tickers
 
 
 def get_master_info(master_data, ticker):
@@ -129,6 +146,7 @@ def main():
 
     price_data = load_json(PRICE_FILE)
     master_data = load_json(MASTER_FILE)
+    exclude_tickers = load_exclusion_list(EXCLUDE_FILE)
 
     if not isinstance(price_data, list):
         raise ValueError("data/ticker_price.json must be a list")
@@ -218,6 +236,44 @@ def main():
 
         type_counter_after[normalize(info.get("type")) or "Unknown"] += 1
 
+    # -------------------------------------------------
+    # Remove problematic tickers from final output
+    # -------------------------------------------------
+    before_exclusion_count = len(price_data)
+
+    excluded_rows = [
+        normalize(row.get("ticker")).upper()
+        for row in price_data
+        if normalize(row.get("ticker")).upper() in exclude_tickers
+    ]
+
+    price_data = [
+        row
+        for row in price_data
+        if normalize(row.get("ticker")).upper() not in exclude_tickers
+    ]
+
+    logging.info("============================================================")
+    logging.info("PROBLEMATIC TICKER EXCLUSION SUMMARY")
+    logging.info("============================================================")
+    logging.info("Rows before exclusion: %s", before_exclusion_count)
+    logging.info("Problematic tickers loaded: %s", len(exclude_tickers))
+    logging.info("Excluded tickers count: %s", len(excluded_rows))
+    logging.info("Rows after exclusion: %s", len(price_data))
+    logging.info("Excluded tickers: %s", excluded_rows)
+    logging.info("============================================================")
+
+    print("")
+    print("============================================================")
+    print("PROBLEMATIC TICKER EXCLUSION SUMMARY")
+    print("============================================================")
+    print(f"Rows before exclusion: {before_exclusion_count}")
+    print(f"Problematic tickers loaded: {len(exclude_tickers)}")
+    print(f"Excluded tickers count: {len(excluded_rows)}")
+    print(f"Rows after exclusion: {len(price_data)}")
+    print(f"Excluded tickers: {', '.join(excluded_rows) if excluded_rows else '(none)'}")
+    print("============================================================")
+
     price_data = sorted(price_data, key=lambda x: normalize(x.get("ticker")).upper())
 
     save_json(PRICE_FILE, price_data)
@@ -239,15 +295,16 @@ def main():
         if not is_good(info.get("type")):
             remaining_bad_type.append(ticker)
 
-    coverage = (matched / len(price_data) * 100) if price_data else 0
+    coverage = (matched / before_exclusion_count * 100) if before_exclusion_count else 0
 
     logging.info("============================================================")
     logging.info("APPLY TICKER PRICE MASTER SUMMARY")
     logging.info("============================================================")
-    logging.info("Mode: FILL MISSING ONLY")
-    logging.info("ticker_price rows: %s", len(price_data))
+    logging.info("Mode: FILL MISSING ONLY + EXCLUDE PROBLEMATIC TICKERS")
+    logging.info("ticker_price rows before exclusion: %s", before_exclusion_count)
+    logging.info("ticker_price rows after exclusion: %s", len(price_data))
     logging.info("matched master tickers: %s", matched)
-    logging.info("coverage: %.2f%%", coverage)
+    logging.info("coverage before exclusion: %.2f%%", coverage)
     logging.info("missing in master: %s", len(missing_in_master))
     logging.info("duplicate ticker_price rows: %s", len(duplicate_price_rows))
     logging.info("sector filled: %s", len(sector_updates))
@@ -329,12 +386,15 @@ def main():
     print("============================================================")
     print("APPLY TICKER PRICE MASTER FINAL SUMMARY")
     print("============================================================")
-    print("Mode: FILL MISSING ONLY")
-    print(f"Rows: {len(price_data)}")
+    print("Mode: FILL MISSING ONLY + EXCLUDE PROBLEMATIC TICKERS")
+    print(f"Rows before exclusion: {before_exclusion_count}")
+    print(f"Rows after exclusion: {len(price_data)}")
     print(f"Matched master tickers: {matched}")
-    print(f"Coverage: {coverage:.2f}%")
+    print(f"Coverage before exclusion: {coverage:.2f}%")
     print(f"Missing in master: {len(missing_in_master)}")
     print(f"Duplicate ticker_price rows: {len(duplicate_price_rows)}")
+    print(f"Problematic tickers loaded: {len(exclude_tickers)}")
+    print(f"Excluded tickers count: {len(excluded_rows)}")
     print(f"Sector filled: {len(sector_updates)}")
     print(f"Industry filled: {len(industry_updates)}")
     print(f"Type filled: {len(type_updates)}")
