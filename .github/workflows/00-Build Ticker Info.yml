@@ -328,7 +328,18 @@ jobs:
             logs/build_ticker_price.log
             logs/merge_ticker_price.log
           retention-days: 5
-
+          
+      - name: Stage and commit
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git stash push --include-untracked
+          git pull --rebase origin main
+          git stash pop || echo "No stash to pop"
+          git add data/ticker_info.json data/ticker_price.json logs/ data/partition_summary.json data/unresolved_tickers.txt
+          edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
+          git commit -m "Update ticker info and price (auto) [${edt_time}]" || echo "No changes to commit"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git || echo "Push failed, possibly no changes"
       - name: Print workflow end time EDT
         run: |
           echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
