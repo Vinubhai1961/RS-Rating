@@ -150,22 +150,27 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
-          git stash push --include-untracked || true
-          git pull --rebase origin main
-          git stash pop || echo "No stash to pop"
           
           # Cleanup temporary files
           rm -rf artifacts/ data/ticker_info_part_*.json || true
           
-          git add data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt data/excluded_symbols.txt data/excluded_symbols_summary.json logs/* || true
+          git stash push --include-untracked || true
+          git pull --rebase origin main
+          git stash pop || echo "No stash to pop"
           
-          edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
+          # Force add critical files
+          git add -f data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt data/excluded_symbols.txt data/excluded_symbols_summary.json logs/* || true
+          
+          edt_time=$(date -u -d "4 hours ago" +"%Y-%m-%d %I:%M %p EDT")
+          run_info="(Run #${GITHUB_RUN_NUMBER})"
+          
           if git diff --staged --quiet; then
             echo "No final ticker_info changes to commit"
           else
-            git commit -m "Commit Phase 1 final ticker_info outputs and excluded symbols [${edt_time}]"
+            git commit -m "Phase 1: Update ticker_info.json + excluded symbols [${edt_time}] ${run_info}"
             git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
           fi
+          
       - name: Print workflow end time EDT
         run: |
           echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
@@ -495,20 +500,24 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "actions@users.noreply.github.com"
+          
+          # Cleanup temporary files
+          rm -rf artifacts/ data/ticker_price_part_*.json data/logs/ || true
+          
           git stash push --include-untracked || true
           git pull --rebase origin main
           git stash pop || echo "No stash to pop"
           
-          # Cleanup
-          rm -rf artifacts/ data/ticker_price_part_*.json || true
+          # Force add critical files
+          git add -f data/ticker_price.json data/ticker_price_master.json logs/apply_ticker_price_master.log logs/build_ticker_price_master.log || true
           
-          git add data/ticker_price.json data/ticker_price_master.json logs/apply_ticker_price_master.log logs/build_ticker_price_master.log || true
+          edt_time=$(date -u -d "4 hours ago" +"%Y-%m-%d %I:%M %p EDT")
+          run_info="(Run #${GITHUB_RUN_NUMBER})"
           
-          edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
           if git diff --staged --quiet; then
             echo "No master-corrected ticker price changes to commit"
           else
-            git commit -m "Update ticker_price.json with TradingView master metadata [${edt_time}]"
+            git commit -m "Phase 2: Update ticker_price.json + master metadata [${edt_time}] ${run_info}"
             git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
           fi
           
