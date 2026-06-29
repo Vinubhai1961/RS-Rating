@@ -94,35 +94,56 @@ jobs:
           find artifacts -type f -name "unresolved_tickers.txt" -exec cp {} data/ \; || true
           find artifacts -type f -name "excluded_symbols.txt" -exec cp {} data/ \; || true
           find artifacts -type f -name "excluded_symbols_summary.json" -exec cp {} data/ \; || true
+          find artifacts -type f -name "build_ticker_info.log" -exec cp {} logs/ \; || true
           ls -l data/ | grep -E "ticker_info_part_|partition_summary.json|unresolved_tickers.txt|excluded_symbols" || echo "No expected files copied"
 
       - name: Merge ticker_info.json files
         run: |
           python scripts/merge_ticker_info.py data
 
-      - name: Commit merged ticker_info.json
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "actions@github.com"
-
-          git stash push --include-untracked || true
-          git pull --rebase origin main
-          git stash pop || echo "No stash to pop"
-
-          git add data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt data/excluded_symbols.txt data/excluded_symbols_summary.json logs/* || true
-          
-          edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
-
-          if git diff --staged --quiet; then
-            echo "No ticker_info changes to commit"
-          else
-            git commit -m "Commit merged ticker_info.json, partition_summary.json, unresolved_tickers.txt data/excluded_symbols.txt data/excluded_symbols_summary.json[${edt_time}]"
-            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-          fi
-
       - name: Retry unresolved tickers
         run: |
           python scripts/retry_unresolved_tickers.py data
+
+      - name: Show unresolved and excluded summary after retry
+        run: |
+          echo "==========================================="
+          echo "UNRESOLVED TICKERS AFTER RETRY"
+          echo "==========================================="
+
+          if [ -f data/unresolved_tickers.txt ]; then
+            COUNT=$(grep -cve '^\s*$' data/unresolved_tickers.txt || true)
+            echo "Remaining unresolved: $COUNT"
+            echo ""
+            head -100 data/unresolved_tickers.txt
+          else
+            echo "No unresolved_tickers.txt found"
+          fi
+
+          echo ""
+          echo "==========================================="
+          echo "EXCLUDED SYMBOLS SUMMARY"
+          echo "==========================================="
+
+          if [ -f data/excluded_symbols.txt ]; then
+            COUNT=$(grep -cve '^\s*$' data/excluded_symbols.txt || true)
+            echo "Excluded symbols: $COUNT"
+            echo ""
+            head -100 data/excluded_symbols.txt
+          else
+            echo "No excluded_symbols.txt found"
+          fi
+
+          echo ""
+          echo "==========================================="
+          echo "EXCLUDED SYMBOLS JSON SUMMARY"
+          echo "==========================================="
+
+          if [ -f data/excluded_symbols_summary.json ]; then
+            cat data/excluded_symbols_summary.json
+          else
+            echo "No excluded_symbols_summary.json found"
+          fi
 
       - name: Upload merged artifact
         uses: actions/upload-artifact@v7
@@ -130,8 +151,13 @@ jobs:
           name: ticker-info
           path: |
             data/ticker_info.json
+            data/partition_summary.json
             data/unresolved_tickers.txt
+            data/excluded_symbols.txt
+            data/excluded_symbols_summary.json
+            logs/build_ticker_info.log
             logs/merge_ticker_info.log
+            logs/retry_unresolved_tickers.log
           retention-days: 5
 
       - name: Commit and push final ticker_info changes
@@ -143,21 +169,25 @@ jobs:
           git pull --rebase origin main
           git stash pop || echo "No stash to pop"
 
-          git add data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt logs/* || true
+          git add data/ticker_info.json \
+                  data/partition_summary.json \
+                  data/unresolved_tickers.txt \
+                  data/excluded_symbols.txt \
+                  data/excluded_symbols_summary.json \
+                  logs/* || true
 
           edt_time=$(date -u -d "4 hours ago" +"%I:%M %p EDT on %A, %B %d, %Y")
 
           if git diff --staged --quiet; then
             echo "No final ticker_info changes to commit"
           else
-            git commit -m "Commit Phase 1 final outputs: ticker_info.json, unresolved_tickers.txt, partition_summary.json and logs [${edt_time}]"
+            git commit -m "Commit Phase 1 final ticker_info outputs and excluded symbols [${edt_time}]"
             git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
           fi
 
       - name: Print workflow end time EDT
         run: |
           echo "Workflow ended at $(date -u -d '4 hours ago' +'%I:%M %p EDT on %A, %B %d, %Y')"
-
   build-ticker-price:
     needs: merge-ticker-info
     strategy:
