@@ -1,18 +1,18 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-06-29 19:43:58 EDT
+Run Date: 2026-06-30 18:26:46 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-29 23:41:04
-Successful: 1846 | Skipped: 5 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-06-30 22:22:46
+Successful: 1850 | Skipped: 5 | Failed: 0
 --- Skipped Tickers ---
-AIX: Too few valid rows: 1
-AMAA: Too few valid rows: 1
-AMHI: Too few valid rows: 1
-APPC: Too few valid rows: 1
-COIX: Too few valid rows: 1
+ACHX: Too few valid rows: 1
+ASMZ: Too few valid rows: 1
+AVGC: Too few valid rows: 1
+CIFC: Too few valid rows: 1
+DISK: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -20,8 +20,14 @@ COIX: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-29 23:40:14
-Successful: 1851 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-06-30 22:22:11
+Successful: 1850 | Skipped: 5 | Failed: 0
+--- Skipped Tickers ---
+EO: Too few valid rows: 1
+GLX: Too few valid rows: 1
+GMEC: Too few valid rows: 1
+IONC: Too few valid rows: 1
+IOSX: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -29,12 +35,14 @@ Successful: 1851 | Skipped: 0 | Failed: 0
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-29 23:41:19
-Successful: 1848 | Skipped: 3 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-06-30 22:23:25
+Successful: 1850 | Skipped: 5 | Failed: 0
 --- Skipped Tickers ---
-MFPVV: Too few valid rows: 1
-MSFC: Too few valid rows: 1
-NVC: Too few valid rows: 1
+MIDDV: Too few valid rows: 1
+MWHS: Too few valid rows: 1
+ORAC: Too few valid rows: 1
+RANK: Too few valid rows: 1
+RKX: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -42,11 +50,10 @@ NVC: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-06-29 23:39:43
-Successful: 1850 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-06-30 22:24:03
+Successful: 1855 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-TWSC: Too few valid rows: 1
-XIGV: Too few valid rows: 1
+XQTM: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 3 ===

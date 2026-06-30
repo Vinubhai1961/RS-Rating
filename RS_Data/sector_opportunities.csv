@@ -1,18 +1,12 @@
 SectorRank,Sector,LeaderRank,Ticker,Leader_Score,Setup_Type,Tightness,Setup_Price,Dist_52WH_%,ATR_%,RS Percentile,1M_RS Percentile,3M_RS Percentile,6M_RS Percentile,IPO,Gap (%),HVE,SMA50,SMA200,SMA10W,SMA30W,Industry
-1,Consumer services,1,LION,90.4,Stage 2 Watch,Loose,15.63,6.41,4.82,95.0,86.0,94.0,94.0,NO,0.0,NO,13.43,9.52,14.21,11.09,Movies/Entertainment
-2,Health technology,1,SI,89.37,Stage 2 Watch,Loose,21.09,7.98,8.16,90.0,97.0,92.0,89.0,NO,0.0,NO,15.4,14.24,16.71,15.0,Medical specialties
-3,Healthcare,1,RLAY,98.27,Extended Near High,Loose,19.74,0.95,5.28,98.0,98.0,96.0,97.0,NO,0.0,NO,14.52,9.73,14.78,11.58,Biotechnology
-3,Healthcare,2,SLS,98.24,Extended Near High,Loose,15.45,1.4,6.71,98.0,98.0,98.0,98.0,NO,7.59,NO,7.23,4.17,8.61,5.6,Biotechnology
-3,Healthcare,3,DFTX,98.11,Extended Near High,Loose,46.55,1.38,7.71,98.0,98.0,97.0,98.0,NO,0.0,NO,25.0,17.26,27.57,20.58,Biotechnology
-3,Healthcare,4,RVMD,97.96,Extended Near High,Normal,192.62,0.09,3.9,97.0,95.0,96.0,97.0,NO,0.23,NO,152.1,99.26,157.68,120.21,Biotechnology
-3,Healthcare,5,APGE,97.67,Extended Near High,Loose,132.61,0.41,4.39,96.0,98.0,94.0,94.0,NO,0.0,NO,90.12,72.22,93.9,81.59,Biotechnology
-4,Technology,1,UCTT,99.06,Extended Near High,Loose,130.7,0.11,8.1,98.0,98.0,97.0,98.0,NO,0.0,NO,90.73,52.6,97.9,66.54,Semiconductor Equipment & Materials
-4,Technology,2,ICHR,99.04,Extended Near High,Loose,105.46,0.13,8.49,98.0,98.0,97.0,98.0,NO,0.0,NO,75.0,40.82,80.04,52.77,Semiconductor Equipment & Materials
-4,Technology,3,ALAB,98.76,Extended Near High,Loose,455.96,0.18,8.99,98.0,96.0,98.0,97.0,NO,2.68,NO,288.5,192.55,323.39,207.59,Semiconductors
-4,Technology,4,AIP,98.54,Extended Near High,Loose,47.36,0.46,7.03,98.0,96.0,98.0,97.0,NO,1.43,NO,34.47,19.83,37.68,23.82,Semiconductors
-4,Technology,5,ALOT,98.36,Extended Near High,Loose,28.46,0.77,4.68,97.0,98.0,98.0,98.0,NO,0.0,NO,16.89,11.11,18.91,12.69,Computer Hardware
-5,Industrials,1,MEC,98.2,Extended Near High,Loose,37.54,0.11,4.98,96.0,98.0,96.0,95.0,NO,0.27,NO,28.09,20.18,30.6,23.12,Metal Fabrication
-5,Industrials,2,CRS,97.11,Extended Near High,Normal,607.03,0.22,3.77,95.0,97.0,93.0,95.0,NO,0.0,NO,479.16,367.12,499.97,411.97,Metal Fabrication
-5,Industrials,3,FCEL,96.25,Near Breakout,Loose,29.8,3.25,12.83,98.0,95.0,98.0,98.0,NO,6.42,NO,17.92,10.37,20.72,12.14,Electrical Equipment & Parts
-5,Industrials,4,DCO,96.12,Extended Near High,Loose,184.42,0.05,4.07,94.0,94.0,92.0,95.0,NO,0.0,NO,150.35,117.91,155.94,130.81,Aerospace & Defense
-5,Industrials,5,TH,95.95,Extended Near High,Normal,20.44,1.97,3.85,96.0,93.0,97.0,97.0,NO,0.05,NO,17.2,10.54,17.93,12.16,Specialty Business Services
+2,Consumer services,1,LION,87.04,Stage 2 Watch,Loose,15.31,8.32,4.93,94.0,79.0,93.0,93.0,NO,0.0,NO,13.49,9.55,14.17,11.08,Movies/Entertainment
+4,Healthcare,1,TWST,97.82,Extended Near High,Loose,102.88,1.3,6.11,97.0,98.0,97.0,97.0,NO,1.13,NO,68.08,45.59,72.95,53.62,Diagnostics & Research
+4,Healthcare,2,APGE,97.59,Extended Near High,Loose,132.73,0.32,4.16,96.0,98.0,93.0,94.0,NO,0.08,NO,90.93,72.7,93.91,81.59,Biotechnology
+4,Healthcare,3,LQDA,97.5,Extended Near High,Loose,79.73,1.18,5.88,97.0,96.0,97.0,96.0,NO,0.4,NO,57.15,38.59,62.23,45.19,Drug Manufacturers - Specialty & Generic
+4,Healthcare,4,TXG,97.29,Extended Near High,Loose,38.34,0.85,6.48,96.0,97.0,95.0,96.0,NO,0.0,NO,26.85,19.87,28.69,22.83,Health Information Services
+4,Healthcare,5,HUM,97.03,Extended Near High,Normal,397.22,0.4,3.15,94.0,96.0,97.0,92.0,NO,0.12,NO,306.62,251.74,329.81,253.11,Healthcare Plans
+5,Technology,1,MXL,98.93,Extended Near High,Loose,128.03,0.21,8.05,98.0,97.0,98.0,98.0,NO,0.26,NO,82.78,33.67,94.02,45.04,Semiconductors
+5,Technology,2,ACMR,98.91,Extended Near High,Loose,126.89,0.24,8.1,98.0,97.0,98.0,97.0,NO,1.94,NO,76.59,52.36,84.71,61.53,Semiconductor Equipment & Materials
+5,Technology,3,ICHR,98.32,Extended Near High,Loose,112.28,1.1,7.83,98.0,98.0,97.0,98.0,NO,0.99,NO,75.93,41.29,80.72,53.0,Semiconductor Equipment & Materials
+5,Technology,4,UCTT,98.29,Extended Near High,Loose,142.59,1.13,7.4,98.0,98.0,97.0,98.0,NO,0.15,NO,92.0,53.19,99.09,66.94,Semiconductor Equipment & Materials
+5,Technology,5,ALOT,98.24,Extended Near High,Loose,28.47,0.73,4.52,97.0,98.0,97.0,98.0,NO,0.0,NO,17.19,11.2,18.91,12.69,Computer Hardware
