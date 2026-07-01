@@ -21,13 +21,8 @@ jobs:
   generate-ipo:
     needs: filter-52wh
     uses: ./.github/workflows/91-Generate-IPO.yml
-  
-  # 92. Generate RS_Sector_Industries
-  generate-sector-industries:
-    needs: generate-ipo
-    uses: ./.github/workflows/92-Generate RS_Sector_Industries.yml
     
   # 95. update_earnings_calendar
   update_earnings_calendar:
-    needs: generate-sector-industries
+    needs: generate-ipo
     uses: ./.github/workflows/95-update_earnings_calendar.yml
