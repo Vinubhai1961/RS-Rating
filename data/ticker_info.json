@@ -1198,7 +1198,7 @@
   },
   "ADCT": {
     "info": {
-      "industry": "Biotechnology",
+      "industry": "Drug Manufacturers - Specialty & Generic",
       "sector": "Healthcare",
       "type": "Stock"
     }
@@ -1588,10 +1588,31 @@
       "type": "Stock"
     }
   },
+  "AESP": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
+  "AESPR": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "AESPU": {
     "info": {
       "industry": "Shell Companies",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "AESPW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -9330,13 +9351,6 @@
       "type": "ETF"
     }
   },
-  "BLD": {
-    "info": {
-      "industry": "Engineering & Construction",
-      "sector": "Industrials",
-      "type": "Stock"
-    }
-  },
   "BLDG": {
     "info": {
       "industry": "ETF",
@@ -11029,6 +11043,13 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
+    }
+  },
+  "BSP": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
     }
   },
   "BSR": {
@@ -14361,6 +14382,13 @@
       "industry": "Communication Equipment",
       "sector": "Technology",
       "type": "Stock"
+    }
+  },
+  "CIEX": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
     }
   },
   "CIFC": {
@@ -21594,6 +21622,13 @@
       "type": "Stock"
     }
   },
+  "ECHX": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "ECL": {
     "info": {
       "industry": "Specialty Chemicals",
@@ -25976,6 +26011,13 @@
       "type": "ETF"
     }
   },
+  "FECM": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "FEDM": {
     "info": {
       "industry": "ETF",
@@ -26184,6 +26226,13 @@
       "industry": "Industrial Distribution",
       "sector": "Industrials",
       "type": "Stock"
+    }
+  },
+  "FESC": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
     }
   },
   "FESM": {
@@ -30577,8 +30626,8 @@
   },
   "GHC": {
     "info": {
-      "industry": "Education & Training Services",
-      "sector": "Consumer Defensive",
+      "industry": "Conglomerates",
+      "sector": "Industrials",
       "type": "Stock"
     }
   },
@@ -30934,8 +30983,8 @@
   },
   "GLAS": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Drug Manufacturers - Specialty & Generic",
+      "sector": "Healthcare",
       "type": "Stock"
     }
   },
@@ -31893,7 +31942,7 @@
   },
   "GPUS": {
     "info": {
-      "industry": "Aerospace & Defense",
+      "industry": "Conglomerates",
       "sector": "Industrials",
       "type": "Stock"
     }
@@ -34332,6 +34381,13 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
+    }
+  },
+  "HODO": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
     }
   },
   "HODU": {
@@ -38982,6 +39038,13 @@
       "type": "ETF"
     }
   },
+  "ITG": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "ITGR": {
     "info": {
       "industry": "Medical Devices",
@@ -40191,13 +40254,6 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
-    }
-  },
-  "JHG": {
-    "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
-      "type": "Stock"
     }
   },
   "JHHY": {
@@ -41717,6 +41773,13 @@
       "industry": "Drug Manufacturers - Specialty & Generic",
       "sector": "Healthcare",
       "type": "Stock"
+    }
+  },
+  "KMEM": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
     }
   },
   "KMI": {
@@ -43763,6 +43826,13 @@
       "type": "Stock"
     }
   },
+  "LIME": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "LIMI": {
     "info": {
       "industry": "ETF",
@@ -45651,6 +45721,13 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
+    }
+  },
+  "MBGL": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
     }
   },
   "MBI": {
@@ -51659,6 +51736,20 @@
       "type": "Stock"
     }
   },
+  "NSLR": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
+  "NSLRL": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "NSP": {
     "info": {
       "industry": "Staffing & Employment Services",
@@ -54379,6 +54470,13 @@
     "info": {
       "industry": "Software - Infrastructure",
       "sector": "Technology",
+      "type": "Stock"
+    }
+  },
+  "OSPRU": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -59667,6 +59765,13 @@
       "type": "Stock"
     }
   },
+  "QNTU": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "QNXT": {
     "info": {
       "industry": "ETF",
@@ -62068,6 +62173,13 @@
       "type": "Stock"
     }
   },
+  "RMBX": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "RMCA": {
     "info": {
       "industry": "ETF",
@@ -63783,13 +63895,6 @@
       "type": "Stock"
     }
   },
-  "SATG": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
   "SATL": {
     "info": {
       "industry": "Aerospace & Defense",
@@ -64938,13 +65043,6 @@
       "type": "ETF"
     }
   },
-  "SEM": {
-    "info": {
-      "industry": "Medical Care Facilities",
-      "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
   "SEMG": {
     "info": {
       "industry": "ETF",
@@ -65755,13 +65853,6 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
-    }
-  },
-  "SILA": {
-    "info": {
-      "industry": "REIT - Healthcare Facilities",
-      "sector": "Real Estate",
-      "type": "Stock"
     }
   },
   "SILC": {
@@ -68802,20 +68893,6 @@
       "type": "ETF"
     }
   },
-  "SSSS": {
-    "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "SSSSL": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
-    }
-  },
   "SST": {
     "info": {
       "industry": "Specialty Business Services",
@@ -68932,13 +69009,6 @@
     "info": {
       "industry": "Medical Devices",
       "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
-  "STEL": {
-    "info": {
-      "industry": "Banks - Regional",
-      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -70438,13 +70508,6 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
-    }
-  },
-  "TBH": {
-    "info": {
-      "industry": "Electronic Gaming & Multimedia",
-      "sector": "Communication Services",
-      "type": "Stock"
     }
   },
   "TBI": {
@@ -73345,6 +73408,13 @@
       "type": "ETF"
     }
   },
+  "TSEU": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "TSHA": {
     "info": {
       "industry": "Biotechnology",
@@ -73688,6 +73758,13 @@
       "type": "Stock"
     }
   },
+  "TTMX": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "TTOP": {
     "info": {
       "industry": "ETF",
@@ -73760,8 +73837,8 @@
   },
   "TULP": {
     "info": {
-      "industry": "Advertising Agencies",
-      "sector": "Communication Services",
+      "industry": "Farm Products",
+      "sector": "Consumer Defensive",
       "type": "Stock"
     }
   },
@@ -76814,13 +76891,6 @@
     "info": {
       "industry": "Software - Application",
       "sector": "Technology",
-      "type": "Stock"
-    }
-  },
-  "VIASP": {
-    "info": {
-      "industry": "Utilities - Regulated Electric",
-      "sector": "Utilities",
       "type": "Stock"
     }
   },
@@ -81887,8 +81957,8 @@
   },
   "YYGH": {
     "info": {
-      "industry": "Personal Services",
-      "sector": "Consumer Cyclical",
+      "industry": "Specialty Business Services",
+      "sector": "Industrials",
       "type": "Stock"
     }
   },

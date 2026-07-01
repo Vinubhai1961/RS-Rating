@@ -1,7 +1,7 @@
 {
   "by_reason": {
     "autocallable": 20,
-    "buffer": 390,
+    "buffer": 396,
     "covered call": 32,
     "etn": 24,
     "income strategy": 51,
@@ -154,6 +154,11 @@
       "reason": "buffer",
       "security_name": "ARK DIET Q1 Buffer ETF",
       "symbol": "ARKD"
+    },
+    {
+      "reason": "buffer",
+      "security_name": "ARK DIET Q3 Buffer ETF",
+      "symbol": "ARKE"
     },
     {
       "reason": "buffer",
@@ -1004,12 +1009,7 @@
       "reason": "microsectors",
       "security_name": "MicroSectors FANG+ 3X Leveraged ETNs",
       "symbol": "FNGU"
-    },
-    {
-      "reason": "buffer",
-      "security_name": "FT Vest U.S. Equity Buffer ETF - November",
-      "symbol": "FNOV"
     }
   ],
-  "total_excluded": 567
+  "total_excluded": 573
 }

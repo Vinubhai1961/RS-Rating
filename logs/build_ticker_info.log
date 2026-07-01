@@ -5623,3 +5623,634 @@
 2026-06-30 22:03:59,003 [INFO] Retry sub-pass for 121 unresolved symbols ...
 2026-06-30 22:04:00,498 [INFO] Retry batch updated: 0 | still unresolved: 121 | Updated total: 1844
 2026-06-30 22:04:03,351 [INFO] Done. Total entries: 1965 | Unresolved: 121 | Updated this run: 1844 | Elapsed: 74.5s
+2026-07-01 22:07:30,284 [INFO] Fetching NASDAQ symbol master list ...
+2026-07-01 22:07:30,285 [DEBUG] Starting new HTTPS connection (1): www.nasdaqtrader.com:443
+2026-07-01 22:07:30,566 [DEBUG] https://www.nasdaqtrader.com:443 "GET /dynamic/symdir/nasdaqtraded.txt HTTP/1.1" 200 228824
+2026-07-01 22:07:30,976 [INFO] Retrieved 12370 eligible symbols before ETF filtering.
+2026-07-01 22:07:30,984 [INFO] ============================================================
+2026-07-01 22:07:30,984 [INFO] ETF FILTER SUMMARY
+2026-07-01 22:07:30,984 [INFO] ============================================================
+2026-07-01 22:07:30,984 [INFO] NASDAQ eligible symbols before ETF filter: 12370
+2026-07-01 22:07:30,984 [INFO] Excluded ETF products: 573
+2026-07-01 22:07:30,984 [INFO] Remaining symbols after ETF filter: 11797
+2026-07-01 22:07:30,984 [INFO] Excluded report: data/excluded_symbols.txt
+2026-07-01 22:07:30,984 [INFO] Excluded summary: data/excluded_symbols_summary.json
+2026-07-01 22:07:30,984 [INFO] ------------------------------------------------------------
+2026-07-01 22:07:30,984 [INFO] ETF FILTER BREAKDOWN
+2026-07-01 22:07:30,984 [INFO] autocallable              : 20
+2026-07-01 22:07:30,984 [INFO] buffer                    : 396
+2026-07-01 22:07:30,984 [INFO] covered call              : 32
+2026-07-01 22:07:30,984 [INFO] etn                       : 24
+2026-07-01 22:07:30,984 [INFO] income strategy           : 51
+2026-07-01 22:07:30,984 [INFO] microsectors              : 20
+2026-07-01 22:07:30,984 [INFO] weeklypay                 : 24
+2026-07-01 22:07:30,984 [INFO] yield premium             : 6
+2026-07-01 22:07:30,984 [INFO] ------------------------------------------------------------
+2026-07-01 22:07:30,984 [INFO] ALL EXCLUDED ETF PRODUCTS
+2026-07-01 22:07:30,984 [INFO] AAPW     | weeklypay          | Roundhill AAPL WeeklyPay ETF
+2026-07-01 22:07:30,984 [INFO] AAPY     | yield premium      | Kurv Yield Premium Strategy Apple (AAPL) ETF
+2026-07-01 22:07:30,984 [INFO] ABUF     | buffer             | Aptus Laddered Buffer ETF
+2026-07-01 22:07:30,984 [INFO] ACEI     | autocallable       | Innovator Equity Autocallable Income Strategy ETF
+2026-07-01 22:07:30,984 [INFO] ACII     | autocallable       | Innovator Index Autocallable Income Strategy ETF
+2026-07-01 22:07:30,984 [INFO] ACYN     | autocallable       | FT Vest Laddered Autocallable Barrier & Income ETF
+2026-07-01 22:07:30,984 [INFO] ACYQ     | autocallable       | FT Vest Autocallable Barrier & High Income ETF
+2026-07-01 22:07:30,985 [INFO] ACYS     | autocallable       | FT Vest Laddered Autocallable Barrier & Resilient Income ETF
+2026-07-01 22:07:30,985 [INFO] AHD      | autocallable       | GraniteShares Autocallable HOOD ETF
+2026-07-01 22:07:30,985 [INFO] AIOO     | buffer             | AllianzIM U.S. Equity Buffer100 Protection ETF
+2026-07-01 22:07:30,985 [INFO] AIQD     | microsectors       | MicroSectors -3? Short Artificial Intelligence (AI) ETNs
+2026-07-01 22:07:30,985 [INFO] AIQU     | microsectors       | MicroSectors 3? Long Artificial Intelligence (AI) ETNs
+2026-07-01 22:07:30,985 [INFO] AIYY     | income strategy    | YieldMax AI Option Income Strategy ETF
+2026-07-01 22:07:30,985 [INFO] ALDB     | buffer             | Aptus Laddered Deep Buffer ETF
+2026-07-01 22:07:30,985 [INFO] AMDW     | weeklypay          | Roundhill AMD WeeklyPay ETF
+2026-07-01 22:07:30,985 [INFO] AMDY     | income strategy    | Yieldmax AMD Option Income Strategy ETF
+2026-07-01 22:07:30,985 [INFO] AMJB     | etn                | Alerian MLP Index ETN
+2026-07-01 22:07:30,985 [INFO] AMZP     | yield premium      | Kurv Yield Premium Strategy Amazon (AMZN) ETF
+2026-07-01 22:07:30,985 [INFO] AMZW     | weeklypay          | Roundhill AMZN WeeklyPay ETF
+2026-07-01 22:07:30,985 [INFO] AMZY     | income strategy    | YieldMax AMZN Option Income Strategy ETF
+2026-07-01 22:07:30,985 [INFO] ANV      | autocallable       | GraniteShares Autocallable NVDA ETF
+2026-07-01 22:07:30,985 [INFO] APDB     | buffer             | Aptus April Deep Buffer ETF
+2026-07-01 22:07:30,985 [INFO] APLY     | income strategy    | YieldMax AAPL Option Income Strategy ETF
+2026-07-01 22:07:30,985 [INFO] APRB     | buffer             | Aptus April Buffer ETF
+2026-07-01 22:07:30,985 [INFO] APRP     | buffer             | PGIM S&P 500 Buffer 12 ETF - April
+2026-07-01 22:07:30,985 [INFO] APRT     | buffer             | AllianzIM U.S. Large Cap Buffer10 Apr ETF
+2026-07-01 22:07:30,985 [INFO] APRW     | buffer             | AllianzIM U.S. Large Cap Buffer20 Apr ETF
+2026-07-01 22:07:30,985 [INFO] APXM     | buffer             | FT Vest U.S. Equity Max Buffer ETF - April
+2026-07-01 22:07:30,985 [INFO] ARKD     | buffer             | ARK DIET Q1 Buffer ETF
+2026-07-01 22:07:30,985 [INFO] ARKE     | buffer             | ARK DIET Q3 Buffer ETF
+2026-07-01 22:07:30,985 [INFO] ARKI     | buffer             | ARK DIET Q2 Buffer ETF
+2026-07-01 22:07:30,985 [INFO] ARKT     | buffer             | ARK DIET Q4 Buffer ETF
+2026-07-01 22:07:30,985 [INFO] ARLI     | buffer             | AllianzIM International Equity Buffer15 Uncapped Apr ETF
+2026-07-01 22:07:30,985 [INFO] ARLU     | buffer             | AllianzIM U.S. Equity Buffer15 Uncapped Apr ETF
+2026-07-01 22:07:30,985 [INFO] ARMW     | weeklypay          | Roundhill ARM WeeklyPay ETF
+2026-07-01 22:07:30,985 [INFO] ATC      | autocallable       | GraniteShares Autocallable COIN ETF
+2026-07-01 22:07:30,985 [INFO] ATCL     | autocallable       | REX Autocallable Income ETF
+2026-07-01 22:07:30,985 [INFO] AUGM     | buffer             | FT Vest U.S. Equity Max Buffer ETF - August
+2026-07-01 22:07:30,986 [INFO] AUGP     | buffer             | PGIM S&P 500 Buffer 12 ETF - August
+2026-07-01 22:07:30,986 [INFO] AUGT     | buffer             | AllianzIM U.S. Large Cap Buffer10 Aug ETF
+2026-07-01 22:07:30,986 [INFO] AUGU     | buffer             | AllianzIM U.S. Equity Buffer15 Uncapped Aug ETF
+2026-07-01 22:07:30,986 [INFO] AUGW     | buffer             | AllianzIM U.S. Large Cap Buffer20 Aug ETF
+2026-07-01 22:07:30,986 [INFO] AVGW     | weeklypay          | Roundhill AVGO WeeklyPay ETF
+2026-07-01 22:07:30,986 [INFO] BABO     | income strategy    | YieldMax BABA Option Income Strategy ETF
+2026-07-01 22:07:30,986 [INFO] BABW     | weeklypay          | Roundhill BABA WeeklyPay ETF
+2026-07-01 22:07:30,986 [INFO] BAGY     | covered call       | Amplify Bitcoin Max Income Covered Call ETF
+2026-07-01 22:07:30,986 [INFO] BAPR     | buffer             | Innovator U.S. Equity Buffer ETF - April
+2026-07-01 22:07:30,986 [INFO] BAUG     | buffer             | Innovator U.S. Equity Buffer ETF - August
+2026-07-01 22:07:30,986 [INFO] BCCC     | covered call       | Global X Bitcoin Covered Call ETF
+2026-07-01 22:07:30,986 [INFO] BDCX     | etn                | ETRACS Quarterly Pay 1.5x Leveraged MarketVector BDC Liquid Index ETN due June 10, 2050
+2026-07-01 22:07:30,986 [INFO] BDEC     | buffer             | Innovator U.S. Equity Buffer ETF - December
+2026-07-01 22:07:30,986 [INFO] BERZ     | microsectors       | MicroSectors FANG & Innovation -3x Inverse Leveraged ETN
+2026-07-01 22:07:30,986 [INFO] BFEB     | buffer             | Innovator U.S. Equity Buffer ETF - February
+2026-07-01 22:07:30,986 [INFO] BFEW     | buffer             | FT Vest Laddered U.S. Equity Equal Weight Buffer ETF
+2026-07-01 22:07:30,986 [INFO] BFLB     | buffer             | BufferLABS US Equity Dynamic Buffer ETF
+2026-07-01 22:07:30,986 [INFO] BFRZ     | buffer             | Innovator Equity Managed 100 Buffer ETF
+2026-07-01 22:07:30,986 [INFO] BGLD     | buffer             | FT Vest Gold Strategy Quarterly Buffer ETF
+2026-07-01 22:07:30,986 [INFO] BITK     | covered call       | Tuttle Capital IBIT 0DTE Covered Call ETF
+2026-07-01 22:07:30,986 [INFO] BJAN     | buffer             | Innovator U.S. Equity Buffer ETF - January
+2026-07-01 22:07:30,986 [INFO] BJUL     | buffer             | Innovator U.S. Equity Buffer ETF - July
+2026-07-01 22:07:30,986 [INFO] BJUN     | buffer             | Innovator U.S. Equity Buffer ETF - June
+2026-07-01 22:07:30,986 [INFO] BMAR     | buffer             | Innovator U.S. Equity Buffer ETF - March
+2026-07-01 22:07:30,986 [INFO] BMAY     | buffer             | Innovator U.S. Equity Buffer ETF - May
+2026-07-01 22:07:30,986 [INFO] BNKD     | microsectors       | MicroSectors U.S. Big Banks -3 Inverse Leveraged ETNs due February 17, 2045
+2026-07-01 22:07:30,986 [INFO] BNKU     | microsectors       | MicroSectors U.S. Big Banks 3 Leveraged ETNs due February 17, 2045
+2026-07-01 22:07:30,986 [INFO] BNOV     | buffer             | Innovator U.S. Equity Buffer ETF - November
+2026-07-01 22:07:30,986 [INFO] BOCT     | buffer             | Innovator U.S. Equity Buffer ETF - October
+2026-07-01 22:07:30,986 [INFO] BRKC     | income strategy    | YieldMax BRK.B Option Income Strategy ETF
+2026-07-01 22:07:30,986 [INFO] BRKW     | weeklypay          | Roundhill BRKB WeeklyPay ETF
+2026-07-01 22:07:30,986 [INFO] BSEP     | buffer             | Innovator U.S. Equity Buffer ETF - September
+2026-07-01 22:07:30,986 [INFO] BSTP     | buffer             | Innovator Buffer Step-Up Strategy ETF
+2026-07-01 22:07:30,987 [INFO] BTCC     | covered call       | Grayscale Bitcoin Covered Call ETF
+2026-07-01 22:07:30,987 [INFO] BUFB     | buffer             | Innovator Laddered Allocation Buffer ETF
+2026-07-01 22:07:30,987 [INFO] BUFC     | buffer             | AB Conservative Buffer ETF
+2026-07-01 22:07:30,987 [INFO] BUFD     | buffer             | FT Vest Laddered Deep Buffer ETF
+2026-07-01 22:07:30,987 [INFO] BUFE     | buffer             | FT Vest Laddered Emerging Markets Buffer ETF
+2026-07-01 22:07:30,987 [INFO] BUFF     | buffer             | Innovator Laddered Allocation Power Buffer ETF
+2026-07-01 22:07:30,987 [INFO] BUFG     | buffer             | FT Vest Buffered Allocation Growth ETF
+2026-07-01 22:07:30,987 [INFO] BUFH     | buffer             | FT Vest Laddered Max Buffer ETF
+2026-07-01 22:07:30,987 [INFO] BUFI     | buffer             | AB International Buffer ETF
+2026-07-01 22:07:30,987 [INFO] BUFM     | buffer             | AB Moderate Buffer ETF
+2026-07-01 22:07:30,987 [INFO] BUFP     | buffer             | PGIM Laddered S&P 500 Buffer 12 ETF
+2026-07-01 22:07:30,987 [INFO] BUFQ     | buffer             | FT Vest Laddered Nasdaq Buffer ETF
+2026-07-01 22:07:30,987 [INFO] BUFR     | buffer             | FT Vest Laddered Buffer ETF
+2026-07-01 22:07:30,987 [INFO] BUFS     | buffer             | FT Vest Laddered Small Cap Moderate Buffer ETF
+2026-07-01 22:07:30,987 [INFO] BUFT     | buffer             | FT Vest Buffered Allocation Defensive ETF
+2026-07-01 22:07:30,987 [INFO] BUFX     | buffer             | FT Vest Laddered Enhance & Moderate Buffer ETF
+2026-07-01 22:07:30,987 [INFO] BUFY     | buffer             | FT Vest Laddered International Moderate Buffer ETF
+2026-07-01 22:07:30,987 [INFO] BUFZ     | buffer             | FT Vest Laddered Moderate Buffer ETF
+2026-07-01 22:07:30,987 [INFO] BULZ     | microsectors       | MicroSectors FANG & Innovation 3x Leveraged ETN
+2026-07-01 22:07:30,987 [INFO] CAGE     | autocallable       | Calamos Autocallable Growth ETF
+2026-07-01 22:07:30,987 [INFO] CAIE     | autocallable       | Calamos Autocallable Income ETF
+2026-07-01 22:07:30,987 [INFO] CAIQ     | autocallable       | Calamos Nasdaq Autocallable Income ETF
+2026-07-01 22:07:30,987 [INFO] CARD     | etn                | MAX Auto Industry -3x Inverse Leveraged ETN
+2026-07-01 22:07:30,987 [INFO] CARU     | etn                | MAX Auto Industry 3x Leveraged ETN
+2026-07-01 22:07:30,987 [INFO] CEFD     | etn                | ETRACS Monthly Pay 1.5X Leveraged Closed-End Fund Index ETN
+2026-07-01 22:07:30,987 [INFO] CJUN     | buffer             | Corgi U.S. Equities 15% Structured Buffer ETF - June Series
+2026-07-01 22:07:30,987 [INFO] CMAY     | buffer             | Corgi U.S. Equities 15% Structured Buffer ETF - May Series
+2026-07-01 22:07:30,987 [INFO] COIW     | weeklypay          | Roundhill COIN WeeklyPay ETF
+2026-07-01 22:07:30,987 [INFO] CONY     | income strategy    | YieldMax COIN Option Income Strategy ETF
+2026-07-01 22:07:30,987 [INFO] COSW     | weeklypay          | Roundhill COST WeeklyPay ETF
+2026-07-01 22:07:30,987 [INFO] CRCO     | income strategy    | YieldMax CRCL Option Income Strategy ETF
+2026-07-01 22:07:30,987 [INFO] CRSH     | income strategy    | YieldMax Short TSLA Option Income Strategy ETF
+2026-07-01 22:07:30,988 [INFO] CTJN     | buffer             | Corgi U.S. Equities 30% Structured Buffer ETF - June Series
+2026-07-01 22:07:30,988 [INFO] CTMA     | buffer             | Corgi U.S. Equities 30% Structured Buffer ETF - May Series
+2026-07-01 22:07:30,988 [INFO] CVNY     | income strategy    | YieldMax CVNA Option Income Strategy ETF
+2026-07-01 22:07:30,988 [INFO] CVRD     | covered call       | Madison Covered Call ETF
+2026-07-01 22:07:30,988 [INFO] DAPR     | buffer             | FT Vest U.S. Equity Deep Buffer ETF - April
+2026-07-01 22:07:30,988 [INFO] DAUG     | buffer             | FT Vest U.S. Equity Deep Buffer ETF - August
+2026-07-01 22:07:30,988 [INFO] DDEC     | buffer             | FT Vest U.S. Equity Deep Buffer ETF - December
+2026-07-01 22:07:30,988 [INFO] DDFA     | buffer             | Innovator Equity Dual Directional 15 Buffer ETF - April
+2026-07-01 22:07:30,988 [INFO] DDFD     | buffer             | Innovator Equity Dual Directional 15 Buffer ETF - December
+2026-07-01 22:07:30,988 [INFO] DDFF     | buffer             | Innovator Equity Dual Directional 15 Buffer ETF - February
+2026-07-01 22:07:30,988 [INFO] DDFJ     | buffer             | Innovator Equity Dual Directional 15 Buffer ETF - January
+2026-07-01 22:07:30,988 [INFO] DDFL     | buffer             | Innovator Equity Dual Directional 15 Buffer ETF - July
+2026-07-01 22:07:30,988 [INFO] DDFM     | buffer             | Innovator Equity Dual Directional 15 Buffer ETF - March
+2026-07-01 22:07:30,988 [INFO] DDFN     | buffer             | Innovator Equity Dual Directional 15 Buffer ETF - November
+2026-07-01 22:07:30,988 [INFO] DDFO     | buffer             | Innovator Equity Dual Directional 15 Buffer ETF - October
+2026-07-01 22:07:30,988 [INFO] DDFS     | buffer             | Innovator Equity Dual Directional 15 Buffer ETF - September
+2026-07-01 22:07:30,988 [INFO] DDFY     | buffer             | Innovator Equity Dual Directional 15 Buffer ETF - May
+2026-07-01 22:07:30,988 [INFO] DDFZ     | buffer             | Innovator Equity Dual Directional 15 Buffer ETF - June
+2026-07-01 22:07:30,988 [INFO] DDNQ     | buffer             | Innovator Growth-100 Dual Directional 5 Buffer ETF - Quarterly
+2026-07-01 22:07:30,988 [INFO] DDSQ     | buffer             | Innovator Equity Dual Directional 5 Buffer ETF - Quarterly
+2026-07-01 22:07:30,988 [INFO] DDTA     | buffer             | Innovator Equity Dual Directional 10 Buffer ETF - April
+2026-07-01 22:07:30,988 [INFO] DDTD     | buffer             | Innovator Equity Dual Directional 10 Buffer ETF - December
+2026-07-01 22:07:30,988 [INFO] DDTF     | buffer             | Innovator Equity Dual Directional 10 Buffer ETF - February
+2026-07-01 22:07:30,988 [INFO] DDTJ     | buffer             | Innovator Equity Dual Directional 10 Buffer ETF - January
+2026-07-01 22:07:30,988 [INFO] DDTL     | buffer             | Innovator Equity Dual Directional 10 Buffer ETF - July
+2026-07-01 22:07:30,988 [INFO] DDTM     | buffer             | Innovator Equity Dual Directional 10 Buffer ETF - March
+2026-07-01 22:07:30,988 [INFO] DDTN     | buffer             | Innovator Equity Dual Directional 10 Buffer ETF - November
+2026-07-01 22:07:30,988 [INFO] DDTO     | buffer             | Innovator Equity Dual Directional 10 Buffer ETF - October
+2026-07-01 22:07:30,988 [INFO] DDTS     | buffer             | Innovator Equity Dual Directional 10 Buffer ETF - September
+2026-07-01 22:07:30,988 [INFO] DDTY     | buffer             | Innovator Equity Dual Directional 10 Buffer ETF - May
+2026-07-01 22:07:30,988 [INFO] DDTZ     | buffer             | Innovator Equity Dual Directional 10 Buffer ETF - June
+2026-07-01 22:07:30,988 [INFO] DECM     | buffer             | FT Vest U.S. Equity Max Buffer ETF - December
+2026-07-01 22:07:30,988 [INFO] DECP     | buffer             | PGIM S&P 500 Buffer 12 ETF - December
+2026-07-01 22:07:30,989 [INFO] DECT     | buffer             | AllianzIM U.S. Large Cap Buffer10 Dec ETF
+2026-07-01 22:07:30,989 [INFO] DECU     | buffer             | AllianzIM U.S. Equity Buffer15 Uncapped Dec ETF
+2026-07-01 22:07:30,989 [INFO] DECW     | buffer             | AllianzIM U.S. Large Cap Buffer20 Dec ETF
+2026-07-01 22:07:30,989 [INFO] DFEB     | buffer             | FT Vest U.S. Equity Deep Buffer ETF - February
+2026-07-01 22:07:30,989 [INFO] DGAP     | buffer             | FT Vest U.S. Equity Buffer & Digital Return ETF - April
+2026-07-01 22:07:30,989 [INFO] DGJA     | buffer             | FT Vest U.S. Equity Buffer & Digital Return ETF - January
+2026-07-01 22:07:30,989 [INFO] DGOC     | buffer             | FT Vest U.S. Equity Buffer & Digital Return ETF - October
+2026-07-01 22:07:30,989 [INFO] DHDG     | buffer             | FT Vest U.S. Equity Quarterly 2.5 to 15 Buffer ETF
+2026-07-01 22:07:30,989 [INFO] DHSB     | buffer             | Day Hagan Smart Buffer ETF
+2026-07-01 22:07:30,989 [INFO] DINE     | income strategy    | Simplify Tax Aware Diversified Income Strategy ETF
+2026-07-01 22:07:30,989 [INFO] DIPS     | income strategy    | YieldMax Short NVDA Option Income Strategy ETF
+2026-07-01 22:07:30,989 [INFO] DJAN     | buffer             | FT Vest U.S. Equity Deep Buffer ETF - January
+2026-07-01 22:07:30,989 [INFO] DJIA     | covered call       | Global X Dow 30 Covered Call ETF
+2026-07-01 22:07:30,989 [INFO] DJUL     | buffer             | FT Vest U.S. Equity Deep Buffer ETF - July
+2026-07-01 22:07:30,989 [INFO] DJUN     | buffer             | FT Vest U.S. Equity Deep Buffer ETF - June
+2026-07-01 22:07:30,989 [INFO] DLAG     | buffer             | FT Vest U.S. Equity Dual Directional Buffer ETF - August
+2026-07-01 22:07:30,989 [INFO] DLFE     | buffer             | FT Vest U.S. Equity Dual Directional Buffer ETF - February
+2026-07-01 22:07:30,989 [INFO] DLMY     | buffer             | FT Vest U.S. Equity Dual Directional Buffer ETF - May
+2026-07-01 22:07:30,989 [INFO] DLNV     | buffer             | FT Vest U.S. Equity Dual Directional Buffer ETF - November
+2026-07-01 22:07:30,989 [INFO] DMAR     | buffer             | FT Vest U.S. Equity Deep Buffer ETF - March
+2026-07-01 22:07:30,989 [INFO] DMAX     | buffer             | iShares Large Cap Max Buffer Dec ETF
+2026-07-01 22:07:30,989 [INFO] DMAY     | buffer             | FT Vest U.S. Equity Deep Buffer ETF - May
+2026-07-01 22:07:30,989 [INFO] DNOV     | buffer             | FT Vest U.S. Equity Deep Buffer ETF - November
+2026-07-01 22:07:30,989 [INFO] DOCT     | buffer             | FT Vest U.S. Equity Deep Buffer ETF - October
+2026-07-01 22:07:30,989 [INFO] DQJN     | buffer             | FT Vest Nasdaq-100 Dual Directional Buffer ETF - June
+2026-07-01 22:07:30,989 [INFO] DRAY     | income strategy    | YieldMax DKNG Option Income Strategy ETF
+2026-07-01 22:07:30,989 [INFO] DSEP     | buffer             | FT Vest U.S. Equity Deep Buffer ETF - September
+2026-07-01 22:07:30,989 [INFO] DULL     | microsectors       | MicroSectors Gold -3X Inverse Leveraged ETNs due January 29, 2043
+2026-07-01 22:07:30,989 [INFO] DYLG     | covered call       | Global X Dow 30 Covered Call & Growth ETF
+2026-07-01 22:07:30,989 [INFO] EALT     | buffer             | Innovator U.S. Equity 5 to 15 Buffer ETF - Quarterly
+2026-07-01 22:07:30,989 [INFO] EAPR     | buffer             | Innovator Emerging Markets Power Buffer ETF April
+2026-07-01 22:07:30,989 [INFO] EBUF     | buffer             | Innovator Emerging Markets 10 Buffer ETF - Quarterly
+2026-07-01 22:07:30,989 [INFO] EHCC     | covered call       | Global X Ethereum Covered Call ETF
+2026-07-01 22:07:30,990 [INFO] EHY      | covered call       | Amplify Ethereum Max Income Covered Call ETF
+2026-07-01 22:07:30,990 [INFO] EJAN     | buffer             | Innovator Emerging Markets Power Buffer ETF January
+2026-07-01 22:07:30,990 [INFO] EJUL     | buffer             | Innovator Emerging Markets Power Buffer ETF July
+2026-07-01 22:07:30,990 [INFO] EMJN     | buffer             | Corgi Emerging Markets Equities 15% Structured Buffer ETF - June Series
+2026-07-01 22:07:30,990 [INFO] EMMY     | buffer             | Corgi Emerging Markets Equities 15% Structured Buffer ETF - May Series
+2026-07-01 22:07:30,990 [INFO] EOCT     | buffer             | Innovator Emerging Markets Power Buffer ETF - October
+2026-07-01 22:07:30,990 [INFO] ETCO     | covered call       | Grayscale Ethereum Covered Call ETF
+2026-07-01 22:07:30,990 [INFO] ETNG     | etn                | Leverage Shares 2X Long ETN Daily ETF
+2026-07-01 22:07:30,990 [INFO] FAPR     | buffer             | FT Vest U.S. Equity Buffer ETF - April
+2026-07-01 22:07:30,990 [INFO] FAUG     | buffer             | FT Vest U.S. Equity Buffer ETF - August
+2026-07-01 22:07:30,990 [INFO] FB       | buffer             | ProShares S&P 500 Dynamic Buffer ETF
+2026-07-01 22:07:30,990 [INFO] FBUF     | buffer             | Fidelity Dynamic Buffered Equity ETF
+2026-07-01 22:07:30,990 [INFO] FBY      | income strategy    | YieldMax META Option Income Strategy ETF
+2026-07-01 22:07:30,990 [INFO] FDEC     | buffer             | FT Vest U.S. Equity Buffer ETF - December
+2026-07-01 22:07:30,990 [INFO] FEBM     | buffer             | FT Vest U.S. Equity Max Buffer ETF - February
+2026-07-01 22:07:30,990 [INFO] FEBP     | buffer             | PGIM S&P 500 Buffer 12 ETF - February
+2026-07-01 22:07:30,990 [INFO] FEBT     | buffer             | AllianzIM U.S. Large Cap Buffer10 Feb ETF
+2026-07-01 22:07:30,990 [INFO] FEBU     | buffer             | AllianzIM U.S. Equity Buffer15 Uncapped Feb ETF
+2026-07-01 22:07:30,990 [INFO] FEBW     | buffer             | AllianzIM U.S. Large Cap Buffer20 Feb ETF
+2026-07-01 22:07:30,990 [INFO] FFEB     | buffer             | FT Vest U.S. Equity Buffer ETF - February
+2026-07-01 22:07:30,990 [INFO] FHDG     | buffer             | FT Vest U.S. Equity Quarterly Dynamic Buffer ETF
+2026-07-01 22:07:30,990 [INFO] FIAT     | income strategy    | YieldMax Short COIN Option Income Strategy ETF
+2026-07-01 22:07:30,990 [INFO] FJAN     | buffer             | FT Vest U.S. Equity Buffer ETF - January
+2026-07-01 22:07:30,990 [INFO] FJUL     | buffer             | FT Vest U.S. Equity Buffer ETF - July
+2026-07-01 22:07:30,990 [INFO] FJUN     | buffer             | FT Vest U.S. Equity Buffer ETF - June
+2026-07-01 22:07:30,990 [INFO] FLYD     | microsectors       | MicroSectors Travel -3x Inverse Leveraged ETN
+2026-07-01 22:07:30,990 [INFO] FLYU     | microsectors       | MicroSectors Travel 3x Leveraged ETN
+2026-07-01 22:07:30,990 [INFO] FMAR     | buffer             | FT Vest U.S. Equity Buffer ETF - March
+2026-07-01 22:07:30,990 [INFO] FMAY     | buffer             | FT Vest U.S. Equity Buffer ETF - May
+2026-07-01 22:07:30,990 [INFO] FNGS     | microsectors       | MicroSectors FANG  ETNs due January 8, 2038
+2026-07-01 22:07:30,990 [INFO] FNGU     | microsectors       | MicroSectors FANG+ 3X Leveraged ETNs
+2026-07-01 22:07:30,990 [INFO] FNOV     | buffer             | FT Vest U.S. Equity Buffer ETF - November
+2026-07-01 22:07:30,990 [INFO] FOCT     | buffer             | FT Vest U.S. Equity Buffer ETF - October
+2026-07-01 22:07:30,990 [INFO] FSEP     | buffer             | FT Vest U.S. Equity Buffer ETF - September
+2026-07-01 22:07:30,991 [INFO] GAPR     | buffer             | FT Vest U.S. Equity Moderate Buffer ETF - April
+2026-07-01 22:07:30,991 [INFO] GAUG     | buffer             | FT Vest U.S. Equity Moderate Buffer ETF - August
+2026-07-01 22:07:30,991 [INFO] GDEC     | buffer             | FT Vest U.S. Equity Moderate Buffer ETF - December
+2026-07-01 22:07:30,991 [INFO] GDXD     | microsectors       | MicroSectors Gold Miners -3X Inverse Leveraged ETNs
+2026-07-01 22:07:30,991 [INFO] GDXU     | microsectors       | MicroSectors Gold Miners 3X Leveraged ETN
+2026-07-01 22:07:30,991 [INFO] GDXW     | weeklypay          | Roundhill Gold Miners WeeklyPay ETF
+2026-07-01 22:07:30,991 [INFO] GDXY     | income strategy    | YieldMax Gold Miners Option Income Strategy ETF
+2026-07-01 22:07:30,991 [INFO] GFEB     | buffer             | FT Vest U.S. Equity Moderate Buffer ETF - February
+2026-07-01 22:07:30,991 [INFO] GJAN     | buffer             | FT Vest U.S. Equity Moderate Buffer ETF - January
+2026-07-01 22:07:30,991 [INFO] GJUL     | buffer             | FT Vest U.S. Equity Moderate Buffer ETF - July
+2026-07-01 22:07:30,991 [INFO] GJUN     | buffer             | FT Vest U.S. Equity Moderate Buffer ETF - June
+2026-07-01 22:07:30,991 [INFO] GLDI     | etn                | ETRACS Gold Shares Covered Call ETNs due February 2, 2033
+2026-07-01 22:07:30,991 [INFO] GLDW     | weeklypay          | Roundhill Gold WeeklyPay ETF
+2026-07-01 22:07:30,991 [INFO] GMAR     | buffer             | FT Vest U.S. Equity Moderate Buffer ETF - March
+2026-07-01 22:07:30,991 [INFO] GMAY     | buffer             | FT Vest U.S. Equity Moderate Buffer ETF - May
+2026-07-01 22:07:30,991 [INFO] GMEY     | income strategy    | YieldMax GME Option Income Strategy ETF
+2026-07-01 22:07:30,991 [INFO] GNOV     | buffer             | FT Vest U.S. Equity Moderate Buffer ETF - November
+2026-07-01 22:07:30,991 [INFO] GOCT     | buffer             | FT Vest U.S. Equity Moderate Buffer ETF - October
+2026-07-01 22:07:30,991 [INFO] GOOP     | yield premium      | Kurv Yield Premium Strategy Google (GOOGL) ETF
+2026-07-01 22:07:30,991 [INFO] GOOW     | weeklypay          | Roundhill GOOGL WeeklyPay ETF
+2026-07-01 22:07:30,991 [INFO] GOOY     | income strategy    | YieldMax GOOGL Option Income Strategy ETF
+2026-07-01 22:07:30,991 [INFO] GSEP     | buffer             | FT Vest U.S. Equity Moderate Buffer ETF - September
+2026-07-01 22:07:30,991 [INFO] HAKY     | covered call       | Amplify HACK Cybersecurity Covered Call ETF
+2026-07-01 22:07:30,991 [INFO] HCOW     | covered call       | Amplify COWS Covered Call ETF
+2026-07-01 22:07:30,991 [INFO] HDLB     | etn                | ETRACS Monthly Pay 2xLeveraged US High Dividend Low Volatility ETN Series B due September 30, 2044
+2026-07-01 22:07:30,991 [INFO] HIYY     | income strategy    | YieldMax HIMS Option Income Strategy ETF
+2026-07-01 22:07:30,991 [INFO] HJUN     | buffer             | Corgi U.S. Equities 100% Structured Buffer ETF - June Series
+2026-07-01 22:07:30,991 [INFO] HMAY     | buffer             | Corgi U.S. Equities 100% Structured Buffer ETF - May Series
+2026-07-01 22:07:30,991 [INFO] HOOW     | weeklypay          | Roundhill HOOD WeeklyPay ETF
+2026-07-01 22:07:30,991 [INFO] HOOY     | income strategy    | YieldMax HOOD Option Income Strategy ETF
+2026-07-01 22:07:30,991 [INFO] IAPR     | buffer             | Innovator International Developed Power Buffer ETF  April
+2026-07-01 22:07:30,991 [INFO] IAUG     | buffer             | Innovator International Developed Power Buffer ETF  August
+2026-07-01 22:07:30,991 [INFO] IBFR     | buffer             | Innovator International Developed Managed 10 Buffer ETF
+2026-07-01 22:07:30,992 [INFO] IBUF     | buffer             | Innovator International Developed 10 Buffer ETF - Quarterly
+2026-07-01 22:07:30,992 [INFO] ICOI     | income strategy    | Bitwise COIN Option Income Strategy ETF
+2026-07-01 22:07:30,992 [INFO] ICRC     | income strategy    | Bitwise CRCL Option Income Strategy ETF
+2026-07-01 22:07:30,992 [INFO] IDEC     | buffer             | Innovator International Developed Power Buffer ETF  December
+2026-07-01 22:07:30,992 [INFO] IDJN     | buffer             | Corgi International Developed Equities 15% Structured Buffer ETF - June Series
+2026-07-01 22:07:30,992 [INFO] IDMY     | buffer             | Corgi International Developed Equities 15% Structured Buffer ETF - May Series
+2026-07-01 22:07:30,992 [INFO] IETH     | income strategy    | Bitwise Ethereum Option Income Strategy ETF
+2026-07-01 22:07:30,992 [INFO] IFEB     | buffer             | Innovator International Developed Power Buffer ETF  February
+2026-07-01 22:07:30,992 [INFO] IFED     | etn                | ETRACS IFED Invest with the Fed TR Index ETN
+2026-07-01 22:07:30,992 [INFO] IGME     | income strategy    | Bitwise GME Option Income Strategy ETF
+2026-07-01 22:07:30,992 [INFO] IJAN     | buffer             | Innovator International Developed Power Buffer ETF January
+2026-07-01 22:07:30,992 [INFO] IJUL     | buffer             | Innovator International Developed Power Buffer ETF  July
+2026-07-01 22:07:30,992 [INFO] IJUN     | buffer             | Innovator International Developed Power Buffer ETF June
+2026-07-01 22:07:30,992 [INFO] IMAR     | buffer             | Innovator International Developed Power Buffer ETF  March
+2026-07-01 22:07:30,992 [INFO] IMAY     | buffer             | Innovator International Developed Power Buffer ETF - May
+2026-07-01 22:07:30,992 [INFO] IMRA     | income strategy    | Bitwise MARA Option Income Strategy ETF
+2026-07-01 22:07:30,992 [INFO] IMST     | income strategy    | Bitwise MSTR Option Income Strategy ETF
+2026-07-01 22:07:30,992 [INFO] INOV     | buffer             | Innovator International Developed Power Buffer ETF  November
+2026-07-01 22:07:30,992 [INFO] INYY     | income strategy    | YieldMax INTC Option Income Strategy ETF
+2026-07-01 22:07:30,992 [INFO] IOCT     | buffer             | Innovator International Developed Power Buffer ETF - October
+2026-07-01 22:07:30,992 [INFO] ISEP     | buffer             | Innovator International Developed Power Buffer ETF  September
+2026-07-01 22:07:30,992 [INFO] IWDL     | etn                | ETRACS 2x Leveraged US Value Factor TR ETN
+2026-07-01 22:07:30,992 [INFO] IWFL     | etn                | ETRACS 2x Leveraged US Growth Factor TR ETN
+2026-07-01 22:07:30,992 [INFO] IWML     | etn                | ETRACS 2x Leveraged US Size Factor TR ETN
+2026-07-01 22:07:30,992 [INFO] JADB     | buffer             | Aptus January Deep Buffer ETF
+2026-07-01 22:07:30,992 [INFO] JANB     | buffer             | Aptus January Buffer ETF
+2026-07-01 22:07:30,992 [INFO] JANI     | buffer             | AllianzIM International Equity Buffer15 Uncapped Jan ETF
+2026-07-01 22:07:30,992 [INFO] JANM     | buffer             | FT Vest U.S. Equity Max Buffer ETF - January
+2026-07-01 22:07:30,992 [INFO] JANP     | buffer             | PGIM S&P 500 Buffer 12 ETF - January
+2026-07-01 22:07:30,992 [INFO] JANT     | buffer             | AllianzIM U.S. Large Cap Buffer10 Jan ETF
+2026-07-01 22:07:30,992 [INFO] JANU     | buffer             | AllianzIM U.S. Equity Buffer15 Uncapped Jan ETF
+2026-07-01 22:07:30,992 [INFO] JANW     | buffer             | AllianzIM U.S. Large Cap Buffer20 Jan ETF
+2026-07-01 22:07:30,993 [INFO] JETD     | etn                | MAX Airlines -3X Inverse Leveraged ETNs
+2026-07-01 22:07:30,993 [INFO] JETU     | etn                | MAX Airlines 3X Leveraged ETNs
+2026-07-01 22:07:30,993 [INFO] JNEU     | buffer             | AllianzIM U.S. Equity Buffer15 Uncapped June ETF
+2026-07-01 22:07:30,993 [INFO] JPO      | income strategy    | YieldMax JP Option Income Strategy ETF
+2026-07-01 22:07:30,993 [INFO] JUDB     | buffer             | Aptus July Deep Buffer ETF
+2026-07-01 22:07:30,993 [INFO] JULB     | buffer             | Aptus July Buffer ETF
+2026-07-01 22:07:30,993 [INFO] JULI     | buffer             | AllianzIM International Equity Buffer15 Uncapped Jul ETF
+2026-07-01 22:07:30,993 [INFO] JULM     | buffer             | FT Vest U.S. Equity Max Buffer ETF - July
+2026-07-01 22:07:30,993 [INFO] JULP     | buffer             | PGIM S&P 500 Buffer 12 ETF - July
+2026-07-01 22:07:30,993 [INFO] JULT     | buffer             | AllianzIM U.S. Large Cap Buffer10 Jul ETF
+2026-07-01 22:07:30,993 [INFO] JULU     | buffer             | AllianzIM U.S. Equity Buffer15 Uncapped Jul ETF
+2026-07-01 22:07:30,993 [INFO] JULW     | buffer             | AllianzIM U.S. Large Cap Buffer20 Jul ETF
+2026-07-01 22:07:30,993 [INFO] JUNC     | buffer             | Corgi U.S. Equities 10% Structured Buffer ETF - June Series
+2026-07-01 22:07:30,993 [INFO] JUNM     | buffer             | FT Vest U.S. Equity Max Buffer ETF - June
+2026-07-01 22:07:30,993 [INFO] JUNP     | buffer             | PGIM S&P 500 Buffer 12 ETF - June
+2026-07-01 22:07:30,993 [INFO] JUNT     | buffer             | AllianzIM U.S. Large Cap Buffer10 Jun ETF
+2026-07-01 22:07:30,993 [INFO] JUNW     | buffer             | AllianzIM U.S. Large Cap Buffer20 Jun ETF
+2026-07-01 22:07:30,993 [INFO] KAPR     | buffer             | Innovator U.S. Small Cap Power Buffer ETF - April
+2026-07-01 22:07:30,993 [INFO] KAUG     | buffer             | Innovator US Small Cap Power Buffer ETF - August
+2026-07-01 22:07:30,993 [INFO] KBFR     | buffer             | Innovator U.S. Small Cap Managed 10 Buffer ETF
+2026-07-01 22:07:30,993 [INFO] KDEC     | buffer             | Innovator U.S. Small Cap Power Buffer ETF - December
+2026-07-01 22:07:30,993 [INFO] KFEB     | buffer             | Innovator U.S. Small Cap Power Buffer ETF - February
+2026-07-01 22:07:30,993 [INFO] KIQQ     | buffer             | KraneShares InspereX Nasdaq Dynamic Buffered High Income Index ETF
+2026-07-01 22:07:30,993 [INFO] KJAN     | buffer             | Innovator U.S. Small Cap Power Buffer ETF - January
+2026-07-01 22:07:30,993 [INFO] KJUL     | buffer             | Innovator U.S. Small Cap Power Buffer ETF - July
+2026-07-01 22:07:30,993 [INFO] KJUN     | buffer             | Innovator U.S. Small Cap Power Buffer ETF - June
+2026-07-01 22:07:30,993 [INFO] KLIP     | covered call       | KraneShares KWEB Covered Call Strategy ETF
+2026-07-01 22:07:30,993 [INFO] KMAR     | buffer             | Innovator U.S. Small Cap Power Buffer ETF - March
+2026-07-01 22:07:30,993 [INFO] KMAY     | buffer             | Innovator U.S. Small Cap Power Buffer ETF - May
+2026-07-01 22:07:30,993 [INFO] KNOV     | buffer             | Innovator U.S. Small Cap Power Buffer ETF - November
+2026-07-01 22:07:30,993 [INFO] KOCT     | buffer             | Innovator U.S. Small Cap Power Buffer ETF - October
+2026-07-01 22:07:30,993 [INFO] KSEP     | buffer             | Innovator U.S. Small Cap Power Buffer ETF - September
+2026-07-01 22:07:30,993 [INFO] LAPR     | buffer             | Innovator Premium Income 15 Buffer ETF - April
+2026-07-01 22:07:30,993 [INFO] LJAN     | buffer             | Innovator Premium Income 15 Buffer ETF - January
+2026-07-01 22:07:30,994 [INFO] LJUL     | buffer             | Innovator Premium Income 15 Buffer ETF - July
+2026-07-01 22:07:30,994 [INFO] LOCT     | buffer             | Innovator Premium Income 15 Buffer ETF - October
+2026-07-01 22:07:30,994 [INFO] MAGY     | covered call       | Roundhill Magnificent Seven Covered Call ETF
+2026-07-01 22:07:30,994 [INFO] MARM     | buffer             | FT Vest U.S. Equity Max Buffer ETF - March
+2026-07-01 22:07:30,994 [INFO] MARO     | income strategy    | YieldMax MARA Option Income Strategy ETF
+2026-07-01 22:07:30,994 [INFO] MART     | buffer             | AllianzIM U.S. Large Cap Buffer10 Mar ETF
+2026-07-01 22:07:30,994 [INFO] MARU     | buffer             | AllianzIM U.S. Equity Buffer15 Uncapped Mar ETF
+2026-07-01 22:07:30,994 [INFO] MARW     | buffer             | AllianzIM U.S. Large Cap Buffer20 Mar ETF
+2026-07-01 22:07:30,994 [INFO] MAXJ     | buffer             | iShares Large Cap Max Buffer Jun ETF
+2026-07-01 22:07:30,994 [INFO] MAYC     | buffer             | Corgi U.S. Equities 10% Structured Buffer ETF - May Series
+2026-07-01 22:07:30,994 [INFO] MAYM     | buffer             | FT Vest U.S. Equity Max Buffer ETF - May
+2026-07-01 22:07:30,994 [INFO] MAYP     | buffer             | PGIM S&P 500 Buffer 12 ETF - May
+2026-07-01 22:07:30,994 [INFO] MAYT     | buffer             | AllianzIM U.S. Large Cap Buffer10 May ETF
+2026-07-01 22:07:30,994 [INFO] MAYU     | buffer             | AllianzIM U.S. Equity Buffer15 Uncapped May ETF
+2026-07-01 22:07:30,994 [INFO] MAYW     | buffer             | AllianzIM U.S. Large Cap Buffer20 May ETF
+2026-07-01 22:07:30,994 [INFO] METW     | weeklypay          | Roundhill META WeeklyPay ETF
+2026-07-01 22:07:30,994 [INFO] MLPD     | covered call       | Global X MLP & Energy Infrastructure Covered Call ETF
+2026-07-01 22:07:30,994 [INFO] MLPR     | etn                | ETRACS Quarterly Pay 1.5X Leveraged Alerian MLP Index ETN
+2026-07-01 22:07:30,994 [INFO] MMAX     | buffer             | iShares Large Cap Max Buffer Mar ETF
+2026-07-01 22:07:30,994 [INFO] MRA      | autocallable       | GraniteShares Autocallable MARA ETF
+2026-07-01 22:07:30,994 [INFO] MRCP     | buffer             | PGIM S&P 500 Buffer 12 ETF - March
+2026-07-01 22:07:30,994 [INFO] MRNY     | income strategy    | YieldMax MRNA Option Income Strategy ETF
+2026-07-01 22:07:30,994 [INFO] MSFO     | income strategy    | YieldMax MSFT Option Income Strategy ETF
+2026-07-01 22:07:30,994 [INFO] MSFW     | weeklypay          | Roundhill MSFT WeeklyPay ETF
+2026-07-01 22:07:30,994 [INFO] MSFY     | yield premium      | Kurv Yield Premium Strategy Microsoft (MSFT) ETF
+2026-07-01 22:07:30,994 [INFO] MSR      | autocallable       | GraniteShares Autocallable MSTR ETF
+2026-07-01 22:07:30,994 [INFO] MSTW     | weeklypay          | Roundhill MSTR WeeklyPay ETF
+2026-07-01 22:07:30,994 [INFO] MSTY     | income strategy    | YieldMax MSTR Option Income Strategy ETF
+2026-07-01 22:07:30,994 [INFO] MTUL     | etn                | ETRACS 2x Leveraged MSCI US Momentum Factor TR ETN
+2026-07-01 22:07:30,994 [INFO] MVRL     | etn                | ETRACS Monthly Pay 1.5X Leveraged Mortgage REIT ETN
+2026-07-01 22:07:30,994 [INFO] NAPR     | buffer             | Innovator Growth-100 Power Buffer ETF - April
+2026-07-01 22:07:30,994 [INFO] NAUG     | buffer             | Innovator Growth-100 Power Buffer ETF - August
+2026-07-01 22:07:30,994 [INFO] NBFR     | buffer             | Innovator Nasdaq-100 Managed 10 Buffer ETF
+2026-07-01 22:07:30,995 [INFO] NDEC     | buffer             | Innovator Growth-100 Power Buffer ETF - December
+2026-07-01 22:07:30,995 [INFO] NDIV     | covered call       | Amplify Energy & Natural Resources Covered Call ETF
+2026-07-01 22:07:30,995 [INFO] NFEB     | buffer             | Innovator Growth-100 Power Buffer ETF - February
+2026-07-01 22:07:30,995 [INFO] NFLP     | yield premium      | Kurv Yield Premium Strategy Netflix (NFLX) ETF
+2026-07-01 22:07:30,995 [INFO] NFLW     | weeklypay          | Roundhill NFLX WeeklyPay ETF
+2026-07-01 22:07:30,995 [INFO] NFLY     | income strategy    | YieldMax NFLX Option Income Strategy ETF
+2026-07-01 22:07:30,995 [INFO] NJAN     | buffer             | Innovator Growth-100 Power Buffer ETF - January
+2026-07-01 22:07:30,995 [INFO] NJUL     | buffer             | Innovator Growth-100 Power Buffer ETF - July
+2026-07-01 22:07:30,995 [INFO] NJUN     | buffer             | Innovator Growth-100 Power Buffer ETF - June
+2026-07-01 22:07:30,995 [INFO] NMAR     | buffer             | Innovator Growth-100 Power Buffer ETF - March
+2026-07-01 22:07:30,995 [INFO] NMAY     | buffer             | Innovator Growth-100 Power Buffer ETF - May
+2026-07-01 22:07:30,995 [INFO] NNOV     | buffer             | Innovator Growth-100 Power Buffer ETF - November
+2026-07-01 22:07:30,995 [INFO] NOCT     | buffer             | Innovator Growth-100 Power Buffer ETF- October
+2026-07-01 22:07:30,995 [INFO] NOVM     | buffer             | FT Vest U.S. Equity Max Buffer ETF - November
+2026-07-01 22:07:30,995 [INFO] NOVP     | buffer             | PGIM S&P 500 Buffer 12 ETF - November
+2026-07-01 22:07:30,995 [INFO] NRGD     | microsectors       | MicroSectors U.S. Big Oil -3 Inverse Leveraged ETNs due February 17, 2045
+2026-07-01 22:07:30,995 [INFO] NRGU     | microsectors       | MicroSectors U.S. Big Oil 3 Leveraged ETNs due February 17, 2045
+2026-07-01 22:07:30,995 [INFO] NSEP     | buffer             | Innovator Growth-100 Power Buffer ETF - September
+2026-07-01 22:07:30,995 [INFO] NVBT     | buffer             | AllianzIM U.S. Large Cap Buffer10 Nov ETF
+2026-07-01 22:07:30,995 [INFO] NVBU     | buffer             | AllianzIM U.S. Equity Buffer15 Uncapped Nov ETF
+2026-07-01 22:07:30,995 [INFO] NVBW     | buffer             | AllianzIM U.S. Large Cap Buffer20 Nov ETF
+2026-07-01 22:07:30,995 [INFO] NVDW     | weeklypay          | Roundhill NVDA WeeklyPay ETF
+2026-07-01 22:07:30,995 [INFO] NVDY     | income strategy    | YieldMax NVDA Option Income Strategy ETF
+2026-07-01 22:07:30,995 [INFO] OARK     | income strategy    | YieldMax Innovation Option Income Strategy ETF
+2026-07-01 22:07:30,995 [INFO] OCDB     | buffer             | Aptus October Deep Buffer ETF
+2026-07-01 22:07:30,995 [INFO] OCTB     | buffer             | Aptus October Buffer ETF
+2026-07-01 22:07:30,995 [INFO] OCTM     | buffer             | FT Vest U.S. Equity Max Buffer ETF - October
+2026-07-01 22:07:30,995 [INFO] OCTP     | buffer             | PGIM S&P 500 Buffer 12 ETF - October
+2026-07-01 22:07:30,995 [INFO] OCTT     | buffer             | AllianzIM U.S. Large Cap Buffer10 Oct ETF
+2026-07-01 22:07:30,995 [INFO] OCTU     | buffer             | AllianzIM U.S. Equity Buffer15 Uncapped Oct ETF
+2026-07-01 22:07:30,995 [INFO] OCTW     | buffer             | AllianzIM U.S. Large Cap Buffer20 Oct ETF
+2026-07-01 22:07:30,995 [INFO] OILD     | microsectors       | MicroSectors Oil & Gas Exp. & Prod. -3x Inverse Leveraged ETN
+2026-07-01 22:07:30,995 [INFO] OILU     | microsectors       | MicroSectors Oil & Gas Exp. & Prod. 3x Leveraged ETN
+2026-07-01 22:07:30,996 [INFO] ONEZ     | buffer             | TrueShares Seasonality Laddered Buffered ETF
+2026-07-01 22:07:30,996 [INFO] PAPR     | buffer             | Innovator U.S. Equity Power Buffer ETF - April
+2026-07-01 22:07:30,996 [INFO] PAUG     | buffer             | Innovator U.S. Equity Power Buffer ETF - August
+2026-07-01 22:07:30,996 [INFO] PAYH     | autocallable       | TrueShares S&P Autocallable High Income ETF
+2026-07-01 22:07:30,996 [INFO] PAYM     | autocallable       | TrueShares S&P Autocallable Defensive Income ETF
+2026-07-01 22:07:30,996 [INFO] PBAP     | buffer             | PGIM S&P 500 Buffer 20 ETF - April
+2026-07-01 22:07:30,996 [INFO] PBAU     | buffer             | PGIM S&P 500 Buffer 20 ETF - August
+2026-07-01 22:07:30,996 [INFO] PBDE     | buffer             | PGIM S&P 500 Buffer 20 ETF - December
+2026-07-01 22:07:30,996 [INFO] PBFB     | buffer             | PGIM S&P 500 Buffer 20 ETF - February
+2026-07-01 22:07:30,996 [INFO] PBFR     | buffer             | PGIM Laddered S&P 500 Buffer 20 ETF
+2026-07-01 22:07:30,996 [INFO] PBJA     | buffer             | PGIM S&P 500 Buffer 20 ETF - January
+2026-07-01 22:07:30,996 [INFO] PBJL     | buffer             | PGIM S&P 500 Buffer 20 ETF - July
+2026-07-01 22:07:30,996 [INFO] PBJN     | buffer             | PGIM S&P 500 Buffer 20 ETF - June
+2026-07-01 22:07:30,996 [INFO] PBMR     | buffer             | PGIM S&P 500 Buffer 20 ETF - March
+2026-07-01 22:07:30,996 [INFO] PBMY     | buffer             | PGIM S&P 500 Buffer 20 ETF - May
+2026-07-01 22:07:30,996 [INFO] PBNV     | buffer             | PGIM S&P 500 Buffer 20 ETF - November
+2026-07-01 22:07:30,996 [INFO] PBOC     | buffer             | PGIM S&P 500 Buffer 20 ETF - October
+2026-07-01 22:07:30,996 [INFO] PBQQ     | buffer             | PGIM Laddered Nasdaq-100 Buffer 12 ETF
+2026-07-01 22:07:30,996 [INFO] PBSE     | buffer             | PGIM S&P 500 Buffer 20 ETF - September
+2026-07-01 22:07:30,996 [INFO] PDEC     | buffer             | Innovator U.S. Equity Power Buffer ETF - December
+2026-07-01 22:07:30,996 [INFO] PFEB     | buffer             | Innovator U.S. Equity Power Buffer ETF - February
+2026-07-01 22:07:30,996 [INFO] PJAN     | buffer             | Innovator U.S. Equity Power Buffer ETF - January
+2026-07-01 22:07:30,996 [INFO] PJUL     | buffer             | Innovator U.S. Equity Power Buffer ETF - July
+2026-07-01 22:07:30,996 [INFO] PJUN     | buffer             | Innovator U.S. Equity Power Buffer ETF - June
+2026-07-01 22:07:30,996 [INFO] PLA      | autocallable       | GraniteShares Autocallable PLTR ETF
+2026-07-01 22:07:30,996 [INFO] PLTW     | weeklypay          | Roundhill PLTR WeeklyPay ETF
+2026-07-01 22:07:30,996 [INFO] PLTY     | income strategy    | YieldMax PLTR Option Income Strategy ETF
+2026-07-01 22:07:30,996 [INFO] PMAP     | buffer             | PGIM S&P 500 Max Buffer ETF - April
+2026-07-01 22:07:30,996 [INFO] PMAR     | buffer             | Innovator U.S. Equity Power Buffer ETF - March
+2026-07-01 22:07:30,996 [INFO] PMAU     | buffer             | PGIM S&P 500 Max Buffer ETF - August
+2026-07-01 22:07:30,996 [INFO] PMAY     | buffer             | Innovator U.S. Equity Power Buffer ETF - May
+2026-07-01 22:07:30,997 [INFO] PMDE     | buffer             | PGIM S&P 500 Max Buffer ETF - December
+2026-07-01 22:07:30,997 [INFO] PMFB     | buffer             | PGIM S&P 500 Max Buffer ETF - February
+2026-07-01 22:07:30,997 [INFO] PMJA     | buffer             | PGIM S&P 500 Max Buffer ETF - January
+2026-07-01 22:07:30,997 [INFO] PMJL     | buffer             | PGIM S&P 500 Max Buffer ETF - July
+2026-07-01 22:07:30,997 [INFO] PMJN     | buffer             | PGIM S&P 500 Max Buffer ETF - June
+2026-07-01 22:07:30,997 [INFO] PMMR     | buffer             | PGIM S&P 500 Max Buffer ETF - March
+2026-07-01 22:07:30,997 [INFO] PMMY     | buffer             | PGIM S&P 500 Max Buffer ETF - May
+2026-07-01 22:07:30,997 [INFO] PMNV     | buffer             | PGIM S&P 500 Max Buffer ETF - November
+2026-07-01 22:07:30,997 [INFO] PMOC     | buffer             | PGIM S&P 500 Max Buffer ETF - October
+2026-07-01 22:07:30,997 [INFO] PMSE     | buffer             | PGIM S&P 500 Max Buffer ETF - September
+2026-07-01 22:07:30,997 [INFO] PNOV     | buffer             | Innovator U.S. Equity Power Buffer ETF - November
+2026-07-01 22:07:30,997 [INFO] POCT     | buffer             | Innovator U.S. Equity Power Buffer ETF - October
+2026-07-01 22:07:30,997 [INFO] PQAP     | buffer             | PGIM Nasdaq-100 Buffer 12 ETF - April
+2026-07-01 22:07:30,997 [INFO] PQJA     | buffer             | PGIM Nasdaq-100 Buffer 12 ETF - January
+2026-07-01 22:07:30,997 [INFO] PQJL     | buffer             | PGIM Nasdaq-100 Buffer 12 ETF - July
+2026-07-01 22:07:30,997 [INFO] PQOC     | buffer             | PGIM Nasdaq-100 Buffer 12 ETF - October
+2026-07-01 22:07:30,997 [INFO] PQV      | buffer             | PGIM S&P 500 Quarterly Buffer 5 ETF
+2026-07-01 22:07:30,997 [INFO] PQX      | buffer             | PGIM S&P 500 Quarterly Buffer 10 ETF
+2026-07-01 22:07:30,997 [INFO] PQXV     | buffer             | PGIM S&P 500 Quarterly Buffer 15 ETF
+2026-07-01 22:07:30,997 [INFO] PQXX     | buffer             | PGIM S&P 500 Quarterly Buffer 20 ETF
+2026-07-01 22:07:30,997 [INFO] PSEP     | buffer             | Innovator U.S. Equity Power Buffer ETF - September
+2026-07-01 22:07:30,997 [INFO] PSTP     | buffer             | Innovator Power Buffer Step-Up Strategy ETF
+2026-07-01 22:07:30,997 [INFO] PYPY     | income strategy    | YieldMax PYPL Option Income Strategy ETF
+2026-07-01 22:07:30,997 [INFO] QB       | buffer             | ProShares Nasdaq-100 Dynamic Buffer ETF
+2026-07-01 22:07:30,997 [INFO] QBIF     | buffer             | AllianzIM International Equity Buffer15 ETF
+2026-07-01 22:07:30,997 [INFO] QBIV     | buffer             | AllianzIM International Equity Buffer5 ETF
+2026-07-01 22:07:30,997 [INFO] QBKF     | buffer             | AllianzIM U.S. Small Cap Buffer15 ETF
+2026-07-01 22:07:30,997 [INFO] QBKV     | buffer             | AllianzIM U.S. Small Cap Buffer5 ETF
+2026-07-01 22:07:30,997 [INFO] QBQF     | buffer             | AllianzIM Growth-100 Buffer15 ETF
+2026-07-01 22:07:30,997 [INFO] QBQV     | buffer             | AllianzIM Growth-100 Buffer5 ETF
+2026-07-01 22:07:30,997 [INFO] QBSF     | buffer             | AllianzIM U.S. Equity Buffer15 ETF
+2026-07-01 22:07:30,997 [INFO] QBSV     | buffer             | AllianzIM U.S Equity Buffer5 ETF
+2026-07-01 22:07:30,997 [INFO] QBUF     | buffer             | Innovator Nasdaq-100 10 Buffer ETF Quarterly
+2026-07-01 22:07:30,997 [INFO] QCAP     | buffer             | FT Vest Nasdaq-100 Conservative Buffer ETF - April
+2026-07-01 22:07:30,998 [INFO] QCJA     | buffer             | FT Vest Nasdaq-100 Conservative Buffer ETF - January
+2026-07-01 22:07:30,998 [INFO] QCJL     | buffer             | FT Vest Nasdaq-100 Conservative Buffer ETF - July
+2026-07-01 22:07:30,998 [INFO] QCOC     | buffer             | FT Vest Nasdaq-100 Conservative Buffer ETF - October
+2026-07-01 22:07:30,998 [INFO] QDEC     | buffer             | FT Vest Nasdaq-100 Buffer ETF - December
+2026-07-01 22:07:30,998 [INFO] QDTE     | covered call       | Roundhill Innovation-100 0DTE Covered Call Strategy ETF
+2026-07-01 22:07:30,998 [INFO] QDTY     | covered call       | YieldMax Nasdaq 100 0DTE Covered Call Strategy ETF
+2026-07-01 22:07:30,998 [INFO] QJN      | buffer             | Corgi Growth & Technology 10% Structured Buffer ETF - June Series
+2026-07-01 22:07:30,998 [INFO] QJUN     | buffer             | FT Vest Nasdaq-100 Buffer ETF - June
+2026-07-01 22:07:30,998 [INFO] QMAG     | buffer             | FT Vest Nasdaq-100 Moderate Buffer ETF - August
+2026-07-01 22:07:30,998 [INFO] QMAR     | buffer             | FT Vest Nasdaq-100 Buffer ETF - March
+2026-07-01 22:07:30,998 [INFO] QMFE     | buffer             | FT Vest Nasdaq-100 Moderate Buffer ETF - February
+2026-07-01 22:07:30,998 [INFO] QMMY     | buffer             | FT Vest Nasdaq-100 Moderate Buffer ETF - May
+2026-07-01 22:07:30,998 [INFO] QMNV     | buffer             | FT Vest Nasdaq-100 Moderate Buffer ETF - November
+2026-07-01 22:07:30,998 [INFO] QMY      | buffer             | Corgi Growth & Technology 10% Structured Buffer ETF - May Series
+2026-07-01 22:07:30,998 [INFO] QQJN     | buffer             | Corgi Growth & Technology 15% Structured Buffer ETF - June Series
+2026-07-01 22:07:30,998 [INFO] QQMY     | buffer             | Corgi Growth & Technology 15% Structured Buffer ETF - May Series
+2026-07-01 22:07:30,998 [INFO] QSPT     | buffer             | FT Vest Nasdaq-100 Buffer ETF - September
+2026-07-01 22:07:30,998 [INFO] QULL     | etn                | ETRACS 2x Leveraged MSCI US Quality Factor TR ETN
+2026-07-01 22:07:30,998 [INFO] QYLD     | covered call       | Global X NASDAQ 100 Covered Call ETF
+2026-07-01 22:07:30,998 [INFO] QYLG     | covered call       | Global X Nasdaq 100 Covered Call & Growth ETF
+2026-07-01 22:07:30,998 [INFO] RB       | buffer             | ProShares Russell 2000 Dynamic Buffer ETF
+2026-07-01 22:07:30,998 [INFO] RBLY     | income strategy    | YieldMax RBLX Option Income Strategy ETF
+2026-07-01 22:07:30,998 [INFO] RBUF     | buffer             | Innovator U.S. Small Cap 10 Buffer ETF - Quarterly
+2026-07-01 22:07:30,998 [INFO] RDTE     | covered call       | Roundhill Russell 2000 0DTE Covered Call Strategy ETF
+2026-07-01 22:07:30,998 [INFO] RDYY     | income strategy    | YieldMax RDDT Option Income Strategy ETF
+2026-07-01 22:07:30,998 [INFO] RSDE     | buffer             | FT Vest U.S. Equity Equal Weight Buffer ETF - December
+2026-07-01 22:07:30,998 [INFO] RSJN     | buffer             | FT Vest U.S. Equity Equal Weight Buffer ETF - June
+2026-07-01 22:07:30,998 [INFO] RSMR     | buffer             | FT Vest U.S. Equity Equal Weight Buffer ETF - March
+2026-07-01 22:07:30,998 [INFO] RSSE     | buffer             | FT Vest U.S. Equity Equal Weight Buffer ETF  September
+2026-07-01 22:07:30,998 [INFO] RYLD     | covered call       | Global X Russell 2000 Covered Call ETF
+2026-07-01 22:07:30,998 [INFO] RYLG     | covered call       | Global X Russell 2000 Covered Call & Growth ETF
+2026-07-01 22:07:30,998 [INFO] SAUG     | buffer             | FT Vest U.S. Small Cap Moderate Buffer ETF - August
+2026-07-01 22:07:30,998 [INFO] SCA      | autocallable       | GraniteShares Autocallable SMCI ETF
+2026-07-01 22:07:30,999 [INFO] SCDL     | etn                | ETRACS 2x Leveraged US Dividend Factor TR ETN
+2026-07-01 22:07:30,999 [INFO] SCJN     | buffer             | Corgi U.S. Small-Cap 15% Structured Buffer ETF - June Series
+2026-07-01 22:07:30,999 [INFO] SCMY     | buffer             | Corgi U.S. Small-Cap 15% Structured Buffer ETF - May Series
+2026-07-01 22:07:30,999 [INFO] SDTY     | covered call       | YieldMax S&P 500 0DTE Covered Call Strategy ETF
+2026-07-01 22:07:30,999 [INFO] SEPM     | buffer             | FT Vest U.S. Equity Max Buffer ETF - September
+2026-07-01 22:07:30,999 [INFO] SEPP     | buffer             | PGIM S&P 500 Buffer 12 ETF - September
+2026-07-01 22:07:30,999 [INFO] SEPT     | buffer             | AllianzIM U.S. Large Cap Buffer10 Sep ETF
+2026-07-01 22:07:30,999 [INFO] SEPU     | buffer             | AllianzIM U.S. Equity Buffer15 Uncapped Sep ETF
+2026-07-01 22:07:30,999 [INFO] SEPW     | buffer             | AllianzIM U.S. Large Cap Buffer20 Sep ETF
+2026-07-01 22:07:30,999 [INFO] SFEB     | buffer             | FT Vest U.S. Small Cap Moderate Buffer ETF - February
+2026-07-01 22:07:30,999 [INFO] SHNY     | microsectors       | MicroSectors Gold 3X Leveraged ETNs due January 29, 2043
+2026-07-01 22:07:30,999 [INFO] SIXD     | buffer             | AllianzIM U.S. Large Cap 6 Month Buffer10 Jun/Dec ETF
+2026-07-01 22:07:30,999 [INFO] SIXF     | buffer             | AllianzIM U.S. Large Cap 6 Month Buffer10 Feb/Aug ETF
+2026-07-01 22:07:30,999 [INFO] SIXJ     | buffer             | AllianzIM U.S. Large Cap 6 Month Buffer10 Jan/Jul ETF
+2026-07-01 22:07:30,999 [INFO] SIXO     | buffer             | AllianzIM U.S. Large Cap 6 Month Buffer10 Apr/Oct ETF
+2026-07-01 22:07:30,999 [INFO] SIXP     | buffer             | AllianzIM U.S. Large Cap 6 Month Buffer10 Mar/Sep ETF
+2026-07-01 22:07:30,999 [INFO] SIXZ     | buffer             | AllianzIM U.S. Large Cap 6 Month Buffer10 May/Nov ETF
+2026-07-01 22:07:30,999 [INFO] SLJY     | covered call       | Amplify SILJ Junior Silver Miners Covered Call ETF
+2026-07-01 22:07:30,999 [INFO] SLTY     | income strategy    | YieldMax Ultra Short Option Income Strategy ETF
+2026-07-01 22:07:30,999 [INFO] SLVO     | etn                | ETRACS Silver Shares Covered Call ETNs due April 21, 2033
+2026-07-01 22:07:30,999 [INFO] SMAX     | buffer             | iShares Large Cap Max Buffer Sep ETF
+2026-07-01 22:07:30,999 [INFO] SMAY     | buffer             | FT Vest U.S. Small Cap Moderate Buffer ETF - May
+2026-07-01 22:07:30,999 [INFO] SMCY     | income strategy    | YieldMax SMCI Option Income Strategy ETF
+2026-07-01 22:07:30,999 [INFO] SNOV     | buffer             | FT Vest U.S. Small Cap Moderate Buffer ETF - November
+2026-07-01 22:07:30,999 [INFO] SNOY     | income strategy    | YieldMax SNOW Option Income Strategy ETF
+2026-07-01 22:07:30,999 [INFO] SPBU     | buffer             | AllianzIM Buffer15 Uncapped Allocation ETF
+2026-07-01 22:07:30,999 [INFO] SPBW     | buffer             | AllianzIM Buffer20 Allocation ETF
+2026-07-01 22:07:30,999 [INFO] SPBX     | buffer             | AllianzIM 6 Month Buffer10 Allocation ETF
+2026-07-01 22:07:30,999 [INFO] SPYU     | etn                | MAX S&P 500 4X Leveraged ETNs due October 30, 2043
+2026-07-01 22:07:30,999 [INFO] SQMX     | buffer             | FT Vest U.S. Equity Quarterly Max Buffer ETF
+2026-07-01 22:07:30,999 [INFO] SRHR     | covered call       | SRH REIT Covered Call ETF
+2026-07-01 22:07:30,999 [INFO] STEN     | buffer             | iShares Large Cap 10% Target Buffer Sep ETF
+2026-07-01 22:07:31,000 [INFO] TBJL     | buffer             | Innovator 20  Year Treasury Bond 9 Buffer ETF - July
+2026-07-01 22:07:31,000 [INFO] TDEC     | buffer             | FT Vest Emerging Markets Buffer ETF - December
+2026-07-01 22:07:31,000 [INFO] TEND     | buffer             | iShares Large Cap 10% Target Buffer Dec ETF
+2026-07-01 22:07:31,000 [INFO] TENJ     | buffer             | iShares Large Cap 10% Target Buffer Jun ETF
+2026-07-01 22:07:31,000 [INFO] TENM     | buffer             | iShares Large Cap 10% Target Buffer Mar ETF
+2026-07-01 22:07:31,000 [INFO] TJUN     | buffer             | FT Vest Emerging Markets Buffer ETF - June
+2026-07-01 22:07:31,000 [INFO] TLA      | autocallable       | GraniteShares Autocallable TSLA ETF
+2026-07-01 22:07:31,000 [INFO] TMAR     | buffer             | FT Vest Emerging Markets Buffer ETF - March
+2026-07-01 22:07:31,000 [INFO] TOPW     | weeklypay          | Roundhill Top WeeklyPay ETF
+2026-07-01 22:07:31,000 [INFO] TRIO     | buffer             | MC Trio Equity Buffered ETF
+2026-07-01 22:07:31,000 [INFO] TSEP     | buffer             | FT Vest Emerging Market Buffer ETF - September
+2026-07-01 22:07:31,000 [INFO] TSLP     | yield premium      | Kurv Yield Premium Strategy Tesla (TSLA) ETF
+2026-07-01 22:07:31,000 [INFO] TSLW     | weeklypay          | Roundhill TSLA WeeklyPay ETF
+2026-07-01 22:07:31,000 [INFO] TSLY     | income strategy    | YieldMax TSLA Option Income Strategy ETF
+2026-07-01 22:07:31,000 [INFO] TSMY     | income strategy    | YieldMax TSM Option Income Strategy ETF
+2026-07-01 22:07:31,000 [INFO] TSYW     | weeklypay          | Roundhill Treasury Bond WeeklyPay ETF
+2026-07-01 22:07:31,000 [INFO] TYLG     | covered call       | Global X Information Technology Covered Call & Growth ETF
+2026-07-01 22:07:31,000 [INFO] UAPR     | buffer             | Innovator U.S. Equity Ultra Buffer ETF - April
+2026-07-01 22:07:31,000 [INFO] UAUG     | buffer             | Innovator U.S. Equity Ultra Buffer ETF - August
+2026-07-01 22:07:31,000 [INFO] UBEW     | weeklypay          | Roundhill UBER WeeklyPay ETF
+2026-07-01 22:07:31,000 [INFO] UDEC     | buffer             | Innovator U.S. Equity Ultra Buffer ETF - December
+2026-07-01 22:07:31,000 [INFO] UFEB     | buffer             | Innovator U.S. Equity Ultra Buffer ETF - February
+2026-07-01 22:07:31,000 [INFO] UJAN     | buffer             | Innovator U.S. Equity Ultra Buffer ETF - January
+2026-07-01 22:07:31,000 [INFO] UJUL     | buffer             | Innovator U.S. Equity Ultra Buffer ETF - July
+2026-07-01 22:07:31,000 [INFO] UJUN     | buffer             | Innovator U.S. Equity Ultra Buffer ETF - June
+2026-07-01 22:07:31,000 [INFO] ULTY     | income strategy    | YieldMax Ultra Option Income Strategy ETF
+2026-07-01 22:07:31,000 [INFO] UMAR     | buffer             | Innovator U.S. Equity Ultra Buffer ETF - March
+2026-07-01 22:07:31,000 [INFO] UMAY     | buffer             | Innovator U.S. Equity Ultra Buffer ETF - May
+2026-07-01 22:07:31,000 [INFO] UNHW     | weeklypay          | Roundhill UNH WeeklyPay ETF
+2026-07-01 22:07:31,000 [INFO] UNOV     | buffer             | Innovator U.S. Equity Ultra Buffer ETF - November
+2026-07-01 22:07:31,000 [INFO] UOCT     | buffer             | Innovator U.S. Equity Ultra Buffer ETF - October
+2026-07-01 22:07:31,000 [INFO] USEP     | buffer             | Innovator U.S. Equity Ultra Buffer ETF - September
+2026-07-01 22:07:31,000 [INFO] USML     | etn                | ETRACS 2x Leveraged MSCI US Minimum Volatility Factor TR ETN
+2026-07-01 22:07:31,000 [INFO] USOI     | etn                | ETRACS Crude Oil Shares Covered Call ETNs due April 24, 2037
+2026-07-01 22:07:31,001 [INFO] VAIE     | autocallable       | VegaShares US Equity Autocallable Income ETF
+2026-07-01 22:07:31,001 [INFO] VYLD     | etn                | Inverse VIX Short-Term Futures ETNs due March 22, 2045
+2026-07-01 22:07:31,001 [INFO] WNTR     | income strategy    | YieldMax MSTR Short Option Income Strategy ETF
+2026-07-01 22:07:31,001 [INFO] WTID     | microsectors       | MicroSectors Energy 3X Inverse Leveraged ETNs
+2026-07-01 22:07:31,001 [INFO] WTIU     | microsectors       | MicroSectors Energy 3X Leveraged ETNs
+2026-07-01 22:07:31,001 [INFO] XAPR     | buffer             | FT Vest U.S. Equity Enhance & Moderate Buffer ETF - April
+2026-07-01 22:07:31,001 [INFO] XAUG     | buffer             | FT Vest U.S. Equity Enhance & Moderate Buffer ETF - August
+2026-07-01 22:07:31,001 [INFO] XBAP     | buffer             | Innovator U.S. Equity Accelerated 9 Buffer ETF - April
+2026-07-01 22:07:31,001 [INFO] XBFR     | buffer             | Innovator Equity Managed 10 Buffer ETF
+2026-07-01 22:07:31,001 [INFO] XBJA     | buffer             | Innovator U.S. Equity Accelerated 9 Buffer ETF - January
+2026-07-01 22:07:31,001 [INFO] XBJL     | buffer             | Innovator U.S. Equity Accelerated 9 Buffer ETF - July
+2026-07-01 22:07:31,001 [INFO] XBOC     | buffer             | Innovator U.S. Equity Accelerated 9 Buffer ETF - October
+2026-07-01 22:07:31,001 [INFO] XDEC     | buffer             | FT Vest U.S. Equity Enhance & Moderate Buffer ETF - December
+2026-07-01 22:07:31,001 [INFO] XDTE     | covered call       | Roundhill S&P 500 0DTE Covered Call Strategy ETF
+2026-07-01 22:07:31,001 [INFO] XFEB     | buffer             | FT Vest U.S. Equity Enhance & Moderate Buffer ETF - February
+2026-07-01 22:07:31,001 [INFO] XIDE     | buffer             | FT Vest U.S. Equity Buffer & Premium Income  ETF - December
+2026-07-01 22:07:31,001 [INFO] XIJN     | buffer             | FT Vest U.S. Equity Buffer & Premium Income ETF - June
+2026-07-01 22:07:31,001 [INFO] XIMR     | buffer             | FT Vest U.S. Equity Buffer & Premium Income ETF - March
+2026-07-01 22:07:31,001 [INFO] XISE     | buffer             | FT Vest U.S. Equity Buffer & Premium Income ETF - September
+2026-07-01 22:07:31,001 [INFO] XJAN     | buffer             | FT Vest U.S. Equity Enhance & Moderate Buffer ETF - January
+2026-07-01 22:07:31,001 [INFO] XJUL     | buffer             | FT Vest U.S. Equity Enhance & Moderate Buffer ETF - July
+2026-07-01 22:07:31,001 [INFO] XJUN     | buffer             | FT Vest U.S. Equity Enhance & Moderate Buffer ETF - June
+2026-07-01 22:07:31,001 [INFO] XMAR     | buffer             | FT Vest U.S. Equity Enhance & Moderate Buffer ETF - March
+2026-07-01 22:07:31,001 [INFO] XMAY     | buffer             | FT Vest U.S. Equity Enhance & Moderate Buffer ETF - May
+2026-07-01 22:07:31,001 [INFO] XNOV     | buffer             | FT Vest U.S. Equity Enhance & Moderate Buffer ETF - November
+2026-07-01 22:07:31,001 [INFO] XOCT     | buffer             | FT Vest U.S. Equity Enhance & Moderate Buffer ETF - October
+2026-07-01 22:07:31,001 [INFO] XOMO     | income strategy    | YieldMax XOM Option Income Strategy ETF
+2026-07-01 22:07:31,001 [INFO] XSEP     | buffer             | FT Vest U.S. Equity Enhance & Moderate Buffer ETF - September
+2026-07-01 22:07:31,001 [INFO] XYLD     | covered call       | Global X S&P 500 Covered Call ETF
+2026-07-01 22:07:31,001 [INFO] XYLG     | covered call       | Global X S&P 500 Covered Call & Growth ETF
+2026-07-01 22:07:31,001 [INFO] XYZY     | income strategy    | YieldMax XYZ Option Income Strategy ETF
+2026-07-01 22:07:31,001 [INFO] YBIT     | income strategy    | YieldMax Bitcoin Option Income Strategy ETF
+2026-07-01 22:07:31,001 [INFO] YBTC     | covered call       | Roundhill Bitcoin Covered Call Strategy ETF
+2026-07-01 22:07:31,001 [INFO] YDEC     | buffer             | FT Vest International Equity Moderate Buffer ETF - December
+2026-07-01 22:07:31,001 [INFO] YETH     | covered call       | Roundhill Ether Covered Call Strategy ETF
+2026-07-01 22:07:31,001 [INFO] YFYA     | income strategy    | Yields for You Income Strategy A ETF
+2026-07-01 22:07:31,001 [INFO] YJUN     | buffer             | FT Vest International Equity Moderate Buffer ETF - June
+2026-07-01 22:07:31,001 [INFO] YMAR     | buffer             | FT Vest International Equity Moderate Buffer ETF - March
+2026-07-01 22:07:31,001 [INFO] YQQQ     | income strategy    | YieldMax Short N100 Option Income Strategy ETF
+2026-07-01 22:07:31,001 [INFO] YSEP     | buffer             | FT Vest International Equity Buffer ETF - September
+2026-07-01 22:07:31,001 [INFO] ZALT     | buffer             | Innovator U.S. Equity 10 Buffer ETF - Quarterly
+2026-07-01 22:07:31,001 [INFO] ============================================================
+2026-07-01 22:07:31,002 [INFO] Final eligible symbols after ETF filtering: 11797
+2026-07-01 22:07:31,006 [INFO] Partition 5/6: 1967 symbols
+2026-07-01 22:07:31,006 [INFO] Symbols needing update in this slice: 1967
+2026-07-01 22:07:34,357 [INFO] Batch 1/14 - Updated: 143 | Unresolved: 7 | Updated total: 143
+2026-07-01 22:07:34,357 [DEBUG] Sleeping 4.22s before next batch...
+2026-07-01 22:07:42,229 [INFO] Batch 2/14 - Updated: 142 | Unresolved: 8 | Updated total: 285
+2026-07-01 22:07:42,230 [DEBUG] Sleeping 4.65s before next batch...
+2026-07-01 22:07:50,050 [INFO] Batch 3/14 - Updated: 140 | Unresolved: 10 | Updated total: 425
+2026-07-01 22:07:50,050 [DEBUG] Sleeping 4.13s before next batch...
+2026-07-01 22:07:57,275 [INFO] Batch 4/14 - Updated: 147 | Unresolved: 3 | Updated total: 572
+2026-07-01 22:07:57,275 [DEBUG] Sleeping 2.79s before next batch...
+2026-07-01 22:08:03,246 [INFO] Batch 5/14 - Updated: 146 | Unresolved: 4 | Updated total: 718
+2026-07-01 22:08:03,246 [DEBUG] Sleeping 3.07s before next batch...
+2026-07-01 22:08:09,294 [INFO] Batch 6/14 - Updated: 141 | Unresolved: 9 | Updated total: 859
+2026-07-01 22:08:09,295 [DEBUG] Sleeping 3.72s before next batch...
+2026-07-01 22:08:16,042 [INFO] Batch 7/14 - Updated: 139 | Unresolved: 11 | Updated total: 998
+2026-07-01 22:08:16,042 [DEBUG] Sleeping 4.90s before next batch...
+2026-07-01 22:08:23,967 [INFO] Batch 8/14 - Updated: 134 | Unresolved: 16 | Updated total: 1132
+2026-07-01 22:08:23,968 [DEBUG] Sleeping 4.01s before next batch...
+2026-07-01 22:08:31,084 [INFO] Batch 9/14 - Updated: 130 | Unresolved: 20 | Updated total: 1262
+2026-07-01 22:08:31,084 [DEBUG] Sleeping 4.75s before next batch...
+2026-07-01 22:08:39,015 [INFO] Batch 10/14 - Updated: 142 | Unresolved: 8 | Updated total: 1404
+2026-07-01 22:08:39,015 [DEBUG] Sleeping 2.71s before next batch...
+2026-07-01 22:08:44,712 [INFO] Batch 11/14 - Updated: 144 | Unresolved: 6 | Updated total: 1548
+2026-07-01 22:08:44,712 [DEBUG] Sleeping 3.07s before next batch...
+2026-07-01 22:08:50,819 [INFO] Batch 12/14 - Updated: 141 | Unresolved: 9 | Updated total: 1689
+2026-07-01 22:08:50,819 [DEBUG] Sleeping 4.00s before next batch...
+2026-07-01 22:08:57,812 [INFO] Batch 13/14 - Updated: 142 | Unresolved: 8 | Updated total: 1831
+2026-07-01 22:08:57,812 [DEBUG] Sleeping 3.18s before next batch...
+2026-07-01 22:09:01,986 [INFO] Batch 14/14 - Updated: 15 | Unresolved: 2 | Updated total: 1846
+2026-07-01 22:09:01,987 [INFO] Retry sub-pass for 121 unresolved symbols ...
+2026-07-01 22:09:04,560 [INFO] Retry batch updated: 0 | still unresolved: 121 | Updated total: 1846
+2026-07-01 22:09:07,882 [INFO] Done. Total entries: 1967 | Unresolved: 121 | Updated this run: 1846 | Elapsed: 97.6s
