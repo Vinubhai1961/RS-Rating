@@ -1,7 +1,7 @@
 {
   "by_reason": {
     "autocallable": 20,
-    "buffer": 396,
+    "buffer": 405,
     "covered call": 32,
     "etn": 24,
     "income strategy": 51,
@@ -492,6 +492,11 @@
     },
     {
       "reason": "buffer",
+      "security_name": "Corgi U.S. Equities 15% Structured Buffer ETF - July Series",
+      "symbol": "CJUL"
+    },
+    {
+      "reason": "buffer",
       "security_name": "Corgi U.S. Equities 15% Structured Buffer ETF - June Series",
       "symbol": "CJUN"
     },
@@ -524,6 +529,11 @@
       "reason": "income strategy",
       "security_name": "YieldMax Short TSLA Option Income Strategy ETF",
       "symbol": "CRSH"
+    },
+    {
+      "reason": "buffer",
+      "security_name": "Corgi U.S. Equities 30% Structured Buffer ETF - July Series",
+      "symbol": "CTJL"
     },
     {
       "reason": "buffer",
@@ -872,6 +882,11 @@
     },
     {
       "reason": "buffer",
+      "security_name": "Corgi Emerging Markets Equities 15% Structured Buffer ETF - July Series",
+      "symbol": "EMJL"
+    },
+    {
+      "reason": "buffer",
       "security_name": "Corgi Emerging Markets Equities 15% Structured Buffer ETF - June Series",
       "symbol": "EMJN"
     },
@@ -994,22 +1009,7 @@
       "reason": "buffer",
       "security_name": "FT Vest U.S. Equity Buffer ETF - March",
       "symbol": "FMAR"
-    },
-    {
-      "reason": "buffer",
-      "security_name": "FT Vest U.S. Equity Buffer ETF - May",
-      "symbol": "FMAY"
-    },
-    {
-      "reason": "microsectors",
-      "security_name": "MicroSectors FANG  ETNs due January 8, 2038",
-      "symbol": "FNGS"
-    },
-    {
-      "reason": "microsectors",
-      "security_name": "MicroSectors FANG+ 3X Leveraged ETNs",
-      "symbol": "FNGU"
     }
   ],
-  "total_excluded": 573
+  "total_excluded": 582
 }
