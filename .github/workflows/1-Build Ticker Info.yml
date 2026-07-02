@@ -94,43 +94,40 @@ jobs:
       - name: Merge ticker_info.json files
         run: |
           python scripts/merge_ticker_info.py data
+          
       - name: Retry unresolved tickers
         run: |
           python scripts/retry_unresolved_tickers.py data
+          
       - name: Show unresolved and excluded summary after retry
         run: |
           echo "==========================================="
-          echo "UNRESOLVED TICKERS AFTER RETRY"
+          echo "FINAL TICKER INFO SUMMARY"
           echo "==========================================="
+          if [ -f data/partition_summary.json ]; then
+            cat data/partition_summary.json
+          fi
+          echo ""
+          echo "UNRESOLVED TICKERS AFTER RETRY"
           if [ -f data/unresolved_tickers.txt ]; then
             COUNT=$(grep -cve '^\s*$' data/unresolved_tickers.txt || true)
             echo "Remaining unresolved: $COUNT"
-            echo ""
-            head -100 data/unresolved_tickers.txt
-          else
-            echo "No unresolved_tickers.txt found"
+            echo "First 10 unresolved:"
+            head -10 data/unresolved_tickers.txt
           fi
           echo ""
-          echo "==========================================="
-          echo "EXCLUDED SYMBOLS SUMMARY"
-          echo "==========================================="
+          echo "EXCLUDED SYMBOLS"
           if [ -f data/excluded_symbols.txt ]; then
             COUNT=$(grep -cve '^\s*$' data/excluded_symbols.txt || true)
-            echo "Excluded symbols: $COUNT"
-            echo ""
-            head -100 data/excluded_symbols.txt
-          else
-            echo "No excluded_symbols.txt found"
+            echo "Total excluded: $COUNT"
+            echo "First 10 excluded:"
+            head -10 data/excluded_symbols.txt
           fi
-          echo ""
-          echo "==========================================="
-          echo "EXCLUDED SYMBOLS JSON SUMMARY"
-          echo "==========================================="
           if [ -f data/excluded_symbols_summary.json ]; then
+            echo "Detailed exclusion summary:"
             cat data/excluded_symbols_summary.json
-          else
-            echo "No excluded_symbols_summary.json found"
           fi
+          
       - name: Upload merged artifact
         uses: actions/upload-artifact@v7
         with:
@@ -216,6 +213,7 @@ jobs:
             ls -lh data/ticker_info.json
           else
             echo "❌ ERROR: ticker_info.json still missing!"
+            ls -R . || true
             exit 1
           fi
 
