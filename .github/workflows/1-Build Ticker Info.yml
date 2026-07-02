@@ -159,7 +159,7 @@ jobs:
           git stash pop || echo "No stash to pop"
           
           # Force add critical files
-          git add -f data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt data/excluded_symbols.txt data/excluded_symbols_summary.json logs/* || true
+          git add -f data/ticker_info.json data/partition_summary.json data/unresolved_tickers.txt data/excluded_symbols.txt data/excluded_symbols_summary.json logs/build_ticker_info.log logs/merge_ticker_info.log logs/retry_unresolved_tickers.log || true
           
           edt_time=$(date -u -d "4 hours ago" +"%Y-%m-%d %I:%M %p EDT")
           run_info="(Run #${GITHUB_RUN_NUMBER})"
