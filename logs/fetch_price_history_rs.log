@@ -1,18 +1,14 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-07-02 18:09:21 EDT
+Run Date: 2026-07-06 18:23:48 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-02 22:06:51
-Successful: 1598 | Skipped: 5 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-06 22:20:25
+Successful: 1789 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-ACHX: Too few valid rows: 1
-ARMA: Too few valid rows: 1
-AVGC: Too few valid rows: 1
-CIEX: Too few valid rows: 1
-CIFC: Too few valid rows: 1
+DISK: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -20,15 +16,8 @@ CIFC: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-02 22:06:17
-Successful: 1597 | Skipped: 6 | Failed: 0
---- Skipped Tickers ---
-DISK: Too few valid rows: 1
-FECM: Too few valid rows: 1
-FESC: Too few valid rows: 1
-GMEC: Too few valid rows: 1
-IONC: Too few valid rows: 1
-IOSX: Too few valid rows: 1
+FINAL SUMMARY - Partition finished at 2026-07-06 22:20:25
+Successful: 1790 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -36,13 +25,12 @@ IOSX: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-02 22:06:03
-Successful: 1599 | Skipped: 4 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-06 22:21:09
+Successful: 1787 | Skipped: 3 | Failed: 0
 --- Skipped Tickers ---
+LAZR: Too few valid rows: 1
+LIME: Too few valid rows: 1
 MBGL: Too few valid rows: 1
-MIDDV: Too few valid rows: 1
-ORAC: Too few valid rows: 1
-RMBX: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -50,10 +38,10 @@ RMBX: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-02 22:06:05
-Successful: 1604 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-06 22:20:20
+Successful: 1792 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-XQTM: Too few valid rows: 1
+VCRE: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 3 ===
