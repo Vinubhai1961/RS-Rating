@@ -1,13 +1,21 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-07-07 01:58:39 EDT
+Run Date: 2026-07-07 18:20:58 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-07 05:53:15
-Successful: 1789 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-07 22:15:56
+Successful: 1847 | Skipped: 9 | Failed: 0
 --- Skipped Tickers ---
+AMKX: Too few valid rows: 1
+AMZG: Too few valid rows: 1
+APMI: Too few valid rows: 1
+AXTC: Too few valid rows: 1
+BBUL: Too few valid rows: 1
+BRKL: Too few valid rows: 1
+CIR: Too few valid rows: 1
+COHC: Too few valid rows: 1
 DISK: Too few valid rows: 1
 ================================================================================
 
@@ -16,8 +24,8 @@ DISK: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-07 05:55:59
-Successful: 1790 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-07 22:17:47
+Successful: 1856 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -25,10 +33,18 @@ Successful: 1790 | Skipped: 0 | Failed: 0
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-07 05:53:36
-Successful: 1789 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-07 22:18:19
+Successful: 1847 | Skipped: 9 | Failed: 0
 --- Skipped Tickers ---
+LAZR: Too few valid rows: 1
+LIME: Too few valid rows: 1
+LRCC: Too few valid rows: 1
 MBGL: Too few valid rows: 1
+METG: Too few valid rows: 1
+MFP: Too few valid rows: 1
+MPWC: Too few valid rows: 1
+NFX: Too few valid rows: 1
+PUL: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -36,10 +52,11 @@ MBGL: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-07 05:54:17
-Successful: 1792 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-07 22:16:08
+Successful: 1855 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
-VCRE: Too few valid rows: 1
+SFYI: Too few valid rows: 1
+UN: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 3 ===
