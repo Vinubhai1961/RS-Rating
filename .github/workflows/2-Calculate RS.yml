@@ -324,6 +324,19 @@ jobs:
             --log-file logs/failed_tickers.log \
             --metadata-file data/ticker_price.json \
             --debug
+            
+      - name: 🔎 Find VCP + Breakouts
+        run: |
+          current_date=$(date -u -d "4 hours ago" +"%m%d%Y")
+          mkdir -p logs RS_Data archive HVE 9M_Vol
+          python scripts/find_vcp_bo.py \
+            --arctic-db-path tmp/arctic_db \
+            --input-csv RS_Data/rs_stocks.csv \
+            --output-dir RS_Data \
+            --log-file logs/failed_vcp_tickers.log \
+            --date "$current_date" \
+            --rs-threshold 80.0 \
+            --min-price 30.0
 
       - name: 🔍 Find Inside Bars
         run: |
@@ -366,6 +379,22 @@ jobs:
           echo "📦 Final archived files:"
           ls -l archive | tail -n 10
 
+          vcp_file="RS_Data/VCP_Stocks.csv"
+          if [ -f "$vcp_file" ]; then
+            cp "$vcp_file" "archive/VCP_Stocks_${current_date}.csv"
+            echo "✅ Archived VCP_Stocks_${current_date}.csv"
+          else
+            echo "❌ Warning: VCP_Stocks_${current_date}.csv not found"
+          fi
+
+          vcp_bo_file="RS_Data/VCP_BO_Stocks.csv"
+          if [ -f "$vcp_bo_file" ]; then
+            cp "$vcp_bo_file" "archive/VCP_BO_Stocks_${current_date}.csv"
+            echo "✅ Archived VCP_BO_Stocks_${current_date}.csv"
+          else
+            echo "❌ Warning: VCP_BO_Stocks_${current_date}.csv not found"
+          fi
+
       - name: 🗓️ Upload outputs
         uses: actions/upload-artifact@v7
         with:
@@ -380,6 +409,7 @@ jobs:
             logs/failed_ib_tickers.log
             logs/debug_rs/*.log
             logs/debug_rs/*.csv
+            logs/failed_vcp_tickers.log
             
       - name: 🧹 Clean up temporary files
         run: |
@@ -409,6 +439,7 @@ jobs:
             logs/fetch_price_history_rs.log \
             logs/failed_tickers.log \
             logs/failed_ib_tickers.log \
+            logs/failed_vcp_tickers.log \
             logs/debug_rs/* 2>/dev/null || true
             
           if git diff --cached --quiet; then
