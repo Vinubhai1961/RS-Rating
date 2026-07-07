@@ -335,7 +335,7 @@ jobs:
             --output-dir RS_Data \
             --log-file logs/failed_vcp_tickers.log \
             --date "$current_date" \
-            --rs-threshold 80.0 \
+            --rs-threshold 70.0 \
             --min-price 30.0
 
       - name: 🔍 Find Inside Bars
