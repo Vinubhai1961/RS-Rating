@@ -26,3 +26,8 @@ jobs:
   update_earnings_calendar:
     needs: generate-ipo
     uses: ./.github/workflows/95-update_earnings_calendar.yml
+
+  # 96. build-ipo-history
+  build-ipo-history:
+    needs: update_earnings_calendar
+    uses: ./.github/workflows/96-build-ipo-history.yml
