@@ -148,3 +148,18 @@
 2026-07-06 22:14:21,356 [INFO] Sample blank industry: ['PNSB', 'MTEST']
 2026-07-06 22:14:21,356 [INFO] Output: data/ticker_price_master.json
 2026-07-06 22:14:21,356 [INFO] ============================================================
+2026-07-07 22:10:08,033 [INFO] Loaded 7746 rows from source/USA_Tickers_ALL.csv
+2026-07-07 22:10:08,033 [INFO] Columns found: ['Symbol', 'Description', 'Price', 'Price - Currency', 'Price change %, 1 day', 'Volume, 1 day', 'Relative volume, 1 day', 'Sector', 'Industry', 'High, 52 weeks', 'High, 52 weeks - Currency', 'Low, 52 weeks', 'Low, 52 weeks - Currency', 'Exchange', 'Free float %', 'Performance %, Year to date']
+2026-07-07 22:10:08,412 [INFO] ============================================================
+2026-07-07 22:10:08,412 [INFO] TICKER PRICE MASTER BUILD SUMMARY
+2026-07-07 22:10:08,412 [INFO] ============================================================
+2026-07-07 22:10:08,412 [INFO] Master rows written: 7745
+2026-07-07 22:10:08,412 [INFO] Type count: {'Stock': 7745}
+2026-07-07 22:10:08,413 [INFO] Duplicate skipped count: 0
+2026-07-07 22:10:08,413 [INFO] Blank sector count: 2
+2026-07-07 22:10:08,413 [INFO] Blank industry count: 2
+2026-07-07 22:10:08,413 [INFO] Sample duplicates: []
+2026-07-07 22:10:08,413 [INFO] Sample blank sector: ['PNSB', 'MTEST']
+2026-07-07 22:10:08,413 [INFO] Sample blank industry: ['PNSB', 'MTEST']
+2026-07-07 22:10:08,413 [INFO] Output: data/ticker_price_master.json
+2026-07-07 22:10:08,413 [INFO] ============================================================
