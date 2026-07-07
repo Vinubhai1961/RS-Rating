@@ -336,9 +336,7 @@ def main():
     ]
 
     if out.empty:
-        pd.DataFrame(columns=preferred_cols).to_csv(vcp_path, index=False)
-        pd.DataFrame(columns=preferred_cols).to_csv(bo_path, index=False)
-        print("No VCP candidates found.")
+        print("No VCP candidates found. No VCP files created.")
         return
 
     out = out.sort_values(
@@ -351,13 +349,17 @@ def main():
     out[available_cols].to_csv(vcp_path, index=False, na_rep="")
 
     bo = out[out["BO"].astype(str).str.upper().eq("YES")].copy()
-    bo[available_cols].to_csv(bo_path, index=False, na_rep="")
 
     print("\n=== VCP + BO SCANNER COMPLETE ===")
     print(f"VCP candidates: {len(out):,}")
     print(f"Breakouts: {len(bo):,}")
     print(f"Saved: {vcp_path}")
-    print(f"Saved: {bo_path}")
+
+    if not bo.empty:
+        bo[available_cols].to_csv(bo_path, index=False, na_rep="")
+        print(f"Saved: {bo_path}")
+    else:
+        print("No breakout candidates found. No VCP_BO_Stocks.csv created.")
 
 
 if __name__ == "__main__":
