@@ -1,0 +1,51 @@
+name: Build Market Breadth
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Runs after market close window. Adjust if your RS workflow finishes later.
+    - cron: "30 23 * * 1-5"
+
+permissions:
+  contents: write
+
+jobs:
+  build-market-breadth:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install pandas numpy
+
+      - name: Build market breadth
+        run: |
+          python scripts/build_market_breadth.py \
+            --input RS_Data/rs_stocks.csv \
+            --archive-dir archive \
+            --output-dir market_breadth \
+            --timezone America/New_York
+
+      - name: Commit and push market breadth updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add market_breadth/ archive/rs_stocks_*.csv || true
+
+          if git diff --staged --quiet; then
+            echo "No market breadth changes to commit"
+          else
+            git commit -m "chore: update market breadth"
+            git pull --rebase origin main || echo "Pull had minor issues, continuing..."
+            git push origin main
+          fi
