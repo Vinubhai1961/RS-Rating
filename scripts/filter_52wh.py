@@ -48,10 +48,14 @@ def debug_ticker(df, ticker):
     row = row.iloc[0]
     print(f"\n=== DEBUG: {ticker} ===")
     print(f"Price           : ${row['Price']:,.2f}")
+    if pd.notna(row.get('Prev_Close')):
+        print(f"Prev Close      : ${row.get('Prev_Close'):,.2f}")
     print(f"52W High        : ${row['52WKH']:,.2f}")
     print(f"% from 52WH     : {row.get('%_From_52WKH', 'N/A')}%")
     print(f"RS Percentile   : {row['RS Percentile']:.1f}")
     print(f"10d Avg Volume  : {row['AvgVol10']:,.0f}")
+    if pd.notna(row.get('SMA20')):
+        print(f"SMA20           : ${row.get('SMA20'):,.2f}")
     print(f"SMA50           : ${row.get('SMA50', 'N/A'):,.2f}")
     print(f"SMA200          : ${row.get('SMA200', 'N/A'):,.2f}")
     
@@ -74,8 +78,8 @@ def main():
     print(f"→ Loaded {len(df):,} rows")
 
     # Convert numeric columns
-    numeric_cols = ['Price', '52WKH', 'RS Percentile', 'AvgVol10', 'ATR', 'ADR',
-                    'SMA50', 'SMA200']
+    numeric_cols = ['Price', 'Prev_Close', '52WKH', 'RS Percentile', 'AvgVol10', 'ATR', 'ADR',
+                    'SMA20', 'SMA50', 'SMA200']
     for col in numeric_cols:
         if col in df.columns:
             if col == 'AvgVol10':
@@ -131,10 +135,10 @@ def main():
     # Keep 52WH scanner output aligned with latest RS_Data/rs_stocks.csv visibility fields.
     # %_From_52WKH is scanner-specific and is appended at the end for 52WH context.
     desired = [
-        'Rank', 'Ticker', 'Price', 'DVol', 'Sector', 'Industry',
+        'Rank', 'Ticker', 'Price', 'Prev_Close', 'DVol', 'Sector', 'Industry',
         'RS Percentile', '1M_RS Percentile', '3M_RS Percentile', '6M_RS Percentile',
         'ATR', 'ADR', 'AvgVol', 'AvgVol10', '52WKH', '52WKL', 'Earning_Date', 'MCAP',
-        'IPO', 'SMA50', 'SMA200', 'SMA10W', 'SMA30W', 'History_Days',
+        'IPO', 'SMA20', 'SMA50', 'SMA200', 'SMA10W', 'SMA30W', 'History_Days',
         'Gap (%)', 'Latest Volume', '9M+ Volume', 'HVE', 'HVE Date', 'HVE Volume',
         '%_From_52WKH'
     ]
@@ -159,7 +163,7 @@ def main():
 
     print("\nFirst 10 rows:")
     preview_cols = [
-        'Rank', 'Ticker', 'Price', 'ATR', 'ADR', 'RS Percentile',
+        'Rank', 'Ticker', 'Price', 'Prev_Close', 'SMA20', 'ATR', 'ADR', 'RS Percentile',
         '%_From_52WKH', 'Earning_Date', 'IPO', 'Gap (%)', 'Latest Volume', '9M+ Volume', 'HVE'
     ]
     preview_cols = [c for c in preview_cols if c in result.columns]
