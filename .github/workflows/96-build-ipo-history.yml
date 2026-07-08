@@ -3,11 +3,12 @@
 name: Build IPO History
 
 on:
+  workflow_call:
   workflow_dispatch:
 
-  schedule:
+  #schedule:
     # Runs every day at 6:30 AM UTC
-    - cron: "30 6 * * *"
+    #- cron: "30 6 * * *"
 
 permissions:
   contents: write
