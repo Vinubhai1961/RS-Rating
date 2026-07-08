@@ -40,7 +40,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add market_breadth/ archive/rs_stocks_*.csv || true
+          git add market_breadth/market_breadth_*.csv || true
 
           if git diff --staged --quiet; then
             echo "No market breadth changes to commit"
