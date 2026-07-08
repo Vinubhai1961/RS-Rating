@@ -1,10 +1,8 @@
 name: Build Market Breadth
 
 on:
-  workflow_dispatch:
-  schedule:
-    # Runs after market close window. Adjust if your RS workflow finishes later.
-    - cron: "30 23 * * 1-5"
+  workflow_call: 
+  workflow_dispatch: # allow manual run
 
 permissions:
   contents: write
