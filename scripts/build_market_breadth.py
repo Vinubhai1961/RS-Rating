@@ -6,7 +6,7 @@ Approved scope:
   - Stocks only: Sector != ETF
   - Output: market_breadth/market_breadth_YYYY.csv
   - Append/replace one row per run date
-  - Save daily archive copy: archive/rs_stocks_MM-DD-YYYY.csv
+  - Archive is read-only: another workflow already saves archive/rs_stocks_MM-DD-YYYY.csv
   - Use 5th previous available archive file for 5-day +/-20% breadth when available
 """
 
@@ -133,16 +133,6 @@ def load_current_stocks(input_path: Path) -> pd.DataFrame:
     df = df[df["Sector"].astype(str).str.strip().str.upper() != "ETF"].copy()
     df = df.reset_index(drop=True)
     return df
-
-
-def archive_current_file(input_path: Path, archive_dir: Path, run_dt: date) -> Path:
-    archive_dir.mkdir(parents=True, exist_ok=True)
-    archive_path = archive_dir / f"rs_stocks_{run_dt.strftime(DATE_FMT_FILE)}.csv"
-
-    # Overwrite today's archive so reruns keep the latest exact rs_stocks snapshot.
-    current = pd.read_csv(input_path)
-    current.to_csv(archive_path, index=False)
-    return archive_path
 
 
 def parse_archive_date(path: Path):
@@ -295,18 +285,18 @@ def main():
 
     current_df = load_current_stocks(input_path)
 
-    # Look up the 5th previous archive before saving/overwriting today's archive.
+    # Archive is read-only. Another workflow is responsible for saving
+    # archive/rs_stocks_MM-DD-YYYY.csv. For 5-day breadth, use the 5th
+    # previous available archive snapshot before run_dt.
     archive_5d_path = find_5th_previous_archive(archive_dir, run_dt)
     row = build_breadth_row(current_df, run_dt, archive_5d_path)
 
-    archive_path = archive_current_file(input_path, archive_dir, run_dt)
     output_path = upsert_yearly_output(row, output_dir, run_dt)
 
     print("\n=== MARKET BREADTH COMPLETE ===")
     print(f"Date: {row['Date']}")
     print(f"Stocks counted: {row['Total Stocks']:,}")
     print(f"Output: {output_path}")
-    print(f"Today's archive: {archive_path}")
     if archive_5d_path:
         print(f"5-day comparison archive: {archive_5d_path}")
     else:
