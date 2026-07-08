@@ -35,7 +35,7 @@ jobs:
             --output-dir market_breadth \
             --timezone America/New_York
 
-      - name: Commit and push market breadth updates
+      - name: Commit and push if market breadth changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -43,9 +43,22 @@ jobs:
           git add market_breadth/market_breadth_*.csv || true
 
           if git diff --staged --quiet; then
-            echo "No market breadth changes to commit"
+            echo "No changes to market_breadth files"
           else
-            git commit -m "chore: update market breadth"
-            git pull --rebase origin main || echo "Pull had minor issues, continuing..."
-            git push origin main
+            git commit -m "chore: update market breadth [skip ci]"
+
+            echo "🔄 Pulling latest changes before pushing..."
+            git pull --rebase origin main || echo "Pull had minor issues"
+
+            echo "🚀 Pushing changes..."
+            for i in {1..3}; do
+              if git push origin main; then
+                echo "✅ Successfully pushed market breadth"
+                break
+              else
+                echo "⚠️ Push failed (attempt $i/3). Retrying..."
+                sleep 3
+                git pull --rebase origin main || true
+              fi
+            done
           fi
