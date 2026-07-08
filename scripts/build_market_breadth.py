@@ -252,16 +252,23 @@ def upsert_yearly_output(row: dict, output_dir: Path, run_dt: date) -> Path:
 
     new_row_df = pd.DataFrame([row], columns=OUTPUT_COLUMNS)
 
-    if output_path.exists():
-        existing = pd.read_csv(output_path, dtype={"Date": str})
-        for col in OUTPUT_COLUMNS:
-            if col not in existing.columns:
-                existing[col] = ""
-        existing = existing[OUTPUT_COLUMNS]
+    existing = pd.DataFrame(columns=OUTPUT_COLUMNS)
+    if output_path.exists() and output_path.stat().st_size > 0:
+        try:
+            existing = pd.read_csv(output_path, dtype={"Date": str})
+        except pd.errors.EmptyDataError:
+            # File exists but has no readable CSV columns. Treat as a fresh file.
+            existing = pd.DataFrame(columns=OUTPUT_COLUMNS)
+
+    for col in OUTPUT_COLUMNS:
+        if col not in existing.columns:
+            existing[col] = ""
+
+    existing = existing[OUTPUT_COLUMNS]
+    if not existing.empty and "Date" in existing.columns:
         existing = existing[existing["Date"].astype(str) != row["Date"]]
-        combined = pd.concat([existing, new_row_df], ignore_index=True)
-    else:
-        combined = new_row_df
+
+    combined = pd.concat([existing, new_row_df], ignore_index=True)
 
     combined["_sort_date"] = pd.to_datetime(combined["Date"], format=DATE_FMT_OUTPUT, errors="coerce")
     combined = combined.sort_values("_sort_date").drop(columns=["_sort_date"])
