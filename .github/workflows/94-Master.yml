@@ -31,3 +31,8 @@ jobs:
   build-ipo-history:
     needs: update_earnings_calendar
     uses: ./.github/workflows/96-build-ipo-history.yml
+
+  # 97. Market-Breadth
+  market_breadth:
+    needs: build-ipo-history
+    uses: ./.github/workflows/97-market_breadth.yml
