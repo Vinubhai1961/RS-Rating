@@ -365,6 +365,28 @@ def main():
 
     current_df = load_current_stocks(input_path)
 
+    # Print stock tickers making a new 52-week high during this workflow run.
+    # Uses the same rule as the market breadth calculation: Price >= 52WKH.
+    new_52wh_tickers = (
+        current_df.loc[
+            current_df["Price"].notna()
+            & current_df["52WKH"].notna()
+            & (current_df["Price"] >= current_df["52WKH"]),
+            "Ticker",
+        ]
+        .dropna()
+        .astype(str)
+        .str.strip()
+    )
+    new_52wh_tickers = new_52wh_tickers[new_52wh_tickers.ne("")].drop_duplicates()
+
+    print("\n=== STOCKS MAKING 52-WEEK HIGH ===")
+    if new_52wh_tickers.empty:
+        print("None")
+    else:
+        for ticker in new_52wh_tickers:
+            print(ticker)
+
     # Archive is read-only. Another workflow is responsible for saving
     # archive/rs_stocks_MM-DD-YYYY.csv. For 5-day breadth, use the 5th
     # previous available archive snapshot before run_dt.
