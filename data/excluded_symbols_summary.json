@@ -2,7 +2,7 @@
   "by_reason": {
     "autocallable": 20,
     "buffer": 405,
-    "covered call": 32,
+    "covered call": 31,
     "etn": 24,
     "income strategy": 51,
     "microsectors": 20,
@@ -294,11 +294,6 @@
       "reason": "buffer",
       "security_name": "FT Vest Gold Strategy Quarterly Buffer ETF",
       "symbol": "BGLD"
-    },
-    {
-      "reason": "covered call",
-      "security_name": "Tuttle Capital IBIT 0DTE Covered Call ETF",
-      "symbol": "BITK"
     },
     {
       "reason": "buffer",
@@ -1009,7 +1004,12 @@
       "reason": "buffer",
       "security_name": "FT Vest U.S. Equity Buffer ETF - March",
       "symbol": "FMAR"
+    },
+    {
+      "reason": "buffer",
+      "security_name": "FT Vest U.S. Equity Buffer ETF - May",
+      "symbol": "FMAY"
     }
   ],
-  "total_excluded": 582
+  "total_excluded": 581
 }
