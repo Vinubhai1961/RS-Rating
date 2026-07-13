@@ -1,17 +1,14 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-07-10 18:06:48 EDT
+Run Date: 2026-07-13 17:56:49 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-10 22:03:24
-Successful: 1819 | Skipped: 4 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-13 21:51:43
+Successful: 1859 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
 ALA: Too few valid rows: 1
-BABC: Too few valid rows: 1
-BNMC: Too few valid rows: 1
-DISK: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -19,14 +16,9 @@ DISK: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-10 22:03:10
-Successful: 1817 | Skipped: 6 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-13 21:50:40
+Successful: 1859 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-DVYA: No data returned from Yahoo
-FINA: Too few valid rows: 1
-GEVC: Too few valid rows: 1
-HOOC: Too few valid rows: 1
-INT: Too few valid rows: 1
 JOBC: Too few valid rows: 1
 ================================================================================
 
@@ -35,15 +27,12 @@ JOBC: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-10 22:04:12
-Successful: 1816 | Skipped: 7 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-13 21:53:48
+Successful: 1856 | Skipped: 4 | Failed: 0
 --- Skipped Tickers ---
-LAZR: Too few valid rows: 1
-LIME: Too few valid rows: 1
+JPRF: Too few valid rows: 1
+LGDS: Too few valid rows: 1
 LITC: Too few valid rows: 1
-MBGL: Too few valid rows: 1
-NSIG: Too few valid rows: 1
-NSIV: Too few valid rows: 1
 QUA: Too few valid rows: 1
 ================================================================================
 
@@ -52,18 +41,13 @@ QUA: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-10 22:02:31
-Successful: 1817 | Skipped: 9 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-13 21:53:50
+Successful: 1856 | Skipped: 4 | Failed: 0
 --- Skipped Tickers ---
-SKHYV: Too few valid rows: 1
-SLVY: Too few valid rows: 1
 SMRX: Too few valid rows: 1
 SOFC: Too few valid rows: 1
 TEMC: Too few valid rows: 1
-UPSC: Too few valid rows: 1
 UUUC: Too few valid rows: 1
-WDCC: Too few valid rows: 1
-WSPC: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 3 ===
