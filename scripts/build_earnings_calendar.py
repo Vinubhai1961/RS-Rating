@@ -1,5 +1,6 @@
 from pathlib import Path
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
+import re
 import pandas as pd
 import numpy as np
 import traceback
@@ -20,15 +21,54 @@ BASE_COLS = [
 DAY_COLS = [f"E_Day{i}" for i in range(1, 7)]
 
 PRICE_CACHE = {}
+TRADING_DATE_CACHE = None
+
+def parse_archive_date(path: Path):
+    """Parse rs_stocks_MMDDYYYY.csv or rs_stocks_MM-DD-YYYY.csv."""
+    name = path.name
+
+    match = re.fullmatch(r"rs_stocks_(\d{2})(\d{2})(\d{4})\.csv", name)
+    if match:
+        mm, dd, yyyy = match.groups()
+        return date(int(yyyy), int(mm), int(dd))
+
+    match = re.fullmatch(r"rs_stocks_(\d{2})-(\d{2})-(\d{4})\.csv", name)
+    if match:
+        mm, dd, yyyy = match.groups()
+        return date(int(yyyy), int(mm), int(dd))
+
+    return None
+
+def get_archive_path(target_date):
+    """Return the exact archive path for a trading date, supporting both filename styles."""
+    candidates = [
+        ARCHIVE_DIR / f"rs_stocks_{target_date.strftime('%m%d%Y')}.csv",
+        ARCHIVE_DIR / f"rs_stocks_{target_date.strftime('%m-%d-%Y')}.csv",
+    ]
+    for path in candidates:
+        if path.exists():
+            return path
+    return None
+
+def get_available_trading_dates():
+    """Use actual archive snapshots as the authoritative list of completed trading sessions."""
+    global TRADING_DATE_CACHE
+    if TRADING_DATE_CACHE is None:
+        dates = {
+            parsed
+            for path in ARCHIVE_DIR.glob("rs_stocks_*.csv")
+            if (parsed := parse_archive_date(path)) is not None
+        }
+        TRADING_DATE_CACHE = sorted(dates)
+        print(f"[INFO] Trading sessions found in archive: {len(TRADING_DATE_CACHE)}")
+    return TRADING_DATE_CACHE
 
 def next_trading_day(start_date, days_ahead: int):
-    current = start_date
-    trading_days_found = 0
-    while trading_days_found < days_ahead:
-        current += timedelta(days=1)
-        if current.weekday() < 5:
-            trading_days_found += 1
-    return current
+    """Return the Nth actual archived trading session strictly after start_date."""
+    sessions = [d for d in get_available_trading_dates() if d > start_date]
+    if len(sessions) < days_ahead:
+        return None
+    return sessions[days_ahead - 1]
 
 def normalize_ticker(val):
     return str(val).strip().upper()
@@ -37,14 +77,19 @@ def is_missing(val):
     return pd.isna(val) or val == "" or str(val).strip().lower() == "nan"
 
 def get_today_source():
-    today_str = datetime.now().strftime("%m%d%Y")
-    #today_str = (datetime.now() - timedelta(days=1)).strftime("%m%d%Y")
-    file_path = ARCHIVE_DIR / f"rs_stocks_{today_str}.csv"
+    today = datetime.now().date()
+    file_path = get_archive_path(today)
 
-    if not file_path.exists():
-        files = sorted(ARCHIVE_DIR.glob("rs_stocks_*.csv"), reverse=True)
-        if files:
-            file_path = files[0]
+    if file_path is None:
+        dated_files = []
+        for path in ARCHIVE_DIR.glob("rs_stocks_*.csv"):
+            file_date = parse_archive_date(path)
+            if file_date is not None:
+                dated_files.append((file_date, path))
+
+        if dated_files:
+            dated_files.sort(key=lambda item: item[0])
+            file_path = dated_files[-1][1]
             print(f"[WARNING] Today's file not found. Using latest: {file_path.name}")
         else:
             raise FileNotFoundError(f"No rs_stocks files found in {ARCHIVE_DIR}")
@@ -86,17 +131,15 @@ def get_price_map(target_date):
 
     print(f"[DEBUG] Looking for exact prices on {target_date.strftime('%Y-%m-%d')}")
 
-    file_name = f"rs_stocks_{target_date.strftime('%m%d%Y')}.csv"
-    file_path = ARCHIVE_DIR / file_name
+    file_path = get_archive_path(target_date)
 
     # STRICT MATCH ONLY
-    if not file_path.exists():
-        print(f"[WARNING] Missing archive file: {file_name}")
-
+    if file_path is None:
+        print(f"[WARNING] Missing archive file for trading session: {target_date:%Y-%m-%d}")
         PRICE_CACHE[target_date] = {}
         return {}
 
-    print(f"[INFO] Using exact archive: {file_name}")
+    print(f"[INFO] Using exact archive: {file_path.name}")
 
     df = read_source(file_path)
 
@@ -195,7 +238,7 @@ def main():
                     continue
 
                 target_date = next_trading_day(earn_date, i)
-                if target_date > run_date:
+                if target_date is None or target_date > run_date:
                     continue
 
                 price_map = get_price_map(target_date)
@@ -223,7 +266,7 @@ def main():
                 
             for i in range(1, 7):
                 target_date = next_trading_day(earn_date, i)
-                if target_date > run_date:
+                if target_date is None or target_date > run_date:
                     continue
                 price_map = get_price_map(target_date)
                 new_row[f"E_Day{i}"] = price_map.get(ticker, pd.NA)
@@ -312,15 +355,13 @@ def main():
                     continue
         
                 target_date = next_trading_day(earn_date, i)
-        
-                file_name = (
-                    f"rs_stocks_{target_date.strftime('%m%d%Y')}.csv"
-                )
-        
-                file_path = ARCHIVE_DIR / file_name
-        
+                if target_date is None or target_date > run_date:
+                    continue
+
+                file_path = get_archive_path(target_date)
+
                 # exact archive required
-                if not file_path.exists():
+                if file_path is None:
         
                     if not is_missing(row.get(col)):
         
