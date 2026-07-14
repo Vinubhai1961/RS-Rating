@@ -1,14 +1,17 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-07-13 17:56:49 EDT
+Run Date: 2026-07-14 18:05:12 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-13 21:51:43
-Successful: 1859 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-14 22:01:36
+Successful: 1796 | Skipped: 4 | Failed: 0
 --- Skipped Tickers ---
-ALA: Too few valid rows: 1
+BTDL: Too few valid rows: 1
+CDPI: Too few valid rows: 1
+CRD: Too few valid rows: 1
+CRWC: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -16,10 +19,12 @@ ALA: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-13 21:50:40
-Successful: 1859 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-14 21:56:01
+Successful: 1797 | Skipped: 3 | Failed: 0
 --- Skipped Tickers ---
-JOBC: Too few valid rows: 1
+HIMC: Too few valid rows: 1
+IREC: Too few valid rows: 1
+JPRF: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -27,13 +32,22 @@ JOBC: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-13 21:53:48
-Successful: 1856 | Skipped: 4 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-14 22:02:31
+Successful: 1787 | Skipped: 13 | Failed: 0
 --- Skipped Tickers ---
-JPRF: Too few valid rows: 1
 LGDS: Too few valid rows: 1
-LITC: Too few valid rows: 1
-QUA: Too few valid rows: 1
+MHX: Too few valid rows: 1
+MRVX: Too few valid rows: 1
+NBIC: Too few valid rows: 1
+NOWX: Too few valid rows: 1
+NTAL: Too few valid rows: 1
+NVOC: Too few valid rows: 1
+OUSL: Too few valid rows: 1
+QFF: Too few valid rows: 1
+RDDC: Too few valid rows: 1
+RECI: Too few valid rows: 1
+RGTC: Too few valid rows: 1
+RIVC: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -41,13 +55,16 @@ QUA: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-13 21:53:50
-Successful: 1856 | Skipped: 4 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-14 22:02:20
+Successful: 1796 | Skipped: 7 | Failed: 0
 --- Skipped Tickers ---
-SMRX: Too few valid rows: 1
-SOFC: Too few valid rows: 1
-TEMC: Too few valid rows: 1
-UUUC: Too few valid rows: 1
+SEUS: Too few valid rows: 1
+SK: Too few valid rows: 1
+SKHU: Too few valid rows: 1
+SKHX: Too few valid rows: 1
+SKUU: Too few valid rows: 1
+TDCL: Too few valid rows: 1
+VRC: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 3 ===
