@@ -1,0 +1,26 @@
+SectorRank,Sector,LeaderRank,Ticker,Leader_Score,Setup_Type,Tightness,Setup_Price,Dist_52WH_%,ATR_%,RS Percentile,1M_RS Percentile,3M_RS Percentile,6M_RS Percentile,IPO,Gap (%),HVE,SMA50,SMA200,SMA10W,SMA30W,Industry
+1,Energy,1,DINO,96.49,Extended Near High,Normal,83.93,0.17,3.3,94.0,94.0,95.0,95.0,NO,0.0,NO,71.38,58.31,71.98,61.49,Oil & Gas Refining & Marketing
+1,Energy,2,DK,96.07,Extended Near High,Loose,59.62,2.21,4.68,96.0,96.0,95.0,97.0,NO,0.0,NO,47.7,39.35,48.55,41.18,Oil & Gas Refining & Marketing
+1,Energy,3,WKC,95.44,Extended Near High,Tight,36.9,0.35,2.48,91.0,94.0,96.0,90.0,NO,0.47,NO,30.72,26.38,31.86,27.42,Oil & Gas Refining & Marketing
+1,Energy,4,PBF,95.35,Near Breakout,Loose,58.76,3.7,5.21,96.0,98.0,95.0,96.0,NO,0.0,NO,43.79,37.7,44.78,40.22,Oil & Gas Refining & Marketing
+1,Energy,5,PARR,94.47,Extended Near High,Loose,73.21,1.92,4.58,95.0,97.0,84.0,97.0,NO,0.0,NO,59.16,48.65,58.78,52.86,Oil & Gas Refining & Marketing
+2,Healthcare,1,APGE,98.47,Extended Near High,Very Tight,134.29,0.01,0.32,97.0,98.0,95.0,96.0,NO,0.0,NO,100.36,77.5,104.35,85.34,Biotechnology
+2,Healthcare,2,TXG,98.22,Extended Near High,Loose,45.75,1.23,5.85,98.0,98.0,97.0,97.0,NO,0.0,NO,30.65,21.29,33.21,24.76,Health Information Services
+2,Healthcare,3,PSNL,97.27,Extended Near High,Loose,15.79,2.23,7.95,97.0,98.0,98.0,96.0,NO,1.53,NO,10.26,8.71,11.36,8.87,Diagnostics & Research
+2,Healthcare,4,CDNA,97.25,Extended Near High,Loose,29.75,0.83,4.07,95.0,97.0,97.0,92.0,NO,0.14,NO,24.18,19.55,25.21,21.15,Diagnostics & Research
+2,Healthcare,5,ADPT,97.08,Extended Near High,Loose,22.9,0.39,5.18,94.0,97.0,96.0,85.0,NO,2.35,NO,17.07,16.11,18.0,16.14,Diagnostics & Research
+3,Financial Services,1,STT,94.7,Breakout Zone,Tight,186.59,0.2,2.5,92.0,91.0,92.0,91.0,NO,0.5,NO,163.53,135.78,166.57,143.81,Asset Management
+3,Financial Services,2,ENVA,94.26,Near Breakout,Loose,235.66,4.35,4.14,95.0,96.0,96.0,93.0,NO,0.16,NO,191.14,153.94,198.37,167.99,Credit Services
+3,Financial Services,3,BNY,94.22,Breakout Zone,Tight,162.35,0.23,2.39,91.0,92.0,90.0,90.0,NO,1.26,NO,142.22,123.29,144.8,129.46,Banks - Diversified
+3,Financial Services,4,RY,93.43,Breakout Zone,Tight,217.87,0.0,1.53,90.0,89.0,90.0,87.0,NO,0.16,NO,195.59,170.38,199.44,179.43,Banks - Diversified
+3,Financial Services,5,GS,93.26,Breakout Zone,Normal,1152.07,0.17,3.03,90.0,88.0,91.0,82.0,NO,0.74,NO,1021.78,900.54,1041.66,943.76,Capital Markets
+4,Technology,1,CHRN,98.37,Extended Near High,Loose,29.63,1.23,10.25,98.0,98.0,98.0,98.0,NO,2.91,NO,18.61,10.5,20.1,13.38,Information Technology Services
+4,Technology,2,DAVE,98.24,Extended Near High,Loose,438.19,0.94,5.62,97.0,98.0,98.0,97.0,NO,3.01,NO,299.87,231.59,318.13,245.54,Software - Application
+4,Technology,3,PTRN,97.6,Extended Near High,Loose,29.18,1.52,5.02,97.0,97.0,98.0,97.0,NO,0.75,NO,20.88,15.28,22.29,15.78,Software - Application
+4,Technology,4,RELY,96.6,Breakout Zone,Normal,24.96,0.16,3.77,93.0,97.0,94.0,97.0,NO,1.23,NO,21.73,16.95,21.8,18.11,Software - Infrastructure
+4,Technology,5,FLYW,96.11,Extended Near High,Loose,18.78,0.74,4.15,92.0,97.0,96.0,87.0,NO,0.63,NO,16.29,13.91,16.59,14.18,Software - Infrastructure
+5,Industrials,1,VSTS,97.5,Extended Near High,Normal,15.51,0.64,3.91,97.0,94.0,97.0,98.0,NO,0.74,NO,12.71,8.34,13.46,9.69,Rental & Leasing Services
+5,Industrials,2,CYRX,95.71,Near Breakout,Loose,16.57,1.54,4.35,95.0,92.0,97.0,94.0,NO,0.0,NO,14.69,10.68,15.24,11.4,Integrated Freight & Logistics
+5,Industrials,3,PRG,94.75,Extended Near High,Loose,46.51,2.29,4.44,93.0,95.0,95.0,92.0,NO,0.0,NO,38.52,32.92,39.67,34.74,Rental & Leasing Services
+5,Industrials,4,FA,94.62,Extended Near High,Loose,21.17,2.93,4.28,92.0,97.0,97.0,91.0,NO,0.0,NO,16.66,13.97,17.38,14.19,Specialty Business Services
+5,Industrials,5,KFRC,94.1,Near Breakout,Normal,55.49,3.16,3.78,95.0,90.0,97.0,95.0,NO,0.0,NO,46.63,34.46,48.15,37.33,Staffing & Employment Services
