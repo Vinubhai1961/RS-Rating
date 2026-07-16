@@ -5527,3 +5527,344 @@
 2026-07-15 21:56:16,894 [INFO] C tickers: (none)
 2026-07-15 21:56:16,894 [INFO] D count: 0
 2026-07-15 21:56:16,894 [INFO] D tickers: (none)
+2026-07-16 21:56:05,412 [INFO] Loaded problematic exclusion tickers: 156
+2026-07-16 21:56:05,425 [INFO] ============================================================
+2026-07-16 21:56:05,425 [INFO] PROBLEMATIC TICKER EXCLUSION SUMMARY
+2026-07-16 21:56:05,425 [INFO] ============================================================
+2026-07-16 21:56:05,425 [INFO] Rows before exclusion: 6903
+2026-07-16 21:56:05,425 [INFO] Problematic tickers loaded: 156
+2026-07-16 21:56:05,425 [INFO] Excluded tickers count: 130
+2026-07-16 21:56:05,425 [INFO] Rows after exclusion: 6773
+2026-07-16 21:56:05,425 [INFO] Excluded tickers: ['BHFAL', 'BIPH', 'BIPI', 'BIPJ', 'BNH', 'BWNB', 'CCZ', 'CGABL', 'CICB', 'CICC', 'CIMO', 'CIMP', 'CMSA', 'CMSC', 'CMSD', 'CORZZ', 'CRBD', 'CTGG', 'CTHH', 'CUBB', 'DCBG', 'DGP', 'DHCNI', 'DHCNL', 'DJP', 'DTB', 'DTG', 'DTK', 'DTW', 'DUKB', 'EAI', 'ECCV', 'ELLA', 'EMP', 'ENJ', 'ENO', 'FGN', 'FGSN', 'FNGD', 'FNGO', 'GAING', 'GAINZ', 'GECCH', 'GECCI', 'GEGGL', 'GPJA', 'GREEL', 'GRN', 'HCXY', 'HTFC', 'HWCPZ', 'INBKZ', 'JBK', 'JSM', 'KKRS', 'KKRT', 'METCI', 'METCZ', 'MFAN', 'MFICL', 'MGR', 'MGRB', 'MGRE', 'MITP', 'MLCIL', 'MLPB', 'NAMSW', 'NEWTH', 'NEWTI', 'NEWTO', 'NRUC', 'OFSSH', 'OFSSO', 'OXLCI', 'OXSQG', 'OXSQH', 'PFH', 'PFLA', 'PFXNZ', 'PMTV', 'PMTW', 'PRH', 'PRHIZ', 'PRS', 'RCD', 'RILYG', 'RILYN', 'RILYT', 'RILYZ', 'RWAYI', 'RWAYL', 'RWTO', 'RWTP', 'RWTQ', 'RWTS', 'RZC', 'SAJ', 'SAT', 'SAV', 'SAZ', 'SCCD', 'SCCE', 'SCCF', 'SCCG', 'SFB', 'SOJC', 'SOJD', 'SOJE', 'SOJF', 'SREA', 'SRJN', 'SWKHL', 'TBB', 'TCPA', 'TMUSI', 'TMUSL', 'TMUSZ', 'TPGXL', 'TPTS', 'TRINI', 'UCIB', 'UNMA', 'UZD', 'UZE', 'UZF', 'VXX', 'VXZ', 'WHFCL', 'WHLRL', 'XELLL']
+2026-07-16 21:56:05,425 [INFO] ============================================================
+2026-07-16 21:56:05,512 [INFO] ============================================================
+2026-07-16 21:56:05,512 [INFO] APPLY TICKER PRICE MASTER SUMMARY
+2026-07-16 21:56:05,512 [INFO] ============================================================
+2026-07-16 21:56:05,512 [INFO] Mode: FILL MISSING ONLY + EXCLUDE PROBLEMATIC TICKERS
+2026-07-16 21:56:05,512 [INFO] ticker_price rows before exclusion: 6903
+2026-07-16 21:56:05,512 [INFO] ticker_price rows after exclusion: 6773
+2026-07-16 21:56:05,512 [INFO] matched master tickers: 2559
+2026-07-16 21:56:05,512 [INFO] coverage before exclusion: 37.07%
+2026-07-16 21:56:05,512 [INFO] missing in master: 4344
+2026-07-16 21:56:05,512 [INFO] duplicate ticker_price rows: 0
+2026-07-16 21:56:05,512 [INFO] sector filled: 39
+2026-07-16 21:56:05,512 [INFO] industry filled: 39
+2026-07-16 21:56:05,512 [INFO] type filled: 0
+2026-07-16 21:56:05,512 [INFO] sector mismatches report-only: 2456
+2026-07-16 21:56:05,512 [INFO] industry mismatches report-only: 2233
+2026-07-16 21:56:05,512 [INFO] type count before: {'ETF': 4204, 'Stock': 2699}
+2026-07-16 21:56:05,512 [INFO] type count after: {'ETF': 4204, 'Stock': 2699}
+2026-07-16 21:56:05,512 [INFO] remaining blank/n-a sector: 3
+2026-07-16 21:56:05,512 [INFO] remaining blank/n-a industry: 3
+2026-07-16 21:56:05,512 [INFO] remaining bad type: 0
+2026-07-16 21:56:05,512 [INFO] sample missing in master: ['BFOC', 'BFOR', 'BFXU', 'BGCG', 'BGDV', 'BGEG', 'BGGG', 'BGIA', 'BGIG', 'BGRN', 'BGRO', 'BHDG', 'BHFAL', 'BHYB', 'BHYP', 'BIB', 'BIBL', 'BIDD', 'BIGY', 'BIL', 'BILD', 'BILS', 'BILT', 'BILZ', 'BINC', 'BINT', 'BINV', 'BIOY', 'BIPH', 'BIPI', 'BIPJ', 'BITA', 'BITB', 'BITC', 'BITI', 'BITQ', 'BITS', 'BITW', 'BITY', 'BIV', 'BKAG', 'BKCG', 'BKCH', 'BKCI', 'BKDV', 'BKEM', 'BKF', 'BKFI', 'BKGI', 'BKHY']
+2026-07-16 21:56:05,512 [INFO] sample duplicate ticker_price rows: []
+2026-07-16 21:56:05,512 [INFO] sample remaining blank sector: ['BNJ', 'MGRD', 'NSLRL']
+2026-07-16 21:56:05,512 [INFO] sample remaining blank industry: ['BNJ', 'MGRD', 'NSLRL']
+2026-07-16 21:56:05,512 [INFO] sample remaining bad type: []
+2026-07-16 21:56:05,512 [INFO] ============================================================
+2026-07-16 21:56:05,512 [INFO] Sample sector fills:
+2026-07-16 21:56:05,513 [INFO] BMNP | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] BPOPM | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] CIMN | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] DDT | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] ECCU | sector: n/a -> Miscellaneous
+2026-07-16 21:56:05,513 [INFO] ELC | sector: n/a -> Utilities
+2026-07-16 21:56:05,513 [INFO] FCNCN | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] FISV | sector: n/a -> Commercial services
+2026-07-16 21:56:05,513 [INFO] GAINI | sector: n/a -> Miscellaneous
+2026-07-16 21:56:05,513 [INFO] GECCG | sector: n/a -> Miscellaneous
+2026-07-16 21:56:05,513 [INFO] GJO | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] GJP | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] GJR | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] GJS | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] GJT | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] GOODO | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] GOOGM | sector: n/a -> Technology services
+2026-07-16 21:56:05,513 [INFO] GOOGN | sector: n/a -> Technology services
+2026-07-16 21:56:05,513 [INFO] HOVNP | sector: n/a -> Consumer durables
+2026-07-16 21:56:05,513 [INFO] KMPB | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] KTH | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] KTN | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] MFAO | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] MITN | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] NEWTG | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] NMFCZ | sector: n/a -> Miscellaneous
+2026-07-16 21:56:05,513 [INFO] OXLCG | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] OXLCL | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] OXLCM | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] OXLCZ | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] PMTU | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] PYT | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] RWTN | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] SAY | sector: n/a -> Miscellaneous
+2026-07-16 21:56:05,513 [INFO] SI | sector: n/a -> Health technology
+2026-07-16 21:56:05,513 [INFO] TRINZ | sector: n/a -> Miscellaneous
+2026-07-16 21:56:05,513 [INFO] TVC | sector: n/a -> Government
+2026-07-16 21:56:05,513 [INFO] TVE | sector: n/a -> Government
+2026-07-16 21:56:05,513 [INFO] TWOD | sector: n/a -> Finance
+2026-07-16 21:56:05,513 [INFO] Sample industry fills:
+2026-07-16 21:56:05,513 [INFO] BMNP | industry: n/a -> Financial conglomerates
+2026-07-16 21:56:05,513 [INFO] BPOPM | industry: n/a -> Finance/Rental/Leasing
+2026-07-16 21:56:05,513 [INFO] CIMN | industry: n/a -> Real estate investment trusts
+2026-07-16 21:56:05,513 [INFO] DDT | industry: n/a -> Finance/Rental/Leasing
+2026-07-16 21:56:05,513 [INFO] ECCU | industry: n/a -> Investment trusts
+2026-07-16 21:56:05,513 [INFO] ELC | industry: n/a -> Electric utilities
+2026-07-16 21:56:05,513 [INFO] FCNCN | industry: n/a -> Regional banks
+2026-07-16 21:56:05,513 [INFO] FISV | industry: n/a -> Miscellaneous commercial services
+2026-07-16 21:56:05,513 [INFO] GAINI | industry: n/a -> Investment trusts
+2026-07-16 21:56:05,513 [INFO] GECCG | industry: n/a -> Investment trusts
+2026-07-16 21:56:05,513 [INFO] GJO | industry: n/a -> Finance/Rental/Leasing
+2026-07-16 21:56:05,513 [INFO] GJP | industry: n/a -> Finance/Rental/Leasing
+2026-07-16 21:56:05,514 [INFO] GJR | industry: n/a -> Finance/Rental/Leasing
+2026-07-16 21:56:05,514 [INFO] GJS | industry: n/a -> Finance/Rental/Leasing
+2026-07-16 21:56:05,514 [INFO] GJT | industry: n/a -> Finance/Rental/Leasing
+2026-07-16 21:56:05,514 [INFO] GOODO | industry: n/a -> Real estate investment trusts
+2026-07-16 21:56:05,514 [INFO] GOOGM | industry: n/a -> Internet software/Services
+2026-07-16 21:56:05,514 [INFO] GOOGN | industry: n/a -> Internet software/Services
+2026-07-16 21:56:05,514 [INFO] HOVNP | industry: n/a -> Homebuilding
+2026-07-16 21:56:05,514 [INFO] KMPB | industry: n/a -> Property/Casualty insurance
+2026-07-16 21:56:05,514 [INFO] KTH | industry: n/a -> Finance/Rental/Leasing
+2026-07-16 21:56:05,514 [INFO] KTN | industry: n/a -> Finance/Rental/Leasing
+2026-07-16 21:56:05,514 [INFO] MFAO | industry: n/a -> Real estate investment trusts
+2026-07-16 21:56:05,514 [INFO] MITN | industry: n/a -> Real estate investment trusts
+2026-07-16 21:56:05,514 [INFO] NEWTG | industry: n/a -> Finance/Rental/Leasing
+2026-07-16 21:56:05,514 [INFO] NMFCZ | industry: n/a -> Investment trusts
+2026-07-16 21:56:05,514 [INFO] OXLCG | industry: n/a -> Financial conglomerates
+2026-07-16 21:56:05,514 [INFO] OXLCL | industry: n/a -> Financial conglomerates
+2026-07-16 21:56:05,514 [INFO] OXLCM | industry: n/a -> Financial conglomerates
+2026-07-16 21:56:05,514 [INFO] OXLCZ | industry: n/a -> Financial conglomerates
+2026-07-16 21:56:05,514 [INFO] PMTU | industry: n/a -> Real estate investment trusts
+2026-07-16 21:56:05,514 [INFO] PYT | industry: n/a -> Finance/Rental/Leasing
+2026-07-16 21:56:05,514 [INFO] RWTN | industry: n/a -> Real estate investment trusts
+2026-07-16 21:56:05,514 [INFO] SAY | industry: n/a -> Investment trusts
+2026-07-16 21:56:05,514 [INFO] SI | industry: n/a -> Medical specialties
+2026-07-16 21:56:05,514 [INFO] TRINZ | industry: n/a -> Investment trusts
+2026-07-16 21:56:05,514 [INFO] TVC | industry: n/a -> General government
+2026-07-16 21:56:05,514 [INFO] TVE | industry: n/a -> General government
+2026-07-16 21:56:05,514 [INFO] TWOD | industry: n/a -> Real estate investment trusts
+2026-07-16 21:56:05,514 [INFO] Sample type fills:
+2026-07-16 21:56:05,514 [INFO] Sample sector mismatches report-only:
+2026-07-16 21:56:05,514 [INFO] BFS | ticker_price sector: Real Estate | master sector: Finance
+2026-07-16 21:56:05,514 [INFO] BFST | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,514 [INFO] BG | ticker_price sector: Consumer Defensive | master sector: Process industries
+2026-07-16 21:56:05,514 [INFO] BGR | ticker_price sector: Financial Services | master sector: Miscellaneous
+2026-07-16 21:56:05,514 [INFO] BGSI | ticker_price sector: Consumer Cyclical | master sector: Consumer services
+2026-07-16 21:56:05,514 [INFO] BH | ticker_price sector: Consumer Cyclical | master sector: Consumer services
+2026-07-16 21:56:05,514 [INFO] BHB | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,514 [INFO] BHE | ticker_price sector: Technology | master sector: Electronic technology
+2026-07-16 21:56:05,514 [INFO] BHF | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,514 [INFO] BHFAO | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,514 [INFO] BHP | ticker_price sector: Basic Materials | master sector: Non-energy minerals
+2026-07-16 21:56:05,514 [INFO] BHRB | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,514 [INFO] BIDU | ticker_price sector: Communication Services | master sector: Technology services
+2026-07-16 21:56:05,514 [INFO] BIIB | ticker_price sector: Healthcare | master sector: Health technology
+2026-07-16 21:56:05,514 [INFO] BILI | ticker_price sector: Communication Services | master sector: Technology services
+2026-07-16 21:56:05,514 [INFO] BILL | ticker_price sector: Technology | master sector: Technology services
+2026-07-16 21:56:05,514 [INFO] BIO | ticker_price sector: Healthcare | master sector: Health technology
+2026-07-16 21:56:05,514 [INFO] BIOA | ticker_price sector: Healthcare | master sector: Health technology
+2026-07-16 21:56:05,514 [INFO] BIRK | ticker_price sector: Consumer Cyclical | master sector: Consumer non-durables
+2026-07-16 21:56:05,514 [INFO] BJ | ticker_price sector: Consumer Defensive | master sector: Retail trade
+2026-07-16 21:56:05,514 [INFO] BJRI | ticker_price sector: Consumer Cyclical | master sector: Consumer services
+2026-07-16 21:56:05,514 [INFO] BKD | ticker_price sector: Healthcare | master sector: Health services
+2026-07-16 21:56:05,514 [INFO] BKE | ticker_price sector: Consumer Cyclical | master sector: Retail trade
+2026-07-16 21:56:05,514 [INFO] BKNG | ticker_price sector: Consumer Cyclical | master sector: Consumer services
+2026-07-16 21:56:05,514 [INFO] BKR | ticker_price sector: Energy | master sector: Industrial services
+2026-07-16 21:56:05,514 [INFO] BKSY | ticker_price sector: Industrials | master sector: Technology services
+2026-07-16 21:56:05,514 [INFO] BKTI | ticker_price sector: Technology | master sector: Electronic technology
+2026-07-16 21:56:05,514 [INFO] BKU | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,514 [INFO] BKV | ticker_price sector: Energy | master sector: Energy minerals
+2026-07-16 21:56:05,514 [INFO] BL | ticker_price sector: Technology | master sector: Technology services
+2026-07-16 21:56:05,515 [INFO] BLBD | ticker_price sector: Industrials | master sector: Consumer durables
+2026-07-16 21:56:05,515 [INFO] BLCO | ticker_price sector: Healthcare | master sector: Health technology
+2026-07-16 21:56:05,515 [INFO] BLDR | ticker_price sector: Industrials | master sector: Retail trade
+2026-07-16 21:56:05,515 [INFO] BLFS | ticker_price sector: Healthcare | master sector: Health technology
+2026-07-16 21:56:05,515 [INFO] BLK | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,515 [INFO] BLKB | ticker_price sector: Technology | master sector: Technology services
+2026-07-16 21:56:05,515 [INFO] BLLN | ticker_price sector: Healthcare | master sector: Health services
+2026-07-16 21:56:05,515 [INFO] BLSH | ticker_price sector: Technology | master sector: Technology services
+2026-07-16 21:56:05,515 [INFO] BLTE | ticker_price sector: Healthcare | master sector: Health technology
+2026-07-16 21:56:05,515 [INFO] BLX | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,515 [INFO] BMA | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,515 [INFO] BME | ticker_price sector: Financial Services | master sector: Miscellaneous
+2026-07-16 21:56:05,515 [INFO] BMEZ | ticker_price sector: Financial Services | master sector: Miscellaneous
+2026-07-16 21:56:05,515 [INFO] BMI | ticker_price sector: Technology | master sector: Producer manufacturing
+2026-07-16 21:56:05,515 [INFO] BMN | ticker_price sector: Financial Services | master sector: Miscellaneous
+2026-07-16 21:56:05,515 [INFO] BMNR | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,515 [INFO] BMO | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,515 [INFO] BMRC | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,515 [INFO] BMRN | ticker_price sector: Healthcare | master sector: Health technology
+2026-07-16 21:56:05,515 [INFO] BMY | ticker_price sector: Healthcare | master sector: Health technology
+2026-07-16 21:56:05,515 [INFO] BN | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,515 [INFO] BNL | ticker_price sector: Real Estate | master sector: Finance
+2026-07-16 21:56:05,515 [INFO] BNS | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,515 [INFO] BNT | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,515 [INFO] BNTX | ticker_price sector: Healthcare | master sector: Health technology
+2026-07-16 21:56:05,515 [INFO] BNY | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,515 [INFO] BOBS | ticker_price sector: Consumer Cyclical | master sector: Retail trade
+2026-07-16 21:56:05,515 [INFO] BOH | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,515 [INFO] BOKF | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,515 [INFO] BOOT | ticker_price sector: Consumer Cyclical | master sector: Retail trade
+2026-07-16 21:56:05,515 [INFO] BOT | ticker_price sector: Financial Services | master sector: Miscellaneous
+2026-07-16 21:56:05,515 [INFO] BOTJ | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,515 [INFO] BOW | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,515 [INFO] BOX | ticker_price sector: Technology | master sector: Technology services
+2026-07-16 21:56:05,515 [INFO] BP | ticker_price sector: Energy | master sector: Energy minerals
+2026-07-16 21:56:05,515 [INFO] BPOP | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,515 [INFO] BPRN | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,515 [INFO] BPYPM | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,515 [INFO] BPYPO | ticker_price sector: Real Estate | master sector: Finance
+2026-07-16 21:56:05,515 [INFO] BPYPP | ticker_price sector: Real Estate | master sector: Finance
+2026-07-16 21:56:05,515 [INFO] BR | ticker_price sector: Technology | master sector: Technology services
+2026-07-16 21:56:05,515 [INFO] BRC | ticker_price sector: Industrials | master sector: Producer manufacturing
+2026-07-16 21:56:05,515 [INFO] BRKR | ticker_price sector: Healthcare | master sector: Health technology
+2026-07-16 21:56:05,515 [INFO] BRKRP | ticker_price sector: Healthcare | master sector: Health technology
+2026-07-16 21:56:05,515 [INFO] BRO | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,515 [INFO] BROS | ticker_price sector: Consumer Cyclical | master sector: Consumer services
+2026-07-16 21:56:05,516 [INFO] BRT | ticker_price sector: Real Estate | master sector: Finance
+2026-07-16 21:56:05,516 [INFO] BRUN | ticker_price sector: Technology | master sector: Technology services
+2026-07-16 21:56:05,516 [INFO] BRX | ticker_price sector: Real Estate | master sector: Finance
+2026-07-16 21:56:05,516 [INFO] BRZE | ticker_price sector: Technology | master sector: Technology services
+2026-07-16 21:56:05,516 [INFO] BSAC | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,516 [INFO] BSET | ticker_price sector: Consumer Cyclical | master sector: Consumer durables
+2026-07-16 21:56:05,516 [INFO] BSP | ticker_price sector: Technology | master sector: Technology services
+2026-07-16 21:56:05,516 [INFO] BSRR | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,516 [INFO] BST | ticker_price sector: Financial Services | master sector: Miscellaneous
+2026-07-16 21:56:05,516 [INFO] BSTZ | ticker_price sector: Financial Services | master sector: Miscellaneous
+2026-07-16 21:56:05,516 [INFO] BSVN | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,516 [INFO] BSX | ticker_price sector: Healthcare | master sector: Health technology
+2026-07-16 21:56:05,516 [INFO] BSY | ticker_price sector: Technology | master sector: Technology services
+2026-07-16 21:56:05,516 [INFO] BTI | ticker_price sector: Consumer Defensive | master sector: Consumer non-durables
+2026-07-16 21:56:05,516 [INFO] BTO | ticker_price sector: Financial Services | master sector: Miscellaneous
+2026-07-16 21:56:05,516 [INFO] BTSG | ticker_price sector: Healthcare | master sector: Health services
+2026-07-16 21:56:05,516 [INFO] BTSGU | ticker_price sector: Healthcare | master sector: Health services
+2026-07-16 21:56:05,516 [INFO] BTT | ticker_price sector: Financial Services | master sector: Miscellaneous
+2026-07-16 21:56:05,516 [INFO] BTU | ticker_price sector: Energy | master sector: Energy minerals
+2026-07-16 21:56:05,516 [INFO] BUD | ticker_price sector: Consumer Defensive | master sector: Consumer non-durables
+2026-07-16 21:56:05,516 [INFO] BUI | ticker_price sector: Financial Services | master sector: Miscellaneous
+2026-07-16 21:56:05,516 [INFO] BURL | ticker_price sector: Consumer Cyclical | master sector: Retail trade
+2026-07-16 21:56:05,516 [INFO] BUSE | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,516 [INFO] BUSEP | ticker_price sector: Financial Services | master sector: Finance
+2026-07-16 21:56:05,516 [INFO] Sample industry mismatches report-only:
+2026-07-16 21:56:05,516 [INFO] BFS | ticker_price industry: REIT - Retail | master industry: Real estate investment trusts
+2026-07-16 21:56:05,516 [INFO] BFST | ticker_price industry: Banks - Regional | master industry: Regional banks
+2026-07-16 21:56:05,516 [INFO] BG | ticker_price industry: Farm Products | master industry: Agricultural commodities/Milling
+2026-07-16 21:56:05,516 [INFO] BGR | ticker_price industry: Asset Management | master industry: Investment trusts
+2026-07-16 21:56:05,516 [INFO] BGSI | ticker_price industry: Auto & Truck Dealerships | master industry: Other consumer services
+2026-07-16 21:56:05,516 [INFO] BHB | ticker_price industry: Banks - Regional | master industry: Regional banks
+2026-07-16 21:56:05,516 [INFO] BHE | ticker_price industry: Electronic Components | master industry: Electronic production equipment
+2026-07-16 21:56:05,516 [INFO] BHF | ticker_price industry: Insurance - Life | master industry: Life/Health insurance
+2026-07-16 21:56:05,517 [INFO] BHFAO | ticker_price industry: Insurance - Life | master industry: Life/Health insurance
+2026-07-16 21:56:05,517 [INFO] BHP | ticker_price industry: Other Industrial Metals & Mining | master industry: Steel
+2026-07-16 21:56:05,517 [INFO] BHRB | ticker_price industry: Banks - Regional | master industry: Regional banks
+2026-07-16 21:56:05,517 [INFO] BIDU | ticker_price industry: Internet Content & Information | master industry: Internet software/Services
+2026-07-16 21:56:05,517 [INFO] BIIB | ticker_price industry: Drug Manufacturers - General | master industry: Pharmaceuticals: major
+2026-07-16 21:56:05,517 [INFO] BILI | ticker_price industry: Internet Content & Information | master industry: Packaged software
+2026-07-16 21:56:05,517 [INFO] BILL | ticker_price industry: Software - Application | master industry: Packaged software
+2026-07-16 21:56:05,517 [INFO] BIO | ticker_price industry: Medical Devices | master industry: Medical specialties
+2026-07-16 21:56:05,517 [INFO] BIOA | ticker_price industry: Drug Manufacturers - Specialty & Generic | master industry: Biotechnology
+2026-07-16 21:56:05,517 [INFO] BIP | ticker_price industry: Utilities - Diversified | master industry: Alternative power generation
+2026-07-16 21:56:05,517 [INFO] BIPC | ticker_price industry: Utilities - Regulated Gas | master industry: Gas distributors
+2026-07-16 21:56:05,517 [INFO] BIRK | ticker_price industry: Footwear & Accessories | master industry: Apparel/Footwear
+2026-07-16 21:56:05,517 [INFO] BJ | ticker_price industry: Discount Stores | master industry: Specialty stores
+2026-07-16 21:56:05,517 [INFO] BKD | ticker_price industry: Medical Care Facilities | master industry: Hospital/Nursing management
+2026-07-16 21:56:05,517 [INFO] BKE | ticker_price industry: Apparel Retail | master industry: Apparel/Footwear retail
+2026-07-16 21:56:05,517 [INFO] BKH | ticker_price industry: Utilities - Regulated Gas | master industry: Gas distributors
+2026-07-16 21:56:05,517 [INFO] BKNG | ticker_price industry: Travel Services | master industry: Other consumer services
+2026-07-16 21:56:05,517 [INFO] BKR | ticker_price industry: Oil & Gas Equipment & Services | master industry: Contract drilling
+2026-07-16 21:56:05,517 [INFO] BKSY | ticker_price industry: Specialty Business Services | master industry: Packaged software
+2026-07-16 21:56:05,517 [INFO] BKTI | ticker_price industry: Communication Equipment | master industry: Telecommunications equipment
+2026-07-16 21:56:05,517 [INFO] BKU | ticker_price industry: Banks - Regional | master industry: Major banks
+2026-07-16 21:56:05,517 [INFO] BKV | ticker_price industry: Oil & Gas E&P | master industry: Integrated oil
+2026-07-16 21:56:05,517 [INFO] BL | ticker_price industry: Software - Application | master industry: Packaged software
+2026-07-16 21:56:05,517 [INFO] BLBD | ticker_price industry: Farm & Heavy Construction Machinery | master industry: Motor vehicles
+2026-07-16 21:56:05,517 [INFO] BLCO | ticker_price industry: Medical Instruments & Supplies | master industry: Medical specialties
+2026-07-16 21:56:05,517 [INFO] BLDR | ticker_price industry: Building Products & Equipment | master industry: Home improvement chains
+2026-07-16 21:56:05,517 [INFO] BLFS | ticker_price industry: Medical Instruments & Supplies | master industry: Medical specialties
+2026-07-16 21:56:05,517 [INFO] BLK | ticker_price industry: Asset Management | master industry: Investment managers
+2026-07-16 21:56:05,517 [INFO] BLKB | ticker_price industry: Software - Application | master industry: Packaged software
+2026-07-16 21:56:05,517 [INFO] BLLN | ticker_price industry: Diagnostics & Research | master industry: Medical/Nursing services
+2026-07-16 21:56:05,517 [INFO] BLSH | ticker_price industry: Software - Infrastructure | master industry: Packaged software
+2026-07-16 21:56:05,518 [INFO] BLTE | ticker_price industry: Biotechnology | master industry: Pharmaceuticals: major
+2026-07-16 21:56:05,518 [INFO] BLX | ticker_price industry: Banks - Regional | master industry: Major banks
+2026-07-16 21:56:05,518 [INFO] BMA | ticker_price industry: Banks - Regional | master industry: Major banks
+2026-07-16 21:56:05,518 [INFO] BME | ticker_price industry: Asset Management | master industry: Investment trusts
+2026-07-16 21:56:05,518 [INFO] BMEZ | ticker_price industry: Asset Management | master industry: Investment trusts
+2026-07-16 21:56:05,518 [INFO] BMI | ticker_price industry: Scientific & Technical Instruments | master industry: Industrial machinery
+2026-07-16 21:56:05,518 [INFO] BMN | ticker_price industry: Asset Management | master industry: Investment trusts
+2026-07-16 21:56:05,518 [INFO] BMNR | ticker_price industry: Capital Markets | master industry: Financial conglomerates
+2026-07-16 21:56:05,518 [INFO] BMO | ticker_price industry: Banks - Diversified | master industry: Major banks
+2026-07-16 21:56:05,518 [INFO] BMRC | ticker_price industry: Banks - Regional | master industry: Regional banks
+2026-07-16 21:56:05,518 [INFO] BMY | ticker_price industry: Drug Manufacturers - General | master industry: Pharmaceuticals: major
+2026-07-16 21:56:05,518 [INFO] BN | ticker_price industry: Asset Management | master industry: Investment managers
+2026-07-16 21:56:05,518 [INFO] BNL | ticker_price industry: REIT - Diversified | master industry: Real estate investment trusts
+2026-07-16 21:56:05,518 [INFO] BNS | ticker_price industry: Banks - Diversified | master industry: Major banks
+2026-07-16 21:56:05,518 [INFO] BNT | ticker_price industry: Insurance - Diversified | master industry: Multi-line insurance
+2026-07-16 21:56:05,518 [INFO] BNY | ticker_price industry: Banks - Diversified | master industry: Investment banks/Brokers
+2026-07-16 21:56:05,518 [INFO] BOBS | ticker_price industry: Specialty Retail | master industry: Specialty stores
+2026-07-16 21:56:05,518 [INFO] BOH | ticker_price industry: Banks - Regional | master industry: Regional banks
+2026-07-16 21:56:05,518 [INFO] BOKF | ticker_price industry: Banks - Regional | master industry: Major banks
+2026-07-16 21:56:05,518 [INFO] BOOT | ticker_price industry: Apparel Retail | master industry: Apparel/Footwear retail
+2026-07-16 21:56:05,518 [INFO] BOT | ticker_price industry: Asset Management | master industry: Investment trusts
+2026-07-16 21:56:05,518 [INFO] BOTJ | ticker_price industry: Banks - Regional | master industry: Regional banks
+2026-07-16 21:56:05,518 [INFO] BOW | ticker_price industry: Insurance - Property & Casualty | master industry: Multi-line insurance
+2026-07-16 21:56:05,518 [INFO] BOX | ticker_price industry: Software - Infrastructure | master industry: Information technology services
+2026-07-16 21:56:05,518 [INFO] BP | ticker_price industry: Oil & Gas Integrated | master industry: Integrated oil
+2026-07-16 21:56:05,518 [INFO] BPOP | ticker_price industry: Banks - Regional | master industry: Regional banks
+2026-07-16 21:56:05,518 [INFO] BPRN | ticker_price industry: Banks - Regional | master industry: Regional banks
+2026-07-16 21:56:05,518 [INFO] BPYPM | ticker_price industry: Asset Management | master industry: Real estate development
+2026-07-16 21:56:05,518 [INFO] BPYPO | ticker_price industry: Real Estate Services | master industry: Real estate investment trusts
+2026-07-16 21:56:05,518 [INFO] BPYPP | ticker_price industry: Real Estate Services | master industry: Real estate investment trusts
+2026-07-16 21:56:05,518 [INFO] BRC | ticker_price industry: Security & Protection Services | master industry: Miscellaneous manufacturing
+2026-07-16 21:56:05,519 [INFO] BRKR | ticker_price industry: Medical Devices | master industry: Medical specialties
+2026-07-16 21:56:05,519 [INFO] BRKRP | ticker_price industry: Medical Devices | master industry: Medical specialties
+2026-07-16 21:56:05,519 [INFO] BRO | ticker_price industry: Insurance Brokers | master industry: Insurance brokers/Services
+2026-07-16 21:56:05,519 [INFO] BRT | ticker_price industry: REIT - Residential | master industry: Real estate investment trusts
+2026-07-16 21:56:05,519 [INFO] BRUN | ticker_price industry: Software - Infrastructure | master industry: Packaged software
+2026-07-16 21:56:05,519 [INFO] BRX | ticker_price industry: REIT - Retail | master industry: Real estate investment trusts
+2026-07-16 21:56:05,519 [INFO] BRZE | ticker_price industry: Software - Application | master industry: Internet software/Services
+2026-07-16 21:56:05,519 [INFO] BSAC | ticker_price industry: Banks - Regional | master industry: Regional banks
+2026-07-16 21:56:05,519 [INFO] BSET | ticker_price industry: Furnishings, Fixtures & Appliances | master industry: Home furnishings
+2026-07-16 21:56:05,519 [INFO] BSP | ticker_price industry: Software - Application | master industry: Packaged software
+2026-07-16 21:56:05,519 [INFO] BSRR | ticker_price industry: Banks - Regional | master industry: Regional banks
+2026-07-16 21:56:05,519 [INFO] BST | ticker_price industry: Asset Management | master industry: Investment trusts
+2026-07-16 21:56:05,519 [INFO] BSTZ | ticker_price industry: Asset Management | master industry: Investment trusts
+2026-07-16 21:56:05,519 [INFO] BSVN | ticker_price industry: Banks - Regional | master industry: Regional banks
+2026-07-16 21:56:05,519 [INFO] BSX | ticker_price industry: Medical Devices | master industry: Medical specialties
+2026-07-16 21:56:05,519 [INFO] BSY | ticker_price industry: Software - Application | master industry: Information technology services
+2026-07-16 21:56:05,519 [INFO] BTO | ticker_price industry: Asset Management | master industry: Investment trusts
+2026-07-16 21:56:05,519 [INFO] BTSG | ticker_price industry: Health Information Services | master industry: Medical/Nursing services
+2026-07-16 21:56:05,519 [INFO] BTSGU | ticker_price industry: Health Information Services | master industry: Medical/Nursing services
+2026-07-16 21:56:05,519 [INFO] BTT | ticker_price industry: Asset Management | master industry: Investment trusts
+2026-07-16 21:56:05,519 [INFO] BTU | ticker_price industry: Thermal Coal | master industry: Coal
+2026-07-16 21:56:05,519 [INFO] BUD | ticker_price industry: Beverages - Brewers | master industry: Beverages: alcoholic
+2026-07-16 21:56:05,519 [INFO] BUI | ticker_price industry: Asset Management | master industry: Investment trusts
+2026-07-16 21:56:05,519 [INFO] BURL | ticker_price industry: Apparel Retail | master industry: Apparel/Footwear retail
+2026-07-16 21:56:05,519 [INFO] BUSE | ticker_price industry: Banks - Regional | master industry: Regional banks
+2026-07-16 21:56:05,519 [INFO] BUSEP | ticker_price industry: Banks - Regional | master industry: Regional banks
+2026-07-16 21:56:05,519 [INFO] BUUU | ticker_price industry: Specialty Business Services | master industry: Miscellaneous commercial services
+2026-07-16 21:56:05,519 [INFO] BVFL | ticker_price industry: Banks - Regional | master industry: Savings banks
+2026-07-16 21:56:05,519 [INFO] BVN | ticker_price industry: Other Precious Metals & Mining | master industry: Precious metals
+2026-07-16 21:56:05,519 [INFO] BWA | ticker_price industry: Auto Parts | master industry: Trucks/Construction/Farm machinery
+2026-07-16 21:56:05,519 [INFO] ============================================================
+2026-07-16 21:56:05,519 [INFO] MISSING SECTOR TICKERS BY LETTER A/B/C/D
+2026-07-16 21:56:05,519 [INFO] ============================================================
+2026-07-16 21:56:05,520 [INFO] A count: 0
+2026-07-16 21:56:05,520 [INFO] A tickers: (none)
+2026-07-16 21:56:05,520 [INFO] B count: 1
+2026-07-16 21:56:05,520 [INFO] B tickers: BNJ
+2026-07-16 21:56:05,520 [INFO] C count: 0
+2026-07-16 21:56:05,520 [INFO] C tickers: (none)
+2026-07-16 21:56:05,520 [INFO] D count: 0
+2026-07-16 21:56:05,520 [INFO] D tickers: (none)
+2026-07-16 21:56:05,520 [INFO] ============================================================
+2026-07-16 21:56:05,520 [INFO] MISSING INDUSTRY TICKERS BY LETTER A/B/C/D
+2026-07-16 21:56:05,520 [INFO] ============================================================
+2026-07-16 21:56:05,520 [INFO] A count: 0
+2026-07-16 21:56:05,520 [INFO] A tickers: (none)
+2026-07-16 21:56:05,520 [INFO] B count: 1
+2026-07-16 21:56:05,520 [INFO] B tickers: BNJ
+2026-07-16 21:56:05,520 [INFO] C count: 0
+2026-07-16 21:56:05,520 [INFO] C tickers: (none)
+2026-07-16 21:56:05,520 [INFO] D count: 0
+2026-07-16 21:56:05,520 [INFO] D tickers: (none)
