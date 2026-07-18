@@ -1,0 +1,62 @@
+name: Filter strong RS stocks with strong recovery from 52-week low
+
+on:
+  workflow_call:  
+  workflow_dispatch:         # manual run
+  #workflow_run:
+    #workflows: ["Update RSRATING_TV"]
+    #types: [completed]
+    #branches: [main]
+
+jobs:
+  filter:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas
+
+      - name: Run 52WKL recovery filter script
+        run: python scripts/filter_52wkl.py
+
+      - name: Commit and push result if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Add the new output file + archive directory
+          git add RS_Data/RS70_Price30_52WKL.csv 52wkl/ || true
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update RS>70 + Price>30 + strong 52WKL recovery list"
+
+            echo "🔄 Pulling latest changes from main..."
+            git pull --rebase origin main || echo "Pull had minor issues, continuing..."
+
+            echo "🚀 Pushing changes..."
+            for i in {1..3}; do
+              if git push origin main; then
+                echo "✅ Push successful"
+                break
+              else
+                echo "⚠️ Push failed (attempt $i/3). Retrying in 3 seconds..."
+                sleep 3
+                git pull --rebase origin main || true
+              fi
+            done
+          fi
