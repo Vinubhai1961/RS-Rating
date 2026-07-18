@@ -14,10 +14,10 @@ ARCHIVE_DIR  = Path("52wkl")
 
 RS_THRESHOLD      = 70.0
 PRICE_THRESHOLD   = 30.0
-MIN_RECOVERY_PCT  = 60.0      # Changed to 60% as requested
-MAX_PCT_TO_HIGH   = -25.0     # Exclude 0% to -25% from 52W High
+MIN_RECOVERY_PCT  = 60.0
+MAX_PCT_TO_HIGH   = -25.0
 
-MIN_AVGVOL10 = 300_000
+MIN_AVGVOL10 = 400_000
 MIN_ATR = 2.5
 MIN_ADR = 2.5
 
@@ -55,7 +55,7 @@ def main():
 
     df = df.dropna(subset=['Price', '52WKH', '52WKL', 'RS Percentile', 'AvgVol10'])
 
-    # Calculate key metrics
+    # Calculate metrics
     df['%_From_52WKL'] = ((df['Price'] - df['52WKL']) / df['52WKL']) * 100
     df['%_From_52WKL'] = df['%_From_52WKL'].round(2)
     
@@ -64,12 +64,12 @@ def main():
 
     df['Recovery_Score'] = df['%_From_52WKL'].clip(lower=0)
 
-    # === MAIN FILTER ===
+    # Main Filter
     mask = (
         (df['RS Percentile'] >= RS_THRESHOLD) &
         (df['Price'] >= PRICE_THRESHOLD) &
         (df['%_From_52WKL'] >= MIN_RECOVERY_PCT) &
-        (df['%_From_52WKH'] <= MAX_PCT_TO_HIGH) &     # Exclude near 52W High
+        (df['%_From_52WKH'] <= MAX_PCT_TO_HIGH) &
         (df['AvgVol10'] >= MIN_AVGVOL10) &
         (df['52WKL'] > 1)
     )
@@ -95,20 +95,21 @@ def main():
         print("No stocks match criteria.")
         return
 
-    # === MATCH ORIGINAL OUTPUT COLUMNS ===
+    # Match original column structure + add recovery columns
     desired = [
         'Rank', 'Ticker', 'Price', 'Prev_Close', 'DVol', 'Sector', 'Industry',
         'RS Percentile', '1M_RS Percentile', '3M_RS Percentile', '6M_RS Percentile',
         'ATR', 'ADR', 'AvgVol', 'AvgVol10', '52WKH', '52WKL', 'Earning_Date', 'MCAP',
         'IPO', 'SMA20', 'SMA50', 'SMA200', 'SMA10W', 'SMA30W', 'History_Days',
         'Gap (%)', 'Latest Volume', '9M+ Volume', 'HVE', 'HVE Date', 'HVE Volume',
-        '%_From_52WKL', '%_From_52WKH'   # Added for this scanner
+        '%_From_52WKL', '%_From_52WKH'
     ]
 
     available = [c for c in desired if c in filtered.columns]
     result = filtered[available].copy()
 
-    result = result.sort_values('Recovery_Score', ascending=False).reset_index(drop=True)
+    # Sort by Recovery Score (even if column not kept in final output)
+    result = result.sort_values(by='%_From_52WKL', ascending=False).reset_index(drop=True)
 
     # Save
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -120,10 +121,8 @@ def main():
     result.to_csv(archive_path, index=False)
     print(f"Archive saved → {archive_path}")
 
-    # Preview
-    print("\nFirst 10 rows:")
-    preview_cols = ['Rank', 'Ticker', 'Price', '%_From_52WKL', '%_From_52WKH', 
-                   'Recovery_Score', 'RS Percentile', 'ATR', 'ADR']
+    print("\nFirst 10 rows preview:")
+    preview_cols = ['Rank', 'Ticker', 'Price', '%_From_52WKL', '%_From_52WKH', 'RS Percentile', 'ATR', 'ADR']
     preview_cols = [c for c in preview_cols if c in result.columns]
     print(result.head(10)[preview_cols].to_string(index=False))
 
