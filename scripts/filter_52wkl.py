@@ -1,6 +1,5 @@
 # =============================================================================
-#   RS70 + Strong 52WKL Recovery Filter 
-#   (Strictly excludes stocks near 52W High)
+#   RS70 + 60%+ Recovery from 52W Low (Excludes near 52W High)
 # =============================================================================
 import pandas as pd
 from pathlib import Path
@@ -13,12 +12,12 @@ INPUT_PATH   = Path("RS_Data/rs_stocks.csv")
 OUTPUT_PATH  = Path("RS_Data/RS70_Price30_52WKL.csv")
 ARCHIVE_DIR  = Path("52wkl")
 
-RS_THRESHOLD     = 70.0
-PRICE_THRESHOLD  = 30.0
-MIN_RECOVERY_PCT = 70.0
-MAX_PCT_TO_HIGH  = -25.0      # ← Can make stricter (-30 or -35)
+RS_THRESHOLD      = 70.0
+PRICE_THRESHOLD   = 30.0
+MIN_RECOVERY_PCT  = 60.0      # Changed to 60% as requested
+MAX_PCT_TO_HIGH   = -25.0     # Exclude 0% to -25% from 52W High
 
-MIN_AVGVOL10 = 400_000
+MIN_AVGVOL10 = 300_000
 MIN_ATR = 2.5
 MIN_ADR = 2.5
 
@@ -44,7 +43,9 @@ def main():
     df = pd.read_csv(INPUT_PATH)
     print(f"→ Loaded {len(df):,} rows")
 
-    numeric_cols = ['Price', '52WKH', '52WKL', 'RS Percentile', 'AvgVol10', 'ATR', 'ADR']
+    # Convert numeric columns
+    numeric_cols = ['Price', 'Prev_Close', '52WKH', '52WKL', 'RS Percentile', 
+                    'AvgVol10', 'ATR', 'ADR', 'SMA20', 'SMA50', 'SMA200']
     for col in numeric_cols:
         if col in df.columns:
             if col == 'AvgVol10':
@@ -54,7 +55,7 @@ def main():
 
     df = df.dropna(subset=['Price', '52WKH', '52WKL', 'RS Percentile', 'AvgVol10'])
 
-    # Calculate metrics
+    # Calculate key metrics
     df['%_From_52WKL'] = ((df['Price'] - df['52WKL']) / df['52WKL']) * 100
     df['%_From_52WKL'] = df['%_From_52WKL'].round(2)
     
@@ -63,16 +64,14 @@ def main():
 
     df['Recovery_Score'] = df['%_From_52WKL'].clip(lower=0)
 
-    # === STRICT FILTER ===
+    # === MAIN FILTER ===
     mask = (
         (df['RS Percentile'] >= RS_THRESHOLD) &
         (df['Price'] >= PRICE_THRESHOLD) &
         (df['%_From_52WKL'] >= MIN_RECOVERY_PCT) &
-        (df['%_From_52WKL'] <= 600) &                    # Cap unrealistic recoveries
-        (df['%_From_52WKH'] <= MAX_PCT_TO_HIGH) &        # Strong exclusion of near-high stocks
+        (df['%_From_52WKH'] <= MAX_PCT_TO_HIGH) &     # Exclude near 52W High
         (df['AvgVol10'] >= MIN_AVGVOL10) &
-        (df['52WKL'] > 1) & 
-        (df['Price'] > df['52WKL'])
+        (df['52WKL'] > 1)
     )
 
     # ATR/ADR Filter
@@ -83,26 +82,32 @@ def main():
     )
     df['Passes_ATR_ADR'] = df['Passes_ATR_ADR'].fillna(True)
 
-    mask = mask & df['Passes_ATR_ADR']
-    filtered = df[mask].copy()
+    filtered = df[mask & df['Passes_ATR_ADR']].copy()
 
     print(f"\nAfter filters:")
-    print(f"  • RS ≥ {RS_THRESHOLD} | Price ≥ ${PRICE_THRESHOLD}")
-    print(f"  • Recovery ≥ {MIN_RECOVERY_PCT}% (capped at 600%)")
-    print(f"  • At least {abs(MAX_PCT_TO_HIGH)}% **below** 52W High (strict)")
+    print(f"  • RS ≥ {RS_THRESHOLD}")
+    print(f"  • Price ≥ ${PRICE_THRESHOLD}")
+    print(f"  • Recovery from 52W Low ≥ {MIN_RECOVERY_PCT}%")
+    print(f"  • More than {abs(MAX_PCT_TO_HIGH)}% below 52W High")
     print(f"→ {len(filtered):,} stocks remain")
 
     if len(filtered) == 0:
         print("No stocks match criteria.")
         return
 
+    # === MATCH ORIGINAL OUTPUT COLUMNS ===
     desired = [
-        'Rank', 'Ticker', 'Price', 'Sector', 'Industry', 'RS Percentile',
-        'ATR', 'ADR', 'AvgVol10', '52WKH', '52WKL', 
-        '%_From_52WKL', '%_From_52WKH', 'Recovery_Score'
+        'Rank', 'Ticker', 'Price', 'Prev_Close', 'DVol', 'Sector', 'Industry',
+        'RS Percentile', '1M_RS Percentile', '3M_RS Percentile', '6M_RS Percentile',
+        'ATR', 'ADR', 'AvgVol', 'AvgVol10', '52WKH', '52WKL', 'Earning_Date', 'MCAP',
+        'IPO', 'SMA20', 'SMA50', 'SMA200', 'SMA10W', 'SMA30W', 'History_Days',
+        'Gap (%)', 'Latest Volume', '9M+ Volume', 'HVE', 'HVE Date', 'HVE Volume',
+        '%_From_52WKL', '%_From_52WKH'   # Added for this scanner
     ]
 
-    result = filtered[[c for c in desired if c in filtered.columns]].copy()
+    available = [c for c in desired if c in filtered.columns]
+    result = filtered[available].copy()
+
     result = result.sort_values('Recovery_Score', ascending=False).reset_index(drop=True)
 
     # Save
@@ -113,11 +118,14 @@ def main():
     ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
     archive_path = ARCHIVE_DIR / f"52wkl_{date.today().strftime('%m%d%Y')}.csv"
     result.to_csv(archive_path, index=False)
+    print(f"Archive saved → {archive_path}")
 
     # Preview
     print("\nFirst 10 rows:")
-    preview = result.head(10)[['Ticker', 'Price', '%_From_52WKL', '%_From_52WKH', 'Recovery_Score', 'RS Percentile']]
-    print(preview.to_string(index=False))
+    preview_cols = ['Rank', 'Ticker', 'Price', '%_From_52WKL', '%_From_52WKH', 
+                   'Recovery_Score', 'RS Percentile', 'ATR', 'ADR']
+    preview_cols = [c for c in preview_cols if c in result.columns]
+    print(result.head(10)[preview_cols].to_string(index=False))
 
 
 if __name__ == "__main__":
