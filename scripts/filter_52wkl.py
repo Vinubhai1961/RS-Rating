@@ -1,5 +1,5 @@
 # =============================================================================
-#   RS70 + 60%+ Recovery from 52W Low (Excludes near 52W High)
+#   RS70 + 60%+ Recovery from 52W Low + Stage 2 (Price > SMA10W > SMA30W)
 # =============================================================================
 import pandas as pd
 from pathlib import Path
@@ -21,7 +21,6 @@ MIN_AVGVOL10 = 400_000
 MIN_ATR = 2.5
 MIN_ADR = 2.5
 
-DEBUG_TICKER = None
 # ────────────────────────────────────────────────
 
 def parse_volume(x):
@@ -45,7 +44,7 @@ def main():
 
     # Convert numeric columns
     numeric_cols = ['Price', 'Prev_Close', '52WKH', '52WKL', 'RS Percentile', 
-                    'AvgVol10', 'ATR', 'ADR', 'SMA20', 'SMA50', 'SMA200']
+                    'AvgVol10', 'ATR', 'ADR', 'SMA10W', 'SMA30W', 'SMA20', 'SMA50', 'SMA200']
     for col in numeric_cols:
         if col in df.columns:
             if col == 'AvgVol10':
@@ -62,16 +61,21 @@ def main():
     df['%_From_52WKH'] = ((df['Price'] - df['52WKH']) / df['52WKH']) * 100
     df['%_From_52WKH'] = df['%_From_52WKH'].round(2)
 
-    df['Recovery_Score'] = df['%_From_52WKL'].clip(lower=0)
+    # Stage 2 Condition
+    df['In_Stage2'] = (
+        (df['Price'] > df['SMA10W']) & 
+        (df['SMA10W'] > df['SMA30W'])
+    )
 
-    # Main Filter
+    # Main Filter + Stage 2
     mask = (
         (df['RS Percentile'] >= RS_THRESHOLD) &
         (df['Price'] >= PRICE_THRESHOLD) &
         (df['%_From_52WKL'] >= MIN_RECOVERY_PCT) &
         (df['%_From_52WKH'] <= MAX_PCT_TO_HIGH) &
         (df['AvgVol10'] >= MIN_AVGVOL10) &
-        (df['52WKL'] > 1)
+        (df['52WKL'] > 1) &
+        (df['In_Stage2'] == True)                     # ← New Stage 2 Filter
     )
 
     # ATR/ADR Filter
@@ -88,14 +92,15 @@ def main():
     print(f"  • RS ≥ {RS_THRESHOLD}")
     print(f"  • Price ≥ ${PRICE_THRESHOLD}")
     print(f"  • Recovery from 52W Low ≥ {MIN_RECOVERY_PCT}%")
-    print(f"  • More than {abs(MAX_PCT_TO_HIGH)}% below 52W High")
+    print(f"  • More than 25% below 52W High")
+    print(f"  • Stage 2: Price > SMA10W > SMA30W")
     print(f"→ {len(filtered):,} stocks remain")
 
     if len(filtered) == 0:
         print("No stocks match criteria.")
         return
 
-    # Match original column structure + add recovery columns
+    # Match original column structure
     desired = [
         'Rank', 'Ticker', 'Price', 'Prev_Close', 'DVol', 'Sector', 'Industry',
         'RS Percentile', '1M_RS Percentile', '3M_RS Percentile', '6M_RS Percentile',
@@ -108,7 +113,6 @@ def main():
     available = [c for c in desired if c in filtered.columns]
     result = filtered[available].copy()
 
-    # Sort by Recovery Score (even if column not kept in final output)
     result = result.sort_values(by='%_From_52WKL', ascending=False).reset_index(drop=True)
 
     # Save
@@ -121,8 +125,9 @@ def main():
     result.to_csv(archive_path, index=False)
     print(f"Archive saved → {archive_path}")
 
-    print("\nFirst 10 rows preview:")
-    preview_cols = ['Rank', 'Ticker', 'Price', '%_From_52WKL', '%_From_52WKH', 'RS Percentile', 'ATR', 'ADR']
+    print("\nFirst 10 rows:")
+    preview_cols = ['Rank', 'Ticker', 'Price', '%_From_52WKL', '%_From_52WKH', 
+                   'RS Percentile', 'SMA10W', 'SMA30W', 'ATR', 'ADR']
     preview_cols = [c for c in preview_cols if c in result.columns]
     print(result.head(10)[preview_cols].to_string(index=False))
 
