@@ -16,6 +16,11 @@ jobs:
   # 8. Filter strong RS stocks near 52-week high
   filter-52wh:
     uses: ./.github/workflows/8-rs-52wh-filter.yml
+    
+  #98. 52WKL
+  filter-52wl:
+    needs: filter-52wh
+    uses: ./.github/workflows/98-rs-52wl-filter.yml
 
   # 91. Generate-IPO
   generate-ipo:
