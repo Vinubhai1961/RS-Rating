@@ -1,7 +1,7 @@
 {
   "by_reason": {
     "autocallable": 20,
-    "buffer": 405,
+    "buffer": 406,
     "covered call": 31,
     "etn": 24,
     "income strategy": 52,
@@ -727,6 +727,11 @@
     },
     {
       "reason": "buffer",
+      "security_name": "FT Vest U.S. Equity Buffer & Digital Return ETF - July",
+      "symbol": "DGJL"
+    },
+    {
+      "reason": "buffer",
       "security_name": "FT Vest U.S. Equity Buffer & Digital Return ETF - October",
       "symbol": "DGOC"
     },
@@ -1004,12 +1009,7 @@
       "reason": "buffer",
       "security_name": "FT Vest U.S. Equity Buffer ETF - March",
       "symbol": "FMAR"
-    },
-    {
-      "reason": "buffer",
-      "security_name": "FT Vest U.S. Equity Buffer ETF - May",
-      "symbol": "FMAY"
     }
   ],
-  "total_excluded": 582
+  "total_excluded": 583
 }
