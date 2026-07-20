@@ -1,13 +1,22 @@
 SectorRank,Sector,LeaderRank,Ticker,Leader_Score,Setup_Type,Tightness,Setup_Price,Dist_52WH_%,ATR_%,RS Percentile,1M_RS Percentile,3M_RS Percentile,6M_RS Percentile,IPO,Gap (%),HVE,SMA50,SMA200,SMA10W,SMA30W,Industry
-3,Electronic technology,1,SIF,80.28,Stage 2 Watch,Loose,22.5,17.4,8.56,98.0,70.0,96.0,98.0,NO,0.0,NO,20.93,12.31,21.3,14.73,Aerospace & defense
-3,Electronic technology,2,SILC,71.25,Pullback to 50D,Loose,44.06,16.79,11.49,97.0,24.0,97.0,98.0,NO,0.0,NO,43.7,25.07,43.71,29.27,Computer communications
-4,Energy,1,DINO,97.64,Extended Near High,Normal,88.59,0.11,3.15,95.0,97.0,96.0,96.0,NO,0.47,NO,71.96,58.66,72.44,61.64,Oil & Gas Refining & Marketing
-4,Energy,2,DK,97.3,Extended Near High,Loose,63.25,1.31,4.44,96.0,98.0,96.0,97.0,NO,2.65,NO,48.25,39.65,48.92,41.3,Oil & Gas Refining & Marketing
-4,Energy,3,PBF,97.28,Extended Near High,Loose,62.75,1.34,5.0,96.0,98.0,96.0,97.0,NO,1.74,NO,44.43,38.0,45.17,40.35,Oil & Gas Refining & Marketing
-4,Energy,4,VLO,97.07,Extended Near High,Normal,309.65,0.07,3.54,95.0,97.0,92.0,96.0,NO,2.0,NO,258.23,211.36,261.08,228.85,Oil & Gas Refining & Marketing
-4,Energy,5,MPC,96.89,Extended Near High,Normal,312.6,0.18,2.9,94.0,96.0,95.0,96.0,NO,1.92,NO,261.71,215.63,264.37,226.74,Oil & Gas Refining & Marketing
-5,Healthcare,1,CRNX,98.81,Extended Near High,Loose,83.86,0.17,4.63,97.0,98.0,98.0,94.0,NO,0.0,NO,44.87,43.98,45.88,43.86,Biotechnology
-5,Healthcare,2,APGE,98.46,Extended Near High,Very Tight,134.0,0.24,0.33,97.0,98.0,96.0,95.0,NO,0.0,NO,102.39,78.45,104.32,85.33,Biotechnology
-5,Healthcare,3,ETON,98.01,Extended Near High,Loose,42.32,0.77,4.68,97.0,97.0,97.0,98.0,NO,0.08,NO,33.16,22.43,33.86,24.61,Drug Manufacturers - Specialty & Generic
-5,Healthcare,4,MNPR,97.62,Extended Near High,Loose,111.12,1.29,7.46,96.0,98.0,98.0,95.0,NO,0.0,NO,74.93,70.3,77.73,65.62,Biotechnology
-5,Healthcare,5,CDNA,97.42,Extended Near High,Loose,39.73,1.83,4.99,97.0,98.0,97.0,97.0,NO,0.0,NO,24.95,19.8,26.21,21.49,Diagnostics & Research
+1,Health technology,1,SI,89.86,Stage 2 Watch,Loose,20.99,8.74,7.77,93.0,94.0,96.0,94.0,NO,0.0,NO,17.6,14.75,18.76,15.6,Medical specialties
+2,Energy,1,DK,97.92,Extended Near High,Loose,64.64,1.16,4.12,97.0,98.0,97.0,97.0,NO,0.0,NO,48.65,39.81,50.9,42.47,Oil & Gas Refining & Marketing
+2,Energy,2,PBF,97.84,Extended Near High,Loose,63.85,1.27,4.69,97.0,98.0,97.0,97.0,NO,0.0,NO,44.88,38.16,47.33,41.61,Oil & Gas Refining & Marketing
+2,Energy,3,DINO,97.58,Extended Near High,Normal,90.41,1.14,3.08,96.0,98.0,97.0,97.0,NO,0.0,NO,72.35,58.85,74.48,63.13,Oil & Gas Refining & Marketing
+2,Energy,4,VLO,97.31,Extended Near High,Normal,313.31,1.03,3.44,96.0,97.0,96.0,96.0,NO,0.0,NO,259.76,212.08,267.34,233.82,Oil & Gas Refining & Marketing
+2,Energy,5,MPC,96.78,Extended Near High,Normal,315.31,1.27,2.77,95.0,97.0,96.0,96.0,NO,0.11,NO,263.1,216.24,270.4,231.79,Oil & Gas Refining & Marketing
+3,Healthcare,1,CRNX,98.82,Extended Near High,Loose,83.87,0.15,4.51,97.0,98.0,98.0,94.0,NO,0.0,NO,45.72,44.19,50.59,45.06,Biotechnology
+3,Healthcare,2,APGE,98.54,Extended Near High,Very Tight,134.15,0.13,0.32,97.0,98.0,96.0,96.0,NO,0.04,NO,103.38,78.92,109.62,87.23,Biotechnology
+3,Healthcare,3,URGN,97.32,Extended Near High,Loose,41.12,1.88,5.19,97.0,97.0,98.0,97.0,NO,1.72,NO,32.59,24.0,33.96,25.6,Biotechnology
+3,Healthcare,4,ACHC,96.46,Extended Near High,Loose,34.43,1.35,5.0,95.0,98.0,93.0,98.0,NO,0.0,NO,26.87,21.62,27.99,23.21,Medical Care Facilities
+3,Healthcare,5,ETON,95.81,Near Breakout,Loose,41.07,3.7,4.84,97.0,97.0,97.0,98.0,NO,0.0,NO,33.38,22.52,34.94,25.42,Drug Manufacturers - Specialty & Generic
+4,Financial Services,1,CLBK,92.68,Stage 2 Watch,Normal,24.5,5.11,3.2,93.0,96.0,94.0,95.0,NO,1.41,YES,20.56,17.65,21.27,18.85,Banks - Regional
+4,Financial Services,2,ENVA,92.27,Stage 2 Watch,Normal,230.45,6.47,3.93,95.0,94.0,96.0,94.0,NO,0.0,NO,194.99,155.64,204.7,170.08,Credit Services
+4,Financial Services,3,CHMG,92.22,Near Breakout,Normal,77.04,1.76,3.01,90.0,88.0,92.0,91.0,NO,0.0,NO,71.42,59.91,73.03,63.55,Banks - Regional
+4,Financial Services,4,VCTR,92.16,Near Breakout,Normal,98.19,3.78,3.17,91.0,92.0,94.0,93.0,NO,0.0,NO,87.69,72.64,88.99,77.25,Asset Management
+4,Financial Services,5,WT,92.02,Near Breakout,Normal,20.24,2.22,3.68,91.0,90.0,88.0,92.0,NO,0.4,NO,18.64,15.31,18.73,16.83,Asset Management
+5,Technology,1,CHRN,96.52,Near Breakout,Loose,28.89,3.7,11.94,98.0,98.0,98.0,98.0,NO,1.7,NO,19.45,10.82,20.95,14.05,Information Technology Services
+5,Technology,2,DAVE,95.88,Near Breakout,Loose,438.28,3.88,5.44,97.0,98.0,97.0,98.0,NO,0.0,NO,310.5,235.05,338.6,252.58,Software - Application
+5,Technology,3,PANW,94.44,Stage 2 Watch,Loose,348.66,5.46,5.36,97.0,96.0,98.0,97.0,NO,0.0,NO,287.18,209.15,306.72,218.12,Software - Infrastructure
+5,Technology,4,PTRN,94.43,Stage 2 Watch,Loose,28.01,6.01,4.91,97.0,98.0,98.0,97.0,NO,0.0,NO,21.74,15.5,23.33,16.28,Software - Application
+5,Technology,5,OKTA,94.28,Stage 2 Watch,Loose,148.41,5.47,5.85,96.0,97.0,98.0,95.0,NO,0.0,NO,117.45,91.91,127.04,95.91,Software - Infrastructure
