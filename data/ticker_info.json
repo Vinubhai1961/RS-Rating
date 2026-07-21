@@ -2309,6 +2309,13 @@
       "type": "Stock"
     }
   },
+  "AIHY": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "AII": {
     "info": {
       "industry": "Insurance - Property & Casualty",
@@ -3524,13 +3531,6 @@
     "info": {
       "industry": "Communication Equipment",
       "sector": "Technology",
-      "type": "Stock"
-    }
-  },
-  "AMPGR": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -8772,8 +8772,8 @@
   },
   "BID": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -10779,6 +10779,13 @@
       "type": "Stock"
     }
   },
+  "BRTMU": {
+    "info": {
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
   "BRTR": {
     "info": {
       "industry": "ETF",
@@ -11859,8 +11866,8 @@
   },
   "BXBL": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Residential Construction",
+      "sector": "Consumer Cyclical",
       "type": "Stock"
     }
   },
@@ -14559,6 +14566,13 @@
       "type": "Stock"
     }
   },
+  "CIGL": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "CII": {
     "info": {
       "industry": "Asset Management",
@@ -16792,13 +16806,6 @@
       "type": "ETF"
     }
   },
-  "CREG": {
-    "info": {
-      "industry": "Utilities - Renewable",
-      "sector": "Utilities",
-      "type": "Stock"
-    }
-  },
   "CRESY": {
     "info": {
       "industry": "Conglomerates",
@@ -17746,8 +17753,8 @@
   },
   "CUVL": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Biotechnology",
+      "sector": "Healthcare",
       "type": "Stock"
     }
   },
@@ -23526,13 +23533,6 @@
       "type": "Stock"
     }
   },
-  "EOSER": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
-    }
-  },
   "EOSU": {
     "info": {
       "industry": "ETF",
@@ -26487,13 +26487,6 @@
       "type": "Stock"
     }
   },
-  "FFAIW": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
-    }
-  },
   "FFBC": {
     "info": {
       "industry": "Banks - Regional",
@@ -28514,6 +28507,13 @@
     "info": {
       "industry": "Software - Application",
       "sector": "Technology",
+      "type": "Stock"
+    }
+  },
+  "FRNM": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -34238,8 +34238,8 @@
   },
   "HHS": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Conglomerates",
+      "sector": "Industrials",
       "type": "Stock"
     }
   },
@@ -34521,6 +34521,13 @@
       "industry": "Lodging",
       "sector": "Consumer Cyclical",
       "type": "Stock"
+    }
+  },
+  "HLTH": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
     }
   },
   "HLX": {
@@ -42391,13 +42398,6 @@
       "type": "Stock"
     }
   },
-  "KORE": {
-    "info": {
-      "industry": "Telecom Services",
-      "sector": "Communication Services",
-      "type": "Stock"
-    }
-  },
   "KORP": {
     "info": {
       "industry": "ETF",
@@ -46957,8 +46957,8 @@
   },
   "MF": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Grocery Stores",
+      "sector": "Consumer Defensive",
       "type": "Stock"
     }
   },
@@ -50567,6 +50567,13 @@
       "type": "Stock"
     }
   },
+  "NCOOU": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "NCPB": {
     "info": {
       "industry": "ETF",
@@ -50973,13 +50980,6 @@
       "type": "Stock"
     }
   },
-  "NFBK": {
-    "info": {
-      "industry": "Banks - Regional",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
   "NFE": {
     "info": {
       "industry": "Oil & Gas Midstream",
@@ -51297,8 +51297,8 @@
   },
   "NIKI": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Biotechnology",
+      "sector": "Healthcare",
       "type": "Stock"
     }
   },
@@ -53838,8 +53838,8 @@
   },
   "OGG": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Gold",
+      "sector": "Basic Materials",
       "type": "Stock"
     }
   },
@@ -56269,13 +56269,6 @@
     "info": {
       "industry": "Biotechnology",
       "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
-  "PCSC": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -82527,13 +82520,6 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
-    }
-  },
-  "YOOV": {
-    "info": {
-      "industry": "Security & Protection Services",
-      "sector": "Industrials",
-      "type": "Stock"
     }
   },
   "YORW": {
