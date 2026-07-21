@@ -1,12 +1,14 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-07-20 18:43:16 EDT
+Run Date: 2026-07-21 18:14:51 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-20 22:37:38
-Successful: 1823 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-21 22:05:52
+Successful: 1802 | Skipped: 1 | Failed: 0
+--- Skipped Tickers ---
+AIHY: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -14,8 +16,10 @@ Successful: 1823 | Skipped: 0 | Failed: 0
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-20 22:39:46
-Successful: 1823 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-21 22:11:11
+Successful: 1802 | Skipped: 1 | Failed: 0
+--- Skipped Tickers ---
+HLTH: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -23,10 +27,8 @@ Successful: 1823 | Skipped: 0 | Failed: 0
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-20 22:38:50
-Successful: 1822 | Skipped: 1 | Failed: 0
---- Skipped Tickers ---
-LOEV: Too few valid rows: 1
+FINAL SUMMARY - Partition finished at 2026-07-21 22:05:50
+Successful: 1803 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -34,8 +36,8 @@ LOEV: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-20 22:40:07
-Successful: 1825 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-21 22:08:55
+Successful: 1804 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 3 ===
