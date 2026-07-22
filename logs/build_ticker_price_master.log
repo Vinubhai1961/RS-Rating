@@ -313,3 +313,18 @@
 2026-07-21 21:59:40,911 [INFO] Sample blank industry: ['MTEST', 'PNSB', 'MFNTS', 'MWKTS', 'MWMWS', 'AHVAS']
 2026-07-21 21:59:40,911 [INFO] Output: data/ticker_price_master.json
 2026-07-21 21:59:40,911 [INFO] ============================================================
+2026-07-22 22:25:45,692 [INFO] Loaded 7675 rows from source/USA_Tickers_ALL.csv
+2026-07-22 22:25:45,692 [INFO] Columns found: ['Symbol', 'Description', 'Price', 'Price - Currency', 'Price change %, 1 day', 'Volume, 1 day', 'Relative volume, 1 day', 'Sector', 'Industry', 'High, 52 weeks', 'High, 52 weeks - Currency', 'Low, 52 weeks', 'Low, 52 weeks - Currency', 'Exchange', 'Free float %', 'Performance %, Year to date']
+2026-07-22 22:25:45,942 [INFO] ============================================================
+2026-07-22 22:25:45,943 [INFO] TICKER PRICE MASTER BUILD SUMMARY
+2026-07-22 22:25:45,943 [INFO] ============================================================
+2026-07-22 22:25:45,943 [INFO] Master rows written: 7674
+2026-07-22 22:25:45,943 [INFO] Type count: {'Stock': 7674}
+2026-07-22 22:25:45,943 [INFO] Duplicate skipped count: 0
+2026-07-22 22:25:45,943 [INFO] Blank sector count: 6
+2026-07-22 22:25:45,943 [INFO] Blank industry count: 6
+2026-07-22 22:25:45,943 [INFO] Sample duplicates: []
+2026-07-22 22:25:45,943 [INFO] Sample blank sector: ['MTEST', 'PNSB', 'MFNTS', 'MWKTS', 'MWMWS', 'AHVAS']
+2026-07-22 22:25:45,943 [INFO] Sample blank industry: ['MTEST', 'PNSB', 'MFNTS', 'MWKTS', 'MWMWS', 'AHVAS']
+2026-07-22 22:25:45,943 [INFO] Output: data/ticker_price_master.json
+2026-07-22 22:25:45,943 [INFO] ============================================================
