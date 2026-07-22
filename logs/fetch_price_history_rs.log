@@ -1,14 +1,14 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-07-21 18:14:51 EDT
+Run Date: 2026-07-22 18:38:39 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-21 22:05:52
-Successful: 1802 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-22 22:36:00
+Successful: 1627 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-AIHY: Too few valid rows: 1
+CPTL: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -16,10 +16,13 @@ AIHY: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-21 22:11:11
-Successful: 1802 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-22 22:35:59
+Successful: 1624 | Skipped: 4 | Failed: 0
 --- Skipped Tickers ---
 HLTH: Too few valid rows: 1
+HWIV: Too few valid rows: 1
+HWO: Too few valid rows: 1
+IEV: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -27,8 +30,8 @@ HLTH: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-21 22:05:50
-Successful: 1803 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-22 22:33:52
+Successful: 1628 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -36,8 +39,8 @@ Successful: 1803 | Skipped: 0 | Failed: 0
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-21 22:08:55
-Successful: 1804 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-22 22:31:19
+Successful: 1631 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 3 ===
