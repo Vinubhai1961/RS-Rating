@@ -2750,13 +2750,6 @@
       "type": "ETF"
     }
   },
-  "ALBT": {
-    "info": {
-      "industry": "Real Estate Services",
-      "sector": "Real Estate",
-      "type": "Stock"
-    }
-  },
   "ALC": {
     "info": {
       "industry": "Medical Instruments & Supplies",
@@ -13173,13 +13166,6 @@
       "type": "ETF"
     }
   },
-  "CCRN": {
-    "info": {
-      "industry": "Medical Care Facilities",
-      "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
   "CCRP": {
     "info": {
       "industry": "ETF",
@@ -14185,6 +14171,13 @@
     "info": {
       "industry": "Food Distribution",
       "sector": "Consumer Defensive",
+      "type": "Stock"
+    }
+  },
+  "CHGA": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -16531,6 +16524,13 @@
       "industry": "REIT - Residential",
       "sector": "Real Estate",
       "type": "Stock"
+    }
+  },
+  "CPTL": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
     }
   },
   "CPXR": {
@@ -23225,13 +23225,6 @@
       "type": "ETF"
     }
   },
-  "EMTL": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
   "EMTY": {
     "info": {
       "industry": "ETF",
@@ -28512,8 +28505,8 @@
   },
   "FRNM": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Diagnostics & Research",
+      "sector": "Healthcare",
       "type": "Stock"
     }
   },
@@ -34651,8 +34644,8 @@
   },
   "HODO": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Software - Application",
+      "sector": "Technology",
       "type": "Stock"
     }
   },
@@ -35524,6 +35517,13 @@
       "type": "Stock"
     }
   },
+  "HWIV": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "HWKN": {
     "info": {
       "industry": "Specialty Chemicals",
@@ -35536,6 +35536,13 @@
       "industry": "Aerospace & Defense",
       "sector": "Industrials",
       "type": "Stock"
+    }
+  },
+  "HWO": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
     }
   },
   "HWSM": {
@@ -42573,13 +42580,6 @@
       "type": "Stock"
     }
   },
-  "KRMA": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
   "KRMD": {
     "info": {
       "industry": "Medical Instruments & Supplies",
@@ -44454,13 +44454,6 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
-    }
-  },
-  "LMFA": {
-    "info": {
-      "industry": "Capital Markets",
-      "sector": "Financial Services",
-      "type": "Stock"
     }
   },
   "LMND": {
@@ -46724,6 +46717,13 @@
       "type": "Stock"
     }
   },
+  "MEDS": {
+    "info": {
+      "industry": "Pharmaceutical Retailers",
+      "sector": "Healthcare",
+      "type": "Stock"
+    }
+  },
   "MEDX": {
     "info": {
       "industry": "ETF",
@@ -46957,8 +46957,8 @@
   },
   "MF": {
     "info": {
-      "industry": "Grocery Stores",
-      "sector": "Consumer Defensive",
+      "industry": "Advertising Agencies",
+      "sector": "Communication Services",
       "type": "Stock"
     }
   },
@@ -50569,8 +50569,8 @@
   },
   "NCOOU": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -52139,13 +52139,6 @@
     "info": {
       "industry": "Biotechnology",
       "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
-  "NSA": {
-    "info": {
-      "industry": "REIT - Industrial",
-      "sector": "Real Estate",
       "type": "Stock"
     }
   },
@@ -59513,6 +59506,13 @@
       "type": "ETF"
     }
   },
+  "PWCM": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "PWER": {
     "info": {
       "industry": "ETF",
@@ -60498,13 +60498,6 @@
       "industry": "Shell Companies",
       "sector": "Financial Services",
       "type": "Stock"
-    }
-  },
-  "QRFT": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
     }
   },
   "QRHC": {
@@ -79673,24 +79666,10 @@
       "type": "Stock"
     }
   },
-  "WGRX": {
-    "info": {
-      "industry": "Pharmaceutical Retailers",
-      "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
   "WGS": {
     "info": {
       "industry": "Diagnostics & Research",
       "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
-  "WGSWW": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
       "type": "Stock"
     }
   },

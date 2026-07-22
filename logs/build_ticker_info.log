@@ -7152,3 +7152,75 @@
 2026-07-21 21:45:03,945 [INFO] Elapsed Seconds               : 78.13
 2026-07-21 21:45:03,945 [INFO] ======================================================================
 2026-07-21 21:45:03,945 [INFO] ✅ Partition completed successfully.
+2026-07-22 21:41:21,798 [INFO] 🚀 Starting ticker info build - Partition 5/6
+2026-07-22 21:41:21,798 [INFO] Fetching NASDAQ symbol master list ...
+2026-07-22 21:41:21,800 [DEBUG] Starting new HTTPS connection (1): www.nasdaqtrader.com:443
+2026-07-22 21:41:22,222 [DEBUG] https://www.nasdaqtrader.com:443 "GET /dynamic/symdir/nasdaqtraded.txt HTTP/1.1" 200 230272
+2026-07-22 21:41:22,664 [INFO] Retrieved 12478 eligible symbols before ETF filtering.
+2026-07-22 21:41:22,673 [INFO] ============================================================
+2026-07-22 21:41:22,673 [INFO] ETF FILTER SUMMARY
+2026-07-22 21:41:22,673 [INFO] ============================================================
+2026-07-22 21:41:22,673 [INFO] NASDAQ eligible symbols before ETF filter: 12478
+2026-07-22 21:41:22,674 [INFO] Excluded ETF products: 583
+2026-07-22 21:41:22,674 [INFO] Remaining symbols after ETF filter: 11895
+2026-07-22 21:41:22,674 [INFO] ------------------------------------------------------------
+2026-07-22 21:41:22,674 [INFO] ETF FILTER BREAKDOWN
+2026-07-22 21:41:22,674 [INFO] autocallable              : 20
+2026-07-22 21:41:22,674 [INFO] buffer                    : 406
+2026-07-22 21:41:22,674 [INFO] covered call              : 31
+2026-07-22 21:41:22,674 [INFO] etn                       : 24
+2026-07-22 21:41:22,674 [INFO] income strategy           : 52
+2026-07-22 21:41:22,674 [INFO] microsectors              : 20
+2026-07-22 21:41:22,674 [INFO] weeklypay                 : 24
+2026-07-22 21:41:22,674 [INFO] yield premium             : 6
+2026-07-22 21:41:22,674 [INFO] ============================================================
+2026-07-22 21:41:22,675 [INFO] Final eligible symbols after ETF filtering: 11895
+2026-07-22 21:41:22,679 [INFO] Partition 6/6: 1980 symbols
+2026-07-22 21:41:22,679 [INFO] Symbols needing update in this slice: 1980
+2026-07-22 21:41:26,633 [INFO] Batch 1/14 - Updated: 143 | Unresolved: 7 | Updated total: 143
+2026-07-22 21:41:26,633 [DEBUG] Sleeping 4.96s before next batch...
+2026-07-22 21:41:35,369 [INFO] Batch 2/14 - Updated: 139 | Unresolved: 11 | Updated total: 282
+2026-07-22 21:41:35,369 [DEBUG] Sleeping 2.37s before next batch...
+2026-07-22 21:41:41,560 [INFO] Batch 3/14 - Updated: 149 | Unresolved: 1 | Updated total: 431
+2026-07-22 21:41:41,560 [DEBUG] Sleeping 4.75s before next batch...
+2026-07-22 21:41:50,257 [INFO] Batch 4/14 - Updated: 138 | Unresolved: 12 | Updated total: 569
+2026-07-22 21:41:50,257 [DEBUG] Sleeping 4.81s before next batch...
+2026-07-22 21:41:58,788 [INFO] Batch 5/14 - Updated: 141 | Unresolved: 9 | Updated total: 710
+2026-07-22 21:41:58,788 [DEBUG] Sleeping 3.94s before next batch...
+2026-07-22 21:42:35,871 [WARNING] Batch error (attempt 1): Failed to perform, curl: (28) Operation timed out after 30002 milliseconds with 0 bytes received. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.. Retrying in 2.6s.
+2026-07-22 21:42:42,602 [INFO] Batch 6/14 - Updated: 145 | Unresolved: 5 | Updated total: 855
+2026-07-22 21:42:42,602 [DEBUG] Sleeping 2.87s before next batch...
+2026-07-22 21:42:49,624 [INFO] Batch 7/14 - Updated: 145 | Unresolved: 5 | Updated total: 1000
+2026-07-22 21:42:49,624 [DEBUG] Sleeping 4.74s before next batch...
+2026-07-22 21:42:58,212 [INFO] Batch 8/14 - Updated: 146 | Unresolved: 4 | Updated total: 1146
+2026-07-22 21:42:58,212 [DEBUG] Sleeping 4.34s before next batch...
+2026-07-22 21:43:06,501 [INFO] Batch 9/14 - Updated: 147 | Unresolved: 3 | Updated total: 1293
+2026-07-22 21:43:06,501 [DEBUG] Sleeping 3.09s before next batch...
+2026-07-22 21:43:13,447 [INFO] Batch 10/14 - Updated: 143 | Unresolved: 7 | Updated total: 1436
+2026-07-22 21:43:13,447 [DEBUG] Sleeping 3.60s before next batch...
+2026-07-22 21:43:49,518 [WARNING] Batch error (attempt 1): Failed to perform, curl: (28) Operation timed out after 30002 milliseconds with 0 bytes received. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.. Retrying in 1.1s.
+2026-07-22 21:43:54,942 [INFO] Batch 11/14 - Updated: 144 | Unresolved: 6 | Updated total: 1580
+2026-07-22 21:43:54,942 [DEBUG] Sleeping 2.05s before next batch...
+2026-07-22 21:44:00,630 [INFO] Batch 12/14 - Updated: 145 | Unresolved: 5 | Updated total: 1725
+2026-07-22 21:44:00,630 [DEBUG] Sleeping 2.23s before next batch...
+2026-07-22 21:44:34,122 [WARNING] Batch error (attempt 1): Failed to perform, curl: (28) Operation timed out after 30002 milliseconds with 0 bytes received. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.. Retrying in 1.1s.
+2026-07-22 21:44:39,110 [INFO] Batch 13/14 - Updated: 145 | Unresolved: 5 | Updated total: 1870
+2026-07-22 21:44:39,110 [DEBUG] Sleeping 2.01s before next batch...
+2026-07-22 21:44:42,716 [INFO] Batch 14/14 - Updated: 28 | Unresolved: 2 | Updated total: 1898
+2026-07-22 21:44:42,717 [INFO] Retry sub-pass for 82 unresolved symbols ...
+2026-07-22 21:44:45,320 [INFO] Retry batch updated: 0 | still unresolved: 82
+2026-07-22 21:44:47,389 [INFO] ======================================================================
+2026-07-22 21:44:47,389 [INFO] BUILD TICKER INFO - PARTITION SUMMARY
+2026-07-22 21:44:47,389 [INFO] ======================================================================
+2026-07-22 21:44:47,390 [INFO] Timestamp Utc                 : 2026-07-22T21:44:47
+2026-07-22 21:44:47,390 [INFO] Partition Index               : 5
+2026-07-22 21:44:47,390 [INFO] Partition Total               : 6
+2026-07-22 21:44:47,390 [INFO] Symbols In Slice              : 1980
+2026-07-22 21:44:47,390 [INFO] Symbols Needing Update        : 1980
+2026-07-22 21:44:47,390 [INFO] Batches Run                   : 14
+2026-07-22 21:44:47,390 [INFO] Total Updated                 : 1898
+2026-07-22 21:44:47,390 [INFO] Unresolved After Run          : 82
+2026-07-22 21:44:47,390 [INFO] Entries In File               : 1980
+2026-07-22 21:44:47,390 [INFO] Elapsed Seconds               : 205.59
+2026-07-22 21:44:47,390 [INFO] ======================================================================
+2026-07-22 21:44:47,390 [INFO] ✅ Partition completed successfully.
