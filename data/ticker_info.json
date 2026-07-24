@@ -1231,13 +1231,6 @@
       "type": "Stock"
     }
   },
-  "ADFI": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
   "ADGM": {
     "info": {
       "industry": "Medical Devices",
@@ -8914,6 +8907,20 @@
     "info": {
       "industry": "Drug Manufacturers - Specialty & Generic",
       "sector": "Healthcare",
+      "type": "Stock"
+    }
+  },
+  "BIOT": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
+  "BIOTW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -32283,13 +32290,6 @@
       "type": "Stock"
     }
   },
-  "GREE": {
-    "info": {
-      "industry": "Capital Markets",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
   "GREEL": {
     "info": {
       "industry": "n/a",
@@ -32488,8 +32488,8 @@
   },
   "GRSD": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Gambling",
+      "sector": "Consumer Cyclical",
       "type": "Stock"
     }
   },
@@ -46705,7 +46705,7 @@
   },
   "MEDS": {
     "info": {
-      "industry": "Pharmaceutical Retailers",
+      "industry": "Medical Distribution",
       "sector": "Healthcare",
       "type": "Stock"
     }
@@ -49143,6 +49143,13 @@
     "info": {
       "industry": "Other Precious Metals & Mining",
       "sector": "Basic Materials",
+      "type": "Stock"
+    }
+  },
+  "MTAKU": {
+    "info": {
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -52959,13 +52966,6 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
-    }
-  },
-  "NVVE": {
-    "info": {
-      "industry": "Specialty Retail",
-      "sector": "Consumer Cyclical",
-      "type": "Stock"
     }
   },
   "NVX": {
@@ -57480,6 +57480,13 @@
     "info": {
       "industry": "Apparel Manufacturing",
       "sector": "Consumer Cyclical",
+      "type": "Stock"
+    }
+  },
+  "PLCIU": {
+    "info": {
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -65103,6 +65110,13 @@
     "info": {
       "industry": "Electronics & Computer Distribution",
       "sector": "Technology",
+      "type": "Stock"
+    }
+  },
+  "SCTX": {
+    "info": {
+      "industry": "Biotechnology",
+      "sector": "Healthcare",
       "type": "Stock"
     }
   },
@@ -72855,13 +72869,6 @@
       "type": "ETF"
     }
   },
-  "TMHC": {
-    "info": {
-      "industry": "Residential Construction",
-      "sector": "Consumer Cyclical",
-      "type": "Stock"
-    }
-  },
   "TMLP": {
     "info": {
       "industry": "ETF",
@@ -77671,6 +77678,13 @@
       "type": "ETF"
     }
   },
+  "VIP": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "VIPS": {
     "info": {
       "industry": "Internet Retail",
@@ -77820,15 +77834,15 @@
   },
   "VLOS": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
   "VLOSU": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
