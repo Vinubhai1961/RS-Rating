@@ -1,15 +1,16 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-07-24 18:05:57 EDT
+Run Date: 2026-07-27 18:11:13 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-24 22:02:58
-Successful: 1848 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-27 22:08:22
+Successful: 1851 | Skipped: 3 | Failed: 0
 --- Skipped Tickers ---
-AAUB: Too few valid rows: 1
-BIOT: Too few valid rows: 1
+BAGX: Too few valid rows: 1
+BRSV: Too few valid rows: 1
+BUSM: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -17,8 +18,8 @@ BIOT: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-24 22:02:33
-Successful: 1850 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-27 22:03:24
+Successful: 1854 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -26,8 +27,8 @@ Successful: 1850 | Skipped: 0 | Failed: 0
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-24 22:02:38
-Successful: 1849 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-27 22:05:29
+Successful: 1853 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
 PMTL: Too few valid rows: 1
 ================================================================================
@@ -37,10 +38,11 @@ PMTL: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-24 22:02:40
-Successful: 1852 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-27 22:04:01
+Successful: 1855 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
-SCTX: Too few valid rows: 1
+TRNI: Too few valid rows: 1
+TRNZ: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 3 ===
