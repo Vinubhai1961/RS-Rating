@@ -6229,13 +6229,6 @@
       "type": "ETF"
     }
   },
-  "AVNS": {
-    "info": {
-      "industry": "Medical Devices",
-      "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
   "AVNT": {
     "info": {
       "industry": "Specialty Chemicals",
@@ -6822,6 +6815,13 @@
       "industry": "Banks - Regional",
       "sector": "Financial Services",
       "type": "Stock"
+    }
+  },
+  "BAGX": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
     }
   },
   "BAH": {
@@ -8427,6 +8427,13 @@
       "type": "ETF"
     }
   },
+  "BGFI": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "BGGG": {
     "info": {
       "industry": "ETF",
@@ -8912,8 +8919,8 @@
   },
   "BIOT": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Household & Personal Products",
+      "sector": "Consumer Defensive",
       "type": "Stock"
     }
   },
@@ -9869,6 +9876,13 @@
       "type": "Stock"
     }
   },
+  "BMSI": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "BMVP": {
     "info": {
       "industry": "ETF",
@@ -10779,6 +10793,13 @@
       "type": "Stock"
     }
   },
+  "BRSV": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "BRT": {
     "info": {
       "industry": "REIT - Residential",
@@ -11624,6 +11645,13 @@
       "industry": "Banks - Regional",
       "sector": "Financial Services",
       "type": "Stock"
+    }
+  },
+  "BUSM": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
     }
   },
   "BUUU": {
@@ -16804,13 +16832,6 @@
       "industry": "Specialty Business Services",
       "sector": "Industrials",
       "type": "Stock"
-    }
-  },
-  "CRED": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
     }
   },
   "CRESY": {
@@ -23197,13 +23218,6 @@
       "type": "Stock"
     }
   },
-  "EMPG": {
-    "info": {
-      "industry": "Medical Distribution",
-      "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
   "EMQQ": {
     "info": {
       "industry": "ETF",
@@ -29182,6 +29196,13 @@
       "type": "ETF"
     }
   },
+  "FTRA": {
+    "info": {
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
   "FTRB": {
     "info": {
       "industry": "ETF",
@@ -32224,13 +32245,6 @@
     "info": {
       "industry": "n/a",
       "sector": "n/a",
-      "type": "Stock"
-    }
-  },
-  "GRAF": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -38758,10 +38772,24 @@
       "type": "Stock"
     }
   },
+  "IPVV": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "IPVVU": {
     "info": {
       "industry": "Shell Companies",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "IPVVW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -45254,6 +45282,13 @@
       "type": "Stock"
     }
   },
+  "LTGRW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "LTH": {
     "info": {
       "industry": "Leisure",
@@ -49613,13 +49648,6 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
-    }
-  },
-  "MVO": {
-    "info": {
-      "industry": "Oil & Gas E&P",
-      "sector": "Energy",
-      "type": "Stock"
     }
   },
   "MVPA": {
@@ -71611,7 +71639,7 @@
   },
   "TECK": {
     "info": {
-      "industry": "Other Industrial Metals & Mining",
+      "industry": "Copper",
       "sector": "Basic Materials",
       "type": "Stock"
     }
@@ -73191,6 +73219,13 @@
       "type": "Stock"
     }
   },
+  "TONT": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "TONX": {
     "info": {
       "industry": "Software - Application",
@@ -73660,20 +73695,6 @@
       "type": "Stock"
     }
   },
-  "TRINI": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
-    }
-  },
-  "TRINZ": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
-    }
-  },
   "TRIP": {
     "info": {
       "industry": "Travel Services",
@@ -73723,6 +73744,13 @@
       "type": "ETF"
     }
   },
+  "TRNI": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "TRNO": {
     "info": {
       "industry": "REIT - Industrial",
@@ -73741,6 +73769,13 @@
     "info": {
       "industry": "Specialty Business Services",
       "sector": "Industrials",
+      "type": "Stock"
+    }
+  },
+  "TRNZ": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -77680,8 +77715,8 @@
   },
   "VIP": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Capital Markets",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -78585,13 +78620,6 @@
     "info": {
       "industry": "Utilities - Independent Power Producers",
       "sector": "Utilities",
-      "type": "Stock"
-    }
-  },
-  "VSTD": {
-    "info": {
-      "industry": "Restaurants",
-      "sector": "Consumer Cyclical",
       "type": "Stock"
     }
   },
