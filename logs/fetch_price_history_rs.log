@@ -1,14 +1,14 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-07-28 18:10:30 EDT
+Run Date: 2026-07-29 17:59:18 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-28 22:07:28
-Successful: 1849 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-29 21:56:17
+Successful: 1835 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-BGUS: Too few valid rows: 1
+BNAV: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -16,10 +16,10 @@ BGUS: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-28 22:04:33
-Successful: 1849 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-29 21:54:27
+Successful: 1835 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-IOND: Too few valid rows: 1
+GOIB: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -27,11 +27,10 @@ IOND: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-28 22:05:58
-Successful: 1848 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-29 21:54:29
+Successful: 1835 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
 MSOL: Too few valid rows: 1
-RAMZ: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -39,12 +38,11 @@ RAMZ: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-28 22:03:51
-Successful: 1849 | Skipped: 3 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-29 21:56:31
+Successful: 1837 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
-SKHA: Too few valid rows: 1
-SKHN: Too few valid rows: 1
 TRNI: Too few valid rows: 1
+WSMD: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 3 ===
