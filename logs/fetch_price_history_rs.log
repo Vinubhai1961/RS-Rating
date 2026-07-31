@@ -1,16 +1,15 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-07-30 18:18:35 EDT
+Run Date: 2026-07-31 18:11:13 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-30 22:13:03
-Successful: 1848 | Skipped: 3 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-31 22:07:02
+Successful: 1846 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
+APMD: Too few valid rows: 1
 ARCP: Too few valid rows: 1
-ARMS: Too few valid rows: 1
-BNAV: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -18,13 +17,10 @@ BNAV: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-30 22:12:12
-Successful: 1847 | Skipped: 4 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-31 22:06:01
+Successful: 1847 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-ELOL: Too few valid rows: 1
-GOIB: Too few valid rows: 1
-GYGY: Too few valid rows: 1
-JMKE: Too few valid rows: 1
+JLVP: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -32,13 +28,8 @@ JMKE: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-30 22:11:54
-Successful: 1847 | Skipped: 4 | Failed: 0
---- Skipped Tickers ---
-MUIB: Too few valid rows: 1
-NVIB: Too few valid rows: 1
-PLIB: Too few valid rows: 1
-REF: Too few valid rows: 1
+FINAL SUMMARY - Partition finished at 2026-07-31 22:05:02
+Successful: 1848 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -46,11 +37,10 @@ REF: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-07-30 22:13:59
-Successful: 1852 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-07-31 22:08:19
+Successful: 1848 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
 TSIB: Too few valid rows: 1
-WSMD: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 3 ===
