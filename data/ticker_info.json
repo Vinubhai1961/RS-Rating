@@ -1651,13 +1651,6 @@
       "type": "Stock"
     }
   },
-  "AFBI": {
-    "info": {
-      "industry": "Banks - Regional",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
   "AFCG": {
     "info": {
       "industry": "Asset Management",
@@ -2213,7 +2206,7 @@
   },
   "AIB": {
     "info": {
-      "industry": "Software - Application",
+      "industry": "Software - Infrastructure",
       "sector": "Technology",
       "type": "Stock"
     }
@@ -3298,8 +3291,8 @@
   },
   "AMBR": {
     "info": {
-      "industry": "Software - Infrastructure",
-      "sector": "Technology",
+      "industry": "Asset Management",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -4733,8 +4726,8 @@
   },
   "AREC": {
     "info": {
-      "industry": "Coking Coal",
-      "sector": "Basic Materials",
+      "industry": "Waste Management",
+      "sector": "Industrials",
       "type": "Stock"
     }
   },
@@ -5363,8 +5356,8 @@
   },
   "ASPN": {
     "info": {
-      "industry": "Building Products & Equipment",
-      "sector": "Industrials",
+      "industry": "Specialty Chemicals",
+      "sector": "Basic Materials",
       "type": "Stock"
     }
   },
@@ -7545,10 +7538,24 @@
       "type": "Stock"
     }
   },
+  "BCCQ": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "BCCQU": {
     "info": {
       "industry": "Shell Companies",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "BCCQW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -8513,8 +8520,8 @@
   },
   "BGMS": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "Building Products & Equipment",
+      "sector": "Industrials",
       "type": "Stock"
     }
   },
@@ -8996,8 +9003,8 @@
   },
   "BIRD": {
     "info": {
-      "industry": "Apparel Retail",
-      "sector": "Consumer Cyclical",
+      "industry": "Software - Infrastructure",
+      "sector": "Technology",
       "type": "Stock"
     }
   },
@@ -10060,8 +10067,8 @@
   },
   "BNKK": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "Beverages - Non-Alcoholic",
+      "sector": "Consumer Defensive",
       "type": "Stock"
     }
   },
@@ -15620,6 +15627,13 @@
     "info": {
       "industry": "Biotechnology",
       "sector": "Healthcare",
+      "type": "Stock"
+    }
+  },
+  "CNSY": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -22868,13 +22882,6 @@
       "type": "Stock"
     }
   },
-  "ELSE": {
-    "info": {
-      "industry": "Scientific & Technical Instruments",
-      "sector": "Technology",
-      "type": "Stock"
-    }
-  },
   "ELTK": {
     "info": {
       "industry": "Electronic Components",
@@ -25355,8 +25362,8 @@
   },
   "FABC": {
     "info": {
-      "industry": "Auto Manufacturers",
-      "sector": "Consumer Cyclical",
+      "industry": "Semiconductors",
+      "sector": "Technology",
       "type": "Stock"
     }
   },
@@ -29408,7 +29415,7 @@
   },
   "FURY": {
     "info": {
-      "industry": "Other Industrial Metals & Mining",
+      "industry": "Gold",
       "sector": "Basic Materials",
       "type": "Stock"
     }
@@ -29548,8 +29555,8 @@
   },
   "FWAC": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -30220,7 +30227,7 @@
   },
   "GCTK": {
     "info": {
-      "industry": "Medical Instruments & Supplies",
+      "industry": "Medical Devices",
       "sector": "Healthcare",
       "type": "Stock"
     }
@@ -30601,13 +30608,6 @@
       "industry": "Security & Protection Services",
       "sector": "Industrials",
       "type": "Stock"
-    }
-  },
-  "GEOA": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
     }
   },
   "GEOS": {
@@ -33846,7 +33846,7 @@
   },
   "HCWC": {
     "info": {
-      "industry": "Packaged Foods",
+      "industry": "Grocery Stores",
       "sector": "Consumer Defensive",
       "type": "Stock"
     }
@@ -34742,7 +34742,7 @@
   },
   "HOLO": {
     "info": {
-      "industry": "Electronic Components",
+      "industry": "Software - Application",
       "sector": "Technology",
       "type": "Stock"
     }
@@ -42965,27 +42965,6 @@
       "type": "Stock"
     }
   },
-  "KVAC": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "KVACU": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "KVACW": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
-    }
-  },
   "KVHI": {
     "info": {
       "industry": "Telecom Services",
@@ -46243,7 +46222,7 @@
   },
   "MBOT": {
     "info": {
-      "industry": "Medical Instruments & Supplies",
+      "industry": "Medical Devices",
       "sector": "Healthcare",
       "type": "Stock"
     }
@@ -49295,8 +49274,8 @@
   },
   "MTC": {
     "info": {
-      "industry": "Software - Application",
-      "sector": "Technology",
+      "industry": "Capital Markets",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -50093,8 +50072,8 @@
   },
   "MYSZ": {
     "info": {
-      "industry": "Software - Application",
-      "sector": "Technology",
+      "industry": "Apparel Retail",
+      "sector": "Consumer Cyclical",
       "type": "Stock"
     }
   },
@@ -51528,8 +51507,8 @@
   },
   "NIXX": {
     "info": {
-      "industry": "Staffing & Employment Services",
-      "sector": "Industrials",
+      "industry": "Telecom Services",
+      "sector": "Communication Services",
       "type": "Stock"
     }
   },
@@ -53661,6 +53640,13 @@
       "type": "Stock"
     }
   },
+  "OCAC": {
+    "info": {
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
   "OCC": {
     "info": {
       "industry": "Communication Equipment",
@@ -54097,8 +54083,8 @@
   },
   "OIO": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "Waste Management",
+      "sector": "Industrials",
       "type": "Stock"
     }
   },
@@ -54712,6 +54698,13 @@
     }
   },
   "OPPE": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "OPPG": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
@@ -56757,8 +56750,8 @@
   },
   "PETZ": {
     "info": {
-      "industry": "Restaurants",
-      "sector": "Consumer Cyclical",
+      "industry": "Real Estate Services",
+      "sector": "Real Estate",
       "type": "Stock"
     }
   },
@@ -59266,13 +59259,6 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
-    }
-  },
-  "PSTV": {
-    "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
-      "type": "Stock"
     }
   },
   "PSUS": {
@@ -62621,6 +62607,13 @@
       "type": "ETF"
     }
   },
+  "RJCA": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "RJDI": {
     "info": {
       "industry": "ETF",
@@ -65773,7 +65766,7 @@
   },
   "SERV": {
     "info": {
-      "industry": "Specialty Industrial Machinery",
+      "industry": "Integrated Freight & Logistics",
       "sector": "Industrials",
       "type": "Stock"
     }
@@ -66930,13 +66923,6 @@
     "info": {
       "industry": "Oil & Gas Integrated",
       "sector": "Energy",
-      "type": "Stock"
-    }
-  },
-  "SKYT": {
-    "info": {
-      "industry": "Semiconductors",
-      "sector": "Technology",
       "type": "Stock"
     }
   },
@@ -68216,8 +68202,8 @@
   },
   "SONM": {
     "info": {
-      "industry": "Software - Infrastructure",
-      "sector": "Technology",
+      "industry": "Capital Markets",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -70036,14 +70022,14 @@
   },
   "STRR": {
     "info": {
-      "industry": "Conglomerates",
+      "industry": "Staffing & Employment Services",
       "sector": "Industrials",
       "type": "Stock"
     }
   },
   "STRRP": {
     "info": {
-      "industry": "Conglomerates",
+      "industry": "Staffing & Employment Services",
       "sector": "Industrials",
       "type": "Stock"
     }
@@ -71051,8 +71037,8 @@
   },
   "TAOX": {
     "info": {
-      "industry": "Software - Infrastructure",
-      "sector": "Technology",
+      "industry": "Capital Markets",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -74896,13 +74882,6 @@
     "info": {
       "industry": "Asset Management",
       "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "TWO": {
-    "info": {
-      "industry": "REIT - Mortgage",
-      "sector": "Real Estate",
       "type": "Stock"
     }
   },
@@ -81019,7 +80998,7 @@
   },
   "XCH": {
     "info": {
-      "industry": "Specialty Industrial Machinery",
+      "industry": "Electrical Equipment & Parts",
       "sector": "Industrials",
       "type": "Stock"
     }
@@ -82279,8 +82258,8 @@
   },
   "XXI": {
     "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
+      "industry": "Education & Training Services",
+      "sector": "Consumer Defensive",
       "type": "Stock"
     }
   },
@@ -83245,8 +83224,8 @@
   },
   "ZOOZ": {
     "info": {
-      "industry": "Specialty Retail",
-      "sector": "Consumer Cyclical",
+      "industry": "Electrical Equipment & Parts",
+      "sector": "Industrials",
       "type": "Stock"
     }
   },

@@ -1,10 +1,10 @@
 {
   "by_reason": {
     "autocallable": 20,
-    "buffer": 406,
+    "buffer": 408,
     "covered call": 31,
     "etn": 24,
-    "income strategy": 52,
+    "income strategy": 46,
     "microsectors": 20,
     "weeklypay": 24,
     "yield premium": 6
@@ -582,6 +582,11 @@
     },
     {
       "reason": "buffer",
+      "security_name": "Innovator Equity Dual Directional 15 Buffer ETF - August",
+      "symbol": "DDFG"
+    },
+    {
+      "reason": "buffer",
       "security_name": "Innovator Equity Dual Directional 15 Buffer ETF - January",
       "symbol": "DDFJ"
     },
@@ -644,6 +649,11 @@
       "reason": "buffer",
       "security_name": "Innovator Equity Dual Directional 10 Buffer ETF - February",
       "symbol": "DDTF"
+    },
+    {
+      "reason": "buffer",
+      "security_name": "Innovator Equity Dual Directional 10 Buffer ETF - August",
+      "symbol": "DDTG"
     },
     {
       "reason": "buffer",
@@ -999,17 +1009,7 @@
       "reason": "microsectors",
       "security_name": "MicroSectors Travel -3x Inverse Leveraged ETN",
       "symbol": "FLYD"
-    },
-    {
-      "reason": "microsectors",
-      "security_name": "MicroSectors Travel 3x Leveraged ETN",
-      "symbol": "FLYU"
-    },
-    {
-      "reason": "buffer",
-      "security_name": "FT Vest U.S. Equity Buffer ETF - March",
-      "symbol": "FMAR"
     }
   ],
-  "total_excluded": 583
+  "total_excluded": 579
 }
