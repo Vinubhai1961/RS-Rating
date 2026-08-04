@@ -1,11 +1,11 @@
 {
   "by_reason": {
     "autocallable": 20,
-    "buffer": 408,
+    "buffer": 417,
     "covered call": 31,
     "etn": 24,
     "income strategy": 46,
-    "microsectors": 20,
+    "microsectors": 22,
     "weeklypay": 24,
     "yield premium": 6
   },
@@ -194,6 +194,11 @@
       "reason": "autocallable",
       "security_name": "REX Autocallable Income ETF",
       "symbol": "ATCL"
+    },
+    {
+      "reason": "buffer",
+      "security_name": "Corgi U.S. Equities 10% Structured Buffer ETF - August Series",
+      "symbol": "AUGC"
     },
     {
       "reason": "buffer",
@@ -481,6 +486,11 @@
       "symbol": "CARU"
     },
     {
+      "reason": "buffer",
+      "security_name": "Corgi U.S. Equities 15% Structured Buffer ETF - August Series",
+      "symbol": "CAUG"
+    },
+    {
       "reason": "etn",
       "security_name": "ETRACS Monthly Pay 1.5X Leveraged Closed-End Fund Index ETN",
       "symbol": "CEFD"
@@ -524,6 +534,11 @@
       "reason": "income strategy",
       "security_name": "YieldMax Short TSLA Option Income Strategy ETF",
       "symbol": "CRSH"
+    },
+    {
+      "reason": "buffer",
+      "security_name": "Corgi U.S. Equities 30% Structured Buffer ETF - August Series",
+      "symbol": "CTAU"
     },
     {
       "reason": "buffer",
@@ -892,6 +907,11 @@
     },
     {
       "reason": "buffer",
+      "security_name": "Corgi Emerging Markets Equities 15% Structured Buffer ETF - August Series",
+      "symbol": "EMAU"
+    },
+    {
+      "reason": "buffer",
       "security_name": "Corgi Emerging Markets Equities 15% Structured Buffer ETF - July Series",
       "symbol": "EMJL"
     },
@@ -989,27 +1009,7 @@
       "reason": "income strategy",
       "security_name": "YieldMax Short COIN Option Income Strategy ETF",
       "symbol": "FIAT"
-    },
-    {
-      "reason": "buffer",
-      "security_name": "FT Vest U.S. Equity Buffer ETF - January",
-      "symbol": "FJAN"
-    },
-    {
-      "reason": "buffer",
-      "security_name": "FT Vest U.S. Equity Buffer ETF - July",
-      "symbol": "FJUL"
-    },
-    {
-      "reason": "buffer",
-      "security_name": "FT Vest U.S. Equity Buffer ETF - June",
-      "symbol": "FJUN"
-    },
-    {
-      "reason": "microsectors",
-      "security_name": "MicroSectors Travel -3x Inverse Leveraged ETN",
-      "symbol": "FLYD"
     }
   ],
-  "total_excluded": 579
+  "total_excluded": 590
 }
