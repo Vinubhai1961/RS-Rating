@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Market Breadth Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #0f0f10;
+    --panel: #17171a;
+    --border: #2a2a2c;
+    --text: #f2f2f2;
+    --muted: #9ca3af;
+    --green: #4ade80;
+    --red: #f87171;
+    --blue: #60a5fa;
+    --yellow: #facc15;
+    --purple: #a78bfa;
+    --cyan: #38bdf8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    padding: 32px 20px 60px;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  .subtitle { color: var(--muted); font-size: 13px; margin-bottom: 6px; }
+  #status { color: var(--muted); font-size: 12.5px; margin-bottom: 24px; }
+  #status.error { color: var(--red); }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 18px 8px;
+    margin-bottom: 22px;
+  }
+  .panel h2 { font-size: 14px; margin: 0 0 2px; }
+  .panel .sub { color: var(--muted); font-size: 11.5px; margin-bottom: 10px; }
+  .chart-box { position: relative; height: 220px; }
+  .chart-box.tall { height: 260px; }
+  footer { color: var(--muted); font-size: 11.5px; text-align: center; margin-top: 20px; }
+  code { background: #1c1c1e; padding: 1px 6px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Market Breadth Dashboard</h1>
+  <div class="subtitle">Auto-loads from <code id="csv-name">market_breadth_2026.csv</code> in this repo</div>
+  <div id="status">Loading data…</div>
+
+  <div class="panel">
+    <h2>% of stocks above 20 / 50 / 200-day averages</h2>
+    <div class="sub">Broadening (lines rising together) vs. narrowing (diverging) participation</div>
+    <div class="chart-box"><canvas id="chart-sma"></canvas></div>
+  </div>
+
+  <div class="panel">
+    <h2>Net 4.5%+ movers (up count − down count)</h2>
+    <div class="sub">Bar height = conviction of each day's move</div>
+    <div class="chart-box"><canvas id="chart-net45"></canvas></div>
+  </div>
+
+  <div class="panel">
+    <h2>Net 52-week highs − lows</h2>
+    <div class="sub">Slow-moving trend confirmation</div>
+    <div class="chart-box"><canvas id="chart-52wk"></canvas></div>
+  </div>
+
+  <div class="panel">
+    <h2>Extreme momentum: up vs. down 20% in 5 days</h2>
+    <div class="sub">Down-side spikes often mark short-term capitulation / washout points</div>
+    <div class="chart-box tall"><canvas id="chart-extreme"></canvas></div>
+  </div>
+
+  <footer>Updates automatically whenever the CSV in the repo is updated — just refresh the page.</footer>
+</div>
+
+<script>
+// ---- CONFIG ----
+// Change this if your CSV lives somewhere else relative to this HTML file,
+// e.g. "./data/market_breadth_2026.csv" or a raw.githubusercontent.com URL.
+const CSV_PATH = "./market_breadth_2026.csv";
+
+const CHART_DEFAULTS = {
+  gridColor: "#2a2a2c",
+  tickColor: "#9ca3af",
+};
+
+Chart.defaults.color = CHART_DEFAULTS.tickColor;
+Chart.defaults.borderColor = CHART_DEFAULTS.gridColor;
+Chart.defaults.font.size = 11;
+
+function parseCSV(text) {
+  // Transposed format: first column is metric name, remaining columns are dates.
+  const lines = text.trim().split("\n").map((l) => l.split(","));
+  const header = lines[0];
+  const dates = header.slice(1);
+  const metrics = {};
+  for (let i = 1; i < lines.length; i++) {
+    const row = lines[i];
+    const name = row[0];
+    metrics[name] = row.slice(1).map((v) => parseFloat(v));
+  }
+  return { dates, metrics };
+}
+
+function buildLineChart(ctx, labels, series) {
+  return new Chart(ctx, {
+    type: "line",
+    data: {
+      labels,
+      datasets: series.map((s) => ({
+        label: s.label,
+        data: s.data,
+        borderColor: s.color,
+        backgroundColor: s.color,
+        borderWidth: 2,
+        pointRadius: 0,
+        tension: 0.25,
+      })),
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: "index", intersect: false },
+      scales: {
+        x: { grid: { display: false } },
+        y: { grid: { color: CHART_DEFAULTS.gridColor }, ticks: { callback: (v) => v + "%" } },
+      },
+      plugins: { legend: { labels: { boxWidth: 12, boxHeight: 12 } } },
+    },
+  });
+}
+
+function buildBarChart(ctx, labels, data, colorFn, label) {
+  return new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels,
+      datasets: [
+        {
+          label,
+          data,
+          backgroundColor: data.map(colorFn),
+          borderRadius: 3,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: { grid: { display: false } },
+        y: { grid: { color: CHART_DEFAULTS.gridColor } },
+      },
+      plugins: { legend: { display: false } },
+    },
+  });
+}
+
+function buildMirrorBarChart(ctx, labels, upData, downData) {
+  return new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels,
+      datasets: [
+        { label: "Up 20% in 5D", data: upData, backgroundColor: "#4ade80", borderRadius: 3 },
+        { label: "Down 20% in 5D", data: downData.map((v) => -v), backgroundColor: "#f87171", borderRadius: 3 },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: { grid: { display: false } },
+        y: {
+          grid: { color: CHART_DEFAULTS.gridColor },
+          ticks: { callback: (v) => Math.abs(v) },
+        },
+      },
+      plugins: {
+        legend: { labels: { boxWidth: 12, boxHeight: 12 } },
+        tooltip: { callbacks: { label: (c) => `${c.dataset.label}: ${Math.abs(c.raw)}` } },
+      },
+    },
+  });
+}
+
+async function init() {
+  const statusEl = document.getElementById("status");
+  document.getElementById("csv-name").textContent = CSV_PATH;
+  try {
+    const res = await fetch(CSV_PATH, { cache: "no-store" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const text = await res.text();
+    const { dates, metrics } = parseCSV(text);
+
+    statusEl.textContent = `Loaded ${dates.length} sessions · latest: ${dates[dates.length - 1]}`;
+
+    buildLineChart(document.getElementById("chart-sma"), dates, [
+      { label: "Above 20SMA", data: metrics["Above 20SMA %"], color: "#60a5fa" },
+      { label: "Above 50SMA", data: metrics["Above 50SMA %"], color: "#facc15" },
+      { label: "Above 200SMA", data: metrics["Above 200SMA %"], color: "#a78bfa" },
+    ]);
+
+    buildBarChart(
+      document.getElementById("chart-net45"),
+      dates,
+      metrics["Net 4.5% Today"],
+      (v) => (v >= 0 ? "#4ade80" : "#f87171")
+    );
+
+    buildBarChart(
+      document.getElementById("chart-52wk"),
+      dates,
+      metrics["Net 52WH/L"],
+      () => "#38bdf8"
+    );
+
+    buildMirrorBarChart(
+      document.getElementById("chart-extreme"),
+      dates,
+      metrics["UP 20% in 5Days"],
+      metrics["Down 20% in 5Days"]
+    );
+  } catch (err) {
+    statusEl.textContent = `Couldn't load ${CSV_PATH} (${err.message}). Check the CSV_PATH constant in the script matches where your file lives in the repo.`;
+    statusEl.classList.add("error");
+  }
+}
+
+init();
+</script>
+</body>
+</html>
