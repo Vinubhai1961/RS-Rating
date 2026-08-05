@@ -19,10 +19,32 @@ except ImportError:
 
 
 # ====================== Unified Missing RS Logger ======================
+_LOG_HANDLES = {}
+
+
 def log_missing_rs(ticker: str, message: str, log_path: str):
-    """Append a debug line to the single Missing_RS.log file"""
-    with open(log_path, "a", encoding="utf-8") as f:
-        f.write(f"[{ticker}] {message}\n")
+    """Append a debug line to the single Missing_RS.log file.
+
+    Keeps one open handle per path instead of re-opening the file on every
+    call. The old version did an open+write+close roughly 10 times per ticker,
+    which is tens of thousands of syscalls on a full universe run.
+    """
+    handle = _LOG_HANDLES.get(log_path)
+    if handle is None or handle.closed:
+        handle = open(log_path, "a", encoding="utf-8")
+        _LOG_HANDLES[log_path] = handle
+    handle.write(f"[{ticker}] {message}\n")
+
+
+def close_log_handles():
+    """Flush and close any buffered debug log handles."""
+    for handle in _LOG_HANDLES.values():
+        try:
+            handle.flush()
+            handle.close()
+        except Exception:
+            pass
+    _LOG_HANDLES.clear()
 
 
 # ====================== ENHANCED RS DEBUG ======================
@@ -273,12 +295,12 @@ def write_9m_plus_volume_output(df_stocks: pd.DataFrame, vol9m_output_dir: str):
         out = df_stocks.iloc[0:0].copy()
 
     cols = [
-        "Rank", "Ticker", "Type", "Price", "DVol", "Sector", "Industry",
+        "Rank", "Ticker", "Type", "Price", "Prev_Close", "DVol", "Sector", "Industry",
         "RS Percentile", "1M_RS Percentile", "3M_RS Percentile", "6M_RS Percentile",
         "Latest Volume", "9M+ Volume", "History_Days", "Gap (%)",
         "HVE", "HVE Date", "HVE Volume", "IPO", "ATR", "ADR",
         "AvgVol", "AvgVol10", "52WKH", "52WKL", "MCAP",
-        "SMA50", "SMA200", "SMA10W", "SMA30W"
+        "SMA20", "SMA50", "SMA200", "SMA10W", "SMA30W"
     ]
     cols = [c for c in cols if c in out.columns]
 
@@ -405,7 +427,13 @@ def write_hve_outputs(df_stocks: pd.DataFrame, hve_history: list, hve_output_dir
     hve_df.to_csv(os.path.join(hve_output_dir, "History_HVE.csv"), index=False)
 
     today = datetime.now().strftime("%m%d%Y")
-    hve_today = df_stocks[df_stocks.get("HVE", "NO").astype(str).str.upper().eq("YES")].copy()
+    # df_stocks.get("HVE", "NO") returns the plain string "NO" when the column
+    # is absent, and str has no .astype -> AttributeError. Guard explicitly.
+    if "HVE" in df_stocks.columns:
+        hve_mask = df_stocks["HVE"].astype(str).str.upper().eq("YES")
+    else:
+        hve_mask = pd.Series(False, index=df_stocks.index)
+    hve_today = df_stocks[hve_mask].copy()
 
     # Daily HVE files should only include symbols whose HVE happened on the
     # latest market/reference date. This prevents stale 06/25 bars from showing
@@ -416,12 +444,12 @@ def write_hve_outputs(df_stocks: pd.DataFrame, hve_history: list, hve_output_dir
 
     # Keep HVE daily files in the same column format as 9M_Vol output.
     base_cols = [
-        "Rank", "Ticker", "Type", "Price", "DVol", "Sector", "Industry",
+        "Rank", "Ticker", "Type", "Price", "Prev_Close", "DVol", "Sector", "Industry",
         "RS Percentile", "1M_RS Percentile", "3M_RS Percentile", "6M_RS Percentile",
         "Latest Volume", "9M+ Volume", "History_Days", "Gap (%)",
         "HVE", "HVE Date", "HVE Volume", "IPO", "ATR", "ADR",
         "AvgVol", "AvgVol10", "52WKH", "52WKL", "MCAP",
-        "SMA50", "SMA200", "SMA10W", "SMA30W"
+        "SMA20", "SMA50", "SMA200", "SMA10W", "SMA30W"
     ]
     base_cols = [c for c in base_cols if c in hve_today.columns]
 
@@ -518,7 +546,7 @@ def generate_tradingview_csv(df_stocks, output_dir, ref_data, percentile_values=
     if percentile_values is None:
         percentile_values = [98, 89, 69, 49, 29, 9, 1]
     latest_ts = ref_data["datetime"].max()
-    latest_date = datetime.fromtimestamp(latest_ts).date()
+    latest_date = pd.to_datetime(latest_ts, unit="s").date()  # UTC-consistent
     logging.info(f"Latest market date (NYSE): {latest_date}")
     dates = []
     if use_trading_days and get_calendar:
@@ -572,7 +600,7 @@ def build_rs_threshold_map(df_stocks, column, percentile_values):
 def generate_pine_thresholds(df_stocks, output_dir, percentile_values):
     threshold_sets = {"usa": "RS", "usa1m": "1M_RS", "usa3m": "3M_RS", "usa6m": "6M_RS"}
     lines = ["// Auto-generated RS Rating thresholds - do not edit manually\n"]
-    lines.append(f"// Last updated: {datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')}\n\n")
+    lines.append(f"// Last updated: {datetime.now(pytz.UTC).strftime('%Y-%m-%d %H:%M UTC')}\n\n")
     for prefix, col in threshold_sets.items():
         rs_map = build_rs_threshold_map(df_stocks, col, percentile_values)
         lines.append(f"// {col} thresholds\n")
@@ -758,19 +786,25 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
     missing_rs_log = os.path.join(debug_rs_dir, "Missing_RS.log")
     open(missing_rs_log, "w", encoding="utf-8").close()
 
-    result = load_arctic_db(arctic_db_path)
-    if not result:
+    # load_arctic_db returns (None, None) on failure. A 2-tuple is always
+    # truthy, so the old `if not result` check never fired and the script
+    # crashed later with a confusing NoneType error instead of a clear message.
+    lib, tickers = load_arctic_db(arctic_db_path)
+    if lib is None or not tickers:
         logging.error("Failed to load ArcticDB.")
+        print("Failed to load ArcticDB. Aborting.")
         sys.exit(1)
-
-    lib, tickers = result
     if reference_ticker not in tickers:
         logging.error(f"Reference ticker {reference_ticker} not found")
         sys.exit(1)
 
     ref_data = lib.read(reference_ticker).data
     ref_closes = pd.Series(ref_data["close"].values, index=pd.to_datetime(ref_data["datetime"], unit='s')).sort_index()
-    latest_market_date = datetime.fromtimestamp(ref_data["datetime"].max()).date()
+    # IMPORTANT: every other date in this script comes from
+    # pd.to_datetime(..., unit="s"), which is UTC. datetime.fromtimestamp() is
+    # LOCAL time, so on a non-UTC machine this date could be off by one day and
+    # silently flip every valid HVE=YES to NO. Use a UTC-consistent conversion.
+    latest_market_date = pd.to_datetime(ref_data["datetime"].max(), unit="s").date()
 
     metadata_df = load_metadata(metadata_file)
 
@@ -884,6 +918,8 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
                 np.nan,            # ADR
             ))
 
+    close_log_handles()
+
     df_stocks = pd.DataFrame(rs_results, columns=["Ticker", "RS", "1M_RS", "3M_RS", "6M_RS", "SMA20", "SMA50", "SMA200", "SMA10W", "SMA30W", "History_Days", "Last_Close", "Prev_Close", "Gap (%)", "Latest Volume", "9M+ Volume", "HVE", "HVE Date", "HVE Volume", "Earning_Date", "ATR", "ADR"])
 
     if not metadata_df.empty and "Ticker" in metadata_df.columns:
@@ -982,14 +1018,19 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
     df_stocks[available_cols].to_csv(os.path.join(output_dir, "rs_stocks.csv"), index=False, na_rep="")
     
 
+    # df_stocks is already sorted by RS descending, so groups preserve that
+    # order and the ticker lists come out ranked without re-scanning the whole
+    # frame once per group (the old lambda was O(n^2) across the universe).
+    df_ranked = df_stocks.sort_values("RS", ascending=False, na_position="last")
+
     # Industry Table (your original logic)
-    df_industries = df_stocks.groupby("Industry", dropna=False).agg({
+    df_industries = df_ranked.groupby("Industry", dropna=False).agg({
         "RS Percentile": "mean",
         "1M_RS Percentile": "mean",
         "3M_RS Percentile": "mean",
         "6M_RS Percentile": "mean",
         "Sector": "first",
-        "Ticker": lambda x: ",".join(df_stocks[df_stocks["Ticker"].isin(x)].sort_values("RS", ascending=False)["Ticker"])
+        "Ticker": lambda x: ",".join(x.astype(str))
     }).reset_index()
 
     for col in ["RS Percentile", "1M_RS Percentile", "3M_RS Percentile", "6M_RS Percentile"]:
@@ -1000,12 +1041,12 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
     df_industries[["Rank", "Industry", "Sector", "RS", "1 M_RS", "3M_RS", "6M_RS", "Ticker"]].to_csv(os.path.join(output_dir, "rs_industries.csv"), index=False)
 
     # Sector Table
-    df_sectors = df_stocks.groupby("Sector", dropna=False).agg({
+    df_sectors = df_ranked.groupby("Sector", dropna=False).agg({
         "RS Percentile": "mean",
         "1M_RS Percentile": "mean",
         "3M_RS Percentile": "mean",
         "6M_RS Percentile": "mean",
-        "Ticker": lambda x: ",".join(df_stocks[df_stocks["Ticker"].isin(x)].sort_values("RS", ascending=False)["Ticker"])
+        "Ticker": lambda x: ",".join(x.astype(str))
     }).reset_index()
 
     for col in ["RS Percentile", "1M_RS Percentile", "3M_RS Percentile", "6M_RS Percentile"]:
@@ -1040,6 +1081,7 @@ def main(arctic_db_path, reference_ticker, output_dir, log_file, metadata_file=N
         df_stocks,
         hve_history,
         hve_output_dir,
+        latest_market_date=latest_market_date,  # was omitted -> stale-date filter never ran
     )
     vol9m_path = write_9m_plus_volume_output(df_stocks, vol9m_output_dir)
 
