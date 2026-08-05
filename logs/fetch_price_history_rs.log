@@ -1,15 +1,17 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-08-04 18:21:19 EDT
+Run Date: 2026-08-05 18:16:10 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-04 22:16:10
-Successful: 1869 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-05 22:10:15
+Successful: 1862 | Skipped: 4 | Failed: 0
 --- Skipped Tickers ---
 ADIG: Too few valid rows: 1
+ATTO: Too few valid rows: 1
 CHDG: Too few valid rows: 1
+DLCU: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -17,8 +19,8 @@ CHDG: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-04 22:13:38
-Successful: 1870 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-05 22:10:52
+Successful: 1865 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
 FIZY: Too few valid rows: 1
 ================================================================================
@@ -28,10 +30,10 @@ FIZY: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-04 22:13:28
-Successful: 1870 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-05 22:13:26
+Successful: 1865 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-OBX: Too few valid rows: 1
+KEO: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -39,8 +41,8 @@ OBX: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-04 22:13:13
-Successful: 1874 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-05 22:12:40
+Successful: 1867 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 3 ===
