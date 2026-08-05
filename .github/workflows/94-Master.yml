@@ -24,7 +24,7 @@ jobs:
 
   # 91. Generate-IPO
   generate-ipo:
-    needs: filter-52wh
+    needs: filter-52wl
     uses: ./.github/workflows/91-Generate-IPO.yml
     
   # 95. update_earnings_calendar
