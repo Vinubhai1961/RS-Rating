@@ -1,0 +1,58 @@
+# Save as .github/workflows/breadth-charts.yml
+#
+# Repo layout this expects:
+#   scripts/breadth_chart.py
+#   market_breadth/market_breadth_<YEAR>.csv    <- newest year auto-detected
+#   charts/*.png                                <- generated output (committed back)
+
+name: Breadth Charts
+
+on:
+  push:
+    paths:
+      - "market_breadth/market_breadth_*.csv"
+      - "scripts/breadth_chart.py"
+      - ".github/workflows/breadth-charts.yml"
+  schedule:
+    - cron: "30 11 * * 1-5"   # 17:00 IST on weekdays -- adjust to taste
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  charts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install pandas matplotlib
+
+      - name: Locate newest breadth CSV
+        id: find
+        run: |
+          set -euo pipefail
+          # Highest year sorts last, so this rolls over to 2027 automatically.
+          CSV=$(ls -1 market_breadth/market_breadth_*.csv 2>/dev/null | sort -V | tail -1 || true)
+          if [ -z "$CSV" ]; then
+            echo "::error::No CSV found matching market_breadth/market_breadth_*.csv"
+            ls -R market_breadth || echo "(market_breadth/ directory missing)"
+            exit 1
+          fi
+          echo "Using $CSV"
+          echo "csv=$CSV" >> "$GITHUB_OUTPUT"
+
+      - name: Generate PNGs
+        run: python scripts/breadth_chart.py "${{ steps.find.outputs.csv }}" --outdir charts
+
+      - name: Commit charts
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add charts/*.png
+          git diff --staged --quiet || git commit -m "chore: refresh breadth charts [skip ci]"
+          git push
