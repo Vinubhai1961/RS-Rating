@@ -1,19 +1,21 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-08-06 21:20:59 EDT
+Run Date: 2026-08-07 17:44:06 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-07 01:17:59
-Successful: 1860 | Skipped: 6 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-07 21:41:03
+Successful: 1866 | Skipped: 8 | Failed: 0
 --- Skipped Tickers ---
 AKAL: Too few valid rows: 1
 ANGU: Too few valid rows: 1
+ARCP: Too few valid rows: 1
+ARMS: Too few valid rows: 1
 ATTO: Too few valid rows: 1
-BRVE: Too few valid rows: 1
+BLSM: Too few valid rows: 1
+BNAV: Too few valid rows: 1
 CHDG: Too few valid rows: 1
-DLCU: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -21,8 +23,10 @@ DLCU: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-07 01:17:54
-Successful: 1866 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-07 21:40:19
+Successful: 1873 | Skipped: 1 | Failed: 0
+--- Skipped Tickers ---
+GOIB: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -30,14 +34,15 @@ Successful: 1866 | Skipped: 0 | Failed: 0
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-07 01:18:01
-Successful: 1861 | Skipped: 5 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-07 21:40:13
+Successful: 1868 | Skipped: 6 | Failed: 0
 --- Skipped Tickers ---
-KEO: Too few valid rows: 1
+LTGO: Too few valid rows: 1
 LYTE: Too few valid rows: 1
-NCLD: Too few valid rows: 1
-OCNL: Too few valid rows: 1
-PENU: Too few valid rows: 1
+MEIB: Too few valid rows: 1
+MUIB: Too few valid rows: 1
+NVIB: Too few valid rows: 1
+PLIB: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -45,10 +50,10 @@ PENU: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-07 01:17:56
-Successful: 1865 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-07 21:41:10
+Successful: 1876 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-TIH: Too few valid rows: 1
+TSIB: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 3 ===
