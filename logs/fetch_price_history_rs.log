@@ -1,12 +1,14 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-08-11 17:52:27 EDT
+Run Date: 2026-08-12 17:49:15 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-11 21:47:33
-Successful: 1873 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-12 21:44:38
+Successful: 1876 | Skipped: 1 | Failed: 0
+--- Skipped Tickers ---
+ARIA: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -14,11 +16,11 @@ Successful: 1873 | Skipped: 0 | Failed: 0
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-11 21:49:16
-Successful: 1871 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-12 21:46:26
+Successful: 1875 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
-GCPB: Too few valid rows: 1
-GINC: Too few valid rows: 1
+FOIL: Too few valid rows: 1
+GAIQ: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -26,12 +28,13 @@ GINC: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-11 21:47:44
-Successful: 1870 | Skipped: 3 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-12 21:45:53
+Successful: 1873 | Skipped: 4 | Failed: 0
 --- Skipped Tickers ---
-LITG: Too few valid rows: 1
+MPDY: Too few valid rows: 1
+MPIA: Too few valid rows: 1
+MPIM: Too few valid rows: 1
 MRAX: Too few valid rows: 1
-MXLL: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -39,11 +42,9 @@ MXLL: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-11 21:49:15
-Successful: 1873 | Skipped: 3 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-12 21:44:58
+Successful: 1877 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-SITX: Too few valid rows: 1
-STLL: Too few valid rows: 1
 UMCU: Too few valid rows: 1
 ================================================================================
 
