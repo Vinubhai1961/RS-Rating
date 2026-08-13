@@ -1,6 +1,6 @@
 {
   "by_reason": {
-    "autocallable": 20,
+    "autocallable": 21,
     "buffer": 418,
     "covered call": 31,
     "etn": 24,
@@ -566,6 +566,11 @@
       "symbol": "CVRD"
     },
     {
+      "reason": "autocallable",
+      "security_name": "REX Defensive Autocallable Income ETF",
+      "symbol": "DACL"
+    },
+    {
       "reason": "buffer",
       "security_name": "FT Vest U.S. Equity Deep Buffer ETF - April",
       "symbol": "DAPR"
@@ -1004,12 +1009,7 @@
       "reason": "buffer",
       "security_name": "FT Vest U.S. Equity Quarterly Dynamic Buffer ETF",
       "symbol": "FHDG"
-    },
-    {
-      "reason": "income strategy",
-      "security_name": "YieldMax Short COIN Option Income Strategy ETF",
-      "symbol": "FIAT"
     }
   ],
-  "total_excluded": 595
+  "total_excluded": 596
 }

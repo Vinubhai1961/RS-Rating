@@ -1315,3 +1315,33 @@
 2026-08-12 21:27:22,180 [INFO] Output file: data/ticker_info.json
 2026-08-12 21:27:22,180 [INFO] ============================================================
 2026-08-12 21:27:22,182 [INFO] Ticker info merge completed. Elapsed time: 0.1s
+2026-08-13 21:28:31,039 [INFO] Starting ticker info merge process at 09:28 PM EDT on Thursday, August 13, 2026
+2026-08-13 21:28:31,039 [INFO] Searching for ticker_info_part_*.json files in data
+2026-08-13 21:28:31,039 [INFO] Found 6 part files to merge: ['ticker_info_part_0.json', 'ticker_info_part_1.json', 'ticker_info_part_2.json', 'ticker_info_part_3.json', 'ticker_info_part_4.json', 'ticker_info_part_5.json']
+2026-08-13 21:28:31,042 [INFO] Loaded 1995 tickers from ticker_info_part_0.json
+2026-08-13 21:28:31,044 [INFO] Loaded 1995 tickers from ticker_info_part_1.json
+2026-08-13 21:28:31,047 [INFO] Loaded 1995 tickers from ticker_info_part_2.json
+2026-08-13 21:28:31,050 [INFO] Loaded 1995 tickers from ticker_info_part_3.json
+2026-08-13 21:28:31,055 [INFO] Loaded 1995 tickers from ticker_info_part_4.json
+2026-08-13 21:28:31,058 [INFO] Loaded 1991 tickers from ticker_info_part_5.json
+2026-08-13 21:28:31,061 [INFO] Loaded excluded symbols: 596
+2026-08-13 21:28:31,141 [INFO] ============================================================
+2026-08-13 21:28:31,141 [INFO] MERGE TICKER INFO SUMMARY
+2026-08-13 21:28:31,141 [INFO] ============================================================
+2026-08-13 21:28:31,141 [INFO] Part files merged: 6
+2026-08-13 21:28:31,141 [INFO] Rows before exclusion: 11966
+2026-08-13 21:28:31,142 [INFO] Stock count before exclusion: 6955
+2026-08-13 21:28:31,142 [INFO] ETF count before exclusion: 5011
+2026-08-13 21:28:31,142 [INFO] Unknown count before exclusion: 0
+2026-08-13 21:28:31,142 [INFO] Excluded symbols loaded: 596
+2026-08-13 21:28:31,142 [INFO] Removed excluded symbols: 0
+2026-08-13 21:28:31,142 [INFO] Rows after exclusion: 11966
+2026-08-13 21:28:31,142 [INFO] Final Stock count: 6955
+2026-08-13 21:28:31,142 [INFO] Final ETF count: 5011
+2026-08-13 21:28:31,142 [INFO] Final Unknown type count: 0
+2026-08-13 21:28:31,142 [INFO] Duplicate symbols seen while merging: 0
+2026-08-13 21:28:31,142 [INFO] Sample duplicate symbols: []
+2026-08-13 21:28:31,142 [INFO] Sample removed excluded symbols: []
+2026-08-13 21:28:31,142 [INFO] Output file: data/ticker_info.json
+2026-08-13 21:28:31,142 [INFO] ============================================================
+2026-08-13 21:28:31,145 [INFO] Ticker info merge completed. Elapsed time: 0.1s
