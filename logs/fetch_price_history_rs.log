@@ -1,17 +1,16 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-08-13 17:52:53 EDT
+Run Date: 2026-08-14 17:26:34 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-13 21:46:44
-Successful: 1878 | Skipped: 5 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-14 21:21:04
+Successful: 1879 | Skipped: 4 | Failed: 0
 --- Skipped Tickers ---
 ANTW: Too few valid rows: 1
 CGPT: Too few valid rows: 1
 COOL: Too few valid rows: 1
-CSRA: Too few valid rows: 1
 DEPW: Too few valid rows: 1
 ================================================================================
 
@@ -20,9 +19,10 @@ DEPW: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-13 21:48:00
-Successful: 1882 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-14 21:23:38
+Successful: 1881 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
+HAWG: Too few valid rows: 1
 HBIL: Too few valid rows: 1
 ================================================================================
 
@@ -31,7 +31,7 @@ HBIL: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-13 21:45:55
+FINAL SUMMARY - Partition finished at 2026-08-14 21:22:09
 Successful: 1881 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
 MTAW: Too few valid rows: 1
@@ -43,9 +43,10 @@ OAIW: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-13 21:47:23
-Successful: 1882 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-14 21:22:48
+Successful: 1884 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
+RVII: Too few valid rows: 1
 XAIW: Too few valid rows: 1
 ================================================================================
 
