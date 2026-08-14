@@ -1,6 +1,6 @@
 {
   "by_reason": {
-    "autocallable": 21,
+    "autocallable": 24,
     "buffer": 418,
     "covered call": 31,
     "etn": 24,
@@ -34,6 +34,21 @@
       "reason": "autocallable",
       "security_name": "Innovator Index Autocallable Income Strategy ETF",
       "symbol": "ACII"
+    },
+    {
+      "reason": "autocallable",
+      "security_name": "ProShares Nasdaq-100 Autocallable Income ETF",
+      "symbol": "ACQQ"
+    },
+    {
+      "reason": "autocallable",
+      "security_name": "ProShares Russell 2000 Autocallable Income ETF",
+      "symbol": "ACRT"
+    },
+    {
+      "reason": "autocallable",
+      "security_name": "ProShares S&P 500 Autocallable Income ETF",
+      "symbol": "ACSP"
     },
     {
       "reason": "autocallable",
@@ -994,22 +1009,7 @@
       "reason": "buffer",
       "security_name": "AllianzIM U.S. Equity Buffer15 Uncapped Feb ETF",
       "symbol": "FEBU"
-    },
-    {
-      "reason": "buffer",
-      "security_name": "AllianzIM U.S. Large Cap Buffer20 Feb ETF",
-      "symbol": "FEBW"
-    },
-    {
-      "reason": "buffer",
-      "security_name": "FT Vest U.S. Equity Buffer ETF - February",
-      "symbol": "FFEB"
-    },
-    {
-      "reason": "buffer",
-      "security_name": "FT Vest U.S. Equity Quarterly Dynamic Buffer ETF",
-      "symbol": "FHDG"
     }
   ],
-  "total_excluded": 596
+  "total_excluded": 599
 }
