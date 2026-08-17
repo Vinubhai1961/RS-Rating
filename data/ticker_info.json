@@ -1140,6 +1140,13 @@
       "type": "Stock"
     }
   },
+  "ADAMK": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "ADAML": {
     "info": {
       "industry": "REIT - Mortgage",
@@ -6012,13 +6019,6 @@
       "type": "ETF"
     }
   },
-  "AVB": {
-    "info": {
-      "industry": "REIT - Residential",
-      "sector": "Real Estate",
-      "type": "Stock"
-    }
-  },
   "AVBC": {
     "info": {
       "industry": "Banks - Regional",
@@ -7167,7 +7167,7 @@
       "type": "ETF"
     }
   },
-  "BBBY": {
+  "BBBYW": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -7641,13 +7641,6 @@
       "industry": "Banks - Regional",
       "sector": "Financial Services",
       "type": "Stock"
-    }
-  },
-  "BCHI": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
     }
   },
   "BCHP": {
@@ -10746,8 +10739,8 @@
   },
   "BRNX": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Utilities - Renewable",
+      "sector": "Utilities",
       "type": "Stock"
     }
   },
@@ -13873,10 +13866,24 @@
       "type": "ETF"
     }
   },
+  "CGCF": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "CGCFU": {
     "info": {
       "industry": "Shell Companies",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "CGCFW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -21084,6 +21091,13 @@
     }
   },
   "DUKRW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
+  "DUKU": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -38807,27 +38821,6 @@
       "type": "ETF"
     }
   },
-  "IPCX": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "IPCXR": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
-    }
-  },
-  "IPCXU": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
   "IPDN": {
     "info": {
       "industry": "Staffing & Employment Services",
@@ -48887,10 +48880,24 @@
       "type": "Stock"
     }
   },
+  "MRCO": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "MRCOU": {
     "info": {
       "industry": "Shell Companies",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "MRCOW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -50242,13 +50249,6 @@
     "info": {
       "industry": "Software - Application",
       "sector": "Technology",
-      "type": "Stock"
-    }
-  },
-  "MYSEW": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -52933,6 +52933,13 @@
       "type": "ETF"
     }
   },
+  "NUR": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "NURE": {
     "info": {
       "industry": "ETF",
@@ -53424,6 +53431,13 @@
     }
   },
   "NXGLW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
+  "NXH": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
@@ -56405,13 +56419,6 @@
       "type": "Stock"
     }
   },
-  "PCCE": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
   "PCEB": {
     "info": {
       "industry": "ETF",
@@ -56447,13 +56454,6 @@
       "type": "Stock"
     }
   },
-  "PCGG": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
   "PCHI": {
     "info": {
       "industry": "ETF",
@@ -56462,13 +56462,6 @@
     }
   },
   "PCI": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
-  "PCIG": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
@@ -64128,8 +64121,8 @@
   },
   "RVII": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Asset Management",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -66700,6 +66693,13 @@
       "industry": "Medical Devices",
       "sector": "Healthcare",
       "type": "Stock"
+    }
+  },
+  "SIC": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
     }
   },
   "SID": {
@@ -72542,8 +72542,8 @@
   },
   "THEO": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -79589,6 +79589,13 @@
       "type": "Stock"
     }
   },
+  "WATR": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "WATS": {
     "info": {
       "industry": "ETF",
@@ -83320,6 +83327,13 @@
       "type": "Stock"
     }
   },
+  "ZDIS": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "ZECP": {
     "info": {
       "industry": "ETF",
@@ -83426,6 +83440,13 @@
     }
   },
   "ZINC": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "ZINN": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
