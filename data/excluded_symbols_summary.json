@@ -1,9 +1,9 @@
 {
   "by_reason": {
-    "autocallable": 25,
+    "autocallable": 26,
     "buffer": 418,
     "covered call": 31,
-    "etn": 24,
+    "etn": 17,
     "income strategy": 46,
     "microsectors": 26,
     "weeklypay": 24,
@@ -184,6 +184,11 @@
       "reason": "buffer",
       "security_name": "ARK DIET Q4 Buffer ETF",
       "symbol": "ARKT"
+    },
+    {
+      "reason": "autocallable",
+      "security_name": "ARK Active Autocallable Income ETF",
+      "symbol": "ARKY"
     },
     {
       "reason": "buffer",
@@ -1004,12 +1009,7 @@
       "reason": "buffer",
       "security_name": "AllianzIM U.S. Large Cap Buffer10 Feb ETF",
       "symbol": "FEBT"
-    },
-    {
-      "reason": "buffer",
-      "security_name": "AllianzIM U.S. Equity Buffer15 Uncapped Feb ETF",
-      "symbol": "FEBU"
     }
   ],
-  "total_excluded": 600
+  "total_excluded": 594
 }

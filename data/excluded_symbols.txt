@@ -33,6 +33,7 @@ ARKD|Y|buffer|ARK DIET Q1 Buffer ETF
 ARKE|Y|buffer|ARK DIET Q3 Buffer ETF
 ARKI|Y|buffer|ARK DIET Q2 Buffer ETF
 ARKT|Y|buffer|ARK DIET Q4 Buffer ETF
+ARKY|Y|autocallable|ARK Active Autocallable Income ETF
 ARLI|Y|buffer|AllianzIM International Equity Buffer15 Uncapped Apr ETF
 ARLU|Y|buffer|AllianzIM U.S. Equity Buffer15 Uncapped Apr ETF
 ARMW|Y|weeklypay|Roundhill ARM WeeklyPay ETF
@@ -269,9 +270,6 @@ INOV|Y|buffer|Innovator International Developed Power Buffer ETF  November
 INYY|Y|income strategy|YieldMax INTC Option Income Strategy ETF
 IOCT|Y|buffer|Innovator International Developed Power Buffer ETF - October
 ISEP|Y|buffer|Innovator International Developed Power Buffer ETF  September
-IWDL|Y|etn|ETRACS 2x Leveraged US Value Factor TR ETN
-IWFL|Y|etn|ETRACS 2x Leveraged US Growth Factor TR ETN
-IWML|Y|etn|ETRACS 2x Leveraged US Size Factor TR ETN
 JADB|Y|buffer|Aptus January Deep Buffer ETF
 JANB|Y|buffer|Aptus January Buffer ETF
 JANI|Y|buffer|AllianzIM International Equity Buffer15 Uncapped Jan ETF
@@ -346,7 +344,6 @@ MSFY|Y|yield premium|Kurv Yield Premium Strategy Microsoft (MSFT) ETF
 MSR|Y|autocallable|GraniteShares Autocallable MSTR ETF
 MSTW|Y|weeklypay|Roundhill MSTR WeeklyPay ETF
 MSTY|Y|income strategy|YieldMax MSTR Option Income Strategy ETF
-MTUL|Y|etn|ETRACS 2x Leveraged MSCI US Momentum Factor TR ETN
 MVRL|Y|etn|ETRACS Monthly Pay 1.5X Leveraged Mortgage REIT ETN
 NAPR|Y|buffer|Innovator Growth-100 Power Buffer ETF - April
 NAUG|Y|buffer|Innovator Growth-100 Power Buffer ETF - August
@@ -470,7 +467,6 @@ QQJL|Y|buffer|Corgi Growth & Technology 15% Structured Buffer ETF - July Series
 QQJN|Y|buffer|Corgi Growth & Technology 15% Structured Buffer ETF - June Series
 QQMY|Y|buffer|Corgi Growth & Technology 15% Structured Buffer ETF - May Series
 QSPT|Y|buffer|FT Vest Nasdaq-100 Buffer ETF - September
-QULL|Y|etn|ETRACS 2x Leveraged MSCI US Quality Factor TR ETN
 QYLD|Y|covered call|Global X NASDAQ 100 Covered Call ETF
 QYLG|Y|covered call|Global X Nasdaq 100 Covered Call & Growth ETF
 RB|Y|buffer|ProShares Russell 2000 Dynamic Buffer ETF
@@ -487,7 +483,6 @@ RYLG|Y|covered call|Global X Russell 2000 Covered Call & Growth ETF
 SAUG|Y|buffer|FT Vest U.S. Small Cap Moderate Buffer ETF - August
 SCA|Y|autocallable|GraniteShares Autocallable SMCI ETF
 SCAU|Y|buffer|Corgi U.S. Small-Cap 15% Structured Buffer ETF - August Series
-SCDL|Y|etn|ETRACS 2x Leveraged US Dividend Factor TR ETN
 SCJL|Y|buffer|Corgi U.S. Small-Cap 15% Structured Buffer ETF - July Series
 SCJN|Y|buffer|Corgi U.S. Small-Cap 15% Structured Buffer ETF - June Series
 SCMY|Y|buffer|Corgi U.S. Small-Cap 15% Structured Buffer ETF - May Series
@@ -554,7 +549,6 @@ UNHW|Y|weeklypay|Roundhill UNH WeeklyPay ETF
 UNOV|Y|buffer|Innovator U.S. Equity Ultra Buffer ETF - November
 UOCT|Y|buffer|Innovator U.S. Equity Ultra Buffer ETF - October
 USEP|Y|buffer|Innovator U.S. Equity Ultra Buffer ETF - September
-USML|Y|etn|ETRACS 2x Leveraged MSCI US Minimum Volatility Factor TR ETN
 USOI|Y|etn|ETRACS Crude Oil Shares Covered Call ETNs due April 24, 2037
 VAIE|Y|autocallable|VegaShares US Equity Autocallable Income ETF
 VYLD|Y|etn|Inverse VIX Short-Term Futures ETNs due March 22, 2045
