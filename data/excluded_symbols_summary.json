@@ -5,7 +5,7 @@
     "covered call": 31,
     "etn": 17,
     "income strategy": 46,
-    "microsectors": 26,
+    "microsectors": 32,
     "weeklypay": 24,
     "yield premium": 6
   },
@@ -374,6 +374,16 @@
       "reason": "weeklypay",
       "security_name": "Roundhill BRKB WeeklyPay ETF",
       "symbol": "BRKW"
+    },
+    {
+      "reason": "microsectors",
+      "security_name": "MicroSectors -3x Short Brazil ETNs",
+      "symbol": "BRZD"
+    },
+    {
+      "reason": "microsectors",
+      "security_name": "MicroSectors 3x Long Brazil ETNs",
+      "symbol": "BRZL"
     },
     {
       "reason": "buffer",
@@ -999,17 +1009,7 @@
       "reason": "buffer",
       "security_name": "FT Vest U.S. Equity Max Buffer ETF - February",
       "symbol": "FEBM"
-    },
-    {
-      "reason": "buffer",
-      "security_name": "PGIM S&P 500 Buffer 12 ETF - February",
-      "symbol": "FEBP"
-    },
-    {
-      "reason": "buffer",
-      "security_name": "AllianzIM U.S. Large Cap Buffer10 Feb ETF",
-      "symbol": "FEBT"
     }
   ],
-  "total_excluded": 594
+  "total_excluded": 600
 }
