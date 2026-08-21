@@ -1,15 +1,14 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-08-20 17:22:11 EDT
+Run Date: 2026-08-21 17:23:16 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-20 21:18:41
-Successful: 1878 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-21 21:16:55
+Successful: 1883 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
 BBLS: Too few valid rows: 1
-CHTRP: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -17,11 +16,11 @@ CHTRP: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-20 21:18:32
-Successful: 1878 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-21 21:20:33
+Successful: 1882 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
-GCLO: Too few valid rows: 1
-GEEQ: Too few valid rows: 1
+HIAI: Too few valid rows: 1
+HXC: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -29,11 +28,9 @@ GEEQ: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-20 21:19:20
-Successful: 1877 | Skipped: 3 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-21 21:17:33
+Successful: 1883 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-KAIT: Too few valid rows: 1
-MUG: Too few valid rows: 1
 PCOV: Too few valid rows: 1
 ================================================================================
 
@@ -42,8 +39,8 @@ PCOV: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-20 21:18:28
-Successful: 1879 | Skipped: 3 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-21 21:17:02
+Successful: 1883 | Skipped: 3 | Failed: 0
 --- Skipped Tickers ---
 XVAP: Too few valid rows: 1
 XVNV: Too few valid rows: 1
