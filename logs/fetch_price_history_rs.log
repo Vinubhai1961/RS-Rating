@@ -1,14 +1,12 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-08-21 17:23:16 EDT
+Run Date: 2026-08-24 17:30:05 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-21 21:16:55
-Successful: 1883 | Skipped: 1 | Failed: 0
---- Skipped Tickers ---
-BBLS: Too few valid rows: 1
+FINAL SUMMARY - Partition finished at 2026-08-24 21:27:17
+Successful: 1884 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -16,11 +14,13 @@ BBLS: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-21 21:20:33
-Successful: 1882 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-24 21:25:37
+Successful: 1880 | Skipped: 4 | Failed: 0
 --- Skipped Tickers ---
-HIAI: Too few valid rows: 1
+GCLO: Too few valid rows: 1
+HXA: Too few valid rows: 1
 HXC: Too few valid rows: 1
+HXE: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -28,10 +28,8 @@ HXC: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-21 21:17:33
-Successful: 1883 | Skipped: 1 | Failed: 0
---- Skipped Tickers ---
-PCOV: Too few valid rows: 1
+FINAL SUMMARY - Partition finished at 2026-08-24 21:25:59
+Successful: 1884 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -39,12 +37,8 @@ PCOV: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-21 21:17:02
-Successful: 1883 | Skipped: 3 | Failed: 0
---- Skipped Tickers ---
-XVAP: Too few valid rows: 1
-XVNV: Too few valid rows: 1
-XVTS: Too few valid rows: 1
+FINAL SUMMARY - Partition finished at 2026-08-24 21:24:23
+Successful: 1886 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 3 ===
