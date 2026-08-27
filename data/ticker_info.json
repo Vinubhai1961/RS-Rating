@@ -55,6 +55,13 @@
       "type": "ETF"
     }
   },
+  "AAC": {
+    "info": {
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
   "AACG": {
     "info": {
       "industry": "Education & Training Services",
@@ -1497,11 +1504,32 @@
       "type": "Stock"
     }
   },
+  "AEMC": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "AEMD": {
     "info": {
       "industry": "Medical Devices",
       "sector": "Healthcare",
       "type": "Stock"
+    }
+  },
+  "AEMG": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "AEMV": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
     }
   },
   "AENT": {
@@ -1574,11 +1602,32 @@
       "type": "Stock"
     }
   },
+  "AESB": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "AESG": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "AESI": {
     "info": {
       "industry": "Oil & Gas Equipment & Services",
       "sector": "Energy",
       "type": "Stock"
+    }
+  },
+  "AESL": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
     }
   },
   "AESP": {
@@ -2285,13 +2334,6 @@
     "info": {
       "industry": "Insurance - Diversified",
       "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "AIHS": {
-    "info": {
-      "industry": "Rental & Leasing Services",
-      "sector": "Industrials",
       "type": "Stock"
     }
   },
@@ -15350,27 +15392,6 @@
       "type": "Stock"
     }
   },
-  "CMII": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "CMIIU": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "CMIIW": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
-    }
-  },
   "CMMB": {
     "info": {
       "industry": "Biotechnology",
@@ -20838,6 +20859,13 @@
       "type": "Stock"
     }
   },
+  "DSPC": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "DSPY": {
     "info": {
       "industry": "ETF",
@@ -21258,13 +21286,6 @@
       "type": "ETF"
     }
   },
-  "DVIN": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
   "DVLT": {
     "info": {
       "industry": "Software - Infrastructure",
@@ -21307,13 +21328,6 @@
       "type": "ETF"
     }
   },
-  "DVRE": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
   "DVSP": {
     "info": {
       "industry": "ETF",
@@ -21321,70 +21335,7 @@
       "type": "ETF"
     }
   },
-  "DVUT": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
   "DVVY": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
-  "DVXB": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
-  "DVXC": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
-  "DVXE": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
-  "DVXF": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
-  "DVXK": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
-  "DVXP": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
-  "DVXV": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
-  "DVXY": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
@@ -33802,6 +33753,13 @@
       "type": "Stock"
     }
   },
+  "HBIT": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "HBM": {
     "info": {
       "industry": "Copper",
@@ -35732,6 +35690,13 @@
       "industry": "n/a",
       "sector": "n/a",
       "type": "Stock"
+    }
+  },
+  "HWGV": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
     }
   },
   "HWH": {
@@ -39028,6 +38993,27 @@
     "info": {
       "industry": "Other Industrial Metals & Mining",
       "sector": "Basic Materials",
+      "type": "Stock"
+    }
+  },
+  "IPXG": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
+  "IPXGU": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
+  "IPXGW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43914,13 +43900,6 @@
     "info": {
       "industry": "Publishing",
       "sector": "Communication Services",
-      "type": "Stock"
-    }
-  },
-  "LEG": {
-    "info": {
-      "industry": "Furnishings, Fixtures & Appliances",
-      "sector": "Consumer Cyclical",
       "type": "Stock"
     }
   },
@@ -52877,13 +52856,6 @@
       "type": "Stock"
     }
   },
-  "NTZ": {
-    "info": {
-      "industry": "Furnishings, Fixtures & Appliances",
-      "sector": "Consumer Cyclical",
-      "type": "Stock"
-    }
-  },
   "NU": {
     "info": {
       "industry": "Banks - Regional",
@@ -58862,6 +58834,13 @@
       "type": "ETF"
     }
   },
+  "PRAM": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "PRAX": {
     "info": {
       "industry": "Biotechnology",
@@ -63405,6 +63384,13 @@
       "type": "Stock"
     }
   },
+  "RNAQU": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "RNAZ": {
     "info": {
       "industry": "Biotechnology",
@@ -64992,6 +64978,13 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
+    }
+  },
+  "SAX": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
     }
   },
   "SAY": {
@@ -77419,6 +77412,13 @@
       "type": "Stock"
     }
   },
+  "VAI": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "VAL": {
     "info": {
       "industry": "Oil & Gas Drilling",
@@ -80436,13 +80436,6 @@
       "type": "Stock"
     }
   },
-  "WILC": {
-    "info": {
-      "industry": "Food Distribution",
-      "sector": "Consumer Defensive",
-      "type": "Stock"
-    }
-  },
   "WIMA": {
     "info": {
       "industry": "ETF",
@@ -82683,7 +82676,21 @@
       "type": "ETF"
     }
   },
+  "XTER": {
+    "info": {
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
   "XTERU": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
+  "XTERW": {
     "info": {
       "industry": "n/a",
       "sector": "n/a",
