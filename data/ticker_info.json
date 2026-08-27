@@ -10856,13 +10856,6 @@
       "type": "Stock"
     }
   },
-  "BRUNW": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
-    }
-  },
   "BRVE": {
     "info": {
       "industry": "Biotechnology",
@@ -12411,6 +12404,13 @@
     }
   },
   "CAOS": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "CAPA": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
@@ -22184,8 +22184,8 @@
   },
   "EDVA": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Biotechnology",
+      "sector": "Healthcare",
       "type": "Stock"
     }
   },
@@ -27866,13 +27866,6 @@
       "type": "Stock"
     }
   },
-  "FLZH": {
-    "info": {
-      "industry": "Broadcasting",
-      "sector": "Communication Services",
-      "type": "Stock"
-    }
-  },
   "FMAC": {
     "info": {
       "industry": "Shell Companies",
@@ -30435,13 +30428,6 @@
       "type": "Stock"
     }
   },
-  "GDEVW": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
-    }
-  },
   "GDHG": {
     "info": {
       "industry": "Leisure",
@@ -32173,7 +32159,7 @@
   },
   "GORO": {
     "info": {
-      "industry": "Other Precious Metals & Mining",
+      "industry": "Gold",
       "sector": "Basic Materials",
       "type": "Stock"
     }
@@ -35605,13 +35591,6 @@
     "info": {
       "industry": "Biotechnology",
       "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
-  "HUMAW": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -41563,6 +41542,13 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
+    }
+  },
+  "JTTT": {
+    "info": {
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
+      "type": "Stock"
     }
   },
   "JUCY": {
@@ -47748,8 +47734,8 @@
   },
   "MIAC": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -49867,7 +49853,35 @@
       "type": "ETF"
     }
   },
+  "MUNF": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "MUNG": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "MUNH": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "MUNI": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "MUNJ": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
@@ -55404,20 +55418,6 @@
       "type": "Stock"
     }
   },
-  "OSRH": {
-    "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
-  "OSRHW": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
-    }
-  },
   "OSS": {
     "info": {
       "industry": "Computer Hardware",
@@ -55465,6 +55465,13 @@
       "industry": "Shell Companies",
       "sector": "Financial Services",
       "type": "Stock"
+    }
+  },
+  "OTAX": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
     }
   },
   "OTEX": {
@@ -59588,6 +59595,13 @@
       "industry": "Publishing",
       "sector": "Communication Services",
       "type": "Stock"
+    }
+  },
+  "PSOX": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
     }
   },
   "PSP": {
@@ -65218,6 +65232,13 @@
       "type": "ETF"
     }
   },
+  "SCATU": {
+    "info": {
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
   "SCC": {
     "info": {
       "industry": "ETF",
@@ -66833,13 +66854,6 @@
       "industry": "Medical Devices",
       "sector": "Healthcare",
       "type": "Stock"
-    }
-  },
-  "SIC": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
     }
   },
   "SID": {
@@ -72631,6 +72645,13 @@
       "type": "ETF"
     }
   },
+  "TGRZ": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "TGS": {
     "info": {
       "industry": "Oil & Gas Integrated",
@@ -73017,6 +73038,34 @@
     }
   },
   "TIPD": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "TIPE": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "TIPF": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "TIPG": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "TIPH": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
@@ -78597,8 +78646,8 @@
   },
   "VMRK": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "REIT - Residential",
+      "sector": "Real Estate",
       "type": "Stock"
     }
   },
@@ -82754,6 +82803,13 @@
     }
   },
   "XVNV": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "XVSP": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
