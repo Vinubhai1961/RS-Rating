@@ -1,12 +1,15 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-08-25 17:25:33 EDT
+Run Date: 2026-08-26 20:30:42 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-25 21:20:02
-Successful: 1891 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-27 00:27:57
+Successful: 1886 | Skipped: 2 | Failed: 0
+--- Skipped Tickers ---
+BTA: Too few valid rows: 1
+CAPA: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -14,8 +17,8 @@ Successful: 1891 | Skipped: 0 | Failed: 0
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-25 21:20:36
-Successful: 1891 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-27 00:27:00
+Successful: 1888 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -23,10 +26,10 @@ Successful: 1891 | Skipped: 0 | Failed: 0
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-25 21:20:08
-Successful: 1890 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-27 00:27:41
+Successful: 1887 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-LBOX: Too few valid rows: 1
+OTAX: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -34,10 +37,10 @@ LBOX: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-25 21:22:25
-Successful: 1892 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-27 00:23:28
+Successful: 1887 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-YRAM: Too few valid rows: 1
+TGRZ: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 3 ===
