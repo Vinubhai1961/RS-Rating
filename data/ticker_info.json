@@ -1497,6 +1497,13 @@
       "type": "Stock"
     }
   },
+  "AELV": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "AEM": {
     "info": {
       "industry": "Gold",
@@ -4766,13 +4773,6 @@
       "type": "Stock"
     }
   },
-  "AREN": {
-    "info": {
-      "industry": "Internet Content & Information",
-      "sector": "Communication Services",
-      "type": "Stock"
-    }
-  },
   "ARES": {
     "info": {
       "industry": "Asset Management",
@@ -5722,6 +5722,34 @@
     "info": {
       "industry": "Banks - Regional",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "ATLQ": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
+  "ATLQR": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
+  "ATLQU": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
+  "ATLQW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -7500,13 +7528,6 @@
     "info": {
       "industry": "Recreational Vehicles",
       "sector": "Consumer Cyclical",
-      "type": "Stock"
-    }
-  },
-  "BCAB": {
-    "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
       "type": "Stock"
     }
   },
@@ -28629,6 +28650,13 @@
       "type": "ETF"
     }
   },
+  "FRUT": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "FRVO": {
     "info": {
       "industry": "Utilities - Renewable",
@@ -38823,8 +38851,8 @@
   },
   "IPHXU": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -40184,34 +40212,6 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
-    }
-  },
-  "JAB": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "JABRR": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
-    }
-  },
-  "JABRU": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "JABRW": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
     }
   },
   "JABS": {
@@ -46059,13 +46059,6 @@
       "type": "Stock"
     }
   },
-  "MAPP": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
   "MAR": {
     "info": {
       "industry": "Lodging",
@@ -46141,6 +46134,13 @@
       "industry": "Capital Markets",
       "sector": "Financial Services",
       "type": "Stock"
+    }
+  },
+  "MATR": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
     }
   },
   "MATV": {
@@ -55775,6 +55775,13 @@
       "type": "Stock"
     }
   },
+  "PAAI": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "PAAS": {
     "info": {
       "industry": "Gold",
@@ -59515,8 +59522,8 @@
   },
   "PSQL": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Computer Hardware",
+      "sector": "Technology",
       "type": "Stock"
     }
   },
@@ -64761,6 +64768,13 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
+    }
+  },
+  "SAMO": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
     }
   },
   "SAMT": {
@@ -74143,6 +74157,13 @@
       "type": "ETF"
     }
   },
+  "TRBG": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "TRC": {
     "info": {
       "industry": "Conglomerates",
@@ -78399,13 +78420,6 @@
       "type": "Stock"
     }
   },
-  "VLLU": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
   "VLN": {
     "info": {
       "industry": "Semiconductors",
@@ -81796,8 +81810,8 @@
   },
   "XLAB": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Software - Infrastructure",
+      "sector": "Technology",
       "type": "Stock"
     }
   },
