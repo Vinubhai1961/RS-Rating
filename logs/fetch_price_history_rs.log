@@ -1,12 +1,12 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-08-28 23:07:07 EDT
+Run Date: 2026-08-31 19:43:13 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-29 03:03:12
-Successful: 1846 | Skipped: 6 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-31 23:40:29
+Successful: 1875 | Skipped: 6 | Failed: 0
 --- Skipped Tickers ---
 AEMC: Too few valid rows: 1
 AEMG: Too few valid rows: 1
@@ -21,10 +21,10 @@ AESL: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-29 03:04:15
-Successful: 1851 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-31 23:39:19
+Successful: 1880 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-HWGV: Too few valid rows: 1
+FRUT: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -32,12 +32,8 @@ HWGV: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-29 03:02:21
-Successful: 1849 | Skipped: 3 | Failed: 0
---- Skipped Tickers ---
-MUNF: Too few valid rows: 1
-MUNG: Too few valid rows: 1
-MUNH: Too few valid rows: 1
+FINAL SUMMARY - Partition finished at 2026-08-31 23:39:18
+Successful: 1881 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -45,10 +41,9 @@ MUNH: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-08-29 03:02:47
-Successful: 1853 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-08-31 23:39:14
+Successful: 1880 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-SAX: Too few valid rows: 1
 TIPF: Too few valid rows: 1
 ================================================================================
 
