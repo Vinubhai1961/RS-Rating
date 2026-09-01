@@ -876,7 +876,7 @@
   },
   "ACNT": {
     "info": {
-      "industry": "Chemicals",
+      "industry": "Specialty Chemicals",
       "sector": "Basic Materials",
       "type": "Stock"
     }
@@ -1945,6 +1945,13 @@
       "type": "ETF"
     }
   },
+  "AGGM": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "AGGS": {
     "info": {
       "industry": "ETF",
@@ -2458,7 +2465,7 @@
   },
   "AIOT": {
     "info": {
-      "industry": "Software - Infrastructure",
+      "industry": "Software - Application",
       "sector": "Technology",
       "type": "Stock"
     }
@@ -3172,7 +3179,7 @@
   },
   "ALTG": {
     "info": {
-      "industry": "Rental & Leasing Services",
+      "industry": "Industrial Distribution",
       "sector": "Industrials",
       "type": "Stock"
     }
@@ -5727,8 +5734,8 @@
   },
   "ATLQ": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -5741,8 +5748,8 @@
   },
   "ATLQU": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -12510,8 +12517,8 @@
   },
   "CARG": {
     "info": {
-      "industry": "Auto & Truck Dealerships",
-      "sector": "Consumer Cyclical",
+      "industry": "Internet Content & Information",
+      "sector": "Communication Services",
       "type": "Stock"
     }
   },
@@ -13518,8 +13525,8 @@
   },
   "CDZI": {
     "info": {
-      "industry": "Utilities - Regulated Water",
-      "sector": "Utilities",
+      "industry": "Pollution & Treatment Controls",
+      "sector": "Industrials",
       "type": "Stock"
     }
   },
@@ -18250,7 +18257,7 @@
   },
   "CXT": {
     "info": {
-      "industry": "Specialty Industrial Machinery",
+      "industry": "Business Equipment & Supplies",
       "sector": "Industrials",
       "type": "Stock"
     }
@@ -30071,13 +30078,6 @@
       "type": "Stock"
     }
   },
-  "GBF": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
   "GBFH": {
     "info": {
       "industry": "Banks - Regional",
@@ -31216,6 +31216,13 @@
     "info": {
       "industry": "Shell Companies",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "GIXI": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -35706,6 +35713,13 @@
       "type": "ETF"
     }
   },
+  "HXF": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "HXHX": {
     "info": {
       "industry": "Integrated Freight & Logistics",
@@ -39407,6 +39421,13 @@
       "industry": "Medical Instruments & Supplies",
       "sector": "Healthcare",
       "type": "Stock"
+    }
+  },
+  "ISRL": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
     }
   },
   "ISSB": {
@@ -55777,8 +55798,8 @@
   },
   "PAAI": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Internet Content & Information",
+      "sector": "Communication Services",
       "type": "Stock"
     }
   },
@@ -57863,7 +57884,7 @@
   },
   "PLBY": {
     "info": {
-      "industry": "Leisure",
+      "industry": "Apparel Manufacturing",
       "sector": "Consumer Cyclical",
       "type": "Stock"
     }
@@ -64478,7 +64499,7 @@
   },
   "RYAN": {
     "info": {
-      "industry": "Insurance - Specialty",
+      "industry": "Insurance Brokers",
       "sector": "Financial Services",
       "type": "Stock"
     }
@@ -64772,8 +64793,8 @@
   },
   "SAMO": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -66378,6 +66399,13 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
+    }
+  },
+  "SGLD": {
+    "info": {
+      "industry": "Gold",
+      "sector": "Basic Materials",
+      "type": "Stock"
     }
   },
   "SGLY": {
@@ -73128,6 +73156,13 @@
       "type": "Stock"
     }
   },
+  "TLACU": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "TLCI": {
     "info": {
       "industry": "ETF",
@@ -74159,8 +74194,8 @@
   },
   "TRBG": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Specialty Industrial Machinery",
+      "sector": "Industrials",
       "type": "Stock"
     }
   },
@@ -75363,7 +75398,7 @@
   },
   "TWST": {
     "info": {
-      "industry": "Diagnostics & Research",
+      "industry": "Biotechnology",
       "sector": "Healthcare",
       "type": "Stock"
     }
