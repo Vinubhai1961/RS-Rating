@@ -5398,7 +5398,7 @@
   },
   "ASPI": {
     "info": {
-      "industry": "Chemicals",
+      "industry": "Specialty Chemicals",
       "sector": "Basic Materials",
       "type": "Stock"
     }
@@ -13532,8 +13532,8 @@
   },
   "CDZIP": {
     "info": {
-      "industry": "Utilities - Regulated Water",
-      "sector": "Utilities",
+      "industry": "Pollution & Treatment Controls",
+      "sector": "Industrials",
       "type": "Stock"
     }
   },
@@ -16934,8 +16934,8 @@
   },
   "CRGO": {
     "info": {
-      "industry": "Integrated Freight & Logistics",
-      "sector": "Industrials",
+      "industry": "Software - Application",
+      "sector": "Technology",
       "type": "Stock"
     }
   },
@@ -17062,13 +17062,6 @@
     "info": {
       "industry": "Communication Equipment",
       "sector": "Technology",
-      "type": "Stock"
-    }
-  },
-  "CRNX": {
-    "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
       "type": "Stock"
     }
   },
@@ -19865,6 +19858,13 @@
       "type": "ETF"
     }
   },
+  "DIVH": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "DIVI": {
     "info": {
       "industry": "ETF",
@@ -21694,7 +21694,7 @@
   },
   "EBF": {
     "info": {
-      "industry": "Business Equipment & Supplies",
+      "industry": "Specialty Business Services",
       "sector": "Industrials",
       "type": "Stock"
     }
@@ -22737,7 +22737,7 @@
   },
   "ELE": {
     "info": {
-      "industry": "Other Precious Metals & Mining",
+      "industry": "Gold",
       "sector": "Basic Materials",
       "type": "Stock"
     }
@@ -23185,7 +23185,7 @@
   },
   "EMPD": {
     "info": {
-      "industry": "Auto Manufacturers",
+      "industry": "Recreational Vehicles",
       "sector": "Consumer Cyclical",
       "type": "Stock"
     }
@@ -23311,7 +23311,7 @@
   },
   "ENIC": {
     "info": {
-      "industry": "Utilities - Regulated Electric",
+      "industry": "Utilities - Renewable",
       "sector": "Utilities",
       "type": "Stock"
     }
@@ -31221,8 +31221,8 @@
   },
   "GIXI": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Advertising Agencies",
+      "sector": "Communication Services",
       "type": "Stock"
     }
   },
@@ -34677,13 +34677,6 @@
       "type": "ETF"
     }
   },
-  "HLX": {
-    "info": {
-      "industry": "Oil & Gas Equipment & Services",
-      "sector": "Energy",
-      "type": "Stock"
-    }
-  },
   "HLXC": {
     "info": {
       "industry": "Shell Companies",
@@ -34919,6 +34912,13 @@
     "info": {
       "industry": "Banks - Regional",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "HOS": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -36786,7 +36786,7 @@
   },
   "ICG": {
     "info": {
-      "industry": "Semiconductors",
+      "industry": "Computer Hardware",
       "sector": "Technology",
       "type": "Stock"
     }
@@ -42932,7 +42932,7 @@
   },
   "KSCP": {
     "info": {
-      "industry": "Security & Protection Services",
+      "industry": "Building Products & Equipment",
       "sector": "Industrials",
       "type": "Stock"
     }
@@ -43513,7 +43513,7 @@
   },
   "LB": {
     "info": {
-      "industry": "Oil & Gas Equipment & Services",
+      "industry": "Oil & Gas E&P",
       "sector": "Energy",
       "type": "Stock"
     }
@@ -45669,7 +45669,7 @@
   },
   "LVWR": {
     "info": {
-      "industry": "Auto Manufacturers",
+      "industry": "Recreational Vehicles",
       "sector": "Consumer Cyclical",
       "type": "Stock"
     }
@@ -46243,8 +46243,8 @@
   },
   "MBAI": {
     "info": {
-      "industry": "Diagnostics & Research",
-      "sector": "Healthcare",
+      "industry": "Software - Infrastructure",
+      "sector": "Technology",
       "type": "Stock"
     }
   },
@@ -50394,8 +50394,8 @@
   },
   "NAGE": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "Packaged Foods",
+      "sector": "Consumer Defensive",
       "type": "Stock"
     }
   },
@@ -50928,13 +50928,6 @@
     "info": {
       "industry": "Packaged Foods",
       "sector": "Consumer Defensive",
-      "type": "Stock"
-    }
-  },
-  "NCSM": {
-    "info": {
-      "industry": "Oil & Gas Equipment & Services",
-      "sector": "Energy",
       "type": "Stock"
     }
   },
@@ -52312,8 +52305,8 @@
   },
   "NPT": {
     "info": {
-      "industry": "Specialty Retail",
-      "sector": "Consumer Cyclical",
+      "industry": "Chemicals",
+      "sector": "Basic Materials",
       "type": "Stock"
     }
   },
@@ -52471,10 +52464,31 @@
       "type": "Stock"
     }
   },
+  "NSAI": {
+    "info": {
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "NSAIR": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "NSAIU": {
     "info": {
       "industry": "Shell Companies",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "NSAIW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -53649,7 +53663,7 @@
   },
   "NYXH": {
     "info": {
-      "industry": "Medical Instruments & Supplies",
+      "industry": "Medical Devices",
       "sector": "Healthcare",
       "type": "Stock"
     }
@@ -54839,8 +54853,8 @@
   },
   "OPAL": {
     "info": {
-      "industry": "Utilities - Regulated Gas",
-      "sector": "Utilities",
+      "industry": "Engineering & Construction",
+      "sector": "Industrials",
       "type": "Stock"
     }
   },
@@ -59809,8 +59823,8 @@
   },
   "PTRN": {
     "info": {
-      "industry": "Software - Application",
-      "sector": "Technology",
+      "industry": "Internet Retail",
+      "sector": "Consumer Cyclical",
       "type": "Stock"
     }
   },
@@ -67185,6 +67199,13 @@
       "type": "ETF"
     }
   },
+  "SKHQ": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "SKHU": {
     "info": {
       "industry": "ETF",
@@ -74215,7 +74236,7 @@
   },
   "TREE": {
     "info": {
-      "industry": "Financial Conglomerates",
+      "industry": "Insurance Brokers",
       "sector": "Financial Services",
       "type": "Stock"
     }
@@ -74509,8 +74530,8 @@
   },
   "TRUG": {
     "info": {
-      "industry": "Leisure",
-      "sector": "Consumer Cyclical",
+      "industry": "Electronic Gaming & Multimedia",
+      "sector": "Communication Services",
       "type": "Stock"
     }
   },
@@ -75034,8 +75055,8 @@
   },
   "TTI": {
     "info": {
-      "industry": "Conglomerates",
-      "sector": "Industrials",
+      "industry": "Oil & Gas Equipment & Services",
+      "sector": "Energy",
       "type": "Stock"
     }
   },
@@ -75419,7 +75440,7 @@
   },
   "TXG": {
     "info": {
-      "industry": "Health Information Services",
+      "industry": "Medical Devices",
       "sector": "Healthcare",
       "type": "Stock"
     }
@@ -75744,6 +75765,13 @@
       "industry": "Banks - Regional",
       "sector": "Financial Services",
       "type": "Stock"
+    }
+  },
+  "UCBG": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
     }
   },
   "UCC": {
@@ -78833,6 +78861,13 @@
       "type": "ETF"
     }
   },
+  "VOOY": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "VOR": {
     "info": {
       "industry": "Biotechnology",
@@ -79850,8 +79885,8 @@
   },
   "WBX": {
     "info": {
-      "industry": "Electronic Components",
-      "sector": "Technology",
+      "industry": "Electrical Equipment & Parts",
+      "sector": "Industrials",
       "type": "Stock"
     }
   },
@@ -83061,6 +83096,13 @@
       "type": "ETF"
     }
   },
+  "YFOR": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "YGLD": {
     "info": {
       "industry": "ETF",
@@ -83383,13 +83425,6 @@
       "type": "Stock"
     }
   },
-  "YYGH": {
-    "info": {
-      "industry": "Specialty Business Services",
-      "sector": "Industrials",
-      "type": "Stock"
-    }
-  },
   "YYY": {
     "info": {
       "industry": "ETF",
@@ -83693,7 +83728,7 @@
   },
   "ZJK": {
     "info": {
-      "industry": "Specialty Industrial Machinery",
+      "industry": "Tools & Accessories",
       "sector": "Industrials",
       "type": "Stock"
     }
@@ -83899,13 +83934,6 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
-    }
-  },
-  "ZTEK": {
-    "info": {
-      "industry": "Medical Instruments & Supplies",
-      "sector": "Healthcare",
-      "type": "Stock"
     }
   },
   "ZTEN": {
