@@ -1,14 +1,12 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-09-02 16:31:04 EDT
+Run Date: 2026-09-03 16:27:13 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-02 20:21:38
-Successful: 1879 | Skipped: 1 | Failed: 0
---- Skipped Tickers ---
-DIVH: Too few valid rows: 1
+FINAL SUMMARY - Partition finished at 2026-09-03 20:21:03
+Successful: 1823 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -16,10 +14,9 @@ DIVH: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-02 20:21:54
-Successful: 1878 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-03 20:21:53
+Successful: 1822 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-HXF: Too few valid rows: 1
 ISRL: Too few valid rows: 1
 ================================================================================
 
@@ -28,8 +25,8 @@ ISRL: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-02 20:28:19
-Successful: 1880 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-03 20:22:00
+Successful: 1823 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -37,11 +34,10 @@ Successful: 1880 | Skipped: 0 | Failed: 0
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-02 20:22:47
-Successful: 1880 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-03 20:24:02
+Successful: 1825 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-UCBG: Too few valid rows: 1
-VOOY: Too few valid rows: 1
+TSCZ: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 3 ===
