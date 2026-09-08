@@ -1,12 +1,12 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-09-04 16:09:44 EDT
+Run Date: 2026-09-08 16:29:45 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-04 20:06:47
-Successful: 1887 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-08 20:24:20
+Successful: 1885 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -14,10 +14,8 @@ Successful: 1887 | Skipped: 0 | Failed: 0
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-04 20:05:46
-Successful: 1886 | Skipped: 1 | Failed: 0
---- Skipped Tickers ---
-HQDG: Too few valid rows: 1
+FINAL SUMMARY - Partition finished at 2026-09-08 20:24:20
+Successful: 1885 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -25,8 +23,8 @@ HQDG: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-04 20:05:39
-Successful: 1886 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-08 20:24:16
+Successful: 1884 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
 PJIN: Too few valid rows: 1
 ================================================================================
@@ -36,7 +34,7 @@ PJIN: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-04 20:05:41
+FINAL SUMMARY - Partition finished at 2026-09-08 20:26:51
 Successful: 1888 | Skipped: 0 | Failed: 0
 ================================================================================
 
