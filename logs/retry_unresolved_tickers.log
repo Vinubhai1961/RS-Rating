@@ -15701,3 +15701,426 @@
 2026-09-08 20:07:23,785 [INFO] Sample skipped excluded: []
 2026-09-08 20:07:23,785 [INFO] Sample still unresolved: ['FNGD', 'FNGO', 'FOXXW', 'FSHPR', 'FSSL', 'FTHAW', 'FUFUW', 'FUSEW', 'FVNNR', 'FWACR', 'FWACW', 'FXACW', 'GAING', 'GAINI', 'GAINZ', 'GCGRW', 'GCLWW', 'GECCG', 'GECCH', 'GECCI', 'GEGGL', 'GENVR', 'GFAIW', 'GFUZW', 'GGROW', 'GHXIW', 'GIBOW', 'GIWWR', 'GIXXR', 'GJH', 'GJO', 'GJP', 'GJR', 'GJS', 'GJT', 'GLNDW', 'GOODO', 'GOOGM', 'GOOGN', 'GPACW', 'GPATW', 'GPJA', 'GRABW', 'GREEL', 'GRMLW', 'GRN', 'GRRRW', 'GSHRW', 'GSRFR', 'GSRVR']
 2026-09-08 20:07:23,785 [INFO] ============================================================
+2026-09-09 19:59:33,599 [INFO] ============================================================
+2026-09-09 19:59:33,600 [INFO] RETRY UNRESOLVED TICKERS
+2026-09-09 19:59:33,600 [INFO] ============================================================
+2026-09-09 19:59:33,600 [INFO] ticker_info entries: 12013
+2026-09-09 19:59:33,600 [INFO] unresolved loaded: 514
+2026-09-09 19:59:33,600 [INFO] excluded loaded: 603
+2026-09-09 19:59:33,600 [INFO] ============================================================
+2026-09-09 19:59:34,515 [INFO] FNF recovered: sector=Financial Services | industry=Insurance - Specialty
+2026-09-09 19:59:38,732 [INFO] FNGR recovered: sector=Communication Services | industry=Telecom Services
+2026-09-09 19:59:39,492 [INFO] FNKO recovered: sector=Consumer Cyclical | industry=Leisure
+2026-09-09 19:59:40,033 [INFO] FNLC recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 19:59:41,615 [INFO] FNRN recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 19:59:42,191 [INFO] FNUC recovered: sector=Basic Materials | industry=Other Industrial Metals & Mining
+2026-09-09 19:59:42,849 [INFO] FNV recovered: sector=Basic Materials | industry=Gold
+2026-09-09 19:59:43,479 [INFO] FNWB recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 19:59:44,137 [INFO] FNWD recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 19:59:45,238 [INFO] FOA recovered: sector=Financial Services | industry=Credit Services
+2026-09-09 19:59:46,046 [INFO] FOCL recovered: sector=Healthcare | industry=Medical Distribution
+2026-09-09 19:59:46,760 [INFO] FOF recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 19:59:47,626 [INFO] FOFO recovered: sector=Industrials | industry=Consulting Services
+2026-09-09 19:59:48,394 [INFO] FOIL recovered: sector=Industrials | industry=Electrical Equipment & Parts
+2026-09-09 19:59:49,043 [INFO] FOR recovered: sector=Real Estate | industry=Real Estate - Development
+2026-09-09 19:59:49,793 [INFO] FORM recovered: sector=Technology | industry=Semiconductor Equipment & Materials
+2026-09-09 19:59:50,436 [INFO] FORR recovered: sector=Industrials | industry=Consulting Services
+2026-09-09 19:59:51,094 [INFO] FORTY recovered: sector=Technology | industry=Information Technology Services
+2026-09-09 19:59:51,683 [INFO] FOSL recovered: sector=Consumer Cyclical | industry=Footwear & Accessories
+2026-09-09 19:59:52,229 [INFO] FOUR recovered: sector=Technology | industry=Software - Infrastructure
+2026-09-09 19:59:53,333 [INFO] FOX recovered: sector=Communication Services | industry=Entertainment
+2026-09-09 19:59:53,948 [INFO] FOXA recovered: sector=Communication Services | industry=Entertainment
+2026-09-09 19:59:54,569 [INFO] FOXF recovered: sector=Consumer Cyclical | industry=Auto Parts
+2026-09-09 19:59:55,126 [INFO] FOXX recovered: sector=Technology | industry=Consumer Electronics
+2026-09-09 19:59:56,545 [INFO] FPF recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 19:59:57,171 [INFO] FPH recovered: sector=Real Estate | industry=Real Estate - Development
+2026-09-09 19:59:57,943 [INFO] FPI recovered: sector=Real Estate | industry=REIT - Specialty
+2026-09-09 19:59:59,012 [INFO] FPS recovered: sector=Industrials | industry=Electrical Equipment & Parts
+2026-09-09 19:59:59,680 [INFO] FR recovered: sector=Real Estate | industry=REIT - Industrial
+2026-09-09 20:00:00,802 [INFO] FRA recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:00:01,489 [INFO] FRAF recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:00:02,963 [INFO] FRBA recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:00:04,597 [INFO] FRBT recovered: sector=Financial Services | industry=Banks - Diversified
+2026-09-09 20:00:05,238 [INFO] FRD recovered: sector=Basic Materials | industry=Steel
+2026-09-09 20:00:05,991 [INFO] FRGT recovered: sector=Technology | industry=Software - Application
+2026-09-09 20:00:06,612 [INFO] FRHC recovered: sector=Financial Services | industry=Financial Conglomerates
+2026-09-09 20:00:07,464 [INFO] FRME recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:00:08,198 [INFO] FRMEP recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:00:09,042 [INFO] FRMI recovered: sector=Real Estate | industry=REIT - Specialty
+2026-09-09 20:00:10,117 [INFO] FRMM recovered: sector=Technology | industry=Software - Application
+2026-09-09 20:00:11,030 [INFO] FRNM recovered: sector=Healthcare | industry=Diagnostics & Research
+2026-09-09 20:00:11,607 [INFO] FRO recovered: sector=Energy | industry=Oil & Gas Midstream
+2026-09-09 20:00:12,262 [INFO] FROG recovered: sector=Technology | industry=Software - Application
+2026-09-09 20:00:12,910 [INFO] FRPH recovered: sector=Real Estate | industry=Real Estate Services
+2026-09-09 20:00:13,863 [INFO] FRPT recovered: sector=Consumer Defensive | industry=Packaged Foods
+2026-09-09 20:00:14,603 [INFO] FRSH recovered: sector=Technology | industry=Software - Application
+2026-09-09 20:00:15,703 [INFO] FRST recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:00:17,164 [INFO] FRSX recovered: sector=Consumer Cyclical | industry=Auto Parts
+2026-09-09 20:00:17,810 [INFO] FRT recovered: sector=Real Estate | industry=REIT - Retail
+2026-09-09 20:00:19,064 [INFO] FRTT recovered: sector=Consumer Cyclical | industry=Internet Retail
+2026-09-09 20:00:19,758 [INFO] FRVO recovered: sector=Utilities | industry=Utilities - Renewable
+2026-09-09 20:00:20,792 [INFO] FSBC recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:00:22,150 [INFO] FSBW recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:00:22,951 [INFO] FSCO recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:00:23,722 [INFO] FSEA recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:00:24,433 [INFO] FSHP recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:00:25,570 [INFO] FSHPU recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:00:26,209 [INFO] FSI recovered: sector=Basic Materials | industry=Specialty Chemicals
+2026-09-09 20:00:27,175 [INFO] FSK recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:00:27,858 [INFO] FSLR recovered: sector=Technology | industry=Solar
+2026-09-09 20:00:29,051 [INFO] FSLY recovered: sector=Technology | industry=Software - Application
+2026-09-09 20:00:29,804 [INFO] FSM recovered: sector=Basic Materials | industry=Gold
+2026-09-09 20:00:30,732 [INFO] FSP recovered: sector=Real Estate | industry=REIT - Office
+2026-09-09 20:00:31,487 [INFO] FSS recovered: sector=Industrials | industry=Farm & Heavy Construction Machinery
+2026-09-09 20:00:33,515 [INFO] FSTR recovered: sector=Industrials | industry=Railroads
+2026-09-09 20:00:34,220 [INFO] FSUN recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:00:34,977 [INFO] FSV recovered: sector=Real Estate | industry=Real Estate Services
+2026-09-09 20:00:35,988 [INFO] FT recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:00:36,549 [INFO] FTAI recovered: sector=Industrials | industry=Aerospace & Defense
+2026-09-09 20:00:37,291 [INFO] FTAIM recovered: sector=Industrials | industry=Aerospace & Defense
+2026-09-09 20:00:37,992 [INFO] FTCI recovered: sector=Technology | industry=Solar
+2026-09-09 20:00:38,816 [INFO] FTDR recovered: sector=Consumer Cyclical | industry=Personal Services
+2026-09-09 20:00:39,405 [INFO] FTEK recovered: sector=Industrials | industry=Pollution & Treatment Controls
+2026-09-09 20:00:40,507 [INFO] FTF recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:00:41,311 [INFO] FTFT recovered: sector=Technology | industry=Software - Application
+2026-09-09 20:00:42,354 [INFO] FTH recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:00:43,060 [INFO] FTHA recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:00:44,319 [INFO] FTHAU recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:00:45,938 [INFO] FTHM recovered: sector=Real Estate | industry=Real Estate Services
+2026-09-09 20:00:46,544 [INFO] FTHY recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:00:47,156 [INFO] FTI recovered: sector=Energy | industry=Oil & Gas Equipment & Services
+2026-09-09 20:00:47,850 [INFO] FTK recovered: sector=Energy | industry=Oil & Gas Equipment & Services
+2026-09-09 20:00:48,531 [INFO] FTLF recovered: sector=Consumer Defensive | industry=Packaged Foods
+2026-09-09 20:00:49,430 [INFO] FTNT recovered: sector=Technology | industry=Software - Infrastructure
+2026-09-09 20:00:50,198 [INFO] FTRA recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:00:50,871 [INFO] FTRE recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:00:51,491 [INFO] FTS recovered: sector=Utilities | industry=Utilities - Regulated Electric
+2026-09-09 20:00:52,106 [INFO] FTV recovered: sector=Technology | industry=Scientific & Technical Instruments
+2026-09-09 20:00:52,747 [INFO] FTW recovered: sector=Energy | industry=Oil & Gas E&P
+2026-09-09 20:00:53,485 [INFO] FUBO recovered: sector=Communication Services | industry=Broadcasting
+2026-09-09 20:00:54,131 [INFO] FUFU recovered: sector=Financial Services | industry=Capital Markets
+2026-09-09 20:00:55,755 [INFO] FUL recovered: sector=Basic Materials | industry=Specialty Chemicals
+2026-09-09 20:00:56,409 [INFO] FULC recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:00:57,192 [INFO] FULT recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:00:57,897 [INFO] FULTP recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:00:59,165 [INFO] FUN recovered: sector=Consumer Cyclical | industry=Leisure
+2026-09-09 20:01:00,923 [INFO] FUNC recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:01:02,142 [INFO] FUND recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:01:02,780 [INFO] FURY recovered: sector=Basic Materials | industry=Gold
+2026-09-09 20:01:05,191 [INFO] FUSB recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:01:05,802 [INFO] FUSE recovered: sector=Technology | industry=Software - Application
+2026-09-09 20:01:07,178 [INFO] FUTU recovered: sector=Financial Services | industry=Capital Markets
+2026-09-09 20:01:07,929 [INFO] FVAV recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:01:08,702 [INFO] FVCB recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:01:09,250 [INFO] FVN recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:01:10,505 [INFO] FVNNU recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:01:11,230 [INFO] FVR recovered: sector=Real Estate | industry=REIT - Diversified
+2026-09-09 20:01:12,118 [INFO] FVRR recovered: sector=Communication Services | industry=Internet Content & Information
+2026-09-09 20:01:13,196 [INFO] FWAC recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:01:14,499 [INFO] FWACU recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:01:15,838 [INFO] FWDI recovered: sector=Consumer Cyclical | industry=Footwear & Accessories
+2026-09-09 20:01:18,332 [INFO] FWRD recovered: sector=Industrials | industry=Integrated Freight & Logistics
+2026-09-09 20:01:19,393 [INFO] FWRG recovered: sector=Consumer Cyclical | industry=Restaurants
+2026-09-09 20:01:20,097 [INFO] FXAC recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:01:20,668 [INFO] FXACU recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:01:22,769 [INFO] FXHO recovered: sector=Technology | industry=Consumer Electronics
+2026-09-09 20:01:23,501 [INFO] FXNC recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:01:24,266 [INFO] G recovered: sector=Technology | industry=Information Technology Services
+2026-09-09 20:01:25,226 [INFO] GAB recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:01:25,994 [INFO] GABC recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:01:27,680 [INFO] GAIN recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:01:30,814 [INFO] GALT recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:01:31,918 [INFO] GAM recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:01:32,579 [INFO] GAME recovered: sector=Communication Services | industry=Electronic Gaming & Multimedia
+2026-09-09 20:01:33,865 [INFO] GANX recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:01:34,737 [INFO] GAP recovered: sector=Consumer Cyclical | industry=Apparel Retail
+2026-09-09 20:01:35,401 [INFO] GASS recovered: sector=Industrials | industry=Marine Shipping
+2026-09-09 20:01:36,543 [INFO] GATX recovered: sector=Industrials | industry=Rental & Leasing Services
+2026-09-09 20:01:38,034 [INFO] GAU recovered: sector=Basic Materials | industry=Gold
+2026-09-09 20:01:38,763 [INFO] GAUZ recovered: sector=Technology | industry=Electronic Components
+2026-09-09 20:01:39,411 [INFO] GBAB recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:01:40,180 [INFO] GBCI recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:02:07,542 [INFO] GSAT recovered: sector=Communication Services | industry=Telecom Services
+2026-09-09 20:02:08,363 [INFO] GSBC recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:02:08,970 [INFO] GSBD recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:02:09,664 [INFO] GSHD recovered: sector=Financial Services | industry=Insurance Brokers
+2026-09-09 20:02:10,407 [INFO] GSHR recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:02:11,182 [INFO] GSHRU recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:02:12,734 [INFO] GSIT recovered: sector=Technology | industry=Semiconductors
+2026-09-09 20:02:13,652 [INFO] GSIW recovered: sector=Financial Services | industry=Capital Markets
+2026-09-09 20:02:14,327 [INFO] GSK recovered: sector=Healthcare | industry=Drug Manufacturers - General
+2026-09-09 20:02:15,302 [INFO] GSL recovered: sector=Industrials | industry=Marine Shipping
+2026-09-09 20:02:16,276 [INFO] GSM recovered: sector=Basic Materials | industry=Other Industrial Metals & Mining
+2026-09-09 20:02:17,221 [INFO] GSRF recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:02:18,911 [INFO] GSRFU recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:02:19,953 [INFO] GSRV recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:02:23,414 [INFO] GSRVU recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:02:24,021 [INFO] GSUN recovered: sector=Consumer Defensive | industry=Education & Training Services
+2026-09-09 20:02:25,313 [INFO] GT recovered: sector=Consumer Cyclical | industry=Auto Parts
+2026-09-09 20:02:25,928 [INFO] GTBP recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:02:26,610 [INFO] GTE recovered: sector=Energy | industry=Oil & Gas E&P
+2026-09-09 20:02:27,169 [INFO] GTEC recovered: sector=Consumer Cyclical | industry=Auto Parts
+2026-09-09 20:02:27,753 [INFO] GTEN recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:02:28,424 [INFO] GTENU recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:02:31,794 [INFO] GTERU recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:02:34,290 [INFO] GTES recovered: sector=Industrials | industry=Specialty Industrial Machinery
+2026-09-09 20:02:34,932 [INFO] GTIM recovered: sector=Consumer Cyclical | industry=Restaurants
+2026-09-09 20:02:35,488 [INFO] GTLB recovered: sector=Technology | industry=Software - Infrastructure
+2026-09-09 20:02:36,248 [INFO] GTM recovered: sector=Technology | industry=Software - Application
+2026-09-09 20:02:36,892 [INFO] GTN recovered: sector=Communication Services | industry=Broadcasting
+2026-09-09 20:02:37,772 [INFO] GTX recovered: sector=Consumer Cyclical | industry=Auto Parts
+2026-09-09 20:02:38,509 [INFO] GTY recovered: sector=Real Estate | industry=REIT - Retail
+2026-09-09 20:02:39,340 [INFO] GUAC recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:02:39,982 [INFO] GUACU recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:02:41,345 [INFO] GUG recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:02:41,976 [INFO] GURE recovered: sector=Basic Materials | industry=Chemicals
+2026-09-09 20:02:43,234 [INFO] GUT recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:02:44,225 [INFO] GUTS recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:02:51,578 [INFO] GVA recovered: sector=Industrials | industry=Engineering & Construction
+2026-09-09 20:02:52,341 [INFO] GVH recovered: sector=Industrials | industry=Integrated Freight & Logistics
+2026-09-09 20:02:53,113 [INFO] GWAV recovered: sector=Industrials | industry=Waste Management
+2026-09-09 20:02:53,788 [INFO] GWH recovered: sector=Industrials | industry=Electrical Equipment & Parts
+2026-09-09 20:02:54,432 [INFO] GWRE recovered: sector=Technology | industry=Software - Application
+2026-09-09 20:02:55,012 [INFO] GWRS recovered: sector=Utilities | industry=Utilities - Regulated Water
+2026-09-09 20:02:55,612 [INFO] GWW recovered: sector=Industrials | industry=Industrial Distribution
+2026-09-09 20:02:56,326 [INFO] GXAI recovered: sector=Communication Services | industry=Electronic Gaming & Multimedia
+2026-09-09 20:02:56,909 [INFO] GXO recovered: sector=Industrials | industry=Integrated Freight & Logistics
+2026-09-09 20:02:58,064 [INFO] GYGY recovered: sector=Technology | industry=Software - Infrastructure
+2026-09-09 20:02:58,686 [INFO] GYRE recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:02:59,668 [INFO] GYRO recovered: sector=Real Estate | industry=Real Estate Services
+2026-09-09 20:03:00,464 [INFO] H recovered: sector=Consumer Cyclical | industry=Lodging
+2026-09-09 20:03:01,107 [INFO] HACQ recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:03:01,664 [INFO] HACQU recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:03:03,154 [INFO] HAE recovered: sector=Healthcare | industry=Medical Devices
+2026-09-09 20:03:04,103 [INFO] HAFC recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:03:04,777 [INFO] HAFN recovered: sector=Industrials | industry=Marine Shipping
+2026-09-09 20:03:05,481 [INFO] HAIN recovered: sector=Consumer Defensive | industry=Packaged Foods
+2026-09-09 20:03:06,058 [INFO] HAL recovered: sector=Energy | industry=Oil & Gas Equipment & Services
+2026-09-09 20:03:06,819 [INFO] HALO recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:03:07,967 [INFO] HAO recovered: sector=Communication Services | industry=Advertising Agencies
+2026-09-09 20:03:09,034 [INFO] HAPN recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:03:09,797 [INFO] HAS recovered: sector=Consumer Cyclical | industry=Leisure
+2026-09-09 20:03:10,425 [INFO] HASI recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:03:11,453 [INFO] HAVA recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:03:12,895 [INFO] HAVAU recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:03:13,638 [INFO] HAWK recovered: sector=Industrials | industry=Aerospace & Defense
+2026-09-09 20:03:14,434 [INFO] HAYW recovered: sector=Industrials | industry=Electrical Equipment & Parts
+2026-09-09 20:03:15,112 [INFO] HBAN recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:03:15,733 [INFO] HBANL recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:03:16,593 [INFO] HBANM recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:03:17,188 [INFO] HBANP recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:03:18,061 [INFO] HBANZ recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:03:18,742 [INFO] HBB recovered: sector=Consumer Cyclical | industry=Furnishings, Fixtures & Appliances
+2026-09-09 20:03:19,559 [INFO] HBCP recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:03:20,323 [INFO] HBIO recovered: sector=Healthcare | industry=Medical Instruments & Supplies
+2026-09-09 20:03:21,315 [INFO] HBM recovered: sector=Basic Materials | industry=Copper
+2026-09-09 20:03:22,043 [INFO] HBNB recovered: sector=Real Estate | industry=Real Estate Services
+2026-09-09 20:03:22,655 [INFO] HBNC recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:03:23,701 [INFO] HBT recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:03:24,321 [INFO] HCA recovered: sector=Healthcare | industry=Medical Care Facilities
+2026-09-09 20:03:24,910 [INFO] HCAC recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:03:26,605 [INFO] HCACU recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:03:27,375 [INFO] HCAI recovered: sector=Industrials | industry=Farm & Heavy Construction Machinery
+2026-09-09 20:03:28,033 [INFO] HCAT recovered: sector=Healthcare | industry=Health Information Services
+2026-09-09 20:03:28,758 [INFO] HCC recovered: sector=Basic Materials | industry=Coking Coal
+2026-09-09 20:03:29,398 [INFO] HCHL recovered: sector=Consumer Cyclical | industry=Restaurants
+2026-09-09 20:03:30,036 [INFO] HCI recovered: sector=Financial Services | industry=Insurance - Property & Casualty
+2026-09-09 20:03:30,657 [INFO] HCIC recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:03:32,342 [INFO] HCICU recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:03:33,285 [INFO] HCKT recovered: sector=Technology | industry=Information Technology Services
+2026-09-09 20:03:34,005 [INFO] HCM recovered: sector=Healthcare | industry=Drug Manufacturers - Specialty & Generic
+2026-09-09 20:03:35,206 [INFO] HCMA recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:03:36,213 [INFO] HCMAU recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:03:37,991 [INFO] HCSG recovered: sector=Healthcare | industry=Medical Care Facilities
+2026-09-09 20:03:38,887 [INFO] HCTI recovered: sector=Healthcare | industry=Health Information Services
+2026-09-09 20:03:39,596 [INFO] HCWB recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:03:40,248 [INFO] HCWC recovered: sector=Consumer Defensive | industry=Grocery Stores
+2026-09-09 20:03:41,982 [INFO] HD recovered: sector=Consumer Cyclical | industry=Home Improvement Retail
+2026-09-09 20:03:42,762 [INFO] HDB recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:03:43,804 [INFO] HDL recovered: sector=Consumer Cyclical | industry=Restaurants
+2026-09-09 20:03:44,450 [INFO] HDRN recovered: sector=Industrials | industry=Specialty Industrial Machinery
+2026-09-09 20:03:46,121 [INFO] HDSN recovered: sector=Basic Materials | industry=Specialty Chemicals
+2026-09-09 20:03:46,744 [INFO] HE recovered: sector=Utilities | industry=Utilities - Regulated Electric
+2026-09-09 20:03:47,432 [INFO] HEI recovered: sector=Industrials | industry=Aerospace & Defense
+2026-09-09 20:03:48,469 [INFO] HELE recovered: sector=Consumer Defensive | industry=Household & Personal Products
+2026-09-09 20:03:49,282 [INFO] HELP recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:03:50,036 [INFO] HEPS recovered: sector=Consumer Cyclical | industry=Internet Retail
+2026-09-09 20:03:50,629 [INFO] HEQ recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:03:51,214 [INFO] HERE recovered: sector=Consumer Cyclical | industry=Leisure
+2026-09-09 20:03:51,879 [INFO] HERZ recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:03:53,076 [INFO] HESM recovered: sector=Energy | industry=Oil & Gas Midstream
+2026-09-09 20:03:54,239 [INFO] HFBL recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:03:54,912 [INFO] HFFG recovered: sector=Consumer Defensive | industry=Food Distribution
+2026-09-09 20:03:55,746 [INFO] HFRO recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:03:56,811 [INFO] HFWA recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:03:58,288 [INFO] HG recovered: sector=Financial Services | industry=Insurance - Reinsurance
+2026-09-09 20:03:58,846 [INFO] HGBL recovered: sector=Financial Services | industry=Capital Markets
+2026-09-09 20:03:59,451 [INFO] HGLB recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:04:11,765 [INFO] IBIO recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:04:12,547 [INFO] IBKR recovered: sector=Financial Services | industry=Capital Markets
+2026-09-09 20:04:13,145 [INFO] IBM recovered: sector=Technology | industry=Information Technology Services
+2026-09-09 20:04:13,891 [INFO] IBN recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:04:14,513 [INFO] IBO recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:04:15,309 [INFO] IBOC recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:04:17,476 [INFO] IBP recovered: sector=Consumer Cyclical | industry=Residential Construction
+2026-09-09 20:04:18,271 [INFO] IBRX recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:04:18,952 [INFO] IBTA recovered: sector=Technology | industry=Software - Application
+2026-09-09 20:04:19,612 [INFO] ICCC recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:04:20,366 [INFO] ICCM recovered: sector=Healthcare | industry=Medical Devices
+2026-09-09 20:04:21,621 [INFO] ICE recovered: sector=Financial Services | industry=Financial Data & Stock Exchanges
+2026-09-09 20:04:22,352 [INFO] ICFI recovered: sector=Industrials | industry=Consulting Services
+2026-09-09 20:04:23,198 [INFO] ICG recovered: sector=Technology | industry=Computer Hardware
+2026-09-09 20:04:23,937 [INFO] ICHR recovered: sector=Technology | industry=Semiconductor Equipment & Materials
+2026-09-09 20:04:24,803 [INFO] ICL recovered: sector=Basic Materials | industry=Agricultural Inputs
+2026-09-09 20:04:25,318 [INFO] ICLR recovered: sector=Healthcare | industry=Diagnostics & Research
+2026-09-09 20:04:25,953 [INFO] ICMB recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:04:26,645 [INFO] ICON recovered: sector=Industrials | industry=Marine Shipping
+2026-09-09 20:04:27,265 [INFO] ICU recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:04:28,849 [INFO] ICUI recovered: sector=Healthcare | industry=Medical Instruments & Supplies
+2026-09-09 20:04:29,697 [INFO] IDA recovered: sector=Utilities | industry=Utilities - Regulated Electric
+2026-09-09 20:04:30,432 [INFO] IDAC recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:04:33,007 [INFO] IDAI recovered: sector=Technology | industry=Software - Application
+2026-09-09 20:04:33,608 [INFO] IDCC recovered: sector=Technology | industry=Software - Application
+2026-09-09 20:04:34,209 [INFO] IDE recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:04:34,787 [INFO] IDN recovered: sector=Technology | industry=Software - Application
+2026-09-09 20:04:35,404 [INFO] IDR recovered: sector=Basic Materials | industry=Gold
+2026-09-09 20:04:36,879 [INFO] IDT recovered: sector=Communication Services | industry=Telecom Services
+2026-09-09 20:04:37,933 [INFO] IDXX recovered: sector=Healthcare | industry=Diagnostics & Research
+2026-09-09 20:04:38,595 [INFO] IDYA recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:04:39,201 [INFO] IE recovered: sector=Basic Materials | industry=Copper
+2026-09-09 20:04:39,734 [INFO] IEAG recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:04:46,382 [INFO] IEAGU recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:04:47,352 [INFO] IEP recovered: sector=Energy | industry=Oil & Gas Refining & Marketing
+2026-09-09 20:04:48,026 [INFO] IESC recovered: sector=Industrials | industry=Engineering & Construction
+2026-09-09 20:04:48,684 [INFO] IEX recovered: sector=Industrials | industry=Specialty Industrial Machinery
+2026-09-09 20:04:49,287 [INFO] IFBD recovered: sector=Technology | industry=Software - Application
+2026-09-09 20:04:49,928 [INFO] IFF recovered: sector=Basic Materials | industry=Specialty Chemicals
+2026-09-09 20:04:50,586 [INFO] IFN recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:04:51,261 [INFO] IFRX recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:04:52,508 [INFO] IFS recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:04:53,534 [INFO] IGA recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:04:54,454 [INFO] IGAC recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:04:55,964 [INFO] IGACU recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:04:56,834 [INFO] IGC recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:04:57,731 [INFO] IGD recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:04:58,750 [INFO] IGI recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:04:59,533 [INFO] IGIC recovered: sector=Financial Services | industry=Insurance - Diversified
+2026-09-09 20:05:00,130 [INFO] IGR recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:05:11,565 [INFO] ITHA recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:05:12,156 [INFO] ITHAU recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:05:14,452 [INFO] ITIC recovered: sector=Financial Services | industry=Insurance - Specialty
+2026-09-09 20:05:15,619 [INFO] ITOC recovered: sector=Healthcare | industry=Medical Devices
+2026-09-09 20:05:16,225 [INFO] ITP recovered: sector=Basic Materials | industry=Paper & Paper Products
+2026-09-09 20:05:16,855 [INFO] ITRG recovered: sector=Basic Materials | industry=Other Precious Metals & Mining
+2026-09-09 20:05:17,547 [INFO] ITRI recovered: sector=Technology | industry=Scientific & Technical Instruments
+2026-09-09 20:05:18,199 [INFO] ITRN recovered: sector=Technology | industry=Scientific & Technical Instruments
+2026-09-09 20:05:19,298 [INFO] ITT recovered: sector=Industrials | industry=Specialty Industrial Machinery
+2026-09-09 20:05:20,511 [INFO] ITUB recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:05:21,188 [INFO] ITW recovered: sector=Industrials | industry=Specialty Industrial Machinery
+2026-09-09 20:05:21,820 [INFO] IVA recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:05:22,560 [INFO] IVDA recovered: sector=Industrials | industry=Security & Protection Services
+2026-09-09 20:05:23,851 [INFO] IVF recovered: sector=Healthcare | industry=Medical Devices
+2026-09-09 20:05:24,595 [INFO] IVR recovered: sector=Real Estate | industry=REIT - Mortgage
+2026-09-09 20:05:25,152 [INFO] IVT recovered: sector=Real Estate | industry=REIT - Retail
+2026-09-09 20:05:25,812 [INFO] IVVD recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:05:26,571 [INFO] IVZ recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:05:27,609 [INFO] IX recovered: sector=Financial Services | industry=Financial Conglomerates
+2026-09-09 20:05:28,376 [INFO] IXHL recovered: sector=Healthcare | industry=Drug Manufacturers - Specialty & Generic
+2026-09-09 20:05:29,177 [INFO] IZEA recovered: sector=Communication Services | industry=Advertising Agencies
+2026-09-09 20:05:29,796 [INFO] IZM recovered: sector=Technology | industry=Electronics & Computer Distribution
+2026-09-09 20:05:30,898 [INFO] J recovered: sector=Industrials | industry=Engineering & Construction
+2026-09-09 20:05:31,797 [INFO] JACK recovered: sector=Consumer Cyclical | industry=Restaurants
+2026-09-09 20:05:32,518 [INFO] JACS recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:05:33,112 [INFO] JAGU recovered: sector=Energy | industry=Uranium
+2026-09-09 20:05:33,954 [INFO] JAGX recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:05:35,167 [INFO] JAKK recovered: sector=Consumer Cyclical | industry=Leisure
+2026-09-09 20:05:35,896 [INFO] JAN recovered: sector=Real Estate | industry=REIT - Residential
+2026-09-09 20:05:36,623 [INFO] JANX recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:05:37,554 [INFO] JATT recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:05:38,148 [INFO] JAZZ recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:05:39,947 [INFO] JBDI recovered: sector=Consumer Cyclical | industry=Specialty Retail
+2026-09-09 20:05:40,710 [INFO] JBGS recovered: sector=Real Estate | industry=REIT - Diversified
+2026-09-09 20:05:41,283 [INFO] JBHT recovered: sector=Industrials | industry=Integrated Freight & Logistics
+2026-09-09 20:05:42,382 [INFO] JBI recovered: sector=Industrials | industry=Building Products & Equipment
+2026-09-09 20:05:43,581 [INFO] JBIO recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:05:45,307 [INFO] JBL recovered: sector=Technology | industry=Electronic Components
+2026-09-09 20:05:45,998 [INFO] JBLU recovered: sector=Industrials | industry=Airlines
+2026-09-09 20:05:46,644 [INFO] JBS recovered: sector=Consumer Defensive | industry=Packaged Foods
+2026-09-09 20:05:47,325 [INFO] JBSS recovered: sector=Consumer Defensive | industry=Packaged Foods
+2026-09-09 20:05:48,030 [INFO] JBTM recovered: sector=Industrials | industry=Specialty Industrial Machinery
+2026-09-09 20:05:48,709 [INFO] JCAP recovered: sector=Financial Services | industry=Credit Services
+2026-09-09 20:05:49,292 [INFO] JCE recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:05:49,877 [INFO] JCI recovered: sector=Industrials | industry=Building Products & Equipment
+2026-09-09 20:05:51,002 [INFO] JCSE recovered: sector=Industrials | industry=Specialty Industrial Machinery
+2026-09-09 20:05:51,685 [INFO] JCTC recovered: sector=Basic Materials | industry=Lumber & Wood Production
+2026-09-09 20:05:53,255 [INFO] JD recovered: sector=Consumer Cyclical | industry=Internet Retail
+2026-09-09 20:05:53,864 [INFO] JDZG recovered: sector=Consumer Defensive | industry=Education & Training Services
+2026-09-09 20:05:54,475 [INFO] JEF recovered: sector=Financial Services | industry=Capital Markets
+2026-09-09 20:05:55,357 [INFO] JELD recovered: sector=Industrials | industry=Building Products & Equipment
+2026-09-09 20:05:56,051 [INFO] JEM recovered: sector=Consumer Cyclical | industry=Apparel Retail
+2026-09-09 20:05:56,797 [INFO] JENA recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:05:58,551 [INFO] JF recovered: sector=Financial Services | industry=Credit Services
+2026-09-09 20:05:59,121 [INFO] JFIN recovered: sector=Financial Services | industry=Credit Services
+2026-09-09 20:05:59,875 [INFO] JFR recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:06:01,005 [INFO] JFU recovered: sector=Technology | industry=Information Technology Services
+2026-09-09 20:06:01,603 [INFO] JG recovered: sector=Technology | industry=Software - Application
+2026-09-09 20:06:02,256 [INFO] JGH recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:06:02,962 [INFO] JHI recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:06:03,632 [INFO] JHS recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:06:04,351 [INFO] JHX recovered: sector=Basic Materials | industry=Building Materials
+2026-09-09 20:06:04,960 [INFO] JILL recovered: sector=Consumer Cyclical | industry=Apparel Retail
+2026-09-09 20:06:05,839 [INFO] JJSF recovered: sector=Consumer Defensive | industry=Packaged Foods
+2026-09-09 20:06:06,611 [INFO] JKHY recovered: sector=Technology | industry=Information Technology Services
+2026-09-09 20:06:08,112 [INFO] JKS recovered: sector=Technology | industry=Solar
+2026-09-09 20:06:08,765 [INFO] JL recovered: sector=Consumer Cyclical | industry=Apparel Manufacturing
+2026-09-09 20:06:09,340 [INFO] JLHL recovered: sector=Industrials | industry=Building Products & Equipment
+2026-09-09 20:06:10,055 [INFO] JLL recovered: sector=Real Estate | industry=Real Estate Services
+2026-09-09 20:06:10,704 [INFO] JLS recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:06:11,513 [INFO] JMIA recovered: sector=Consumer Cyclical | industry=Internet Retail
+2026-09-09 20:06:13,383 [INFO] JMM recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:06:14,378 [INFO] JMSB recovered: sector=Financial Services | industry=Banks - Regional
+2026-09-09 20:06:15,104 [INFO] JNJ recovered: sector=Healthcare | industry=Drug Manufacturers - General
+2026-09-09 20:06:15,850 [INFO] JOB recovered: sector=Industrials | industry=Staffing & Employment Services
+2026-09-09 20:06:17,013 [INFO] JOBY recovered: sector=Industrials | industry=Airports & Air Services
+2026-09-09 20:06:17,653 [INFO] JOE recovered: sector=Real Estate | industry=Real Estate - Diversified
+2026-09-09 20:06:18,255 [INFO] JOF recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:06:20,847 [INFO] JONE recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:06:22,793 [INFO] JONEU recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:06:23,489 [INFO] JOUT recovered: sector=Consumer Cyclical | industry=Leisure
+2026-09-09 20:06:24,035 [INFO] JOYY recovered: sector=Communication Services | industry=Internet Content & Information
+2026-09-09 20:06:24,726 [INFO] JPC recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:06:25,523 [INFO] JPM recovered: sector=Financial Services | industry=Banks - Diversified
+2026-09-09 20:06:26,469 [INFO] JQC recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:06:27,524 [INFO] JRI recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:06:28,351 [INFO] JRS recovered: sector=Financial Services | industry=Asset Management
+2026-09-09 20:06:29,021 [INFO] JRSH recovered: sector=Consumer Cyclical | industry=Apparel Manufacturing
+2026-09-09 20:06:30,282 [INFO] JRVR recovered: sector=Financial Services | industry=Insurance - Specialty
+2026-09-09 20:06:31,547 [INFO] JSPR recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:06:33,004 [INFO] JTAI recovered: sector=Technology | industry=Software - Application
+2026-09-09 20:06:34,112 [INFO] JTTT recovered: sector=Financial Services | industry=Shell Companies
+2026-09-09 20:06:35,011 [INFO] JUNS recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:06:35,928 [INFO] JVA recovered: sector=Consumer Defensive | industry=Packaged Foods
+2026-09-09 20:06:36,654 [INFO] JWEL recovered: sector=Consumer Cyclical | industry=Internet Retail
+2026-09-09 20:06:37,270 [INFO] JXG recovered: sector=Consumer Cyclical | industry=Apparel Manufacturing
+2026-09-09 20:06:38,370 [INFO] JXN recovered: sector=Financial Services | industry=Insurance - Life
+2026-09-09 20:06:39,317 [INFO] JYD recovered: sector=Industrials | industry=Integrated Freight & Logistics
+2026-09-09 20:06:40,411 [INFO] JYNT recovered: sector=Healthcare | industry=Medical Care Facilities
+2026-09-09 20:06:41,070 [INFO] JZ recovered: sector=Technology | industry=Information Technology Services
+2026-09-09 20:06:41,840 [INFO] JZXN recovered: sector=Consumer Cyclical | industry=Auto & Truck Dealerships
+2026-09-09 20:06:42,531 [INFO] KAI recovered: sector=Industrials | industry=Specialty Industrial Machinery
+2026-09-09 20:06:43,155 [INFO] KALA recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:06:44,023 [INFO] KALU recovered: sector=Basic Materials | industry=Aluminum
+2026-09-09 20:06:44,674 [INFO] KAPA recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:06:45,567 [INFO] KARD recovered: sector=Healthcare | industry=Biotechnology
+2026-09-09 20:06:46,204 [INFO] KARO recovered: sector=Technology | industry=Software - Application
+2026-09-09 20:06:48,279 [INFO] ============================================================
+2026-09-09 20:06:48,279 [INFO] RETRY SUMMARY
+2026-09-09 20:06:48,279 [INFO] ============================================================
+2026-09-09 20:06:48,279 [INFO] Unresolved before retry: 514
+2026-09-09 20:06:48,279 [INFO] Recovered: 405
+2026-09-09 20:06:48,279 [INFO] Skipped because excluded: 0
+2026-09-09 20:06:48,279 [INFO] Still unresolved: 109
+2026-09-09 20:06:48,279 [INFO] Sample recovered: ['FNF', 'FNGR', 'FNKO', 'FNLC', 'FNRN', 'FNUC', 'FNV', 'FNWB', 'FNWD', 'FOA', 'FOCL', 'FOF', 'FOFO', 'FOIL', 'FOR', 'FORM', 'FORR', 'FORTY', 'FOSL', 'FOUR', 'FOX', 'FOXA', 'FOXF', 'FOXX', 'FPF', 'FPH', 'FPI', 'FPS', 'FR', 'FRA', 'FRAF', 'FRBA', 'FRBT', 'FRD', 'FRGT', 'FRHC', 'FRME', 'FRMEP', 'FRMI', 'FRMM', 'FRNM', 'FRO', 'FROG', 'FRPH', 'FRPT', 'FRSH', 'FRST', 'FRSX', 'FRT', 'FRTT']
+2026-09-09 20:06:48,279 [INFO] Sample skipped excluded: []
+2026-09-09 20:06:48,279 [INFO] Sample still unresolved: ['FNGD', 'FNGO', 'FOXXW', 'FSHPR', 'FSSL', 'FTHAW', 'FUFUW', 'FUSEW', 'FVNNR', 'FWACR', 'FWACW', 'FWONA', 'FWONK', 'FXACW', 'GAIA', 'GAING', 'GAINI', 'GAINZ', 'GCGRW', 'GCLWW', 'GECCG', 'GECCH', 'GECCI', 'GEGGL', 'GENVR', 'GFAIW', 'GFUZW', 'GGROW', 'GHXIW', 'GIBOW', 'GIWWR', 'GIXXR', 'GJH', 'GJO', 'GJP', 'GJR', 'GJS', 'GJT', 'GLNDW', 'GOODO', 'GOOGM', 'GOOGN', 'GPACW', 'GPATW', 'GPJA', 'GRABW', 'GREEL', 'GRMLW', 'GRN', 'GRRRW']
+2026-09-09 20:06:48,280 [INFO] ============================================================
