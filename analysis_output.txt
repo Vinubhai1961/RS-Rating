@@ -1,6 +1,6 @@
-Analysis of nasdaqtraded.txt (as of 2026-09-08 03:43:07):
+Analysis of nasdaqtraded.txt (as of 2026-09-09 03:48:03):
 
-1. Total Securities: 13189
+1. Total Securities: 13190
    - Represents the total number of securities listed across all exchanges in the file.
 
 2. Number of ETFs: 5656
@@ -8,9 +8,9 @@ Analysis of nasdaqtraded.txt (as of 2026-09-08 03:43:07):
 
 3. Security Type Breakdown:
 ETF                5656
-Common Stock       4010
-Other              2330
-Preferred Stock     445
+Common Stock       4007
+Other              2333
+Preferred Stock     446
 Warrant             406
 Other               342
    - Categorizes securities based on ETF status and keywords in Security Name (e.g., Common Stock, Preferred Stock). Top 5 types shown, others in 'Other'.
@@ -21,7 +21,7 @@ Other            5594
 NASDAQ           2935
 NYSE Arca        2729
 BATS             1616
-NYSE American     312
+NYSE American     313
 IEX                 3
    - Shows the distribution of securities across exchanges (e.g., NASDAQ, NYSE).
 
@@ -31,9 +31,9 @@ Exchange Name
 BATS                      2  1610      4                0     0        0
 IEX                       0     0      3                0     0        0
 NASDAQ                 1575    78    844              324    77       37
-NYSE American           179     0    103               17     6        7
+NYSE American           179     0    104               17     6        7
 NYSE Arca                 1  2710     14                1     3        0
-Other                  2253  1258   1360              103   256      362
+Other                  2250  1258   1362              104   256      362
    - Shows the count of each security type per exchange (e.g., ETFs on NASDAQ).
 
 6. NASDAQ Market Categories:
@@ -49,7 +49,7 @@ No distressed securities found.
 
 9. Top 5 Sectors:
 Sector
-Unknown       11389
+Unknown       11390
 Financial       623
 Technology      485
 Healthcare      340
@@ -72,9 +72,9 @@ Chart.js Pie Chart for Security Types:
   "data": {
     "labels": [
       "ETF: 5656",
-      "Common Stock: 4010",
-      "Other: 2330",
-      "Preferred Stock: 445",
+      "Common Stock: 4007",
+      "Other: 2333",
+      "Preferred Stock: 446",
       "Warrant: 406",
       "Other: 342"
     ],
@@ -82,9 +82,9 @@ Chart.js Pie Chart for Security Types:
       {
         "data": [
           5656,
-          4010,
-          2330,
-          445,
+          4007,
+          2333,
+          446,
           406,
           342
         ],
