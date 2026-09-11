@@ -1,16 +1,12 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-09-10 16:40:41 EDT
+Run Date: 2026-09-11 16:39:59 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-10 20:37:34
-Successful: 1875 | Skipped: 3 | Failed: 0
---- Skipped Tickers ---
-AIFR: Too few valid rows: 1
-AIMG: Too few valid rows: 1
-CRAM: Too few valid rows: 1
+FINAL SUMMARY - Partition finished at 2026-09-11 20:37:01
+Successful: 1879 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -18,8 +14,10 @@ CRAM: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-10 20:37:07
-Successful: 1878 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-11 20:33:51
+Successful: 1878 | Skipped: 1 | Failed: 0
+--- Skipped Tickers ---
+GEMQ: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -27,12 +25,10 @@ Successful: 1878 | Skipped: 0 | Failed: 0
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-10 20:35:37
-Successful: 1875 | Skipped: 3 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-11 20:34:03
+Successful: 1878 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-MFSD: Too few valid rows: 1
-MFSX: Too few valid rows: 1
-NRAM: Too few valid rows: 1
+MLCC: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -40,11 +36,8 @@ NRAM: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-10 20:35:36
-Successful: 1877 | Skipped: 2 | Failed: 0
---- Skipped Tickers ---
-VEEM: Too few valid rows: 1
-VEGX: Too few valid rows: 1
+FINAL SUMMARY - Partition finished at 2026-09-11 20:33:52
+Successful: 1882 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 3 ===
