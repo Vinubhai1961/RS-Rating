@@ -5188,8 +5188,8 @@
   },
   "ASBP": {
     "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
+      "industry": "Auto Parts",
+      "sector": "Consumer Cyclical",
       "type": "Stock"
     }
   },
@@ -5888,8 +5888,8 @@
   },
   "ATTT": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Household & Personal Products",
+      "sector": "Consumer Defensive",
       "type": "Stock"
     }
   },
@@ -10865,8 +10865,8 @@
   },
   "BRTM": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -30624,6 +30624,13 @@
       "type": "Stock"
     }
   },
+  "GEMQ": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "GEN": {
     "info": {
       "industry": "Software - Infrastructure",
@@ -34695,6 +34702,13 @@
     "info": {
       "industry": "Steel",
       "sector": "Basic Materials",
+      "type": "Stock"
+    }
+  },
+  "HLSQ": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -48096,6 +48110,13 @@
       "type": "Stock"
     }
   },
+  "MLCC": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "MLCI": {
     "info": {
       "industry": "Asset Management",
@@ -53495,8 +53516,8 @@
   },
   "NXAT": {
     "info": {
-      "industry": "Entertainment",
-      "sector": "Communication Services",
+      "industry": "Conglomerates",
+      "sector": "Industrials",
       "type": "Stock"
     }
   },
@@ -54032,10 +54053,31 @@
       "type": "ETF"
     }
   },
+  "OCLT": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
+  "OCLTR": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "OCLTU": {
     "info": {
       "industry": "Shell Companies",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "OCLTW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -57550,13 +57592,6 @@
     "info": {
       "industry": "Medical Devices",
       "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
-  "PHGE": {
-    "info": {
-      "industry": "Aerospace & Defense",
-      "sector": "Industrials",
       "type": "Stock"
     }
   },
