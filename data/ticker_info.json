@@ -482,6 +482,13 @@
       "type": "Stock"
     }
   },
+  "ABND": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "ABOS": {
     "info": {
       "industry": "Biotechnology",
@@ -1712,6 +1719,20 @@
       "industry": "Asset Management",
       "sector": "Financial Services",
       "type": "Stock"
+    }
+  },
+  "AFDM": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "AFEM": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
     }
   },
   "AFG": {
@@ -5575,13 +5596,6 @@
     "info": {
       "industry": "Semiconductor Equipment & Materials",
       "sector": "Technology",
-      "type": "Stock"
-    }
-  },
-  "ATAI": {
-    "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
       "type": "Stock"
     }
   },
@@ -11700,6 +11714,13 @@
     "info": {
       "industry": "Apparel Retail",
       "sector": "Consumer Cyclical",
+      "type": "Stock"
+    }
+  },
+  "BURU": {
+    "info": {
+      "industry": "Specialty Industrial Machinery",
+      "sector": "Industrials",
       "type": "Stock"
     }
   },
@@ -20271,6 +20292,13 @@
       "type": "ETF"
     }
   },
+  "DMXU": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "DNA": {
     "info": {
       "industry": "Biotechnology",
@@ -21693,13 +21721,6 @@
     }
   },
   "EART": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
-  "EASG": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
@@ -49909,13 +49930,6 @@
       "type": "ETF"
     }
   },
-  "MUSI": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
   "MUSQ": {
     "info": {
       "industry": "ETF",
@@ -51383,6 +51397,13 @@
     "info": {
       "industry": "Oil & Gas Midstream",
       "sector": "Energy",
+      "type": "Stock"
+    }
+  },
+  "NFEGP": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -62572,20 +62593,6 @@
       "type": "ETF"
     }
   },
-  "RFDI": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
-  "RFEM": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
   "RFFC": {
     "info": {
       "industry": "ETF",
@@ -73205,6 +73212,13 @@
       "type": "Stock"
     }
   },
+  "TIZE": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "TJAN": {
     "info": {
       "industry": "ETF",
@@ -73298,8 +73312,8 @@
   },
   "TLACU": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -83245,8 +83259,8 @@
   },
   "YFOR": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Specialty Business Services",
+      "sector": "Industrials",
       "type": "Stock"
     }
   },
