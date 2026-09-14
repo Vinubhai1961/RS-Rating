@@ -1,12 +1,16 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-09-11 16:39:59 EDT
+Run Date: 2026-09-14 17:40:32 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-11 20:37:01
-Successful: 1879 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-14 21:34:11
+Successful: 1871 | Skipped: 3 | Failed: 0
+--- Skipped Tickers ---
+AFDM: Too few valid rows: 1
+AFEM: Too few valid rows: 1
+DMXU: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -14,8 +18,8 @@ Successful: 1879 | Skipped: 0 | Failed: 0
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-11 20:33:51
-Successful: 1878 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-14 21:35:07
+Successful: 1873 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
 GEMQ: Too few valid rows: 1
 ================================================================================
@@ -25,10 +29,10 @@ GEMQ: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-11 20:34:03
-Successful: 1878 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-14 21:34:11
+Successful: 1873 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-MLCC: Too few valid rows: 1
+NFEGP: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -36,8 +40,10 @@ MLCC: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-11 20:33:52
-Successful: 1882 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-14 21:34:48
+Successful: 1876 | Skipped: 1 | Failed: 0
+--- Skipped Tickers ---
+TIZE: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 3 ===
