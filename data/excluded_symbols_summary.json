@@ -2,7 +2,7 @@
   "by_reason": {
     "autocallable": 29,
     "buffer": 429,
-    "covered call": 31,
+    "covered call": 29,
     "etn": 17,
     "income strategy": 46,
     "microsectors": 37,
@@ -404,11 +404,6 @@
       "reason": "buffer",
       "security_name": "Innovator Buffer Step-Up Strategy ETF",
       "symbol": "BSTP"
-    },
-    {
-      "reason": "covered call",
-      "security_name": "Grayscale Bitcoin Covered Call ETF",
-      "symbol": "BTCC"
     },
     {
       "reason": "buffer",
@@ -991,11 +986,6 @@
       "symbol": "EOCT"
     },
     {
-      "reason": "covered call",
-      "security_name": "Grayscale Ethereum Covered Call ETF",
-      "symbol": "ETCO"
-    },
-    {
       "reason": "etn",
       "security_name": "Leverage Shares 2X Long ETN Daily ETF",
       "symbol": "ETNG"
@@ -1009,7 +999,17 @@
       "reason": "buffer",
       "security_name": "FT Vest U.S. Equity Buffer ETF - August",
       "symbol": "FAUG"
+    },
+    {
+      "reason": "buffer",
+      "security_name": "ProShares S&P 500 Dynamic Buffer ETF",
+      "symbol": "FB"
+    },
+    {
+      "reason": "buffer",
+      "security_name": "Fidelity Dynamic Buffered Equity ETF",
+      "symbol": "FBUF"
     }
   ],
-  "total_excluded": 619
+  "total_excluded": 617
 }
