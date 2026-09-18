@@ -1,14 +1,15 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-09-17 17:11:35 EDT
+Run Date: 2026-09-18 16:38:39 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-17 21:08:45
-Successful: 1876 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-18 20:33:56
+Successful: 1877 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
-CGFS: Too few valid rows: 1
+ASSX: Too few valid rows: 1
+AT: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -16,10 +17,8 @@ CGFS: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-17 21:08:45
-Successful: 1876 | Skipped: 1 | Failed: 0
---- Skipped Tickers ---
-HUMM: Too few valid rows: 1
+FINAL SUMMARY - Partition finished at 2026-09-18 20:31:00
+Successful: 1879 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -27,9 +26,11 @@ HUMM: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-17 21:07:16
-Successful: 1876 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-18 20:30:37
+Successful: 1876 | Skipped: 3 | Failed: 0
 --- Skipped Tickers ---
+LPSV: Too few valid rows: 1
+MNGZ: Too few valid rows: 1
 PWRX: Too few valid rows: 1
 ================================================================================
 
@@ -38,11 +39,9 @@ PWRX: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-17 21:07:15
-Successful: 1877 | Skipped: 3 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-18 20:35:41
+Successful: 1880 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-TDNA: Too few valid rows: 1
-TMID: Too few valid rows: 1
 TSEE: Too few valid rows: 1
 ================================================================================
 
