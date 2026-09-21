@@ -1,15 +1,14 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-09-18 16:38:39 EDT
+Run Date: 2026-09-21 17:54:20 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-18 20:33:56
-Successful: 1877 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-21 21:48:36
+Successful: 1885 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-ASSX: Too few valid rows: 1
-AT: Too few valid rows: 1
+CTAG: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -17,8 +16,8 @@ AT: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-18 20:31:00
-Successful: 1879 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-21 21:51:29
+Successful: 1886 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -26,10 +25,9 @@ Successful: 1879 | Skipped: 0 | Failed: 0
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-18 20:30:37
-Successful: 1876 | Skipped: 3 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-21 21:48:35
+Successful: 1884 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
-LPSV: Too few valid rows: 1
 MNGZ: Too few valid rows: 1
 PWRX: Too few valid rows: 1
 ================================================================================
@@ -39,10 +37,10 @@ PWRX: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-18 20:35:41
-Successful: 1880 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-21 21:48:22
+Successful: 1888 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-TSEE: Too few valid rows: 1
+SECA: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 3 ===
