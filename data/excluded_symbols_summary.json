@@ -1,7 +1,7 @@
 {
   "by_reason": {
     "autocallable": 29,
-    "buffer": 429,
+    "buffer": 431,
     "covered call": 29,
     "etn": 17,
     "income strategy": 46,
@@ -901,6 +901,11 @@
       "symbol": "DQJN"
     },
     {
+      "reason": "buffer",
+      "security_name": "FT Vest Nasdaq-100 Dual Directional Buffer ETF - September",
+      "symbol": "DQSE"
+    },
+    {
       "reason": "income strategy",
       "security_name": "YieldMax DKNG Option Income Strategy ETF",
       "symbol": "DRAY"
@@ -1004,12 +1009,7 @@
       "reason": "buffer",
       "security_name": "ProShares S&P 500 Dynamic Buffer ETF",
       "symbol": "FB"
-    },
-    {
-      "reason": "buffer",
-      "security_name": "Fidelity Dynamic Buffered Equity ETF",
-      "symbol": "FBUF"
     }
   ],
-  "total_excluded": 617
+  "total_excluded": 619
 }
