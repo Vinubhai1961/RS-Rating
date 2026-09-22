@@ -1,12 +1,12 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-09-21 17:54:20 EDT
+Run Date: 2026-09-22 17:06:06 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-21 21:48:36
-Successful: 1885 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-22 21:03:00
+Successful: 1891 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
 CTAG: Too few valid rows: 1
 ================================================================================
@@ -16,8 +16,10 @@ CTAG: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-21 21:51:29
-Successful: 1886 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-22 21:02:19
+Successful: 1891 | Skipped: 1 | Failed: 0
+--- Skipped Tickers ---
+GCPU: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -25,11 +27,11 @@ Successful: 1886 | Skipped: 0 | Failed: 0
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-21 21:48:35
-Successful: 1884 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-22 21:01:57
+Successful: 1890 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
-MNGZ: Too few valid rows: 1
 PWRX: Too few valid rows: 1
+QQQB: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -37,10 +39,10 @@ PWRX: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-21 21:48:22
-Successful: 1888 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-22 21:03:16
+Successful: 1893 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-SECA: Too few valid rows: 1
+VOOB: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 3 ===
