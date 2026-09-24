@@ -1,14 +1,14 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-09-23 17:15:57 EDT
+Run Date: 2026-09-24 17:21:43 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-23 21:12:10
-Successful: 1231 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-24 21:18:07
+Successful: 1883 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-CTAG: Too few valid rows: 1
+DCAP: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -16,10 +16,11 @@ CTAG: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-23 21:13:19
-Successful: 1231 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-24 21:17:48
+Successful: 1882 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
 ENRG: Too few valid rows: 1
+HWMV: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -27,10 +28,9 @@ ENRG: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-23 21:13:18
-Successful: 1230 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-24 21:17:47
+Successful: 1883 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-NECK: Too few valid rows: 1
 PWRX: Too few valid rows: 1
 ================================================================================
 
@@ -39,13 +39,13 @@ PWRX: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-23 21:13:22
-Successful: 1229 | Skipped: 4 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-24 21:18:49
+Successful: 1882 | Skipped: 4 | Failed: 0
 --- Skipped Tickers ---
-SECA: Too few valid rows: 1
-TXCA: Too few valid rows: 1
-TXNY: Too few valid rows: 1
-XVAD: Too few valid rows: 1
+TORK: Too few valid rows: 1
+XVAZ: Too few valid rows: 1
+XVGL: Too few valid rows: 1
+XVMT: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 3 ===
