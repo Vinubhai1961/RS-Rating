@@ -1,14 +1,12 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-09-28 19:09:35 EDT
+Run Date: 2026-09-29 18:04:03 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-28 23:06:38
-Successful: 1878 | Skipped: 1 | Failed: 0
---- Skipped Tickers ---
-CTAG: Too few valid rows: 1
+FINAL SUMMARY - Partition finished at 2026-09-29 22:00:29
+Successful: 1880 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -16,8 +14,10 @@ CTAG: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-28 23:06:35
-Successful: 1879 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-29 22:01:06
+Successful: 1879 | Skipped: 1 | Failed: 0
+--- Skipped Tickers ---
+ICMO: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -25,12 +25,11 @@ Successful: 1879 | Skipped: 0 | Failed: 0
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-28 23:06:51
-Successful: 1875 | Skipped: 4 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-29 22:01:09
+Successful: 1877 | Skipped: 3 | Failed: 0
 --- Skipped Tickers ---
 MGIN: Too few valid rows: 1
-PBUB: Too few valid rows: 1
-PFRX: Too few valid rows: 1
+NRR: Too few valid rows: 1
 PWRX: Too few valid rows: 1
 ================================================================================
 
@@ -39,7 +38,7 @@ PWRX: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-28 23:06:17
+FINAL SUMMARY - Partition finished at 2026-09-29 22:01:03
 Successful: 1882 | Skipped: 0 | Failed: 0
 ================================================================================
 
