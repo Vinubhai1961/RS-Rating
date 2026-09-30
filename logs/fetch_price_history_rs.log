@@ -1,12 +1,16 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-09-29 18:04:03 EDT
+Run Date: 2026-09-30 18:04:00 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-29 22:00:29
-Successful: 1880 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-30 22:01:02
+Successful: 1880 | Skipped: 3 | Failed: 0
+--- Skipped Tickers ---
+ACCV: Too few valid rows: 1
+ACIG: Too few valid rows: 1
+CTAG: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -14,10 +18,12 @@ Successful: 1880 | Skipped: 0 | Failed: 0
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-29 22:01:06
-Successful: 1879 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-30 22:01:07
+Successful: 1880 | Skipped: 3 | Failed: 0
 --- Skipped Tickers ---
+ENHE: Too few valid rows: 1
 ICMO: Too few valid rows: 1
+JQTY: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -25,11 +31,10 @@ ICMO: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-29 22:01:09
-Successful: 1877 | Skipped: 3 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-30 22:00:54
+Successful: 1881 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
 MGIN: Too few valid rows: 1
-NRR: Too few valid rows: 1
 PWRX: Too few valid rows: 1
 ================================================================================
 
@@ -38,8 +43,10 @@ PWRX: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-09-29 22:01:03
-Successful: 1882 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-09-30 22:01:09
+Successful: 1882 | Skipped: 1 | Failed: 0
+--- Skipped Tickers ---
+RZAI: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 3 ===
