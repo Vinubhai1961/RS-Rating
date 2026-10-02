@@ -1,15 +1,14 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-10-01 18:32:50 EDT
+Run Date: 2026-10-02 18:01:01 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-10-01 22:29:00
-Successful: 1880 | Skipped: 3 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-10-02 21:56:19
+Successful: 1884 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
-ACIG: Too few valid rows: 1
-AVNC: Too few valid rows: 1
+BCOM: Too few valid rows: 1
 CTAG: Too few valid rows: 1
 ================================================================================
 
@@ -18,8 +17,8 @@ CTAG: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-10-01 22:28:51
-Successful: 1883 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-10-02 21:56:07
+Successful: 1886 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -27,10 +26,11 @@ Successful: 1883 | Skipped: 0 | Failed: 0
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-10-01 22:28:26
-Successful: 1881 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-10-02 21:56:17
+Successful: 1883 | Skipped: 3 | Failed: 0
 --- Skipped Tickers ---
-LLMA: Too few valid rows: 1
+MMEDV: Too few valid rows: 1
+MN: Too few valid rows: 1
 PWRX: Too few valid rows: 1
 ================================================================================
 
@@ -39,12 +39,8 @@ PWRX: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-10-01 22:29:59
-Successful: 1880 | Skipped: 3 | Failed: 0
---- Skipped Tickers ---
-TDEM: Too few valid rows: 1
-TRIL: Too few valid rows: 1
-VYLR: Too few valid rows: 1
+FINAL SUMMARY - Partition finished at 2026-10-02 21:58:22
+Successful: 1888 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 3 ===
