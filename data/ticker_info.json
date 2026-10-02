@@ -7825,6 +7825,13 @@
       "type": "Stock"
     }
   },
+  "BCOM": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "BCOR": {
     "info": {
       "industry": "ETF",
@@ -14687,8 +14694,8 @@
   },
   "CHWM": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Other Industrial Metals & Mining",
+      "sector": "Basic Materials",
       "type": "Stock"
     }
   },
@@ -16075,27 +16082,6 @@
     "info": {
       "industry": "Beverages - Non-Alcoholic",
       "sector": "Consumer Defensive",
-      "type": "Stock"
-    }
-  },
-  "COLA": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "COLAR": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
-    }
-  },
-  "COLAU": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -26839,7 +26825,7 @@
   },
   "FFR": {
     "info": {
-      "industry": "Software - Infrastructure",
+      "industry": "Computer Hardware",
       "sector": "Technology",
       "type": "Stock"
     }
@@ -28944,13 +28930,6 @@
       "type": "ETF"
     }
   },
-  "FSEA": {
-    "info": {
-      "industry": "Banks - Regional",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
   "FSEC": {
     "info": {
       "industry": "ETF",
@@ -30971,13 +30950,6 @@
     "info": {
       "industry": "Security & Protection Services",
       "sector": "Industrials",
-      "type": "Stock"
-    }
-  },
-  "GFAIW": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -43191,7 +43163,7 @@
   },
   "KSCP": {
     "info": {
-      "industry": "Building Products & Equipment",
+      "industry": "Security & Protection Services",
       "sector": "Industrials",
       "type": "Stock"
     }
@@ -48663,6 +48635,13 @@
       "type": "Stock"
     }
   },
+  "MN": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "MNA": {
     "info": {
       "industry": "ETF",
@@ -52912,10 +52891,10 @@
       "type": "Stock"
     }
   },
-  "NSTS": {
+  "NSTR": {
     "info": {
-      "industry": "Banks - Regional",
-      "sector": "Financial Services",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -55357,8 +55336,8 @@
   },
   "OPNW": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Information Technology Services",
+      "sector": "Technology",
       "type": "Stock"
     }
   },
@@ -60334,8 +60313,8 @@
   },
   "PUSA": {
     "info": {
-      "industry": "Leisure",
-      "sector": "Consumer Cyclical",
+      "industry": "Aerospace & Defense",
+      "sector": "Industrials",
       "type": "Stock"
     }
   },
@@ -65215,6 +65194,13 @@
     "info": {
       "industry": "Software - Infrastructure",
       "sector": "Technology",
+      "type": "Stock"
+    }
+  },
+  "SAIQ": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -73247,13 +73233,6 @@
       "type": "Stock"
     }
   },
-  "THRMV": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
-    }
-  },
   "THRO": {
     "info": {
       "industry": "ETF",
@@ -77937,13 +77916,6 @@
       "type": "Stock"
     }
   },
-  "VACI": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
   "VAI": {
     "info": {
       "industry": "Rental & Leasing Services",
@@ -80193,8 +80165,8 @@
   },
   "VYLR": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
