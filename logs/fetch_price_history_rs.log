@@ -1,14 +1,13 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-10-02 18:01:01 EDT
+Run Date: 2026-10-05 19:56:33 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-10-02 21:56:19
-Successful: 1884 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-10-05 23:53:16
+Successful: 1886 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-BCOM: Too few valid rows: 1
 CTAG: Too few valid rows: 1
 ================================================================================
 
@@ -17,8 +16,8 @@ CTAG: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-10-02 21:56:07
-Successful: 1886 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-10-05 23:50:34
+Successful: 1887 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -26,11 +25,12 @@ Successful: 1886 | Skipped: 0 | Failed: 0
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-10-02 21:56:17
-Successful: 1883 | Skipped: 3 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-10-05 23:53:42
+Successful: 1883 | Skipped: 4 | Failed: 0
 --- Skipped Tickers ---
+MLRG: Too few valid rows: 1
 MMEDV: Too few valid rows: 1
-MN: Too few valid rows: 1
+MSML: Too few valid rows: 1
 PWRX: Too few valid rows: 1
 ================================================================================
 
@@ -39,8 +39,10 @@ PWRX: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-10-02 21:58:22
-Successful: 1888 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-10-05 23:52:39
+Successful: 1887 | Skipped: 1 | Failed: 0
+--- Skipped Tickers ---
+RWAYM: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 3 ===
