@@ -1,6 +1,6 @@
 {
   "by_reason": {
-    "autocallable": 30,
+    "autocallable": 31,
     "buffer": 433,
     "covered call": 29,
     "etn": 17,
@@ -59,6 +59,11 @@
       "reason": "autocallable",
       "security_name": "ProShares S&P 500 Autocallable Income ETF",
       "symbol": "ACSP"
+    },
+    {
+      "reason": "autocallable",
+      "security_name": "FT Vest Laddered Autocallable Buffer & Resilient Income ETF",
+      "symbol": "ACYB"
     },
     {
       "reason": "autocallable",
@@ -1004,12 +1009,7 @@
       "reason": "buffer",
       "security_name": "FT Vest U.S. Equity Buffer ETF - August",
       "symbol": "FAUG"
-    },
-    {
-      "reason": "buffer",
-      "security_name": "ProShares S&P 500 Dynamic Buffer ETF",
-      "symbol": "FB"
     }
   ],
-  "total_excluded": 623
+  "total_excluded": 624
 }
