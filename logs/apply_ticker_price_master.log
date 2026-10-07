@@ -26386,3 +26386,366 @@
 2026-10-06 22:19:31,947 [INFO] C tickers: CHTRP
 2026-10-06 22:19:31,947 [INFO] D count: 0
 2026-10-06 22:19:31,947 [INFO] D tickers: (none)
+2026-10-07 22:44:10,695 [INFO] Loaded problematic exclusion tickers: 156
+2026-10-07 22:44:10,704 [INFO] ============================================================
+2026-10-07 22:44:10,704 [INFO] PROBLEMATIC TICKER EXCLUSION SUMMARY
+2026-10-07 22:44:10,704 [INFO] ============================================================
+2026-10-07 22:44:10,704 [INFO] Rows before exclusion: 5860
+2026-10-07 22:44:10,704 [INFO] Problematic tickers loaded: 156
+2026-10-07 22:44:10,704 [INFO] Excluded tickers count: 95
+2026-10-07 22:44:10,704 [INFO] Rows after exclusion: 5765
+2026-10-07 22:44:10,704 [INFO] Excluded tickers: ['ABXL', 'ADAMG', 'ADAMI', 'ADAMO', 'AEFC', 'AFGB', 'AFGC', 'AFGD', 'AFGE', 'AIZN', 'AMUB', 'AOMD', 'APOS', 'AQNB', 'ASBA', 'ATHS', 'ATLCL', 'ATMP', 'BIPH', 'BIPI', 'BIPJ', 'CCZ', 'CGABL', 'CICB', 'CICC', 'CIMO', 'CIMP', 'CMSA', 'CMSC', 'CMSD', 'CORZZ', 'CRBD', 'CTHH', 'CUBB', 'DCBG', 'DGP', 'DHCNI', 'DHCNL', 'DJP', 'DTG', 'DTK', 'DTW', 'DUKB', 'EAI', 'ECCV', 'FGN', 'FGSN', 'FNGD', 'FNGO', 'GECCH', 'GECCI', 'GEGGL', 'GPJA', 'GREEL', 'GRN', 'HCXY', 'HTFC', 'HWCPZ', 'INBKZ', 'JSM', 'METCI', 'METCZ', 'MFAN', 'MFICL', 'NEWTH', 'NEWTI', 'NEWTO', 'NRUC', 'OXSQG', 'OXSQH', 'PFLA', 'PFXNZ', 'PMTV', 'PMTW', 'PRH', 'PRHIZ', 'PRS', 'RCD', 'RILYG', 'RILYT', 'RILYZ', 'SFB', 'SOJC', 'SOJD', 'SOJE', 'SOJF', 'SWKHL', 'TBB', 'TCPA', 'VXX', 'VXZ', 'WHFCL', 'WHLRL', 'WLDSW', 'XELLL']
+2026-10-07 22:44:10,704 [INFO] ============================================================
+2026-10-07 22:44:10,770 [INFO] ============================================================
+2026-10-07 22:44:10,770 [INFO] APPLY TICKER PRICE MASTER SUMMARY
+2026-10-07 22:44:10,770 [INFO] ============================================================
+2026-10-07 22:44:10,770 [INFO] Mode: FILL MISSING ONLY + EXCLUDE PROBLEMATIC TICKERS
+2026-10-07 22:44:10,770 [INFO] ticker_price rows before exclusion: 5860
+2026-10-07 22:44:10,770 [INFO] ticker_price rows after exclusion: 5765
+2026-10-07 22:44:10,771 [INFO] matched master tickers: 2123
+2026-10-07 22:44:10,771 [INFO] coverage before exclusion: 36.23%
+2026-10-07 22:44:10,771 [INFO] missing in master: 3737
+2026-10-07 22:44:10,771 [INFO] duplicate ticker_price rows: 0
+2026-10-07 22:44:10,771 [INFO] sector filled: 128
+2026-10-07 22:44:10,771 [INFO] industry filled: 128
+2026-10-07 22:44:10,771 [INFO] type filled: 0
+2026-10-07 22:44:10,771 [INFO] sector mismatches report-only: 1943
+2026-10-07 22:44:10,771 [INFO] industry mismatches report-only: 1764
+2026-10-07 22:44:10,771 [INFO] type count before: {'Stock': 2248, 'ETF': 3612}
+2026-10-07 22:44:10,771 [INFO] type count after: {'Stock': 2248, 'ETF': 3612}
+2026-10-07 22:44:10,771 [INFO] remaining blank/n-a sector: 5
+2026-10-07 22:44:10,771 [INFO] remaining blank/n-a industry: 5
+2026-10-07 22:44:10,771 [INFO] remaining bad type: 0
+2026-10-07 22:44:10,771 [INFO] sample missing in master: ['AAA', 'AAAA', 'AAAC', 'AAAD', 'AAAP', 'AAAU', 'AADR', 'AAEQ', 'AAPB', 'AAPE', 'AAPR', 'AAPU', 'AAPX', 'AAUA', 'AAUB', 'AAUS', 'AAVM', 'AAXJ', 'ABCS', 'ABEQ', 'ABFL', 'ABI', 'ABIG', 'ABLD', 'ABLG', 'ABLS', 'ABND', 'ABOT', 'ABXB', 'ABXL', 'ACCV', 'ACEP', 'ACES', 'ACGO', 'ACGR', 'ACHX', 'ACIG', 'ACIO', 'ACKY', 'ACLC', 'ACLO', 'ACOM', 'ACSG', 'ACSI', 'ACSM', 'ACSV', 'ACTS', 'ACVF', 'ACVT', 'ACVU']
+2026-10-07 22:44:10,771 [INFO] sample duplicate ticker_price rows: []
+2026-10-07 22:44:10,771 [INFO] sample remaining blank sector: ['ADAMK', 'CHTRP', 'IA', 'NFEGP', 'NSLRL']
+2026-10-07 22:44:10,771 [INFO] sample remaining blank industry: ['ADAMK', 'CHTRP', 'IA', 'NFEGP', 'NSLRL']
+2026-10-07 22:44:10,771 [INFO] sample remaining bad type: []
+2026-10-07 22:44:10,771 [INFO] ============================================================
+2026-10-07 22:44:10,771 [INFO] Sample sector fills:
+2026-10-07 22:44:10,771 [INFO] ADAMH | sector: n/a -> Finance
+2026-10-07 22:44:10,771 [INFO] AOMN | sector: n/a -> Finance
+2026-10-07 22:44:10,771 [INFO] ATLCZ | sector: n/a -> Finance
+2026-10-07 22:44:10,771 [INFO] BMNP | sector: n/a -> Finance
+2026-10-07 22:44:10,771 [INFO] BPOPM | sector: n/a -> Finance
+2026-10-07 22:44:10,771 [INFO] BPYPM | sector: n/a -> Finance
+2026-10-07 22:44:10,771 [INFO] CIMN | sector: n/a -> Finance
+2026-10-07 22:44:10,771 [INFO] COR | sector: n/a -> Distribution services
+2026-10-07 22:44:10,771 [INFO] CORT | sector: n/a -> Health technology
+2026-10-07 22:44:10,771 [INFO] CORZ | sector: n/a -> Technology services
+2026-10-07 22:44:10,771 [INFO] COSO | sector: n/a -> Finance
+2026-10-07 22:44:10,771 [INFO] COST | sector: n/a -> Retail trade
+2026-10-07 22:44:10,771 [INFO] CP | sector: n/a -> Transportation
+2026-10-07 22:44:10,771 [INFO] CPA | sector: n/a -> Transportation
+2026-10-07 22:44:10,771 [INFO] CPAY | sector: n/a -> Commercial services
+2026-10-07 22:44:10,771 [INFO] CPB | sector: n/a -> Consumer non-durables
+2026-10-07 22:44:10,772 [INFO] CPBI | sector: n/a -> Finance
+2026-10-07 22:44:10,772 [INFO] CPF | sector: n/a -> Finance
+2026-10-07 22:44:10,772 [INFO] CPHC | sector: n/a -> Consumer services
+2026-10-07 22:44:10,772 [INFO] CPK | sector: n/a -> Utilities
+2026-10-07 22:44:10,772 [INFO] CPRT | sector: n/a -> Retail trade
+2026-10-07 22:44:10,772 [INFO] CPS | sector: n/a -> Producer manufacturing
+2026-10-07 22:44:10,772 [INFO] CPT | sector: n/a -> Finance
+2026-10-07 22:44:10,772 [INFO] CQP | sector: n/a -> Utilities
+2026-10-07 22:44:10,772 [INFO] CR | sector: n/a -> Electronic technology
+2026-10-07 22:44:10,772 [INFO] CRAI | sector: n/a -> Commercial services
+2026-10-07 22:44:10,772 [INFO] CRBG | sector: n/a -> Finance
+2026-10-07 22:44:10,772 [INFO] CRC | sector: n/a -> Energy minerals
+2026-10-07 22:44:10,772 [INFO] CRCL | sector: n/a -> Technology services
+2026-10-07 22:44:10,772 [INFO] CRDO | sector: n/a -> Technology services
+2026-10-07 22:44:10,772 [INFO] CRH | sector: n/a -> Non-energy minerals
+2026-10-07 22:44:10,772 [INFO] CRI | sector: n/a -> Retail trade
+2026-10-07 22:44:10,772 [INFO] CRL | sector: n/a -> Commercial services
+2026-10-07 22:44:10,772 [INFO] CRM | sector: n/a -> Technology services
+2026-10-07 22:44:10,772 [INFO] CROX | sector: n/a -> Consumer non-durables
+2026-10-07 22:44:10,772 [INFO] CRS | sector: n/a -> Non-energy minerals
+2026-10-07 22:44:10,772 [INFO] CRSP | sector: n/a -> Health technology
+2026-10-07 22:44:10,772 [INFO] DDT | sector: n/a -> Finance
+2026-10-07 22:44:10,772 [INFO] ECCU | sector: n/a -> Miscellaneous
+2026-10-07 22:44:10,772 [INFO] EVER | sector: n/a -> Technology services
+2026-10-07 22:44:10,772 [INFO] EVI | sector: n/a -> Distribution services
+2026-10-07 22:44:10,772 [INFO] EVR | sector: n/a -> Finance
+2026-10-07 22:44:10,772 [INFO] EVRG | sector: n/a -> Utilities
+2026-10-07 22:44:10,772 [INFO] EVT | sector: n/a -> Miscellaneous
+2026-10-07 22:44:10,772 [INFO] EVTC | sector: n/a -> Commercial services
+2026-10-07 22:44:10,772 [INFO] EW | sector: n/a -> Health technology
+2026-10-07 22:44:10,772 [INFO] EWBC | sector: n/a -> Finance
+2026-10-07 22:44:10,772 [INFO] EWTX | sector: n/a -> Health technology
+2026-10-07 22:44:10,772 [INFO] EXC | sector: n/a -> Utilities
+2026-10-07 22:44:10,772 [INFO] EXE | sector: n/a -> Energy minerals
+2026-10-07 22:44:10,772 [INFO] Sample industry fills:
+2026-10-07 22:44:10,772 [INFO] ADAMH | industry: n/a -> Real estate investment trusts
+2026-10-07 22:44:10,772 [INFO] AOMN | industry: n/a -> Real estate investment trusts
+2026-10-07 22:44:10,772 [INFO] ATLCZ | industry: n/a -> Finance/Rental/Leasing
+2026-10-07 22:44:10,772 [INFO] BMNP | industry: n/a -> Financial conglomerates
+2026-10-07 22:44:10,772 [INFO] BPOPM | industry: n/a -> Finance/Rental/Leasing
+2026-10-07 22:44:10,772 [INFO] BPYPM | industry: n/a -> Real estate development
+2026-10-07 22:44:10,772 [INFO] CIMN | industry: n/a -> Real estate investment trusts
+2026-10-07 22:44:10,772 [INFO] COR | industry: n/a -> Medical distributors
+2026-10-07 22:44:10,772 [INFO] CORT | industry: n/a -> Pharmaceuticals: major
+2026-10-07 22:44:10,772 [INFO] CORZ | industry: n/a -> Packaged software
+2026-10-07 22:44:10,772 [INFO] COSO | industry: n/a -> Regional banks
+2026-10-07 22:44:10,772 [INFO] COST | industry: n/a -> Specialty stores
+2026-10-07 22:44:10,772 [INFO] CP | industry: n/a -> Railroads
+2026-10-07 22:44:10,772 [INFO] CPA | industry: n/a -> Airlines
+2026-10-07 22:44:10,772 [INFO] CPAY | industry: n/a -> Miscellaneous commercial services
+2026-10-07 22:44:10,772 [INFO] CPB | industry: n/a -> Food: specialty/candy
+2026-10-07 22:44:10,772 [INFO] CPBI | industry: n/a -> Investment banks/Brokers
+2026-10-07 22:44:10,772 [INFO] CPF | industry: n/a -> Regional banks
+2026-10-07 22:44:10,772 [INFO] CPHC | industry: n/a -> Movies/Entertainment
+2026-10-07 22:44:10,772 [INFO] CPK | industry: n/a -> Gas distributors
+2026-10-07 22:44:10,772 [INFO] CPRT | industry: n/a -> Specialty stores
+2026-10-07 22:44:10,772 [INFO] CPS | industry: n/a -> Auto parts: OEM
+2026-10-07 22:44:10,772 [INFO] CPT | industry: n/a -> Real estate investment trusts
+2026-10-07 22:44:10,772 [INFO] CQP | industry: n/a -> Gas distributors
+2026-10-07 22:44:10,772 [INFO] CR | industry: n/a -> Aerospace & defense
+2026-10-07 22:44:10,772 [INFO] CRAI | industry: n/a -> Miscellaneous commercial services
+2026-10-07 22:44:10,772 [INFO] CRBG | industry: n/a -> Life/Health insurance
+2026-10-07 22:44:10,772 [INFO] CRC | industry: n/a -> Integrated oil
+2026-10-07 22:44:10,772 [INFO] CRCL | industry: n/a -> Packaged software
+2026-10-07 22:44:10,772 [INFO] CRDO | industry: n/a -> Information technology services
+2026-10-07 22:44:10,772 [INFO] CRH | industry: n/a -> Construction materials
+2026-10-07 22:44:10,773 [INFO] CRI | industry: n/a -> Apparel/Footwear retail
+2026-10-07 22:44:10,773 [INFO] CRL | industry: n/a -> Miscellaneous commercial services
+2026-10-07 22:44:10,773 [INFO] CRM | industry: n/a -> Packaged software
+2026-10-07 22:44:10,773 [INFO] CROX | industry: n/a -> Apparel/Footwear
+2026-10-07 22:44:10,773 [INFO] CRS | industry: n/a -> Other metals/Minerals
+2026-10-07 22:44:10,773 [INFO] CRSP | industry: n/a -> Biotechnology
+2026-10-07 22:44:10,773 [INFO] DDT | industry: n/a -> Finance/Rental/Leasing
+2026-10-07 22:44:10,773 [INFO] ECCU | industry: n/a -> Investment trusts
+2026-10-07 22:44:10,773 [INFO] EVER | industry: n/a -> Internet software/Services
+2026-10-07 22:44:10,773 [INFO] EVI | industry: n/a -> Wholesale distributors
+2026-10-07 22:44:10,773 [INFO] EVR | industry: n/a -> Investment banks/Brokers
+2026-10-07 22:44:10,773 [INFO] EVRG | industry: n/a -> Electric utilities
+2026-10-07 22:44:10,773 [INFO] EVT | industry: n/a -> Investment trusts
+2026-10-07 22:44:10,773 [INFO] EVTC | industry: n/a -> Miscellaneous commercial services
+2026-10-07 22:44:10,773 [INFO] EW | industry: n/a -> Medical specialties
+2026-10-07 22:44:10,773 [INFO] EWBC | industry: n/a -> Regional banks
+2026-10-07 22:44:10,773 [INFO] EWTX | industry: n/a -> Biotechnology
+2026-10-07 22:44:10,773 [INFO] EXC | industry: n/a -> Electric utilities
+2026-10-07 22:44:10,773 [INFO] EXE | industry: n/a -> Integrated oil
+2026-10-07 22:44:10,773 [INFO] Sample type fills:
+2026-10-07 22:44:10,773 [INFO] Sample sector mismatches report-only:
+2026-10-07 22:44:10,773 [INFO] A | ticker_price sector: Healthcare | master sector: Health technology
+2026-10-07 22:44:10,773 [INFO] AA | ticker_price sector: Basic Materials | master sector: Non-energy minerals
+2026-10-07 22:44:10,773 [INFO] AAMI | ticker_price sector: Financial Services | master sector: Finance
+2026-10-07 22:44:10,773 [INFO] AAOI | ticker_price sector: Technology | master sector: Electronic technology
+2026-10-07 22:44:10,773 [INFO] AAON | ticker_price sector: Industrials | master sector: Producer manufacturing
+2026-10-07 22:44:10,773 [INFO] AAP | ticker_price sector: Consumer Cyclical | master sector: Retail trade
+2026-10-07 22:44:10,773 [INFO] AAPL | ticker_price sector: Technology | master sector: Electronic technology
+2026-10-07 22:44:10,773 [INFO] AAT | ticker_price sector: Real Estate | master sector: Finance
+2026-10-07 22:44:10,773 [INFO] AAUC | ticker_price sector: Basic Materials | master sector: Non-energy minerals
+2026-10-07 22:44:10,773 [INFO] AB | ticker_price sector: Financial Services | master sector: Finance
+2026-10-07 22:44:10,773 [INFO] ABBV | ticker_price sector: Healthcare | master sector: Health technology
+2026-10-07 22:44:10,773 [INFO] ABCB | ticker_price sector: Financial Services | master sector: Finance
+2026-10-07 22:44:10,773 [INFO] ABG | ticker_price sector: Consumer Cyclical | master sector: Retail trade
+2026-10-07 22:44:10,773 [INFO] ABM | ticker_price sector: Industrials | master sector: Commercial services
+2026-10-07 22:44:10,773 [INFO] ABNB | ticker_price sector: Consumer Cyclical | master sector: Consumer services
+2026-10-07 22:44:10,773 [INFO] ABT | ticker_price sector: Healthcare | master sector: Health technology
+2026-10-07 22:44:10,773 [INFO] ABVX | ticker_price sector: Healthcare | master sector: Health technology
+2026-10-07 22:44:10,773 [INFO] ACA | ticker_price sector: Industrials | master sector: Non-energy minerals
+2026-10-07 22:44:10,773 [INFO] ACAD | ticker_price sector: Healthcare | master sector: Health technology
+2026-10-07 22:44:10,773 [INFO] ACFN | ticker_price sector: Technology | master sector: Electronic technology
+2026-10-07 22:44:10,773 [INFO] ACGL | ticker_price sector: Financial Services | master sector: Finance
+2026-10-07 22:44:10,773 [INFO] ACGLN | ticker_price sector: Financial Services | master sector: Finance
+2026-10-07 22:44:10,773 [INFO] ACGLO | ticker_price sector: Financial Services | master sector: Finance
+2026-10-07 22:44:10,773 [INFO] ACHC | ticker_price sector: Healthcare | master sector: Health services
+2026-10-07 22:44:10,773 [INFO] ACIW | ticker_price sector: Technology | master sector: Technology services
+2026-10-07 22:44:10,773 [INFO] ACLS | ticker_price sector: Technology | master sector: Producer manufacturing
+2026-10-07 22:44:10,773 [INFO] ACM | ticker_price sector: Industrials | master sector: Industrial services
+2026-10-07 22:44:10,773 [INFO] ACMR | ticker_price sector: Technology | master sector: Producer manufacturing
+2026-10-07 22:44:10,773 [INFO] ACN | ticker_price sector: Technology | master sector: Technology services
+2026-10-07 22:44:10,773 [INFO] ACNB | ticker_price sector: Financial Services | master sector: Finance
+2026-10-07 22:44:10,773 [INFO] ACT | ticker_price sector: Financial Services | master sector: Finance
+2026-10-07 22:44:10,773 [INFO] ACU | ticker_price sector: Consumer Defensive | master sector: Distribution services
+2026-10-07 22:44:10,773 [INFO] ACV | ticker_price sector: Financial Services | master sector: Miscellaneous
+2026-10-07 22:44:10,773 [INFO] AD | ticker_price sector: Communication Services | master sector: Communications
+2026-10-07 22:44:10,773 [INFO] ADAML | ticker_price sector: Real Estate | master sector: Finance
+2026-10-07 22:44:10,773 [INFO] ADAMM | ticker_price sector: Real Estate | master sector: Finance
+2026-10-07 22:44:10,773 [INFO] ADAMN | ticker_price sector: Real Estate | master sector: Finance
+2026-10-07 22:44:10,773 [INFO] ADAMZ | ticker_price sector: Real Estate | master sector: Finance
+2026-10-07 22:44:10,773 [INFO] ADBE | ticker_price sector: Technology | master sector: Technology services
+2026-10-07 22:44:10,773 [INFO] ADC | ticker_price sector: Real Estate | master sector: Finance
+2026-10-07 22:44:10,773 [INFO] ADEA | ticker_price sector: Technology | master sector: Technology services
+2026-10-07 22:44:10,773 [INFO] ADI | ticker_price sector: Technology | master sector: Electronic technology
+2026-10-07 22:44:10,773 [INFO] ADM | ticker_price sector: Consumer Defensive | master sector: Process industries
+2026-10-07 22:44:10,773 [INFO] ADNT | ticker_price sector: Consumer Cyclical | master sector: Producer manufacturing
+2026-10-07 22:44:10,773 [INFO] ADP | ticker_price sector: Technology | master sector: Technology services
+2026-10-07 22:44:10,773 [INFO] ADPT | ticker_price sector: Healthcare | master sector: Health technology
+2026-10-07 22:44:10,773 [INFO] ADSK | ticker_price sector: Technology | master sector: Technology services
+2026-10-07 22:44:10,773 [INFO] ADUS | ticker_price sector: Healthcare | master sector: Health services
+2026-10-07 22:44:10,773 [INFO] ADV | ticker_price sector: Communication Services | master sector: Commercial services
+2026-10-07 22:44:10,773 [INFO] ADX | ticker_price sector: Financial Services | master sector: Miscellaneous
+2026-10-07 22:44:10,773 [INFO] AEHR | ticker_price sector: Technology | master sector: Electronic technology
+2026-10-07 22:44:10,773 [INFO] AEIS | ticker_price sector: Industrials | master sector: Electronic technology
+2026-10-07 22:44:10,773 [INFO] AEM | ticker_price sector: Basic Materials | master sector: Non-energy minerals
+2026-10-07 22:44:10,774 [INFO] AEO | ticker_price sector: Consumer Cyclical | master sector: Retail trade
+2026-10-07 22:44:10,774 [INFO] AER | ticker_price sector: Industrials | master sector: Finance
+2026-10-07 22:44:10,774 [INFO] AERO | ticker_price sector: Industrials | master sector: Transportation
+2026-10-07 22:44:10,774 [INFO] AFG | ticker_price sector: Financial Services | master sector: Finance
+2026-10-07 22:44:10,774 [INFO] AFL | ticker_price sector: Financial Services | master sector: Finance
+2026-10-07 22:44:10,774 [INFO] AFRM | ticker_price sector: Financial Services | master sector: Technology services
+2026-10-07 22:44:10,774 [INFO] AG | ticker_price sector: Basic Materials | master sector: Non-energy minerals
+2026-10-07 22:44:10,774 [INFO] AGCC | ticker_price sector: Consumer Defensive | master sector: Distribution services
+2026-10-07 22:44:10,774 [INFO] AGCO | ticker_price sector: Industrials | master sector: Producer manufacturing
+2026-10-07 22:44:10,774 [INFO] AGI | ticker_price sector: Basic Materials | master sector: Non-energy minerals
+2026-10-07 22:44:10,774 [INFO] AGIO | ticker_price sector: Healthcare | master sector: Health technology
+2026-10-07 22:44:10,774 [INFO] AGL | ticker_price sector: Healthcare | master sector: Health services
+2026-10-07 22:44:10,774 [INFO] AGM | ticker_price sector: Financial Services | master sector: Finance
+2026-10-07 22:44:10,774 [INFO] AGNCL | ticker_price sector: Real Estate | master sector: Finance
+2026-10-07 22:44:10,774 [INFO] AGNCM | ticker_price sector: Real Estate | master sector: Finance
+2026-10-07 22:44:10,774 [INFO] AGNCN | ticker_price sector: Real Estate | master sector: Finance
+2026-10-07 22:44:10,774 [INFO] AGNCO | ticker_price sector: Real Estate | master sector: Finance
+2026-10-07 22:44:10,774 [INFO] AGNCP | ticker_price sector: Real Estate | master sector: Finance
+2026-10-07 22:44:10,774 [INFO] AGNCZ | ticker_price sector: Real Estate | master sector: Finance
+2026-10-07 22:44:10,774 [INFO] AGO | ticker_price sector: Financial Services | master sector: Finance
+2026-10-07 22:44:10,774 [INFO] AGX | ticker_price sector: Industrials | master sector: Industrial services
+2026-10-07 22:44:10,774 [INFO] AGYS | ticker_price sector: Technology | master sector: Technology services
+2026-10-07 22:44:10,774 [INFO] AHR | ticker_price sector: Real Estate | master sector: Finance
+2026-10-07 22:44:10,774 [INFO] AIG | ticker_price sector: Financial Services | master sector: Finance
+2026-10-07 22:44:10,774 [INFO] AII | ticker_price sector: Financial Services | master sector: Finance
+2026-10-07 22:44:10,774 [INFO] AIN | ticker_price sector: Consumer Cyclical | master sector: Process industries
+2026-10-07 22:44:10,774 [INFO] AIO | ticker_price sector: Financial Services | master sector: Miscellaneous
+2026-10-07 22:44:10,774 [INFO] AIP | ticker_price sector: Technology | master sector: Electronic technology
+2026-10-07 22:44:10,774 [INFO] AIR | ticker_price sector: Industrials | master sector: Electronic technology
+2026-10-07 22:44:10,774 [INFO] AIRT | ticker_price sector: Industrials | master sector: Transportation
+2026-10-07 22:44:10,774 [INFO] AIRTP | ticker_price sector: Industrials | master sector: Transportation
+2026-10-07 22:44:10,774 [INFO] AIT | ticker_price sector: Industrials | master sector: Distribution services
+2026-10-07 22:44:10,774 [INFO] AIZ | ticker_price sector: Financial Services | master sector: Finance
+2026-10-07 22:44:10,774 [INFO] AJG | ticker_price sector: Financial Services | master sector: Finance
+2026-10-07 22:44:10,774 [INFO] AKAM | ticker_price sector: Technology | master sector: Technology services
+2026-10-07 22:44:10,774 [INFO] AKR | ticker_price sector: Real Estate | master sector: Finance
+2026-10-07 22:44:10,774 [INFO] AKTS | ticker_price sector: Healthcare | master sector: Health technology
+2026-10-07 22:44:10,774 [INFO] ALAB | ticker_price sector: Technology | master sector: Electronic technology
+2026-10-07 22:44:10,774 [INFO] ALB | ticker_price sector: Basic Materials | master sector: Process industries
+2026-10-07 22:44:10,774 [INFO] ALC | ticker_price sector: Healthcare | master sector: Health technology
+2026-10-07 22:44:10,774 [INFO] ALCO | ticker_price sector: Consumer Defensive | master sector: Process industries
+2026-10-07 22:44:10,774 [INFO] ALG | ticker_price sector: Industrials | master sector: Producer manufacturing
+2026-10-07 22:44:10,774 [INFO] ALGM | ticker_price sector: Technology | master sector: Electronic technology
+2026-10-07 22:44:10,774 [INFO] ALGN | ticker_price sector: Healthcare | master sector: Health technology
+2026-10-07 22:44:10,774 [INFO] ALGT | ticker_price sector: Industrials | master sector: Transportation
+2026-10-07 22:44:10,774 [INFO] ALH | ticker_price sector: Consumer Cyclical | master sector: Producer manufacturing
+2026-10-07 22:44:10,774 [INFO] ALK | ticker_price sector: Industrials | master sector: Transportation
+2026-10-07 22:44:10,774 [INFO] Sample industry mismatches report-only:
+2026-10-07 22:44:10,774 [INFO] A | ticker_price industry: Diagnostics & Research | master industry: Medical specialties
+2026-10-07 22:44:10,774 [INFO] AAMI | ticker_price industry: Asset Management | master industry: Investment managers
+2026-10-07 22:44:10,774 [INFO] AAOI | ticker_price industry: Communication Equipment | master industry: Semiconductors
+2026-10-07 22:44:10,774 [INFO] AAON | ticker_price industry: Building Products & Equipment | master industry: Industrial machinery
+2026-10-07 22:44:10,774 [INFO] AAP | ticker_price industry: Auto Parts | master industry: Specialty stores
+2026-10-07 22:44:10,774 [INFO] AAPL | ticker_price industry: Consumer Electronics | master industry: Telecommunications equipment
+2026-10-07 22:44:10,775 [INFO] AAT | ticker_price industry: REIT - Diversified | master industry: Real estate investment trusts
+2026-10-07 22:44:10,775 [INFO] AAUC | ticker_price industry: Gold | master industry: Precious metals
+2026-10-07 22:44:10,775 [INFO] AB | ticker_price industry: Asset Management | master industry: Investment managers
+2026-10-07 22:44:10,775 [INFO] ABBV | ticker_price industry: Drug Manufacturers - General | master industry: Pharmaceuticals: major
+2026-10-07 22:44:10,775 [INFO] ABCB | ticker_price industry: Banks - Regional | master industry: Regional banks
+2026-10-07 22:44:10,775 [INFO] ABG | ticker_price industry: Auto & Truck Dealerships | master industry: Specialty stores
+2026-10-07 22:44:10,775 [INFO] ABM | ticker_price industry: Specialty Business Services | master industry: Miscellaneous commercial services
+2026-10-07 22:44:10,775 [INFO] ABNB | ticker_price industry: Travel Services | master industry: Hotels/Resorts/Cruise lines
+2026-10-07 22:44:10,775 [INFO] ABT | ticker_price industry: Medical Devices | master industry: Medical specialties
+2026-10-07 22:44:10,775 [INFO] ABVX | ticker_price industry: Biotechnology | master industry: Pharmaceuticals: other
+2026-10-07 22:44:10,775 [INFO] ACA | ticker_price industry: Engineering & Construction | master industry: Construction materials
+2026-10-07 22:44:10,775 [INFO] ACAD | ticker_price industry: Biotechnology | master industry: Pharmaceuticals: major
+2026-10-07 22:44:10,775 [INFO] ACFN | ticker_price industry: Scientific & Technical Instruments | master industry: Electronic equipment/Instruments
+2026-10-07 22:44:10,775 [INFO] ACGL | ticker_price industry: Insurance - Diversified | master industry: Multi-line insurance
+2026-10-07 22:44:10,775 [INFO] ACGLN | ticker_price industry: Insurance - Diversified | master industry: Multi-line insurance
+2026-10-07 22:44:10,775 [INFO] ACGLO | ticker_price industry: Insurance - Diversified | master industry: Multi-line insurance
+2026-10-07 22:44:10,775 [INFO] ACHC | ticker_price industry: Medical Care Facilities | master industry: Medical/Nursing services
+2026-10-07 22:44:10,775 [INFO] ACIW | ticker_price industry: Software - Infrastructure | master industry: Packaged software
+2026-10-07 22:44:10,775 [INFO] ACLS | ticker_price industry: Semiconductor Equipment & Materials | master industry: Industrial machinery
+2026-10-07 22:44:10,775 [INFO] ACMR | ticker_price industry: Semiconductor Equipment & Materials | master industry: Industrial machinery
+2026-10-07 22:44:10,775 [INFO] ACNB | ticker_price industry: Banks - Regional | master industry: Regional banks
+2026-10-07 22:44:10,775 [INFO] ACT | ticker_price industry: Insurance - Specialty | master industry: Multi-line insurance
+2026-10-07 22:44:10,775 [INFO] ACU | ticker_price industry: Household & Personal Products | master industry: Wholesale distributors
+2026-10-07 22:44:10,775 [INFO] ACV | ticker_price industry: Asset Management | master industry: Investment trusts
+2026-10-07 22:44:10,775 [INFO] AD | ticker_price industry: Telecom Services | master industry: Wireless telecommunications
+2026-10-07 22:44:10,775 [INFO] ADAML | ticker_price industry: REIT - Mortgage | master industry: Real estate investment trusts
+2026-10-07 22:44:10,775 [INFO] ADAMM | ticker_price industry: REIT - Mortgage | master industry: Real estate investment trusts
+2026-10-07 22:44:10,775 [INFO] ADAMN | ticker_price industry: REIT - Mortgage | master industry: Real estate investment trusts
+2026-10-07 22:44:10,775 [INFO] ADAMZ | ticker_price industry: REIT - Mortgage | master industry: Real estate investment trusts
+2026-10-07 22:44:10,775 [INFO] ADBE | ticker_price industry: Software - Application | master industry: Packaged software
+2026-10-07 22:44:10,775 [INFO] ADC | ticker_price industry: REIT - Retail | master industry: Real estate investment trusts
+2026-10-07 22:44:10,775 [INFO] ADEA | ticker_price industry: Software - Application | master industry: Packaged software
+2026-10-07 22:44:10,775 [INFO] ADM | ticker_price industry: Farm Products | master industry: Agricultural commodities/Milling
+2026-10-07 22:44:10,775 [INFO] ADNT | ticker_price industry: Auto Parts | master industry: Auto parts: OEM
+2026-10-07 22:44:10,775 [INFO] ADP | ticker_price industry: Software - Application | master industry: Packaged software
+2026-10-07 22:44:10,775 [INFO] ADPT | ticker_price industry: Diagnostics & Research | master industry: Biotechnology
+2026-10-07 22:44:10,775 [INFO] ADSK | ticker_price industry: Software - Application | master industry: Packaged software
+2026-10-07 22:44:10,775 [INFO] ADUS | ticker_price industry: Medical Care Facilities | master industry: Medical/Nursing services
+2026-10-07 22:44:10,775 [INFO] ADV | ticker_price industry: Advertising Agencies | master industry: Advertising/Marketing services
+2026-10-07 22:44:10,775 [INFO] ADX | ticker_price industry: Asset Management | master industry: Investment trusts
+2026-10-07 22:44:10,775 [INFO] AEE | ticker_price industry: Utilities - Regulated Electric | master industry: Electric utilities
+2026-10-07 22:44:10,775 [INFO] AEHR | ticker_price industry: Semiconductor Equipment & Materials | master industry: Electronic production equipment
+2026-10-07 22:44:10,775 [INFO] AEIS | ticker_price industry: Electrical Equipment & Parts | master industry: Electronic production equipment
+2026-10-07 22:44:10,775 [INFO] AEM | ticker_price industry: Gold | master industry: Precious metals
+2026-10-07 22:44:10,775 [INFO] AEO | ticker_price industry: Apparel Retail | master industry: Apparel/Footwear retail
+2026-10-07 22:44:10,775 [INFO] AEP | ticker_price industry: Utilities - Regulated Electric | master industry: Electric utilities
+2026-10-07 22:44:10,775 [INFO] AER | ticker_price industry: Rental & Leasing Services | master industry: Finance/Rental/Leasing
+2026-10-07 22:44:10,775 [INFO] AFG | ticker_price industry: Insurance - Property & Casualty | master industry: Property/Casualty insurance
+2026-10-07 22:44:10,775 [INFO] AFL | ticker_price industry: Insurance - Life | master industry: Multi-line insurance
+2026-10-07 22:44:10,775 [INFO] AFRM | ticker_price industry: Credit Services | master industry: Packaged software
+2026-10-07 22:44:10,775 [INFO] AG | ticker_price industry: Silver | master industry: Precious metals
+2026-10-07 22:44:10,775 [INFO] AGCC | ticker_price industry: Beverages - Wineries & Distilleries | master industry: Food distributors
+2026-10-07 22:44:10,775 [INFO] AGCO | ticker_price industry: Farm & Heavy Construction Machinery | master industry: Trucks/Construction/Farm machinery
+2026-10-07 22:44:10,775 [INFO] AGI | ticker_price industry: Gold | master industry: Precious metals
+2026-10-07 22:44:10,775 [INFO] AGIO | ticker_price industry: Biotechnology | master industry: Pharmaceuticals: major
+2026-10-07 22:44:10,775 [INFO] AGL | ticker_price industry: Medical Care Facilities | master industry: Medical/Nursing services
+2026-10-07 22:44:10,775 [INFO] AGM | ticker_price industry: Credit Services | master industry: Finance/Rental/Leasing
+2026-10-07 22:44:10,775 [INFO] AGNCL | ticker_price industry: REIT - Mortgage | master industry: Real estate investment trusts
+2026-10-07 22:44:10,775 [INFO] AGNCM | ticker_price industry: REIT - Mortgage | master industry: Real estate investment trusts
+2026-10-07 22:44:10,775 [INFO] AGNCN | ticker_price industry: REIT - Mortgage | master industry: Real estate investment trusts
+2026-10-07 22:44:10,775 [INFO] AGNCO | ticker_price industry: REIT - Mortgage | master industry: Real estate investment trusts
+2026-10-07 22:44:10,775 [INFO] AGNCP | ticker_price industry: REIT - Mortgage | master industry: Real estate investment trusts
+2026-10-07 22:44:10,775 [INFO] AGNCZ | ticker_price industry: REIT - Mortgage | master industry: Real estate investment trusts
+2026-10-07 22:44:10,775 [INFO] AGO | ticker_price industry: Insurance - Specialty | master industry: Specialty insurance
+2026-10-07 22:44:10,775 [INFO] AGYS | ticker_price industry: Software - Application | master industry: Packaged software
+2026-10-07 22:44:10,775 [INFO] AHR | ticker_price industry: REIT - Healthcare Facilities | master industry: Real estate investment trusts
+2026-10-07 22:44:10,776 [INFO] AIG | ticker_price industry: Insurance - Diversified | master industry: Multi-line insurance
+2026-10-07 22:44:10,776 [INFO] AII | ticker_price industry: Insurance - Property & Casualty | master industry: Property/Casualty insurance
+2026-10-07 22:44:10,776 [INFO] AIN | ticker_price industry: Textile Manufacturing | master industry: Textiles
+2026-10-07 22:44:10,776 [INFO] AIO | ticker_price industry: Asset Management | master industry: Investment trusts
+2026-10-07 22:44:10,776 [INFO] AIRT | ticker_price industry: Conglomerates | master industry: Air freight/Couriers
+2026-10-07 22:44:10,776 [INFO] AIRTP | ticker_price industry: Conglomerates | master industry: Air freight/Couriers
+2026-10-07 22:44:10,776 [INFO] AIT | ticker_price industry: Industrial Distribution | master industry: Wholesale distributors
+2026-10-07 22:44:10,776 [INFO] AIZ | ticker_price industry: Insurance - Property & Casualty | master industry: Property/Casualty insurance
+2026-10-07 22:44:10,776 [INFO] AJG | ticker_price industry: Insurance Brokers | master industry: Insurance brokers/Services
+2026-10-07 22:44:10,776 [INFO] AKAM | ticker_price industry: Software - Infrastructure | master industry: Data processing services
+2026-10-07 22:44:10,776 [INFO] AKR | ticker_price industry: REIT - Retail | master industry: Real estate investment trusts
+2026-10-07 22:44:10,776 [INFO] AKTS | ticker_price industry: Biotechnology | master industry: Pharmaceuticals: major
+2026-10-07 22:44:10,776 [INFO] ALB | ticker_price industry: Specialty Chemicals | master industry: Chemicals: specialty
+2026-10-07 22:44:10,776 [INFO] ALC | ticker_price industry: Medical Instruments & Supplies | master industry: Medical specialties
+2026-10-07 22:44:10,776 [INFO] ALCO | ticker_price industry: Farm Products | master industry: Agricultural commodities/Milling
+2026-10-07 22:44:10,776 [INFO] ALG | ticker_price industry: Farm & Heavy Construction Machinery | master industry: Trucks/Construction/Farm machinery
+2026-10-07 22:44:10,776 [INFO] ALGN | ticker_price industry: Medical Instruments & Supplies | master industry: Medical specialties
+2026-10-07 22:44:10,776 [INFO] ALH | ticker_price industry: Furnishings, Fixtures & Appliances | master industry: Industrial machinery
+2026-10-07 22:44:10,776 [INFO] ALKS | ticker_price industry: Drug Manufacturers - Specialty & Generic | master industry: Pharmaceuticals: major
+2026-10-07 22:44:10,776 [INFO] ALL | ticker_price industry: Insurance - Property & Casualty | master industry: Multi-line insurance
+2026-10-07 22:44:10,776 [INFO] ALLE | ticker_price industry: Security & Protection Services | master industry: Tools & hardware
+2026-10-07 22:44:10,776 [INFO] ALLY | ticker_price industry: Credit Services | master industry: Finance/Rental/Leasing
+2026-10-07 22:44:10,776 [INFO] ALMR | ticker_price industry: Medical Devices | master industry: Biotechnology
+2026-10-07 22:44:10,776 [INFO] ALNT | ticker_price industry: Electronic Components | master industry: Electrical products
+2026-10-07 22:44:10,776 [INFO] ALNY | ticker_price industry: Biotechnology | master industry: Pharmaceuticals: major
+2026-10-07 22:44:10,776 [INFO] ALRM | ticker_price industry: Software - Application | master industry: Packaged software
+2026-10-07 22:44:10,776 [INFO] ALRS | ticker_price industry: Banks - Regional | master industry: Major banks
+2026-10-07 22:44:10,776 [INFO] ALSN | ticker_price industry: Auto Parts | master industry: Auto parts: OEM
+2026-10-07 22:44:10,776 [INFO] ============================================================
+2026-10-07 22:44:10,776 [INFO] MISSING SECTOR TICKERS BY LETTER A/B/C/D
+2026-10-07 22:44:10,776 [INFO] ============================================================
+2026-10-07 22:44:10,776 [INFO] A count: 1
+2026-10-07 22:44:10,776 [INFO] A tickers: ADAMK
+2026-10-07 22:44:10,776 [INFO] B count: 0
+2026-10-07 22:44:10,776 [INFO] B tickers: (none)
+2026-10-07 22:44:10,776 [INFO] C count: 1
+2026-10-07 22:44:10,776 [INFO] C tickers: CHTRP
+2026-10-07 22:44:10,776 [INFO] D count: 0
+2026-10-07 22:44:10,776 [INFO] D tickers: (none)
+2026-10-07 22:44:10,776 [INFO] ============================================================
+2026-10-07 22:44:10,776 [INFO] MISSING INDUSTRY TICKERS BY LETTER A/B/C/D
+2026-10-07 22:44:10,776 [INFO] ============================================================
+2026-10-07 22:44:10,776 [INFO] A count: 1
+2026-10-07 22:44:10,776 [INFO] A tickers: ADAMK
+2026-10-07 22:44:10,776 [INFO] B count: 0
+2026-10-07 22:44:10,776 [INFO] B tickers: (none)
+2026-10-07 22:44:10,776 [INFO] C count: 1
+2026-10-07 22:44:10,776 [INFO] C tickers: CHTRP
+2026-10-07 22:44:10,776 [INFO] D count: 0
+2026-10-07 22:44:10,776 [INFO] D tickers: (none)
