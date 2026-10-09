@@ -1,14 +1,12 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-10-08 19:05:01 EDT
+Run Date: 2026-10-09 18:27:58 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-10-08 23:02:03
-Successful: 1878 | Skipped: 1 | Failed: 0
---- Skipped Tickers ---
-CTAG: Too few valid rows: 1
+FINAL SUMMARY - Partition finished at 2026-10-09 22:24:47
+Successful: 1883 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -16,8 +14,8 @@ CTAG: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-10-08 23:01:54
-Successful: 1879 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-10-09 22:24:59
+Successful: 1883 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -25,11 +23,11 @@ Successful: 1879 | Skipped: 0 | Failed: 0
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-10-08 23:01:38
-Successful: 1877 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-10-09 22:24:59
+Successful: 1881 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
+OPTO: Too few valid rows: 1
 PWRX: Too few valid rows: 1
-RINK: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -37,11 +35,13 @@ RINK: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-10-08 23:01:31
-Successful: 1877 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-10-09 22:24:36
+Successful: 1879 | Skipped: 4 | Failed: 0
 --- Skipped Tickers ---
-SLVI: Too few valid rows: 1
-TCBI: Too few valid rows: 1
+VGTX: Too few valid rows: 1
+WTAL: Too few valid rows: 1
+XXQQ: Too few valid rows: 1
+XXSP: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 3 ===
