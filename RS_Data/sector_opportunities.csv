@@ -1,17 +1,11 @@
 SectorRank,Sector,LeaderRank,Ticker,Leader_Score,Setup_Type,Tightness,Setup_Price,Dist_52WH_%,ATR_%,RS Percentile,1M_RS Percentile,3M_RS Percentile,6M_RS Percentile,IPO,Gap (%),HVE,SMA50,SMA200,SMA10W,SMA30W,Industry
-2,Energy,1,MPC,98.63,Extended Near High,Normal,476.98,0.14,3.46,98.0,96.0,97.0,97.0,NO,0.0,NO,381.82,270.05,402.44,307.9,Oil & Gas Refining & Marketing
-2,Energy,2,CVI,98.31,Extended Near High,Loose,63.12,0.3,4.39,97.0,96.0,98.0,96.0,NO,0.0,NO,45.08,33.22,48.77,37.51,Oil & Gas Refining & Marketing
-2,Energy,3,INSW,98.22,Extended Near High,Normal,125.04,0.29,3.68,97.0,97.0,96.0,95.0,NO,2.77,NO,103.61,81.5,108.02,91.47,Oil & Gas Midstream
-2,Energy,4,TEN,98.03,Extended Near High,Normal,56.4,0.0,3.65,97.0,95.0,96.0,92.0,NO,2.06,NO,45.13,37.8,47.27,42.06,Oil & Gas Midstream
-2,Energy,5,DINO,98.0,Extended Near High,Normal,128.23,0.25,3.48,97.0,95.0,97.0,97.0,NO,0.0,NO,102.73,73.26,108.42,83.69,Oil & Gas Refining & Marketing
-3,Technology,1,P,99.01,Extended Near High,Loose,156.97,0.38,4.39,98.0,98.0,98.0,98.0,NO,0.18,NO,111.26,81.1,119.79,88.93,Computer Hardware
-3,Technology,2,PAYS,98.22,Extended Near High,Loose,15.48,0.9,4.39,98.0,96.0,98.0,98.0,NO,0.0,NO,13.02,7.64,13.64,9.46,Software - Infrastructure
-3,Technology,3,NTAP,97.86,Extended Near High,Normal,239.01,0.76,3.44,97.0,97.0,96.0,98.0,NO,0.11,NO,199.48,142.4,207.28,163.83,Software - Infrastructure
-3,Technology,4,ASX,97.51,Extended Near High,Normal,47.6,0.69,3.42,98.0,97.0,91.0,96.0,NO,1.77,NO,40.4,31.61,41.82,36.85,Semiconductors
-3,Technology,5,PD,97.32,Extended Near High,Normal,16.68,0.95,3.35,96.0,96.0,97.0,98.0,NO,0.0,NO,13.58,9.82,14.19,10.33,Software - Application
-4,Healthcare,1,PCRX,97.62,Extended Near High,Loose,36.31,0.41,4.03,95.0,98.0,96.0,94.0,NO,0.08,NO,25.76,24.03,27.28,25.18,Drug Manufacturers - Specialty & Generic
-4,Healthcare,2,HAE,97.14,Extended Near High,Normal,121.72,1.66,3.22,97.0,96.0,97.0,97.0,NO,0.01,NO,102.35,75.96,106.83,81.47,Medical Devices
-4,Healthcare,3,HNGE,96.17,Near Breakout,Normal,105.14,1.74,3.67,97.0,96.0,91.0,98.0,NO,0.0,NO,91.55,62.71,94.11,72.75,Health Information Services
-4,Healthcare,4,MRNA,95.6,Near Breakout,Loose,216.25,4.93,7.36,98.0,98.0,98.0,98.0,NO,0.0,NO,141.44,73.54,161.76,90.7,Biotechnology
-4,Healthcare,5,VEEV,95.26,Extended Near High,Normal,301.63,2.49,3.04,94.0,95.0,97.0,96.0,NO,0.0,NO,261.36,203.25,271.2,207.53,Health Information Services
-5,Technology services,1,NIQ,88.38,Stage 2 Watch,Normal,18.31,7.01,3.41,94.0,77.0,98.0,96.0,NO,0.0,NO,17.22,13.02,18.06,12.71,Packaged software
+4,Energy,1,MPC,98.92,Extended Near High,Normal,484.92,0.03,3.35,98.0,97.0,97.0,97.0,NO,1.13,NO,385.22,271.61,404.25,308.51,Oil & Gas Refining & Marketing
+4,Energy,2,VLO,98.45,Extended Near High,Normal,459.78,0.38,3.66,98.0,96.0,97.0,97.0,NO,0.92,NO,372.94,269.74,390.1,303.67,Oil & Gas Refining & Marketing
+4,Energy,3,PSX,98.16,Extended Near High,Normal,297.29,0.03,2.88,97.0,95.0,97.0,96.0,NO,1.25,NO,250.43,189.2,259.94,207.14,Oil & Gas Refining & Marketing
+4,Energy,4,PBR,98.05,Extended Near High,Normal,25.94,0.04,3.07,96.0,97.0,96.0,87.0,NO,0.0,NO,20.4,18.33,21.05,19.74,Oil & Gas Integrated
+4,Energy,5,DINO,97.98,Extended Near High,Normal,127.69,1.28,3.38,98.0,97.0,97.0,97.0,NO,0.8,NO,103.52,73.67,108.96,83.87,Oil & Gas Refining & Marketing
+5,Technology,1,PD,96.94,Extended Near High,Normal,16.64,1.19,3.41,96.0,95.0,97.0,98.0,NO,0.0,NO,13.69,9.84,14.23,10.34,Software - Application
+5,Technology,2,PAYS,96.88,Extended Near High,Loose,15.16,2.94,4.44,98.0,97.0,98.0,98.0,NO,0.0,NO,13.15,7.69,13.67,9.47,Software - Infrastructure
+5,Technology,3,GCT,96.22,Breakout Zone,Loose,57.75,0.86,4.19,95.0,92.0,97.0,89.0,NO,0.0,NO,52.21,42.76,53.3,44.28,Software - Infrastructure
+5,Technology,4,PAYC,95.14,Near Breakout,Normal,239.0,2.44,2.68,96.0,90.0,98.0,97.0,NO,0.41,NO,222.92,157.17,227.29,167.9,Software - Application
+5,Technology,5,DT,94.65,Near Breakout,Normal,63.58,4.1,2.72,95.0,97.0,96.0,97.0,NO,0.0,NO,54.07,43.2,55.55,45.61,Software - Application
