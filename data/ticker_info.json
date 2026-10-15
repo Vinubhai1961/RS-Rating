@@ -762,6 +762,13 @@
       "type": "Stock"
     }
   },
+  "ACHP": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "ACHR": {
     "info": {
       "industry": "Aerospace & Defense",
@@ -6693,8 +6700,8 @@
   },
   "AXNX": {
     "info": {
-      "industry": "Medical Devices",
-      "sector": "Healthcare",
+      "industry": "Engineering & Construction",
+      "sector": "Industrials",
       "type": "Stock"
     }
   },
@@ -11346,6 +11353,13 @@
       "type": "Stock"
     }
   },
+  "BSRT": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "BSSX": {
     "info": {
       "industry": "ETF",
@@ -13353,13 +13367,6 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
-    }
-  },
-  "CCO": {
-    "info": {
-      "industry": "Advertising Agencies",
-      "sector": "Communication Services",
-      "type": "Stock"
     }
   },
   "CCOI": {
@@ -19034,8 +19041,8 @@
   },
   "DDS": {
     "info": {
-      "industry": "Department Stores",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -19383,6 +19390,13 @@
     }
   },
   "DFGR": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "DFGV": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
@@ -23337,13 +23351,6 @@
       "type": "Stock"
     }
   },
-  "EMSC": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
   "EMSF": {
     "info": {
       "industry": "ETF",
@@ -24354,8 +24361,8 @@
   },
   "ET": {
     "info": {
-      "industry": "Oil & Gas Midstream",
-      "sector": "Energy",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -27822,6 +27829,13 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
+    }
+  },
+  "FLSC": {
+    "info": {
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
+      "type": "Stock"
     }
   },
   "FLSP": {
@@ -36252,13 +36266,6 @@
       "type": "Stock"
     }
   },
-  "IAE": {
-    "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
   "IAF": {
     "info": {
       "industry": "Asset Management",
@@ -37685,13 +37692,6 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
-    }
-  },
-  "IHD": {
-    "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
-      "type": "Stock"
     }
   },
   "IHDG": {
@@ -47655,6 +47655,13 @@
       "type": "Stock"
     }
   },
+  "MGOL": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "MGOV": {
     "info": {
       "industry": "ETF",
@@ -52830,8 +52837,8 @@
   },
   "NSTR": {
     "info": {
-      "industry": "Software - Infrastructure",
-      "sector": "Technology",
+      "industry": "Aerospace & Defense",
+      "sector": "Industrials",
       "type": "Stock"
     }
   },
@@ -57350,6 +57357,13 @@
       "type": "ETF"
     }
   },
+  "PEPT": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "PERF": {
     "info": {
       "industry": "Software - Application",
@@ -60780,27 +60794,6 @@
       "type": "ETF"
     }
   },
-  "QETA": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "QETAR": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
-    }
-  },
-  "QETAU": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
   "QETH": {
     "info": {
       "industry": "ETF",
@@ -63799,8 +63792,8 @@
   },
   "RNTZ": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Engineering & Construction",
+      "sector": "Industrials",
       "type": "Stock"
     }
   },
@@ -64435,6 +64428,13 @@
     }
   },
   "RTH": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "RTHY": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
@@ -71079,8 +71079,8 @@
   },
   "SUN": {
     "info": {
-      "industry": "Oil & Gas Refining & Marketing",
-      "sector": "Energy",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -71093,8 +71093,8 @@
   },
   "SUNC": {
     "info": {
-      "industry": "Oil & Gas Midstream",
-      "sector": "Energy",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -77092,8 +77092,8 @@
   },
   "USAC": {
     "info": {
-      "industry": "Oil & Gas Equipment & Services",
-      "sector": "Energy",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -82445,6 +82445,13 @@
       "type": "ETF"
     }
   },
+  "XLEM": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "XLEX": {
     "info": {
       "industry": "ETF",
@@ -82515,6 +82522,13 @@
       "type": "ETF"
     }
   },
+  "XLKM": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "XLKX": {
     "info": {
       "industry": "ETF",
@@ -82530,6 +82544,13 @@
     }
   },
   "XLP": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "XLPM": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
@@ -82621,6 +82642,13 @@
     }
   },
   "XLYI": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "XLYM": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
