@@ -1,17 +1,16 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-10-16 16:04:20 EDT
+Run Date: 2026-10-16 19:05:06 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-10-16 19:56:44
-Successful: 1855 | Skipped: 5 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-10-16 23:02:16
+Successful: 1822 | Skipped: 4 | Failed: 0
 --- Skipped Tickers ---
 AAAB: Too few valid rows: 1
 AGGB: Too few valid rows: 1
 ANG: Too few valid rows: 1
-BBBB: Too few valid rows: 1
 CTY: Too few valid rows: 1
 ================================================================================
 
@@ -20,8 +19,8 @@ CTY: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-10-16 19:57:01
-Successful: 1855 | Skipped: 5 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-10-16 23:01:25
+Successful: 1821 | Skipped: 5 | Failed: 0
 --- Skipped Tickers ---
 FTN: Too few valid rows: 1
 GCB: Too few valid rows: 1
@@ -35,12 +34,11 @@ IGB: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-10-16 19:58:00
-Successful: 1857 | Skipped: 3 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-10-16 23:01:40
+Successful: 1824 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
 LIGB: Too few valid rows: 1
 LTB: Too few valid rows: 1
-PBCS: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -48,14 +46,17 @@ PBCS: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-10-16 19:58:30
-Successful: 1856 | Skipped: 5 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-10-16 23:02:21
+Successful: 1820 | Skipped: 8 | Failed: 0
 --- Skipped Tickers ---
 SVTN: Too few valid rows: 1
+TIPE: Too few valid rows: 1
 TNTW: Too few valid rows: 1
 TTTT: Too few valid rows: 1
 UB: Too few valid rows: 1
+XLEM: Too few valid rows: 1
 XLPM: Too few valid rows: 1
+XLYM: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 3 ===
