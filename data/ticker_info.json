@@ -5767,27 +5767,6 @@
       "type": "Stock"
     }
   },
-  "ATII": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "ATIIU": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "ATIIW": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
-    }
-  },
   "ATLC": {
     "info": {
       "industry": "Credit Services",
@@ -18682,6 +18661,13 @@
       "type": "Stock"
     }
   },
+  "DAVI": {
+    "info": {
+      "industry": "Medical Instruments & Supplies",
+      "sector": "Healthcare",
+      "type": "Stock"
+    }
+  },
   "DAX": {
     "info": {
       "industry": "ETF",
@@ -23057,6 +23043,13 @@
       "type": "Stock"
     }
   },
+  "EMAG": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "EMAT": {
     "info": {
       "industry": "Other Industrial Metals & Mining",
@@ -27073,6 +27066,13 @@
       "industry": "Communication Equipment",
       "sector": "Technology",
       "type": "Stock"
+    }
+  },
+  "FIFT": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
     }
   },
   "FIG": {
@@ -37030,6 +37030,13 @@
     }
   },
   "ICMO": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "ICOM": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
@@ -50768,6 +50775,20 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
+    }
+  },
+  "NANO": {
+    "info": {
+      "industry": "Semiconductor Equipment & Materials",
+      "sector": "Technology",
+      "type": "Stock"
+    }
+  },
+  "NANOW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
     }
   },
   "NANR": {
@@ -65276,8 +65297,8 @@
   },
   "SATS": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Asset Management",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -73220,6 +73241,13 @@
     }
   },
   "THRO": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "THRU": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
