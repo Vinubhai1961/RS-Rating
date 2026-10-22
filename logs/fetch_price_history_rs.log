@@ -1,18 +1,14 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-10-21 16:59:58 EDT
+Run Date: 2026-10-22 16:58:22 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-10-21 20:56:11
-Successful: 1862 | Skipped: 5 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-10-22 20:55:06
+Successful: 1858 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-AHIC: Too few valid rows: 1
-AHYM: Too few valid rows: 1
-AIBN: Too few valid rows: 1
 ANG: Too few valid rows: 1
-ASTM: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -20,10 +16,11 @@ ASTM: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-10-21 20:56:36
-Successful: 1866 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-10-22 20:53:08
+Successful: 1857 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
-GMIE: Too few valid rows: 1
+EMAG: Too few valid rows: 1
+FIFT: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -31,10 +28,13 @@ GMIE: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-10-21 20:56:11
-Successful: 1866 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-10-22 20:54:44
+Successful: 1855 | Skipped: 4 | Failed: 0
 --- Skipped Tickers ---
-RBTX: Too few valid rows: 1
+MGIN: Too few valid rows: 1
+MUNF: Too few valid rows: 1
+MUNG: Too few valid rows: 1
+MUNH: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -42,12 +42,12 @@ RBTX: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-10-21 20:57:30
-Successful: 1865 | Skipped: 3 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-10-22 20:53:43
+Successful: 1859 | Skipped: 3 | Failed: 0
 --- Skipped Tickers ---
-SCIN: Too few valid rows: 1
-TLCE: Too few valid rows: 1
-TSIE: Too few valid rows: 1
+THRU: Too few valid rows: 1
+TIPF: Too few valid rows: 1
+TNTW: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 3 ===
