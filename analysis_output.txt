@@ -1,23 +1,23 @@
-Analysis of nasdaqtraded.txt (as of 2026-10-22 03:52:13):
+Analysis of nasdaqtraded.txt (as of 2026-10-23 03:56:24):
 
-1. Total Securities: 13294
+1. Total Securities: 13298
    - Represents the total number of securities listed across all exchanges in the file.
 
-2. Number of ETFs: 5776
+2. Number of ETFs: 5780
    - Counts securities marked as ETFs (ETF = Y), which track indices, commodities, or asset baskets.
 
 3. Security Type Breakdown:
-ETF                5776
+ETF                5780
 Common Stock       4005
-Other              2329
+Other              2330
 Preferred Stock     442
 Warrant             401
-Other               341
+Other               340
    - Categorizes securities based on ETF status and keywords in Security Name (e.g., Common Stock, Preferred Stock). Top 5 types shown, others in 'Other'.
 
 4. Securities by Exchange:
 Exchange Name
-Other            5647
+Other            5651
 NASDAQ           2904
 NYSE Arca        2750
 BATS             1676
@@ -33,7 +33,7 @@ IEX                       0     0      3                0     0        0
 NASDAQ                 1571    79    827              318    75       34
 NYSE American           179     0    104               17     6        8
 NYSE Arca                 1  2731     14                1     3        0
-Other                  2252  1296   1375              106   257      359
+Other                  2252  1300   1376              106   256      359
    - Shows the count of each security type per exchange (e.g., ETFs on NASDAQ).
 
 6. NASDAQ Market Categories:
@@ -49,10 +49,10 @@ No distressed securities found.
 
 9. Top 5 Sectors:
 Sector
-Unknown       11459
+Unknown       11465
 Financial       630
-Technology      505
-Healthcare      340
+Technology      502
+Healthcare      341
 Energy          311
    - Inferred from Security Name keywords, showing the most common industries.
 
@@ -71,22 +71,22 @@ Chart.js Pie Chart for Security Types:
   "type": "pie",
   "data": {
     "labels": [
-      "ETF: 5776",
+      "ETF: 5780",
       "Common Stock: 4005",
-      "Other: 2329",
+      "Other: 2330",
       "Preferred Stock: 442",
       "Warrant: 401",
-      "Other: 341"
+      "Other: 340"
     ],
     "datasets": [
       {
         "data": [
-          5776,
+          5780,
           4005,
-          2329,
+          2330,
           442,
           401,
-          341
+          340
         ],
         "backgroundColor": [
           "#36A2EB",
