@@ -587,13 +587,6 @@
       "type": "Stock"
     }
   },
-  "ACA": {
-    "info": {
-      "industry": "Engineering & Construction",
-      "sector": "Industrials",
-      "type": "Stock"
-    }
-  },
   "ACAA": {
     "info": {
       "industry": "Shell Companies",
@@ -812,6 +805,13 @@
     }
   },
   "ACIG": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "ACIN": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
@@ -1712,6 +1712,13 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
+    }
+  },
+  "AETR": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
     }
   },
   "AEVA": {
@@ -4600,8 +4607,8 @@
   },
   "APXC": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Other Industrial Metals & Mining",
+      "sector": "Basic Materials",
       "type": "Stock"
     }
   },
@@ -13493,13 +13500,6 @@
       "industry": "Gold",
       "sector": "Basic Materials",
       "type": "Stock"
-    }
-  },
-  "CDEI": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
     }
   },
   "CDIG": {
@@ -22931,13 +22931,6 @@
       "type": "Stock"
     }
   },
-  "ELME": {
-    "info": {
-      "industry": "REIT - Residential",
-      "sector": "Real Estate",
-      "type": "Stock"
-    }
-  },
   "ELMT": {
     "info": {
       "industry": "Aerospace & Defense",
@@ -25896,6 +25889,13 @@
     "info": {
       "industry": "Banks - Regional",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "FCDH": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -30967,13 +30967,6 @@
       "type": "Stock"
     }
   },
-  "GFGF": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
   "GFI": {
     "info": {
       "industry": "Gold",
@@ -33359,6 +33352,13 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
+    }
+  },
+  "GUNN": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
     }
   },
   "GUNR": {
@@ -56412,13 +56412,6 @@
       "type": "ETF"
     }
   },
-  "PAPL": {
-    "info": {
-      "industry": "Mortgage Finance",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
   "PAR": {
     "info": {
       "industry": "Software - Application",
@@ -60122,6 +60115,13 @@
       "type": "ETF"
     }
   },
+  "PTIV": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "PTL": {
     "info": {
       "industry": "ETF",
@@ -61817,6 +61817,13 @@
     }
   },
   "RACK": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "RADD": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
@@ -79785,13 +79792,6 @@
       "type": "ETF"
     }
   },
-  "VSME": {
-    "info": {
-      "industry": "Advertising Agencies",
-      "sector": "Communication Services",
-      "type": "Stock"
-    }
-  },
   "VSMV": {
     "info": {
       "industry": "ETF",
@@ -80688,13 +80688,6 @@
       "type": "ETF"
     }
   },
-  "WEAV": {
-    "info": {
-      "industry": "Health Information Services",
-      "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
   "WEBL": {
     "info": {
       "industry": "ETF",
@@ -81399,13 +81392,6 @@
     "info": {
       "industry": "Advertising Agencies",
       "sector": "Communication Services",
-      "type": "Stock"
-    }
-  },
-  "WPRT": {
-    "info": {
-      "industry": "Auto Parts",
-      "sector": "Consumer Cyclical",
       "type": "Stock"
     }
   },

@@ -1,6 +1,6 @@
 {
   "by_reason": {
-    "autocallable": 31,
+    "autocallable": 32,
     "buffer": 433,
     "covered call": 29,
     "etn": 17,
@@ -531,6 +531,11 @@
       "symbol": "CAUG"
     },
     {
+      "reason": "autocallable",
+      "security_name": "Calamos Least-Of Autocallable Income ETF",
+      "symbol": "CAYN"
+    },
+    {
       "reason": "etn",
       "security_name": "ETRACS Monthly Pay 1.5X Leveraged Closed-End Fund Index ETN",
       "symbol": "CEFD"
@@ -1004,12 +1009,7 @@
       "reason": "buffer",
       "security_name": "FT Vest U.S. Equity Buffer ETF - April",
       "symbol": "FAPR"
-    },
-    {
-      "reason": "buffer",
-      "security_name": "FT Vest U.S. Equity Buffer ETF - August",
-      "symbol": "FAUG"
     }
   ],
-  "total_excluded": 624
+  "total_excluded": 625
 }
