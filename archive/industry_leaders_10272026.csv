@@ -1,0 +1,709 @@
+IndustryRank,Ticker,Price,Sector,Industry,RS Percentile,1M_RS Percentile,3M_RS Percentile,6M_RS Percentile,ATR,ADR,Gap (%),IPO,HVE
+1,TJGC,31.89,Communication Services,Advertising Agencies,98.0,94.0,98.0,98.0,1.5754,1.5583,0.0,NO,NO
+2,MGNI,21.82,Communication Services,Advertising Agencies,91.0,13.0,85.0,96.0,0.9293,0.8936,0.6,NO,NO
+3,ZD,57.03,Communication Services,Advertising Agencies,90.0,69.0,74.0,87.0,1.4243,1.3818,0.0,NO,NO
+4,WPP,26.01,Communication Services,Advertising Agencies,89.0,64.0,91.0,94.0,0.6714,0.5207,0.0,NO,NO
+5,QNST,16.01,Communication Services,Advertising Agencies,70.0,93.0,43.0,87.0,0.5711,0.5546,0.0,NO,NO
+1,SIF,20.69,Industrials,Aerospace & Defense,97.0,11.0,3.0,93.0,1.1171,1.1129,2.45,NO,NO
+2,ELMT,22.58,Industrials,Aerospace & Defense,95.0,97.0,98.0,,1.515,1.4564,0.0,NO,NO
+3,ARXS,52.64,Industrials,Aerospace & Defense,93.0,89.0,93.0,95.0,2.5968,2.5325,0.0,NO,NO
+4,IA,20.49,Industrials,Aerospace & Defense,90.0,89.0,89.0,51.0,0.8446,0.8332,0.75,NO,NO
+5,DCO,164.79,Industrials,Aerospace & Defense,90.0,25.0,27.0,83.0,7.0854,6.7211,0.0,NO,NO
+1,CF,120.54,Basic Materials,Agricultural Inputs,79.0,79.0,19.0,38.0,4.065,3.9857,0.0,NO,NO
+2,UAN,123.76,Basic Materials,Agricultural Inputs,74.0,45.0,55.0,16.0,3.1871,3.1621,0.0,NO,NO
+3,NTR,69.37,Basic Materials,Agricultural Inputs,49.0,21.0,35.0,21.0,1.7986,1.7211,0.38,NO,NO
+4,IPI,31.71,Basic Materials,Agricultural Inputs,17.0,28.0,11.0,9.0,1.0371,1.0329,0.19,NO,NO
+5,SMG,59.36,Basic Materials,Agricultural Inputs,14.0,97.0,6.0,15.0,1.9275,1.8011,0.0,NO,NO
+1,DAL,81.45,Industrials,Airlines,82.0,23.0,19.0,88.0,3.1446,2.8896,1.07,NO,NO
+2,LUV,43.44,Industrials,Airlines,77.0,70.0,31.0,83.0,1.6543,1.5986,0.3,NO,NO
+3,CPA,132.18,Industrials,Airlines,49.0,54.0,26.0,84.0,4.0839,3.8,0.0,NO,NO
+4,UAL,104.71,Industrials,Airlines,39.0,14.0,9.0,84.0,4.9993,4.7164,1.77,NO,NO
+5,RJET,18.18,Industrials,Airlines,33.0,33.0,54.0,51.0,0.6986,0.6621,1.16,NO,NO
+1,CAAP,23.41,Industrials,Airports & Air Services,27.0,8.0,14.0,18.0,0.8157,0.7964,0.0,NO,NO
+2,PAC,224.01,Industrials,Airports & Air Services,20.0,81.0,66.0,12.0,7.4057,7.3936,0.0,NO,NO
+3,OMAB,99.06,Industrials,Airports & Air Services,14.0,24.0,17.0,18.0,2.705,2.655,0.0,NO,NO
+4,ASR,249.15,Industrials,Airports & Air Services,7.0,67.0,14.0,7.0,6.7696,6.7696,0.0,NO,NO
+1,CSTM,24.56,Basic Materials,Aluminum,49.0,39.0,10.0,6.0,0.8521,0.7814,2.05,NO,NO
+2,KALU,116.25,Basic Materials,Aluminum,9.0,1.0,3.0,2.0,8.5357,6.6936,1.5,NO,NO
+3,AA,39.93,Basic Materials,Aluminum,7.0,16.0,17.0,1.0,1.512,1.2849,1.01,NO,NO
+4,CENX,33.36,Basic Materials,Aluminum,4.0,7.0,3.0,1.0,1.665,1.4821,2.2,NO,NO
+1,FIGS,20.48,Consumer Cyclical,Apparel Manufacturing,97.0,98.0,98.0,93.0,1.1118,1.0996,0.0,NO,NO
+2,RL,391.25,Consumer Cyclical,Apparel Manufacturing,71.0,90.0,70.0,67.0,9.7411,9.3546,0.0,NO,NO
+3,PVH,85.61,Consumer Cyclical,Apparel Manufacturing,60.0,93.0,26.0,17.0,3.0032,2.9146,0.0,NO,NO
+4,COLM,61.17,Consumer Cyclical,Apparel Manufacturing,57.0,79.0,23.0,44.0,1.75,1.5979,0.1,NO,NO
+5,VFC,17.03,Consumer Cyclical,Apparel Manufacturing,46.0,96.0,87.0,15.0,0.6818,0.6532,0.0,NO,NO
+1,ANF,165.38,Consumer Cyclical,Apparel Retail,97.0,97.0,97.0,97.0,6.1321,5.7857,0.12,NO,NO
+2,VSXY,92.27,Consumer Cyclical,Apparel Retail,96.0,80.0,68.0,97.0,4.7641,4.6119,0.0,NO,NO
+3,JILL,22.81,Consumer Cyclical,Apparel Retail,94.0,15.0,93.0,96.0,0.7629,0.7551,0.0,NO,NO
+4,URBN,90.73,Consumer Cyclical,Apparel Retail,91.0,96.0,91.0,91.0,2.8321,2.7136,0.0,NO,NO
+5,ROST,230.09,Consumer Cyclical,Apparel Retail,78.0,23.0,13.0,51.0,5.8414,5.32,0.0,NO,NO
+1,SVRN,31.12,Financial Services,Asset Management,98.0,0.0,98.0,98.0,7.5239,6.6551,0.0,NO,NO
+2,DHY,16.37,Financial Services,Asset Management,98.0,63.0,18.0,18.0,0.185,0.1693,0.68,NO,NO
+3,AMTD,22.75,Financial Services,Asset Management,98.0,0.0,0.0,0.0,6.5364,6.1464,0.0,NO,NO
+4,ASST,27.14,Financial Services,Asset Management,97.0,14.0,98.0,97.0,2.2181,1.9553,0.91,NO,NO
+5,PS,46.8,Financial Services,Asset Management,97.0,2.0,96.0,,3.2821,3.0479,0.24,NO,NO
+1,RUSHB,59.28,Consumer Cyclical,Auto & Truck Dealerships,92.0,88.0,87.0,84.0,2.01,1.9607,0.95,NO,NO
+2,PAG,212.15,Consumer Cyclical,Auto & Truck Dealerships,85.0,68.0,20.0,91.0,2.9964,1.8736,0.0,NO,NO
+3,OPLN,37.83,Consumer Cyclical,Auto & Truck Dealerships,83.0,90.0,17.0,87.0,0.93,0.9064,0.51,NO,NO
+4,KMX,53.89,Consumer Cyclical,Auto & Truck Dealerships,80.0,18.0,13.0,93.0,2.2871,2.11,0.0,NO,NO
+5,RUSHA,45.48,Consumer Cyclical,Auto & Truck Dealerships,43.0,19.0,6.0,14.0,0.9104,0.8218,0.02,NO,NO
+1,HMC,34.07,Consumer Cyclical,Auto Manufacturers,85.0,81.0,85.0,93.0,0.5257,0.3764,0.0,NO,NO
+2,TSLA,407.46,Consumer Cyclical,Auto Manufacturers,83.0,94.0,95.0,72.0,13.7836,11.16,1.58,NO,NO
+3,RACE,389.83,Consumer Cyclical,Auto Manufacturers,62.0,27.0,56.0,82.0,6.1857,5.4371,0.0,NO,NO
+4,GM,80.54,Consumer Cyclical,Auto Manufacturers,34.0,41.0,12.0,51.0,2.5293,1.9836,2.7,NO,NO
+5,TM,196.56,Consumer Cyclical,Auto Manufacturers,32.0,79.0,60.0,50.0,2.8993,2.046,0.0,NO,NO
+1,VGNT,41.58,Consumer Cyclical,Auto Parts,86.0,10.0,25.0,88.0,1.4089,1.3332,0.0,NO,NO
+2,MLR,51.68,Consumer Cyclical,Auto Parts,82.0,19.0,61.0,77.0,1.2407,1.1993,0.0,NO,NO
+3,MGA,64.13,Consumer Cyclical,Auto Parts,75.0,35.0,16.0,57.0,1.7764,1.6129,0.0,NO,NO
+4,BWA,55.73,Consumer Cyclical,Auto Parts,60.0,9.0,11.0,53.0,1.6282,1.5261,0.98,NO,NO
+5,GTX,22.01,Consumer Cyclical,Auto Parts,50.0,4.0,2.0,73.0,0.8879,0.82,1.43,NO,NO
+1,TD,125.78,Financial Services,Banks - Diversified,90.0,82.0,80.0,87.0,2.0218,1.9311,0.33,NO,NO
+2,BNS,93.85,Financial Services,Banks - Diversified,88.0,58.0,83.0,88.0,1.3493,1.2643,0.34,NO,NO
+3,MUFG,21.48,Financial Services,Banks - Diversified,85.0,10.0,31.0,89.0,0.4229,0.3096,0.0,NO,NO
+4,SMFG,24.26,Financial Services,Banks - Diversified,84.0,10.0,27.0,84.0,0.4518,0.3429,1.51,NO,NO
+5,CM,116.49,Financial Services,Banks - Diversified,83.0,77.0,51.0,66.0,2.0764,1.9271,0.29,NO,NO
+1,CFFI,108.57,Financial Services,Banks - Regional,94.0,94.0,94.0,93.0,2.8186,2.6986,0.0,NO,NO
+2,CBNA,51.36,Financial Services,Banks - Regional,94.0,88.0,89.0,94.0,1.9068,1.8446,0.31,NO,NO
+3,BOTJ,30.01,Financial Services,Banks - Regional,94.0,91.0,81.0,91.0,0.7075,0.6811,0.0,NO,NO
+4,FDBC,64.26,Financial Services,Banks - Regional,93.0,95.0,92.0,93.0,1.6225,1.4646,0.0,NO,NO
+5,EGBN,33.15,Financial Services,Banks - Regional,93.0,95.0,91.0,90.0,1.0686,0.9643,0.0,NO,NO
+1,FMX,124.26,Consumer Defensive,Beverages - Brewers,80.0,80.0,64.0,75.0,3.1264,2.8036,0.0,NO,NO
+2,BUD,81.37,Consumer Defensive,Beverages - Brewers,76.0,83.0,22.0,75.0,1.712,1.1799,0.0,NO,NO
+3,SAM,200.3,Consumer Defensive,Beverages - Brewers,19.0,97.0,79.0,9.0,6.1721,6.0232,0.0,NO,NO
+4,STZ,130.63,Consumer Defensive,Beverages - Brewers,13.0,95.0,43.0,9.0,3.6357,3.2375,0.0,NO,NO
+5,TAP,39.45,Consumer Defensive,Beverages - Brewers,11.0,89.0,15.0,17.0,1.1207,0.9807,0.0,NO,NO
+1,COKE,206.61,Consumer Defensive,Beverages - Non-Alcoholic,89.0,86.0,80.0,54.0,7.5782,7.1396,0.0,NO,NO
+2,KDP,34.86,Consumer Defensive,Beverages - Non-Alcoholic,87.0,92.0,85.0,88.0,0.78,0.7243,0.0,NO,NO
+3,KO,91.18,Consumer Defensive,Beverages - Non-Alcoholic,84.0,80.0,62.0,85.0,1.7289,1.5061,0.0,NO,NO
+4,KOF,113.63,Consumer Defensive,Beverages - Non-Alcoholic,80.0,80.0,77.0,80.0,3.5814,3.265,0.0,NO,NO
+5,CCEP,110.89,Consumer Defensive,Beverages - Non-Alcoholic,79.0,88.0,47.0,82.0,2.3764,1.9779,0.0,NO,NO
+1,DEO,93.07,Consumer Defensive,Beverages - Wineries & Distilleries,63.0,88.0,71.0,86.0,1.9414,1.4311,0.0,NO,NO
+2,MGPI,15.32,Consumer Defensive,Beverages - Wineries & Distilleries,2.0,96.0,4.0,5.0,0.6971,0.6746,0.0,NO,NO
+1,SLN,19.78,Healthcare,Biotechnology,98.0,98.0,98.0,98.0,1.19,0.3904,0.0,NO,NO
+2,MRNA,207.97,Healthcare,Biotechnology,98.0,83.0,98.0,98.0,24.2298,23.8929,0.0,NO,NO
+3,KOD,91.32,Healthcare,Biotechnology,98.0,62.0,98.0,97.0,6.5836,6.4579,0.06,NO,NO
+4,TWST,159.85,Healthcare,Biotechnology,98.0,7.0,98.0,98.0,13.55,13.2557,0.34,NO,NO
+5,XNCR,29.99,Healthcare,Biotechnology,98.0,95.0,97.0,98.0,1.9684,1.7005,1.92,NO,NO
+1,NXST,166.26,Communication Services,Broadcasting,7.0,70.0,6.0,7.0,4.6414,4.5386,0.0,NO,NO
+1,JHX,26.32,Basic Materials,Building Materials,76.0,76.0,53.0,87.0,0.7995,0.7688,0.42,NO,NO
+2,VMC,262.5,Basic Materials,Building Materials,12.0,86.0,15.0,14.0,5.7068,5.3225,0.35,NO,NO
+3,USLM,110.12,Basic Materials,Building Materials,11.0,33.0,28.0,9.0,2.9739,2.8903,0.3,NO,NO
+4,MLM,503.69,Basic Materials,Building Materials,7.0,70.0,10.0,8.0,11.5461,10.8261,0.0,NO,NO
+5,TGLS,38.58,Basic Materials,Building Materials,5.0,92.0,7.0,12.0,1.1536,1.115,0.29,NO,NO
+1,JCI,155.88,Industrials,Building Products & Equipment,88.0,80.0,86.0,77.0,5.2386,4.3921,4.14,NO,NO
+2,GFF,100.26,Industrials,Building Products & Equipment,86.0,79.0,88.0,74.0,2.8304,2.6811,0.46,NO,NO
+3,APOG,45.03,Industrials,Building Products & Equipment,85.0,97.0,87.0,88.0,1.4664,1.4329,0.0,NO,NO
+4,TREX,49.85,Industrials,Building Products & Equipment,84.0,93.0,90.0,88.0,1.5707,1.4714,0.18,NO,NO
+5,NX,20.03,Industrials,Building Products & Equipment,79.0,74.0,86.0,38.0,0.8646,0.826,0.72,NO,NO
+1,CXT,58.44,Industrials,Business Equipment & Supplies,81.0,97.0,86.0,92.0,2.0471,2.0271,0.61,NO,NO
+1,TOP,15.44,Financial Services,Capital Markets,98.0,66.0,96.0,98.0,1.2059,1.2059,0.0,NO,NO
+2,XRPN,15.27,Financial Services,Capital Markets,95.0,98.0,96.0,94.0,2.2781,1.9831,0.0,NO,NO
+3,MRX,69.5,Financial Services,Capital Markets,95.0,25.0,84.0,91.0,2.9138,2.9006,0.0,NO,NO
+4,VIRT,54.99,Financial Services,Capital Markets,89.0,84.0,20.0,80.0,1.84,1.84,0.0,NO,NO
+5,OPY,104.98,Financial Services,Capital Markets,84.0,6.0,21.0,18.0,3.495,3.365,1.13,NO,NO
+1,MEOH,63.75,Basic Materials,Chemicals,92.0,86.0,90.0,63.0,2.2325,2.0811,0.0,NO,NO
+2,DOW,33.78,Basic Materials,Chemicals,82.0,97.0,85.0,13.0,0.9621,0.9389,0.0,NO,NO
+3,CE,48.63,Basic Materials,Chemicals,53.0,84.0,85.0,4.0,1.6293,1.6293,0.0,NO,NO
+4,REX,38.49,Basic Materials,Chemicals,41.0,8.0,13.0,7.0,1.4479,1.3993,0.0,NO,NO
+5,WLKP,21.15,Basic Materials,Chemicals,35.0,29.0,24.0,17.0,0.2989,0.2982,0.0,NO,NO
+1,HCC,87.35,Basic Materials,Coking Coal,76.0,18.0,85.0,33.0,3.565,3.4371,1.1,NO,NO
+2,AMR,168.57,Basic Materials,Coking Coal,47.0,20.0,92.0,10.0,9.0143,8.7246,2.36,NO,NO
+1,LITE,866.18,Technology,Communication Equipment,98.0,14.0,96.0,75.0,75.6697,65.8983,3.46,NO,NO
+2,HPE,60.84,Technology,Communication Equipment,98.0,24.0,95.0,98.0,3.695,2.96,2.64,NO,NO
+3,SILC,42.0,Technology,Communication Equipment,97.0,3.0,91.0,95.0,4.075,3.4386,3.04,NO,NO
+4,DGII,78.85,Technology,Communication Equipment,96.0,54.0,91.0,94.0,2.9,2.675,0.16,NO,NO
+5,ZBRA,381.67,Technology,Communication Equipment,95.0,70.0,95.0,96.0,10.2564,9.665,0.0,NO,NO
+1,QMCO,20.25,Technology,Computer Hardware,98.0,0.0,98.0,98.0,2.4957,2.2721,1.28,NO,NO
+2,DELL,501.96,Technology,Computer Hardware,98.0,11.0,95.0,98.0,33.0318,26.6396,1.48,NO,NO
+3,SNDK,1304.84,Technology,Computer Hardware,98.0,1.0,94.0,91.0,90.5668,75.7698,0.92,NO,NO
+4,P,138.73,Technology,Computer Hardware,97.0,87.0,98.0,97.0,8.795,7.3064,1.27,NO,NO
+5,STX,667.85,Technology,Computer Hardware,95.0,1.0,9.0,84.0,43.8029,36.4607,1.16,NO,NO
+1,MDLZ,62.35,Consumer Defensive,Confectioners,47.0,76.0,22.0,66.0,1.375,1.1814,0.0,NO,NO
+2,HSY,164.51,Consumer Defensive,Confectioners,11.0,44.0,11.0,11.0,4.0886,3.5339,0.0,NO,NO
+3,TR,34.54,Consumer Defensive,Confectioners,11.0,9.0,9.0,6.0,1.0014,0.9843,0.0,NO,NO
+1,RCMT,35.52,Industrials,Conglomerates,94.0,5.0,93.0,81.0,1.5914,1.5721,0.0,NO,NO
+2,AIRT,25.82,Industrials,Conglomerates,71.0,9.0,20.0,89.0,1.255,1.255,0.29,NO,NO
+3,MMM,171.58,Industrials,Conglomerates,58.0,59.0,24.0,85.0,4.1918,4.1504,0.0,NO,NO
+4,OTTR,90.47,Industrials,Conglomerates,56.0,67.0,46.0,48.0,1.3196,1.2761,0.0,NO,NO
+5,GHC,1186.71,Industrials,Conglomerates,51.0,78.0,23.0,47.0,25.0971,24.3971,0.0,NO,NO
+1,HURN,195.8,Industrials,Consulting Services,90.0,97.0,89.0,95.0,7.2607,7.0157,0.0,NO,NO
+2,ICFI,95.39,Industrials,Consulting Services,84.0,94.0,89.0,93.0,2.5135,2.3971,0.0,NO,NO
+3,CRAI,194.3,Industrials,Consulting Services,67.0,96.0,61.0,90.0,6.595,6.1614,0.0,NO,NO
+4,BAH,83.4,Industrials,Consulting Services,65.0,96.0,91.0,75.0,3.0818,2.9696,0.0,NO,NO
+5,EFTY,15.02,Industrials,Consulting Services,42.0,61.0,63.0,49.0,0.0,0.0,0.0,NO,NO
+1,TBCH,16.58,Technology,Consumer Electronics,92.0,98.0,96.0,94.0,0.9264,0.9,0.18,NO,NO
+2,AAPL,347.1,Technology,Consumer Electronics,87.0,69.0,64.0,90.0,6.3593,6.0836,0.0,NO,NO
+3,SONY,25.64,Technology,Consumer Electronics,77.0,91.0,84.0,91.0,0.4696,0.3754,0.0,NO,NO
+4,SONO,17.87,Technology,Consumer Electronics,77.0,37.0,60.0,89.0,0.5293,0.525,0.0,NO,NO
+1,ERO,32.52,Basic Materials,Copper,90.0,5.0,94.0,89.0,1.7869,1.5488,1.19,NO,NO
+2,SCCO,194.43,Basic Materials,Copper,87.0,20.0,86.0,85.0,8.1875,7.1118,2.27,NO,NO
+3,FCX,65.95,Basic Materials,Copper,87.0,10.0,84.0,81.0,2.4793,2.1579,0.52,NO,NO
+4,TECK,62.28,Basic Materials,Copper,85.0,19.0,82.0,70.0,2.2507,1.7881,1.63,NO,NO
+5,HBM,23.39,Basic Materials,Copper,77.0,5.0,78.0,50.0,1.1054,0.9489,2.84,NO,NO
+1,PMTS,25.43,Financial Services,Credit Services,95.0,69.0,92.0,93.0,0.8848,0.8751,0.0,NO,NO
+2,ECPG,99.46,Financial Services,Credit Services,95.0,72.0,77.0,86.0,3.4242,3.3377,0.0,NO,NO
+3,SEZL,127.36,Financial Services,Credit Services,93.0,96.0,6.0,95.0,8.3415,8.0629,0.0,NO,NO
+4,BFH,102.61,Financial Services,Credit Services,89.0,60.0,22.0,86.0,3.6118,3.2711,0.0,NO,NO
+5,EZPW,29.55,Financial Services,Credit Services,87.0,20.0,59.0,16.0,1.4589,1.4239,0.52,NO,NO
+1,KSS,23.78,Consumer Cyclical,Department Stores,93.0,98.0,93.0,96.0,1.1796,1.1425,0.0,NO,NO
+2,M,23.86,Consumer Cyclical,Department Stores,80.0,76.0,23.0,89.0,0.8718,0.8596,0.59,NO,NO
+3,DDS,665.6,Consumer Cyclical,Department Stores,79.0,26.0,87.0,82.0,28.3186,28.3186,0.0,NO,NO
+1,GRAL,150.61,Healthcare,Diagnostics & Research,98.0,94.0,98.0,98.0,9.8131,9.7281,0.0,NO,NO
+2,CDNA,70.53,Healthcare,Diagnostics & Research,98.0,90.0,98.0,98.0,4.0034,3.9634,0.0,NO,NO
+3,CRL,358.84,Healthcare,Diagnostics & Research,97.0,97.0,97.0,98.0,13.1354,12.6689,0.0,NO,NO
+4,NTRA,410.82,Healthcare,Diagnostics & Research,97.0,40.0,97.0,97.0,16.7133,16.19,0.0,NO,NO
+5,ILMN,279.47,Healthcare,Diagnostics & Research,97.0,70.0,96.0,98.0,13.465,13.2886,0.0,NO,NO
+1,TBBB,57.41,Consumer Defensive,Discount Stores,96.0,87.0,96.0,95.0,1.7167,1.6203,0.0,NO,NO
+2,TGT,148.01,Consumer Defensive,Discount Stores,89.0,13.0,58.0,85.0,4.4434,4.4006,0.0,NO,NO
+3,BJ,105.12,Consumer Defensive,Discount Stores,76.0,89.0,74.0,82.0,2.8118,2.6725,0.0,NO,NO
+4,DLTR,123.65,Consumer Defensive,Discount Stores,74.0,85.0,22.0,90.0,4.1614,4.0093,0.0,NO,NO
+5,PSMT,166.49,Consumer Defensive,Discount Stores,66.0,21.0,8.0,68.0,4.5375,4.3611,0.0,NO,NO
+1,BIIB,252.73,Healthcare,Drug Manufacturers - General,94.0,91.0,91.0,93.0,7.3771,6.6371,0.0,NO,NO
+2,AMGN,447.95,Healthcare,Drug Manufacturers - General,91.0,87.0,89.0,92.0,10.7754,9.7746,0.0,NO,NO
+3,MRK,141.82,Healthcare,Drug Manufacturers - General,91.0,18.0,83.0,91.0,4.8093,4.4229,0.0,NO,NO
+4,LLY,1281.91,Healthcare,Drug Manufacturers - General,91.0,88.0,77.0,94.0,38.6986,34.3335,0.0,NO,NO
+5,ABBV,286.39,Healthcare,Drug Manufacturers - General,89.0,87.0,82.0,94.0,6.6943,6.4079,0.0,NO,NO
+1,ETON,51.16,Healthcare,Drug Manufacturers - Specialty & Generic,98.0,5.0,78.0,97.0,2.4457,2.4457,0.0,NO,NO
+2,PCRX,36.4,Healthcare,Drug Manufacturers - Specialty & Generic,96.0,98.0,96.0,94.0,0.8968,0.1032,0.0,NO,NO
+3,AMLX,28.3,Healthcare,Drug Manufacturers - Specialty & Generic,96.0,17.0,96.0,96.0,1.3986,1.3579,0.0,NO,NO
+4,ANIK,21.35,Healthcare,Drug Manufacturers - Specialty & Generic,96.0,74.0,95.0,93.0,0.7286,0.7136,0.0,NO,NO
+5,KNSA,89.2,Healthcare,Drug Manufacturers - Specialty & Generic,96.0,95.0,84.0,96.0,4.4489,3.6431,15.81,NO,NO
+1,SBTU,28.94,ETF,ETF,98.0,0.0,99.0,99.0,3.9751,3.3267,2.44,NO,NO
+2,BWET,896.0,ETF,ETF,98.0,97.0,98.0,98.0,56.638,39.668,0.0,NO,NO
+3,OKTG,64.14,ETF,ETF,98.0,96.0,98.0,98.0,6.3439,6.1839,0.0,NO,NO
+4,PLTL,72.86,ETF,ETF,98.0,91.0,98.0,,3.9625,1.5352,0.0,NO,NO
+5,PUL,65.72,ETF,ETF,98.0,90.0,98.0,,7.3979,4.9604,4.2,NO,NO
+1,DAO,19.0,Consumer Defensive,Education & Training Services,95.0,98.0,92.0,96.0,1.0632,1.0361,0.0,NO,NO
+2,LAUR,37.64,Consumer Defensive,Education & Training Services,77.0,44.0,32.0,87.0,0.9343,0.9275,0.0,NO,NO
+3,EDU,57.99,Consumer Defensive,Education & Training Services,47.0,77.0,42.0,74.0,1.5025,1.4239,0.0,NO,NO
+4,CVSA,129.26,Consumer Defensive,Education & Training Services,46.0,91.0,25.0,82.0,3.6225,3.5918,0.0,NO,NO
+5,APEI,46.17,Consumer Defensive,Education & Training Services,39.0,94.0,12.0,7.0,1.2996,1.2861,0.0,NO,NO
+1,ELC,18.1,Utilities,Electric utilities,10.0,22.0,13.0,11.0,0.2719,0.2669,0.0,NO,NO
+1,OESX,20.05,Industrials,Electrical Equipment & Parts,97.0,0.0,98.0,98.0,1.3593,1.3486,0.31,NO,NO
+2,BE,218.5,Industrials,Electrical Equipment & Parts,94.0,3.0,95.0,28.0,20.4679,16.6258,5.0,NO,NO
+3,PLPC,349.42,Industrials,Electrical Equipment & Parts,91.0,3.0,92.0,35.0,18.5146,16.4204,2.83,NO,NO
+4,NVT,134.53,Industrials,Electrical Equipment & Parts,76.0,3.0,54.0,32.0,8.4154,7.0322,3.15,NO,NO
+5,ENR,22.72,Industrials,Electrical Equipment & Parts,61.0,65.0,77.0,84.0,0.8353,0.8146,0.0,NO,NO
+1,RELL,20.0,Technology,Electronic Components,95.0,95.0,91.0,93.0,1.325,1.2307,1.02,NO,NO
+2,ALNT,94.04,Technology,Electronic Components,94.0,3.0,91.0,90.0,5.7943,5.1714,1.92,NO,NO
+3,VICR,212.0,Technology,Electronic Components,93.0,1.0,89.0,10.0,24.0329,20.9227,2.4,NO,NO
+4,RAL,69.61,Technology,Electronic Components,92.0,38.0,69.0,95.0,2.7366,2.5594,0.0,NO,NO
+5,ROG,134.12,Technology,Electronic Components,90.0,29.0,89.0,57.0,6.0111,5.1518,1.86,NO,NO
+1,GRVY,66.54,Communication Services,Electronic Gaming & Multimedia,69.0,38.0,81.0,72.0,1.1743,1.1528,0.0,NO,NO
+2,NTES,114.09,Communication Services,Electronic Gaming & Multimedia,10.0,15.0,9.0,51.0,2.8229,1.6879,0.0,NO,NO
+3,RBLX,54.47,Communication Services,Electronic Gaming & Multimedia,9.0,98.0,82.0,31.0,2.3138,2.2659,0.0,NO,NO
+4,TTWO,201.28,Communication Services,Electronic Gaming & Multimedia,7.0,37.0,5.0,20.0,6.4,6.1986,0.0,NO,NO
+1,NSIT,178.35,Technology,Electronics & Computer Distribution,97.0,94.0,96.0,98.0,6.6932,6.3968,0.0,NO,NO
+2,AVT,92.95,Technology,Electronics & Computer Distribution,94.0,10.0,85.0,86.0,3.7021,3.1225,1.81,NO,NO
+3,ARW,219.66,Technology,Electronics & Computer Distribution,94.0,18.0,80.0,87.0,8.4736,7.595,1.37,NO,NO
+4,SCSC,61.25,Technology,Electronics & Computer Distribution,92.0,84.0,79.0,95.0,1.9123,1.893,0.0,NO,NO
+5,CNXN,88.58,Technology,Electronics & Computer Distribution,92.0,32.0,79.0,93.0,2.5414,2.5221,0.0,NO,NO
+1,BWMN,42.87,Industrials,Engineering & Construction,93.0,52.0,97.0,93.0,0.0718,0.0706,0.0,NO,NO
+2,CDLR,25.26,Industrials,Engineering & Construction,83.0,91.0,91.0,28.0,0.8982,0.7304,1.8,NO,NO
+3,EXPO,76.45,Industrials,Engineering & Construction,79.0,96.0,89.0,82.0,1.8046,1.7246,0.0,NO,NO
+4,PWR,578.83,Industrials,Engineering & Construction,77.0,8.0,66.0,16.0,30.0736,26.3882,1.92,NO,NO
+5,TTEK,36.87,Industrials,Engineering & Construction,73.0,89.0,83.0,85.0,0.7971,0.7821,0.0,NO,NO
+1,MCS,28.26,Communication Services,Entertainment,96.0,30.0,87.0,94.0,0.7364,0.7364,0.47,NO,NO
+2,CNK,39.53,Communication Services,Entertainment,93.0,72.0,87.0,92.0,1.1439,1.1054,0.46,NO,NO
+3,ROKU,156.66,Communication Services,Entertainment,93.0,70.0,81.0,93.0,1.9494,1.9301,0.0,NO,NO
+4,IMAX,52.47,Communication Services,Entertainment,93.0,13.0,81.0,94.0,1.6854,1.6854,0.0,NO,NO
+5,STRZ,21.57,Communication Services,Entertainment,93.0,47.0,5.0,86.0,1.9404,1.9189,0.0,NO,NO
+1,MTW,22.51,Industrials,Farm & Heavy Construction Machinery,97.0,62.0,97.0,96.0,0.8714,0.8529,0.0,NO,NO
+2,GENC,17.22,Industrials,Farm & Heavy Construction Machinery,87.0,37.0,91.0,85.0,0.5075,0.4982,0.0,NO,NO
+3,DE,639.58,Industrials,Farm & Heavy Construction Machinery,85.0,12.0,72.0,82.0,18.3229,18.3229,0.0,NO,NO
+4,CAT,713.31,Industrials,Farm & Heavy Construction Machinery,55.0,5.0,13.0,11.0,26.5507,22.5775,1.68,NO,NO
+5,FSS,115.81,Industrials,Farm & Heavy Construction Machinery,46.0,53.0,68.0,57.0,3.0491,2.9434,1.45,NO,NO
+1,ADM,78.2,Consumer Defensive,Farm Products,71.0,24.0,27.0,69.0,2.0,1.9386,0.0,NO,NO
+2,CHSCO,25.47,Consumer Defensive,Farm Products,30.0,37.0,45.0,32.0,0.205,0.2029,0.0,NO,NO
+3,CHSCL,24.75,Consumer Defensive,Farm Products,28.0,33.0,32.0,30.0,0.2927,0.2884,0.0,NO,NO
+4,ALCO,37.37,Consumer Defensive,Farm Products,24.0,18.0,40.0,13.0,0.6487,0.6465,0.0,NO,NO
+5,CHSCN,23.63,Consumer Defensive,Farm Products,17.0,25.0,19.0,18.0,0.3752,0.3695,0.0,NO,NO
+1,KTN,25.74,Finance,Finance/Rental/Leasing,41.0,50.0,57.0,39.0,0.0764,0.0621,0.0,NO,NO
+2,BPOPM,25.2,Finance,Finance/Rental/Leasing,41.0,49.0,49.0,42.0,0.0946,0.0579,0.0,NO,NO
+3,ATLCZ,25.42,Finance,Finance/Rental/Leasing,41.0,39.0,46.0,47.0,0.1141,0.1122,0.0,NO,NO
+4,GJP,24.48,Finance,Finance/Rental/Leasing,38.0,61.0,64.0,46.0,0.0686,0.0079,0.0,NO,NO
+5,KTH,28.64,Finance,Finance/Rental/Leasing,38.0,54.0,51.0,38.0,0.1643,0.0593,0.0,NO,NO
+1,FRHC,176.25,Financial Services,Financial Conglomerates,88.0,57.0,91.0,85.0,6.2006,6.1278,0.38,NO,NO
+2,VOYA,96.84,Financial Services,Financial Conglomerates,83.0,55.0,32.0,86.0,2.1718,2.0296,0.0,NO,NO
+3,IX,36.93,Financial Services,Financial Conglomerates,83.0,16.0,19.0,82.0,0.4929,0.3857,0.0,NO,NO
+4,HTH,36.66,Financial Services,Financial Conglomerates,33.0,20.0,16.0,26.0,0.7821,0.7479,0.0,NO,NO
+1,VALU,42.5,Financial Services,Financial Data & Stock Exchanges,85.0,86.0,91.0,87.0,1.5606,1.4656,0.0,NO,NO
+2,FDS,309.54,Financial Services,Financial Data & Stock Exchanges,84.0,95.0,84.0,92.0,11.8707,11.235,0.0,NO,NO
+3,CBOE,324.68,Financial Services,Financial Data & Stock Exchanges,84.0,98.0,75.0,68.0,12.0128,10.9935,0.0,NO,NO
+4,NDAQ,104.36,Financial Services,Financial Data & Stock Exchanges,79.0,93.0,83.0,83.0,2.2734,2.1084,0.0,NO,NO
+5,MKTW,19.7,Financial Services,Financial Data & Stock Exchanges,79.0,38.0,23.0,81.0,0.7175,0.7068,0.0,NO,NO
+1,BMNP,96.96,Finance,Financial conglomerates,76.0,26.0,84.0,,0.9671,0.9457,0.0,NO,NO
+2,OXLCZ,24.99,Finance,Financial conglomerates,47.0,48.0,52.0,47.0,0.0479,0.0436,0.0,NO,NO
+3,OXLCM,24.68,Finance,Financial conglomerates,40.0,31.0,43.0,38.0,0.1543,0.1321,0.0,NO,NO
+4,OXLCL,23.78,Finance,Financial conglomerates,34.0,38.0,25.0,40.0,0.1139,0.0897,0.0,NO,NO
+5,OXLCG,24.39,Finance,Financial conglomerates,25.0,29.0,26.0,28.0,0.1526,0.1413,0.0,NO,NO
+1,CHEF,108.99,Consumer Defensive,Food Distribution,95.0,25.0,66.0,96.0,3.8961,3.8818,0.16,NO,NO
+2,USFD,102.57,Consumer Defensive,Food Distribution,84.0,90.0,51.0,82.0,2.4343,2.3579,0.0,NO,NO
+3,UNFI,48.32,Consumer Defensive,Food Distribution,70.0,83.0,23.0,46.0,1.3757,1.3464,0.0,NO,NO
+4,SYY,82.3,Consumer Defensive,Food Distribution,49.0,81.0,24.0,80.0,1.5786,1.4293,0.0,NO,NO
+5,ANDE,64.0,Consumer Defensive,Food Distribution,47.0,21.0,13.0,8.0,2.18,2.1264,0.0,NO,NO
+1,WEYS,50.9,Consumer Cyclical,Footwear & Accessories,95.0,88.0,94.0,94.0,1.4046,1.3125,0.0,NO,NO
+2,CROX,119.5,Consumer Cyclical,Footwear & Accessories,85.0,26.0,11.0,85.0,4.0921,3.8457,0.0,NO,NO
+3,RCKY,44.57,Consumer Cyclical,Footwear & Accessories,81.0,34.0,13.0,50.0,1.3071,1.2136,0.0,NO,NO
+4,SHOO,42.78,Consumer Cyclical,Footwear & Accessories,64.0,18.0,38.0,82.0,1.4629,1.4157,0.0,NO,NO
+5,WWW,19.7,Consumer Cyclical,Footwear & Accessories,38.0,72.0,22.0,82.0,0.7568,0.7411,0.0,NO,NO
+1,HBB,32.26,Consumer Cyclical,"Furnishings, Fixtures & Appliances",96.0,4.0,96.0,95.0,1.4579,1.414,0.0,NO,NO
+2,SN,197.53,Consumer Cyclical,"Furnishings, Fixtures & Appliances",96.0,89.0,93.0,96.0,6.6499,6.5828,0.0,NO,NO
+3,BSET,22.35,Consumer Cyclical,"Furnishings, Fixtures & Appliances",93.0,97.0,88.0,95.0,0.7846,0.7811,0.0,NO,NO
+4,FLXS,67.39,Consumer Cyclical,"Furnishings, Fixtures & Appliances",92.0,1.0,11.0,87.0,3.5957,2.8014,0.0,NO,NO
+5,TILE,36.51,Consumer Cyclical,"Furnishings, Fixtures & Appliances",87.0,77.0,83.0,91.0,0.9539,0.9139,0.0,NO,NO
+1,CHDN,81.52,Consumer Cyclical,Gambling,8.0,88.0,15.0,7.0,2.4521,2.2886,0.0,NO,NO
+2,DKNG,20.78,Consumer Cyclical,Gambling,4.0,29.0,6.0,12.0,0.8636,0.8579,0.0,NO,NO
+3,RSI,15.41,Consumer Cyclical,Gambling,1.0,2.0,0.0,2.0,0.9934,0.984,0.0,NO,NO
+4,FLUT,78.26,Consumer Cyclical,Gambling,0.0,67.0,2.0,3.0,3.6799,3.4971,0.0,NO,NO
+1,TVC,23.73,Government,General government,35.0,45.0,43.0,33.0,0.1707,0.1693,0.0,NO,NO
+2,TVE,23.1,Government,General government,25.0,42.0,32.0,26.0,0.1754,0.1625,0.0,NO,NO
+1,AUGO,81.23,Basic Materials,Gold,95.0,80.0,97.0,31.0,5.0987,4.5208,0.0,NO,NO
+2,CGAU,21.02,Basic Materials,Gold,92.0,22.0,92.0,85.0,0.9132,0.8068,0.25,NO,NO
+3,NEM,112.64,Basic Materials,Gold,83.0,23.0,92.0,52.0,3.8043,3.3407,0.43,NO,NO
+4,IAG,17.08,Basic Materials,Gold,83.0,9.0,92.0,57.0,0.7771,0.6585,0.55,NO,NO
+5,SSRM,29.26,Basic Materials,Gold,82.0,5.0,90.0,44.0,1.5221,1.3214,0.87,NO,NO
+1,YSWY,25.08,Consumer Defensive,Grocery Stores,86.0,98.0,93.0,56.0,0.9254,0.8796,0.08,NO,NO
+2,VLGEA,43.86,Consumer Defensive,Grocery Stores,80.0,17.0,41.0,52.0,1.4625,1.4144,0.0,NO,NO
+3,WMK,75.9,Consumer Defensive,Grocery Stores,61.0,78.0,29.0,75.0,1.9171,1.8807,0.0,NO,NO
+4,KR,65.87,Consumer Defensive,Grocery Stores,59.0,91.0,84.0,37.0,1.9632,1.8389,0.0,NO,NO
+5,IMKTA,85.49,Consumer Defensive,Grocery Stores,57.0,50.0,18.0,19.0,2.0679,2.0079,0.0,NO,NO
+1,HTFL,57.82,Healthcare,Health Information Services,98.0,95.0,98.0,97.0,2.9152,2.8859,0.0,NO,NO
+2,HNGE,113.9,Healthcare,Health Information Services,98.0,97.0,97.0,98.0,4.5316,4.4332,0.0,NO,NO
+3,SDGR,26.72,Healthcare,Health Information Services,97.0,8.0,98.0,98.0,1.7842,1.7592,1.51,NO,NO
+4,VEEV,313.46,Healthcare,Health Information Services,95.0,93.0,97.0,97.0,9.8493,9.5507,0.0,NO,NO
+5,TEM,72.15,Healthcare,Health Information Services,93.0,4.0,98.0,93.0,5.1753,5.0839,0.03,NO,NO
+1,HUM,414.85,Healthcare,Healthcare Plans,95.0,85.0,87.0,97.0,19.0768,15.7825,0.0,NO,NO
+2,CNC,68.71,Healthcare,Healthcare Plans,95.0,91.0,85.0,93.0,2.5886,2.5693,0.0,NO,NO
+3,OSCR,31.35,Healthcare,Healthcare Plans,95.0,83.0,63.0,96.0,1.5242,1.4646,0.0,NO,NO
+4,ELV,421.49,Healthcare,Healthcare Plans,87.0,86.0,86.0,85.0,12.6957,12.5629,0.0,NO,NO
+5,PGNY,27.72,Healthcare,Healthcare Plans,85.0,89.0,10.0,95.0,0.8807,0.8643,0.0,NO,NO
+1,HVT,28.87,Consumer Cyclical,Home Improvement Retail,88.0,76.0,86.0,91.0,0.7214,0.6386,0.0,NO,NO
+2,HD,318.5,Consumer Cyclical,Home Improvement Retail,12.0,91.0,18.0,30.0,7.5921,6.935,0.0,NO,NO
+3,LOW,198.18,Consumer Cyclical,Home Improvement Retail,7.0,83.0,14.0,8.0,5.1886,4.6707,0.0,NO,NO
+4,FND,48.38,Consumer Cyclical,Home Improvement Retail,5.0,79.0,8.0,35.0,2.0146,1.8214,0.04,NO,NO
+1,ACU,65.78,Consumer Defensive,Household & Personal Products,94.0,73.0,84.0,95.0,1.6907,1.575,2.52,NO,NO
+2,ELF,113.17,Consumer Defensive,Household & Personal Products,93.0,92.0,96.0,97.0,3.8191,3.7449,0.01,NO,NO
+3,HELE,29.2,Consumer Defensive,Household & Personal Products,91.0,45.0,68.0,89.0,1.8707,1.7621,0.46,NO,NO
+4,EPC,28.04,Consumer Defensive,Household & Personal Products,89.0,35.0,44.0,89.0,0.9193,0.9057,0.0,NO,NO
+5,EL,108.35,Consumer Defensive,Household & Personal Products,87.0,94.0,94.0,93.0,3.565,3.4407,0.0,NO,NO
+1,XMTR,97.14,Industrials,Industrial Distribution,96.0,15.0,91.0,97.0,6.3318,6.0879,1.43,NO,NO
+2,TITN,23.29,Industrials,Industrial Distribution,92.0,36.0,94.0,77.0,1.1479,1.125,0.74,NO,NO
+3,GIC,44.6,Industrials,Industrial Distribution,92.0,83.0,93.0,91.0,1.0231,0.9952,0.0,NO,NO
+4,BXC,76.36,Industrials,Industrial Distribution,90.0,65.0,96.0,92.0,2.8804,2.6925,0.0,NO,NO
+5,WCC,339.11,Industrials,Industrial Distribution,87.0,12.0,84.0,78.0,14.8,13.4825,2.34,NO,NO
+1,SAIH,27.74,Technology,Information Technology Services,98.0,5.0,96.0,98.0,2.7433,2.649,0.0,NO,NO
+2,PENG,58.99,Technology,Information Technology Services,98.0,87.0,95.0,97.0,6.2014,5.6897,1.91,NO,NO
+3,MGRT,119.45,Technology,Information Technology Services,98.0,58.0,92.0,10.0,3.3121,3.045,0.0,NO,NO
+4,CHRN,17.49,Technology,Information Technology Services,97.0,6.0,19.0,95.0,1.7206,1.6521,0.0,NO,NO
+5,SAIC,149.52,Technology,Information Technology Services,94.0,94.0,94.0,95.0,4.5932,4.5732,0.0,NO,NO
+1,PLGO,25.7,Financial Services,Insurance - Diversified,88.0,87.0,55.0,88.0,0.5518,0.5246,0.0,NO,NO
+2,SLF,80.05,Financial Services,Insurance - Diversified,81.0,53.0,28.0,80.0,1.1393,1.053,0.14,NO,NO
+3,ACGL,100.34,Financial Services,Insurance - Diversified,55.0,83.0,22.0,56.0,2.1539,1.9575,0.0,NO,NO
+4,AIG,79.58,Financial Services,Insurance - Diversified,52.0,90.0,43.0,69.0,1.4261,1.3218,0.0,NO,NO
+5,HIG,133.51,Financial Services,Insurance - Diversified,31.0,84.0,14.0,26.0,2.5336,2.2986,0.0,NO,NO
+1,JXN,135.06,Financial Services,Insurance - Life,87.0,69.0,86.0,85.0,3.7794,3.6676,0.57,NO,NO
+2,CNO,54.44,Financial Services,Insurance - Life,87.0,61.0,65.0,88.0,0.9896,0.9011,0.09,NO,NO
+3,MET,99.98,Financial Services,Insurance - Life,86.0,79.0,66.0,90.0,2.2364,2.0014,0.0,NO,NO
+4,MFC,44.98,Financial Services,Insurance - Life,85.0,75.0,62.0,85.0,0.7554,0.6961,0.29,NO,NO
+5,UNM,89.16,Financial Services,Insurance - Life,81.0,27.0,78.0,83.0,2.1814,2.0407,0.0,NO,NO
+1,PRCH,17.66,Financial Services,Insurance - Property & Casualty,96.0,81.0,96.0,97.0,0.7607,0.745,0.0,NO,NO
+2,SLDE,28.39,Financial Services,Insurance - Property & Casualty,95.0,97.0,94.0,95.0,0.8451,0.8129,0.0,NO,NO
+3,AII,28.59,Financial Services,Insurance - Property & Casualty,94.0,94.0,96.0,94.0,0.8784,0.8727,0.0,NO,NO
+4,DGICB,25.56,Financial Services,Insurance - Property & Casualty,94.0,98.0,90.0,92.0,1.0164,0.6771,0.0,NO,NO
+5,UFCS,57.2,Financial Services,Insurance - Property & Casualty,94.0,87.0,83.0,93.0,1.4046,1.3468,0.0,NO,NO
+1,RGA,262.72,Financial Services,Insurance - Reinsurance,89.0,77.0,85.0,89.0,5.0757,4.7921,0.0,NO,NO
+2,RNR,341.22,Financial Services,Insurance - Reinsurance,85.0,81.0,63.0,76.0,8.1625,8.0046,0.0,NO,NO
+3,HG,35.48,Financial Services,Insurance - Reinsurance,84.0,86.0,26.0,74.0,0.8131,0.7881,0.0,NO,NO
+4,SPNT,25.35,Financial Services,Insurance - Reinsurance,82.0,66.0,35.0,67.0,0.5936,0.5829,0.0,NO,NO
+5,EG,391.09,Financial Services,Insurance - Reinsurance,74.0,84.0,44.0,81.0,8.8568,8.3204,0.0,NO,NO
+1,EIG,51.94,Financial Services,Insurance - Specialty,83.0,89.0,71.0,87.0,1.1293,1.0786,0.0,NO,NO
+2,ACT,48.07,Financial Services,Insurance - Specialty,80.0,68.0,45.0,75.0,1.2171,1.1296,0.0,NO,NO
+3,NMIH,42.58,Financial Services,Insurance - Specialty,58.0,77.0,22.0,53.0,1.1121,1.0739,0.0,NO,NO
+4,ESNT,66.31,Financial Services,Insurance - Specialty,51.0,80.0,28.0,55.0,1.7457,1.6529,0.0,NO,NO
+5,AXS,102.24,Financial Services,Insurance - Specialty,47.0,88.0,24.0,50.0,1.9543,1.9307,0.0,NO,NO
+1,LIFE,42.53,Financial Services,Insurance Brokers,98.0,97.0,98.0,98.0,2.45,2.4493,0.24,NO,NO
+2,ARX,19.81,Financial Services,Insurance Brokers,96.0,48.0,97.0,94.0,0.0586,0.0571,0.0,NO,NO
+3,CRVL,82.67,Financial Services,Insurance Brokers,91.0,93.0,95.0,94.0,2.1779,2.0614,0.0,NO,NO
+4,BWIN,31.91,Financial Services,Insurance Brokers,90.0,47.0,87.0,92.0,0.1007,0.0954,0.0,NO,NO
+5,TWFG,27.25,Financial Services,Insurance Brokers,71.0,93.0,22.0,93.0,1.2443,1.1861,0.0,NO,NO
+1,NCEW,17.25,Industrials,Integrated Freight & Logistics,97.0,32.0,73.0,76.0,0.0871,0.0014,0.0,NO,NO
+2,CYRX,18.41,Industrials,Integrated Freight & Logistics,96.0,84.0,92.0,97.0,0.7307,0.7243,0.17,NO,NO
+3,EXPD,199.64,Industrials,Integrated Freight & Logistics,93.0,84.0,90.0,92.0,3.9357,3.93,0.0,NO,NO
+4,PBI,17.29,Industrials,Integrated Freight & Logistics,90.0,83.0,31.0,75.0,0.4154,0.3882,0.0,NO,NO
+5,FDX,307.1,Industrials,Integrated Freight & Logistics,84.0,84.0,45.0,34.0,6.2607,6.0671,0.48,NO,NO
+1,GIBO,70.52,Communication Services,Internet Content & Information,98.0,98.0,98.0,97.0,6.6979,6.4657,0.59,NO,NO
+2,NBIS,170.47,Communication Services,Internet Content & Information,93.0,1.0,89.0,90.0,16.1337,13.7619,3.89,NO,NO
+3,MTCH,43.69,Communication Services,Internet Content & Information,89.0,91.0,85.0,86.0,1.3416,1.298,0.0,NO,NO
+4,JOYY,79.09,Communication Services,Internet Content & Information,87.0,29.0,79.0,93.0,1.8929,1.8536,0.0,NO,NO
+5,OPRA,18.36,Communication Services,Internet Content & Information,76.0,83.0,32.0,55.0,0.6443,0.6214,0.23,NO,NO
+1,CART,60.08,Consumer Cyclical,Internet Retail,94.0,98.0,95.0,94.0,2.658,2.5919,0.0,NO,NO
+2,LQDT,44.8,Consumer Cyclical,Internet Retail,93.0,74.0,90.0,90.0,0.99,0.97,0.0,NO,NO
+3,W,112.95,Consumer Cyclical,Internet Retail,91.0,94.0,93.0,95.0,4.5535,4.4371,0.0,NO,NO
+4,ETSY,87.66,Consumer Cyclical,Internet Retail,89.0,98.0,63.0,93.0,3.8107,3.7129,0.0,NO,NO
+5,EBAY,117.83,Consumer Cyclical,Internet Retail,82.0,91.0,61.0,85.0,3.6657,3.4478,0.0,NO,NO
+1,GOOGN,46.16,Technology services,Internet software/Services,16.0,17.0,20.0,,0.8343,0.7843,0.15,NO,NO
+2,GOOGM,46.25,Technology services,Internet software/Services,15.0,16.0,20.0,,0.8839,0.8175,0.13,NO,NO
+1,NMFCZ,25.42,Miscellaneous,Investment trusts,40.0,49.0,46.0,42.0,0.0711,0.0696,0.0,NO,NO
+2,SAY,25.26,Miscellaneous,Investment trusts,39.0,50.0,46.0,40.0,0.0755,0.0734,0.0,NO,NO
+3,GECCG,24.75,Miscellaneous,Investment trusts,38.0,57.0,45.0,37.0,0.1616,0.0681,1.0,NO,NO
+4,ECCU,25.01,Miscellaneous,Investment trusts,38.0,49.0,44.0,39.0,0.1548,0.1418,0.0,NO,NO
+5,GAINI,25.1,Miscellaneous,Investment trusts,36.0,33.0,44.0,39.0,0.1232,0.0835,0.04,NO,NO
+1,AOUT,17.98,Consumer Cyclical,Leisure,97.0,82.0,96.0,97.0,0.6913,0.687,0.0,NO,NO
+2,JAKK,32.14,Consumer Cyclical,Leisure,95.0,98.0,92.0,94.0,1.0293,0.9729,0.0,NO,NO
+3,LTH,44.08,Consumer Cyclical,Leisure,93.0,92.0,24.0,96.0,1.3064,1.2686,0.32,NO,NO
+4,HAS,118.33,Consumer Cyclical,Leisure,92.0,98.0,93.0,89.0,3.4279,3.1007,0.0,NO,NO
+5,ESCA,18.45,Consumer Cyclical,Leisure,83.0,18.0,18.0,46.0,0.5,0.48,0.0,NO,NO
+1,MAR,390.23,Consumer Cyclical,Lodging,85.0,89.0,62.0,74.0,8.6279,7.6614,0.0,NO,NO
+2,IHG,166.09,Consumer Cyclical,Lodging,84.0,72.0,65.0,83.0,3.5729,2.5929,0.0,NO,NO
+3,HLT,344.65,Consumer Cyclical,Lodging,82.0,88.0,79.0,67.0,8.4021,7.235,0.0,NO,NO
+4,CVEO,30.45,Consumer Cyclical,Lodging,69.0,16.0,17.0,32.0,1.1899,1.1349,0.38,NO,NO
+5,INTG,34.83,Consumer Cyclical,Lodging,64.0,84.0,92.0,7.0,1.5289,1.4711,0.39,NO,NO
+1,WFG,69.66,Basic Materials,Lumber & Wood Production,60.0,25.0,72.0,74.0,1.9329,1.8807,0.0,NO,NO
+2,SSD,191.66,Basic Materials,Lumber & Wood Production,56.0,90.0,56.0,45.0,4.4214,3.8429,1.65,NO,NO
+3,BCC,76.02,Basic Materials,Lumber & Wood Production,28.0,36.0,31.0,16.0,2.0014,1.8411,0.44,NO,NO
+4,UFPI,79.92,Basic Materials,Lumber & Wood Production,9.0,52.0,13.0,8.0,2.2075,2.0532,0.0,NO,NO
+1,SIG,115.22,Consumer Cyclical,Luxury Goods,88.0,92.0,90.0,92.0,4.2479,4.1507,0.0,NO,NO
+2,MOV,31.08,Consumer Cyclical,Luxury Goods,84.0,12.0,5.0,80.0,0.7986,0.7551,0.0,NO,NO
+3,CPRI,15.42,Consumer Cyclical,Luxury Goods,6.0,79.0,28.0,5.0,0.6879,0.6514,0.0,NO,NO
+4,TPR,111.39,Consumer Cyclical,Luxury Goods,6.0,29.0,2.0,5.0,3.1737,2.9694,0.33,NO,NO
+1,EDRY,45.53,Industrials,Marine Shipping,98.0,6.0,98.0,98.0,4.6105,4.5676,1.05,NO,NO
+2,ECO,92.91,Industrials,Marine Shipping,98.0,96.0,97.0,96.0,4.9849,4.4028,0.0,NO,NO
+3,MATX,231.74,Industrials,Marine Shipping,95.0,76.0,89.0,92.0,6.5764,6.2257,0.16,NO,NO
+4,HSHP,16.82,Industrials,Marine Shipping,95.0,23.0,89.0,88.0,0.6682,0.5446,0.0,NO,NO
+5,ASC,20.42,Industrials,Marine Shipping,94.0,93.0,92.0,87.0,0.8682,0.8196,0.0,NO,NO
+1,AGL,90.65,Healthcare,Medical Care Facilities,98.0,94.0,31.0,98.0,4.4682,4.3668,0.0,NO,NO
+2,AMN,46.81,Healthcare,Medical Care Facilities,97.0,98.0,95.0,98.0,2.065,2.0336,0.0,NO,NO
+3,PACS,47.85,Healthcare,Medical Care Facilities,97.0,92.0,65.0,94.0,1.8039,1.7946,0.0,NO,NO
+4,NUTX,208.25,Healthcare,Medical Care Facilities,96.0,27.0,97.0,97.0,11.2954,11.1318,0.0,NO,NO
+5,CON,40.0,Healthcare,Medical Care Facilities,96.0,93.0,93.0,97.0,0.97,0.9461,0.0,NO,NO
+1,RCEL,16.08,Healthcare,Medical Devices,98.0,98.0,98.0,98.0,0.8579,0.8307,0.2,NO,NO
+2,TXG,78.02,Healthcare,Medical Devices,98.0,6.0,97.0,98.0,6.115,5.968,0.0,NO,NO
+3,HAE,119.97,Healthcare,Medical Devices,97.0,94.0,96.0,97.0,4.4336,3.7228,0.0,NO,NO
+4,CBLL,27.22,Healthcare,Medical Devices,96.0,92.0,97.0,91.0,1.5239,1.5068,0.52,NO,NO
+5,VREX,18.46,Healthcare,Medical Devices,96.0,43.0,97.0,95.0,0.0546,0.0525,0.0,NO,NO
+1,CAH,246.45,Healthcare,Medical Distribution,88.0,93.0,80.0,87.0,5.6179,5.4,0.0,NO,NO
+2,MCK,967.02,Healthcare,Medical Distribution,83.0,93.0,83.0,84.0,21.9753,20.582,0.0,NO,NO
+3,HSIC,84.25,Healthcare,Medical Distribution,76.0,28.0,34.0,78.0,1.9996,1.9325,0.0,NO,NO
+4,COR,325.37,Healthcare,Medical Distribution,39.0,87.0,61.0,59.0,6.3979,5.9507,0.0,NO,NO
+1,PLSE,53.2,Healthcare,Medical Instruments & Supplies,98.0,63.0,97.0,98.0,3.357,3.3463,0.0,NO,NO
+2,ATRC,61.51,Healthcare,Medical Instruments & Supplies,96.0,82.0,97.0,98.0,2.0257,2.0114,0.0,NO,NO
+3,PDEX,62.27,Healthcare,Medical Instruments & Supplies,95.0,5.0,87.0,87.0,2.2407,2.2143,0.25,NO,NO
+4,AVTR,17.13,Healthcare,Medical Instruments & Supplies,94.0,93.0,91.0,98.0,0.4532,0.4471,0.0,NO,NO
+5,WST,398.29,Healthcare,Medical Instruments & Supplies,93.0,84.0,90.0,93.0,7.795,7.6421,0.0,NO,NO
+1,SI,19.34,Health technology,Medical specialties,88.0,88.0,5.0,95.0,0.8815,0.8501,0.0,NO,NO
+1,PRLB,89.41,Industrials,Metal Fabrication,95.0,11.0,93.0,93.0,3.4914,3.1954,1.44,NO,NO
+2,ATI,166.14,Industrials,Metal Fabrication,89.0,10.0,17.0,75.0,8.7514,7.5829,0.64,NO,NO
+3,WOR,63.4,Industrials,Metal Fabrication,82.0,78.0,88.0,82.0,1.4214,1.3636,0.0,NO,NO
+4,RYZ,29.34,Industrials,Metal Fabrication,74.0,96.0,60.0,77.0,0.9328,0.8788,1.68,NO,NO
+5,IIIN,28.33,Industrials,Metal Fabrication,20.0,22.0,16.0,80.0,0.9886,0.9507,0.0,NO,NO
+1,FISV,47.4,Commercial services,Miscellaneous commercial services,2.0,72.0,7.0,5.0,1.2575,1.1861,0.0,NO,NO
+1,IOR,18.52,Financial Services,Mortgage Finance,24.0,71.0,10.0,60.0,0.4921,0.4314,0.0,NO,NO
+2,VEL,15.45,Financial Services,Mortgage Finance,6.0,63.0,8.0,5.0,0.4728,0.4531,0.0,NO,NO
+3,BETR,20.8,Financial Services,Mortgage Finance,1.0,98.0,51.0,0.0,1.9559,1.9043,0.96,NO,NO
+4,PFSI,64.17,Financial Services,Mortgage Finance,0.0,54.0,2.0,3.0,2.2179,2.0579,0.0,NO,NO
+5,WD,34.63,Financial Services,Mortgage Finance,0.0,13.0,1.0,2.0,1.4209,1.3602,0.32,NO,NO
+1,VAL,98.21,Energy,Oil & Gas Drilling,94.0,97.0,95.0,27.0,3.6202,3.4333,0.0,NO,NO
+2,PDS,99.96,Energy,Oil & Gas Drilling,93.0,97.0,95.0,48.0,3.1571,2.9629,0.0,NO,NO
+3,SDRL,50.96,Energy,Oil & Gas Drilling,91.0,93.0,92.0,52.0,2.3457,2.1389,0.0,NO,NO
+4,HP,39.7,Energy,Oil & Gas Drilling,89.0,84.0,91.0,48.0,1.4721,1.4221,0.0,NO,NO
+5,NE,45.22,Energy,Oil & Gas Drilling,86.0,85.0,84.0,12.0,1.8346,1.6371,0.0,NO,NO
+1,REPX,52.41,Energy,Oil & Gas E&P,96.0,98.0,97.0,94.0,1.9171,1.7879,0.0,NO,NO
+2,APA,50.79,Energy,Oil & Gas E&P,96.0,96.0,96.0,91.0,1.6386,1.475,0.0,NO,NO
+3,SM,39.07,Energy,Oil & Gas E&P,96.0,95.0,92.0,92.0,1.4142,1.2678,0.0,NO,NO
+4,RRC,56.38,Energy,Oil & Gas E&P,95.0,98.0,96.0,91.0,1.8434,1.4648,0.21,NO,NO
+5,PR,25.46,Energy,Oil & Gas E&P,95.0,96.0,92.0,88.0,0.7629,0.6941,0.0,NO,NO
+1,FET,89.95,Energy,Oil & Gas Equipment & Services,98.0,89.0,98.0,93.0,4.5171,4.2657,0.35,NO,NO
+2,FTK,25.79,Energy,Oil & Gas Equipment & Services,93.0,9.0,90.0,95.0,1.5293,1.3336,2.07,NO,NO
+3,WTTR,19.48,Energy,Oil & Gas Equipment & Services,93.0,22.0,83.0,86.0,0.8392,0.8199,0.75,NO,NO
+4,WHD,65.56,Energy,Oil & Gas Equipment & Services,92.0,66.0,93.0,85.0,1.9677,1.9506,0.82,NO,NO
+5,EFXT,24.01,Energy,Oil & Gas Equipment & Services,92.0,62.0,87.0,20.0,1.4129,1.2629,0.21,NO,NO
+1,EQNR,47.06,Energy,Oil & Gas Integrated,95.0,92.0,89.0,88.0,1.3814,1.105,0.0,NO,NO
+2,PBR,22.3,Energy,Oil & Gas Integrated,93.0,88.0,91.0,61.0,0.9989,0.7032,0.0,NO,NO
+3,SU,76.22,Energy,Oil & Gas Integrated,93.0,92.0,89.0,85.0,2.3436,2.0843,0.0,NO,NO
+4,CVE,31.66,Energy,Oil & Gas Integrated,93.0,64.0,83.0,84.0,1.0514,0.955,0.0,NO,NO
+5,EC,17.29,Energy,Oil & Gas Integrated,92.0,75.0,75.0,89.0,0.5336,0.4964,0.0,NO,NO
+1,FRO,53.77,Energy,Oil & Gas Midstream,96.0,92.0,96.0,94.0,2.6436,2.2786,0.0,NO,NO
+2,TEN,53.4,Energy,Oil & Gas Midstream,96.0,95.0,95.0,92.0,2.5318,2.2661,0.0,NO,NO
+3,LPG,54.28,Energy,Oil & Gas Midstream,96.0,41.0,91.0,93.0,2.1837,1.9969,0.0,NO,NO
+4,INSW,111.41,Energy,Oil & Gas Midstream,96.0,71.0,90.0,92.0,5.8818,5.5446,0.0,NO,NO
+5,TRMD,40.37,Energy,Oil & Gas Midstream,95.0,94.0,95.0,90.0,1.4895,1.3095,0.0,NO,NO
+1,CVI,57.43,Energy,Oil & Gas Refining & Marketing,97.0,93.0,97.0,96.0,3.3121,3.1957,0.0,NO,NO
+2,MPC,435.98,Energy,Oil & Gas Refining & Marketing,97.0,93.0,96.0,97.0,19.2432,18.2368,0.0,NO,NO
+3,VLO,387.34,Energy,Oil & Gas Refining & Marketing,97.0,37.0,94.0,96.0,19.9204,19.0411,0.0,NO,NO
+4,DINO,114.21,Energy,Oil & Gas Refining & Marketing,97.0,87.0,93.0,97.0,5.055,4.8007,0.0,NO,NO
+5,PBF,73.63,Energy,Oil & Gas Refining & Marketing,97.0,34.0,89.0,97.0,5.2821,4.9757,0.0,NO,NO
+1,MTRN,235.63,Basic Materials,Other Industrial Metals & Mining,95.0,8.0,93.0,92.0,14.5786,13.3821,2.96,NO,NO
+2,SKE,29.26,Basic Materials,Other Industrial Metals & Mining,86.0,27.0,88.0,37.0,1.5279,1.3429,0.72,NO,NO
+3,BHP,82.6,Basic Materials,Other Industrial Metals & Mining,83.0,26.0,44.0,64.0,2.1,1.6293,2.17,NO,NO
+4,RIO,85.74,Basic Materials,Other Industrial Metals & Mining,27.0,9.0,14.0,11.0,1.7932,1.4316,1.29,NO,NO
+5,CMP,22.93,Basic Materials,Other Industrial Metals & Mining,13.0,68.0,3.0,11.0,0.7668,0.7225,0.0,NO,NO
+1,BVN,28.73,Basic Materials,Other Precious Metals & Mining,28.0,8.0,20.0,17.0,1.1643,1.05,0.0,NO,NO
+2,TFPM,29.66,Basic Materials,Other Precious Metals & Mining,21.0,21.0,67.0,16.0,0.889,0.7615,0.62,NO,NO
+3,PPTA,18.37,Basic Materials,Other Precious Metals & Mining,6.0,4.0,78.0,2.0,1.1283,1.0326,1.39,NO,NO
+4,MUX,15.4,Basic Materials,Other Precious Metals & Mining,4.0,4.0,15.0,3.0,0.7747,0.6697,0.55,NO,NO
+1,CENT,45.08,Consumer Defensive,Packaged Foods,88.0,94.0,61.0,87.0,1.3629,1.3029,0.0,NO,NO
+2,MICC,19.25,Consumer Defensive,Packaged Foods,87.0,68.0,75.0,94.0,0.4261,0.3525,0.0,NO,NO
+3,CENTA,38.8,Consumer Defensive,Packaged Foods,85.0,94.0,49.0,83.0,0.91,0.8786,0.0,NO,NO
+4,SJM,127.41,Consumer Defensive,Packaged Foods,84.0,83.0,54.0,91.0,3.0874,2.7146,0.0,NO,NO
+5,SENEB,156.99,Consumer Defensive,Packaged Foods,84.0,4.0,35.0,86.0,2.9043,0.0671,0.0,NO,NO
+1,NIQ,19.81,Technology services,Packaged software,96.0,93.0,97.0,97.0,0.5953,0.576,0.0,NO,NO
+1,KRT,54.47,Consumer Cyclical,Packaging & Containers,97.0,68.0,95.0,97.0,1.4643,1.4497,0.0,NO,NO
+2,MYE,32.37,Consumer Cyclical,Packaging & Containers,94.0,71.0,37.0,95.0,0.7821,0.7514,0.0,NO,NO
+3,GEF,83.17,Consumer Cyclical,Packaging & Containers,82.0,65.0,21.0,90.0,2.4482,2.3639,0.0,NO,NO
+4,PKG,253.01,Consumer Cyclical,Packaging & Containers,78.0,88.0,58.0,82.0,5.0393,4.735,0.0,NO,NO
+5,BALL,64.1,Consumer Cyclical,Packaging & Containers,71.0,93.0,28.0,59.0,1.4786,1.3843,0.0,NO,NO
+1,SLVM,32.45,Basic Materials,Paper & Paper Products,4.0,12.0,7.0,4.0,1.2866,1.2284,0.0,NO,NO
+1,ANDG,63.62,Consumer Cyclical,Personal Services,98.0,96.0,96.0,97.0,2.0939,2.0561,0.0,NO,NO
+2,FTDR,84.52,Consumer Cyclical,Personal Services,90.0,95.0,87.0,92.0,2.6207,2.4636,0.56,NO,NO
+3,HRB,47.98,Consumer Cyclical,Personal Services,82.0,96.0,59.0,95.0,1.6779,1.49,0.0,NO,NO
+4,RGS,29.44,Consumer Cyclical,Personal Services,68.0,81.0,80.0,64.0,0.635,0.5836,0.0,NO,NO
+5,SCI,82.51,Consumer Cyclical,Personal Services,34.0,86.0,23.0,23.0,1.5089,1.3854,0.0,NO,NO
+1,VLTO,103.19,Industrials,Pollution & Treatment Controls,65.0,87.0,71.0,87.0,1.9817,1.8874,0.0,NO,NO
+2,ZWS,49.15,Industrials,Pollution & Treatment Controls,38.0,82.0,21.0,19.0,1.1729,1.16,0.0,NO,NO
+3,CDZIP,19.99,Industrials,Pollution & Treatment Controls,29.0,9.0,11.0,56.0,0.7427,0.6244,0.0,NO,NO
+4,CECO,50.15,Industrials,Pollution & Treatment Controls,5.0,0.0,6.0,2.0,4.7424,4.5674,0.67,NO,NO
+1,KMPB,24.96,Finance,Property/Casualty insurance,54.0,55.0,54.0,60.0,0.1244,0.1204,0.0,NO,NO
+1,WLYB,54.23,Communication Services,Publishing,92.0,95.0,80.0,92.0,0.6269,0.1058,0.0,NO,NO
+2,WLY,52.61,Communication Services,Publishing,90.0,91.0,19.0,90.0,1.5332,1.4657,0.0,NO,NO
+3,PSO,17.64,Communication Services,Publishing,84.0,91.0,49.0,88.0,0.3757,0.2689,0.0,NO,NO
+4,SCHL,39.14,Communication Services,Publishing,68.0,95.0,21.0,23.0,1.3871,1.3657,0.0,NO,NO
+5,NYT,69.81,Communication Services,Publishing,30.0,89.0,11.0,13.0,1.625,1.4721,0.0,NO,NO
+1,FVR,17.75,Real Estate,REIT - Diversified,46.0,52.0,7.0,43.0,0.6298,0.6212,0.0,NO,NO
+2,AAT,21.22,Real Estate,REIT - Diversified,43.0,28.0,11.0,37.0,0.4579,0.4436,0.0,NO,NO
+3,CTO,19.45,Real Estate,REIT - Diversified,43.0,17.0,8.0,38.0,0.4768,0.4618,0.0,NO,NO
+4,OLP,22.24,Real Estate,REIT - Diversified,30.0,54.0,11.0,23.0,0.5057,0.4729,0.0,NO,NO
+5,GOODN,20.15,Real Estate,REIT - Diversified,11.0,15.0,9.0,15.0,0.3459,0.3215,0.27,NO,NO
+1,LTC,42.91,Real Estate,REIT - Healthcare Facilities,79.0,38.0,65.0,79.0,0.9329,0.8893,0.0,NO,NO
+2,WELL,226.72,Real Estate,REIT - Healthcare Facilities,74.0,24.0,18.0,64.0,5.6782,5.2343,0.0,NO,NO
+3,AHR,51.06,Real Estate,REIT - Healthcare Facilities,47.0,30.0,10.0,49.0,1.4519,1.4016,0.0,NO,NO
+4,OHI,46.13,Real Estate,REIT - Healthcare Facilities,39.0,33.0,11.0,32.0,0.9943,0.9064,0.0,NO,NO
+5,DOC,19.02,Real Estate,REIT - Healthcare Facilities,38.0,16.0,6.0,86.0,0.4661,0.445,0.0,NO,NO
+1,PEB,21.31,Real Estate,REIT - Hotel & Motel,95.0,94.0,85.0,95.0,0.7761,0.7618,0.05,NO,NO
+2,APLE,18.62,Real Estate,REIT - Hotel & Motel,93.0,94.0,85.0,93.0,0.393,0.3666,0.0,NO,NO
+3,PK,16.77,Real Estate,REIT - Hotel & Motel,93.0,86.0,84.0,94.0,0.4696,0.4564,0.06,NO,NO
+4,RHP,132.27,Real Estate,REIT - Hotel & Motel,89.0,89.0,29.0,90.0,3.2496,3.1768,0.0,NO,NO
+5,HST,25.22,Real Estate,REIT - Hotel & Motel,88.0,92.0,40.0,87.0,0.5775,0.5532,0.04,NO,NO
+1,LXP,61.14,Real Estate,REIT - Industrial,83.0,48.0,54.0,87.0,0.0671,0.0657,0.0,NO,NO
+2,SMA,35.31,Real Estate,REIT - Industrial,55.0,93.0,56.0,77.0,0.7079,0.6518,0.0,NO,NO
+3,PSA,312.47,Real Estate,REIT - Industrial,50.0,91.0,20.0,62.0,6.58,6.1214,0.0,NO,NO
+4,EGP,197.45,Real Estate,REIT - Industrial,48.0,25.0,19.0,34.0,4.5514,4.4621,0.0,NO,NO
+5,CUBE,40.61,Real Estate,REIT - Industrial,41.0,89.0,22.0,53.0,0.7164,0.6493,0.0,NO,NO
+1,NREF,15.3,Real Estate,REIT - Mortgage,46.0,34.0,13.0,64.0,0.4684,0.4509,0.0,NO,NO
+2,ADAML,23.39,Real Estate,REIT - Mortgage,36.0,13.0,22.0,29.0,0.5474,0.5123,0.18,NO,NO
+3,ADAMN,22.65,Real Estate,REIT - Mortgage,35.0,12.0,22.0,31.0,0.8058,0.768,0.18,NO,NO
+4,AGNCN,25.13,Real Estate,REIT - Mortgage,33.0,27.0,33.0,34.0,0.1805,0.1694,0.04,NO,NO
+5,AGNCP,24.45,Real Estate,REIT - Mortgage,33.0,23.0,30.0,38.0,0.2004,0.1943,0.0,NO,NO
+1,PSTL,21.55,Real Estate,REIT - Office,75.0,12.0,15.0,43.0,0.5891,0.5755,0.0,NO,NO
+2,CDP,33.93,Real Estate,REIT - Office,53.0,50.0,10.0,64.0,0.5736,0.5507,0.0,NO,NO
+3,CUZ,28.87,Real Estate,REIT - Office,51.0,71.0,11.0,81.0,0.6642,0.6364,0.0,NO,NO
+4,HIW,29.82,Real Estate,REIT - Office,47.0,60.0,8.0,87.0,0.8686,0.8493,0.0,NO,NO
+5,SLG,49.41,Real Estate,REIT - Office,44.0,45.0,14.0,81.0,2.01,1.9621,0.0,NO,NO
+1,JAN,27.84,Real Estate,REIT - Residential,60.0,11.0,10.0,77.0,0.9214,0.9121,0.0,NO,NO
+2,ESS,274.85,Real Estate,REIT - Residential,43.0,53.0,16.0,53.0,5.23,5.0614,0.0,NO,NO
+3,UMH,15.34,Real Estate,REIT - Residential,37.0,32.0,28.0,36.0,0.2893,0.2721,0.0,NO,NO
+4,AMH,31.84,Real Estate,REIT - Residential,29.0,79.0,19.0,48.0,0.5546,0.5254,0.0,NO,NO
+5,VMRK,62.55,Real Estate,REIT - Residential,20.0,65.0,13.0,25.0,1.0979,1.0793,0.0,NO,NO
+1,CBL,49.52,Real Estate,REIT - Retail,85.0,16.0,6.0,76.0,1.1541,1.1155,0.0,NO,NO
+2,MAC,24.15,Real Estate,REIT - Retail,82.0,86.0,16.0,78.0,0.5418,0.5125,0.0,NO,NO
+3,SPG,212.28,Real Estate,REIT - Retail,56.0,77.0,12.0,60.0,3.5036,3.2093,0.0,NO,NO
+4,CURB,28.22,Real Estate,REIT - Retail,54.0,38.0,14.0,36.0,0.8527,0.847,0.0,NO,NO
+5,KIM,23.7,Real Estate,REIT - Retail,43.0,83.0,13.0,41.0,0.3854,0.3568,0.0,NO,NO
+1,OUT,31.3,Real Estate,REIT - Specialty,87.0,93.0,22.0,52.0,0.6986,0.6557,0.0,NO,NO
+2,LAMR,155.02,Real Estate,REIT - Specialty,78.0,86.0,19.0,83.0,2.7407,2.5829,0.0,NO,NO
+3,EQIX,999.38,Real Estate,REIT - Specialty,67.0,33.0,42.0,17.0,30.9328,29.616,1.85,NO,NO
+4,IRM,115.34,Real Estate,REIT - Specialty,64.0,77.0,21.0,52.0,3.6704,3.4839,1.26,NO,NO
+5,CCI,87.87,Real Estate,REIT - Specialty,53.0,98.0,85.0,51.0,4.0229,3.2014,0.0,NO,NO
+1,CSX,52.27,Industrials,Railroads,88.0,92.0,66.0,84.0,1.03,0.9279,0.07,NO,NO
+2,UNP,299.88,Industrials,Railroads,85.0,90.0,64.0,80.0,5.8225,5.7546,0.24,NO,NO
+3,CNI,125.53,Industrials,Railroads,80.0,76.0,25.0,75.0,2.1286,2.0164,0.71,NO,NO
+4,WAB,278.95,Industrials,Railroads,79.0,18.0,21.0,65.0,7.4836,7.2514,0.0,NO,NO
+5,CP,91.13,Industrials,Railroads,77.0,82.0,47.0,61.0,1.555,1.5164,0.0,NO,NO
+1,HHH,73.25,Real Estate,Real Estate - Development,54.0,34.0,85.0,83.0,2.4164,2.1157,0.0,NO,NO
+2,FOR,26.26,Real Estate,Real Estate - Development,22.0,41.0,12.0,18.0,0.7546,0.7275,0.73,NO,NO
+3,AXR,20.99,Real Estate,Real Estate - Development,11.0,15.0,12.0,5.0,0.7443,0.7314,0.34,NO,NO
+4,CCS,57.69,Real Estate,Real Estate - Development,11.0,14.0,5.0,34.0,2.0589,1.8628,0.28,NO,NO
+5,OZ,34.52,Real Estate,Real Estate - Development,1.0,3.0,3.0,2.0,1.5029,1.4439,0.0,NO,NO
+1,VTMX,37.31,Real Estate,Real Estate - Diversified,81.0,94.0,80.0,60.0,0.9303,0.9217,0.0,NO,NO
+2,JOE,68.05,Real Estate,Real Estate - Diversified,78.0,73.0,84.0,24.0,1.578,1.4787,0.0,NO,NO
+1,CHCI,18.02,Real Estate,Real Estate Services,90.0,11.0,92.0,74.0,0.7532,0.7454,0.0,NO,NO
+2,MAYS,46.65,Real Estate,Real Estate Services,86.0,95.0,91.0,84.0,0.7586,0.2514,4.82,NO,NO
+3,TCI,49.3,Real Estate,Real Estate Services,85.0,94.0,92.0,91.0,1.4679,1.3364,0.45,NO,NO
+4,ARL,16.74,Real Estate,Real Estate Services,77.0,81.0,88.0,84.0,1.0314,0.6039,5.0,NO,NO
+5,BEKE,17.65,Real Estate,Real Estate Services,58.0,78.0,77.0,79.0,0.4154,0.3625,0.0,NO,NO
+1,BPYPM,15.5,Finance,Real estate development,29.0,23.0,33.0,17.0,0.2782,0.2532,0.0,NO,NO
+1,MFAO,25.2,Finance,Real estate investment trusts,36.0,43.0,41.0,39.0,0.1161,0.1158,0.0,NO,NO
+2,MITN,25.24,Finance,Real estate investment trusts,36.0,39.0,37.0,37.0,0.0995,0.0895,0.0,NO,NO
+3,CIMN,24.99,Finance,Real estate investment trusts,34.0,42.0,36.0,35.0,0.1613,0.1484,0.0,NO,NO
+4,PMTU,25.19,Finance,Real estate investment trusts,34.0,45.0,33.0,39.0,0.1472,0.1193,0.0,NO,NO
+5,ADAMH,24.85,Finance,Real estate investment trusts,32.0,34.0,35.0,32.0,0.145,0.1393,0.0,NO,NO
+1,HOG,29.44,Consumer Cyclical,Recreational Vehicles,89.0,96.0,91.0,90.0,0.9364,0.915,0.38,NO,NO
+2,DOO,59.9,Consumer Cyclical,Recreational Vehicles,18.0,83.0,32.0,80.0,1.9212,1.8877,0.89,NO,NO
+3,PII,58.06,Consumer Cyclical,Recreational Vehicles,9.0,92.0,8.0,11.0,2.1793,1.9257,0.0,NO,NO
+4,BC,67.71,Consumer Cyclical,Recreational Vehicles,8.0,68.0,6.0,9.0,2.1264,1.9329,0.0,NO,NO
+5,MCFT,19.96,Consumer Cyclical,Recreational Vehicles,8.0,49.0,4.0,10.0,0.6419,0.5867,1.43,NO,NO
+1,FCNCN,22.05,Finance,Regional banks,10.0,15.0,10.0,12.0,0.5357,0.5357,0.0,NO,NO
+1,VSTS,15.16,Industrials,Rental & Leasing Services,97.0,93.0,58.0,95.0,0.5268,0.5261,0.0,NO,NO
+2,R,279.49,Industrials,Rental & Leasing Services,92.0,96.0,82.0,81.0,8.2286,7.1657,0.0,NO,NO
+3,URI,1162.0,Industrials,Rental & Leasing Services,87.0,92.0,84.0,87.0,39.9485,38.6196,1.53,NO,NO
+4,SUNB,81.84,Industrials,Rental & Leasing Services,78.0,90.0,86.0,70.0,2.7007,2.67,1.08,NO,NO
+5,HRI,156.06,Industrials,Rental & Leasing Services,78.0,95.0,83.0,85.0,8.3718,7.6096,9.26,NO,NO
+1,LEGH,28.54,Consumer Cyclical,Residential Construction,87.0,28.0,81.0,91.0,0.8627,0.8045,0.0,NO,NO
+2,SKY,80.1,Consumer Cyclical,Residential Construction,39.0,11.0,47.0,45.0,2.82,2.5886,0.0,NO,NO
+3,TOL,141.95,Consumer Cyclical,Residential Construction,32.0,78.0,19.0,39.0,3.5932,3.2432,0.0,NO,NO
+4,DHI,147.02,Consumer Cyclical,Residential Construction,29.0,83.0,48.0,19.0,4.1604,3.6868,0.1,NO,NO
+5,PHM,121.63,Consumer Cyclical,Residential Construction,22.0,66.0,15.0,32.0,3.6714,3.3314,0.19,NO,NO
+1,VAC,111.09,Consumer Cyclical,Resorts & Casinos,95.0,85.0,81.0,95.0,3.9439,3.8082,0.0,NO,NO
+2,CZR,28.85,Consumer Cyclical,Resorts & Casinos,81.0,25.0,26.0,63.0,0.2274,0.2199,0.0,NO,NO
+3,MCRI,115.28,Consumer Cyclical,Resorts & Casinos,71.0,30.0,17.0,33.0,2.2721,2.1486,0.0,NO,NO
+4,MTN,151.46,Consumer Cyclical,Resorts & Casinos,58.0,90.0,19.0,87.0,4.2836,4.1771,0.0,NO,NO
+5,CPHC,15.77,Consumer Cyclical,Resorts & Casinos,44.0,45.0,57.0,46.0,0.1343,0.11,0.0,NO,NO
+1,CBRL,68.19,Consumer Cyclical,Restaurants,97.0,98.0,91.0,98.0,2.6214,2.59,0.0,NO,NO
+2,CAKE,108.47,Consumer Cyclical,Restaurants,96.0,73.0,80.0,96.0,3.7564,3.6679,0.0,NO,NO
+3,BDL,50.92,Consumer Cyclical,Restaurants,95.0,94.0,95.0,96.0,1.8918,1.8539,0.16,NO,NO
+4,EAT,196.72,Consumer Cyclical,Restaurants,90.0,24.0,21.0,95.0,8.87,8.6929,0.0,NO,NO
+5,BJRI,57.46,Consumer Cyclical,Restaurants,90.0,19.0,5.0,95.0,2.2196,2.1739,0.0,NO,NO
+1,MLAB,129.25,Technology,Scientific & Technical Instruments,94.0,24.0,94.0,91.0,4.1743,4.0929,0.0,NO,NO
+2,KEYS,336.1,Technology,Scientific & Technical Instruments,93.0,13.0,87.0,48.0,14.9729,12.0104,1.92,NO,NO
+3,COHR,235.79,Technology,Scientific & Technical Instruments,85.0,3.0,78.0,5.0,21.8275,18.6039,2.97,NO,NO
+4,CGNX,58.22,Technology,Scientific & Technical Instruments,84.0,35.0,54.0,72.0,2.5921,2.2193,1.78,NO,NO
+5,GRMN,289.34,Technology,Scientific & Technical Instruments,82.0,30.0,34.0,85.0,7.7793,7.415,0.0,NO,NO
+1,MG,20.45,Industrials,Security & Protection Services,95.0,16.0,95.0,73.0,0.4765,0.4065,0.0,NO,NO
+2,CIX,36.33,Industrials,Security & Protection Services,95.0,13.0,94.0,95.0,1.6395,1.5716,0.06,NO,NO
+3,CXW,30.8,Industrials,Security & Protection Services,93.0,24.0,68.0,94.0,1.4271,1.4054,0.07,NO,NO
+4,GEO,28.27,Industrials,Security & Protection Services,93.0,13.0,19.0,95.0,1.2125,1.1567,0.11,NO,NO
+5,ALLE,180.55,Industrials,Security & Protection Services,84.0,95.0,88.0,91.0,4.3021,3.5064,0.0,NO,NO
+1,AXTI,58.23,Technology,Semiconductor Equipment & Materials,98.0,2.0,97.0,9.0,6.3659,5.3181,3.02,NO,NO
+2,COHU,50.98,Technology,Semiconductor Equipment & Materials,96.0,1.0,94.0,84.0,4.6071,3.6686,2.66,NO,NO
+3,FORM,106.85,Technology,Semiconductor Equipment & Materials,95.0,2.0,94.0,6.0,8.7829,6.6296,3.01,NO,NO
+4,AEHR,63.95,Technology,Semiconductor Equipment & Materials,95.0,0.0,30.0,5.0,6.6263,5.923,3.02,NO,NO
+5,INTT,15.36,Technology,Semiconductor Equipment & Materials,94.0,98.0,95.0,15.0,0.93,0.8486,1.61,NO,NO
+1,MRVL,243.57,Technology,Semiconductors,98.0,22.0,97.0,96.0,17.1007,15.0621,1.31,NO,NO
+2,MXL,74.67,Technology,Semiconductors,98.0,3.0,94.0,94.0,8.7129,7.245,2.77,NO,NO
+3,MU,928.76,Technology,Semiconductors,98.0,6.0,93.0,97.0,47.7236,38.4078,1.95,NO,NO
+4,ASX,42.06,Technology,Semiconductors,97.0,20.0,95.0,93.0,2.4121,1.7646,1.78,NO,NO
+5,AMD,560.26,Technology,Semiconductors,97.0,11.0,94.0,96.0,29.6546,24.2739,1.55,NO,NO
+1,FVNNU,30.03,Financial Services,Shell Companies,98.0,99.0,98.0,98.0,9.8557,8.4714,29.03,NO,NO
+2,RFAI,32.18,Financial Services,Shell Companies,98.0,5.0,98.0,98.0,7.5514,6.9789,0.0,NO,NO
+3,RFAIU,31.5,Financial Services,Shell Companies,98.0,0.0,98.0,98.0,9.2086,8.0386,0.0,NO,NO
+4,RIBBU,18.9,Financial Services,Shell Companies,97.0,98.0,98.0,96.0,4.8886,4.56,0.0,NO,NO
+5,VYLR,72.06,Financial Services,Shell Companies,63.0,,,,2.9768,2.8304,0.0,YES,NO
+1,AYA,24.92,Basic Materials,Silver,96.0,14.0,94.0,94.0,1.2486,1.0986,0.04,NO,NO
+2,AG,15.64,Basic Materials,Silver,16.0,5.0,64.0,6.0,0.6957,0.5993,0.81,NO,NO
+1,AMPL,17.26,Technology,Software - Application,98.0,98.0,98.0,98.0,0.7257,0.7193,0.0,NO,NO
+2,TEAM,219.41,Technology,Software - Application,98.0,97.0,98.0,98.0,8.796,8.7559,0.0,NO,NO
+3,RNG,85.6,Technology,Software - Application,98.0,93.0,97.0,98.0,5.1314,4.8414,0.0,NO,NO
+4,FSLY,27.37,Technology,Software - Application,98.0,91.0,95.0,79.0,2.3443,2.1918,0.27,NO,NO
+5,BRZE,45.78,Technology,Software - Application,97.0,98.0,98.0,97.0,1.9741,0.8691,0.0,NO,NO
+1,NTSK,26.15,Technology,Software - Infrastructure,98.0,98.0,98.0,98.0,1.4067,1.3917,0.0,NO,NO
+2,RBRK,135.74,Technology,Software - Infrastructure,98.0,96.0,98.0,98.0,7.044,6.8447,0.0,NO,NO
+3,OKTA,226.07,Technology,Software - Infrastructure,98.0,93.0,97.0,98.0,12.8031,12.567,0.0,NO,NO
+4,BAND,49.27,Technology,Software - Infrastructure,98.0,2.0,95.0,97.0,4.3376,4.1279,0.0,NO,NO
+5,QLYS,227.9,Technology,Software - Infrastructure,97.0,98.0,98.0,98.0,11.0636,10.5536,0.0,NO,NO
+1,FSLR,175.85,Technology,Solar,7.0,63.0,9.0,14.0,7.0429,6.7593,1.72,NO,NO
+2,ENPH,29.76,Technology,Solar,6.0,21.0,7.0,11.0,1.7336,1.6621,0.0,NO,NO
+3,SEDG,32.16,Technology,Solar,6.0,66.0,5.0,3.0,1.9746,1.8721,0.98,NO,NO
+4,NXT,79.44,Technology,Solar,4.0,48.0,7.0,2.0,4.2611,4.0454,1.32,NO,NO
+1,TISI,23.82,Industrials,Specialty Business Services,95.0,3.0,95.0,93.0,1.3443,1.335,0.0,NO,NO
+2,FA,21.08,Industrials,Specialty Business Services,92.0,94.0,32.0,96.0,0.8124,0.7666,0.0,NO,NO
+3,CBZ,54.82,Industrials,Specialty Business Services,89.0,46.0,48.0,96.0,0.105,0.1043,0.0,NO,NO
+4,ARMK,55.52,Industrials,Specialty Business Services,87.0,68.0,27.0,88.0,1.3589,1.3589,0.0,NO,NO
+5,TRNS,87.32,Industrials,Specialty Business Services,86.0,62.0,80.0,84.0,3.2546,2.8182,2.36,NO,NO
+1,SSL,17.15,Basic Materials,Specialty Chemicals,97.0,97.0,97.0,91.0,0.6386,0.4657,0.0,NO,NO
+2,CLMT,49.89,Basic Materials,Specialty Chemicals,97.0,17.0,90.0,96.0,2.8679,2.8264,0.0,NO,NO
+3,IFF,93.21,Basic Materials,Specialty Chemicals,91.0,89.0,90.0,91.0,1.88,1.7757,0.0,NO,NO
+4,IOSP,99.92,Basic Materials,Specialty Chemicals,90.0,66.0,90.0,91.0,1.8275,1.7996,0.54,NO,NO
+5,NEU,875.42,Basic Materials,Specialty Chemicals,88.0,20.0,85.0,90.0,17.8529,17.7871,0.0,NO,NO
+1,PKOH,44.48,Industrials,Specialty Industrial Machinery,96.0,14.0,90.0,95.0,1.8168,1.7596,1.27,NO,NO
+2,TWIN,25.07,Industrials,Specialty Industrial Machinery,93.0,16.0,87.0,94.0,1.2289,1.1889,0.93,NO,NO
+3,KRNT,18.2,Industrials,Specialty Industrial Machinery,91.0,94.0,93.0,86.0,0.6956,0.6609,0.73,NO,NO
+4,GRC,75.4,Industrials,Specialty Industrial Machinery,87.0,35.0,23.0,45.0,2.3921,2.2607,0.0,NO,NO
+5,EMR,166.27,Industrials,Specialty Industrial Machinery,86.0,79.0,88.0,87.0,4.3821,4.2221,0.96,NO,NO
+1,HZO,52.48,Consumer Cyclical,Specialty Retail,97.0,46.0,97.0,96.0,0.1682,0.1546,0.0,NO,NO
+2,BBY,98.5,Consumer Cyclical,Specialty Retail,92.0,90.0,83.0,96.0,3.1993,2.9629,0.05,NO,NO
+3,WSM,250.45,Consumer Cyclical,Specialty Retail,87.0,89.0,79.0,92.0,6.6839,6.3896,0.0,NO,NO
+4,FIVE,231.25,Consumer Cyclical,Specialty Retail,86.0,61.0,85.0,41.0,6.8943,6.8179,0.06,NO,NO
+5,ASO,59.33,Consumer Cyclical,Specialty Retail,85.0,97.0,92.0,74.0,1.9744,1.9058,0.0,NO,NO
+1,KELYB,28.5,Industrials,Staffing & Employment Services,97.0,97.0,93.0,97.0,0.8,0.5057,0.0,NO,NO
+2,HQI,17.19,Industrials,Staffing & Employment Services,95.0,5.0,93.0,95.0,1.0064,0.9943,0.0,NO,NO
+3,KELYA,16.45,Industrials,Staffing & Employment Services,93.0,37.0,70.0,96.0,0.5582,0.5561,0.0,NO,NO
+4,KFRC,56.86,Industrials,Staffing & Employment Services,93.0,92.0,23.0,89.0,2.1079,2.0629,0.0,NO,NO
+5,RHI,41.96,Industrials,Staffing & Employment Services,92.0,94.0,72.0,95.0,2.2886,2.0043,0.0,NO,NO
+1,FRD,42.86,Basic Materials,Steel,97.0,89.0,93.0,97.0,1.6314,1.4825,0.0,NO,NO
+2,NUE,270.79,Basic Materials,Steel,93.0,92.0,76.0,87.0,8.4493,7.7329,2.97,NO,NO
+3,TX,54.68,Basic Materials,Steel,90.0,48.0,88.0,90.0,1.9293,1.9021,0.87,NO,NO
+4,RS,432.79,Basic Materials,Steel,90.0,91.0,80.0,87.0,11.2425,11.0382,0.89,NO,NO
+5,STLD,246.8,Basic Materials,Steel,88.0,87.0,31.0,73.0,8.6307,8.2621,1.58,NO,NO
+1,ATEX,85.62,Communication Services,Telecom Services,98.0,80.0,26.0,97.0,5.7967,5.6439,0.0,NO,NO
+2,VEON,87.83,Communication Services,Telecom Services,97.0,97.0,98.0,96.0,3.4396,3.4039,0.59,NO,NO
+3,IRDM,45.65,Communication Services,Telecom Services,96.0,16.0,65.0,88.0,1.0229,0.9279,0.38,NO,NO
+4,IDT,80.56,Communication Services,Telecom Services,95.0,95.0,91.0,95.0,2.0707,2.0628,0.0,NO,NO
+5,GSAT,83.9,Communication Services,Telecom Services,91.0,65.0,79.0,55.0,0.9175,0.8518,0.0,NO,NO
+1,AIN,62.7,Consumer Cyclical,Textile Manufacturing,40.0,79.0,7.0,82.0,1.7396,1.5561,0.0,NO,NO
+1,NRP,117.66,Energy,Thermal Coal,78.0,87.0,91.0,45.0,2.0507,1.9186,0.38,NO,NO
+2,CNR,90.87,Energy,Thermal Coal,70.0,71.0,90.0,50.0,3.2395,3.1559,0.29,NO,NO
+3,ARLP,26.68,Energy,Thermal Coal,65.0,87.0,65.0,47.0,0.455,0.4007,0.08,NO,NO
+4,BTU,23.32,Energy,Thermal Coal,13.0,12.0,86.0,11.0,1.0434,1.0188,1.12,NO,NO
+5,NC,34.79,Energy,Thermal Coal,2.0,10.0,2.0,3.0,1.0821,1.0357,0.79,NO,NO
+1,PM,202.62,Consumer Defensive,Tobacco,82.0,80.0,61.0,88.0,5.755,5.2543,0.0,NO,NO
+2,MO,73.49,Consumer Defensive,Tobacco,67.0,85.0,33.0,72.0,1.5386,1.3157,0.0,NO,NO
+3,BTI,59.83,Consumer Defensive,Tobacco,47.0,86.0,20.0,52.0,1.1971,0.82,0.0,NO,NO
+4,TPB,67.34,Consumer Defensive,Tobacco,4.0,92.0,9.0,11.0,2.8864,2.7993,0.0,NO,NO
+5,RYM,16.29,Consumer Defensive,Tobacco,2.0,1.0,11.0,0.0,1.4148,1.3262,0.0,NO,NO
+1,SWK,99.32,Industrials,Tools & Accessories,88.0,93.0,79.0,90.0,2.619,2.6019,0.0,NO,NO
+2,EML,25.76,Industrials,Tools & Accessories,87.0,83.0,80.0,85.0,1.2057,1.1279,1.66,NO,NO
+3,TTC,104.53,Industrials,Tools & Accessories,86.0,88.0,87.0,77.0,2.13,2.095,0.0,NO,NO
+4,LECO,282.37,Industrials,Tools & Accessories,78.0,78.0,84.0,73.0,8.0936,6.6579,6.33,NO,NO
+5,TKR,113.06,Industrials,Tools & Accessories,72.0,23.0,7.0,64.0,3.2386,2.9814,1.5,NO,NO
+1,LIND,35.09,Consumer Cyclical,Travel Services,97.0,96.0,90.0,97.0,1.5171,1.4814,0.0,NO,NO
+2,PRSU,53.3,Consumer Cyclical,Travel Services,90.0,87.0,56.0,91.0,1.7557,1.7464,0.0,NO,NO
+3,ABNB,168.82,Consumer Cyclical,Travel Services,88.0,88.0,85.0,88.0,4.3491,4.2305,0.0,NO,NO
+4,VIK,85.41,Consumer Cyclical,Travel Services,70.0,88.0,5.0,69.0,2.5884,2.4873,0.0,NO,NO
+5,EXPE,278.08,Consumer Cyclical,Travel Services,64.0,82.0,14.0,83.0,12.2511,11.4789,0.0,NO,NO
+1,RXO,29.1,Industrials,Trucking,96.0,98.0,94.0,94.0,0.5354,0.5225,0.49,NO,NO
+2,ARCB,130.34,Industrials,Trucking,89.0,69.0,15.0,51.0,4.0871,4.0557,1.42,NO,NO
+3,XPO,187.92,Industrials,Trucking,76.0,85.0,18.0,9.0,5.4093,5.3379,0.97,NO,NO
+4,KNX,63.02,Industrials,Trucking,63.0,35.0,10.0,26.0,2.0329,1.9996,0.78,NO,NO
+5,SNDR,31.11,Industrials,Trucking,56.0,31.0,9.0,47.0,0.8872,0.8736,0.89,NO,NO
+1,CCJ,82.41,Energy,Uranium,8.0,16.0,28.0,3.0,3.0268,2.6832,1.68,NO,NO
+2,LEU,109.42,Energy,Uranium,0.0,1.0,1.0,0.0,8.6429,7.94,3.11,NO,NO
+1,UTL,54.97,Utilities,Utilities - Diversified,60.0,90.0,49.0,57.0,1.0266,0.9845,0.0,NO,NO
+2,AES,15.03,Utilities,Utilities - Diversified,50.0,57.0,58.0,58.0,0.0464,0.0464,0.0,NO,NO
+3,BIP,36.61,Utilities,Utilities - Diversified,29.0,82.0,7.0,57.0,0.8171,0.8114,0.0,NO,NO
+4,SRE,85.01,Utilities,Utilities - Diversified,18.0,91.0,22.0,15.0,1.3311,1.2675,0.26,NO,NO
+5,AVA,37.43,Utilities,Utilities - Diversified,14.0,87.0,12.0,15.0,0.6475,0.6196,0.13,NO,NO
+1,KEN,68.5,Utilities,Utilities - Independent Power Producers,57.0,86.0,80.0,5.0,2.1125,1.3035,0.74,NO,NO
+2,TLN,345.73,Utilities,Utilities - Independent Power Producers,37.0,94.0,83.0,24.0,19.2693,17.8624,0.63,NO,NO
+3,VST,146.66,Utilities,Utilities - Independent Power Producers,14.0,85.0,64.0,15.0,8.3781,7.9261,1.57,NO,NO
+4,CEG,258.98,Utilities,Utilities - Independent Power Producers,10.0,37.0,52.0,9.0,13.2651,12.1631,1.72,NO,NO
+5,NRG,95.27,Utilities,Utilities - Independent Power Producers,1.0,29.0,3.0,1.0,4.325,4.1754,1.1,NO,NO
+1,GNE,16.75,Utilities,Utilities - Regulated Electric,85.0,80.0,91.0,86.0,0.4621,0.4571,0.0,NO,NO
+2,NWE,79.87,Utilities,Utilities - Regulated Electric,85.0,96.0,87.0,77.0,1.6731,1.6173,0.25,NO,NO
+3,PNW,106.31,Utilities,Utilities - Regulated Electric,70.0,95.0,69.0,55.0,1.8532,1.7446,0.0,NO,NO
+4,ED,115.03,Utilities,Utilities - Regulated Electric,67.0,93.0,63.0,61.0,2.16,2.045,0.0,NO,NO
+5,EVRG,85.3,Utilities,Utilities - Regulated Electric,63.0,90.0,58.0,59.0,1.3614,1.3021,0.0,NO,NO
+1,BKH,81.75,Utilities,Utilities - Regulated Gas,82.0,95.0,86.0,73.0,1.7104,1.6882,0.01,NO,NO
+2,UGI,39.26,Utilities,Utilities - Regulated Gas,66.0,88.0,79.0,58.0,0.6564,0.6536,0.0,NO,NO
+3,SWX,92.84,Utilities,Utilities - Regulated Gas,63.0,94.0,56.0,48.0,1.865,1.8086,0.0,NO,NO
+4,RGCO,22.6,Utilities,Utilities - Regulated Gas,54.0,80.0,55.0,49.0,0.7911,0.7911,0.0,NO,NO
+5,CPK,134.63,Utilities,Utilities - Regulated Gas,49.0,84.0,37.0,63.0,2.5868,2.4561,0.0,NO,NO
+1,AWR,85.48,Utilities,Utilities - Regulated Water,65.0,82.0,27.0,69.0,1.6318,1.5054,0.0,NO,NO
+2,HTO,61.04,Utilities,Utilities - Regulated Water,65.0,37.0,22.0,54.0,1.5679,1.5171,0.0,NO,NO
+3,WTRG,42.64,Utilities,Utilities - Regulated Water,64.0,90.0,72.0,69.0,0.8757,0.8214,0.0,NO,NO
+4,AWK,141.1,Utilities,Utilities - Regulated Water,56.0,90.0,61.0,66.0,2.9968,2.87,0.0,NO,NO
+5,ARTNA,34.04,Utilities,Utilities - Regulated Water,47.0,75.0,29.0,70.0,0.66,0.6443,0.0,NO,NO
+1,ENLT,73.3,Utilities,Utilities - Renewable,88.0,86.0,12.0,8.0,2.4369,1.9711,1.61,NO,NO
+2,ELLO,23.1,Utilities,Utilities - Renewable,65.0,92.0,91.0,13.0,1.0257,0.4329,0.0,NO,NO
+3,CWEN,32.72,Utilities,Utilities - Renewable,28.0,93.0,78.0,7.0,0.8079,0.715,1.4,NO,NO
+4,BEP,29.27,Utilities,Utilities - Renewable,19.0,81.0,15.0,12.0,0.7425,0.7025,0.14,NO,NO
+5,ORA,92.03,Utilities,Utilities - Renewable,9.0,64.0,29.0,7.0,2.7743,2.5464,1.01,NO,NO
+1,RSG,235.66,Industrials,Waste Management,73.0,92.0,80.0,81.0,4.8211,4.2821,0.0,NO,NO
+2,CLH,312.92,Industrials,Waste Management,72.0,41.0,22.0,51.0,6.0271,5.9557,0.0,NO,NO
+3,GFL,45.0,Industrials,Waste Management,69.0,89.0,86.0,80.0,1.2557,1.2314,0.0,NO,NO
+4,WCN,181.97,Industrials,Waste Management,66.0,95.0,75.0,79.0,4.8657,4.5164,0.0,NO,NO
+5,CWST,93.71,Industrials,Waste Management,59.0,94.0,68.0,87.0,3.4036,3.1664,0.0,NO,NO
+1,NFEGP,210.99,n/a,n/a,98.0,0.0,,,19.3657,15.1657,0.0,YES,NO
+2,SAX,25.09,n/a,n/a,48.0,50.0,,,0.2536,0.2314,0.0,YES,NO
+3,NSLRL,25.1,n/a,n/a,44.0,55.0,50.0,45.0,0.0439,0.0247,0.0,NO,NO
+4,RWAYM,24.85,n/a,n/a,43.0,,,,0.1368,0.1189,0.0,YES,NO
+5,TRNZ,25.25,n/a,n/a,41.0,55.0,49.0,41.0,0.1337,0.1323,0.0,NO,NO
