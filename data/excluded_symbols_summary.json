@@ -1,10 +1,10 @@
 {
   "by_reason": {
     "autocallable": 32,
-    "buffer": 433,
+    "buffer": 434,
     "covered call": 29,
     "etn": 17,
-    "income strategy": 48,
+    "income strategy": 47,
     "microsectors": 37,
     "weeklypay": 24,
     "yield premium": 6
@@ -44,6 +44,11 @@
       "reason": "autocallable",
       "security_name": "Innovator Index Autocallable Income Strategy ETF",
       "symbol": "ACII"
+    },
+    {
+      "reason": "buffer",
+      "security_name": "Buffered Bulldog ETF by C.J. Lawrence, a division of Apollon",
+      "symbol": "ACJL"
     },
     {
       "reason": "autocallable",
@@ -829,11 +834,6 @@
       "reason": "buffer",
       "security_name": "Day Hagan Smart Buffer ETF",
       "symbol": "DHSB"
-    },
-    {
-      "reason": "income strategy",
-      "security_name": "Simplify Tax Aware Diversified Income Strategy ETF",
-      "symbol": "DINE"
     },
     {
       "reason": "income strategy",
