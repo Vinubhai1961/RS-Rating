@@ -1,12 +1,12 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-10-31 00:04:34 EDT
+Run Date: 2026-11-02 20:16:48 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-10-31 04:00:05
-Successful: 1856 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-03 00:13:43
+Successful: 1848 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -14,11 +14,8 @@ Successful: 1856 | Skipped: 0 | Failed: 0
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-10-31 04:00:42
-Successful: 1854 | Skipped: 2 | Failed: 0
---- Skipped Tickers ---
-ELCF: Too few valid rows: 1
-ETDG: Too few valid rows: 1
+FINAL SUMMARY - Partition finished at 2026-11-03 00:10:40
+Successful: 1848 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -26,8 +23,10 @@ ETDG: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-10-31 04:01:29
-Successful: 1856 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-03 00:12:33
+Successful: 1847 | Skipped: 1 | Failed: 0
+--- Skipped Tickers ---
+OPAY: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -35,8 +34,8 @@ Successful: 1856 | Skipped: 0 | Failed: 0
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-10-31 04:00:17
-Successful: 1857 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-03 00:13:07
+Successful: 1849 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 3 ===
