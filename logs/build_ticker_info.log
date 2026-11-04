@@ -12410,3 +12410,72 @@
 2026-11-03 22:19:43,237 [INFO] Elapsed Seconds               : 82.95
 2026-11-03 22:19:43,237 [INFO] ======================================================================
 2026-11-03 22:19:43,237 [INFO] ✅ Partition completed successfully.
+2026-11-04 22:35:18,873 [INFO] 🚀 Starting ticker info build - Partition 1/6
+2026-11-04 22:35:18,873 [INFO] Fetching NASDAQ symbol master list ...
+2026-11-04 22:35:18,874 [DEBUG] Starting new HTTPS connection (1): www.nasdaqtrader.com:443
+2026-11-04 22:35:18,982 [DEBUG] https://www.nasdaqtrader.com:443 "GET /dynamic/symdir/nasdaqtraded.txt HTTP/1.1" 200 234515
+2026-11-04 22:35:19,201 [INFO] Retrieved 12708 eligible symbols before ETF filtering.
+2026-11-04 22:35:19,210 [INFO] ============================================================
+2026-11-04 22:35:19,211 [INFO] ETF FILTER SUMMARY
+2026-11-04 22:35:19,211 [INFO] ============================================================
+2026-11-04 22:35:19,211 [INFO] NASDAQ eligible symbols before ETF filter: 12708
+2026-11-04 22:35:19,211 [INFO] Excluded ETF products: 628
+2026-11-04 22:35:19,211 [INFO] Remaining symbols after ETF filter: 12080
+2026-11-04 22:35:19,211 [INFO] ------------------------------------------------------------
+2026-11-04 22:35:19,211 [INFO] ETF FILTER BREAKDOWN
+2026-11-04 22:35:19,211 [INFO] autocallable              : 32
+2026-11-04 22:35:19,211 [INFO] buffer                    : 436
+2026-11-04 22:35:19,211 [INFO] covered call              : 29
+2026-11-04 22:35:19,211 [INFO] etn                       : 17
+2026-11-04 22:35:19,211 [INFO] income strategy           : 47
+2026-11-04 22:35:19,211 [INFO] microsectors              : 37
+2026-11-04 22:35:19,211 [INFO] weeklypay                 : 24
+2026-11-04 22:35:19,211 [INFO] yield premium             : 6
+2026-11-04 22:35:19,211 [INFO] ============================================================
+2026-11-04 22:35:19,212 [INFO] Final eligible symbols after ETF filtering: 12080
+2026-11-04 22:35:19,215 [INFO] Partition 2/6: 2014 symbols
+2026-11-04 22:35:19,216 [INFO] Symbols needing update in this slice: 2014
+2026-11-04 22:35:21,318 [INFO] Batch 1/14 - Updated: 140 | Unresolved: 10 | Updated total: 140
+2026-11-04 22:35:21,318 [DEBUG] Sleeping 2.03s before next batch...
+2026-11-04 22:35:25,579 [INFO] Batch 2/14 - Updated: 144 | Unresolved: 6 | Updated total: 284
+2026-11-04 22:35:25,579 [DEBUG] Sleeping 3.84s before next batch...
+2026-11-04 22:35:31,448 [INFO] Batch 3/14 - Updated: 140 | Unresolved: 10 | Updated total: 424
+2026-11-04 22:35:31,449 [DEBUG] Sleeping 4.95s before next batch...
+2026-11-04 22:35:38,411 [INFO] Batch 4/14 - Updated: 144 | Unresolved: 6 | Updated total: 568
+2026-11-04 22:35:38,411 [DEBUG] Sleeping 4.87s before next batch...
+2026-11-04 22:35:45,528 [INFO] Batch 5/14 - Updated: 141 | Unresolved: 9 | Updated total: 709
+2026-11-04 22:35:45,528 [DEBUG] Sleeping 2.10s before next batch...
+2026-11-04 22:35:49,534 [INFO] Batch 6/14 - Updated: 138 | Unresolved: 12 | Updated total: 847
+2026-11-04 22:35:49,534 [DEBUG] Sleeping 4.57s before next batch...
+2026-11-04 22:35:56,093 [INFO] Batch 7/14 - Updated: 137 | Unresolved: 13 | Updated total: 984
+2026-11-04 22:35:56,093 [DEBUG] Sleeping 3.47s before next batch...
+2026-11-04 22:36:04,826 [INFO] Batch 8/14 - Updated: 143 | Unresolved: 7 | Updated total: 1127
+2026-11-04 22:36:04,826 [DEBUG] Sleeping 2.21s before next batch...
+2026-11-04 22:36:09,081 [INFO] Batch 9/14 - Updated: 140 | Unresolved: 10 | Updated total: 1267
+2026-11-04 22:36:09,081 [DEBUG] Sleeping 3.11s before next batch...
+2026-11-04 22:36:14,153 [INFO] Batch 10/14 - Updated: 147 | Unresolved: 3 | Updated total: 1414
+2026-11-04 22:36:14,153 [DEBUG] Sleeping 4.53s before next batch...
+2026-11-04 22:36:20,659 [INFO] Batch 11/14 - Updated: 143 | Unresolved: 7 | Updated total: 1557
+2026-11-04 22:36:20,659 [DEBUG] Sleeping 2.36s before next batch...
+2026-11-04 22:36:26,328 [INFO] Batch 12/14 - Updated: 146 | Unresolved: 4 | Updated total: 1703
+2026-11-04 22:36:26,328 [DEBUG] Sleeping 2.92s before next batch...
+2026-11-04 22:36:34,506 [INFO] Batch 13/14 - Updated: 141 | Unresolved: 9 | Updated total: 1844
+2026-11-04 22:36:34,507 [DEBUG] Sleeping 3.92s before next batch...
+2026-11-04 22:36:40,355 [INFO] Batch 14/14 - Updated: 62 | Unresolved: 2 | Updated total: 1906
+2026-11-04 22:36:40,355 [INFO] Retry sub-pass for 108 unresolved symbols ...
+2026-11-04 22:36:43,014 [INFO] Retry batch updated: 0 | still unresolved: 108
+2026-11-04 22:36:46,616 [INFO] ======================================================================
+2026-11-04 22:36:46,616 [INFO] BUILD TICKER INFO - PARTITION SUMMARY
+2026-11-04 22:36:46,616 [INFO] ======================================================================
+2026-11-04 22:36:46,616 [INFO] Timestamp Utc                 : 2026-11-04T22:36:46
+2026-11-04 22:36:46,616 [INFO] Partition Index               : 1
+2026-11-04 22:36:46,616 [INFO] Partition Total               : 6
+2026-11-04 22:36:46,616 [INFO] Symbols In Slice              : 2014
+2026-11-04 22:36:46,616 [INFO] Symbols Needing Update        : 2014
+2026-11-04 22:36:46,616 [INFO] Batches Run                   : 14
+2026-11-04 22:36:46,616 [INFO] Total Updated                 : 1906
+2026-11-04 22:36:46,616 [INFO] Unresolved After Run          : 108
+2026-11-04 22:36:46,616 [INFO] Entries In File               : 2014
+2026-11-04 22:36:46,616 [INFO] Elapsed Seconds               : 87.74
+2026-11-04 22:36:46,616 [INFO] ======================================================================
+2026-11-04 22:36:46,616 [INFO] ✅ Partition completed successfully.
