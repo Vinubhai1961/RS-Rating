@@ -1,14 +1,12 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-11-03 18:48:41 EDT
+Run Date: 2026-11-04 18:58:48 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-03 22:45:39
-Successful: 1757 | Skipped: 1 | Failed: 0
---- Skipped Tickers ---
-AIBE: Too few valid rows: 1
+FINAL SUMMARY - Partition finished at 2026-11-04 22:53:38
+Successful: 1857 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -16,10 +14,10 @@ AIBE: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-03 22:44:42
-Successful: 1757 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-04 22:54:16
+Successful: 1856 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-EMIL: Too few valid rows: 1
+INK: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -27,8 +25,8 @@ EMIL: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-03 22:45:12
-Successful: 1757 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-04 22:54:08
+Successful: 1856 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
 OPAY: Too few valid rows: 1
 ================================================================================
@@ -38,9 +36,10 @@ OPAY: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-03 22:43:53
-Successful: 1760 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-04 22:55:30
+Successful: 1856 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
+SIX: Too few valid rows: 1
 VTVX: Too few valid rows: 1
 ================================================================================
 
