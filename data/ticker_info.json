@@ -664,6 +664,13 @@
       "type": "Stock"
     }
   },
+  "ACEM": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "ACEP": {
     "info": {
       "industry": "ETF",
@@ -2054,6 +2061,20 @@
     "info": {
       "industry": "Medical Care Facilities",
       "sector": "Healthcare",
+      "type": "Stock"
+    }
+  },
+  "AGLT": {
+    "info": {
+      "industry": "Software - Application",
+      "sector": "Technology",
+      "type": "Stock"
+    }
+  },
+  "AGLTW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -7518,6 +7539,13 @@
     }
   },
   "BBLU": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "BBLX": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
@@ -13451,27 +13479,6 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
-    }
-  },
-  "CCXI": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "CCXIU": {
-    "info": {
-      "industry": "Shell Companies",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
-  "CCXIW": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
     }
   },
   "CCZ": {
@@ -19452,6 +19459,13 @@
       "type": "ETF"
     }
   },
+  "DFIT": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "DFIV": {
     "info": {
       "industry": "ETF",
@@ -20136,6 +20150,13 @@
       "industry": "Specialty Retail",
       "sector": "Consumer Cyclical",
       "type": "Stock"
+    }
+  },
+  "DLAY": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
     }
   },
   "DLB": {
@@ -28091,6 +28112,13 @@
     }
   },
   "FMHI": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "FMIG": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
@@ -38497,6 +38525,13 @@
       "industry": "Specialty Industrial Machinery",
       "sector": "Industrials",
       "type": "Stock"
+    }
+  },
+  "INJC": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
     }
   },
   "INK": {
@@ -64961,8 +64996,8 @@
   },
   "SAEN": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Conglomerates",
+      "sector": "Industrials",
       "type": "Stock"
     }
   },
