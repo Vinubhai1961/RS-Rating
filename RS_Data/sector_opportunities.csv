@@ -1,17 +1,12 @@
 SectorRank,Sector,LeaderRank,Ticker,Leader_Score,Setup_Type,Tightness,Setup_Price,Dist_52WH_%,ATR_%,RS Percentile,1M_RS Percentile,3M_RS Percentile,6M_RS Percentile,IPO,Gap (%),HVE,SMA50,SMA200,SMA10W,SMA30W,Industry
-1,Health technology,1,SI,78.04,Stage 2 Watch,Loose,20.37,17.16,5.62,96.0,84.0,66.0,97.0,NO,0.0,NO,19.01,17.13,18.84,18.43,Medical specialties
-3,Healthcare,1,SLN,98.76,Extended Near High,Loose,19.72,0.7,4.33,98.0,98.0,98.0,98.0,NO,0.0,NO,13.99,9.34,13.93,10.72,Biotechnology
-3,Healthcare,2,PCRX,98.43,Extended Near High,Very Tight,36.42,0.68,0.16,97.0,98.0,98.0,96.0,NO,0.03,NO,29.96,25.17,30.86,26.51,Drug Manufacturers - Specialty & Generic
-3,Healthcare,3,SGRY,97.94,Extended Near High,Normal,23.17,0.86,3.55,96.0,98.0,98.0,97.0,NO,0.0,NO,15.85,14.78,16.02,15.23,Medical Care Facilities
-3,Healthcare,4,ARDT,96.91,Extended Near High,Loose,15.9,2.03,4.3,96.0,98.0,97.0,97.0,NO,12.78,NO,11.32,10.07,11.67,10.62,Medical Care Facilities
-3,Healthcare,5,BDX,95.98,Breakout Zone,Tight,213.55,0.57,2.02,94.0,93.0,95.0,94.0,NO,0.0,NO,187.73,166.84,189.0,168.9,Medical Instruments & Supplies
-4,Financial Services,1,ECPG,98.25,Extended Near High,Normal,126.17,0.45,3.9,98.0,96.0,96.0,96.0,NO,10.0,NO,99.6,84.2,101.51,92.93,Credit Services
-4,Financial Services,2,MORN,96.66,Extended Near High,Normal,247.17,0.69,2.92,94.0,96.0,96.0,94.0,NO,0.0,NO,208.01,186.31,209.38,190.39,Financial Data & Stock Exchanges
-4,Financial Services,3,FDS,95.6,Extended Near High,Normal,340.47,2.16,3.81,95.0,96.0,94.0,96.0,NO,0.0,NO,295.74,251.41,297.48,265.78,Financial Data & Stock Exchanges
-4,Financial Services,4,PLGO,94.62,Near Breakout,Tight,27.89,1.31,2.08,94.0,92.0,91.0,93.0,NO,1.17,NO,24.91,22.54,25.2,24.04,Insurance - Diversified
-4,Financial Services,5,HGTY,94.53,Stage 2 Watch,Normal,18.36,5.41,3.6,97.0,97.0,97.0,97.0,NO,0.0,NO,14.46,12.14,14.73,12.58,Insurance - Property & Casualty
-5,Communication Services,1,GIBO,98.65,Extended Near High,Loose,126.28,0.86,7.9,98.0,98.0,98.0,98.0,NO,4.88,NO,49.18,36.96,56.07,39.5,Internet Content & Information
-5,Communication Services,2,EVER,95.63,Extended Near High,Loose,30.32,2.66,4.83,95.0,98.0,94.0,95.0,NO,0.0,NO,22.53,20.5,22.83,22.02,Internet Content & Information
-5,Communication Services,3,SIRI,95.42,Extended Near High,Normal,33.22,1.6,2.7,94.0,97.0,91.0,90.0,NO,0.0,NO,27.78,26.45,28.04,28.28,Entertainment
-5,Communication Services,4,MGNI,93.32,Near Breakout,Loose,27.52,2.31,4.95,97.0,84.0,91.0,98.0,NO,12.99,NO,23.98,17.78,24.24,19.97,Advertising Agencies
-5,Communication Services,5,CNK,91.21,Near Breakout,Normal,40.04,3.63,3.52,94.0,86.0,88.0,95.0,NO,0.0,NO,37.09,31.61,37.27,33.53,Entertainment
+1,Health technology,1,SI,80.37,Stage 2 Watch,Loose,20.54,16.47,5.92,96.0,93.0,66.0,96.0,NO,0.0,NO,19.0,17.16,18.86,18.44,Medical specialties
+3,Healthcare,1,XERS,99.24,Extended Near High,Loose,15.2,0.07,5.04,98.0,98.0,98.0,98.0,NO,5.43,NO,9.62,7.61,9.93,8.21,Drug Manufacturers - Specialty & Generic
+3,Healthcare,2,SLN,98.65,Extended Near High,Very Tight,19.73,0.65,0.39,98.0,98.0,97.0,98.0,NO,0.0,NO,14.11,9.41,13.93,10.72,Biotechnology
+3,Healthcare,3,REPL,98.3,Extended Near High,Loose,21.62,1.32,6.69,98.0,98.0,98.0,98.0,NO,0.9,NO,14.09,9.62,14.14,10.75,Biotechnology
+3,Healthcare,4,SGRY,98.04,Extended Near High,Normal,23.2,0.73,3.44,96.0,98.0,98.0,97.0,NO,0.0,NO,16.04,14.81,16.03,15.23,Medical Care Facilities
+3,Healthcare,5,XNCR,97.77,Extended Near High,Loose,35.75,2.03,6.5,98.0,98.0,98.0,98.0,NO,0.47,NO,26.17,17.46,26.26,19.55,Biotechnology
+4,Communication Services,1,GIBO,96.75,Near Breakout,Loose,175.35,3.65,7.17,98.0,99.0,98.0,98.0,NO,2.95,NO,52.05,37.62,60.98,41.13,Internet Content & Information
+4,Communication Services,2,MGNI,93.13,Near Breakout,Loose,27.39,2.77,5.15,97.0,84.0,92.0,98.0,NO,0.0,NO,24.06,17.84,24.23,19.96,Advertising Agencies
+4,Communication Services,3,SIRI,93.04,Near Breakout,Normal,32.4,4.03,2.91,93.0,96.0,91.0,88.0,NO,0.0,NO,27.86,26.51,27.95,28.26,Entertainment
+4,Communication Services,4,EVER,91.25,Stage 2 Watch,Loose,28.82,7.63,5.29,94.0,98.0,92.0,94.0,NO,0.0,NO,22.61,20.53,22.68,21.97,Internet Content & Information
+4,Communication Services,5,ROKU,90.72,Near Breakout,Tight,160.52,1.86,1.76,95.0,76.0,87.0,90.0,NO,0.0,NO,155.33,129.11,155.08,143.17,Entertainment

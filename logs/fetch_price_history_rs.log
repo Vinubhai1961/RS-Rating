@@ -1,18 +1,15 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-11-05 19:04:59 EDT
+Run Date: 2026-11-06 18:27:33 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-05 23:02:08
-Successful: 1829 | Skipped: 5 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-06 22:22:45
+Successful: 1837 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
-ACEM: Too few valid rows: 1
 AIBE: Too few valid rows: 1
-BBLX: Too few valid rows: 1
 DFIT: Too few valid rows: 1
-DLAY: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -20,12 +17,8 @@ DLAY: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-05 23:01:02
-Successful: 1831 | Skipped: 3 | Failed: 0
---- Skipped Tickers ---
-FMIG: Too few valid rows: 1
-INJC: Too few valid rows: 1
-INK: Too few valid rows: 1
+FINAL SUMMARY - Partition finished at 2026-11-06 22:24:31
+Successful: 1839 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -33,8 +26,8 @@ INK: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-05 23:01:32
-Successful: 1833 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-06 22:24:13
+Successful: 1838 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
 OPAY: Too few valid rows: 1
 ================================================================================
@@ -44,10 +37,10 @@ OPAY: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-05 23:01:27
-Successful: 1833 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-06 22:23:49
+Successful: 1840 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-VTVX: Too few valid rows: 1
+THCR: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 3 ===
