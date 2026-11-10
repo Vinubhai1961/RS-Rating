@@ -783,13 +783,6 @@
       "type": "Stock"
     }
   },
-  "ACHV": {
-    "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
   "ACHX": {
     "info": {
       "industry": "ETF",
@@ -8677,6 +8670,13 @@
       "industry": "Asset Management",
       "sector": "Financial Services",
       "type": "Stock"
+    }
+  },
+  "BGRD": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
     }
   },
   "BGRN": {
@@ -23085,6 +23085,13 @@
       "type": "Stock"
     }
   },
+  "EMDI": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "EMDM": {
     "info": {
       "industry": "ETF",
@@ -25428,13 +25435,6 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
-    }
-  },
-  "EZRA": {
-    "info": {
-      "industry": "Insurance Brokers",
-      "sector": "Financial Services",
-      "type": "Stock"
     }
   },
   "EZRO": {
@@ -33753,13 +33753,6 @@
       "type": "Stock"
     }
   },
-  "HAUS": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
   "HAUZ": {
     "info": {
       "industry": "ETF",
@@ -35925,8 +35918,8 @@
   },
   "HYAC": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -45570,6 +45563,13 @@
     }
   },
   "LTCC": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "LTEQ": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
@@ -57728,6 +57728,13 @@
       "type": "ETF"
     }
   },
+  "PGRW": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "PGX": {
     "info": {
       "industry": "ETF",
@@ -59849,13 +59856,6 @@
       "type": "ETF"
     }
   },
-  "PSQH": {
-    "info": {
-      "industry": "Software - Application",
-      "sector": "Technology",
-      "type": "Stock"
-    }
-  },
   "PSQL": {
     "info": {
       "industry": "Computer Hardware",
@@ -61522,6 +61522,13 @@
       "type": "Stock"
     }
   },
+  "QUIT": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "QUIZ": {
     "info": {
       "industry": "ETF",
@@ -62346,13 +62353,6 @@
       "industry": "Other Industrial Metals & Mining",
       "sector": "Basic Materials",
       "type": "Stock"
-    }
-  },
-  "REAI": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
     }
   },
   "REAL": {
@@ -65939,10 +65939,31 @@
       "type": "Stock"
     }
   },
+  "SCQC": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
+  "SCQCR": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "SCQCU": {
     "info": {
       "industry": "Shell Companies",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "SCQCW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -71357,13 +71378,6 @@
       "type": "Stock"
     }
   },
-  "SWAGW": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
-    }
-  },
   "SWAN": {
     "info": {
       "industry": "ETF",
@@ -75874,8 +75888,8 @@
   },
   "TXCP": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Banks - Regional",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -82204,6 +82218,13 @@
     "info": {
       "industry": "Diagnostics & Research",
       "sector": "Healthcare",
+      "type": "Stock"
+    }
+  },
+  "XGPU": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
