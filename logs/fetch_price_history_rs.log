@@ -1,12 +1,12 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-11-06 18:27:33 EDT
+Run Date: 2026-11-09 21:04:22 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-06 22:22:45
-Successful: 1837 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-10 00:59:36
+Successful: 1790 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
 AIBE: Too few valid rows: 1
 DFIT: Too few valid rows: 1
@@ -17,8 +17,10 @@ DFIT: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-06 22:24:31
-Successful: 1839 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-10 01:01:25
+Successful: 1791 | Skipped: 1 | Failed: 0
+--- Skipped Tickers ---
+HYFY: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -26,9 +28,12 @@ Successful: 1839 | Skipped: 0 | Failed: 0
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-06 22:24:13
-Successful: 1838 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-10 01:00:21
+Successful: 1788 | Skipped: 4 | Failed: 0
 --- Skipped Tickers ---
+LYR: Too few valid rows: 1
+LYRI: Too few valid rows: 1
+MFIX: Too few valid rows: 1
 OPAY: Too few valid rows: 1
 ================================================================================
 
@@ -37,9 +42,10 @@ OPAY: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-06 22:23:49
-Successful: 1840 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-10 00:59:52
+Successful: 1792 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
+SMDC: Too few valid rows: 1
 THCR: Too few valid rows: 1
 ================================================================================
 
