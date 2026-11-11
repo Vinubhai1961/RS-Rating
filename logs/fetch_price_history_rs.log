@@ -1,12 +1,12 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-11-10 18:45:29 EDT
+Run Date: 2026-11-11 19:50:19 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-10 22:42:22
-Successful: 1848 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-11 23:47:41
+Successful: 1854 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
 BGRD: Too few valid rows: 1
 ================================================================================
@@ -16,11 +16,8 @@ BGRD: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-10 22:40:43
-Successful: 1847 | Skipped: 2 | Failed: 0
---- Skipped Tickers ---
-EMDI: Too few valid rows: 1
-HYB: Too few valid rows: 1
+FINAL SUMMARY - Partition finished at 2026-11-11 23:47:29
+Successful: 1855 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -28,12 +25,10 @@ HYB: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-10 22:41:35
-Successful: 1846 | Skipped: 3 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-11 23:46:42
+Successful: 1854 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-LTEQ: Too few valid rows: 1
 OPAY: Too few valid rows: 1
-PGRW: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -41,8 +36,8 @@ PGRW: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-10 22:41:41
-Successful: 1851 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-11 23:46:44
+Successful: 1858 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 3 ===
