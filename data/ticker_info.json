@@ -5669,13 +5669,6 @@
       "type": "Stock"
     }
   },
-  "ATCH": {
-    "info": {
-      "industry": "Capital Markets",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
   "ATCX": {
     "info": {
       "industry": "n/a",
@@ -34831,13 +34824,6 @@
       "type": "Stock"
     }
   },
-  "HLSQ": {
-    "info": {
-      "industry": "Information Technology Services",
-      "sector": "Technology",
-      "type": "Stock"
-    }
-  },
   "HLT": {
     "info": {
       "industry": "Lodging",
@@ -36694,6 +36680,13 @@
     }
   },
   "IBLC": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "IBLY": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
@@ -39179,6 +39172,34 @@
     }
   },
   "IQDY": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "IQEE": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "IQEI": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "IQEL": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "IQES": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
@@ -42882,13 +42903,6 @@
     }
   },
   "KPRX": {
-    "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
-  "KPTI": {
     "info": {
       "industry": "Biotechnology",
       "sector": "Healthcare",
@@ -47145,13 +47159,6 @@
     }
   },
   "MEMX": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
-  "MEMY": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
@@ -61524,8 +61531,8 @@
   },
   "QUIT": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Biotechnology",
+      "sector": "Healthcare",
       "type": "Stock"
     }
   },
@@ -65941,8 +65948,8 @@
   },
   "SCQC": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -82223,8 +82230,8 @@
   },
   "XGPU": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Insurance Brokers",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
