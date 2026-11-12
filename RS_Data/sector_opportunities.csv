@@ -1,17 +1,13 @@
 SectorRank,Sector,LeaderRank,Ticker,Leader_Score,Setup_Type,Tightness,Setup_Price,Dist_52WH_%,ATR_%,RS Percentile,1M_RS Percentile,3M_RS Percentile,6M_RS Percentile,IPO,Gap (%),HVE,SMA50,SMA200,SMA10W,SMA30W,Industry
-1,Health technology,1,SI,88.93,Stage 2 Watch,Loose,21.92,10.86,6.0,96.0,95.0,92.0,96.0,NO,0.0,NO,19.05,17.26,19.02,18.67,Medical specialties
-3,Healthcare,1,XERS,99.07,Extended Near High,Loose,16.52,0.3,5.18,98.0,98.0,98.0,98.0,NO,1.01,NO,10.08,7.74,10.72,8.55,Drug Manufacturers - Specialty & Generic
-3,Healthcare,2,SLN,98.95,Extended Near High,Very Tight,19.77,0.45,0.37,98.0,98.0,98.0,98.0,NO,0.0,NO,14.46,9.63,14.45,11.13,Biotechnology
-3,Healthcare,3,PGNY,98.34,Extended Near High,Normal,36.5,0.05,3.56,96.0,97.0,98.0,95.0,NO,0.0,NO,28.08,24.7,28.94,27.26,Healthcare Plans
-3,Healthcare,4,XNCR,98.13,Extended Near High,Loose,39.97,1.55,6.32,98.0,98.0,98.0,98.0,NO,0.0,NO,26.91,17.85,27.6,20.44,Biotechnology
-3,Healthcare,5,VCEL,98.06,Extended Near High,Loose,59.45,0.5,5.04,96.0,98.0,97.0,97.0,NO,0.0,NO,42.12,39.2,43.53,41.53,Biotechnology
-4,Technology,1,BRZE,99.26,Extended Near High,Very Tight,46.48,0.04,0.53,98.0,98.0,98.0,98.0,NO,0.0,NO,33.38,25.45,34.05,28.02,Software - Application
-4,Technology,2,IBEX,97.73,Extended Near High,Loose,55.32,0.81,4.09,97.0,95.0,98.0,97.0,NO,0.0,NO,43.86,34.61,45.51,37.19,Information Technology Services
-4,Technology,3,DCBO,97.52,Extended Near High,Loose,32.91,0.81,4.49,97.0,94.0,98.0,97.0,NO,1.08,NO,26.45,20.91,26.9,22.33,Software - Application
-4,Technology,4,FLYW,96.4,Extended Near High,Loose,22.25,1.51,4.23,96.0,95.0,95.0,93.0,NO,0.0,NO,18.67,15.83,19.03,17.52,Software - Infrastructure
-4,Technology,5,MANH,96.11,Extended Near High,Normal,258.86,1.75,3.52,97.0,92.0,96.0,98.0,NO,0.19,NO,222.62,169.71,224.87,183.71,Software - Application
-5,Communication Services,1,DDI,96.58,Extended Near High,Normal,15.72,0.38,2.94,96.0,91.0,96.0,91.0,NO,0.0,NO,13.42,11.24,13.52,12.31,Electronic Gaming & Multimedia
-5,Communication Services,2,MGNI,96.11,Extended Near High,Loose,29.21,1.55,5.14,98.0,91.0,94.0,98.0,NO,0.04,NO,24.39,18.05,24.74,20.48,Advertising Agencies
-5,Communication Services,3,CNK,93.06,Breakout Zone,Normal,41.32,0.84,3.64,94.0,84.0,89.0,95.0,NO,0.0,NO,37.48,31.95,37.78,33.87,Entertainment
-5,Communication Services,4,SIRI,92.83,Near Breakout,Normal,32.26,4.44,3.23,93.0,95.0,93.0,87.0,NO,0.0,NO,28.11,26.69,28.28,28.48,Entertainment
-5,Communication Services,5,EVER,92.22,Stage 2 Watch,Loose,28.95,7.21,5.49,95.0,98.0,94.0,95.0,NO,0.0,NO,22.8,20.6,23.09,22.4,Internet Content & Information
+1,Technology services,1,NIQ,85.62,Pullback to 50D,Loose,19.22,10.69,4.51,97.0,77.0,91.0,98.0,NO,0.0,NO,18.72,13.33,18.67,13.92,Packaged software
+2,Health technology,1,SI,83.49,Stage 2 Watch,Loose,21.08,14.27,6.41,94.0,94.0,79.0,92.0,NO,0.0,NO,19.06,17.3,18.93,18.64,Medical specialties
+4,Healthcare,1,SLN,99.07,Extended Near High,Very Tight,19.8,0.3,0.39,98.0,98.0,98.0,98.0,NO,0.0,NO,14.56,9.7,14.45,11.13,Biotechnology
+4,Healthcare,2,XERS,98.27,Extended Near High,Loose,16.65,1.36,5.03,98.0,98.0,98.0,98.0,NO,0.48,NO,10.24,7.78,10.74,8.55,Drug Manufacturers - Specialty & Generic
+4,Healthcare,3,HTFL,97.77,Extended Near High,Loose,59.92,1.22,5.85,98.0,95.0,98.0,97.0,NO,0.0,NO,51.94,35.12,52.52,39.32,Health Information Services
+4,Healthcare,4,PGNY,97.21,Extended Near High,Normal,36.58,1.56,3.65,96.0,97.0,98.0,96.0,NO,0.0,NO,28.29,24.76,28.95,27.26,Healthcare Plans
+4,Healthcare,5,SGRY,97.15,Extended Near High,Normal,26.58,2.39,3.69,97.0,98.0,98.0,97.0,NO,0.0,NO,17.04,15.03,17.26,15.65,Medical Care Facilities
+5,Technology,1,BRZE,98.97,Extended Near High,Very Tight,46.61,0.43,0.58,98.0,98.0,98.0,98.0,NO,0.0,NO,33.65,25.57,34.06,28.03,Software - Application
+5,Technology,2,APPN,97.66,Extended Near High,Loose,55.15,2.18,5.83,98.0,98.0,98.0,98.0,NO,0.24,NO,42.47,29.94,43.44,32.43,Software - Infrastructure
+5,Technology,3,IBEX,97.33,Extended Near High,Loose,54.87,1.61,4.16,97.0,96.0,98.0,97.0,NO,0.0,NO,44.18,34.7,45.46,37.17,Information Technology Services
+5,Technology,4,DCBO,96.53,Extended Near High,Loose,32.48,2.14,4.59,97.0,94.0,98.0,98.0,NO,0.0,NO,26.6,20.98,26.86,22.32,Software - Application
+5,Technology,5,FROG,95.83,Extended Near High,Loose,110.6,2.32,8.18,97.0,95.0,93.0,96.0,NO,0.0,NO,94.41,73.51,95.78,85.78,Software - Application
