@@ -3466,8 +3466,8 @@
   },
   "AMBR": {
     "info": {
-      "industry": "Asset Management",
-      "sector": "Financial Services",
+      "industry": "Software - Infrastructure",
+      "sector": "Technology",
       "type": "Stock"
     }
   },
@@ -12004,6 +12004,13 @@
       "type": "Stock"
     }
   },
+  "BWLB": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "BWLP": {
     "info": {
       "industry": "Oil & Gas Midstream",
@@ -15053,13 +15060,6 @@
     "info": {
       "industry": "Communication Equipment",
       "sector": "Technology",
-      "type": "Stock"
-    }
-  },
-  "CLGN": {
-    "info": {
-      "industry": "Biotechnology",
-      "sector": "Healthcare",
       "type": "Stock"
     }
   },
@@ -26095,13 +26095,6 @@
       "type": "ETF"
     }
   },
-  "FDFF": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
   "FDG": {
     "info": {
       "industry": "ETF",
@@ -26110,13 +26103,6 @@
     }
   },
   "FDHY": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
-  "FDIF": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
@@ -28048,20 +28034,6 @@
       "type": "ETF"
     }
   },
-  "FMED": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
-  "FMET": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
   "FMF": {
     "info": {
       "industry": "ETF",
@@ -28592,13 +28564,6 @@
       "industry": "REIT - Specialty",
       "sector": "Real Estate",
       "type": "Stock"
-    }
-  },
-  "FPRO": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
     }
   },
   "FPS": {
@@ -45121,10 +45086,24 @@
       "type": "Stock"
     }
   },
+  "LOVI": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "LOVIU": {
     "info": {
       "industry": "Shell Companies",
       "sector": "Financial Services",
+      "type": "Stock"
+    }
+  },
+  "LOVIW": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -46974,6 +46953,13 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
+    }
+  },
+  "MDRN": {
+    "info": {
+      "industry": "Waste Management",
+      "sector": "Industrials",
+      "type": "Stock"
     }
   },
   "MDRR": {
@@ -55215,6 +55201,13 @@
       "type": "Stock"
     }
   },
+  "OPHI": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "OPI": {
     "info": {
       "industry": "REIT - Office",
@@ -60064,13 +60057,6 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
-    }
-  },
-  "PTLE": {
-    "info": {
-      "industry": "Specialty Retail",
-      "sector": "Consumer Cyclical",
-      "type": "Stock"
     }
   },
   "PTLO": {
@@ -77258,13 +77244,6 @@
       "type": "ETF"
     }
   },
-  "USG": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
   "USGG": {
     "info": {
       "industry": "ETF",
@@ -80030,6 +80009,13 @@
       "type": "Stock"
     }
   },
+  "VVVV": {
+    "info": {
+      "industry": "Medical Instruments & Supplies",
+      "sector": "Healthcare",
+      "type": "Stock"
+    }
+  },
   "VVX": {
     "info": {
       "industry": "Aerospace & Defense",
@@ -81755,6 +81741,13 @@
   "WW": {
     "info": {
       "industry": "Medical Care Facilities",
+      "sector": "Healthcare",
+      "type": "Stock"
+    }
+  },
+  "WWB": {
+    "info": {
+      "industry": "Biotechnology",
       "sector": "Healthcare",
       "type": "Stock"
     }
@@ -84612,6 +84605,13 @@
     "info": {
       "industry": "Biotechnology",
       "sector": "Healthcare",
+      "type": "Stock"
+    }
+  },
+  "ZYN": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   }
