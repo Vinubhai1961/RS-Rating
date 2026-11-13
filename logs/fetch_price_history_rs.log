@@ -1,14 +1,12 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-11-12 19:15:21 EDT
+Run Date: 2026-11-13 18:56:15 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-12 23:11:50
-Successful: 1847 | Skipped: 1 | Failed: 0
---- Skipped Tickers ---
-BGRD: Too few valid rows: 1
+FINAL SUMMARY - Partition finished at 2026-11-13 22:53:32
+Successful: 1842 | Skipped: 0 | Failed: 0
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -16,8 +14,8 @@ BGRD: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-12 23:10:34
-Successful: 1845 | Skipped: 3 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-13 22:52:25
+Successful: 1839 | Skipped: 3 | Failed: 0
 --- Skipped Tickers ---
 IBLY: Too few valid rows: 1
 IQEI: Too few valid rows: 1
@@ -29,11 +27,9 @@ IQEL: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-12 23:12:10
-Successful: 1845 | Skipped: 3 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-13 22:52:21
+Successful: 1841 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-KBTY: Too few valid rows: 1
-MAGP: Too few valid rows: 1
 OPAY: Too few valid rows: 1
 ================================================================================
 
@@ -42,10 +38,10 @@ OPAY: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-12 23:11:27
-Successful: 1847 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-13 22:52:36
+Successful: 1841 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
-VEMB: Too few valid rows: 1
+WWB: Too few valid rows: 1
 XDLR: Too few valid rows: 1
 ================================================================================
 
