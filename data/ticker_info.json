@@ -755,13 +755,6 @@
       "type": "ETF"
     }
   },
-  "ACH": {
-    "info": {
-      "industry": "Medical Distribution",
-      "sector": "Healthcare",
-      "type": "Stock"
-    }
-  },
   "ACHC": {
     "info": {
       "industry": "Medical Care Facilities",
@@ -5593,13 +5586,6 @@
     }
   },
   "ASTM": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
-  "ASTN": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
@@ -10893,8 +10879,8 @@
   },
   "BRRK": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -18234,6 +18220,20 @@
       "type": "Stock"
     }
   },
+  "CWPD": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "CWPG": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "CWS": {
     "info": {
       "industry": "ETF",
@@ -21354,13 +21354,6 @@
       "industry": "ETF",
       "sector": "ETF",
       "type": "ETF"
-    }
-  },
-  "DVLT": {
-    "info": {
-      "industry": "Software - Infrastructure",
-      "sector": "Technology",
-      "type": "Stock"
     }
   },
   "DVLU": {
@@ -52856,6 +52849,13 @@
       "type": "Stock"
     }
   },
+  "NTCR": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "NTCT": {
     "info": {
       "industry": "Software - Infrastructure",
@@ -56825,6 +56825,13 @@
       "type": "ETF"
     }
   },
+  "PCHX": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "PCI": {
     "info": {
       "industry": "ETF",
@@ -58044,6 +58051,13 @@
     }
   },
   "PIT": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
+  "PIVT": {
     "info": {
       "industry": "ETF",
       "sector": "ETF",
@@ -63293,13 +63307,6 @@
       "type": "ETF"
     }
   },
-  "RKLZ": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
-    }
-  },
   "RKNG": {
     "info": {
       "industry": "ETF",
@@ -67318,6 +67325,13 @@
       "type": "Stock"
     }
   },
+  "SIMI": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "SIMO": {
     "info": {
       "industry": "Semiconductors",
@@ -70830,13 +70844,6 @@
       "industry": "Entertainment",
       "sector": "Communication Services",
       "type": "Stock"
-    }
-  },
-  "STSM": {
-    "info": {
-      "industry": "ETF",
-      "sector": "ETF",
-      "type": "ETF"
     }
   },
   "STT": {
@@ -75921,6 +75928,13 @@
       "type": "Stock"
     }
   },
+  "TXR": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "TXRH": {
     "info": {
       "industry": "Restaurants",
@@ -78007,13 +78021,6 @@
       "type": "ETF"
     }
   },
-  "VBNK": {
-    "info": {
-      "industry": "Banks - Regional",
-      "sector": "Financial Services",
-      "type": "Stock"
-    }
-  },
   "VBR": {
     "info": {
       "industry": "ETF",
@@ -79502,6 +79509,13 @@
     "info": {
       "industry": "Information Technology Services",
       "sector": "Technology",
+      "type": "Stock"
+    }
+  },
+  "VRSA": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -84118,6 +84132,13 @@
       "type": "Stock"
     }
   },
+  "ZDAY": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "ZDEK": {
     "info": {
       "industry": "ETF",
@@ -84589,8 +84610,8 @@
   },
   "ZYN": {
     "info": {
-      "industry": "Specialty Retail",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   }

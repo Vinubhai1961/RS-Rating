@@ -1,6 +1,6 @@
 {
   "by_reason": {
-    "autocallable": 32,
+    "autocallable": 35,
     "buffer": 436,
     "covered call": 29,
     "etn": 17,
@@ -636,6 +636,11 @@
       "symbol": "DAPR"
     },
     {
+      "reason": "autocallable",
+      "security_name": "GraniteShares Autocallable AMD ETF",
+      "symbol": "DAU"
+    },
+    {
       "reason": "buffer",
       "security_name": "FT Vest U.S. Equity Deep Buffer ETF - August",
       "symbol": "DAUG"
@@ -916,6 +921,11 @@
       "symbol": "DQSE"
     },
     {
+      "reason": "autocallable",
+      "security_name": "GraniteShares Autocallable DRAM ETF",
+      "symbol": "DRAC"
+    },
+    {
       "reason": "income strategy",
       "security_name": "YieldMax DKNG Option Income Strategy ETF",
       "symbol": "DRAY"
@@ -999,17 +1009,7 @@
       "reason": "buffer",
       "security_name": "Innovator Emerging Markets Power Buffer ETF - October",
       "symbol": "EOCT"
-    },
-    {
-      "reason": "etn",
-      "security_name": "Leverage Shares 2X Long ETN Daily ETF",
-      "symbol": "ETNG"
-    },
-    {
-      "reason": "buffer",
-      "security_name": "FT Vest U.S. Equity Buffer ETF - April",
-      "symbol": "FAPR"
     }
   ],
-  "total_excluded": 628
+  "total_excluded": 631
 }
