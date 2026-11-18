@@ -1,12 +1,15 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-11-16 21:10:31 EDT
+Run Date: 2026-11-17 20:12:31 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-17 01:06:52
-Successful: 1829 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-18 00:09:09
+Successful: 1818 | Skipped: 2 | Failed: 0
+--- Skipped Tickers ---
+CWPD: Too few valid rows: 1
+CWPG: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 0 ===
@@ -14,11 +17,9 @@ Successful: 1829 | Skipped: 0 | Failed: 0
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-17 01:05:39
-Successful: 1825 | Skipped: 4 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-18 00:10:01
+Successful: 1818 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
-EMBJ: Too few valid rows: 1
-HCOP: No data returned from Yahoo
 HZN: Too few valid rows: 1
 IQEE: Too few valid rows: 1
 ================================================================================
@@ -28,10 +29,13 @@ IQEE: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-17 01:07:10
-Successful: 1828 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-18 00:09:51
+Successful: 1816 | Skipped: 4 | Failed: 0
 --- Skipped Tickers ---
+NTCR: Too few valid rows: 1
 OPAY: Too few valid rows: 1
+PCHX: Too few valid rows: 1
+PIVT: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -39,11 +43,11 @@ OPAY: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-17 01:07:02
-Successful: 1829 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-18 00:10:06
+Successful: 1820 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
-SENEA: Too few valid rows: 1
-SENEB: Too few valid rows: 1
+SIMI: Too few valid rows: 1
+ZDAY: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 3 ===
