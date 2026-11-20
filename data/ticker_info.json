@@ -328,6 +328,13 @@
       "type": "Stock"
     }
   },
+  "AAUD": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "AAUS": {
     "info": {
       "industry": "ETF",
@@ -3671,13 +3678,6 @@
     "info": {
       "industry": "Communication Equipment",
       "sector": "Technology",
-      "type": "Stock"
-    }
-  },
-  "AMPGZ": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -18493,6 +18493,13 @@
       "type": "Stock"
     }
   },
+  "CZZL": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "D": {
     "info": {
       "industry": "Utilities - Regulated Electric",
@@ -26139,15 +26146,15 @@
   },
   "FDGX": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
   "FDGXU": {
     "info": {
-      "industry": "n/a",
-      "sector": "n/a",
+      "industry": "Shell Companies",
+      "sector": "Financial Services",
       "type": "Stock"
     }
   },
@@ -39626,6 +39633,13 @@
       "type": "ETF"
     }
   },
+  "ISMH": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "ISNR": {
     "info": {
       "industry": "Shell Companies",
@@ -47231,13 +47245,6 @@
   "MEOH": {
     "info": {
       "industry": "Chemicals",
-      "sector": "Basic Materials",
-      "type": "Stock"
-    }
-  },
-  "MERC": {
-    "info": {
-      "industry": "Paper & Paper Products",
       "sector": "Basic Materials",
       "type": "Stock"
     }
@@ -55187,13 +55194,6 @@
       "type": "Stock"
     }
   },
-  "OPAY": {
-    "info": {
-      "industry": "Software - Infrastructure",
-      "sector": "Technology",
-      "type": "Stock"
-    }
-  },
   "OPBK": {
     "info": {
       "industry": "Banks - Regional",
@@ -55212,27 +55212,6 @@
     "info": {
       "industry": "Real Estate Services",
       "sector": "Real Estate",
-      "type": "Stock"
-    }
-  },
-  "OPENL": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
-    }
-  },
-  "OPENW": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
-      "type": "Stock"
-    }
-  },
-  "OPENZ": {
-    "info": {
-      "industry": "n/a",
-      "sector": "n/a",
       "type": "Stock"
     }
   },
@@ -69047,6 +69026,13 @@
       "type": "Stock"
     }
   },
+  "SONN": {
+    "info": {
+      "industry": "n/a",
+      "sector": "n/a",
+      "type": "Stock"
+    }
+  },
   "SONO": {
     "info": {
       "industry": "Consumer Electronics",
@@ -77643,13 +77629,6 @@
       "type": "ETF"
     }
   },
-  "UTZ": {
-    "info": {
-      "industry": "Packaged Foods",
-      "sector": "Consumer Defensive",
-      "type": "Stock"
-    }
-  },
   "UUP": {
     "info": {
       "industry": "ETF",
@@ -83852,6 +83831,13 @@
       "type": "ETF"
     }
   },
+  "YLDS": {
+    "info": {
+      "industry": "ETF",
+      "sector": "ETF",
+      "type": "ETF"
+    }
+  },
   "YLDW": {
     "info": {
       "industry": "ETF",
@@ -84694,8 +84680,8 @@
   },
   "ZYN": {
     "info": {
-      "industry": "Specialty Retail",
-      "sector": "Consumer Cyclical",
+      "industry": "n/a",
+      "sector": "n/a",
       "type": "Stock"
     }
   }
