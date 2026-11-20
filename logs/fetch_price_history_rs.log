@@ -1,16 +1,14 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-11-19 19:55:01 EDT
+Run Date: 2026-11-20 19:25:55 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-19 23:51:30
-Successful: 1811 | Skipped: 4 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-20 23:23:16
+Successful: 1634 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
-ANT: Too few valid rows: 1
 CCHP: Too few valid rows: 1
-CGBI: Too few valid rows: 1
 CGMI: Too few valid rows: 1
 ================================================================================
 
@@ -19,11 +17,14 @@ CGMI: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-19 23:51:16
-Successful: 1813 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-20 23:23:22
+Successful: 1631 | Skipped: 5 | Failed: 0
 --- Skipped Tickers ---
 GQGG: Too few valid rows: 1
 GSCZ: Too few valid rows: 1
+IQEE: Too few valid rows: 1
+IQES: Too few valid rows: 1
+ISMH: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -31,10 +32,10 @@ GSCZ: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-19 23:52:09
-Successful: 1814 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-20 23:23:07
+Successful: 1635 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-OPAY: Too few valid rows: 1
+SDC: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -42,15 +43,16 @@ OPAY: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-19 23:50:34
-Successful: 1812 | Skipped: 6 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-20 23:23:23
+Successful: 1632 | Skipped: 7 | Failed: 0
 --- Skipped Tickers ---
-SDC: Too few valid rows: 1
-SIMI: Too few valid rows: 1
+SHLA: Too few valid rows: 1
+SONN: Too few valid rows: 1
 TFIX: Too few valid rows: 1
 TRLL: Too few valid rows: 1
 VEN: Too few valid rows: 1
 YASX: Too few valid rows: 1
+YLDS: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 3 ===
