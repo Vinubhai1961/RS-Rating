@@ -1,27 +1,13 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-11-23 22:02:49 EDT
+Run Date: 2026-11-24 21:46:04 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-24 02:00:02
-Successful: 1728 | Skipped: 15 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-25 01:42:48
+Successful: 1815 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
-AIL: Too few valid rows: 1
-ALLZ: Too few valid rows: 1
-ANDD: Too few valid rows: 1
-ANS: Too few valid rows: 1
-ANSS: Too few valid rows: 1
-ANTC: Too few valid rows: 1
-ANTD: Too few valid rows: 1
-ANTQ: Too few valid rows: 1
-ANTT: Too few valid rows: 1
-ANTU: Too few valid rows: 1
-ANTY: Too few valid rows: 1
-ANTZ: Too few valid rows: 1
-ATHX: Too few valid rows: 1
-CLAU: Too few valid rows: 1
 DIVA: Too few valid rows: 1
 ================================================================================
 
@@ -30,12 +16,13 @@ DIVA: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-24 01:59:41
-Successful: 1740 | Skipped: 3 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-25 01:43:44
+Successful: 1812 | Skipped: 4 | Failed: 0
 --- Skipped Tickers ---
 GSCZ: Too few valid rows: 1
 IQES: Too few valid rows: 1
 ISMH: Too few valid rows: 1
+JALL: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 1 ===
@@ -43,8 +30,10 @@ ISMH: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-24 02:00:02
-Successful: 1743 | Skipped: 0 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-25 01:43:13
+Successful: 1815 | Skipped: 1 | Failed: 0
+--- Skipped Tickers ---
+OBMT: Too few valid rows: 1
 ================================================================================
 
 === END OF PARTITION 2 ===
@@ -52,17 +41,17 @@ Successful: 1743 | Skipped: 0 | Failed: 0
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-24 01:59:10
-Successful: 1737 | Skipped: 9 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-25 01:43:15
+Successful: 1809 | Skipped: 9 | Failed: 0
 --- Skipped Tickers ---
 SDC: Too few valid rows: 1
 SHLA: Too few valid rows: 1
 SONN: Too few valid rows: 1
 TFIX: Too few valid rows: 1
+TRLL: Too few valid rows: 1
 VEN: Too few valid rows: 1
 YASX: Too few valid rows: 1
 YLDS: Too few valid rows: 1
-ZCAP: Too few valid rows: 1
 ZECX: Too few valid rows: 1
 ================================================================================
 
