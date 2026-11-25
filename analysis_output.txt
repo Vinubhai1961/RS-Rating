@@ -1,4 +1,4 @@
-Analysis of nasdaqtraded.txt (as of 2026-11-24 09:00:53):
+Analysis of nasdaqtraded.txt (as of 2026-11-25 07:39:21):
 
 1. Total Securities: 13313
    - Represents the total number of securities listed across all exchanges in the file.
@@ -17,9 +17,9 @@ Other               335
 
 4. Securities by Exchange:
 Exchange Name
-Other            5640
+Other            5641
 NASDAQ           2890
-NYSE Arca        2783
+NYSE Arca        2782
 BATS             1683
 NYSE American     314
 IEX                 3
@@ -32,8 +32,8 @@ BATS                      2  1677      4                0     0        0
 IEX                       0     0      3                0     0        0
 NASDAQ                 1554    81    829              318    75       33
 NYSE American           178     0    105               17     6        8
-NYSE Arca                 1  2763     15                1     3        0
-Other                  2246  1310   1374              107   251      350
+NYSE Arca                 1  2762     15                1     3        0
+Other                  2246  1311   1374              107   251      350
    - Shows the count of each security type per exchange (e.g., ETFs on NASDAQ).
 
 6. NASDAQ Market Categories:
