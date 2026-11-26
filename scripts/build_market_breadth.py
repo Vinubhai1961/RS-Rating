@@ -341,14 +341,19 @@ def upsert_yearly_output(row: dict, output_dir: Path, run_dt: date) -> Path:
     existing = existing.drop_duplicates(subset=["Metric"], keep="last") if "Metric" in existing.columns else _empty_transposed_output()
     existing = metric_order.merge(existing, on="Metric", how="left")
 
-    # Replace today's column values.
+    # ---- FIXED ASSIGNMENT (values must be strings) ----
     for metric in OUTPUT_COLUMNS[1:]:
-        existing.loc[existing["Metric"] == metric, date_col] = row.get(metric, "")
+        val = row.get(metric, "")
+        if val is None or (isinstance(val, float) and pd.isna(val)):
+            val = ""
+        else:
+            val = str(val)
+        existing.loc[existing["Metric"] == metric, date_col] = val
 
     existing = _sort_transposed_columns(existing)
     existing.to_csv(output_path, index=False)
     return output_path
-
+  
 def main():
     parser = argparse.ArgumentParser(description="Build market breadth from RS_Data/rs_stocks.csv")
     parser.add_argument("--input", default="RS_Data/rs_stocks.csv", help="Current rs_stocks.csv path")
