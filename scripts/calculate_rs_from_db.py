@@ -669,29 +669,37 @@ def build_rs_threshold_map(df_stocks, column, percentile_values):
 
 def generate_pine_thresholds(df_stocks, output_dir, percentile_values):
     threshold_sets = {
-        "ind": "RS",
-        "ind1m": "1M_RS",
-        "ind3m": "3M_RS",
-        "ind6m": "6M_RS",
+        "usa": "RS",
+        "usa1m": "1M_RS",
+        "usa3m": "3M_RS",
+        "usa6m": "6M_RS",
     }
+
     lines = []
     lines.append("// Auto-generated RS Rating thresholds - do not edit manually\n")
     lines.append(f"// Last updated: {datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')}\n\n")
+
     for prefix, col in threshold_sets.items():
         rs_map = build_rs_threshold_map(df_stocks, col, percentile_values)
         print(f"\n=== {col} Pine thresholds ===")
+
         for p in sorted(percentile_values, reverse=True):
             print(f"  {p:2}th percentile → Raw {col} ≥ {rs_map[p]:6.2f}")
+
         lines.append(f"// {col} thresholds\n")
+
         for p in sorted(percentile_values, reverse=True):
             label = f"{prefix}{p:02d}"
             lines.append(
                 f'{label} = input.float({rs_map[p]:.2f}, "{prefix.upper()} {p}th → RS ≥", group="{prefix.upper()} Thresholds")\n'
             )
         lines.append("\n")
+
     path = os.path.join(output_dir, "RS-Rating-pine.csv")
+
     with open(path, "w", encoding="utf-8") as f:
         f.write("".join(lines))
+
     print(f"RS-Rating-pine.csv Pine thresholds generated → {path}")
 
 
