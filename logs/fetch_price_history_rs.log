@@ -1,11 +1,11 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-11-25 21:21:52 EDT
+Run Date: 2026-11-25 23:52:08 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-26 01:16:49
+FINAL SUMMARY - Partition finished at 2026-11-26 03:49:33
 Successful: 1813 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
 CPHY: Too few valid rows: 1
@@ -17,7 +17,7 @@ DIVA: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-26 01:16:51
+FINAL SUMMARY - Partition finished at 2026-11-26 03:48:27
 Successful: 1812 | Skipped: 3 | Failed: 0
 --- Skipped Tickers ---
 IQES: Too few valid rows: 1
@@ -30,7 +30,7 @@ JALL: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-26 01:17:50
+FINAL SUMMARY - Partition finished at 2026-11-26 03:49:08
 Successful: 1814 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
 RMTX: Too few valid rows: 1
@@ -41,13 +41,14 @@ RMTX: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-26 01:18:51
-Successful: 1810 | Skipped: 8 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-26 03:49:05
+Successful: 1809 | Skipped: 9 | Failed: 0
 --- Skipped Tickers ---
 SDC: Too few valid rows: 1
 SHLA: Too few valid rows: 1
 SONN: Too few valid rows: 1
 TFIX: Too few valid rows: 1
+TRLL: Too few valid rows: 1
 VEN: Too few valid rows: 1
 YASX: Too few valid rows: 1
 YLDS: Too few valid rows: 1
