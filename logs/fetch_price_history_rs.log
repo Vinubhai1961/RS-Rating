@@ -1,12 +1,12 @@
 ===== FETCH PRICE HISTORY RS LOG - COMBINED =====
-Run Date: 2026-11-25 23:52:08 EDT
+Run Date: 2026-11-27 20:53:12 EDT
 Total Partitions: 4
 
 >>> Partition 0 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-26 03:49:33
-Successful: 1813 | Skipped: 2 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-28 00:50:21
+Successful: 1825 | Skipped: 2 | Failed: 0
 --- Skipped Tickers ---
 CPHY: Too few valid rows: 1
 DIVA: Too few valid rows: 1
@@ -17,9 +17,11 @@ DIVA: Too few valid rows: 1
 >>> Partition 1 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-26 03:48:27
-Successful: 1812 | Skipped: 3 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-28 00:50:00
+Successful: 1822 | Skipped: 5 | Failed: 0
 --- Skipped Tickers ---
+GSCZ: Too few valid rows: 1
+HTOEU: Too few valid rows: 1
 IQES: Too few valid rows: 1
 ISMH: Too few valid rows: 1
 JALL: Too few valid rows: 1
@@ -30,8 +32,8 @@ JALL: Too few valid rows: 1
 >>> Partition 2 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-26 03:49:08
-Successful: 1814 | Skipped: 1 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-28 00:50:24
+Successful: 1826 | Skipped: 1 | Failed: 0
 --- Skipped Tickers ---
 RMTX: Too few valid rows: 1
 ================================================================================
@@ -41,11 +43,12 @@ RMTX: Too few valid rows: 1
 >>> Partition 3 Log
 
 ================================================================================
-FINAL SUMMARY - Partition finished at 2026-11-26 03:49:05
-Successful: 1809 | Skipped: 9 | Failed: 0
+FINAL SUMMARY - Partition finished at 2026-11-28 00:50:10
+Successful: 1819 | Skipped: 10 | Failed: 0
 --- Skipped Tickers ---
 SDC: Too few valid rows: 1
 SHLA: Too few valid rows: 1
+SIMI: Too few valid rows: 1
 SONN: Too few valid rows: 1
 TFIX: Too few valid rows: 1
 TRLL: Too few valid rows: 1
